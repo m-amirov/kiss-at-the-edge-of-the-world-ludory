@@ -44,7 +44,8 @@ test('every S01 seat rejoins the same S02 choice with three convergent alternati
   for (const id of ['s02-people', 's02-place', 's02-own-choice']) {
     assert.equal(scene(id).nextSceneId, 's02-common');
   }
-  assert.equal(scene('s02-common').beats.at(-1).type, 'ending');
+  assert.equal(scene('s02-common').nextSceneId, 's65-guesthouse');
+  assert.equal(scene('s02-common').beats.some((beat) => beat.type === 'ending'), false);
 });
 
 function startAtS02Choice(seat = 'front-eric') {
@@ -107,8 +108,8 @@ test('S02 career choice sets exactly one career thesis, without route lock', () 
     runtime.advance(target);
     assert.equal(runtime.getState().sceneId, 's02-common');
     runtime.advance('s02-common');
-    assert.equal(runtime.getState().sceneId, 's02-common');
-    assert.equal(scene('s02-common').beats[runtime.getState().beatIndex]?.type, 'ending');
+    assert.equal(runtime.getState().sceneId, 's65-guesthouse');
+    assert.equal(runtime.getState().beatIndex, 0);
   }
 });
 

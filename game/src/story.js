@@ -1,6 +1,7 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S02.
-// M3 S02 boundary is not the end of EP01. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S65.
+// M3 S65 boundary is not the end of EP01. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
+import { s65Evening } from './scenes/s65.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -169,10 +170,11 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's02-people', beats: beats('s02-people', s02People), nextSceneId: 's02-common' },
   { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
   { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
-  { id: 's02-common', beats: [
-    ...beats('s02-common', s02Common),
-    { id: 's02-m3-end', type: 'ending', endingId: 'm3-s02-only',
-      text: t('Технический фрагмент завершён. История продолжится в S65.') },
+  { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's65-guesthouse' },
+  { id: 's65-guesthouse', beats: [
+    ...beats('s65-guesthouse', s65Evening),
+    { id: 's65-m3-end', type: 'ending', endingId: 'm3-s65-only',
+      text: t('Технический фрагмент завершён. История продолжится в S03.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
