@@ -50,9 +50,9 @@ test('S65 proceeds to S03; conditional continuation gates do not invent authored
   assert.deepEqual(scene('s03-waterfront').beats.at(-1).choices.map((c) => c.targetSceneId),
     ['s03-message', 's03-silence']);
   for (const variant of ['s03-message', 's03-silence']) {
-    assert.equal(scene(variant).nextSceneId, 's03-m3-end');
+    assert.equal(scene(variant).nextSceneId, 's04-intro');
   }
-  assert.equal(scene('s03-m3-end').beats.at(-1).type, 'ending');
+  assert.equal(scene('s03-m3-end'), undefined, 'S03-only technical terminator must be removed');
 });
 
 function runToS03(seat, career) {
@@ -127,7 +127,7 @@ test('all nine S01×S02 states see exactly their authored S03 variants', () => {
           inputs: [{ schemaVersion: 1, type: 'pointer', action: `narrative:next:${firstBeat.id}`,
             phase: 'up', timestamp: 23, source: 'renderer' }],
           setState(next) { restored = next; } });
-        assert.equal(restored.narrative.sceneId, 's03-m3-end');
+        assert.equal(restored.narrative.sceneId, 's04-intro');
         assert.equal(restored.narrative.routeLock, null);
         assert.equal(restored.narrative.flags[`s03-damir-${option}`], true);
         run.act('narrative:back');

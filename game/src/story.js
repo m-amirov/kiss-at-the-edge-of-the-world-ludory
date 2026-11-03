@@ -1,11 +1,15 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S03.
-// M3 S03 boundary is not the end of EP01. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S04.
+// M3 S04 boundary is not the end of EP01. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
   s03Intro, s03CareerPeople, s03CareerPlace, s03CareerOwn, s03Coffee,
   s03SeatDamir, s03SeatOther, s03Waterfront, s03Message, s03Silence,
 } from './scenes/s03.js';
+import {
+  s04Intro, s04Accepted, s04Declined, s04Negotiated, s04Common,
+  s04AfterMessage, s04AfterSilence,
+} from './scenes/s04.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -212,11 +216,38 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's03-damir-silence', value: true }] },
     ] },
   ] },
-  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's03-m3-end' },
-  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's03-m3-end' },
-  { id: 's03-m3-end', beats: [
-    { id: 's03-m3-end-beat', type: 'ending', endingId: 'm3-s03-only',
-      text: t('Технический фрагмент завершён. История продолжится в S04.') },
+  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's04-intro' },
+  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's04-intro' },
+  { id: 's04-intro', beats: [
+    ...beats('s04-intro', s04Intro),
+    { id: 's04-camera-consent-choice', type: 'choice', choices: [
+      { id: 'accepted', label: t('Разрешить короткий общий кадр'), targetSceneId: 's04-accepted',
+        effects: [{ op: 'flag_set', id: 'consent-camera-accepted', value: true }] },
+      { id: 'declined', label: t('Попросить убрать камеру'), targetSceneId: 's04-declined',
+        effects: [{ op: 'flag_set', id: 'consent-camera-declined-respected', value: true }] },
+      { id: 'negotiated', label: t('Предложить снимок всей группы'), targetSceneId: 's04-negotiated',
+        effects: [{ op: 'flag_set', id: 'consent-camera-negotiated', value: true }] },
+    ] },
+  ] },
+  { id: 's04-accepted', beats: beats('s04-accepted', s04Accepted), nextSceneId: 's04-common' },
+  { id: 's04-declined', beats: beats('s04-declined', s04Declined), nextSceneId: 's04-common' },
+  { id: 's04-negotiated', beats: beats('s04-negotiated', s04Negotiated), nextSceneId: 's04-common' },
+  { id: 's04-common', beats: [
+    ...beats('s04-common', s04Common),
+    // Only one prior S03 message outcome is eligible. This is a technical,
+    // state-derived continuation, not a new literary choice.
+    { id: 's04-s03-dispatch', type: 'choice', choices: [
+      { id: 'message', label: t('Продолжить'), targetSceneId: 's04-after-message',
+        when: { flag: 's03-damir-message' } },
+      { id: 'silence', label: t('Продолжить'), targetSceneId: 's04-after-silence',
+        when: { flag: 's03-damir-silence' } },
+    ] },
+  ] },
+  { id: 's04-after-message', beats: beats('s04-after-message', s04AfterMessage), nextSceneId: 's04-m3-end' },
+  { id: 's04-after-silence', beats: beats('s04-after-silence', s04AfterSilence), nextSceneId: 's04-m3-end' },
+  { id: 's04-m3-end', beats: [
+    { id: 's04-m3-end-beat', type: 'ending', endingId: 'm3-s04-only',
+      text: t('Технический фрагмент завершён. История продолжится в S05.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
