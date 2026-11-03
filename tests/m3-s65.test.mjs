@@ -35,7 +35,7 @@ function runtimeAtS02Choice(seat = 'front-eric') {
   return { act, advance, getState: () => current.narrative, graph, catalog };
 }
 
-test('S65 is complete pinned prose and ends only at an explicit technical M3 boundary', () => {
+test('S65 is complete pinned prose and leads into the canonical S03', () => {
   const guesthouse = scene('s65-guesthouse');
   assert.ok(guesthouse, 'S65 must be attached');
   const dialogue = guesthouse.beats.filter((beat) => beat.type === 'dialogue');
@@ -45,11 +45,8 @@ test('S65 is complete pinned prose and ends only at an explicit technical M3 bou
   assert.match(dialogue.at(-1).text.ru, /«Эрик попросил бы убрать лебедей из номера»\.$/);
   assert.equal(guesthouse.beats.filter((beat) => beat.type === 'choice').length, 0,
     'no un-authored S65 choices may be invented');
-  assert.deepEqual(guesthouse.beats.at(-1), {
-    id: 's65-m3-end', type: 'ending', endingId: 'm3-s65-only',
-    text: { ru: 'Технический фрагмент завершён. История продолжится в S03.',
-      en: 'Технический фрагмент завершён. История продолжится в S03.' },
-  });
+  assert.equal(guesthouse.beats.some((beat) => beat.type === 'ending'), false);
+  assert.equal(guesthouse.nextSceneId, 's03-editorial');
   assert.doesNotThrow(() => defineNarrativeGraph(graphData));
 });
 
@@ -99,8 +96,8 @@ test('all S02 career answers reach the same S65 with no route lock', () => {
       if (seat === 'front-eric' && option === 'people') {
         runtime.advance('s02-common');
         runtime.advance('s65-guesthouse');
-        assert.equal(runtime.getState().sceneId, 's65-guesthouse');
-        assert.equal(scene('s65-guesthouse').beats[runtime.getState().beatIndex]?.id, 's65-m3-end');
+        assert.equal(runtime.getState().sceneId, 's03-editorial');
+        assert.equal(runtime.getState().beatIndex, 0);
         assert.equal(runtime.getState().routeLock, null);
       }
     }

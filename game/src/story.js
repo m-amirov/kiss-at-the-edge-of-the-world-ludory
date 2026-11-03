@@ -1,7 +1,11 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S65.
-// M3 S65 boundary is not the end of EP01. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S03.
+// M3 S03 boundary is not the end of EP01. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
+import {
+  s03Intro, s03CareerPeople, s03CareerPlace, s03CareerOwn, s03Coffee,
+  s03SeatDamir, s03SeatOther, s03Waterfront, s03Message, s03Silence,
+} from './scenes/s03.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -171,10 +175,48 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
   { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
   { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's65-guesthouse' },
-  { id: 's65-guesthouse', beats: [
-    ...beats('s65-guesthouse', s65Evening),
-    { id: 's65-m3-end', type: 'ending', endingId: 'm3-s65-only',
-      text: t('Технический фрагмент завершён. История продолжится в S03.') },
+  { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's03-editorial' },
+  { id: 's03-editorial', beats: [
+    ...beats('s03-editorial', s03Intro),
+    // Engine N1 1.2.2 has no conditional automatic nextSceneId: these are
+    // mutually exclusive technical Continue actions, not literary player choices.
+    { id: 's03-career-dispatch', type: 'choice', choices: [
+      { id: 'people', label: t('Продолжить'), targetSceneId: 's03-career-people',
+        when: { flag: 'career-thesis-people' } },
+      { id: 'place', label: t('Продолжить'), targetSceneId: 's03-career-place',
+        when: { flag: 'career-thesis-place' } },
+      { id: 'own-choice', label: t('Продолжить'), targetSceneId: 's03-career-own',
+        when: { flag: 'career-thesis-own-choice' } },
+    ] },
+  ] },
+  { id: 's03-career-people', beats: beats('s03-career-people', s03CareerPeople), nextSceneId: 's03-coffee' },
+  { id: 's03-career-place', beats: beats('s03-career-place', s03CareerPlace), nextSceneId: 's03-coffee' },
+  { id: 's03-career-own', beats: beats('s03-career-own', s03CareerOwn), nextSceneId: 's03-coffee' },
+  { id: 's03-coffee', beats: [
+    ...beats('s03-coffee', s03Coffee),
+    { id: 's03-seat-dispatch', type: 'choice', choices: [
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's03-seat-damir',
+        when: { flag: 's01-seat-damir' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's03-seat-other',
+        when: { any: [{ flag: 's01-seat-eric' }, { flag: 's01-seat-nick' }] } },
+    ] },
+  ] },
+  { id: 's03-seat-damir', beats: beats('s03-seat-damir', s03SeatDamir), nextSceneId: 's03-waterfront' },
+  { id: 's03-seat-other', beats: beats('s03-seat-other', s03SeatOther), nextSceneId: 's03-waterfront' },
+  { id: 's03-waterfront', beats: [
+    ...beats('s03-waterfront', s03Waterfront),
+    { id: 's03-after-pharmacy-choice', type: 'choice', choices: [
+      { id: 'message', label: t('Написать ему короткое сообщение'), targetSceneId: 's03-message',
+        effects: [{ op: 'flag_set', id: 's03-damir-message', value: true }] },
+      { id: 'silence', label: t('Оставить эту прогулку без продолжения'), targetSceneId: 's03-silence',
+        effects: [{ op: 'flag_set', id: 's03-damir-silence', value: true }] },
+    ] },
+  ] },
+  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's03-m3-end' },
+  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's03-m3-end' },
+  { id: 's03-m3-end', beats: [
+    { id: 's03-m3-end-beat', type: 'ending', endingId: 'm3-s03-only',
+      text: t('Технический фрагмент завершён. История продолжится в S04.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
