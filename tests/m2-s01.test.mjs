@@ -68,7 +68,7 @@ test('narrative asset proof follows the authored story and does not publish temp
   }
 });
 
-test('Ludory 1.2.2 adoption leaves canonical S01 bytes outside managed components', () => {
+test('Ludory 1.2.2 keeps canonical authored files outside managed components', () => {
   const state = JSON.parse(readFileSync(new URL('../game/ludory.components.json', import.meta.url), 'utf8'));
   assert.equal(state.schemaVersion, 2);
   assert.deepEqual(state.authorFiles, [
@@ -77,10 +77,8 @@ test('Ludory 1.2.2 adoption leaves canonical S01 bytes outside managed component
   assert.deepEqual(Object.keys(state.files).sort(), [
     'assets/ludory-narrative.js', 'index.html', 'src/entry.js', 'src/main.js',
   ]);
-  assert.equal(hash(readFileSync(new URL('../game/src/story.js', import.meta.url))),
-    'ecddb280fb6eef32c83d1b150d4e2772f5682f9d199f6887148fa865fe3571cb');
-  assert.equal(hash(readFileSync(new URL('../game/narrative-assets.json', import.meta.url))),
-    'fa099ed3c0273533ee71e37f287590ef9641c62a537898967e418ac577737601');
+  const proof = JSON.parse(readFileSync(new URL('../game/narrative-assets.json', import.meta.url), 'utf8'));
+  assert.equal(proof.storySha256, hash(readFileSync(new URL('../game/src/story.js', import.meta.url))));
 });
 
 test('Ludory launcher displays the manifest title, not a template demo title', () => {

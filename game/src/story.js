@@ -1,5 +1,6 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01.
-// M2 only: the technical end marker is not the end of EP01. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S02.
+// M3 S02 boundary is not the end of EP01. EN falls back to RU pending verified localization.
+import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -150,10 +151,28 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's01-eric', beats: beats('s01-eric', withEric), nextSceneId: 's01-common' },
   { id: 's01-nick', beats: beats('s01-nick', withNick), nextSceneId: 's01-common' },
   { id: 's01-damir', beats: beats('s01-damir', withDamir), nextSceneId: 's01-common' },
-  { id: 's01-common', beats: [
-    ...beats('s01-common', common),
-    { id: 's01-m2-end', type: 'ending', endingId: 'm2-s01-only',
-      text: t('Технический фрагмент завершён. История продолжится в S02.') },
+  { id: 's01-common', beats: beats('s01-common', common), nextSceneId: 's02-road' },
+  { id: 's02-road', beats: [
+    ...beats('s02-road', s02Intro),
+    { id: 's02-career-choice', type: 'choice', choices: [
+      { id: 'people', label: t('Сначала наблюдать за людьми'), targetSceneId: 's02-people',
+        effects: [{ op: 'flag_set', id: 'career-thesis-people', value: true }] },
+      { id: 'place', label: t('Начать с места'), targetSceneId: 's02-place',
+        effects: [{ op: 'flag_set', id: 'career-thesis-place', value: true }] },
+      { id: 'own-choice', label: t('Спросить Дамира о решении'), targetSceneId: 's02-own-choice',
+        effects: [
+          { op: 'flag_set', id: 'career-thesis-own-choice', value: true },
+          { op: 'flag_set', id: 'damir-direct', value: true },
+        ] },
+    ] },
+  ] },
+  { id: 's02-people', beats: beats('s02-people', s02People), nextSceneId: 's02-common' },
+  { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
+  { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
+  { id: 's02-common', beats: [
+    ...beats('s02-common', s02Common),
+    { id: 's02-m3-end', type: 'ending', endingId: 'm3-s02-only',
+      text: t('Технический фрагмент завершён. История продолжится в S65.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
