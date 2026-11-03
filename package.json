@@ -6,6 +6,7 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "test:m1": "node --test tests/m1-inventory.test.mjs"
+    "test:m1": "node --test tests/m1-inventory.test.mjs",
+    "test:m2": "node --test tests/m2-s01.test.mjs"
   }
 }

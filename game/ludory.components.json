@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "template": {
+    "id": "narrative-interactive",
+    "version": "1.2.0",
+    "profile": "narrative-game",
+    "origin": "builtin",
+    "sourceSha256": "daeb6c88b17bace0aca7ccb91251bba7dec31ae78e70c5101056d84e08e271c8"
+  },
+  "files": {
+    "index.html": "21bce5a4011d114bbea2bf1e1e2a8ba40314d5b6eea3b3860e3b643dc3d7b367",
+    "src/entry.js": "a0a58029bf18bf14cd41f2ab1a90a255972420b4cd932994fbebf7a35bb0f669",
+    "src/main.js": "2e29b1a4da3ce2d3d45820a3c40f5b03cdf70f3e1514fb41a2e1fdf6c8274c7d",
+    "src/story.js": "8c72d3d63f04f2986fba58895fa9eb4d83caf6820cee72cc7897bd4f8813fc32",
+    "narrative-assets.json": "3cf0181210b14a4c41d30eba33052c4e71f9270e71973260650def92df0b9230",
+    "assets/lighthouse.svg": "850eca9c5f6829f7c4a5c3fe2267d174236bc83de568ed494c16e500a30cf772",
+    "assets/shoreline.svg": "b95df7d7019e16a4885deff503260c602832b0561f38eb2b190c06f44c85abb5",
+    "assets/ludory-narrative.js": "e044328979725f8b16ac3365c7b870da09f8dbe9849302d5c6fcc80309da0fce"
+  }
+}
