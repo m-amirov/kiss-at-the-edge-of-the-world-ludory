@@ -52,9 +52,9 @@ test('S03 message and silence rejoin S04 without old technical ending', () => {
   assert.ok(payoffGate.choices.every((option) => option.label.ru === 'Продолжить' &&
     option.when && option.effects === undefined));
   for (const id of ['s04-after-message', 's04-after-silence']) {
-    assert.equal(scene(id).nextSceneId, 's04-m3-end');
+    assert.equal(scene(id).nextSceneId, 's05-intro');
   }
-  assert.equal(scene('s04-m3-end').beats.at(-1).type, 'ending');
+  assert.equal(scene('s04-m3-end'), undefined);
 });
 
 function startAtS04(messageOption = 'message') {
@@ -128,9 +128,9 @@ test('S04 A/B/C consent is exclusive, reversible and JSON-restorable', () => {
   assert.equal(JSON.stringify(run.getState()), before, 'S03 message path must reject silence payoff');
   run.act('narrative:choose:s04-s03-dispatch:message');
   run.advance('s04-after-message');
-  assert.equal(run.getState().sceneId, 's04-m3-end');
+  assert.equal(run.getState().sceneId, 's05-intro');
   assert.equal(run.getState().routeLock, null);
-  assert.equal(scene('s04-m3-end').beats[run.getState().beatIndex].type, 'ending');
+  assert.equal(scene('s05-intro').beats[run.getState().beatIndex].type, 'dialogue');
 });
 
 test('S04 selects the silence payoff when S03 chose no message', () => {
@@ -144,7 +144,7 @@ test('S04 selects the silence payoff when S03 chose no message', () => {
   assert.equal(JSON.stringify(run.getState()), before, 'S03 silence path must reject message payoff');
   run.act('narrative:choose:s04-s03-dispatch:silence');
   run.advance('s04-after-silence');
-  assert.equal(run.getState().sceneId, 's04-m3-end');
+  assert.equal(run.getState().sceneId, 's05-intro');
   assert.equal(run.getState().flags['consent-camera-declined-respected'], true);
   assert.equal(run.getState().routeLock, null);
 });
