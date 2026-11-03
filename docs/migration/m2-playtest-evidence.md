@@ -9,11 +9,20 @@
 - `materializeNarrativePlatformProjects`: `DERIVED_LOCAL`; Yandex — 6 файлов, VK — 9; чужие демо-изображения в производные проекты не попали. Временные результаты штатно удалены через `cleanup()`.
 - `src/main.js` остался байт-в-байт каноническим из Studio-шаблона, так что F5b2 compiler не обходился.
 
+## Обновление после Ludory 1.2.2
+
+После штатного подтверждённого `components adopt --apply` на этой машине:
+
+- `components status --json`: `IN_SYNC`, шаблон `narrative-interactive` 1.2.2, component-state schema 2. Авторские `src/story.js` и `narrative-assets.json` исключены из управляемых компонентов; их SHA-256 сохранены.
+- Заголовок игрового экрана определяется `ludory.project.json` (`Поцелуй на краю света · Ludory`); прежняя проблема с демо-заголовком решена. Ключ сохранения `narrative-demo` пока остаётся прежним: изоляция namespace для полноценной миграции не подтверждена.
+- Повторная `planNarrativePlatformExport`: `READY_TO_DERIVE`; локальные архивы Яндекс/VK: `CANDIDATES_BUILT_LOCAL` и `LOCAL_ARCHIVES_VERIFIED`. Публикация не разрешена; временные архивы удалены после проверки.
+- `npm test`: 17 из 17 тестов, exit 0. Дополнительные сведения и хеши: [m2-ludory-1.2.2-adoption.md](m2-ludory-1.2.2-adoption.md).
+
 ## Открытые препятствия
 
 1. **Нет browser acceptance.** На данной рабочей машине не найден системный Chromium/Chrome/Firefox или браузерный test runner. Не проверены реальным браузером запуск, кнопки Save/Back/reload, malformed save, viewport 1000×720 и 390×844. Нельзя ставить browser QA PASS.
-2. **Канонический launcher жёстко содержит демо-заголовок** «Вечер у маяка», `Lighthouse Evening` и `narrative-demo` в saveKey. `packages/studio/src/narrative-platform-compile.mjs` сравнивает `src/main.js` с байтами шаблона и при изменении возвращает `F5B_AUTHOR_ENTRY_CONTRACT_UNVERIFIED`. Нужна отдельная доработка Ludory по настройке названия и корректному storage namespace при сохранении verified export.
-3. **Studio managed-components conflict.** После штатного авторского редактирования story и удаления демо-ассетов `components status --project game` возвращает `CONFLICT` (изменённые `src/story.js`, `narrative-assets.json`, отсутствуют `assets/lighthouse.svg`, `assets/shoreline.svg`). Trust-receipts и component SHA вручную не переписывались. Нужен поддержанный Ludory workflow отделения игровых authored-files от неизменяемых компонентов и доверенного клонирования на другой хост.
+2. **Save namespace не подтверждён.** Заголовок исправлен штатным шаблоном, но `narrative-demo` всё ещё используется для сохранений. Перед публикацией требуется отдельное решение о namespace и миграции/изоляции старых сохранений.
+3. **Доверие на другом компьютере.** На текущем хосте `IN_SYNC`, но локальное доверие Studio не переносится как Git-файл. После клонирования требуется официальный `components trust` на принимающем хосте; нельзя подделывать receipts.
 4. **Не готово к релизу.** Это только S01, с текстовым рендером без канонических иллюстраций. Полные EP01–EP10, локализация, художественная приёмка, сценарные тесты, совместимость сохранений, площадочные QA и права на ассеты остаются вне M2.
 
-`DERIVED_LOCAL` означает только доказанную техническую возможность локального преобразования исходников в два временных проекта, **не** готовые ZIP-кандидаты, release-gates или модерацию площадок.
+Историческая запись выше описывает исходную редакцию M2 на шаблоне 1.2.0; актуальные статусы относятся к повторной проверке 1.2.2. `LOCAL_ARCHIVES_VERIFIED` подтверждает техническую целостность локальных ZIP, **не** права, release-gates или модерацию площадок.

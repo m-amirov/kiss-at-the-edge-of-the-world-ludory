@@ -3,6 +3,7 @@ import test from 'node:test';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { graphData, catalogData } from '../game/src/story.js';
+import { resolveNarrativeTitle } from '../game/src/main.js';
 import { defineNarrativeGraph, defineNarrativeCatalog, createNarrativeState, createNarrativeRuntimeUpdate } from '../game/assets/ludory-narrative.js';
 
 const scene = (id) => graphData.scenes.find((entry) => entry.id === id);
@@ -65,6 +66,29 @@ test('narrative asset proof follows the authored story and does not publish temp
   for (const filename of ['lighthouse.svg', 'shoreline.svg']) {
     assert.equal(existsSync(new URL(`../game/assets/${filename}`, import.meta.url)), false);
   }
+});
+
+test('Ludory 1.2.2 adoption leaves canonical S01 bytes outside managed components', () => {
+  const state = JSON.parse(readFileSync(new URL('../game/ludory.components.json', import.meta.url), 'utf8'));
+  assert.equal(state.schemaVersion, 2);
+  assert.deepEqual(state.authorFiles, [
+    'src/story.js', 'narrative-assets.json', 'assets/lighthouse.svg', 'assets/shoreline.svg',
+  ]);
+  assert.deepEqual(Object.keys(state.files).sort(), [
+    'assets/ludory-narrative.js', 'index.html', 'src/entry.js', 'src/main.js',
+  ]);
+  assert.equal(hash(readFileSync(new URL('../game/src/story.js', import.meta.url))),
+    'ecddb280fb6eef32c83d1b150d4e2772f5682f9d199f6887148fa865fe3571cb');
+  assert.equal(hash(readFileSync(new URL('../game/narrative-assets.json', import.meta.url))),
+    'fa099ed3c0273533ee71e37f287590ef9641c62a537898967e418ac577737601');
+});
+
+test('Ludory launcher displays the manifest title, not a template demo title', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../game/ludory.project.json', import.meta.url), 'utf8'));
+  assert.equal(resolveNarrativeTitle(manifest, 'ru'), 'Поцелуй на краю света · Ludory');
+  assert.equal(resolveNarrativeTitle(manifest, 'en'), 'Поцелуй на краю света · Ludory');
+  const launcher = readFileSync(new URL('../game/src/main.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(launcher, /Вечер у маяка|Lighthouse Evening/);
 });
 
 test('S01 choice changes a visible flag without prematurely locking a romance route', () => {
