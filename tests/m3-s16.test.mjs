@@ -43,8 +43,8 @@ test('S15 flows to S16; one free two-way Damir-space choice rejoins exact shared
   ]);
   for(const [target]of Object.values(policies))
     assert.equal(scene(target).nextSceneId,'s16-common');
-  assert.equal(scene('s16-common').nextSceneId,'s16-m3-end');
-  assert.equal(scene('s16-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s16-common').nextSceneId,'s17-intro');
+  assert.equal(scene('s16-m3-end'),undefined);
   for(const c of choice.choices)for(const key of ['cost','premium','contentId',
     'requiredEntitlement','romancePoints','publishPermission','consentToPublish','routeLock'])
     assert.equal(c[key],undefined);
@@ -154,7 +154,7 @@ test('prior Nick privacy × Eric gesture × both S16 choices: real N1, Back, JSO
       assert.equal(run.get().routeLock,null);
       run.advance(target);
       run.advance('s16-common');
-      assert.equal(run.get().sceneId,'s16-m3-end');
+      assert.equal(run.get().sceneId,'s17-intro');
     }
   }
 });

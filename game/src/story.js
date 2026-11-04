@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S16.
-// M3 S16 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S17.
+// M3 S17 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -58,6 +58,11 @@ import {
   s15EveningWalk, s15EveningPhoto,
 } from './scenes/s15.js';
 import { s16Intro, s16Tea, s16Room, s16Common } from './scenes/s16.js';
+import {
+  s17Intro, s17NickPrivate, s17NickObserved, s17NickShared, s17CommonA,
+  s17Editor, s17Shared, s17DamirTea, s17DamirRoom, s17GroupPlan,
+  s17GroupLaundry, s17GroupKitchen, s17GroupBreak, s17CommonB,
+} from './scenes/s17.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -758,11 +763,85 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's16-tea', beats: beats('s16-tea', s16Tea), nextSceneId: 's16-common' },
   { id: 's16-room', beats: beats('s16-room', s16Room), nextSceneId: 's16-common' },
-  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's16-m3-end' },
-  { id: 's16-m3-end', beats: [
-    { id: 's16-m3-end-beat', type: 'ending', endingId: 'm3-s16-only',
-      text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
+  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's17-intro' },
+  { id: 's17-intro', beats: beats('s17-intro', s17Intro), nextSceneId: 's17-n-dispatch' },
+  { id: 's17-n-dispatch', beats: [
+    { id: 's17-n-dispatch', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's17-n-a',
+        when: { flag: 'nick-failure-private' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's17-n-b',
+        when: { flag: 'nick-failure-observed' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's17-n-c',
+        when: { flag: 'nick-failure-shared-file' } },
+    ] },
   ] },
+  { id: 's17-n-a', beats: beats('s17-n-a', s17NickPrivate), nextSceneId: 's17-common-a' },
+  { id: 's17-n-b', beats: beats('s17-n-b', s17NickObserved), nextSceneId: 's17-common-a' },
+  { id: 's17-n-c', beats: beats('s17-n-c', s17NickShared), nextSceneId: 's17-common-a' },
+  { id: 's17-common-a', beats: beats('s17-common-a', s17CommonA), nextSceneId: 's17-e-dispatch' },
+  { id: 's17-e-dispatch', beats: [
+    { id: 's17-e-dispatch', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's17-e-a',
+        when: { flag: 'alice-leads-editor' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's17-e-b',
+        when: { flag: 'alice-leads-shared' } },
+    ] },
+  ] },
+  { id: 's17-e-a', beats: beats('s17-e-a', s17Editor), nextSceneId: 's17-d-dispatch' },
+  { id: 's17-e-b', beats: beats('s17-e-b', s17Shared), nextSceneId: 's17-d-dispatch' },
+  { id: 's17-d-dispatch', beats: [
+    { id: 's17-d-dispatch', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's17-d-a',
+        when: { flag: 'damir-space-tea' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's17-d-b',
+        when: { flag: 'damir-space-room' } },
+    ] },
+  ] },
+  { id: 's17-d-a', beats: beats('s17-d-a', s17DamirTea), nextSceneId: 's17-group-choice-scene' },
+  { id: 's17-d-b', beats: beats('s17-d-b', s17DamirRoom), nextSceneId: 's17-group-choice-scene' },
+  { id: 's17-group-choice-scene', beats: [
+    { id: 's17-group-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Помочь Эрику с планом завтрашнего дня'),
+        targetSceneId: 's17-group-a',
+        effects: [{ op: 'flag_set', id: 's17-group-plan', value: true }] },
+      { id: 'b', label: t('Разобрать бельё вместе с Ником'),
+        targetSceneId: 's17-group-b',
+        effects: [{ op: 'flag_set', id: 's17-group-laundry', value: true }] },
+      { id: 'c', label: t('Договориться о кухне с Дамиром'),
+        targetSceneId: 's17-group-c',
+        effects: [{ op: 'flag_set', id: 's17-group-kitchen', value: true }] },
+      { id: 'd', label: t('Раздать дела всем, оставив себе паузу'),
+        targetSceneId: 's17-group-d',
+        effects: [{ op: 'flag_set', id: 's17-group-break', value: true }] },
+    ] },
+  ] },
+  { id: 's17-group-a', beats: beats('s17-group-a', s17GroupPlan), nextSceneId: 's17-common-b' },
+  { id: 's17-group-b', beats: beats('s17-group-b', s17GroupLaundry), nextSceneId: 's17-common-b' },
+  { id: 's17-group-c', beats: beats('s17-group-c', s17GroupKitchen), nextSceneId: 's17-common-b' },
+  { id: 's17-group-d', beats: beats('s17-group-d', s17GroupBreak), nextSceneId: 's17-common-b' },
+  { id: 's17-common-b', beats: [
+    ...beats('s17-common-b', s17CommonB),
+    { id: 's17-evening-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Пойти с Эриком к маяку'),
+        targetSceneId: 's18-m3-end',
+        effects: [{ op: 'flag_set', id: 's17-evening-eric', value: true }] },
+      { id: 'nick', label: t('Пойти с Ником в бассейн'),
+        targetSceneId: 's19-m3-end',
+        effects: [{ op: 'flag_set', id: 's17-evening-nick', value: true }] },
+      { id: 'damir', label: t('Принять приглашение Дамира на завтрашний вечер'),
+        targetSceneId: 's20-m3-end',
+        effects: [{ op: 'flag_set', id: 's17-evening-damir', value: true }] },
+      { id: 'self', label: t('Оставить время себе'),
+        targetSceneId: 's21-m3-end',
+        effects: [{ op: 'flag_set', id: 's17-evening-self', value: true }] },
+    ] },
+  ] },
+  // Temporary per-route boundaries. Authored S18–S21 and S61 are the next M3 stage.
+  ...['s18', 's19', 's20', 's21'].map(id => ({
+    id: id+'-m3-end',
+    beats: [{ id: id+'-m3-end-beat', type: 'ending', endingId: 'm3-s17-'+id,
+      text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') }],
+  })),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
