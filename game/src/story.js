@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S12.
-// M3 S12 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S13.
+// M3 S13 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -43,6 +43,11 @@ import {
   s12CommonC, s12DraftDamir, s12DraftPrivate, s12CommonD,
   s12ReturnChocolate, s12ReturnAlone,
 } from './scenes/s12.js';
+import {
+  s13Intro, s13VoiceEric, s13VoiceNick, s13VoiceDamir,
+  s13CommonA, s13WorkEditor, s13WorkShared, s13CommonB,
+  s13ReturnChocolate, s13ReturnAlone,
+} from './scenes/s13.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -599,10 +604,50 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's12-return-alone', value: true }] },
     ] },
   ] },
-  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's12-m3-end' },
-  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's12-m3-end' },
-  { id: 's12-m3-end', beats: [
-    { id: 's12-m3-end-beat', type: 'ending', endingId: 'm3-s12-only',
+  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's13-intro' },
+  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's13-intro' },
+  { id: 's13-intro', beats: [
+    ...beats('s13-intro', s13Intro),
+    // The exact S09-C1 waterfall voice appears here in three distinct authored variants.
+    { id: 's13-voice-dispatch', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's13-voice-eric',
+        when: { flag: 'skogafoss-voice-eric' } },
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's13-voice-nick',
+        when: { flag: 'skogafoss-voice-nick' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's13-voice-damir',
+        when: { flag: 'skogafoss-voice-damir' } },
+    ] },
+  ] },
+  { id: 's13-voice-eric', beats: beats('s13-voice-eric', s13VoiceEric), nextSceneId: 's13-common-a' },
+  { id: 's13-voice-nick', beats: beats('s13-voice-nick', s13VoiceNick), nextSceneId: 's13-common-a' },
+  { id: 's13-voice-damir', beats: beats('s13-voice-damir', s13VoiceDamir), nextSceneId: 's13-common-a' },
+  { id: 's13-common-a', beats: [
+    ...beats('s13-common-a', s13CommonA),
+    { id: 's13-work-choice', type: 'choice', choices: [
+      { id: 'editor', label: t('Вести заметку самой и отвечать за согласие каждого'),
+        targetSceneId: 's13-work-editor',
+        effects: [{ op: 'flag_set', id: 'alice-leads-editor', value: true }] },
+      { id: 'shared', label: t('Отказаться от роли распорядителя и договориться о равном сборе материала'),
+        targetSceneId: 's13-work-shared',
+        effects: [{ op: 'flag_set', id: 'alice-leads-shared', value: true }] },
+    ] },
+  ] },
+  { id: 's13-work-editor', beats: beats('s13-work-editor', s13WorkEditor), nextSceneId: 's13-common-b' },
+  { id: 's13-work-shared', beats: beats('s13-work-shared', s13WorkShared), nextSceneId: 's13-common-b' },
+  { id: 's13-common-b', beats: [
+    ...beats('s13-common-b', s13CommonB),
+    // Authored S12-C3 callbacks appear after this shared S13 passage in the manuscript.
+    { id: 's13-return-dispatch', type: 'choice', choices: [
+      { id: 'chocolate', label: t('Продолжить'), targetSceneId: 's13-return-chocolate',
+        when: { flag: 's12-return-chocolate' } },
+      { id: 'alone', label: t('Продолжить'), targetSceneId: 's13-return-alone',
+        when: { flag: 's12-return-alone' } },
+    ] },
+  ] },
+  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's13-m3-end' },
+  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's13-m3-end' },
+  { id: 's13-m3-end', beats: [
+    { id: 's13-m3-end-beat', type: 'ending', endingId: 'm3-s13-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };

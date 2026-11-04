@@ -132,8 +132,8 @@ test('S11→S12 plus guarded S08/S09 callbacks and three separate free two-way a
   }
   for(const c of pastOptions)assert.equal(scene('s12-past-'+c).nextSceneId,'s12-common-c');
   for(const c of draftOptions)assert.equal(scene('s12-draft-'+c).nextSceneId,'s12-common-d');
-  for(const c of returnOptions)assert.equal(scene('s12-return-'+c).nextSceneId,'s12-m3-end');
-  assert.equal(scene('s12-m3-end').beats[0].type,'ending');
+  for(const c of returnOptions)assert.equal(scene('s12-return-'+c).nextSceneId,'s13-intro');
+  assert.equal(scene('s12-m3-end'),undefined);
 });
 function toS12(care,voice){
   const graph=defineNarrativeGraph(graphData),catalog=defineNarrativeCatalog(catalogData);
@@ -248,7 +248,7 @@ test('S08 care × S09 voice callbacks plus all S12 choices preserve Back and fre
     assert.equal(run.get().flags['draft-shared-'+draft],true);
     assert.equal(run.get().routeLock,null);
     run.advance('s12-return-'+path);
-    assert.equal(run.get().sceneId,'s12-m3-end');
+    assert.equal(run.get().sceneId,'s13-intro');
   }
 });
 test('S12 cannot use optional Ludory Economy E5 in the first novel',()=>{
