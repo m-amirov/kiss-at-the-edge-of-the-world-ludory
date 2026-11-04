@@ -47,10 +47,10 @@ test('S07→S08 and S08-C1 use prior weather state and exclusive free outcomes',
   assert.deepEqual(choice.choices.map(x=>x.label.ru),['Предложить Дамиру кофе','Поблагодарить и уйти','Спросить о Брюсселе']);
   for(const option of choice.choices){
     assert.deepEqual(option.effects,[{op:'flag_set',id:'damir-care-'+option.id,value:true}]);
-    assert.equal(scene(option.targetSceneId).nextSceneId,'s08-m3-end');
+    assert.equal(scene(option.targetSceneId).nextSceneId,'s66-intro');
     for(const field of ['cost','premium','contentId','requiredEntitlement']) assert.equal(option[field],undefined);
   }
-  assert.equal(scene('s08-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s08-m3-end'),undefined);
   assert.equal(catalogData.interactions.length,0);
   assert.equal(existsSync(new URL('../game/config/economy.json',import.meta.url)),false);
 });
@@ -130,7 +130,7 @@ test('S08-C1 A→Back→B→Back→C and JSON continuation retain previous narra
       update({deltaMs:16,state:snapshot,inputs:[{schemaVersion:1,type:'pointer',action:'narrative:next:'+beat.id,phase:'up',timestamp:44,source:'renderer'}],setState(v){restored=v;}});
       completed=restored.narrative;
     }
-    assert.equal(completed.sceneId,'s08-m3-end','each S08 response must complete through the real runtime');
+    assert.equal(completed.sceneId,'s66-intro','each S08 response must reach the next canonical scene');
     assert.equal(completed.flags['damir-care-'+id],true);
     const corrupted=JSON.parse(JSON.stringify(current));
     corrupted.flags['damir-care-'+(id==='warm'?'personal':'warm')]=true;

@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S08.
-// M3 S08 boundary is not the end of EP02. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S66.
+// M3 S66 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -22,6 +22,10 @@ import {
   s07CommonC, s07EricFavorite, s07EricMusic,
 } from './scenes/s07.js';
 import { s08Intro, s08WeatherDamir, s08Common, s08Warm, s08Neutral, s08Personal } from './scenes/s08.js';
+import {
+  s66Intro, s66DamirWarm, s66DamirNeutral, s66DamirPersonal,
+  s66CommonA, s66CareerPeople, s66CareerPlace, s66CareerOwn, s66CommonB,
+} from './scenes/s66.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -392,12 +396,42 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'damir-care-personal', value: true }] },
     ] },
   ] },
-  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's08-m3-end' },
-  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's08-m3-end' },
-  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's08-m3-end' },
-  { id: 's08-m3-end', beats: [
-    { id: 's08-m3-end-beat', type: 'ending', endingId: 'm3-s08-only',
-      text: t('Технический фрагмент завершён. История продолжится в S66.') },
+  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's66-intro' },
+  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's66-intro' },
+  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's66-intro' },
+  { id: 's66-intro', beats: [
+    ...beats('s66-intro', s66Intro),
+    // Ludory N1 conditional choices are technical Continue actions, not authored decisions.
+    { id: 's66-damir-dispatch', type: 'choice', choices: [
+      { id: 'warm', label: t('Продолжить'), targetSceneId: 's66-damir-warm',
+        when: { flag: 'damir-care-warm' } },
+      { id: 'neutral', label: t('Продолжить'), targetSceneId: 's66-damir-neutral',
+        when: { flag: 'damir-care-neutral' } },
+      { id: 'personal', label: t('Продолжить'), targetSceneId: 's66-damir-personal',
+        when: { flag: 'damir-care-personal' } },
+    ] },
+  ] },
+  { id: 's66-damir-warm', beats: beats('s66-damir-warm', s66DamirWarm), nextSceneId: 's66-common-a' },
+  { id: 's66-damir-neutral', beats: beats('s66-damir-neutral', s66DamirNeutral), nextSceneId: 's66-common-a' },
+  { id: 's66-damir-personal', beats: beats('s66-damir-personal', s66DamirPersonal), nextSceneId: 's66-common-a' },
+  { id: 's66-common-a', beats: [
+    ...beats('s66-common-a', s66CommonA),
+    { id: 's66-career-dispatch', type: 'choice', choices: [
+      { id: 'people', label: t('Продолжить'), targetSceneId: 's66-career-people',
+        when: { flag: 'career-thesis-people' } },
+      { id: 'place', label: t('Продолжить'), targetSceneId: 's66-career-place',
+        when: { flag: 'career-thesis-place' } },
+      { id: 'own-choice', label: t('Продолжить'), targetSceneId: 's66-career-own',
+        when: { flag: 'career-thesis-own-choice' } },
+    ] },
+  ] },
+  { id: 's66-career-people', beats: beats('s66-career-people', s66CareerPeople), nextSceneId: 's66-common-b' },
+  { id: 's66-career-place', beats: beats('s66-career-place', s66CareerPlace), nextSceneId: 's66-common-b' },
+  { id: 's66-career-own', beats: beats('s66-career-own', s66CareerOwn), nextSceneId: 's66-common-b' },
+  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's66-m3-end' },
+  { id: 's66-m3-end', beats: [
+    { id: 's66-m3-end-beat', type: 'ending', endingId: 'm3-s66-only',
+      text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
