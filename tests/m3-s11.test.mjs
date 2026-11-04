@@ -93,8 +93,8 @@ test('S10 enters S11; S04 consent guards and free safety choice have exact effec
       {op:'flag_set',id:'nick-safety-asked-then-reframed',value:true}]],
   ]);
   for(const [id] of Object.values(outcomes))assert.equal(scene(id).nextSceneId,'s11-common-b');
-  assert.equal(scene('s11-common-b').nextSceneId,'s11-m3-end');
-  assert.equal(scene('s11-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s11-common-b').nextSceneId,'s12-intro');
+  assert.equal(scene('s11-m3-end'),undefined);
   for(const c of [...dispatch.choices,...choice.choices])
     for(const key of ['cost','premium','contentId','requiredEntitlement'])
       assert.equal(c[key],undefined);
@@ -184,7 +184,7 @@ test('three S04 consents × three S11 outcomes: Back, JSON restore, tamper rejec
       run.act('narrative:choose:s11-safety-choice:'+answer);
       run.advance(target);
       run.advance('s11-common-b');
-      assert.equal(run.get().sceneId,'s11-m3-end');
+      assert.equal(run.get().sceneId,'s12-intro');
     }
   }
 });

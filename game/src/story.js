@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S11.
-// M3 S11 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S12.
+// M3 S12 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -37,6 +37,12 @@ import {
   s11Intro, s11CameraAccepted, s11CameraDeclined, s11CameraNegotiated,
   s11CommonA, s11SafePoint, s11LeaveWater, s11CheckRules, s11CommonB,
 } from './scenes/s11.js';
+import {
+  s12Intro, s12CareWarm, s12CareNeutral, s12CarePersonal, s12CommonA,
+  s12VoiceDamir, s12VoiceOther, s12CommonB, s12PastListen, s12PastPause,
+  s12CommonC, s12DraftDamir, s12DraftPrivate, s12CommonD,
+  s12ReturnChocolate, s12ReturnAlone,
+} from './scenes/s12.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -532,9 +538,71 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's11-safe-point', beats: beats('s11-safe-point', s11SafePoint), nextSceneId: 's11-common-b' },
   { id: 's11-leave-water', beats: beats('s11-leave-water', s11LeaveWater), nextSceneId: 's11-common-b' },
   { id: 's11-check-rules', beats: beats('s11-check-rules', s11CheckRules), nextSceneId: 's11-common-b' },
-  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's11-m3-end' },
-  { id: 's11-m3-end', beats: [
-    { id: 's11-m3-end-beat', type: 'ending', endingId: 'm3-s11-only',
+  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's12-intro' },
+  { id: 's12-intro', beats: [
+    ...beats('s12-intro', s12Intro),
+    // The S08-C1 care decision changes only S12's corresponding authored callback.
+    { id: 's12-care-dispatch', type: 'choice', choices: [
+      { id: 'warm', label: t('Продолжить'), targetSceneId: 's12-care-warm',
+        when: { flag: 'damir-care-warm' } },
+      { id: 'neutral', label: t('Продолжить'), targetSceneId: 's12-care-neutral',
+        when: { flag: 'damir-care-neutral' } },
+      { id: 'personal', label: t('Продолжить'), targetSceneId: 's12-care-personal',
+        when: { flag: 'damir-care-personal' } },
+    ] },
+  ] },
+  { id: 's12-care-warm', beats: beats('s12-care-warm', s12CareWarm), nextSceneId: 's12-common-a' },
+  { id: 's12-care-neutral', beats: beats('s12-care-neutral', s12CareNeutral), nextSceneId: 's12-common-a' },
+  { id: 's12-care-personal', beats: beats('s12-care-personal', s12CarePersonal), nextSceneId: 's12-common-a' },
+  { id: 's12-common-a', beats: [
+    ...beats('s12-common-a', s12CommonA),
+    // S09-C1 is a historical voice preference, not a new player decision.
+    { id: 's12-voice-dispatch', type: 'choice', choices: [
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's12-voice-damir',
+        when: { flag: 'skogafoss-voice-damir' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's12-voice-other',
+        when: { any: [{ flag: 'skogafoss-voice-eric' }, { flag: 'skogafoss-voice-nick' }] } },
+    ] },
+  ] },
+  { id: 's12-voice-damir', beats: beats('s12-voice-damir', s12VoiceDamir), nextSceneId: 's12-common-b' },
+  { id: 's12-voice-other', beats: beats('s12-voice-other', s12VoiceOther), nextSceneId: 's12-common-b' },
+  { id: 's12-common-b', beats: [
+    ...beats('s12-common-b', s12CommonB),
+    { id: 's12-past-choice', type: 'choice', choices: [
+      { id: 'listen', label: t('Спросить о людях, которые теперь рядом с ним'), targetSceneId: 's12-past-listen',
+        effects: [{ op: 'flag_set', id: 'damir-past-listen', value: true }] },
+      { id: 'pause', label: t('Попросить оставить разговор на сегодня'), targetSceneId: 's12-past-pause',
+        effects: [{ op: 'flag_set', id: 'damir-past-pause', value: true }] },
+    ] },
+  ] },
+  { id: 's12-past-listen', beats: beats('s12-past-listen', s12PastListen), nextSceneId: 's12-common-c' },
+  { id: 's12-past-pause', beats: beats('s12-past-pause', s12PastPause), nextSceneId: 's12-common-c' },
+  { id: 's12-common-c', beats: [
+    ...beats('s12-common-c', s12CommonC),
+    { id: 's12-draft-choice', type: 'choice', choices: [
+      { id: 'damir', label: t('Показать две строки'), targetSceneId: 's12-draft-damir',
+        effects: [{ op: 'flag_set', id: 'draft-shared-damir', value: true }] },
+      { id: 'private', label: t('Оставить черновик у себя'), targetSceneId: 's12-draft-private',
+        effects: [{ op: 'flag_set', id: 'draft-shared-private', value: true }] },
+    ] },
+  ] },
+  { id: 's12-draft-damir', beats: beats('s12-draft-damir', s12DraftDamir), nextSceneId: 's12-common-d' },
+  { id: 's12-draft-private', beats: beats('s12-draft-private', s12DraftPrivate), nextSceneId: 's12-common-d' },
+  { id: 's12-common-d', beats: [
+    ...beats('s12-common-d', s12CommonD),
+    // Pinned EP03 source places its third authored S12 choice after the common evening.
+    // Retain that order verbatim; editorial continuity is noted for a later review.
+    { id: 's12-return-choice', type: 'choice', choices: [
+      { id: 'chocolate', label: t('Позвать его зайти за горячим шоколадом'), targetSceneId: 's12-return-chocolate',
+        effects: [{ op: 'flag_set', id: 's12-return-chocolate', value: true }] },
+      { id: 'alone', label: t('Вернуться к группе одной'), targetSceneId: 's12-return-alone',
+        effects: [{ op: 'flag_set', id: 's12-return-alone', value: true }] },
+    ] },
+  ] },
+  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's12-m3-end' },
+  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's12-m3-end' },
+  { id: 's12-m3-end', beats: [
+    { id: 's12-m3-end-beat', type: 'ending', endingId: 'm3-s12-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
