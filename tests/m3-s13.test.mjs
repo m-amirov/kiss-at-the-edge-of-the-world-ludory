@@ -93,8 +93,8 @@ test('S12→S13 uses all three guarded voice callbacks, authored free C1 and bot
     ['chocolate','s13-return-chocolate',{flag:'s12-return-chocolate'},undefined],
     ['alone','s13-return-alone',{flag:'s12-return-alone'},undefined],
   ]);
-  for(const r of returns)assert.equal(scene('s13-return-'+r).nextSceneId,'s13-m3-end');
-  assert.equal(scene('s13-m3-end').beats[0].type,'ending');
+  for(const r of returns)assert.equal(scene('s13-return-'+r).nextSceneId,'s14-intro');
+  assert.equal(scene('s13-m3-end'),undefined);
   for(const gate of [voice,prior])assert.ok(gate.choices.every(c=>c.label.ru==='Продолжить'&&!c.effects));
   for(const c of [...voice.choices,...work.choices,...prior.choices]){
     for(const forbidden of ['cost','premium','contentId','requiredEntitlement','romancePoints'])
@@ -199,7 +199,7 @@ test('all S09 voices × S12 returns reach S13, Back and fresh-runtime state pres
     assert.equal(run.get().flags['draft-shared-'+(voice==='nick'?'private':'damir')],true);
     assert.equal(run.get().routeLock,null);
     run.advance('s13-return-'+ret);
-    assert.equal(run.get().sceneId,'s13-m3-end');
+    assert.equal(run.get().sceneId,'s14-intro');
   }
 });
 

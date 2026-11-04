@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S13.
-// M3 S13 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S14.
+// M3 S14 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -48,6 +48,10 @@ import {
   s13CommonA, s13WorkEditor, s13WorkShared, s13CommonB,
   s13ReturnChocolate, s13ReturnAlone,
 } from './scenes/s13.js';
+import {
+  s14Intro, s14TonePlayful, s14ToneQuiet, s14CommonA,
+  s14PaceSlow, s14PaceShort, s14CommonB, s14GestureWalk, s14GesturePhoto,
+} from './scenes/s14.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -644,10 +648,50 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's12-return-alone' } },
     ] },
   ] },
-  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's13-m3-end' },
-  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's13-m3-end' },
-  { id: 's13-m3-end', beats: [
-    { id: 's13-m3-end-beat', type: 'ending', endingId: 'm3-s13-only',
+  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's14-intro' },
+  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's14-intro' },
+  { id: 's14-intro', beats: [
+    ...beats('s14-intro', s14Intro),
+    // A historical S10-C1 tone selects one authored callback, not another choice.
+    { id: 's14-tone-dispatch', type: 'choice', choices: [
+      { id: 'playful', label: t('Продолжить'), targetSceneId: 's14-tone-playful',
+        when: { flag: 'eric-tone-playful' } },
+      { id: 'quiet', label: t('Продолжить'), targetSceneId: 's14-tone-quiet',
+        when: { flag: 'eric-tone-quiet' } },
+    ] },
+  ] },
+  { id: 's14-tone-playful', beats: beats('s14-tone-playful', s14TonePlayful), nextSceneId: 's14-common-a' },
+  { id: 's14-tone-quiet', beats: beats('s14-tone-quiet', s14ToneQuiet), nextSceneId: 's14-common-a' },
+  { id: 's14-common-a', beats: [
+    ...beats('s14-common-a', s14CommonA),
+    { id: 's14-pace-choice', type: 'choice', choices: [
+      { id: 'slow', label: t('Попросить идти медленнее и назвать причину'),
+        targetSceneId: 's14-pace-slow',
+        effects: [{ op: 'flag_set', id: 'eric-pace-slow', value: true }] },
+      { id: 'short', label: t('Предложить короткий возврат и взять на себя решение'),
+        targetSceneId: 's14-pace-short',
+        effects: [{ op: 'flag_set', id: 'eric-pace-short', value: true }] },
+    ] },
+  ] },
+  { id: 's14-pace-slow', beats: beats('s14-pace-slow', s14PaceSlow), nextSceneId: 's14-common-b' },
+  { id: 's14-pace-short', beats: beats('s14-pace-short', s14PaceShort), nextSceneId: 's14-common-b' },
+  { id: 's14-common-b', beats: [
+    ...beats('s14-common-b', s14CommonB),
+    // S14-C2 appears in the pinned prose but not in the episode's technical state table.
+    // Preserve the authored gesture without invented romantic or publishing effects.
+    { id: 's14-gesture-choice', type: 'choice', choices: [
+      { id: 'walk', label: t('Самой предложить прогуляться вдвоём после ужина'),
+        targetSceneId: 's14-gesture-walk',
+        effects: [{ op: 'flag_set', id: 'eric-gesture-walk', value: true }] },
+      { id: 'photo', label: t('Поделиться с ним забавной находкой с маршрута'),
+        targetSceneId: 's14-gesture-photo',
+        effects: [{ op: 'flag_set', id: 'eric-gesture-photo', value: true }] },
+    ] },
+  ] },
+  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's14-m3-end' },
+  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's14-m3-end' },
+  { id: 's14-m3-end', beats: [
+    { id: 's14-m3-end-beat', type: 'ending', endingId: 'm3-s14-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
