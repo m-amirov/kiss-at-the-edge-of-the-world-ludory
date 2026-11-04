@@ -42,7 +42,9 @@ TDD RED evidence: before code changes the targeted test found no `s17-intro` (0 
 
 **Local syntax/whitespace:** `node --check game/src/story.js`, `node --check game/src/scenes/s17.js`, `git diff --cached --check` exit 0. `game/narrative-assets.json` SHA-256 matches `game/src/story.js`: `16c9e56cada1163b13ea99a7fc0f971ed4f78c22cff36b54a7d872cabad8b72b`.
 
-**Pending remote verification:** remote code/blob/tree proofs and GitHub CI status will be recorded after actual upload.
+**GitHub code proof:** existing Draft PR #2 was open/Draft at the expected initial head `6c57ad1492f0b4d68ef8a2604d28d31dd0b6d73d`; main base `57296cdc0132e007342ed04644025a40b2f5f16b` remained unchanged. **9/9** uploaded blob SHA-1 matched the local committed Git blobs. Remote code commit `813b975f2da78374efb75f5a08aacd948fb81391` is a CAS fast-forward child of that head; no force. An independent Git fetch verified that its exact tree `af5f5795e22197f01bdc3bf1b4c24f9620b6f4c8` equals the locally tested code+docs tree of `e1177f7f7dd4c48a252e9fe03d3bf1f00824c6fc`. PR remained open/Draft, base main unchanged. Combined GitHub status returned `statuses: []` — **CI NOT_RUN**, not PASS.
+
+The subsequent documentation-only evidence closure does not change `game/` or `tests/`; its own remote tree and SHA are checked separately.
 
 **Not release-verified:** Studio component schema/trust, current Yandex/VK ZIP exports and receipts, browser/mobile and actual Save/Reload behavior, EN localization, art/media rights, platform moderation, GitHub CI and publication. Older Draft saves at deleted `s16-m3-end` may need an explicit Restart; no silent save clearing.
 
