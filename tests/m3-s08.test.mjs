@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import { readFileSync, existsSync } from 'node:fs';
 import { graphData, catalogData } from '../game/src/story.js';
 import { defineNarrativeGraph, defineNarrativeCatalog, createNarrativeState, createNarrativeRuntimeUpdate } from '../game/assets/ludory-narrative.js';
@@ -8,10 +9,27 @@ const source = JSON.parse(readFileSync(new URL('./fixtures/s08-canon.json', impo
 const scene = id => graphData.scenes.find(s => s.id === id);
 const prose = id => scene(id).beats.filter(b => b.type === 'dialogue').map(b => b.text.ru).join('\n\n');
 
+// Independently calculated from the pinned literary manuscript, not the fixture or game source.
+const expectedProse = {
+  's08-intro': [1, '93f66e115cdf56faaf89e945ebc47eca904022389fe913576b186444df8dce23'],
+  's08-weather-damir': [2, '958afe98854e2d29ffa398e4739818e76d22368b83a578d0cd2f7e3722f55107'],
+  's08-common': [90, '3459cd9268ae60ae55c9f029fd466bc8493af523c676dd8b2353d0f87e189fa9'],
+  's08-warm': [4, '4eae33db16f53d077ced77b4561f3284e12663cd3075e78029b85cf09ed8210e'],
+  's08-neutral': [3, 'a3e14450bbfae51b68da58527c3cdfd7216e6e8be7d3cd4c8fdb264e795c06a7'],
+  's08-personal': [7, '5c3b9b160cf2c8f25549525b255f4e887780b56808d94222cc0da5cb859fb056'],
+};
+
 test('S08 displayed prose equals six pinned manuscript blocks', () => {
   const ids = {s08Intro:'s08-intro',s08WeatherDamir:'s08-weather-damir',s08Common:'s08-common',s08Warm:'s08-warm',s08Neutral:'s08-neutral',s08Personal:'s08-personal'};
   for(const [name, literal] of Object.entries(source)) assert.equal(prose(ids[name]), literal, name);
   assert.doesNotThrow(() => defineNarrativeGraph(graphData));
+});
+test('S08 six manuscript blocks retain independently verified paragraph counts and hashes', () => {
+  for (const [id, [count, expectedHash]] of Object.entries(expectedProse)) {
+    const paragraphs = scene(id).beats.filter(beat => beat.type === 'dialogue').map(beat => beat.text.ru);
+    assert.equal(paragraphs.length, count, id);
+    assert.equal(createHash('sha256').update(paragraphs.join('\n\n')).digest('hex'), expectedHash, id);
+  }
 });
 test('S07→S08 and S08-C1 use prior weather state and exclusive free outcomes', () => {
   for(const id of ['s07-eric-favorite','s07-eric-music']) assert.equal(scene(id).nextSceneId,'s08-intro');
@@ -103,6 +121,17 @@ test('S08-C1 A→Back→B→Back→C and JSON continuation retain previous narra
     const update=createNarrativeRuntimeUpdate({graph:run.graph,catalog:run.catalog});
     update({deltaMs:16,state:saved,inputs:[{schemaVersion:1,type:'pointer',action:'narrative:next:s08-'+id+'-01',phase:'up',timestamp:42,source:'renderer'}],setState(v){next=v;}});
     assert.equal(next.narrative.flags['damir-care-'+id],true);
+    assert.equal(next.narrative.beatIndex,current.beatIndex+1,'JSON restore must advance the paragraph');
+    assert.equal(next.narrative.actionLog.length,current.actionLog.length+1,'JSON restore must log the action');
+    let completed=current;
+    for(const beat of scene('s08-'+id).beats.filter(x=>x.type==='dialogue')){
+      const snapshot={narrative:JSON.parse(JSON.stringify(completed))};
+      let restored=snapshot;
+      update({deltaMs:16,state:snapshot,inputs:[{schemaVersion:1,type:'pointer',action:'narrative:next:'+beat.id,phase:'up',timestamp:44,source:'renderer'}],setState(v){restored=v;}});
+      completed=restored.narrative;
+    }
+    assert.equal(completed.sceneId,'s08-m3-end','each S08 response must complete through the real runtime');
+    assert.equal(completed.flags['damir-care-'+id],true);
     const corrupted=JSON.parse(JSON.stringify(current));
     corrupted.flags['damir-care-'+(id==='warm'?'personal':'warm')]=true;
     assert.throws(()=>{
