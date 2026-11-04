@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S06.
-// M3 S06 boundary is not the end of EP02. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S07.
+// M3 S07 boundary is not the end of EP02. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -15,6 +15,12 @@ import {
   s06Intro, s06WeatherErik, s06WeatherOther, s06CommonA,
   s06SeatEric, s06SeatOther, s06CommonB, s06FavoritePlace, s06Music,
 } from './scenes/s06.js';
+import {
+  s07Intro, s07WeatherNick, s07SeatNick, s07CommonA,
+  s07CameraAccepted, s07CameraDeclined, s07CameraNegotiated,
+  s07CommonB, s07ArchiveNick, s07ArchiveGroup, s07ArchivePrivate,
+  s07CommonC, s07EricFavorite, s07EricMusic,
+} from './scenes/s07.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -300,11 +306,73 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-map-music', value: true }] },
     ] },
   ] },
-  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's06-m3-end' },
-  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's06-m3-end' },
-  { id: 's06-m3-end', beats: [
-    { id: 's06-m3-end-beat', type: 'ending', endingId: 'm3-s06-only',
-      text: t('Технический фрагмент завершён. История продолжится в S07.') },
+  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's07-intro' },
+  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's07-intro' },
+  { id: 's07-intro', beats: [
+    ...beats('s07-intro', s07Intro),
+    // Optional S05 Nick callback; no prose is added for weather choice Erik/Damir.
+    { id: 's07-weather-dispatch', type: 'choice', choices: [
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's07-weather-nick',
+        when: { flag: 'weather-choice-nick' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's07-seat-dispatch',
+        when: { any: [{ flag: 'weather-choice-erik' }, { flag: 'weather-choice-damir' }] } },
+    ] },
+  ] },
+  { id: 's07-weather-nick', beats: beats('s07-weather-nick', s07WeatherNick), nextSceneId: 's07-seat-dispatch' },
+  { id: 's07-seat-dispatch', beats: [
+    // Conditional continuation for the optional S01 Nick paragraph.
+    { id: 's07-seat-dispatch', type: 'choice', choices: [
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's07-seat-nick',
+        when: { flag: 's01-seat-nick' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's07-common-a',
+        when: { any: [{ flag: 's01-seat-eric' }, { flag: 's01-seat-damir' }] } },
+    ] },
+  ] },
+  { id: 's07-seat-nick', beats: beats('s07-seat-nick', s07SeatNick), nextSceneId: 's07-common-a' },
+  { id: 's07-common-a', beats: [
+    ...beats('s07-common-a', s07CommonA),
+    // Reuse the exact prior camera consent state; no implied recording consent.
+    { id: 's07-consent-dispatch', type: 'choice', choices: [
+      { id: 'accepted', label: t('Продолжить'), targetSceneId: 's07-camera-accepted',
+        when: { flag: 'consent-camera-accepted' } },
+      { id: 'declined', label: t('Продолжить'), targetSceneId: 's07-camera-declined',
+        when: { flag: 'consent-camera-declined-respected' } },
+      { id: 'negotiated', label: t('Продолжить'), targetSceneId: 's07-camera-negotiated',
+        when: { flag: 'consent-camera-negotiated' } },
+    ] },
+  ] },
+  { id: 's07-camera-accepted', beats: beats('s07-camera-accepted', s07CameraAccepted), nextSceneId: 's07-common-b' },
+  { id: 's07-camera-declined', beats: beats('s07-camera-declined', s07CameraDeclined), nextSceneId: 's07-common-b' },
+  { id: 's07-camera-negotiated', beats: beats('s07-camera-negotiated', s07CameraNegotiated), nextSceneId: 's07-common-b' },
+  { id: 's07-common-b', beats: [
+    ...beats('s07-common-b', s07CommonB),
+    { id: 's07-archive-choice', type: 'choice', choices: [
+      { id: 'nick', label: t('Снимок Ника у стола'), targetSceneId: 's07-archive-nick',
+        effects: [{ op: 'flag_set', id: 'kitchen-archive-nick', value: true }] },
+      { id: 'group', label: t('Групповой кадр с таймером'), targetSceneId: 's07-archive-group',
+        effects: [{ op: 'flag_set', id: 'kitchen-archive-group', value: true }] },
+      { id: 'private', label: t('Ничего не сохранять'), targetSceneId: 's07-archive-private',
+        effects: [{ op: 'flag_set', id: 'kitchen-archive-private', value: true }] },
+    ] },
+  ] },
+  { id: 's07-archive-nick', beats: beats('s07-archive-nick', s07ArchiveNick), nextSceneId: 's07-common-c' },
+  { id: 's07-archive-group', beats: beats('s07-archive-group', s07ArchiveGroup), nextSceneId: 's07-common-c' },
+  { id: 's07-archive-private', beats: beats('s07-archive-private', s07ArchivePrivate), nextSceneId: 's07-common-c' },
+  { id: 's07-common-c', beats: [
+    ...beats('s07-common-c', s07CommonC),
+    // Authored S06-C2 payoff after the archive scene.
+    { id: 's07-s06-dispatch', type: 'choice', choices: [
+      { id: 'favorite', label: t('Продолжить'), targetSceneId: 's07-eric-favorite',
+        when: { flag: 'eric-map-favorite-place' } },
+      { id: 'music', label: t('Продолжить'), targetSceneId: 's07-eric-music',
+        when: { flag: 'eric-map-music' } },
+    ] },
+  ] },
+  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's07-m3-end' },
+  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's07-m3-end' },
+  { id: 's07-m3-end', beats: [
+    { id: 's07-m3-end-beat', type: 'ending', endingId: 'm3-s07-only',
+      text: t('Технический фрагмент завершён. История продолжится в S08.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

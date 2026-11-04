@@ -66,9 +66,9 @@ test('S05 leads to conditional S06 prose and a free 2-way authored Eric choice',
   ]);
   for (const option of choice.choices) {
     assert.deepEqual(option.effects, [{ op: 'flag_set', id: `eric-map-${option.id}`, value: true }]);
-    assert.equal(scene(option.targetSceneId).nextSceneId, 's06-m3-end');
+    assert.equal(scene(option.targetSceneId).nextSceneId, 's07-intro');
   }
-  assert.equal(scene('s06-m3-end').beats.at(-1).type, 'ending');
+  assert.equal(scene('s06-m3-end'), undefined);
 });
 
 function startAtS06(seatOption = 'front-eric', weatherOption = 'erik') {
@@ -151,7 +151,7 @@ test('all nine S01 seat × S05 weather states choose correct S06 conditional pro
       run.act('narrative:choose:s06-eric-choice:favorite-place');
       assert.equal(run.getState().flags['eric-map-favorite-place'], true);
       run.advance('s06-favorite-place');
-      assert.equal(run.getState().sceneId, 's06-m3-end');
+      assert.equal(run.getState().sceneId, 's07-intro');
     }
   }
 });
@@ -174,7 +174,7 @@ test('S06 C2 alternatives remain reversible, restorable and reject invented stat
     assert.equal(current.flags['weather-choice-erik'], true);
     assert.equal(current.routeLock, null);
     const resumed = resumeJson(run, current, `narrative:next:s06-${option}-01`);
-    assert.equal(resumed.sceneId, 's06-m3-end');
+    assert.equal(resumed.sceneId, 's07-intro');
     assert.deepEqual(resumed.flags, current.flags);
     const corrupted = JSON.parse(JSON.stringify(current));
     corrupted.flags[`eric-map-${option === 'music' ? 'favorite-place' : 'music'}`] = true;
@@ -186,7 +186,7 @@ test('S06 C2 alternatives remain reversible, restorable and reject invented stat
   }
   run.act('narrative:choose:s06-eric-choice:music');
   run.advance('s06-music');
-  assert.equal(run.getState().sceneId, 's06-m3-end');
+  assert.equal(run.getState().sceneId, 's07-intro');
 });
 
 test('first game stays fully free while Ludory Economy E5 remains separately opt-in', () => {
