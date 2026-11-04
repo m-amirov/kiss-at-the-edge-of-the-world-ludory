@@ -4,7 +4,7 @@
 
 - Исходная игра: https://github.com/m-amirov/kiss-at-the-edge-of-the-world
 - Фреймворк: https://github.com/m-amirov/ludory
-- Статус: M1 завершён, M2 — нативный проект Ludory; **M3 в работе** — авторские S01 → S02 → S65 → S03 → S04 → S05 → S06 → S07 с условиями, выборами и регрессионными тестами. Эпизод 1 присутствует как последовательность исходных сцен, но полноценная приёмка и медиа не завершены; S08 и последующие сцены пока не перенесены. **Для первой игры экономика выключена**: все сюжетные решения бесплатны, нет внутренней валюты, платных сцен, рекламы за вознаграждение и IAP; отдельный opt-in шаблон Ludory `narrative-economy` зарезервирован для будущих игр.
+- Статус: M1 завершён, M2 — нативный проект Ludory; **M3 в работе** — авторские S01 → S02 → S65 → S03 → S04 → S05 → S06 → S07 → S08 с условиями, выборами и регрессионными тестами. Эпизод 1 присутствует как последовательность исходных сцен, но полноценная приёмка и медиа не завершены; S66 и последующие сцены пока не перенесены. **Для первой игры экономика выключена**: все сюжетные решения бесплатны, нет внутренней валюты, платных сцен, рекламы за вознаграждение и IAP; отдельный opt-in шаблон Ludory `narrative-economy` зарезервирован для будущих игр.
 - Исходный проект и его история остаются неизменными; CEOS/Starter Kit не являются зависимостями нового проекта.
 
 Никаких заявлений о релизной готовности или публикации до прохождения соответствующих проверок.
@@ -18,7 +18,7 @@
 - [Критерии начала M2](docs/migration/m2-readiness.md).
 - [Поблочная проверка авторского S01](docs/migration/m2-s01-fidelity.md).
 - [M2: локальный runtime, экспорт и открытые ограничения](docs/migration/m2-playtest-evidence.md).
-- [M3: точный перенос S02](docs/migration/m3-s02-fidelity.md), [S65](docs/migration/m3-s65-fidelity.md), [S03](docs/migration/m3-s03-fidelity.md), [S04](docs/migration/m3-s04-fidelity.md), [S05](docs/migration/m3-s05-fidelity.md), [S06](docs/migration/m3-s06-fidelity.md) и [S07](docs/migration/m3-s07-fidelity.md).
+- [M3: точный перенос S02](docs/migration/m3-s02-fidelity.md), [S65](docs/migration/m3-s65-fidelity.md), [S03](docs/migration/m3-s03-fidelity.md), [S04](docs/migration/m3-s04-fidelity.md), [S05](docs/migration/m3-s05-fidelity.md), [S06](docs/migration/m3-s06-fidelity.md), [S07](docs/migration/m3-s07-fidelity.md) и [S08](docs/migration/m3-s08-fidelity.md).
 
 Проверка инструмента M1: `npm run test:m1` (Node.js 22+ и Git). Для повторного формирования манифеста нужны локальные read-only checkouts исходной игры и Ludory на закреплённых SHA; команда приведена в evidence.
 

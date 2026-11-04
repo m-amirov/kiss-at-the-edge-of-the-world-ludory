@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S07.
-// M3 S07 boundary is not the end of EP02. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S08.
+// M3 S08 boundary is not the end of EP02. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -21,6 +21,7 @@ import {
   s07CommonB, s07ArchiveNick, s07ArchiveGroup, s07ArchivePrivate,
   s07CommonC, s07EricFavorite, s07EricMusic,
 } from './scenes/s07.js';
+import { s08Intro, s08WeatherDamir, s08Common, s08Warm, s08Neutral, s08Personal } from './scenes/s08.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -368,11 +369,35 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-map-music' } },
     ] },
   ] },
-  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's07-m3-end' },
-  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's07-m3-end' },
-  { id: 's07-m3-end', beats: [
-    { id: 's07-m3-end-beat', type: 'ending', endingId: 'm3-s07-only',
-      text: t('Технический фрагмент завершён. История продолжится в S08.') },
+  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's08-intro' },
+  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's08-intro' },
+  { id: 's08-intro', beats: [
+    ...beats('s08-intro', s08Intro),
+    { id: 's08-weather-dispatch', type: 'choice', choices: [
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's08-weather-damir',
+        when: { flag: 'weather-choice-damir' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's08-common',
+        when: { any: [{ flag: 'weather-choice-nick' }, { flag: 'weather-choice-erik' }] } },
+    ] },
+  ] },
+  { id: 's08-weather-damir', beats: beats('s08-weather-damir', s08WeatherDamir), nextSceneId: 's08-common' },
+  { id: 's08-common', beats: [
+    ...beats('s08-common', s08Common),
+    { id: 's08-damir-care-choice', type: 'choice', choices: [
+      { id: 'warm', label: t('Предложить Дамиру кофе'), targetSceneId: 's08-warm',
+        effects: [{ op: 'flag_set', id: 'damir-care-warm', value: true }] },
+      { id: 'neutral', label: t('Поблагодарить и уйти'), targetSceneId: 's08-neutral',
+        effects: [{ op: 'flag_set', id: 'damir-care-neutral', value: true }] },
+      { id: 'personal', label: t('Спросить о Брюсселе'), targetSceneId: 's08-personal',
+        effects: [{ op: 'flag_set', id: 'damir-care-personal', value: true }] },
+    ] },
+  ] },
+  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's08-m3-end' },
+  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's08-m3-end' },
+  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's08-m3-end' },
+  { id: 's08-m3-end', beats: [
+    { id: 's08-m3-end-beat', type: 'ending', endingId: 'm3-s08-only',
+      text: t('Технический фрагмент завершён. История продолжится в S66.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

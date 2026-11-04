@@ -85,9 +85,9 @@ test('S06 flows into S07 with optional Nick callbacks, three consent variants an
     ['music', 's07-eric-music', { flag: 'eric-map-music' }],
   ]);
   assert.ok(eric.choices.every((choice) => choice.label.ru === 'Продолжить' && !choice.effects));
-  assert.equal(scene('s07-eric-favorite').nextSceneId, 's07-m3-end');
-  assert.equal(scene('s07-eric-music').nextSceneId, 's07-m3-end');
-  assert.equal(scene('s07-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s07-eric-favorite').nextSceneId, 's08-intro');
+  assert.equal(scene('s07-eric-music').nextSceneId, 's08-intro');
+  assert.equal(scene('s07-m3-end'), undefined);
 });
 
 function startAtS07({ seat = 'front-eric', weather = 'erik', consent = 'accepted', eric = 'favorite-place' } = {}) {
@@ -206,7 +206,7 @@ test('real runtime preserves Nick, camera consent and S06 callbacks across three
     assert.equal(JSON.stringify(run.getState()), payoffBefore, 'unavailable S06 payoff must not advance');
     run.act(`narrative:choose:s07-s06-dispatch:${scenario.ericBranch}`);
     run.advance(`s07-eric-${scenario.ericBranch}`);
-    assert.equal(run.getState().sceneId, 's07-m3-end');
+    assert.equal(run.getState().sceneId, 's08-intro');
     assert.equal(run.getState().flags[`kitchen-archive-${scenario.archive}`], true);
     assert.equal(run.getState().flags[`weather-choice-${scenario.weather}`], true);
     assert.equal(run.getState().flags[`consent-camera-${scenario.consent === 'declined' ? 'declined-respected' : scenario.consent}`], true);
