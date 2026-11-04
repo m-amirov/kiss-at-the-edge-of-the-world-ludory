@@ -44,8 +44,8 @@ test('S05 replaces S04 placeholder, offers canonical 3-way weather choice and re
     assert.equal(option.when, undefined);
     assert.equal(scene(option.targetSceneId).nextSceneId, 's05-common');
   }
-  assert.equal(scene('s05-common').nextSceneId, 's05-m3-end');
-  assert.equal(scene('s05-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s05-common').nextSceneId, 's06-intro');
+  assert.equal(scene('s05-m3-end'), undefined);
   assert.equal(scene('s05-common').beats.some((beat) => beat.type === 'choice'), false);
 });
 
@@ -130,7 +130,7 @@ test('S05 Nick/Erik/Damir weather decisions are exclusive, Back-reversible and J
   run.act('narrative:choose:s05-weather-choice:damir');
   run.advance('s05-damir');
   run.advance('s05-common');
-  assert.equal(run.getState().sceneId, 's05-m3-end');
+  assert.equal(run.getState().sceneId, 's06-intro');
   assert.equal(run.getState().routeLock, null);
 });
 
@@ -147,6 +147,6 @@ test('S05 is reached after S03 silence and S04 refusal, and tampered weather fla
     /inconsistent actionLog provenance or position/);
   run.advance('s05-erik');
   run.advance('s05-common');
-  assert.equal(run.getState().sceneId, 's05-m3-end');
+  assert.equal(run.getState().sceneId, 's06-intro');
   assert.equal(run.getState().routeLock, null);
 });

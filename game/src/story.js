@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S05.
-// M3 S05 boundary is not the end of EP02. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S06.
+// M3 S06 boundary is not the end of EP02. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -11,6 +11,10 @@ import {
   s04AfterMessage, s04AfterSilence,
 } from './scenes/s04.js';
 import { s05Intro, s05Nick, s05Erik, s05Damir, s05Common } from './scenes/s05.js';
+import {
+  s06Intro, s06WeatherErik, s06WeatherOther, s06CommonA,
+  s06SeatEric, s06SeatOther, s06CommonB, s06FavoritePlace, s06Music,
+} from './scenes/s06.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -260,10 +264,47 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's05-nick', beats: beats('s05-nick', s05Nick), nextSceneId: 's05-common' },
   { id: 's05-erik', beats: beats('s05-erik', s05Erik), nextSceneId: 's05-common' },
   { id: 's05-damir', beats: beats('s05-damir', s05Damir), nextSceneId: 's05-common' },
-  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's05-m3-end' },
-  { id: 's05-m3-end', beats: [
-    { id: 's05-m3-end-beat', type: 'ending', endingId: 'm3-s05-only',
-      text: t('Технический фрагмент завершён. История продолжится в S06.') },
+  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's06-intro' },
+  { id: 's06-intro', beats: [
+    ...beats('s06-intro', s06Intro),
+    // Branch derived from the earlier S05 weather decision; not a new paid/player choice.
+    { id: 's06-weather-dispatch', type: 'choice', choices: [
+      { id: 'erik', label: t('Продолжить'), targetSceneId: 's06-weather-erik',
+        when: { flag: 'weather-choice-erik' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's06-weather-other',
+        when: { any: [{ flag: 'weather-choice-nick' }, { flag: 'weather-choice-damir' }] } },
+    ] },
+  ] },
+  { id: 's06-weather-erik', beats: beats('s06-weather-erik', s06WeatherErik), nextSceneId: 's06-common-a' },
+  { id: 's06-weather-other', beats: beats('s06-weather-other', s06WeatherOther), nextSceneId: 's06-common-a' },
+  { id: 's06-common-a', beats: [
+    ...beats('s06-common-a', s06CommonA),
+    // Another state-derived continuation, based on the S01 seat choice.
+    { id: 's06-seat-dispatch', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's06-seat-eric',
+        when: { flag: 's01-seat-eric' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's06-seat-other',
+        when: { any: [{ flag: 's01-seat-nick' }, { flag: 's01-seat-damir' }] } },
+    ] },
+  ] },
+  { id: 's06-seat-eric', beats: beats('s06-seat-eric', s06SeatEric), nextSceneId: 's06-common-b' },
+  { id: 's06-seat-other', beats: beats('s06-seat-other', s06SeatOther), nextSceneId: 's06-common-b' },
+  { id: 's06-common-b', beats: [
+    ...beats('s06-common-b', s06CommonB),
+    { id: 's06-eric-choice', type: 'choice', choices: [
+      { id: 'favorite-place', label: t('Попросить показать его любимое место на тропе'),
+        targetSceneId: 's06-favorite-place',
+        effects: [{ op: 'flag_set', id: 'eric-map-favorite-place', value: true }] },
+      { id: 'music', label: t('Предложить ему выбрать музыку для обратной дороги'),
+        targetSceneId: 's06-music',
+        effects: [{ op: 'flag_set', id: 'eric-map-music', value: true }] },
+    ] },
+  ] },
+  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's06-m3-end' },
+  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's06-m3-end' },
+  { id: 's06-m3-end', beats: [
+    { id: 's06-m3-end-beat', type: 'ending', endingId: 'm3-s06-only',
+      text: t('Технический фрагмент завершён. История продолжится в S07.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
