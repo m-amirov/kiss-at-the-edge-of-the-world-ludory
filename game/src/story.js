@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09.
-// M3 S09 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S10.
+// M3 S10 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -30,6 +30,9 @@ import {
   s09Intro, s09Erik, s09Nick, s09Damir,
   s09CommonA, s09CareerPeople, s09CareerPlace, s09CareerOwn, s09CommonB,
 } from './scenes/s09.js';
+import {
+  s10Intro, s10SeatEric, s10SeatOther, s10Playful, s10Quiet, s10Common,
+} from './scenes/s10.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -462,9 +465,32 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's09-career-people', beats: beats('s09-career-people', s09CareerPeople), nextSceneId: 's09-common-b' },
   { id: 's09-career-place', beats: beats('s09-career-place', s09CareerPlace), nextSceneId: 's09-common-b' },
   { id: 's09-career-own', beats: beats('s09-career-own', s09CareerOwn), nextSceneId: 's09-common-b' },
-  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's09-m3-end' },
-  { id: 's09-m3-end', beats: [
-    { id: 's09-m3-end-beat', type: 'ending', endingId: 'm3-s09-only',
+  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's10-intro' },
+  { id: 's10-intro', beats: [
+    ...beats('s10-intro', s10Intro),
+    // Previously authored S01 seat preference chooses exactly one S10 callback.
+    { id: 's10-seat-dispatch', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's10-seat-eric',
+        when: { flag: 's01-seat-eric' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's10-seat-other',
+        when: { any: [{ flag: 's01-seat-nick' }, { flag: 's01-seat-damir' }] } },
+    ] },
+  ] },
+  { id: 's10-seat-eric', beats: beats('s10-seat-eric', s10SeatEric), nextSceneId: 's10-choice' },
+  { id: 's10-seat-other', beats: beats('s10-seat-other', s10SeatOther), nextSceneId: 's10-choice' },
+  { id: 's10-choice', beats: [
+    { id: 's10-tone-choice', type: 'choice', choices: [
+      { id: 'playful', label: t('Подхватить игру'), targetSceneId: 's10-playful',
+        effects: [{ op: 'flag_set', id: 'eric-tone-playful', value: true }] },
+      { id: 'quiet', label: t('Оставить момент тихим'), targetSceneId: 's10-quiet',
+        effects: [{ op: 'flag_set', id: 'eric-tone-quiet', value: true }] },
+    ] },
+  ] },
+  { id: 's10-playful', beats: beats('s10-playful', s10Playful), nextSceneId: 's10-common' },
+  { id: 's10-quiet', beats: beats('s10-quiet', s10Quiet), nextSceneId: 's10-common' },
+  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's10-m3-end' },
+  { id: 's10-m3-end', beats: [
+    { id: 's10-m3-end-beat', type: 'ending', endingId: 'm3-s10-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };

@@ -50,8 +50,8 @@ test('S66 enters S09; free S09-C1 has exactly three exclusive voices and one lat
     ['own-choice','s09-career-own',{flag:'career-thesis-own-choice'}],
   ]);
   for (const id of ['people','place','own']) assert.equal(scene('s09-career-'+id).nextSceneId,'s09-common-b');
-  assert.equal(scene('s09-common-b').nextSceneId,'s09-m3-end');
-  assert.equal(scene('s09-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s09-common-b').nextSceneId,'s10-intro');
+  assert.equal(scene('s09-m3-end'),undefined);
   for (const opt of [...voice.choices,...career.choices]) {
     for (const key of ['cost','premium','contentId','requiredEntitlement']) assert.equal(opt[key],undefined,key);
   }
@@ -129,7 +129,7 @@ test('real N1 runtime covers all nine S09 voice × S02 thesis combinations, Back
       assert.equal(restored.narrative.flags['career-thesis-'+career],true);
       run.advance(current.sceneId);
       run.advance('s09-common-b');
-      assert.equal(run.get().sceneId,'s09-m3-end');
+      assert.equal(run.get().sceneId,'s10-intro');
     }
   }
 });
