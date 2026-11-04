@@ -52,8 +52,8 @@ test('S08 rejoins S66; two guarded callbacks have no invented decision or econom
     ['own-choice', 's66-career-own', {flag:'career-thesis-own-choice'}],
   ]);
   for (const id of ['people', 'place', 'own']) assert.equal(scene('s66-career-'+id).nextSceneId, 's66-common-b');
-  assert.equal(scene('s66-common-b').nextSceneId, 's66-m3-end');
-  assert.equal(scene('s66-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s66-common-b').nextSceneId, 's09-intro');
+  assert.equal(scene('s66-m3-end'), undefined);
   assert.ok([care,thesis].every(beat => beat.choices.every(choice =>
     choice.label.ru === 'Продолжить' && !choice.effects && !choice.cost && !choice.premium)));
 });
@@ -140,7 +140,7 @@ test('S66 real runtime preserves S08 care and S02 thesis in all authored callbac
     assert.equal(afterCareer.flags['career-thesis-'+career],true);
     run.advance('s66-career-'+careerScene);
     run.advance('s66-common-b');
-    assert.equal(run.get().sceneId,'s66-m3-end');
+    assert.equal(run.get().sceneId,'s09-intro');
   }
 });
 

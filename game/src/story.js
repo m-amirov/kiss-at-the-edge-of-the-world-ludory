@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, content/season-1-vertical-slice-episodes-01-02.md, S01–S66.
-// M3 S66 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09.
+// M3 S09 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -26,6 +26,10 @@ import {
   s66Intro, s66DamirWarm, s66DamirNeutral, s66DamirPersonal,
   s66CommonA, s66CareerPeople, s66CareerPlace, s66CareerOwn, s66CommonB,
 } from './scenes/s66.js';
+import {
+  s09Intro, s09Erik, s09Nick, s09Damir,
+  s09CommonA, s09CareerPeople, s09CareerPlace, s09CareerOwn, s09CommonB,
+} from './scenes/s09.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -428,9 +432,39 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's66-career-people', beats: beats('s66-career-people', s66CareerPeople), nextSceneId: 's66-common-b' },
   { id: 's66-career-place', beats: beats('s66-career-place', s66CareerPlace), nextSceneId: 's66-common-b' },
   { id: 's66-career-own', beats: beats('s66-career-own', s66CareerOwn), nextSceneId: 's66-common-b' },
-  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's66-m3-end' },
-  { id: 's66-m3-end', beats: [
-    { id: 's66-m3-end-beat', type: 'ending', endingId: 'm3-s66-only',
+  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's09-intro' },
+  { id: 's09-intro', beats: [
+    ...beats('s09-intro', s09Intro),
+    { id: 's09-voice-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Попросить Эрика показать место, которое он сам запомнил'),
+        targetSceneId: 's09-eric', effects: [{ op: 'flag_set', id: 'skogafoss-voice-eric', value: true }] },
+      { id: 'nick', label: t('Попросить Ника назвать то, что камера пропустила'),
+        targetSceneId: 's09-nick', effects: [{ op: 'flag_set', id: 'skogafoss-voice-nick', value: true }] },
+      { id: 'damir', label: t('Попросить Дамира вспомнить момент подъёма'),
+        targetSceneId: 's09-damir', effects: [{ op: 'flag_set', id: 'skogafoss-voice-damir', value: true }] },
+    ] },
+  ] },
+  { id: 's09-eric', beats: beats('s09-eric', s09Erik), nextSceneId: 's09-common-a' },
+  { id: 's09-nick', beats: beats('s09-nick', s09Nick), nextSceneId: 's09-common-a' },
+  { id: 's09-damir', beats: beats('s09-damir', s09Damir), nextSceneId: 's09-common-a' },
+  { id: 's09-common-a', beats: [
+    ...beats('s09-common-a', s09CommonA),
+    // Technical state-dependent Continue; not another authored choice.
+    { id: 's09-career-dispatch', type: 'choice', choices: [
+      { id: 'people', label: t('Продолжить'), targetSceneId: 's09-career-people',
+        when: { flag: 'career-thesis-people' } },
+      { id: 'place', label: t('Продолжить'), targetSceneId: 's09-career-place',
+        when: { flag: 'career-thesis-place' } },
+      { id: 'own-choice', label: t('Продолжить'), targetSceneId: 's09-career-own',
+        when: { flag: 'career-thesis-own-choice' } },
+    ] },
+  ] },
+  { id: 's09-career-people', beats: beats('s09-career-people', s09CareerPeople), nextSceneId: 's09-common-b' },
+  { id: 's09-career-place', beats: beats('s09-career-place', s09CareerPlace), nextSceneId: 's09-common-b' },
+  { id: 's09-career-own', beats: beats('s09-career-own', s09CareerOwn), nextSceneId: 's09-common-b' },
+  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's09-m3-end' },
+  { id: 's09-m3-end', beats: [
+    { id: 's09-m3-end-beat', type: 'ending', endingId: 'm3-s09-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
