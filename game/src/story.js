@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S14.
-// M3 S14 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S15.
+// M3 S15 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -52,6 +52,11 @@ import {
   s14Intro, s14TonePlayful, s14ToneQuiet, s14CommonA,
   s14PaceSlow, s14PaceShort, s14CommonB, s14GestureWalk, s14GesturePhoto,
 } from './scenes/s14.js';
+import {
+  s15Intro, s15NickVoice, s15OtherVoice, s15CommonA,
+  s15Privacy, s15Observed, s15SharedFile, s15CommonB,
+  s15EveningWalk, s15EveningPhoto,
+} from './scenes/s15.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -688,10 +693,59 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-gesture-photo', value: true }] },
     ] },
   ] },
-  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's14-m3-end' },
-  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's14-m3-end' },
-  { id: 's14-m3-end', beats: [
-    { id: 's14-m3-end-beat', type: 'ending', endingId: 'm3-s14-only',
+  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's15-intro' },
+  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's15-intro' },
+  { id: 's15-intro', beats: [
+    ...beats('s15-intro', s15Intro),
+    // S09's Nick narrator has distinct authored prose; Eric and Damir share another.
+    { id: 's15-voice-dispatch', type: 'choice', choices: [
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's15-nick-voice',
+        when: { flag: 'skogafoss-voice-nick' } },
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's15-other-voice',
+        when: { flag: 'skogafoss-voice-eric' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's15-other-voice',
+        when: { flag: 'skogafoss-voice-damir' } },
+    ] },
+  ] },
+  { id: 's15-nick-voice', beats: beats('s15-nick-voice', s15NickVoice), nextSceneId: 's15-common-a' },
+  { id: 's15-other-voice', beats: beats('s15-other-voice', s15OtherVoice), nextSceneId: 's15-common-a' },
+  { id: 's15-common-a', beats: [
+    ...beats('s15-common-a', s15CommonA),
+    { id: 's15-privacy-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Защитить приватность: оставить разговор только между ними'),
+        targetSceneId: 's15-privacy', effects: [
+          { op: 'flag_set', id: 'nick-failure-private', value: true },
+          { op: 'flag_set', id: 'private-text-declined', value: true },
+        ] },
+      { id: 'b', label: t('Оставить честный материал, но назвать Нику точные границы'),
+        targetSceneId: 's15-observed', effects: [
+          { op: 'flag_set', id: 'nick-failure-observed', value: true },
+          { op: 'flag_set', id: 'private-text-limited', value: true },
+        ] },
+      { id: 'c', label: t('Предложить совместно выбрать один фрагмент и право остановить его'),
+        targetSceneId: 's15-shared-file', effects: [
+          { op: 'flag_set', id: 'nick-failure-shared-file', value: true },
+          { op: 'flag_set', id: 'private-text-pending', value: true },
+        ] },
+    ] },
+  ] },
+  { id: 's15-privacy', beats: beats('s15-privacy', s15Privacy), nextSceneId: 's15-common-b' },
+  { id: 's15-observed', beats: beats('s15-observed', s15Observed), nextSceneId: 's15-common-b' },
+  { id: 's15-shared-file', beats: beats('s15-shared-file', s15SharedFile), nextSceneId: 's15-common-b' },
+  { id: 's15-common-b', beats: [
+    ...beats('s15-common-b', s15CommonB),
+    // Explicitly authored S15 evening payoff of S14-C2; no romance or consent change.
+    { id: 's15-gesture-dispatch', type: 'choice', choices: [
+      { id: 'walk', label: t('Продолжить'), targetSceneId: 's15-evening-walk',
+        when: { flag: 'eric-gesture-walk' } },
+      { id: 'photo', label: t('Продолжить'), targetSceneId: 's15-evening-photo',
+        when: { flag: 'eric-gesture-photo' } },
+    ] },
+  ] },
+  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's15-m3-end' },
+  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's15-m3-end' },
+  { id: 's15-m3-end', beats: [
+    { id: 's15-m3-end-beat', type: 'ending', endingId: 'm3-s15-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };

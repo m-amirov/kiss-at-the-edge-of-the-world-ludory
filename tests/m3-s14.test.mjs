@@ -88,8 +88,8 @@ test('S13 enters S14, S10 guarded tone and both free authored S14 choices have e
     ['photo','Поделиться с ним забавной находкой с маршрута','s14-gesture-photo',
       [{op:'flag_set',id:'eric-gesture-photo',value:true}]],
   ]);
-  for(const g of gestures)assert.equal(scene('s14-gesture-'+g).nextSceneId,'s14-m3-end');
-  assert.equal(scene('s14-m3-end').beats[0].type,'ending');
+  for(const g of gestures)assert.equal(scene('s14-gesture-'+g).nextSceneId,'s15-intro');
+  assert.equal(scene('s14-m3-end'),undefined);
   assert.ok(gate.choices.every(c=>c.label.ru==='Продолжить'&&!c.effects));
   for(const c of [...gate.choices,...pace.choices,...gesture.choices])
     for(const key of ['cost','premium','contentId','requiredEntitlement','romancePoints'])
@@ -200,7 +200,7 @@ test('S10 tone × S14 pace × S14 gesture: actual runtime, Back, JSON and tamper
     assert.equal(run.get().flags['alice-leads-'+(tone==='quiet'?'shared':'editor')],true);
     assert.equal(run.get().routeLock,null);
     run.advance('s14-gesture-'+gesture);
-    assert.equal(run.get().sceneId,'s14-m3-end');
+    assert.equal(run.get().sceneId,'s15-intro');
   }
 });
 
