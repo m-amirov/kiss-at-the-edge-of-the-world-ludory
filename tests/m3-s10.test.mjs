@@ -46,8 +46,8 @@ test('S09 leads to S10; S01 callback is guarded and S10-C1 is one free authored 
     ['quiet','Оставить момент тихим','s10-quiet',[{op:'flag_set',id:'eric-tone-quiet',value:true}]],
   ]);
   for(const id of ['playful','quiet'])assert.equal(scene('s10-'+id).nextSceneId,'s10-common');
-  assert.equal(scene('s10-common').nextSceneId,'s10-m3-end');
-  assert.equal(scene('s10-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s10-common').nextSceneId,'s11-intro');
+  assert.equal(scene('s10-m3-end'),undefined);
   for(const choice of [...seat.choices,...tone.choices])for(const field of ['cost','premium','contentId','requiredEntitlement'])assert.equal(choice[field],undefined);
 });
 
@@ -134,7 +134,7 @@ test('S01 Eric/Nick/Damir each have correct S10 callback; both tones Back-revers
       run.act('narrative:choose:s10-tone-choice:'+tone);
       run.advance('s10-'+tone);
       run.advance('s10-common');
-      assert.equal(run.get().sceneId,'s10-m3-end');
+      assert.equal(run.get().sceneId,'s11-intro');
     }
   }
 });

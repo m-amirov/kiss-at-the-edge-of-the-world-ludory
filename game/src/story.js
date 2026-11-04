@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S10.
-// M3 S10 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episode 3 S09–S11.
+// M3 S11 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -33,6 +33,10 @@ import {
 import {
   s10Intro, s10SeatEric, s10SeatOther, s10Playful, s10Quiet, s10Common,
 } from './scenes/s10.js';
+import {
+  s11Intro, s11CameraAccepted, s11CameraDeclined, s11CameraNegotiated,
+  s11CommonA, s11SafePoint, s11LeaveWater, s11CheckRules, s11CommonB,
+} from './scenes/s11.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -488,9 +492,49 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's10-playful', beats: beats('s10-playful', s10Playful), nextSceneId: 's10-common' },
   { id: 's10-quiet', beats: beats('s10-quiet', s10Quiet), nextSceneId: 's10-common' },
-  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's10-m3-end' },
-  { id: 's10-m3-end', beats: [
-    { id: 's10-m3-end-beat', type: 'ending', endingId: 'm3-s10-only',
+  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's11-intro' },
+  { id: 's11-intro', beats: [
+    ...beats('s11-intro', s11Intro),
+    // S04 camera consent chooses the opening callback, but cannot authorize new recording.
+    { id: 's11-consent-dispatch', type: 'choice', choices: [
+      { id: 'accepted', label: t('Продолжить'), targetSceneId: 's11-camera-accepted',
+        when: { flag: 'consent-camera-accepted' } },
+      { id: 'declined', label: t('Продолжить'), targetSceneId: 's11-camera-declined',
+        when: { flag: 'consent-camera-declined-respected' } },
+      { id: 'negotiated', label: t('Продолжить'), targetSceneId: 's11-camera-negotiated',
+        when: { flag: 'consent-camera-negotiated' } },
+    ] },
+  ] },
+  { id: 's11-camera-accepted', beats: beats('s11-camera-accepted', s11CameraAccepted), nextSceneId: 's11-common-a' },
+  { id: 's11-camera-declined', beats: beats('s11-camera-declined', s11CameraDeclined), nextSceneId: 's11-common-a' },
+  { id: 's11-camera-negotiated', beats: beats('s11-camera-negotiated', s11CameraNegotiated), nextSceneId: 's11-common-a' },
+  { id: 's11-common-a', beats: [
+    ...beats('s11-common-a', s11CommonA),
+    // Canonical S11-C1 is about a safe camera response, not romantic route or new consent.
+    { id: 's11-safety-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Предложить безопасную точку для того же замысла'), targetSceneId: 's11-safe-point',
+        effects: [
+          { op: 'flag_set', id: 'beach-footage-safe-only', value: true },
+          { op: 'flag_set', id: 'nick-safety-changed-position', value: true },
+        ] },
+      { id: 'b', label: t('Попросить всех уйти от воды, не обсуждая кадр сейчас'), targetSceneId: 's11-leave-water',
+        effects: [
+          { op: 'flag_set', id: 'beach-footage-none', value: true },
+          { op: 'flag_set', id: 'nick-safety-deleted', value: true },
+        ] },
+      { id: 'c', label: t('Предложить сначала разобраться с правилами, затем решить вопрос о съёмке'), targetSceneId: 's11-check-rules',
+        effects: [
+          { op: 'flag_set', id: 'beach-footage-safe-only', value: true },
+          { op: 'flag_set', id: 'nick-safety-asked-then-reframed', value: true },
+        ] },
+    ] },
+  ] },
+  { id: 's11-safe-point', beats: beats('s11-safe-point', s11SafePoint), nextSceneId: 's11-common-b' },
+  { id: 's11-leave-water', beats: beats('s11-leave-water', s11LeaveWater), nextSceneId: 's11-common-b' },
+  { id: 's11-check-rules', beats: beats('s11-check-rules', s11CheckRules), nextSceneId: 's11-common-b' },
+  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's11-m3-end' },
+  { id: 's11-m3-end', beats: [
+    { id: 's11-m3-end-beat', type: 'ending', endingId: 'm3-s11-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
