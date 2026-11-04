@@ -101,8 +101,8 @@ test('S14 enters S15; guarded S09 callback, three privacy policies and both S14 
     ['walk','s15-evening-walk',{flag:'eric-gesture-walk'},undefined],
     ['photo','s15-evening-photo',{flag:'eric-gesture-photo'},undefined],
   ]);
-  for(const g of gestures)assert.equal(scene('s15-evening-'+g).nextSceneId,'s15-m3-end');
-  assert.equal(scene('s15-m3-end').beats[0].type,'ending');
+  for(const g of gestures)assert.equal(scene('s15-evening-'+g).nextSceneId,'s16-intro');
+  assert.equal(scene('s15-m3-end'),undefined);
   for(const gated of [voice,evening])assert.ok(gated.choices.every(c=>c.label.ru==='Продолжить'&&!c.effects));
   for(const c of [...voice.choices,...policy.choices,...evening.choices]){
     for(const key of ['cost','premium','contentId','requiredEntitlement','romancePoints',
@@ -236,7 +236,7 @@ test('S09 three voices × S15 privacy three outcomes × S14 gesture two: real N1
       assert.equal(JSON.stringify(run.get()),prior);
       run.act('narrative:choose:s15-gesture-dispatch:'+gesture);
       run.advance('s15-evening-'+gesture);
-      assert.equal(run.get().sceneId,'s15-m3-end');
+      assert.equal(run.get().sceneId,'s16-intro');
     }
   }
 });

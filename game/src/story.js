@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S15.
-// M3 S15 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–4 S09–S16.
+// M3 S16 boundary is not a release ending. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -57,6 +57,7 @@ import {
   s15Privacy, s15Observed, s15SharedFile, s15CommonB,
   s15EveningWalk, s15EveningPhoto,
 } from './scenes/s15.js';
+import { s16Intro, s16Tea, s16Room, s16Common } from './scenes/s16.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -742,10 +743,24 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-gesture-photo' } },
     ] },
   ] },
-  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's15-m3-end' },
-  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's15-m3-end' },
-  { id: 's15-m3-end', beats: [
-    { id: 's15-m3-end-beat', type: 'ending', endingId: 'm3-s15-only',
+  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's16-intro' },
+  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's16-intro' },
+  { id: 's16-intro', beats: [
+    ...beats('s16-intro', s16Intro),
+    { id: 's16-care-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Подойти с конкретной заботой и не требовать разговора'),
+        targetSceneId: 's16-tea',
+        effects: [{ op: 'flag_set', id: 'damir-space-tea', value: true }] },
+      { id: 'b', label: t('Дать ему пространство и ясно назвать, когда увидятся снова'),
+        targetSceneId: 's16-room',
+        effects: [{ op: 'flag_set', id: 'damir-space-room', value: true }] },
+    ] },
+  ] },
+  { id: 's16-tea', beats: beats('s16-tea', s16Tea), nextSceneId: 's16-common' },
+  { id: 's16-room', beats: beats('s16-room', s16Room), nextSceneId: 's16-common' },
+  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's16-m3-end' },
+  { id: 's16-m3-end', beats: [
+    { id: 's16-m3-end-beat', type: 'ending', endingId: 'm3-s16-only',
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') },
   ] },
 ] };
