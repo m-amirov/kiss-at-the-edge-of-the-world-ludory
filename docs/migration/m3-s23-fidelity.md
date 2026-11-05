@@ -33,7 +33,7 @@ All **18 distinct authorial text blocks / 65 paragraphs** are copied verbatim in
 - Exactly one effect-free S17 evening callback uses existing `s17-evening-eric|nick|damir|self` flags. Eric's evening additionally selects exactly one effect-free S18-C1 callback (`eric-contact-kiss|stay-without-kiss|leave`), while other evenings skip it; other routes cannot select Eric's branch via a forged action.
 - S23-C1 is **free**: `read-page` sets `eric-open-read-page` (Alice checks one page over breakfast) or `trial-readers` sets `eric-open-trial-readers` (suggest a trial with future students instead of taking ownership of Eric's school). Neither choice is a relationship score, promise to run his program, paywall or photo/publication consent.
 - Source S22-C1 (`s22-repair-roles|anger`) and S22-C2 (`s22-stop-group|notes`) each select one delayed, effect-free S23 authored callback. Eric-only S18-C2 (`eric-followup-postcards|song`) selects one further delayed callback; other evenings have a guarded skip.
-- Terminal `s23-after-m3-end` is a **technical, non-release Draft** marker until S24, not an authored ending. Obsolete unpublished saves at the removed S22 ending may require explicit Restart; automatic remapping was not implemented.
+- Former terminal `s23-after-m3-end` was a **technical, non-release Draft** marker, not an authored ending. The [S24 migration](m3-s24-fidelity.md) removed it and now enters `s24-intro`. Obsolete unpublished saves at removed endings may require explicit Restart; automatic remapping was not implemented.
 
 ## Editorial items before release
 

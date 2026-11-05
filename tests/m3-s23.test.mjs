@@ -101,13 +101,13 @@ test('S22 always enters S23; only Eric sees contact/follow-up and S22 callbacks 
     ['song','s23-followup-song','eric-followup-song',undefined],
   ]);
   assert.equal(followup.choices[2].id,'skip');
-  assert.equal(followup.choices[2].targetSceneId,'s23-after-m3-end');
+  assert.equal(followup.choices[2].targetSceneId,'s24-intro');
   assert.deepEqual(followup.choices[2].when?.any,
     [{flag:'s17-evening-nick'},{flag:'s17-evening-damir'},{flag:'s17-evening-self'}]);
   for(const id of ['postcards','song'])
-    assert.equal(scene('s23-followup-'+id).nextSceneId,'s23-after-m3-end');
-  assert.equal(scene('s23-after-m3-end').beats[0].type,'ending');
-  assert.equal(scene('s24-intro'),undefined);
+    assert.equal(scene('s23-followup-'+id).nextSceneId,'s24-intro');
+  assert.equal(scene('s23-after-m3-end'),undefined);
+  assert.ok(scene('s24-intro'));
   for(const c of [...evening.choices,...contact.choices,...open.choices,
     ...repair.choices,...stop.choices,...followup.choices])
     for(const key of ['cost','premium','routeLock','routeIntent','romancePoints',
@@ -271,7 +271,7 @@ function finishS23(run,{route,contact='s',followup='song',repair,stop,open}){
       expectUnchanged(resumed,'narrative:choose:s23-followup-choice:'+wrong);
     resumed.act('narrative:choose:s23-followup-choice:skip');
   }
-  walkUntil(resumed,(_b,id)=>id==='s23-after-m3-end');
+  walkUntil(resumed,(_b,id)=>id==='s24-intro');
   assert.equal(resumed.get().routeLock,null);
   assert.equal(resumed.get().flags['private-text-pending'],true);
   assert.equal(resumed.get().flags['nick-joint-file-approved'],undefined);
@@ -347,5 +347,5 @@ test('S23 is free, adds no economy/premium and grants no media consent',()=>{
   assert.equal(existsSync(new URL('../game/config/economy.json',import.meta.url)),false);
   assert.equal(existsSync(new URL('../game/config/premium.json',import.meta.url)),false);
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s23-after-m3-end').beats[0].endingId,'m3-s23-only');
+  assert.equal(scene('s23-after-m3-end'),undefined);
 });

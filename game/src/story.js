@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S23.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S24.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -97,6 +97,12 @@ import {
   s23ChoiceRead, s23ChoiceTrial, s23CommonB, s23RepairRoles, s23RepairAnger,
   s23StopGroup, s23StopNotes, s23FollowupPostcards, s23FollowupSong,
 } from './scenes/s23.js';
+import {
+  s24Intro, s24EveningEric, s24EveningNick, s24EveningDamir, s24EveningAlice,
+  s24ContactKiss, s24ContactHug, s24ContactDistance, s24CommonA,
+  s24ChoiceLimited, s24ChoiceNoReview, s24CommonB,
+  s24FollowupCameraFree, s24FollowupBreakfast,
+} from './scenes/s24.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1274,7 +1280,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-followup-postcards' } },
       { id: 'song', label: t('Продолжить'), targetSceneId: 's23-followup-song',
         when: { flag: 'eric-followup-song' } },
-      { id: 'skip', label: t('Продолжить'), targetSceneId: 's23-after-m3-end',
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's24-intro',
         when: { any: [
           { flag: 's17-evening-nick' }, { flag: 's17-evening-damir' },
           { flag: 's17-evening-self' },
@@ -1282,12 +1288,92 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's23-followup-postcards', beats: beats('s23-followup-postcards', s23FollowupPostcards),
-    nextSceneId: 's23-after-m3-end' },
+    nextSceneId: 's24-intro' },
   { id: 's23-followup-song', beats: beats('s23-followup-song', s23FollowupSong),
-    nextSceneId: 's23-after-m3-end' },
-  { id: 's23-after-m3-end', beats: [
-    { id: 's23-after-m3-end-beat', type: 'ending', endingId: 'm3-s23-only',
-      text: t('Технический фрагмент завершён. S24 ещё не перенесена.') },
+    nextSceneId: 's24-intro' },
+  // All four day-11 arcs continue into mandatory S24 without a route lock.
+  { id: 's24-intro', beats: beats('s24-intro', s24Intro),
+    nextSceneId: 's24-evening-dispatch' },
+  { id: 's24-evening-dispatch', beats: [
+    { id: 's24-evening-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's24-evening-eric',
+        when: { flag: 's17-evening-eric' } },
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's24-evening-nick',
+        when: { flag: 's17-evening-nick' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's24-evening-damir',
+        when: { flag: 's17-evening-damir' } },
+      { id: 'alice', label: t('Продолжить'), targetSceneId: 's24-evening-alice',
+        when: { flag: 's17-evening-self' } },
+    ] },
+  ] },
+  { id: 's24-evening-eric', beats: beats('s24-evening-eric', s24EveningEric),
+    nextSceneId: 's24-contact-dispatch' },
+  { id: 's24-evening-nick', beats: beats('s24-evening-nick', s24EveningNick),
+    nextSceneId: 's24-contact-dispatch' },
+  { id: 's24-evening-damir', beats: beats('s24-evening-damir', s24EveningDamir),
+    nextSceneId: 's24-contact-dispatch' },
+  { id: 's24-evening-alice', beats: beats('s24-evening-alice', s24EveningAlice),
+    nextSceneId: 's24-contact-dispatch' },
+  // Nick-only S19-C2 callback; watching footage is not consent to share it.
+  { id: 's24-contact-dispatch', beats: [
+    { id: 's24-contact-choice', type: 'choice', choices: [
+      { id: 'k', label: t('Продолжить'), targetSceneId: 's24-contact-kiss',
+        when: { flag: 'nick-contact-kiss' } },
+      { id: 'h', label: t('Продолжить'), targetSceneId: 's24-contact-hug',
+        when: { flag: 'nick-contact-hug' } },
+      { id: 'd', label: t('Продолжить'), targetSceneId: 's24-contact-distance',
+        when: { flag: 'nick-contact-distance' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's24-common-a',
+        when: { any: [
+          { flag: 's17-evening-eric' }, { flag: 's17-evening-damir' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's24-contact-kiss', beats: beats('s24-contact-kiss', s24ContactKiss),
+    nextSceneId: 's24-common-a' },
+  { id: 's24-contact-hug', beats: beats('s24-contact-hug', s24ContactHug),
+    nextSceneId: 's24-common-a' },
+  { id: 's24-contact-distance', beats: beats('s24-contact-distance', s24ContactDistance),
+    nextSceneId: 's24-common-a' },
+  { id: 's24-common-a', beats: [
+    ...beats('s24-common-a', s24CommonA),
+    { id: 's24-nick-choice', type: 'choice', choices: [
+      { id: 'limited-review', label: t('Проверить свои кадры вместе с Ником десять минут'),
+        targetSceneId: 's24-choice-limited',
+        effects: [{ op: 'flag_set', id: 'nick-choice-limited-review', value: true }] },
+      { id: 'no-review', label: t('Отказаться от просмотра, остаться на кофе'),
+        targetSceneId: 's24-choice-no-review',
+        effects: [{ op: 'flag_set', id: 'nick-choice-no-review', value: true }] },
+    ] },
+  ] },
+  { id: 's24-choice-limited', beats: beats('s24-choice-limited', s24ChoiceLimited),
+    nextSceneId: 's24-common-b' },
+  { id: 's24-choice-no-review', beats: beats('s24-choice-no-review', s24ChoiceNoReview),
+    nextSceneId: 's24-common-b' },
+  { id: 's24-common-b', beats: beats('s24-common-b', s24CommonB),
+    nextSceneId: 's24-followup-dispatch' },
+  // Original EP06 appends these S19-C3 callbacks after S24 shared prose.
+  { id: 's24-followup-dispatch', beats: [
+    { id: 's24-followup-choice', type: 'choice', choices: [
+      { id: 'camera-free', label: t('Продолжить'), targetSceneId: 's24-followup-camera-free',
+        when: { flag: 'nick-followup-camera-free' } },
+      { id: 'breakfast', label: t('Продолжить'), targetSceneId: 's24-followup-breakfast',
+        when: { flag: 'nick-followup-breakfast' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's24-after-m3-end',
+        when: { any: [
+          { flag: 's17-evening-eric' }, { flag: 's17-evening-damir' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's24-followup-camera-free', beats: beats('s24-followup-camera-free', s24FollowupCameraFree),
+    nextSceneId: 's24-after-m3-end' },
+  { id: 's24-followup-breakfast', beats: beats('s24-followup-breakfast', s24FollowupBreakfast),
+    nextSceneId: 's24-after-m3-end' },
+  { id: 's24-after-m3-end', beats: [
+    { id: 's24-after-m3-end-beat', type: 'ending', endingId: 'm3-s24-only',
+      text: t('Технический фрагмент завершён. S25 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
