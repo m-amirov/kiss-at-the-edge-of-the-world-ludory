@@ -319,7 +319,7 @@ test('N1 rejects forged S25 boundary flags and actionLog after persisted JSON',(
 test('S25 cannot opt in economy or grant audio/quote publication permission',()=>{
   assert.deepEqual(catalogData.interactions,[]);
   assert.equal(scene('s58-after-m3-end'),undefined);
-  assert.equal(scene('s26-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s27-after-m3-end').beats[0].type,'ending');
   const source=dialogue('s25-common-b').join('\n');
   assert.match(source,/согласилась на аудио для расшифровки/);
   assert.match(source,/попросив прислать цитаты перед публикацией/);

@@ -75,10 +75,10 @@ test('S58 always enters free four-way S26 route lock, with 16 guarded evening ca
       ]));
     for(const prior of Object.keys(oldEvenings))
       assert.equal(scene('s26-callback-'+route+'-'+prior).nextSceneId,'s26-common-'+route);
-    assert.equal(scene('s26-common-'+route).nextSceneId,'s26-after-m3-end');
+    assert.equal(scene('s26-common-'+route).nextSceneId,'s27-intro');
   }
-  assert.equal(scene('s26-after-m3-end').beats[0].endingId,'m3-s26-only');
-  assert.equal(scene('s27-intro'),undefined);
+  assert.equal(scene('s26-after-m3-end'),undefined);
+  assert.equal(scene('s27-after-m3-end').beats[0].endingId,'m3-s27-only');
   for(const c of [choice('s26-intro','s26-route-choice'),
     ...routes.map(r=>choice('s26-'+r+'-evening-dispatch','s26-'+r+'-evening-choice'))])
     for(const option of c.choices)
@@ -257,7 +257,7 @@ function finishS26(saved,prior,shop,target){
     expectNoWrite(resumed,'narrative:choose:s26-'+target+'-evening-choice:'+wrong);
   resumed.act('narrative:choose:s26-'+target+'-evening-choice:'+callback);
   assert.equal(resumed.get().sceneId,'s26-callback-'+target+'-'+callback);
-  walkUntil(resumed,(_b,id)=>id==='s26-after-m3-end');
+  walkUntil(resumed,(_b,id)=>id==='s27-intro');
   assert.equal(resumed.get().routeIntent,target);
   assert.equal(resumed.get().routeLock,target);
   assert.equal(resumed.get().flags[evenings[prior]],true);
@@ -309,7 +309,7 @@ test('N1 rejects forged S26 intent/lock, evening flags and actionLog without sta
 
 test('S26 keeps autonomy, consent boundaries and first-game monetization disabled',()=>{
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s26-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s27-after-m3-end').beats[0].type,'ending');
   assert.match(dialogue('s26-choice-eric').join(' '),/Без обещания переехать/);
   assert.match(dialogue('s26-common-eric').join(' '),/Сейчас можно/);
   assert.match(dialogue('s26-common-damir').join(' '),/Пока нет/);

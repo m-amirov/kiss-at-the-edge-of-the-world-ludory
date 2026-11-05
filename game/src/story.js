@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S26.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through S27.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -114,6 +114,7 @@ import {
   s58CommonA, s58PayoffDamir, s58PayoffOther, s58CommonB,
 } from './scenes/s58.js';
 import * as s26 from './scenes/s26.js';
+import * as s27 from './scenes/s27.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1558,7 +1559,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     beats: beats('s26-callback-eric-self', s26.s26CallbackEricSelf),
     nextSceneId: 's26-common-eric' },
   { id: 's26-common-eric', beats: beats('s26-common-eric', s26.s26CommonEric),
-    nextSceneId: 's26-after-m3-end' },
+    nextSceneId: 's27-intro' },
   { id: 's26-choice-nick', beats: beats('s26-choice-nick', s26.s26ChoiceNick),
     nextSceneId: 's26-nick-evening-dispatch' },
   { id: 's26-nick-evening-dispatch', beats: [
@@ -1586,7 +1587,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     beats: beats('s26-callback-nick-self', s26.s26CallbackNickSelf),
     nextSceneId: 's26-common-nick' },
   { id: 's26-common-nick', beats: beats('s26-common-nick', s26.s26CommonNick),
-    nextSceneId: 's26-after-m3-end' },
+    nextSceneId: 's27-intro' },
   { id: 's26-choice-damir', beats: beats('s26-choice-damir', s26.s26ChoiceDamir),
     nextSceneId: 's26-damir-evening-dispatch' },
   { id: 's26-damir-evening-dispatch', beats: [
@@ -1614,7 +1615,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     beats: beats('s26-callback-damir-self', s26.s26CallbackDamirSelf),
     nextSceneId: 's26-common-damir' },
   { id: 's26-common-damir', beats: beats('s26-common-damir', s26.s26CommonDamir),
-    nextSceneId: 's26-after-m3-end' },
+    nextSceneId: 's27-intro' },
   { id: 's26-choice-alice', beats: beats('s26-choice-alice', s26.s26ChoiceAlice),
     nextSceneId: 's26-alice-evening-dispatch' },
   { id: 's26-alice-evening-dispatch', beats: [
@@ -1642,10 +1643,30 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     beats: beats('s26-callback-alice-self', s26.s26CallbackAliceSelf),
     nextSceneId: 's26-common-alice' },
   { id: 's26-common-alice', beats: beats('s26-common-alice', s26.s26CommonAlice),
-    nextSceneId: 's26-after-m3-end' },
-  { id: 's26-after-m3-end', beats: [
-    { id: 's26-after-m3-end-beat', type: 'ending', endingId: 'm3-s26-only',
-      text: t('Технический фрагмент завершён. S27 ещё не перенесена.') },
+    nextSceneId: 's27-intro' },
+  // S27 is a shared volunteer workday regardless of the locked S26 route.
+  { id: 's27-intro', beats: [
+    ...beats('s27-intro', s27.s27Intro),
+    { id: 's27-work-choice', type: 'choice', choices: [
+      { id: 'inga', label: t('Остаться с Ингой и закончить настил'),
+        targetSceneId: 's27-work-inga' },
+      { id: 'nick', label: t('Помочь Нику со съёмкой, не мешая работе'),
+        targetSceneId: 's27-work-nick' },
+      { id: 'bags', label: t('Отнести полные мешки и вернуться за остальными'),
+        targetSceneId: 's27-work-bags' },
+    ] },
+  ] },
+  { id: 's27-work-inga', beats: beats('s27-work-inga', s27.s27WorkInga),
+    nextSceneId: 's27-common' },
+  { id: 's27-work-nick', beats: beats('s27-work-nick', s27.s27WorkNick),
+    nextSceneId: 's27-common' },
+  { id: 's27-work-bags', beats: beats('s27-work-bags', s27.s27WorkBags),
+    nextSceneId: 's27-common' },
+  { id: 's27-common', beats: beats('s27-common', s27.s27Common),
+    nextSceneId: 's27-after-m3-end' },
+  { id: 's27-after-m3-end', beats: [
+    { id: 's27-after-m3-end-beat', type: 'ending', endingId: 'm3-s27-only',
+      text: t('Технический фрагмент завершён. S59 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
