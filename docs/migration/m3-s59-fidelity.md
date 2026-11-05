@@ -18,7 +18,7 @@ All **5 unique prose blocks / 11 original paragraphs** were copied verbatim; eac
 
 - All three S27 work outcomes rejoin `s27-common`, which now leads to mandatory S59 regardless of the Eric, Nick, Damir or Alice `routeLock` already committed at S26. No four-way route discrimination occurs before this group scene.
 - S59-C1 selects the children's rhyme of Eric (`eric`), Nick's advertisement tune (`nick`) or the childhood song of Alice and Damir (`damir`). Each option displays its exact authorial reply and rejoins `s59-common` with **zero effects**, no affection/route changes or monetization. Damir's remembered melody does **not** imply romantic renewal or permission for touch.
-- The earlier temporary `s27-after-m3-end` was removed. The current `s59-after-m3-end` is an **unpublished technical stopping point**, not a story ending. The next authorial stage begins with route-specific S28 (Eric) and separate branches for Nick, Damir and Alice; those must be selected strictly by the locked route, not made globally visible.
+- The earlier temporary `s27-after-m3-end` was removed. **At this historical S59 stage**, `s59-after-m3-end` was the unpublished technical stop, not a story ending. **Follow-up S28/S49 stage:** a native `routeId`-guarded technical dispatch now sends only the locked Eric route into authorial S28/S49; Nick, Damir and Alice still use the S59 technical stop, pending their chapters. See [S28/S49 fidelity](m3-s28-s49-fidelity.md).
 - First-game Economy remains OFF; no currency, premium choice, rewarded advertising or IAP. Inga's photograph and the earlier approved shot carry no expanded permission to distribute or publish.
 
 ## Save and release boundaries

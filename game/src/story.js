@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through S59.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -116,6 +116,8 @@ import {
 import * as s26 from './scenes/s26.js';
 import * as s27 from './scenes/s27.js';
 import * as s59 from './scenes/s59.js';
+import * as s28 from './scenes/s28.js';
+import * as s49 from './scenes/s49.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1681,10 +1683,68 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's59-song-damir', beats: beats('s59-song-damir', s59.s59SongDamir),
     nextSceneId: 's59-common' },
   { id: 's59-common', beats: beats('s59-common', s59.s59Common),
-    nextSceneId: 's59-after-m3-end' },
+    nextSceneId: 's59-route-dispatch' },
+  // A route-scoped technical navigation gate: never offer a second route choice.
+  // Native N1 validates routeId against the S26 routeLock both in UI and action replay.
+  { id: 's59-route-dispatch', beats: [
+    { id: 's59-route-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), routeId: 'eric', targetSceneId: 's28-intro' },
+      { id: 'nick', label: t('Продолжить'), routeId: 'nick', targetSceneId: 's59-after-m3-end' },
+      { id: 'damir', label: t('Продолжить'), routeId: 'damir', targetSceneId: 's59-after-m3-end' },
+      { id: 'alice', label: t('Продолжить'), routeId: 'alice', targetSceneId: 's59-after-m3-end' },
+    ] },
+  ] },
+  // Eric-exclusive day-14 arc: two free local S28 choices and one free S49 choice.
+  { id: 's28-intro', beats: [
+    ...beats('s28-intro', s28.s28Intro),
+    { id: 's28-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Попросить Эрика показать более спокойную дорогу'), targetSceneId: 's28-c1-a' },
+      { id: 'b', label: t('Предложить ему идти рядом и не выбирать лидера'), targetSceneId: 's28-c1-b' },
+    ] },
+  ] },
+  { id: 's28-c1-a', beats: beats('s28-c1-a', s28.s28C1A), nextSceneId: 's28-common' },
+  { id: 's28-c1-b', beats: beats('s28-c1-b', s28.s28C1B), nextSceneId: 's28-common' },
+  { id: 's28-common', beats: [
+    ...beats('s28-common', s28.s28Common),
+    { id: 's28-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Поставить ту самую песню и пригласить его на танец'),
+        targetSceneId: 's28-c2-a', effects: [{ op: 'flag_set', id: 's28-evening-dance', value: true }] },
+      { id: 'b', label: t('Провести вместе тихий вечер без планов'),
+        targetSceneId: 's28-c2-b', effects: [{ op: 'flag_set', id: 's28-evening-quiet', value: true }] },
+    ] },
+  ] },
+  { id: 's28-c2-a', beats: beats('s28-c2-a', s28.s28C2A), nextSceneId: 's49-intro' },
+  { id: 's28-c2-b', beats: beats('s28-c2-b', s28.s28C2B), nextSceneId: 's49-intro' },
+  { id: 's49-intro', beats: [
+    ...beats('s49-intro', s49.s49Intro),
+    { id: 's49-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Пригласить Эрика на второй танец'), targetSceneId: 's49-c1-a' },
+      { id: 'b', label: t('Предложить выйти к озеру вдвоём'), targetSceneId: 's49-c1-b' },
+    ] },
+  ] },
+  { id: 's49-c1-a', beats: beats('s49-c1-a', s49.s49C1A), nextSceneId: 's49-common' },
+  { id: 's49-c1-b', beats: beats('s49-c1-b', s49.s49C1B), nextSceneId: 's49-common' },
+  { id: 's49-common', beats: beats('s49-common', s49.s49Common),
+    nextSceneId: 's49-callback-dispatch' },
+  { id: 's49-callback-dispatch', beats: [
+    { id: 's49-callback-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's49-callback-a',
+        when: { flag: 's28-evening-dance' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's49-callback-b',
+        when: { flag: 's28-evening-quiet' } },
+    ] },
+  ] },
+  { id: 's49-callback-a', beats: beats('s49-callback-a', s49.s49CallbackA),
+    nextSceneId: 's49-after-m3-end' },
+  { id: 's49-callback-b', beats: beats('s49-callback-b', s49.s49CallbackB),
+    nextSceneId: 's49-after-m3-end' },
+  { id: 's49-after-m3-end', beats: [
+    { id: 's49-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-s49-only',
+      text: t('Технический фрагмент завершён. Следующая сцена маршрута Эрика ещё не перенесена.') },
+  ] },
   { id: 's59-after-m3-end', beats: [
     { id: 's59-after-m3-end-beat', type: 'ending', endingId: 'm3-s59-only',
-      text: t('Технический фрагмент завершён. Маршрутные сцены дня 14 ещё не перенесены.') },
+      text: t('Технический фрагмент завершён. Выбранный маршрут дня 14 ещё не перенесён.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
