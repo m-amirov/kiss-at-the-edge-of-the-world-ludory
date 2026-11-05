@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S25.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S58.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -109,6 +109,10 @@ import {
   s25ChoiceScheduled, s25ChoiceWait, s25CommonB,
   s25EricPage, s25EricReaders, s25FollowupShopping, s25FollowupWaterfront,
 } from './scenes/s25.js';
+import {
+  s58Intro, s58ChoiceEric, s58ChoiceNick, s58ChoiceDamir, s58ChoiceAlone,
+  s58CommonA, s58PayoffDamir, s58PayoffOther, s58CommonB,
+} from './scenes/s58.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1459,7 +1463,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'damir-followup-shopping' } },
       { id: 'waterfront', label: t('Продолжить'), targetSceneId: 's25-followup-waterfront',
         when: { flag: 'damir-followup-waterfront' } },
-      { id: 'skip', label: t('Продолжить'), targetSceneId: 's25-after-m3-end',
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's58-intro',
         when: { any: [
           { flag: 's17-evening-eric' }, { flag: 's17-evening-nick' },
           { flag: 's17-evening-self' },
@@ -1467,12 +1471,54 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's25-followup-shopping', beats: beats('s25-followup-shopping', s25FollowupShopping),
-    nextSceneId: 's25-after-m3-end' },
+    nextSceneId: 's58-intro' },
   { id: 's25-followup-waterfront', beats: beats('s25-followup-waterfront', s25FollowupWaterfront),
-    nextSceneId: 's25-after-m3-end' },
-  { id: 's25-after-m3-end', beats: [
-    { id: 's25-after-m3-end-beat', type: 'ending', endingId: 'm3-s25-only',
-      text: t('Технический фрагмент завершён. S58 ещё не перенесена.') },
+    nextSceneId: 's58-intro' },
+  // EP06 S58 is mandatory regardless of previous romance or dinner choice.
+  { id: 's58-intro', beats: [
+    ...beats('s58-intro', s58Intro),
+    { id: 's58-shop-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Пойти с Эриком за хлебом'), targetSceneId: 's58-choice-eric',
+        effects: [{ op: 'flag_set', id: 's58-shop-eric', value: true }] },
+      { id: 'nick', label: t('Пойти с Ником за зеленью'), targetSceneId: 's58-choice-nick',
+        effects: [{ op: 'flag_set', id: 's58-shop-nick', value: true }] },
+      { id: 'damir', label: t('Пойти с Дамиром за картофелем'), targetSceneId: 's58-choice-damir',
+        effects: [{ op: 'flag_set', id: 's58-shop-damir', value: true }] },
+      { id: 'alone', label: t('Выбрать продукты самостоятельно'), targetSceneId: 's58-choice-alone',
+        effects: [{ op: 'flag_set', id: 's58-shop-alone', value: true }] },
+    ] },
+  ] },
+  { id: 's58-choice-eric', beats: beats('s58-choice-eric', s58ChoiceEric),
+    nextSceneId: 's58-common-a' },
+  { id: 's58-choice-nick', beats: beats('s58-choice-nick', s58ChoiceNick),
+    nextSceneId: 's58-common-a' },
+  { id: 's58-choice-damir', beats: beats('s58-choice-damir', s58ChoiceDamir),
+    nextSceneId: 's58-common-a' },
+  { id: 's58-choice-alone', beats: beats('s58-choice-alone', s58ChoiceAlone),
+    nextSceneId: 's58-common-a' },
+  { id: 's58-common-a', beats: beats('s58-common-a', s58CommonA),
+    nextSceneId: 's58-payoff-dispatch' },
+  // Damir's potato callback is only shown if the player picked his shopping line.
+  { id: 's58-payoff-dispatch', beats: [
+    { id: 's58-payoff-choice', type: 'choice', choices: [
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's58-payoff-damir',
+        when: { flag: 's58-shop-damir' } },
+      { id: 'other', label: t('Продолжить'), targetSceneId: 's58-payoff-other',
+        when: { any: [
+          { flag: 's58-shop-eric' }, { flag: 's58-shop-nick' },
+          { flag: 's58-shop-alone' },
+        ] } },
+    ] },
+  ] },
+  { id: 's58-payoff-damir', beats: beats('s58-payoff-damir', s58PayoffDamir),
+    nextSceneId: 's58-common-b' },
+  { id: 's58-payoff-other', beats: beats('s58-payoff-other', s58PayoffOther),
+    nextSceneId: 's58-common-b' },
+  { id: 's58-common-b', beats: beats('s58-common-b', s58CommonB),
+    nextSceneId: 's58-after-m3-end' },
+  { id: 's58-after-m3-end', beats: [
+    { id: 's58-after-m3-end-beat', type: 'ending', endingId: 'm3-s58-only',
+      text: t('Технический фрагмент завершён. S26 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

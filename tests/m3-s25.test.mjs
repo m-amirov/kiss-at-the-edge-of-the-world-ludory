@@ -96,10 +96,10 @@ test('S24 enters S25; Damir-only callbacks, free S25-C1, Eric and Damir follow-u
   assert.deepEqual(follow.choices[2].when?.any,
     [{flag:evenings.eric},{flag:evenings.nick},{flag:evenings.alice}]);
   for(const id of ['shopping','waterfront'])
-    assert.equal(scene('s25-followup-'+id).nextSceneId,'s25-after-m3-end');
-  assert.equal(follow.choices[2].targetSceneId,'s25-after-m3-end');
-  assert.equal(scene('s25-after-m3-end').beats[0].endingId,'m3-s25-only');
-  assert.equal(scene('s58-intro'),undefined);
+    assert.equal(scene('s25-followup-'+id).nextSceneId,'s58-intro');
+  assert.equal(follow.choices[2].targetSceneId,'s58-intro');
+  assert.equal(scene('s25-after-m3-end'),undefined);
+  assert.equal(scene('s58-intro').beats.at(-1).id,'s58-shop-choice');
   for(const c of [...ev.choices,...contact.choices,...c1.choices,...eric.choices,...follow.choices])
     for(const key of ['cost','premium','routeLock','routeIntent','romancePoints',
       'requiredEntitlement','publishPermission','mediaPermission'])
@@ -256,7 +256,7 @@ function completeS25(saved,{route,contact='tea',followup='shopping',eric='page',
       expectNoWrite(resumed,'narrative:choose:s25-followup-choice:'+wrong);
     resumed.act('narrative:choose:s25-followup-choice:skip');
   }
-  walkUntil(resumed,(_b,id)=>id==='s25-after-m3-end');
+  walkUntil(resumed,(_b,id)=>id==='s58-intro');
   assert.equal(resumed.get().routeLock,null);
   assert.equal(resumed.get().flags['private-text-pending'],true);
   for(const forbidden of ['damir-interview-job-accepted','damir-relocation-approved',
@@ -318,7 +318,7 @@ test('N1 rejects forged S25 boundary flags and actionLog after persisted JSON',(
 
 test('S25 cannot opt in economy or grant audio/quote publication permission',()=>{
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s25-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s58-after-m3-end').beats[0].type,'ending');
   const source=dialogue('s25-common-b').join('\n');
   assert.match(source,/согласилась на аудио для расшифровки/);
   assert.match(source,/попросив прислать цитаты перед публикацией/);
