@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49 and Nick S29/S52.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49, Nick S29/S52 and Damir S30/S55.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -120,6 +120,8 @@ import * as s28 from './scenes/s28.js';
 import * as s49 from './scenes/s49.js';
 import * as s29 from './scenes/s29.js';
 import * as s52 from './scenes/s52.js';
+import * as s30 from './scenes/s30.js';
+import * as s55 from './scenes/s55.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1692,7 +1694,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's59-route-choice', type: 'choice', choices: [
       { id: 'eric', label: t('Продолжить'), routeId: 'eric', targetSceneId: 's28-intro' },
       { id: 'nick', label: t('Продолжить'), routeId: 'nick', targetSceneId: 's29-intro' },
-      { id: 'damir', label: t('Продолжить'), routeId: 'damir', targetSceneId: 's59-after-m3-end' },
+      { id: 'damir', label: t('Продолжить'), routeId: 'damir', targetSceneId: 's30-intro' },
       { id: 'alice', label: t('Продолжить'), routeId: 'alice', targetSceneId: 's59-after-m3-end' },
     ] },
   ] },
@@ -1793,6 +1795,57 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's52-after-m3-end', beats: [
     { id: 's52-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s52-only',
       text: t('Технический фрагмент завершён. Следующая сцена маршрута Ника ещё не перенесена.') },
+  ] },
+  // Damir-exclusive day-14 arc: discussing a clinic interview grants no relocation consent.
+  { id: 's30-intro', beats: [
+    ...beats('s30-intro', s30.s30Intro),
+    { id: 's30-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Поздравить его и предложить обсудить варианты позже'),
+        targetSceneId: 's30-c1-a' },
+      { id: 'b', label: t('Попросить сразу назвать важные даты и не строить общих планов до них'),
+        targetSceneId: 's30-c1-b' },
+    ] },
+  ] },
+  { id: 's30-c1-a', beats: beats('s30-c1-a', s30.s30C1A), nextSceneId: 's30-common' },
+  { id: 's30-c1-b', beats: beats('s30-c1-b', s30.s30C1B), nextSceneId: 's30-common' },
+  { id: 's30-common', beats: [
+    ...beats('s30-common', s30.s30Common),
+    { id: 's30-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Предложить ему выбрать новую песню для совместной прогулки'),
+        targetSceneId: 's30-c2-a', effects: [{ op: 'flag_set', id: 's30-time-song', value: true }] },
+      { id: 'b', label: t('Позвать его в магазин за смешными сувенирами'),
+        targetSceneId: 's30-c2-b', effects: [{ op: 'flag_set', id: 's30-time-souvenirs', value: true }] },
+    ] },
+  ] },
+  { id: 's30-c2-a', beats: beats('s30-c2-a', s30.s30C2A), nextSceneId: 's55-intro' },
+  { id: 's30-c2-b', beats: beats('s30-c2-b', s30.s30C2B), nextSceneId: 's55-intro' },
+  { id: 's55-intro', beats: [
+    ...beats('s55-intro', s55.s55Intro),
+    { id: 's55-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Поддразнить Дамира фотографией'), targetSceneId: 's55-c1-a' },
+      { id: 'b', label: t('Сказать, что ей понравилось видеть его таким'),
+        targetSceneId: 's55-c1-b' },
+    ] },
+  ] },
+  { id: 's55-c1-a', beats: beats('s55-c1-a', s55.s55C1A), nextSceneId: 's55-common' },
+  { id: 's55-c1-b', beats: beats('s55-c1-b', s55.s55C1B), nextSceneId: 's55-common' },
+  { id: 's55-common', beats: beats('s55-common', s55.s55Common),
+    nextSceneId: 's55-callback-dispatch' },
+  { id: 's55-callback-dispatch', beats: [
+    { id: 's55-callback-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's55-callback-a',
+        when: { flag: 's30-time-song' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's55-callback-b',
+        when: { flag: 's30-time-souvenirs' } },
+    ] },
+  ] },
+  { id: 's55-callback-a', beats: beats('s55-callback-a', s55.s55CallbackA),
+    nextSceneId: 's55-after-m3-end' },
+  { id: 's55-callback-b', beats: beats('s55-callback-b', s55.s55CallbackB),
+    nextSceneId: 's55-after-m3-end' },
+  { id: 's55-after-m3-end', beats: [
+    { id: 's55-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-s55-only',
+      text: t('Технический фрагмент завершён. Следующая сцена маршрута Дамира ещё не перенесена.') },
   ] },
   { id: 's59-after-m3-end', beats: [
     { id: 's59-after-m3-end-beat', type: 'ending', endingId: 'm3-s59-only',

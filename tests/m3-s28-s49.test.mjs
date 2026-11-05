@@ -48,7 +48,7 @@ test('S59 continues into only the selected locked route; Eric three choices free
     [id, routeId, targetSceneId, label.ru, effects, when]), [
     ['eric', 'eric', 's28-intro', 'Продолжить', undefined, undefined],
     ['nick', 'nick', 's29-intro', 'Продолжить', undefined, undefined],
-    ['damir', 'damir', 's59-after-m3-end', 'Продолжить', undefined, undefined],
+    ['damir', 'damir', 's30-intro', 'Продолжить', undefined, undefined],
     ['alice', 'alice', 's59-after-m3-end', 'Продолжить', undefined, undefined],
   ]);
   assert.equal(scene('s59-after-m3-end').beats[0].type, 'ending');
@@ -216,14 +216,14 @@ test('real N1 routeLock blocks Eric chapter on all other routes, with zero write
     const before = JSON.stringify(run.get());
     run.act(`narrative:choose:s59-route-choice:${route}`);
     assert.equal(run.get().sceneId, route === 'eric' ? 's28-intro'
-      : route === 'nick' ? 's29-intro' : 's59-after-m3-end');
+      : route === 'nick' ? 's29-intro' : route === 'damir' ? 's30-intro' : 's59-after-m3-end');
     run.act('narrative:back');
     assert.equal(JSON.stringify(run.get()), before, `Back route dispatcher ${route}`);
     run.act(`narrative:choose:s59-route-choice:${route}`);
     const restored = runtime(clone(run.get()));
     assert.equal(restored.get().routeLock, route, `JSON route lock ${route}`);
     assert.equal(restored.get().sceneId, route === 'eric' ? 's28-intro'
-      : route === 'nick' ? 's29-intro' : 's59-after-m3-end');
+      : route === 'nick' ? 's29-intro' : route === 'damir' ? 's30-intro' : 's59-after-m3-end');
   }
 });
 
