@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S19.
-// M3 S18/S19 boundaries are not release endings. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S20.
+// M3 S18–S20 boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -74,6 +74,10 @@ import {
   s19KissPayoff, s19HugPayoff, s19DistancePayoff,
   s19CameraFree, s19Breakfast,
 } from './scenes/s19.js';
+import {
+  s20Intro, s20Kiss, s20Tea, s20Leave, s20Common,
+  s20PayoffK, s20PayoffT, s20PayoffL, s20Breakfast, s20Waterfront,
+} from './scenes/s20.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -840,7 +844,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         targetSceneId: 's19-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-nick', value: true }] },
       { id: 'damir', label: t('Принять приглашение Дамира на завтрашний вечер'),
-        targetSceneId: 's20-m3-end',
+        targetSceneId: 's20-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-damir', value: true }] },
       { id: 'self', label: t('Оставить время себе'),
         targetSceneId: 's21-m3-end',
@@ -978,8 +982,59 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's19-after-m3-end-beat', type: 'ending', endingId: 'm3-s19-only',
       text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
   ] },
-  // Damir and independent evening routes await separate canonical migration.
-  ...['s20', 's21'].map(id => ({
+  // S17-C2 Damir enters this exclusive day-10 dinner; no reconciliation is implied.
+  { id: 's20-intro', beats: [
+    ...beats('s20-intro', s20Intro),
+    { id: 's20-dinner-choice', type: 'choice', choices: [
+      { id: 'new-kiss', label: t('Остаться на чай и предложить новый поцелуй'),
+        targetSceneId: 's20-kiss',
+        effects: [{ op: 'flag_set', id: 'damir-dinner-new-kiss', value: true }] },
+      { id: 'tea-without-touch', label: t('Остаться на чай без прикосновения'),
+        targetSceneId: 's20-tea',
+        effects: [{ op: 'flag_set', id: 'damir-dinner-tea-without-touch', value: true }] },
+      { id: 'leave', label: t('Уйти, сохранив честность разговора'),
+        targetSceneId: 's20-leave',
+        effects: [{ op: 'flag_set', id: 'damir-dinner-leave', value: true }] },
+    ] },
+  ] },
+  { id: 's20-kiss', beats: beats('s20-kiss', s20Kiss), nextSceneId: 's20-common' },
+  { id: 's20-tea', beats: beats('s20-tea', s20Tea), nextSceneId: 's20-common' },
+  { id: 's20-leave', beats: beats('s20-leave', s20Leave), nextSceneId: 's20-common' },
+  { id: 's20-common', beats: beats('s20-common', s20Common), nextSceneId: 's20-payoff-dispatch' },
+  { id: 's20-payoff-dispatch', beats: [
+    { id: 's20-payoff-choice', type: 'choice', choices: [
+      { id: 'k', label: t('Продолжить'), targetSceneId: 's20-k',
+        when: { flag: 'damir-dinner-new-kiss' } },
+      { id: 't', label: t('Продолжить'), targetSceneId: 's20-t',
+        when: { flag: 'damir-dinner-tea-without-touch' } },
+      { id: 'l', label: t('Продолжить'), targetSceneId: 's20-l',
+        when: { flag: 'damir-dinner-leave' } },
+    ] },
+  ] },
+  { id: 's20-k', beats: beats('s20-k', s20PayoffK), nextSceneId: 's20-followup-choice-scene' },
+  { id: 's20-t', beats: beats('s20-t', s20PayoffT), nextSceneId: 's20-followup-choice-scene' },
+  { id: 's20-l', beats: beats('s20-l', s20PayoffL), nextSceneId: 's20-followup-choice-scene' },
+  // S20-C2 follows the source's S22 transition note; preserve both authored responses.
+  { id: 's20-followup-choice-scene', beats: [
+    { id: 's20-followup-choice', type: 'choice', choices: [
+      { id: 'shopping', label: t('Сходить вместе за продуктами для следующего завтрака'),
+        targetSceneId: 's20-breakfast',
+        effects: [{ op: 'flag_set', id: 'damir-followup-shopping', value: true }] },
+      { id: 'waterfront', label: t('Прогуляться до воды без разговора о прошлом'),
+        targetSceneId: 's20-waterfront',
+        effects: [{ op: 'flag_set', id: 'damir-followup-waterfront', value: true }] },
+    ] },
+  ] },
+  { id: 's20-breakfast', beats: beats('s20-breakfast', s20Breakfast),
+    nextSceneId: 's20-after-m3-end' },
+  { id: 's20-waterfront', beats: beats('s20-waterfront', s20Waterfront),
+    nextSceneId: 's20-after-m3-end' },
+  { id: 's20-after-m3-end', beats: [
+    { id: 's20-after-m3-end-beat', type: 'ending', endingId: 'm3-s20-only',
+      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
+  ] },
+  // Only the independent S21 evening and its S61 continuation remain unported.
+  ...['s21'].map(id => ({
     id: id+'-m3-end',
     beats: [{ id: id+'-m3-end-beat', type: 'ending', endingId: 'm3-s17-'+id,
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') }],
