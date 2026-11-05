@@ -324,5 +324,6 @@ test('S24 never enables economy or marks photo review as publishing consent',()=
   assert.equal(existsSync(new URL('../game/config/premium.json',import.meta.url)),false);
   assert.deepEqual(catalogData.interactions,[]);
   assert.equal(scene('s25-after-m3-end'),undefined);
-  assert.equal(scene('s58-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s58-after-m3-end'),undefined);
+  assert.equal(scene('s26-after-m3-end').beats[0].type,'ending');
 });

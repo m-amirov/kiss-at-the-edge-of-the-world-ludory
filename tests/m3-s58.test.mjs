@@ -63,9 +63,9 @@ test('all S25 outcomes enter S58; four free shop choices, exclusive potato callb
   ]);
   for(const id of ['damir','other'])
     assert.equal(scene('s58-payoff-'+id).nextSceneId,'s58-common-b');
-  assert.equal(scene('s58-common-b').nextSceneId,'s58-after-m3-end');
-  assert.equal(scene('s58-after-m3-end').beats[0].endingId,'m3-s58-only');
-  assert.equal(scene('s26-intro'),undefined);
+  assert.equal(scene('s58-common-b').nextSceneId,'s26-intro');
+  assert.equal(scene('s58-after-m3-end'),undefined);
+  assert.equal(scene('s26-intro').beats.at(-1).id,'s26-route-choice');
   for(const c of [...shop.choices,...payoff.choices])
     for(const forbidden of ['cost','premium','routeLock','routeIntent',
       'romancePoints','requiredEntitlement','publishPermission','consentToPublish'])
@@ -222,7 +222,7 @@ function finishS58(saved,shop){
     (payoff==='damir'?'other':'damir'));
   resumed.act('narrative:choose:s58-payoff-choice:'+payoff);
   assert.equal(resumed.get().sceneId,'s58-payoff-'+payoff);
-  walkUntil(resumed,(_b,id)=>id==='s58-after-m3-end');
+  walkUntil(resumed,(_b,id)=>id==='s26-intro');
   assert.equal(resumed.get().routeLock,null);
   assert.equal(resumed.get().flags['private-text-pending'],true);
   assert.equal(resumed.get().flags['s58-shop-'+shop],true);
@@ -273,7 +273,8 @@ test('N1 rejects forged S58 shopping flags and replay provenance without writes'
 
 test('S58 remains group dinner, not a monetization or S26 route lock',()=>{
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s58-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s58-after-m3-end'),undefined);
+  assert.equal(scene('s26-after-m3-end').beats[0].type,'ending');
   const text=dialogue('s58-common-b').join('\n');
   assert.match(text,/не как три возможных ответа на один вопрос/);
 });
