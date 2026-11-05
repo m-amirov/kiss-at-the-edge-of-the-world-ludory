@@ -30,7 +30,7 @@ S17 has **14 independent prose blocks, 74 unique paragraphs**. All technical hea
 - Two exclusive editorial callbacks derive from S13-C1, and two Damir callbacks from S16-C1, independently. Guarded `Продолжить` buttons set **no** flags or permissions.
 - S17-C1 selects one of four tasks: plan, laundry, kitchen or rest. S17-C2 independently selects Eric (S18), Nick (S19), Damir (S20) or self (S21→S61). Each answer sets one provenance flag, but **never** a relationship score, route lock or paid entitlement. The real route lock remains S26.
 - The tourist's medical encounter and Damir's private café story are not approved for reproduction. Nick's joint media file is not approved for sending; individual recognisable text edits do not grant blanket publication rights.
-- S18/S19/S20/S21 are not yet migrated; their temporary endpoints are **technical Draft boundaries**, not authored endings or release completeness.
+- After the separate [S18 migration](m3-s18-fidelity.md), the S17-C2 Eric option enters `s18-intro`, with the former `s18-m3-end` removed. S19/S20/S21 remain **technical Draft boundaries**, not authored endings or release completeness. The original S17 test evidence below is historical to its completed migration stage; updated tests verify the new Eric target.
 
 ## Verification and release state
 

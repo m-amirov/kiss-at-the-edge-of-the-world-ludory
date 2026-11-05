@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S17.
-// M3 S17 boundary is not a release ending. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S18.
+// M3 S18 boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -63,6 +63,10 @@ import {
   s17Editor, s17Shared, s17DamirTea, s17DamirRoom, s17GroupPlan,
   s17GroupLaundry, s17GroupKitchen, s17GroupBreak, s17CommonB,
 } from './scenes/s17.js';
+import {
+  s18Intro, s18Kiss, s18Stay, s18Leave, s18Common,
+  s18PayoffK, s18PayoffS, s18PayoffL, s18Postcards, s18Song,
+} from './scenes/s18.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -823,7 +827,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ...beats('s17-common-b', s17CommonB),
     { id: 's17-evening-choice', type: 'choice', choices: [
       { id: 'eric', label: t('Пойти с Эриком к маяку'),
-        targetSceneId: 's18-m3-end',
+        targetSceneId: 's18-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-eric', value: true }] },
       { id: 'nick', label: t('Пойти с Ником в бассейн'),
         targetSceneId: 's19-m3-end',
@@ -836,8 +840,56 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's17-evening-self', value: true }] },
     ] },
   ] },
-  // Temporary per-route boundaries. Authored S18–S21 and S61 are the next M3 stage.
-  ...['s18', 's19', 's20', 's21'].map(id => ({
+  { id: 's18-intro', beats: [
+    ...beats('s18-intro', s18Intro),
+    { id: 's18-contact-choice', type: 'choice', choices: [
+      { id: 'kiss', label: t('Поцеловать Эрика'),
+        targetSceneId: 's18-kiss',
+        effects: [{ op: 'flag_set', id: 'eric-contact-kiss', value: true }] },
+      { id: 'stay-without-kiss', label: t('Остаться рядом без поцелуя'),
+        targetSceneId: 's18-stay',
+        effects: [{ op: 'flag_set', id: 'eric-contact-stay-without-kiss', value: true }] },
+      { id: 'leave', label: t('Попросить закончить прогулку'),
+        targetSceneId: 's18-leave',
+        effects: [{ op: 'flag_set', id: 'eric-contact-leave', value: true }] },
+    ] },
+  ] },
+  { id: 's18-kiss', beats: beats('s18-kiss', s18Kiss), nextSceneId: 's18-common' },
+  { id: 's18-stay', beats: beats('s18-stay', s18Stay), nextSceneId: 's18-common' },
+  { id: 's18-leave', beats: beats('s18-leave', s18Leave), nextSceneId: 's18-common' },
+  { id: 's18-common', beats: beats('s18-common', s18Common), nextSceneId: 's18-payoff-dispatch' },
+  { id: 's18-payoff-dispatch', beats: [
+    { id: 's18-payoff-dispatch-choice', type: 'choice', choices: [
+      { id: 'k', label: t('Продолжить'), targetSceneId: 's18-k',
+        when: { flag: 'eric-contact-kiss' } },
+      { id: 's', label: t('Продолжить'), targetSceneId: 's18-s',
+        when: { flag: 'eric-contact-stay-without-kiss' } },
+      { id: 'l', label: t('Продолжить'), targetSceneId: 's18-l',
+        when: { flag: 'eric-contact-leave' } },
+    ] },
+  ] },
+  { id: 's18-k', beats: beats('s18-k', s18PayoffK), nextSceneId: 's18-followup-choice-scene' },
+  { id: 's18-s', beats: beats('s18-s', s18PayoffS), nextSceneId: 's18-followup-choice-scene' },
+  { id: 's18-l', beats: beats('s18-l', s18PayoffL), nextSceneId: 's18-followup-choice-scene' },
+  // S18-C2 appears *after* the S22 transition note in EP05; preserve authored order.
+  { id: 's18-followup-choice-scene', beats: [
+    { id: 's18-followup-choice', type: 'choice', choices: [
+      { id: 'postcards', label: t('Спросить о дедушкиных открытках'),
+        targetSceneId: 's18-postcards',
+        effects: [{ op: 'flag_set', id: 'eric-followup-postcards', value: true }] },
+      { id: 'song', label: t('Предложить ему выбрать песню для дороги'),
+        targetSceneId: 's18-song',
+        effects: [{ op: 'flag_set', id: 'eric-followup-song', value: true }] },
+    ] },
+  ] },
+  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's18-after-m3-end' },
+  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's18-after-m3-end' },
+  { id: 's18-after-m3-end', beats: [
+    { id: 's18-after-m3-end-beat', type: 'ending', endingId: 'm3-s18-only',
+      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
+  ] },
+  // Other three mutually exclusive evening routes still await authored migration.
+  ...['s19', 's20', 's21'].map(id => ({
     id: id+'-m3-end',
     beats: [{ id: id+'-m3-end-beat', type: 'ending', endingId: 'm3-s17-'+id,
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') }],

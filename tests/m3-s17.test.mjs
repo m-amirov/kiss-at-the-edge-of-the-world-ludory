@@ -95,7 +95,7 @@ test('S17-C1 and S17-C2 each have four free authored paths, without route lock',
   const evening = choices('s17-common-b');
   assert.equal(evening.id, 's17-evening-choice');
   assert.deepEqual(evening.choices.map(c=>[c.id,c.targetSceneId,c.effects]), [
-    ['eric','s18-m3-end',[{op:'flag_set',id:'s17-evening-eric',value:true}]],
+    ['eric','s18-intro',[{op:'flag_set',id:'s17-evening-eric',value:true}]],
     ['nick','s19-m3-end',[{op:'flag_set',id:'s17-evening-nick',value:true}]],
     ['damir','s20-m3-end',[{op:'flag_set',id:'s17-evening-damir',value:true}]],
     ['self','s21-m3-end',[{op:'flag_set',id:'s17-evening-self',value:true}]],
@@ -103,8 +103,9 @@ test('S17-C1 and S17-C2 each have four free authored paths, without route lock',
   for(const option of [...group.choices,...evening.choices])
     for(const forbidden of ['cost','premium','romancePoints','routeLock','requiredEntitlement','publishPermission','consentToPublish','contentId'])
       assert.equal(option[forbidden], undefined, forbidden);
-  for(const id of ['s18','s19','s20','s21'])
+  for(const id of ['s19','s20','s21'])
     assert.equal(scene(id+'-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s18-m3-end'),undefined);
 });
 
 const standardRoute = {
@@ -243,7 +244,7 @@ test('real N1: independent group and evening choices stay reversible and free',(
     path.advance('s17-group-'+group);
     path.advance('s17-common-b');
     path.act('narrative:choose:s17-evening-choice:'+evening);
-    assert.equal(path.get().sceneId,{'eric':'s18-m3-end','nick':'s19-m3-end',
+    assert.equal(path.get().sceneId,{'eric':'s18-intro','nick':'s19-m3-end',
       'damir':'s20-m3-end','self':'s21-m3-end'}[evening]);
     assert.equal(path.get().flags['s17-evening-'+evening],true);
     assert.equal(path.get().routeLock,null);
