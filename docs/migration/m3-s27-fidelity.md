@@ -16,7 +16,7 @@ All **5 unique prose blocks / 15 paragraphs** of this shared episode 7 scene are
 
 ## Choice and persistent route
 
-- All four S26 common outcomes lead to one mandatory `s27-intro`. The former non-release `s26-after-m3-end` is deleted, replaced after S27 with the temporary `s27-after-m3-end` pending **S59**. S59 and subsequent route chapters remain unported.
+- All four S26 common outcomes lead to one mandatory `s27-intro`. The former non-release `s26-after-m3-end` was deleted; the S27-only snapshot had a temporary `s27-after-m3-end`. [S59](m3-s59-fidelity.md) subsequently replaced it with `s59-after-m3-end`; exclusive day-14 route chapters remain unported.
 - S27-C1 offers precisely three free work choices: finish the walkway with Inga, assist Nick's camera without impeding work, or carry the bags and bring water. The branches are effect-free, converge on `s27-common`, and leave native `routeIntent`/`routeLock` set in S26 untouched. This shared scene is available even on Alice's independence route; no early romance-only gating.
 - Inga authorizes a single filmed view of the trail but specifically limits people/portrayal. Alice asks permission for technical wording in the article. Neither action grants publication, model releases, additional rights, editorial ownership or a global consent flag. There is no upload or media artifact produced by this local narrative choice.
 - The choice does not add first-game economy, premium content, rewarded ads, IAP, affection stats or a new S27 plot flag. The N1 actionLog records the selection for replay; a future scene may consume the choice only if separately supported by its authorial source.

@@ -58,9 +58,8 @@ test('all four locked routes enter shared S27 with three free work choices', () 
     }
     assert.equal(scene(option.targetSceneId).nextSceneId, 's27-common');
   }
-  assert.equal(scene('s27-common').nextSceneId, 's27-after-m3-end');
-  assert.equal(scene('s27-after-m3-end').beats[0].endingId, 'm3-s27-only');
-  assert.equal(scene('s59-intro'), undefined);
+  assert.equal(scene('s27-common').nextSceneId, 's59-intro');
+  assert.equal(scene('s27-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -189,7 +188,7 @@ test('real N1: all four S26 locks retain identity through all three S27 work cho
       assert.equal(JSON.stringify(run.get()), before);
       run.act(`narrative:choose:s27-work-choice:${option}`);
       const resumed = runtime(deepCopy(run.get()));
-      walkUntil(resumed, (_beat, id) => id === 's27-after-m3-end');
+      walkUntil(resumed, (_beat, id) => id === 's59-intro');
       assert.equal(resumed.get().routeIntent, route);
       assert.equal(resumed.get().routeLock, route);
       assert.equal(resumed.get().flags['s17-evening-self'], true);
