@@ -101,8 +101,8 @@ test('only S17 self enters S21, S61 mandatory; three free source choices and gua
     ['bookstore','s61-bookstore','alice-self-bookstore',undefined],
   ]);
   for(const id of ['friend','bookstore'])
-    assert.equal(scene('s61-'+id).nextSceneId,'s61-after-m3-end');
-  assert.equal(scene('s61-after-m3-end').beats[0].type,'ending');
+    assert.equal(scene('s61-'+id).nextSceneId,'s22-intro');
+  assert.equal(scene('s61-after-m3-end'),undefined);
   assert.equal(scene('s61-m3-end'),undefined);
   for(const c of [...letter.choices,...reply.choices,...c2.choices,...r.choices,...day.choices,...f.choices])
     for(const disallowed of ['cost','premium','routeLock','routeIntent','romancePoints',
@@ -237,7 +237,7 @@ test('real N1: all 3×2×2 S21/S61 combinations, Back, new-runtime JSON and priv
         }
         s61.act('narrative:choose:s61-followup-payoff-choice:'+self);
         s61.advance('s61-'+self);
-        assert.equal(s61.get().sceneId,'s61-after-m3-end');
+        assert.equal(s61.get().sceneId,'s22-intro');
         assert.equal(s61.get().flags['private-text-pending'],true);
         assert.equal(s61.get().flags['nick-joint-file-approved'],undefined);
         assert.equal(s61.get().flags['editor-publish-approved'],undefined);

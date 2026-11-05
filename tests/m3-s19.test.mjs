@@ -90,8 +90,8 @@ test('only S17 Nick enters S19; three C1 × three C2 × two C3 options are free 
     ['breakfast','s19-breakfast',[{op:'flag_set',id:'nick-followup-breakfast',value:true}]],
   ]);
   for(const id of ['camera-free','breakfast'])
-    assert.equal(scene('s19-'+id).nextSceneId,'s19-after-m3-end');
-  assert.equal(scene('s19-after-m3-end').beats[0].type,'ending');
+    assert.equal(scene('s19-'+id).nextSceneId,'s22-intro');
+  assert.equal(scene('s19-after-m3-end'),undefined);
   for(const c of [...photo.choices,...close.choices,...pguard.choices,...kguard.choices,...follow.choices])
     for(const forbidden of ['cost','premium','romancePoints','routeLock','publishPermission',
       'consentToPublish','requiredEntitlement','cameraPermission','teaserPermission'])
@@ -227,7 +227,7 @@ test('real N1: Nick route, all 3×3×2 S19 paths, Back, fresh JSON, consent isol
         assert.equal(JSON.stringify(restored.get()),beforeFollowup);
         restored.act('narrative:choose:s19-followup-choice:'+followup);
         restored.advance('s19-'+followup);
-        assert.equal(restored.get().sceneId,'s19-after-m3-end');
+        assert.equal(restored.get().sceneId,'s22-intro');
       }
 });
 

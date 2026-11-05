@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S21/S61.
-// M3 evening boundaries are not release endings. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S22.
+// M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -86,6 +86,11 @@ import {
   s61Intro, s61ReplyA, s61ReplyB, s61ReplyC, s61CommonA,
   s61StayAlone, s61Rejoin, s61CommonB, s61FriendPayoff, s61BookstorePayoff,
 } from './scenes/s61.js';
+import {
+  s22Intro, s22WeatherNick, s22WeatherErik, s22WeatherDamir,
+  s22CommonA, s22RepairRoles, s22RepairAnger, s22CommonB,
+  s22StopGroup, s22StopNotes,
+} from './scenes/s22.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -901,12 +906,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-followup-song', value: true }] },
     ] },
   ] },
-  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's18-after-m3-end' },
-  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's18-after-m3-end' },
-  { id: 's18-after-m3-end', beats: [
-    { id: 's18-after-m3-end-beat', type: 'ending', endingId: 'm3-s18-only',
-      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
-  ] },
+  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's22-intro' },
+  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's22-intro' },
   // Only the Nick option in S17-C2 enters the exclusive S19 evening.
   { id: 's19-intro', beats: [
     ...beats('s19-intro', s19Intro),
@@ -983,13 +984,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's19-camera-free', beats: beats('s19-camera-free', s19CameraFree),
-    nextSceneId: 's19-after-m3-end' },
+    nextSceneId: 's22-intro' },
   { id: 's19-breakfast', beats: beats('s19-breakfast', s19Breakfast),
-    nextSceneId: 's19-after-m3-end' },
-  { id: 's19-after-m3-end', beats: [
-    { id: 's19-after-m3-end-beat', type: 'ending', endingId: 'm3-s19-only',
-      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
-  ] },
+    nextSceneId: 's22-intro' },
   // S17-C2 Damir enters this exclusive day-10 dinner; no reconciliation is implied.
   { id: 's20-intro', beats: [
     ...beats('s20-intro', s20Intro),
@@ -1034,13 +1031,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's20-breakfast', beats: beats('s20-breakfast', s20Breakfast),
-    nextSceneId: 's20-after-m3-end' },
+    nextSceneId: 's22-intro' },
   { id: 's20-waterfront', beats: beats('s20-waterfront', s20Waterfront),
-    nextSceneId: 's20-after-m3-end' },
-  { id: 's20-after-m3-end', beats: [
-    { id: 's20-after-m3-end-beat', type: 'ending', endingId: 'm3-s20-only',
-      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
-  ] },
+    nextSceneId: 's22-intro' },
   // The independent evening is a fully authored S21 → mandatory S61 pair.
   { id: 's21-intro', beats: beats('s21-intro', s21Intro), nextSceneId: 's21-choice-note' },
   { id: 's21-choice-note', beats: [
@@ -1128,12 +1121,62 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's61-friend', beats: beats('s61-friend', s61FriendPayoff),
-    nextSceneId: 's61-after-m3-end' },
+    nextSceneId: 's22-intro' },
   { id: 's61-bookstore', beats: beats('s61-bookstore', s61BookstorePayoff),
-    nextSceneId: 's61-after-m3-end' },
-  { id: 's61-after-m3-end', beats: [
-    { id: 's61-after-m3-end-beat', type: 'ending', endingId: 'm3-s61-only',
-      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
+    nextSceneId: 's22-intro' },
+  // The four authored EP05 evening/day arcs converge only after their full callbacks.
+  { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-weather-dispatch' },
+  { id: 's22-weather-dispatch', beats: [
+    { id: 's22-weather-choice', type: 'choice', choices: [
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's22-weather-nick',
+        when: { flag: 'weather-choice-nick' } },
+      { id: 'erik', label: t('Продолжить'), targetSceneId: 's22-weather-erik',
+        when: { flag: 'weather-choice-erik' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's22-weather-damir',
+        when: { flag: 'weather-choice-damir' } },
+    ] },
+  ] },
+  { id: 's22-weather-nick', beats: beats('s22-weather-nick', s22WeatherNick),
+    nextSceneId: 's22-common-a' },
+  { id: 's22-weather-erik', beats: beats('s22-weather-erik', s22WeatherErik),
+    nextSceneId: 's22-common-a' },
+  { id: 's22-weather-damir', beats: beats('s22-weather-damir', s22WeatherDamir),
+    nextSceneId: 's22-common-a' },
+  { id: 's22-common-a', beats: [
+    ...beats('s22-common-a', s22CommonA),
+    { id: 's22-repair-choice', type: 'choice', choices: [
+      { id: 'roles', label: t('Взять на себя свои разговоры, не обещая за других'),
+        targetSceneId: 's22-repair-roles',
+        effects: [{ op: 'flag_set', id: 's22-repair-roles', value: true }] },
+      { id: 'anger', label: t('Назвать свою злость и затем распределить работу'),
+        targetSceneId: 's22-repair-anger',
+        effects: [{ op: 'flag_set', id: 's22-repair-anger', value: true }] },
+    ] },
+  ] },
+  { id: 's22-repair-roles', beats: beats('s22-repair-roles', s22RepairRoles),
+    nextSceneId: 's22-common-b' },
+  { id: 's22-repair-anger', beats: beats('s22-repair-anger', s22RepairAnger),
+    nextSceneId: 's22-common-b' },
+  { id: 's22-common-b', beats: [
+    ...beats('s22-common-b', s22CommonB),
+    // S22-C2 was appended after the written arrival/end-of-day paragraph;
+    // preserve it without inventing a new date or publication consent.
+    { id: 's22-stop-choice', type: 'choice', choices: [
+      { id: 'group', label: t('Пойти к воде вместе с группой'),
+        targetSceneId: 's22-stop-group',
+        effects: [{ op: 'flag_set', id: 's22-stop-group', value: true }] },
+      { id: 'notes', label: t('Остаться на несколько минут с собственными заметками'),
+        targetSceneId: 's22-stop-notes',
+        effects: [{ op: 'flag_set', id: 's22-stop-notes', value: true }] },
+    ] },
+  ] },
+  { id: 's22-stop-group', beats: beats('s22-stop-group', s22StopGroup),
+    nextSceneId: 's22-after-m3-end' },
+  { id: 's22-stop-notes', beats: beats('s22-stop-notes', s22StopNotes),
+    nextSceneId: 's22-after-m3-end' },
+  { id: 's22-after-m3-end', beats: [
+    { id: 's22-after-m3-end-beat', type: 'ending', endingId: 'm3-s22-only',
+      text: t('Технический фрагмент завершён. S23 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

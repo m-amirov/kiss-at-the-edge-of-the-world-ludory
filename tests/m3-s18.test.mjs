@@ -65,8 +65,8 @@ test('only Eric S17 evening enters S18, with free C1 and effect-free guarded pay
     ['song','s18-song',[{op:'flag_set',id:'eric-followup-song',value:true}]],
   ]);
   for(const id of ['postcards','song'])
-    assert.equal(scene('s18-'+id).nextSceneId,'s18-after-m3-end');
-  assert.equal(scene('s18-after-m3-end').beats[0].type,'ending');
+    assert.equal(scene('s18-'+id).nextSceneId,'s22-intro');
+  assert.equal(scene('s18-after-m3-end'),undefined);
   for(const c of [...c1.choices,...guard.choices,...c2.choices])
     for(const f of ['cost','premium','romancePoints','routeLock','publishPermission','consentToPublish','requiredEntitlement'])
       assert.equal(c[f],undefined,f);
@@ -172,7 +172,7 @@ test('real N1: S17 Eric route, all S18-C1×C2 paths, Back and fresh-runtime JSON
       assert.equal(resumed.get().flags['eric-followup-'+followup],undefined);
       resumed.act('narrative:choose:s18-followup-choice:'+followup);
       resumed.advance('s18-'+followup);
-      assert.equal(resumed.get().sceneId,'s18-after-m3-end');
+      assert.equal(resumed.get().sceneId,'s22-intro');
     }
 });
 

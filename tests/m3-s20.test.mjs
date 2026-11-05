@@ -65,8 +65,8 @@ test('only Damir S17 enters S20, free C1×C2 with effect-free guarded day-11 pay
     ['waterfront','s20-waterfront',[{op:'flag_set',id:'damir-followup-waterfront',value:true}]],
   ]);
   for(const id of ['breakfast','waterfront'])
-    assert.equal(scene('s20-'+id).nextSceneId,'s20-after-m3-end');
-  assert.equal(scene('s20-after-m3-end').beats[0].type,'ending');
+    assert.equal(scene('s20-'+id).nextSceneId,'s22-intro');
+  assert.equal(scene('s20-after-m3-end'),undefined);
   for(const c of [...c1.choices,...guard.choices,...c2.choices])
     for(const f of ['premium','cost','romancePoints','routeLock','requiredEntitlement',
       'publishPermission','consentToPublish','reconciliation','routeIntent'])
@@ -178,7 +178,7 @@ test('real N1: all 3×2 Damir S20 branches, Back, JSON and consent remain separa
       assert.equal(JSON.stringify(restored.get()),beforeFollow);
       restored.act('narrative:choose:s20-followup-choice:'+follow);
       restored.advance('s20-'+(follow==='shopping'?'breakfast':'waterfront'));
-      assert.equal(restored.get().sceneId,'s20-after-m3-end');
+      assert.equal(restored.get().sceneId,'s22-intro');
     }
 });
 
