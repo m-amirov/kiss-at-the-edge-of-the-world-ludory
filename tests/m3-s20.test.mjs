@@ -40,7 +40,7 @@ test('S20 renders all ten exact authored blocks, 55 paragraphs',()=>{
 
 test('only Damir S17 enters S20, free C1×C2 with effect-free guarded day-11 payoff',()=>{
   assert.deepEqual(choice('s17-common-b','s17-evening-choice').choices.map(c=>[c.id,c.targetSceneId]),[
-    ['eric','s18-intro'],['nick','s19-intro'],['damir','s20-intro'],['self','s21-m3-end'],
+    ['eric','s18-intro'],['nick','s19-intro'],['damir','s20-intro'],['self','s21-intro'],
   ]);
   assert.equal(scene('s20-m3-end'),undefined);
   const c1=choice('s20-intro','s20-dinner-choice');

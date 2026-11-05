@@ -41,7 +41,7 @@ test('S18 displays all ten pinned manuscript blocks, exactly 74 unique paragraph
 test('only Eric S17 evening enters S18, with free C1 and effect-free guarded payoff',()=>{
   const previous=choice('s17-common-b','s17-evening-choice');
   assert.equal(previous.choices.find(x=>x.id==='eric').targetSceneId,'s18-intro');
-  for(const [id,stub] of [['nick','s19-intro'],['damir','s20-intro'],['self','s21-m3-end']])
+  for(const [id,stub] of [['nick','s19-intro'],['damir','s20-intro'],['self','s21-intro']])
     assert.equal(previous.choices.find(x=>x.id===id).targetSceneId,stub);
   assert.equal(scene('s18-m3-end'),undefined);
   const c1=choice('s18-intro','s18-contact-choice');

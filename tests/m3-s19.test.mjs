@@ -49,7 +49,7 @@ test('S19 renders all 18 pinned authorial blocks as exactly 96 unique paragraphs
 test('only S17 Nick enters S19; three C1 × three C2 × two C3 options are free and guarded',()=>{
   const entry=choice('s17-common-b','s17-evening-choice');
   assert.deepEqual(entry.choices.map(c=>[c.id,c.targetSceneId]),[
-    ['eric','s18-intro'],['nick','s19-intro'],['damir','s20-intro'],['self','s21-m3-end'],
+    ['eric','s18-intro'],['nick','s19-intro'],['damir','s20-intro'],['self','s21-intro'],
   ]);
   assert.equal(scene('s19-m3-end'),undefined);
   const photo=choice('s19-intro','s19-photo-choice');

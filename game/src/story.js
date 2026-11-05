@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S20.
-// M3 S18–S20 boundaries are not release endings. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S21/S61.
+// M3 evening boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -78,6 +78,14 @@ import {
   s20Intro, s20Kiss, s20Tea, s20Leave, s20Common,
   s20PayoffK, s20PayoffT, s20PayoffL, s20Breakfast, s20Waterfront,
 } from './scenes/s20.js';
+import {
+  s21Intro, s21ChoiceNote, s21People, s21Place, s21Own, s21Common,
+  s21ReplyA, s21ReplyB, s21ReplyC, s21Friend, s21Bookstore,
+} from './scenes/s21.js';
+import {
+  s61Intro, s61ReplyA, s61ReplyB, s61ReplyC, s61CommonA,
+  s61StayAlone, s61Rejoin, s61CommonB, s61FriendPayoff, s61BookstorePayoff,
+} from './scenes/s61.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -847,7 +855,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         targetSceneId: 's20-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-damir', value: true }] },
       { id: 'self', label: t('Оставить время себе'),
-        targetSceneId: 's21-m3-end',
+        targetSceneId: 's21-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-self', value: true }] },
     ] },
   ] },
@@ -1033,12 +1041,100 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's20-after-m3-end-beat', type: 'ending', endingId: 'm3-s20-only',
       text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
   ] },
-  // Only the independent S21 evening and its S61 continuation remain unported.
-  ...['s21'].map(id => ({
-    id: id+'-m3-end',
-    beats: [{ id: id+'-m3-end-beat', type: 'ending', endingId: 'm3-s17-'+id,
-      text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') }],
-  })),
+  // The independent evening is a fully authored S21 → mandatory S61 pair.
+  { id: 's21-intro', beats: beats('s21-intro', s21Intro), nextSceneId: 's21-choice-note' },
+  { id: 's21-choice-note', beats: [
+    ...beats('s21-choice-note', s21ChoiceNote),
+    { id: 's21-letter-choice', type: 'choice', choices: [
+      { id: 'people', label: t('Начать с людей'), targetSceneId: 's21-people',
+        effects: [{ op: 'flag_set', id: 'alice-letter-people', value: true }] },
+      { id: 'place', label: t('Начать с места'), targetSceneId: 's21-place',
+        effects: [{ op: 'flag_set', id: 'alice-letter-place', value: true }] },
+      { id: 'own', label: t('Начать с собственного решения'), targetSceneId: 's21-own',
+        effects: [{ op: 'flag_set', id: 'alice-letter-own', value: true }] },
+    ] },
+  ] },
+  { id: 's21-people', beats: beats('s21-people', s21People), nextSceneId: 's21-common' },
+  { id: 's21-place', beats: beats('s21-place', s21Place), nextSceneId: 's21-common' },
+  { id: 's21-own', beats: beats('s21-own', s21Own), nextSceneId: 's21-common' },
+  { id: 's21-common', beats: beats('s21-common', s21Common), nextSceneId: 's21-reply-dispatch' },
+  { id: 's21-reply-dispatch', beats: [
+    { id: 's21-reply-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's21-m-a',
+        when: { flag: 'alice-letter-people' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's21-m-b',
+        when: { flag: 'alice-letter-place' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's21-m-c',
+        when: { flag: 'alice-letter-own' } },
+    ] },
+  ] },
+  { id: 's21-m-a', beats: beats('s21-m-a', s21ReplyA), nextSceneId: 's21-followup-choice-scene' },
+  { id: 's21-m-b', beats: beats('s21-m-b', s21ReplyB), nextSceneId: 's21-followup-choice-scene' },
+  { id: 's21-m-c', beats: beats('s21-m-c', s21ReplyC), nextSceneId: 's21-followup-choice-scene' },
+  // S21-C2 is appended after the S61 transition marker in the source manuscript.
+  { id: 's21-followup-choice-scene', beats: [
+    { id: 's21-followup-choice', type: 'choice', choices: [
+      { id: 'friend', label: t('Написать подруге о неожиданно приятном вечере'),
+        targetSceneId: 's21-friend',
+        effects: [{ op: 'flag_set', id: 'alice-self-friend', value: true }] },
+      { id: 'bookstore', label: t('Найти на завтра книжный магазин для себя'),
+        targetSceneId: 's21-bookstore',
+        effects: [{ op: 'flag_set', id: 'alice-self-bookstore', value: true }] },
+    ] },
+  ] },
+  { id: 's21-friend', beats: beats('s21-friend', s21Friend), nextSceneId: 's61-intro' },
+  { id: 's21-bookstore', beats: beats('s21-bookstore', s21Bookstore), nextSceneId: 's61-intro' },
+  // S61 is mandatory and continues the same sent-letter provenance.
+  { id: 's61-intro', beats: beats('s61-intro', s61Intro), nextSceneId: 's61-editor-dispatch' },
+  { id: 's61-editor-dispatch', beats: [
+    { id: 's61-editor-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's61-r-a',
+        when: { flag: 'alice-letter-people' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's61-r-b',
+        when: { flag: 'alice-letter-place' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's61-r-c',
+        when: { flag: 'alice-letter-own' } },
+    ] },
+  ] },
+  { id: 's61-r-a', beats: beats('s61-r-a', s61ReplyA), nextSceneId: 's61-common-a' },
+  { id: 's61-r-b', beats: beats('s61-r-b', s61ReplyB), nextSceneId: 's61-common-a' },
+  { id: 's61-r-c', beats: beats('s61-r-c', s61ReplyC), nextSceneId: 's61-common-a' },
+  { id: 's61-common-a', beats: [
+    ...beats('s61-common-a', s61CommonA),
+    { id: 's61-day-choice', type: 'choice', choices: [
+      { id: 'alone-longer', label: t('Остаться одной ещё на час'),
+        targetSceneId: 's61-stay-alone',
+        effects: [{ op: 'flag_set', id: 'alice-day-alone-longer', value: true }] },
+      { id: 'return-to-group', label: t('Вернуться к группе сейчас'),
+        targetSceneId: 's61-rejoin',
+        effects: [{ op: 'flag_set', id: 'alice-day-return-to-group', value: true }] },
+    ] },
+  ] },
+  { id: 's61-stay-alone', beats: beats('s61-stay-alone', s61StayAlone),
+    nextSceneId: 's61-common-b' },
+  { id: 's61-rejoin', beats: beats('s61-rejoin', s61Rejoin),
+    nextSceneId: 's61-common-b' },
+  // The source embeds an S22 technical marker after the final shared paragraph;
+  // it is stripped from s61CommonB rather than shown as authorial dialogue.
+  { id: 's61-common-b', beats: beats('s61-common-b', s61CommonB),
+    nextSceneId: 's61-followup-dispatch' },
+  // S21-C2's two day-10/11 callbacks are appended after S61's S22 marker in source.
+  { id: 's61-followup-dispatch', beats: [
+    { id: 's61-followup-payoff-choice', type: 'choice', choices: [
+      { id: 'friend', label: t('Продолжить'), targetSceneId: 's61-friend',
+        when: { flag: 'alice-self-friend' } },
+      { id: 'bookstore', label: t('Продолжить'), targetSceneId: 's61-bookstore',
+        when: { flag: 'alice-self-bookstore' } },
+    ] },
+  ] },
+  { id: 's61-friend', beats: beats('s61-friend', s61FriendPayoff),
+    nextSceneId: 's61-after-m3-end' },
+  { id: 's61-bookstore', beats: beats('s61-bookstore', s61BookstorePayoff),
+    nextSceneId: 's61-after-m3-end' },
+  { id: 's61-after-m3-end', beats: [
+    { id: 's61-after-m3-end-beat', type: 'ending', endingId: 'm3-s61-only',
+      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
+  ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
