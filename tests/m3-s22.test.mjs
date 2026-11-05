@@ -73,8 +73,8 @@ test('every S17 evening route enters S22; guarded weather and two free choices c
     ['notes','s22-stop-notes',[{op:'flag_set',id:'s22-stop-notes',value:true}]],
   ]);
   for(const id of ['group','notes'])
-    assert.equal(scene('s22-stop-'+id).nextSceneId,'s22-after-m3-end');
-  assert.equal(scene('s22-after-m3-end').beats[0].type,'ending');
+    assert.equal(scene('s22-stop-'+id).nextSceneId,'s23-intro');
+  assert.equal(scene('s22-after-m3-end'),undefined);
   for(const c of [...weather.choices,...c1.choices,...c2.choices])
     for(const key of ['cost','premium','routeIntent','routeLock','romancePoints',
       'publishPermission','mediaPermission','requiredEntitlement','repairDebt'])
@@ -220,7 +220,7 @@ test('real N1: all 3 S05 callbacks × 4 evenings × 2 repair × 2 stop choices',
           assert.equal(JSON.stringify(restored.get()),c2Before);
           restored.act('narrative:choose:s22-stop-choice:'+stop);
           restored.advance('s22-stop-'+stop);
-          assert.equal(restored.get().sceneId,'s22-after-m3-end');
+          assert.equal(restored.get().sceneId,'s23-intro');
           assert.equal(restored.get().routeLock,null);
           assert.equal(restored.get().flags['private-text-pending'],true);
           assert.equal(restored.get().flags['nick-joint-file-approved'],undefined);
@@ -277,5 +277,5 @@ test('S22 keeps the first novel free, independent and without new media consent'
   assert.equal(existsSync(new URL('../game/config/economy.json',import.meta.url)),false);
   assert.equal(existsSync(new URL('../game/config/premium.json',import.meta.url)),false);
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(graphData.scenes.some(s=>s.id==='s23-intro'),false);
+  assert.equal(graphData.scenes.some(s=>s.id==='s23-intro'),true);
 });

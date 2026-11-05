@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S22.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S23.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -91,6 +91,12 @@ import {
   s22CommonA, s22RepairRoles, s22RepairAnger, s22CommonB,
   s22StopGroup, s22StopNotes,
 } from './scenes/s22.js';
+import {
+  s23Intro, s23EveningEric, s23EveningNick, s23EveningDamir, s23EveningAlice,
+  s23ContactKiss, s23ContactStay, s23ContactLeave, s23CommonA,
+  s23ChoiceRead, s23ChoiceTrial, s23CommonB, s23RepairRoles, s23RepairAnger,
+  s23StopGroup, s23StopNotes, s23FollowupPostcards, s23FollowupSong,
+} from './scenes/s23.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1171,12 +1177,117 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's22-stop-group', beats: beats('s22-stop-group', s22StopGroup),
-    nextSceneId: 's22-after-m3-end' },
+    nextSceneId: 's23-intro' },
   { id: 's22-stop-notes', beats: beats('s22-stop-notes', s22StopNotes),
-    nextSceneId: 's22-after-m3-end' },
-  { id: 's22-after-m3-end', beats: [
-    { id: 's22-after-m3-end-beat', type: 'ending', endingId: 'm3-s22-only',
-      text: t('Технический фрагмент завершён. S23 ещё не перенесена.') },
+    nextSceneId: 's23-intro' },
+  // S23 has four mutually exclusive eveningState callbacks, sourced from S17.
+  { id: 's23-intro', beats: beats('s23-intro', s23Intro),
+    nextSceneId: 's23-evening-dispatch' },
+  { id: 's23-evening-dispatch', beats: [
+    { id: 's23-evening-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's23-evening-eric',
+        when: { flag: 's17-evening-eric' } },
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's23-evening-nick',
+        when: { flag: 's17-evening-nick' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's23-evening-damir',
+        when: { flag: 's17-evening-damir' } },
+      { id: 'alice', label: t('Продолжить'), targetSceneId: 's23-evening-alice',
+        when: { flag: 's17-evening-self' } },
+    ] },
+  ] },
+  { id: 's23-evening-eric', beats: beats('s23-evening-eric', s23EveningEric),
+    nextSceneId: 's23-contact-dispatch' },
+  { id: 's23-evening-nick', beats: beats('s23-evening-nick', s23EveningNick),
+    nextSceneId: 's23-contact-dispatch' },
+  { id: 's23-evening-damir', beats: beats('s23-evening-damir', s23EveningDamir),
+    nextSceneId: 's23-contact-dispatch' },
+  { id: 's23-evening-alice', beats: beats('s23-evening-alice', s23EveningAlice),
+    nextSceneId: 's23-contact-dispatch' },
+  // The S18 contact variant only belongs to Eric's evening route.
+  { id: 's23-contact-dispatch', beats: [
+    { id: 's23-contact-choice', type: 'choice', choices: [
+      { id: 'k', label: t('Продолжить'), targetSceneId: 's23-contact-kiss',
+        when: { flag: 'eric-contact-kiss' } },
+      { id: 's', label: t('Продолжить'), targetSceneId: 's23-contact-stay',
+        when: { flag: 'eric-contact-stay-without-kiss' } },
+      { id: 'l', label: t('Продолжить'), targetSceneId: 's23-contact-leave',
+        when: { flag: 'eric-contact-leave' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's23-common-a',
+        when: { any: [
+          { flag: 's17-evening-nick' }, { flag: 's17-evening-damir' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's23-contact-kiss', beats: beats('s23-contact-kiss', s23ContactKiss),
+    nextSceneId: 's23-common-a' },
+  { id: 's23-contact-stay', beats: beats('s23-contact-stay', s23ContactStay),
+    nextSceneId: 's23-common-a' },
+  { id: 's23-contact-leave', beats: beats('s23-contact-leave', s23ContactLeave),
+    nextSceneId: 's23-common-a' },
+  { id: 's23-common-a', beats: [
+    ...beats('s23-common-a', s23CommonA),
+    { id: 's23-open-choice', type: 'choice', choices: [
+      { id: 'read-page', label: t('Прочитать первую страницу за завтраком'),
+        targetSceneId: 's23-choice-read',
+        effects: [{ op: 'flag_set', id: 'eric-open-read-page', value: true }] },
+      { id: 'trial-readers', label: t('Предложить пробный разбор с будущими учениками'),
+        targetSceneId: 's23-choice-trial',
+        effects: [{ op: 'flag_set', id: 'eric-open-trial-readers', value: true }] },
+    ] },
+  ] },
+  { id: 's23-choice-read', beats: beats('s23-choice-read', s23ChoiceRead),
+    nextSceneId: 's23-common-b' },
+  { id: 's23-choice-trial', beats: beats('s23-choice-trial', s23ChoiceTrial),
+    nextSceneId: 's23-common-b' },
+  { id: 's23-common-b', beats: beats('s23-common-b', s23CommonB),
+    nextSceneId: 's23-repair-dispatch' },
+  // EP06 appends S22-C1 and S22-C2 callbacks after S23's common ending.
+  { id: 's23-repair-dispatch', beats: [
+    { id: 's23-repair-choice', type: 'choice', choices: [
+      { id: 'roles', label: t('Продолжить'), targetSceneId: 's23-repair-roles',
+        when: { flag: 's22-repair-roles' } },
+      { id: 'anger', label: t('Продолжить'), targetSceneId: 's23-repair-anger',
+        when: { flag: 's22-repair-anger' } },
+    ] },
+  ] },
+  { id: 's23-repair-roles', beats: beats('s23-repair-roles', s23RepairRoles),
+    nextSceneId: 's23-stop-dispatch' },
+  { id: 's23-repair-anger', beats: beats('s23-repair-anger', s23RepairAnger),
+    nextSceneId: 's23-stop-dispatch' },
+  { id: 's23-stop-dispatch', beats: [
+    { id: 's23-stop-choice', type: 'choice', choices: [
+      { id: 'group', label: t('Продолжить'), targetSceneId: 's23-stop-group',
+        when: { flag: 's22-stop-group' } },
+      { id: 'notes', label: t('Продолжить'), targetSceneId: 's23-stop-notes',
+        when: { flag: 's22-stop-notes' } },
+    ] },
+  ] },
+  { id: 's23-stop-group', beats: beats('s23-stop-group', s23StopGroup),
+    nextSceneId: 's23-followup-dispatch' },
+  { id: 's23-stop-notes', beats: beats('s23-stop-notes', s23StopNotes),
+    nextSceneId: 's23-followup-dispatch' },
+  // These S18-C2 callbacks are only reachable after an Eric evening.
+  { id: 's23-followup-dispatch', beats: [
+    { id: 's23-followup-choice', type: 'choice', choices: [
+      { id: 'postcards', label: t('Продолжить'), targetSceneId: 's23-followup-postcards',
+        when: { flag: 'eric-followup-postcards' } },
+      { id: 'song', label: t('Продолжить'), targetSceneId: 's23-followup-song',
+        when: { flag: 'eric-followup-song' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's23-after-m3-end',
+        when: { any: [
+          { flag: 's17-evening-nick' }, { flag: 's17-evening-damir' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's23-followup-postcards', beats: beats('s23-followup-postcards', s23FollowupPostcards),
+    nextSceneId: 's23-after-m3-end' },
+  { id: 's23-followup-song', beats: beats('s23-followup-song', s23FollowupSong),
+    nextSceneId: 's23-after-m3-end' },
+  { id: 's23-after-m3-end', beats: [
+    { id: 's23-after-m3-end-beat', type: 'ending', endingId: 'm3-s23-only',
+      text: t('Технический фрагмент завершён. S24 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
