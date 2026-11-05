@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S18.
-// M3 S18 boundaries are not release endings. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–5 S09–S19.
+// M3 S18/S19 boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -67,6 +67,13 @@ import {
   s18Intro, s18Kiss, s18Stay, s18Leave, s18Common,
   s18PayoffK, s18PayoffS, s18PayoffL, s18Postcards, s18Song,
 } from './scenes/s18.js';
+import {
+  s19Intro, s19PrivatePhoto, s19NoPhoto, s19AskTomorrow, s19CommonA,
+  s19Kiss, s19Hug, s19Distance, s19CommonB,
+  s19PhotoA, s19PhotoB, s19PhotoC, s19Day10,
+  s19KissPayoff, s19HugPayoff, s19DistancePayoff,
+  s19CameraFree, s19Breakfast,
+} from './scenes/s19.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -830,7 +837,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         targetSceneId: 's18-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-eric', value: true }] },
       { id: 'nick', label: t('Пойти с Ником в бассейн'),
-        targetSceneId: 's19-m3-end',
+        targetSceneId: 's19-intro',
         effects: [{ op: 'flag_set', id: 's17-evening-nick', value: true }] },
       { id: 'damir', label: t('Принять приглашение Дамира на завтрашний вечер'),
         targetSceneId: 's20-m3-end',
@@ -888,8 +895,91 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's18-after-m3-end-beat', type: 'ending', endingId: 'm3-s18-only',
       text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
   ] },
-  // Other three mutually exclusive evening routes still await authored migration.
-  ...['s19', 's20', 's21'].map(id => ({
+  // Only the Nick option in S17-C2 enters the exclusive S19 evening.
+  { id: 's19-intro', beats: [
+    ...beats('s19-intro', s19Intro),
+    { id: 's19-photo-choice', type: 'choice', choices: [
+      { id: 'alice-private-photo', label: t('Снять тени на телефон Алисы'),
+        targetSceneId: 's19-private-photo',
+        effects: [{ op: 'flag_set', id: 'nick-photo-alice-private', value: true }] },
+      { id: 'no-photo', label: t('Не снимать совсем'),
+        targetSceneId: 's19-no-photo',
+        effects: [{ op: 'flag_set', id: 'nick-photo-none', value: true }] },
+      { id: 'ask-tomorrow', label: t('Предложить сделать снимок завтра днём, если захочется обоим'),
+        targetSceneId: 's19-ask-tomorrow',
+        effects: [{ op: 'flag_set', id: 'nick-photo-ask-tomorrow', value: true }] },
+    ] },
+  ] },
+  { id: 's19-private-photo', beats: beats('s19-private-photo', s19PrivatePhoto), nextSceneId: 's19-common-a' },
+  { id: 's19-no-photo', beats: beats('s19-no-photo', s19NoPhoto), nextSceneId: 's19-common-a' },
+  { id: 's19-ask-tomorrow', beats: beats('s19-ask-tomorrow', s19AskTomorrow), nextSceneId: 's19-common-a' },
+  { id: 's19-common-a', beats: [
+    ...beats('s19-common-a', s19CommonA),
+    { id: 's19-contact-choice', type: 'choice', choices: [
+      { id: 'kiss', label: t('Самой предложить поцелуй'),
+        targetSceneId: 's19-kiss',
+        effects: [{ op: 'flag_set', id: 'nick-contact-kiss', value: true }] },
+      { id: 'hug', label: t('Обнять его и оставить вечер без поцелуя'),
+        targetSceneId: 's19-hug',
+        effects: [{ op: 'flag_set', id: 'nick-contact-hug', value: true }] },
+      { id: 'distance', label: t('Сохранить дистанцию'),
+        targetSceneId: 's19-distance',
+        effects: [{ op: 'flag_set', id: 'nick-contact-distance', value: true }] },
+    ] },
+  ] },
+  { id: 's19-kiss', beats: beats('s19-kiss', s19Kiss), nextSceneId: 's19-common-b' },
+  { id: 's19-hug', beats: beats('s19-hug', s19Hug), nextSceneId: 's19-common-b' },
+  { id: 's19-distance', beats: beats('s19-distance', s19Distance), nextSceneId: 's19-common-b' },
+  { id: 's19-common-b', beats: beats('s19-common-b', s19CommonB), nextSceneId: 's19-photo-payoff-dispatch' },
+  // The saved photo decision cannot grant publication rights: these are read-only authorial callbacks.
+  { id: 's19-photo-payoff-dispatch', beats: [
+    { id: 's19-photo-payoff-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's19-p-a',
+        when: { flag: 'nick-photo-alice-private' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's19-p-b',
+        when: { flag: 'nick-photo-none' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's19-p-c',
+        when: { flag: 'nick-photo-ask-tomorrow' } },
+    ] },
+  ] },
+  { id: 's19-p-a', beats: beats('s19-p-a', s19PhotoA), nextSceneId: 's19-day10' },
+  { id: 's19-p-b', beats: beats('s19-p-b', s19PhotoB), nextSceneId: 's19-day10' },
+  { id: 's19-p-c', beats: beats('s19-p-c', s19PhotoC), nextSceneId: 's19-day10' },
+  { id: 's19-day10', beats: beats('s19-day10', s19Day10), nextSceneId: 's19-contact-payoff-dispatch' },
+  { id: 's19-contact-payoff-dispatch', beats: [
+    { id: 's19-contact-payoff-choice', type: 'choice', choices: [
+      { id: 'k', label: t('Продолжить'), targetSceneId: 's19-k',
+        when: { flag: 'nick-contact-kiss' } },
+      { id: 'h', label: t('Продолжить'), targetSceneId: 's19-h',
+        when: { flag: 'nick-contact-hug' } },
+      { id: 'd', label: t('Продолжить'), targetSceneId: 's19-d',
+        when: { flag: 'nick-contact-distance' } },
+    ] },
+  ] },
+  { id: 's19-k', beats: beats('s19-k', s19KissPayoff), nextSceneId: 's19-followup-choice-scene' },
+  { id: 's19-h', beats: beats('s19-h', s19HugPayoff), nextSceneId: 's19-followup-choice-scene' },
+  { id: 's19-d', beats: beats('s19-d', s19DistancePayoff), nextSceneId: 's19-followup-choice-scene' },
+  // S19-C3 occurs *after* the technical S22 transition in source; preserve both written responses.
+  { id: 's19-followup-choice-scene', beats: [
+    { id: 's19-followup-choice', type: 'choice', choices: [
+      { id: 'camera-free', label: t('Провести часть завтрашнего дня без камер'),
+        targetSceneId: 's19-camera-free',
+        effects: [{ op: 'flag_set', id: 'nick-followup-camera-free', value: true }] },
+      { id: 'breakfast', label: t('Найти место с самым необычным местным завтраком'),
+        targetSceneId: 's19-breakfast',
+        effects: [{ op: 'flag_set', id: 'nick-followup-breakfast', value: true }] },
+    ] },
+  ] },
+  { id: 's19-camera-free', beats: beats('s19-camera-free', s19CameraFree),
+    nextSceneId: 's19-after-m3-end' },
+  { id: 's19-breakfast', beats: beats('s19-breakfast', s19Breakfast),
+    nextSceneId: 's19-after-m3-end' },
+  { id: 's19-after-m3-end', beats: [
+    { id: 's19-after-m3-end-beat', type: 'ending', endingId: 'm3-s19-only',
+      text: t('Технический фрагмент завершён. S22 ещё не перенесена.') },
+  ] },
+  // Damir and independent evening routes await separate canonical migration.
+  ...['s20', 's21'].map(id => ({
     id: id+'-m3-end',
     beats: [{ id: id+'-m3-end-beat', type: 'ending', endingId: 'm3-s17-'+id,
       text: t('Технический фрагмент завершён. Продолжение ещё не перенесено.') }],
