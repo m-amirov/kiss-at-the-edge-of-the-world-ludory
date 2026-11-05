@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S24.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–6 through S25.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -103,6 +103,12 @@ import {
   s24ChoiceLimited, s24ChoiceNoReview, s24CommonB,
   s24FollowupCameraFree, s24FollowupBreakfast,
 } from './scenes/s24.js';
+import {
+  s25Intro, s25EveningEric, s25EveningNick, s25EveningDamir, s25EveningAlice,
+  s25ContactKiss, s25ContactTea, s25ContactLeave, s25CommonA,
+  s25ChoiceScheduled, s25ChoiceWait, s25CommonB,
+  s25EricPage, s25EricReaders, s25FollowupShopping, s25FollowupWaterfront,
+} from './scenes/s25.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1360,7 +1366,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'nick-followup-camera-free' } },
       { id: 'breakfast', label: t('Продолжить'), targetSceneId: 's24-followup-breakfast',
         when: { flag: 'nick-followup-breakfast' } },
-      { id: 'skip', label: t('Продолжить'), targetSceneId: 's24-after-m3-end',
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's25-intro',
         when: { any: [
           { flag: 's17-evening-eric' }, { flag: 's17-evening-damir' },
           { flag: 's17-evening-self' },
@@ -1368,12 +1374,105 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's24-followup-camera-free', beats: beats('s24-followup-camera-free', s24FollowupCameraFree),
-    nextSceneId: 's24-after-m3-end' },
+    nextSceneId: 's25-intro' },
   { id: 's24-followup-breakfast', beats: beats('s24-followup-breakfast', s24FollowupBreakfast),
-    nextSceneId: 's24-after-m3-end' },
-  { id: 's24-after-m3-end', beats: [
-    { id: 's24-after-m3-end-beat', type: 'ending', endingId: 'm3-s24-only',
-      text: t('Технический фрагмент завершён. S25 ещё не перенесена.') },
+    nextSceneId: 's25-intro' },
+  // S25: compulsory professional relocation news, no promise to reconcile.
+  { id: 's25-intro', beats: beats('s25-intro', s25Intro),
+    nextSceneId: 's25-evening-dispatch' },
+  { id: 's25-evening-dispatch', beats: [
+    { id: 's25-evening-choice', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), targetSceneId: 's25-evening-eric',
+        when: { flag: 's17-evening-eric' } },
+      { id: 'nick', label: t('Продолжить'), targetSceneId: 's25-evening-nick',
+        when: { flag: 's17-evening-nick' } },
+      { id: 'damir', label: t('Продолжить'), targetSceneId: 's25-evening-damir',
+        when: { flag: 's17-evening-damir' } },
+      { id: 'alice', label: t('Продолжить'), targetSceneId: 's25-evening-alice',
+        when: { flag: 's17-evening-self' } },
+    ] },
+  ] },
+  { id: 's25-evening-eric', beats: beats('s25-evening-eric', s25EveningEric),
+    nextSceneId: 's25-contact-dispatch' },
+  { id: 's25-evening-nick', beats: beats('s25-evening-nick', s25EveningNick),
+    nextSceneId: 's25-contact-dispatch' },
+  { id: 's25-evening-damir', beats: beats('s25-evening-damir', s25EveningDamir),
+    nextSceneId: 's25-contact-dispatch' },
+  { id: 's25-evening-alice', beats: beats('s25-evening-alice', s25EveningAlice),
+    nextSceneId: 's25-contact-dispatch' },
+  // Damir-only S20-C1 callbacks must not be displayed on other evenings.
+  { id: 's25-contact-dispatch', beats: [
+    { id: 's25-contact-choice', type: 'choice', choices: [
+      { id: 'kiss', label: t('Продолжить'), targetSceneId: 's25-contact-kiss',
+        when: { flag: 'damir-dinner-new-kiss' } },
+      { id: 'tea', label: t('Продолжить'), targetSceneId: 's25-contact-tea',
+        when: { flag: 'damir-dinner-tea-without-touch' } },
+      { id: 'leave', label: t('Продолжить'), targetSceneId: 's25-contact-leave',
+        when: { flag: 'damir-dinner-leave' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's25-common-a',
+        when: { any: [
+          { flag: 's17-evening-eric' }, { flag: 's17-evening-nick' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's25-contact-kiss', beats: beats('s25-contact-kiss', s25ContactKiss),
+    nextSceneId: 's25-common-a' },
+  { id: 's25-contact-tea', beats: beats('s25-contact-tea', s25ContactTea),
+    nextSceneId: 's25-common-a' },
+  { id: 's25-contact-leave', beats: beats('s25-contact-leave', s25ContactLeave),
+    nextSceneId: 's25-common-a' },
+  { id: 's25-common-a', beats: [
+    ...beats('s25-common-a', s25CommonA),
+    { id: 's25-damir-choice', type: 'choice', choices: [
+      { id: 'scheduled-talk', label: t('Договориться о разговоре после собеседования'),
+        targetSceneId: 's25-choice-scheduled',
+        effects: [{ op: 'flag_set', id: 'damir-choice-scheduled-talk', value: true }] },
+      { id: 'wait-with-boundary', label: t('Дать время, не обещая ждать'),
+        targetSceneId: 's25-choice-wait',
+        effects: [{ op: 'flag_set', id: 'damir-choice-wait-with-boundary', value: true }] },
+    ] },
+  ] },
+  { id: 's25-choice-scheduled', beats: beats('s25-choice-scheduled', s25ChoiceScheduled),
+    nextSceneId: 's25-common-b' },
+  { id: 's25-choice-wait', beats: beats('s25-choice-wait', s25ChoiceWait),
+    nextSceneId: 's25-common-b' },
+  { id: 's25-common-b', beats: beats('s25-common-b', s25CommonB),
+    nextSceneId: 's25-eric-dispatch' },
+  // Source S23-C1 is a prior professional program decision, not affection.
+  { id: 's25-eric-dispatch', beats: [
+    { id: 's25-eric-choice', type: 'choice', choices: [
+      { id: 'page', label: t('Продолжить'), targetSceneId: 's25-eric-page',
+        when: { flag: 'eric-open-read-page' } },
+      { id: 'readers', label: t('Продолжить'), targetSceneId: 's25-eric-readers',
+        when: { flag: 'eric-open-trial-readers' } },
+    ] },
+  ] },
+  { id: 's25-eric-page', beats: beats('s25-eric-page', s25EricPage),
+    nextSceneId: 's25-followup-dispatch' },
+  { id: 's25-eric-readers', beats: beats('s25-eric-readers', s25EricReaders),
+    nextSceneId: 's25-followup-dispatch' },
+  // Original EP06 places S20-C2 callbacks after S25 shared returning-home prose.
+  { id: 's25-followup-dispatch', beats: [
+    { id: 's25-followup-choice', type: 'choice', choices: [
+      { id: 'shopping', label: t('Продолжить'), targetSceneId: 's25-followup-shopping',
+        when: { flag: 'damir-followup-shopping' } },
+      { id: 'waterfront', label: t('Продолжить'), targetSceneId: 's25-followup-waterfront',
+        when: { flag: 'damir-followup-waterfront' } },
+      { id: 'skip', label: t('Продолжить'), targetSceneId: 's25-after-m3-end',
+        when: { any: [
+          { flag: 's17-evening-eric' }, { flag: 's17-evening-nick' },
+          { flag: 's17-evening-self' },
+        ] } },
+    ] },
+  ] },
+  { id: 's25-followup-shopping', beats: beats('s25-followup-shopping', s25FollowupShopping),
+    nextSceneId: 's25-after-m3-end' },
+  { id: 's25-followup-waterfront', beats: beats('s25-followup-waterfront', s25FollowupWaterfront),
+    nextSceneId: 's25-after-m3-end' },
+  { id: 's25-after-m3-end', beats: [
+    { id: 's25-after-m3-end-beat', type: 'ending', endingId: 'm3-s25-only',
+      text: t('Технический фрагмент завершён. S58 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

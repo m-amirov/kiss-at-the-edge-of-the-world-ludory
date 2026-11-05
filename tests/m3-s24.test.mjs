@@ -90,13 +90,13 @@ test('S23 enters S24; Nick-only old contact and follow-up guards; free review/no
     ['breakfast','s24-followup-breakfast','nick-followup-breakfast',undefined],
   ]);
   assert.equal(followup.choices[2].id,'skip');
-  assert.equal(followup.choices[2].targetSceneId,'s24-after-m3-end');
+  assert.equal(followup.choices[2].targetSceneId,'s25-intro');
   assert.deepEqual(followup.choices[2].when?.any,
     [{flag:'s17-evening-eric'},{flag:'s17-evening-damir'},{flag:'s17-evening-self'}]);
   for(const id of ['camera-free','breakfast'])
-    assert.equal(scene('s24-followup-'+id).nextSceneId,'s24-after-m3-end');
-  assert.equal(scene('s24-after-m3-end').beats[0].endingId,'m3-s24-only');
-  assert.equal(scene('s25-intro'),undefined);
+    assert.equal(scene('s24-followup-'+id).nextSceneId,'s25-intro');
+  assert.equal(scene('s24-after-m3-end'),undefined);
+  assert.equal(scene('s25-intro').nextSceneId,'s25-evening-dispatch');
   for(const c of [...evening.choices,...contact.choices,...c1.choices,...followup.choices])
     for(const key of ['cost','premium','routeLock','routeIntent','romancePoints',
       'requiredEntitlement','publishPermission','consentToPublish','mediaPermission'])
@@ -266,7 +266,7 @@ function completeS24(saved,{route,contact='h',followup='camera-free',c1}){
       expectNoWrite(resumed,'narrative:choose:s24-followup-choice:'+wrong);
     resumed.act('narrative:choose:s24-followup-choice:skip');
   }
-  walkUntil(resumed,(_b,id)=>id==='s24-after-m3-end');
+  walkUntil(resumed,(_b,id)=>id==='s25-intro');
   assert.equal(resumed.get().routeLock,null);
   assert.equal(resumed.get().flags['private-text-pending'],true);
   for(const forbidden of ['nick-joint-file-approved','editor-publish-approved',
@@ -323,5 +323,5 @@ test('S24 never enables economy or marks photo review as publishing consent',()=
   assert.equal(existsSync(new URL('../game/config/economy.json',import.meta.url)),false);
   assert.equal(existsSync(new URL('../game/config/premium.json',import.meta.url)),false);
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s24-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s25-after-m3-end').beats[0].type,'ending');
 });
