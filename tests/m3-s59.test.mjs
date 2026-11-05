@@ -190,7 +190,8 @@ test('real N1: four locked routes × three S59 songs, Back, alternate choice, JS
       walkUntil(restored, (beat) => beat.id === 's59-route-choice');
       restored.act(`narrative:choose:s59-route-choice:${route}`);
       assert.equal(restored.get().sceneId,
-        route === 'eric' ? 's28-intro' : 's59-after-m3-end');
+        route === 'eric' ? 's28-intro'
+          : route === 'nick' ? 's29-intro' : 's59-after-m3-end');
       assert.equal(restored.get().routeLock, route);
       assert.equal(restored.get().routeIntent, route);
       assert.equal(restored.get().flags['s17-evening-self'], true);
