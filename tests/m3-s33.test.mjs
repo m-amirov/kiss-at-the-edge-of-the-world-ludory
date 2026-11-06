@@ -255,7 +255,7 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-active');
         rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-paused');
         atEnd.act('narrative:choose:s36-route-choice:nick-closed');
-        walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's40-c1-choice');
         assert.equal(atEnd.get().routeLock, 'nick');
         assert.equal(atEnd.get().flags['s33-status-closed'], true);
         assert.equal(atEnd.get().flags['s33-status-active'], undefined);
@@ -263,6 +263,17 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         assert.equal(atEnd.get().flags['s63-next-venue'], true);
         assert.equal(atEnd.get().flags['s63-next-ticket'], undefined);
         assert.deepEqual(atEnd.get().flags, closed.get().flags);
+        atEnd.act('narrative:choose:s40-c1-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's40-c2-choice');
+        atEnd.act('narrative:choose:s40-c2-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's40-s63-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:a');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
+        atEnd.act('narrative:choose:s40-s63-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+        assert.equal(atEnd.get().routeLock, 'nick');
+        assert.equal(atEnd.get().flags['s40-evening-friend'], true);
+        assert.ok(atEnd.get().visitedScenes.includes('s40-s63-b'));
       }
       if (status !== 'c') {
         walkUntil(fresh, (beat) => beat.id === 's53-c1-choice');
@@ -373,11 +384,26 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
       assert.equal(branch.get().routeLock, 'nick');
       assert.equal(branch.get().flags[statusFlags[status]], true);
       if (c1 === 'b') {
-        assert.equal(branch.get().sceneId, 's38-after-closed-end');
+        assert.equal(branch.get().sceneId, 's40-intro');
         assert.equal(branch.get().flags['s38-memory-date'], undefined);
         assert.equal(branch.get().flags['s38-memory-books'], undefined);
         rejectWithoutWrite(branch, 'narrative:choose:s38-c2-choice:a');
         rejectWithoutWrite(branch, 'narrative:choose:s38-s53-choice:' + callback);
+        if (status === 'a' && callback === 'a') {
+          const solo = runtime(clone(branch.get()));
+          walkUntil(solo, (beat) => beat.id === 's40-c1-choice');
+          solo.act('narrative:choose:s40-c1-choice:b');
+          walkUntil(solo, (beat) => beat.id === 's40-c2-choice');
+          solo.act('narrative:choose:s40-c2-choice:a');
+          walkUntil(solo, (beat) => beat.id === 's40-s63-choice');
+          rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:a');
+          rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:b');
+          solo.act('narrative:choose:s40-s63-choice:none');
+          walkUntil(solo, (beat) => beat.id === 's40-after-m3-end-beat');
+          assert.equal(solo.get().routeLock, 'nick');
+          assert.ok(!solo.get().visitedScenes.includes('s40-s63-a'));
+          assert.ok(!solo.get().visitedScenes.includes('s40-s63-b'));
+        }
       } else {
         assert.equal(branch.get().sceneId, 's38-c2');
         const atC2 = clone(branch.get());

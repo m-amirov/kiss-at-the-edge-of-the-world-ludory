@@ -1,6 +1,6 @@
 # M3 — shared S36 «Место для остановки» (day 17)
 
-**Current continuation:** S36 hands off through a guarded `s36-route-dispatch`: Eric active/paused → S37; Nick active/paused → S38; Damir active/paused → S39. Independent Alice and already-closed romances still stop at `s36-after-m3-end` in Draft. The earlier direct `s36-common` → stop edge below documents the previous accepted snapshot. See [S37](m3-s37-fidelity.md), [S38](m3-s38-fidelity.md), [S39](m3-s39-fidelity.md).
+**Current continuation:** S36 guarded dispatch sends Eric active/paused → S37, Nick active/paused → S38, Damir active/paused → S39, and independent Alice or already-closed romances → [S40](m3-s40-fidelity.md). `s36-after-m3-end` below is a superseded historical technical stop. The original S26 route lock remains unchanged even for a closed romance.
 
 ## Source fidelity
 
@@ -20,7 +20,7 @@
 - **Four authentic entrance families:** S50-C2 Eric, S53-C2 Nick, S56-C2 Damir, S63-C2 independent Alice or any romance marked closed. Both A/B variants of all four now point to `s36-intro`; no old M3 technical end remains on these paths.
 - S36-C1-A: «Предложить всем короткую прогулку до возвращения в машину»; B: «Остаться в кафе и поговорить с теми, кто хочет». Both free, no effects, both converge into the source-authored shared end-of-day paragraph.
 - Route locks remain what S26 originally selected, including `eric`, `nick`, `damir` when a relationship has been **closed**. No invented `routeLock=alice` conversion; the previous relationship flags and S56/S63 future callback flags remain intact.
-- `s36-after-m3-end` is an unpublished technical Draft stop only, pending actual route-specific S37/S38/S39/S40 and shared S60. It is NOT a literary or release ending.
+- Historical `s36-after-m3-end` was an unpublished technical Draft stop, now removed as S40 has been integrated. S40 itself ends at a Draft-only stop pending S64; none are literary/release endings.
 - All photos, repairs, radio, conversations, etc. are narration: no external calls, uploading, permissions, paid choices or economy. EN remains RU fallback.
 
 ## Verification evidence

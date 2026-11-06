@@ -38,18 +38,18 @@ test('S36 guards Eric S37, Nick S38 and Damir S39 by original route status', () 
     [id, targetSceneId, routeId, when, effects]), [
     ['eric-active', 's37-active', 'eric', { flag: 's32-status-active' }, undefined],
     ['eric-paused', 's37-paused', 'eric', { flag: 's32-status-paused' }, undefined],
-    ['eric-closed', 's36-after-m3-end', 'eric', { flag: 's32-status-closed' }, undefined],
+    ['eric-closed', 's40-intro', 'eric', { flag: 's32-status-closed' }, undefined],
     ['nick-active', 's38-active', 'nick', { flag: 's33-status-active' }, undefined],
     ['nick-paused', 's38-paused', 'nick', { flag: 's33-status-paused' }, undefined],
-    ['nick-closed', 's36-after-m3-end', 'nick', { flag: 's33-status-closed' }, undefined],
+    ['nick-closed', 's40-intro', 'nick', { flag: 's33-status-closed' }, undefined],
     ['damir-active', 's39-active', 'damir', { flag: 's34-status-active' }, undefined],
     ['damir-paused', 's39-paused', 'damir', { flag: 's34-status-paused' }, undefined],
-    ['damir-closed', 's36-after-m3-end', 'damir', { flag: 's34-status-closed' }, undefined],
-    ['alice', 's36-after-m3-end', 'alice', undefined, undefined],
+    ['damir-closed', 's40-intro', 'damir', { flag: 's34-status-closed' }, undefined],
+    ['alice', 's40-intro', 'alice', undefined, undefined],
   ]);
   assert.equal(scene('s37-active')?.nextSceneId, 's37-c1');
   assert.equal(scene('s37-paused')?.nextSceneId, 's37-c1');
-  assert.equal(scene('s36-after-m3-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s36-after-m3-end'), undefined);
 });
 
 test('S37 preserves free authored decisions, a closed-romance boundary and S50 callbacks', () => {
@@ -76,7 +76,7 @@ test('S37 preserves free authored decisions, a closed-romance boundary and S50 c
   assert.deepEqual(ending?.choices.map(({ id, when, targetSceneId, effects }) =>
     [id, when, targetSceneId, effects]), [
     ['continue', { flag: 's37-status-continues' }, 's37-c2', undefined],
-    ['closed', { flag: 's37-status-closed' }, 's37-after-closed-end', undefined],
+    ['closed', { flag: 's37-status-closed' }, 's40-intro', undefined],
   ]);
   const next = choice('s37-c2', 's37-c2-choice');
   assert.deepEqual(next?.choices.map(({ id, label, targetSceneId, effects }) =>
@@ -89,7 +89,7 @@ test('S37 preserves free authored decisions, a closed-romance boundary and S50 c
   for (const variant of ['a', 'b'])
     assert.equal(scene(`s37-c2-${variant}`)?.nextSceneId, 's37-after-open-end');
   assert.equal(scene('s37-after-open-end')?.beats[0].type, 'ending');
-  assert.equal(scene('s37-after-closed-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s37-after-closed-end'), undefined);
   for (const id of ['s37-c1', 's37-c2']) {
     for (const option of choice(id, `${id}-choice`).choices) {
       for (const forbidden of ['premium', 'cost', 'requiredEntitlement', 'routeLock',

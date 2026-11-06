@@ -36,18 +36,18 @@ test('S36 admits only Nick active/paused to S38; closed romance remains independ
     [id, routeId, when, targetSceneId, effects]), [
     ['eric-active', 'eric', { flag: 's32-status-active' }, 's37-active', undefined],
     ['eric-paused', 'eric', { flag: 's32-status-paused' }, 's37-paused', undefined],
-    ['eric-closed', 'eric', { flag: 's32-status-closed' }, 's36-after-m3-end', undefined],
+    ['eric-closed', 'eric', { flag: 's32-status-closed' }, 's40-intro', undefined],
     ['nick-active', 'nick', { flag: 's33-status-active' }, 's38-active', undefined],
     ['nick-paused', 'nick', { flag: 's33-status-paused' }, 's38-paused', undefined],
-    ['nick-closed', 'nick', { flag: 's33-status-closed' }, 's36-after-m3-end', undefined],
+    ['nick-closed', 'nick', { flag: 's33-status-closed' }, 's40-intro', undefined],
     ['damir-active', 'damir', { flag: 's34-status-active' }, 's39-active', undefined],
     ['damir-paused', 'damir', { flag: 's34-status-paused' }, 's39-paused', undefined],
-    ['damir-closed', 'damir', { flag: 's34-status-closed' }, 's36-after-m3-end', undefined],
-    ['alice', 'alice', undefined, 's36-after-m3-end', undefined],
+    ['damir-closed', 'damir', { flag: 's34-status-closed' }, 's40-intro', undefined],
+    ['alice', 'alice', undefined, 's40-intro', undefined],
   ]);
   for (const status of ['active', 'paused'])
     assert.equal(scene(`s38-${status}`)?.nextSceneId, 's38-c1');
-  assert.equal(scene('s36-after-m3-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s36-after-m3-end'), undefined);
 });
 
 test('S38 free C1/C2, S53 callback and closed-romance boundary are guarded', () => {
@@ -71,7 +71,7 @@ test('S38 free C1/C2, S53 callback and closed-romance boundary are guarded', () 
   assert.deepEqual(choice('s38-status-dispatch', 's38-status-choice')?.choices
     .map(({ id, when, targetSceneId, effects }) => [id, when, targetSceneId, effects]), [
     ['continue', { flag: 's38-status-continues' }, 's38-c2', undefined],
-    ['closed', { flag: 's38-status-closed' }, 's38-after-closed-end', undefined],
+    ['closed', { flag: 's38-status-closed' }, 's40-intro', undefined],
   ]);
   assert.deepEqual(choice('s38-c2', 's38-c2-choice')?.choices
     .map(({ id, label, targetSceneId, effects }) => [id, label.ru, targetSceneId, effects]), [
@@ -82,8 +82,8 @@ test('S38 free C1/C2, S53 callback and closed-romance boundary are guarded', () 
   ]);
   for (const variant of ['a', 'b'])
     assert.equal(scene(`s38-c2-${variant}`)?.nextSceneId, 's38-s53-dispatch');
-  for (const variant of ['open', 'closed'])
-    assert.equal(scene(`s38-after-${variant}-end`)?.beats[0].type, 'ending');
+  assert.equal(scene('s38-after-open-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s38-after-closed-end'), undefined);
   for (const node of ['s38-c1', 's38-c2'])
     for (const option of choice(node, `${node}-choice`).choices)
       for (const forbidden of ['premium', 'cost', 'requiredEntitlement', 'routeLock',

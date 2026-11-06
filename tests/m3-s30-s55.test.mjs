@@ -305,7 +305,7 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-active');
             rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-paused');
             atEnd.act('narrative:choose:s36-route-choice:damir-closed');
-            walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
+            walkUntil(atEnd, (beat) => beat.id === 's40-c1-choice');
             assert.equal(atEnd.get().routeLock, 'damir');
             assert.equal(atEnd.get().flags['s34-status-closed'], true);
             assert.equal(atEnd.get().flags['s34-status-active'], undefined);
@@ -313,6 +313,16 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             assert.equal(atEnd.get().flags['s63-next-venue'], true);
             assert.equal(atEnd.get().flags['s63-next-ticket'], undefined);
             assert.deepEqual(atEnd.get().flags, closed.get().flags);
+            atEnd.act('narrative:choose:s40-c1-choice:b');
+            walkUntil(atEnd, (beat) => beat.id === 's40-c2-choice');
+            atEnd.act('narrative:choose:s40-c2-choice:a');
+            walkUntil(atEnd, (beat) => beat.id === 's40-s63-choice');
+            rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:a');
+            rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
+            atEnd.act('narrative:choose:s40-s63-choice:b');
+            walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+            assert.equal(atEnd.get().routeLock, 'damir');
+            assert.ok(atEnd.get().visitedScenes.includes('s40-s63-b'));
           }
         } else {
           assert.equal(fresh.get().sceneId, status === 'a' ? 's56-active' : 's56-paused');
@@ -564,11 +574,27 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
       assert.equal(path.get().routeLock, 'damir');
       assert.equal(path.get().flags[status === 'a' ? 's34-status-active' : 's34-status-paused'], true);
       if (c1 === 'b') {
-        assert.equal(path.get().sceneId, 's39-after-closed-end');
+        assert.equal(path.get().sceneId, 's40-intro');
         assert.equal(path.get().flags['s39-memory-ordinary-day'], undefined);
         assert.equal(path.get().flags['s39-memory-morning-walk'], undefined);
         rejectWithoutWrite(path, 'narrative:choose:s39-c2-choice:a');
         rejectWithoutWrite(path, 'narrative:choose:s39-s56-choice:' + callback);
+        if (status === 'a' && callback === 'a') {
+          const solo = runtime(clone(path.get()));
+          walkUntil(solo, (beat) => beat.id === 's40-c1-choice');
+          solo.act('narrative:choose:s40-c1-choice:a');
+          walkUntil(solo, (beat) => beat.id === 's40-c2-choice');
+          solo.act('narrative:choose:s40-c2-choice:b');
+          walkUntil(solo, (beat) => beat.id === 's40-s63-choice');
+          rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:a');
+          rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:b');
+          solo.act('narrative:choose:s40-s63-choice:none');
+          walkUntil(solo, (beat) => beat.id === 's40-after-m3-end-beat');
+          assert.equal(solo.get().routeLock, 'damir');
+          assert.equal(solo.get().flags['s40-evening-friend'], true);
+          assert.ok(!solo.get().visitedScenes.includes('s40-s63-a'));
+          assert.ok(!solo.get().visitedScenes.includes('s40-s63-b'));
+        }
       } else {
         assert.equal(path.get().sceneId, 's39-c2');
         const atC2 = clone(path.get());

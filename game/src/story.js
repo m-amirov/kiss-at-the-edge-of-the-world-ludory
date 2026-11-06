@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 plus Eric S37 / Nick S38 / Damir S39.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36 and day-18 S37/S38/S39/S40.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -136,6 +136,7 @@ import * as s36 from './scenes/s36.js';
 import * as s37 from './scenes/s37.js';
 import * as s38 from './scenes/s38.js';
 import * as s39 from './scenes/s39.js';
+import * as s40 from './scenes/s40.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2101,8 +2102,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's36-c1-b', beats: beats('s36-c1-b', s36.s36C1B), nextSceneId: 's36-common' },
   { id: 's36-common', beats: beats('s36-common', s36.s36Common),
     nextSceneId: 's36-route-dispatch' },
-  // One enabled technical Continue for each route/status. Closed romance stays
-  // on the independent path; routeLock is never rewritten to Alice.
+  // One enabled technical Continue for each route/status. Closed romance
+  // enters independent S40; routeLock is never rewritten to Alice.
   { id: 's36-route-dispatch', beats: [
     { id: 's36-route-choice', type: 'choice', choices: [
       { id: 'eric-active', label: t('Продолжить'), routeId: 'eric',
@@ -2110,27 +2111,23 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
       { id: 'eric-paused', label: t('Продолжить'), routeId: 'eric',
         when: { flag: 's32-status-paused' }, targetSceneId: 's37-paused' },
       { id: 'eric-closed', label: t('Продолжить'), routeId: 'eric',
-        when: { flag: 's32-status-closed' }, targetSceneId: 's36-after-m3-end' },
+        when: { flag: 's32-status-closed' }, targetSceneId: 's40-intro' },
       { id: 'nick-active', label: t('Продолжить'), routeId: 'nick',
         when: { flag: 's33-status-active' }, targetSceneId: 's38-active' },
       { id: 'nick-paused', label: t('Продолжить'), routeId: 'nick',
         when: { flag: 's33-status-paused' }, targetSceneId: 's38-paused' },
       { id: 'nick-closed', label: t('Продолжить'), routeId: 'nick',
-        when: { flag: 's33-status-closed' }, targetSceneId: 's36-after-m3-end' },
+        when: { flag: 's33-status-closed' }, targetSceneId: 's40-intro' },
       { id: 'damir-active', label: t('Продолжить'), routeId: 'damir',
         when: { flag: 's34-status-active' }, targetSceneId: 's39-active' },
       { id: 'damir-paused', label: t('Продолжить'), routeId: 'damir',
         when: { flag: 's34-status-paused' }, targetSceneId: 's39-paused' },
       { id: 'damir-closed', label: t('Продолжить'), routeId: 'damir',
         when: { flag: 's34-status-closed' },
-        targetSceneId: 's36-after-m3-end' },
+        targetSceneId: 's40-intro' },
       { id: 'alice', label: t('Продолжить'), routeId: 'alice',
-        targetSceneId: 's36-after-m3-end' },
+        targetSceneId: 's40-intro' },
     ] },
-  ] },
-  { id: 's36-after-m3-end', beats: [
-    { id: 's36-after-m3-end-beat', type: 'ending', endingId: 'm3-day17-s36-only',
-      text: t('Технический фрагмент завершён. Остальные маршруты дня 18 и независимые продолжения ещё не перенесены.') },
   ] },
   // Eric day 18: the S32 active/paused distinction survives the S36 reunion.
   { id: 's37-active', beats: beats('s37-active', s37.s37Active), nextSceneId: 's37-c1' },
@@ -2164,7 +2161,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
       { id: 'continue', label: t('Продолжить'), when: { flag: 's37-status-continues' },
         targetSceneId: 's37-c2' },
       { id: 'closed', label: t('Продолжить'), when: { flag: 's37-status-closed' },
-        targetSceneId: 's37-after-closed-end' },
+        targetSceneId: 's40-intro' },
     ] },
   ] },
   // The romantic morning is not offered after S37-C1 explicitly ends romance.
@@ -2183,10 +2180,6 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's37-after-open-end', beats: [
     { id: 's37-after-open-end-beat', type: 'ending', endingId: 'm3-eric-day18-open',
       text: t('Технический фрагмент завершён. S51 ещё не перенесена.') },
-  ] },
-  { id: 's37-after-closed-end', beats: [
-    { id: 's37-after-closed-end-beat', type: 'ending', endingId: 'm3-eric-day18-closed',
-      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
   ] },
   // Nick day 18: S33 active/paused both enter their own exact authorial opening.
   { id: 's38-active', beats: beats('s38-active', s38.s38Active), nextSceneId: 's38-c1' },
@@ -2220,7 +2213,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
       { id: 'continue', label: t('Продолжить'), when: { flag: 's38-status-continues' },
         targetSceneId: 's38-c2' },
       { id: 'closed', label: t('Продолжить'), when: { flag: 's38-status-closed' },
-        targetSceneId: 's38-after-closed-end' },
+        targetSceneId: 's40-intro' },
     ] },
   ] },
   // S38-C1-B ends this romance; never offer a subsequent date or a future-date
@@ -2240,10 +2233,6 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's38-after-open-end', beats: [
     { id: 's38-after-open-end-beat', type: 'ending', endingId: 'm3-nick-day18-open',
       text: t('Технический фрагмент завершён. S54 ещё не перенесена.') },
-  ] },
-  { id: 's38-after-closed-end', beats: [
-    { id: 's38-after-closed-end-beat', type: 'ending', endingId: 'm3-nick-day18-closed',
-      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
   ] },
   // Damir day 18: S34 paused/active opens distinct original paragraphs.
   // The original post-breakup shared paragraph is retained, but a closed
@@ -2267,7 +2256,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
       { id: 'continue', label: t('Продолжить'), when: { flag: 's39-status-continues' },
         targetSceneId: 's39-c2' },
       { id: 'closed', label: t('Продолжить'), when: { flag: 's39-status-closed' },
-        targetSceneId: 's39-after-closed-end' },
+        targetSceneId: 's40-intro' },
     ] },
   ] },
   { id: 's39-c2', beats: [
@@ -2298,9 +2287,50 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's39-after-open-end-beat', type: 'ending', endingId: 'm3-damir-day18-open',
       text: t('Технический фрагмент завершён. S57 ещё не перенесена.') },
   ] },
-  { id: 's39-after-closed-end', beats: [
-    { id: 's39-after-closed-end-beat', type: 'ending', endingId: 'm3-damir-day18-closed',
-      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
+  // Independent/closed day 18: the full authored S40 is accessible on all
+  // four locked routes without retroactively changing routeLock.
+  { id: 's40-intro', beats: [
+    ...beats('s40-intro', s40.s40Intro),
+    { id: 's40-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Написать финальный абзац без подробностей о близких'),
+        targetSceneId: 's40-c1-a' },
+      { id: 'b', label: t('Написать о собственном выборе как о главном изменении'),
+        targetSceneId: 's40-c1-b' },
+    ] },
+  ] },
+  { id: 's40-c1-a', beats: beats('s40-c1-a', s40.s40C1A), nextSceneId: 's40-common' },
+  { id: 's40-c1-b', beats: beats('s40-c1-b', s40.s40C1B), nextSceneId: 's40-common' },
+  { id: 's40-common', beats: [
+    ...beats('s40-common', s40.s40Common),
+    { id: 's40-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Сходить на местный музыкальный вечер одной'),
+        targetSceneId: 's40-c2-a', effects: [{ op: 'flag_set', id: 's40-evening-music', value: true }] },
+      { id: 'b', label: t('Написать подруге и договориться о встрече дома'),
+        targetSceneId: 's40-c2-b', effects: [{ op: 'flag_set', id: 's40-evening-friend', value: true }] },
+    ] },
+  ] },
+  { id: 's40-c2-a', beats: beats('s40-c2-a', s40.s40C2A), nextSceneId: 's40-s63-dispatch' },
+  { id: 's40-c2-b', beats: beats('s40-c2-b', s40.s40C2B), nextSceneId: 's40-s63-dispatch' },
+  // S63 is only on the earlier independent/closed paths. A romance closed at
+  // S37/S38/S39 never visited S63; its callback must not be fabricated.
+  { id: 's40-s63-dispatch', beats: [
+    { id: 's40-s63-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's63-next-ticket' },
+        targetSceneId: 's40-s63-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's63-next-venue' },
+        targetSceneId: 's40-s63-b' },
+      { id: 'none', label: t('Продолжить'),
+        when: { not: { any: [{ flag: 's63-next-ticket' }, { flag: 's63-next-venue' }] } },
+        targetSceneId: 's40-after-m3-end' },
+    ] },
+  ] },
+  { id: 's40-s63-a', beats: beats('s40-s63-a', s40.s40S63A),
+    nextSceneId: 's40-after-m3-end' },
+  { id: 's40-s63-b', beats: beats('s40-s63-b', s40.s40S63B),
+    nextSceneId: 's40-after-m3-end' },
+  { id: 's40-after-m3-end', beats: [
+    { id: 's40-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-day18',
+      text: t('Технический фрагмент завершён. День 19 (S64) ещё не перенесён.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

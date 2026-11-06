@@ -73,7 +73,7 @@ test('S35 article and S63 concert decisions follow only authorial free outcomes'
   }
   assert.equal(scene('s35-common').nextSceneId, 's63-intro');
   assert.equal(scene('s63-after-m3-end'), undefined);
-  assert.equal(scene('s40-intro'), undefined, 'future S40 remains unported');
+  assert.ok(scene('s40-intro'), 'S40 now continues independent and closed routes');
   assert.deepEqual(catalogData.interactions, []);
 });
 

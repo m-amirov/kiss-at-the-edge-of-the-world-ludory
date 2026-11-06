@@ -256,7 +256,7 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-active');
         rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-paused');
         atEnd.act('narrative:choose:s36-route-choice:eric-closed');
-        walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's40-c1-choice');
         assert.equal(atEnd.get().routeLock, 'eric');
         assert.equal(atEnd.get().flags['s32-status-closed'], true);
         assert.equal(atEnd.get().flags['s32-status-active'], undefined);
@@ -264,6 +264,17 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         assert.equal(atEnd.get().flags['s63-next-ticket'], true);
         assert.equal(atEnd.get().flags['s63-next-venue'], undefined);
         assert.deepEqual(atEnd.get().flags, closed.get().flags);
+        atEnd.act('narrative:choose:s40-c1-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's40-c2-choice');
+        atEnd.act('narrative:choose:s40-c2-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's40-s63-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:b');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
+        atEnd.act('narrative:choose:s40-s63-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+        assert.equal(atEnd.get().routeLock, 'eric');
+        assert.equal(atEnd.get().flags['s40-evening-music'], true);
+        assert.ok(atEnd.get().visitedScenes.includes('s40-s63-a'));
       }
       if (status !== 'c') {
         walkUntil(fresh, (beat) => beat.id === 's50-c1-choice');
@@ -400,10 +411,32 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
       resumed.act('narrative:choose:s37-status-choice:' +
         (outcome === 'a' ? 'continue' : 'closed'));
       if (outcome === 'b') {
-        walkUntil(resumed, (beat) => beat.id === 's37-after-closed-end-beat');
+        walkUntil(resumed, (beat) => beat.id === 's40-c1-choice');
         assert.ok(!resumed.get().visitedScenes.includes('s37-c2'),
           'explicit end of romance must skip the later romantic morning');
         assert.equal(resumed.get().flags['s37-status-closed'], true);
+        assert.equal(resumed.get().routeLock, 'eric');
+        assert.equal(resumed.get().flags['s63-next-ticket'], undefined);
+        assert.equal(resumed.get().flags['s63-next-venue'], undefined);
+        resumed.act('narrative:choose:s40-c1-choice:a');
+        walkUntil(resumed, (beat) => beat.id === 's40-c2-choice');
+        resumed.act('narrative:choose:s40-c2-choice:b');
+        walkUntil(resumed, (beat) => beat.id === 's40-s63-choice');
+        const genuineLateClose = clone(resumed.get());
+        const forgedConcert = { ...genuineLateClose,
+          flags: { ...genuineLateClose.flags, 's63-next-ticket': true } };
+        const forgedProbe = runtime(forgedConcert);
+        const forgedBefore = JSON.stringify(forgedProbe.get());
+        assert.throws(() => forgedProbe.act('narrative:choose:s40-s63-choice:a'),
+          /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+        assert.equal(forgedProbe.writes(), 0);
+        assert.equal(JSON.stringify(forgedProbe.get()), forgedBefore);
+        rejectWithoutWrite(resumed, 'narrative:choose:s40-s63-choice:a');
+        rejectWithoutWrite(resumed, 'narrative:choose:s40-s63-choice:b');
+        resumed.act('narrative:choose:s40-s63-choice:none');
+        walkUntil(resumed, (beat) => beat.id === 's40-after-m3-end-beat');
+        assert.equal(resumed.get().visitedScenes.includes('s40-s63-a'), false);
+        assert.equal(resumed.get().visitedScenes.includes('s40-s63-b'), false);
       } else {
         walkUntil(resumed, (beat) => beat.id === 's37-c2-choice');
         rejectWithoutWrite(resumed, 'narrative:choose:s37-c2-choice:premium');
