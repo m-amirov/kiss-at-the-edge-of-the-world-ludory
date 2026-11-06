@@ -252,6 +252,8 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         closed.act('narrative:choose:s36-c1-choice:b');
         const atEnd = runtime(clone(closed.get()));
         walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-active');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-paused');
         atEnd.act('narrative:choose:s36-route-choice:nick-closed');
         walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'nick');
@@ -283,6 +285,10 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         restored.act('narrative:choose:s36-c1-choice:' + hour);
         const throughS36 = runtime(clone(restored.get()));
         walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+        if (clip === 'a' && hour === 'a' && reply === 'a' && status === 'a') {
+          rejectWithoutWrite(throughS36, 'narrative:choose:s36-route-choice:damir-active');
+          rejectWithoutWrite(throughS36, 'narrative:choose:s36-route-choice:damir-paused');
+        }
         throughS36.act('narrative:choose:s36-route-choice:' +
           (status === 'a' ? 'nick-active' : 'nick-paused'));
         walkUntil(throughS36, (beat) => beat.id === 's38-c1-choice');

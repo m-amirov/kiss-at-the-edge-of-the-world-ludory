@@ -1,6 +1,6 @@
 # M3 — S56 «День 16. Песня, которую они не знали раньше» (Дамир)
 
-**Current continuation:** both S56-C2 options now enter shared day-17 S36; the former `s56-after-m3-end` stop described below is historical evidence for the prior stage. See [S36 fidelity](m3-s36-fidelity.md).
+**Current continuation:** both S56-C2 options enter shared day-17 S36; after S36, Damir active/paused now enters S39. Exclusive `s56-next-dish` or `s56-next-chorus` flags select the original S39 payoff after S39-C2. The former `s56-after-m3-end` stop below is historical evidence. See [S36](m3-s36-fidelity.md) and [S39](m3-s39-fidelity.md).
 
 **Pinned source:** read-only `m-amirov/kiss-at-the-edge-of-the-world@1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c`, `content/season-1-literary-episode-08.md`, lines 231–271; whole EP08 SHA-256 `181f05d7d838aeaf3b21b6b18ad8b01395aff3dc0534a51f01281c678309f900`. Original and Ludory remain unchanged.
 
@@ -22,7 +22,7 @@ Seven independent blocks, **9 Russian paragraphs**, original hashes computed fro
 
 - S34-C1 stores three exclusive existing N1 flags. A guarded `s34-status-choice` leads to S56 only for `active` or `paused`, each with different authorial introduction. The subsequent [S35/S63 migration](m3-s35-s63-fidelity.md) routes **closed** into authored S35 instead of the superseded Draft-only `s34-closed-after-m3-end`.
 - Both statuses share the two authorial free S56 choices: C1 stays for one song or walks home (no invented effect); C2 chooses a dish or singing chorus. C2 writes only exclusive `s56-next-dish|s56-next-chorus` flags for future original S39 payoff.
-- Both C2 outcomes reach **Draft-only** `s56-after-m3-end` pending S36/S39; closed path now continues to S35/S63. Previously unpublished `s34-after-m3-end` and `s34-closed-after-m3-end` are removed; old draft saves at those markers may need Restart, with no unverified migration claim.
+- **Historical snapshot:** both C2 outcomes used to reach **Draft-only** `s56-after-m3-end` pending S36/S39. **Current:** S56-C2 enters S36; Damir active/paused continues into S39 and closed S34 status goes through S35/S63 to the independent S36 Draft stop. Previous unpublished stop saves may need explicit Restart, without silent migration/deletion.
 - S56 contains no real media, messages, clinic job/relocation consent, upload or publication actions; all choices free, Economy disabled in first game.
 
 ## Verification and open gates

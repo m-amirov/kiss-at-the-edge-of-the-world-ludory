@@ -48,7 +48,8 @@ test('all four day-16 paths converge to free S36-C1 with exact authorial labels'
   assert.equal(scene('s36-after-m3-end')?.beats[0].type, 'ending');
   assert.ok(scene('s37-active') && scene('s37-paused'), 'Eric day-18 is integrated');
   assert.ok(scene('s38-active') && scene('s38-paused'), 'Nick day-18 is integrated');
-  for (const routeNext of ['s39-intro', 's40-intro'])
+  assert.ok(scene('s39-active') && scene('s39-paused'), 'Damir day-18 is integrated');
+  for (const routeNext of ['s40-intro'])
     assert.equal(scene(routeNext), undefined, `future ${routeNext} unported`);
   assert.deepEqual(catalogData.interactions, [], 'no hidden premium or physical interactions');
 });

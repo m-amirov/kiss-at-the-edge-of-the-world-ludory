@@ -40,7 +40,9 @@ test('S36 admits only Nick active/paused to S38; closed romance remains independ
     ['nick-active', 'nick', { flag: 's33-status-active' }, 's38-active', undefined],
     ['nick-paused', 'nick', { flag: 's33-status-paused' }, 's38-paused', undefined],
     ['nick-closed', 'nick', { flag: 's33-status-closed' }, 's36-after-m3-end', undefined],
-    ['damir', 'damir', undefined, 's36-after-m3-end', undefined],
+    ['damir-active', 'damir', { flag: 's34-status-active' }, 's39-active', undefined],
+    ['damir-paused', 'damir', { flag: 's34-status-paused' }, 's39-paused', undefined],
+    ['damir-closed', 'damir', { flag: 's34-status-closed' }, 's36-after-m3-end', undefined],
     ['alice', 'alice', undefined, 's36-after-m3-end', undefined],
   ]);
   for (const status of ['active', 'paused'])

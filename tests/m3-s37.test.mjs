@@ -31,7 +31,7 @@ test('S37 reproduces all nine original blocks and 13 authorial paragraphs', () =
   }
 });
 
-test('S36 routes only active/paused Eric into S37 and Nick into S38', () => {
+test('S36 guards Eric S37, Nick S38 and Damir S39 by original route status', () => {
   assert.equal(scene('s36-common')?.nextSceneId, 's36-route-dispatch');
   const edges = choice('s36-route-dispatch', 's36-route-choice')?.choices;
   assert.deepEqual(edges?.map(({ id, targetSceneId, routeId, when, effects }) =>
@@ -42,7 +42,9 @@ test('S36 routes only active/paused Eric into S37 and Nick into S38', () => {
     ['nick-active', 's38-active', 'nick', { flag: 's33-status-active' }, undefined],
     ['nick-paused', 's38-paused', 'nick', { flag: 's33-status-paused' }, undefined],
     ['nick-closed', 's36-after-m3-end', 'nick', { flag: 's33-status-closed' }, undefined],
-    ['damir', 's36-after-m3-end', 'damir', undefined, undefined],
+    ['damir-active', 's39-active', 'damir', { flag: 's34-status-active' }, undefined],
+    ['damir-paused', 's39-paused', 'damir', { flag: 's34-status-paused' }, undefined],
+    ['damir-closed', 's36-after-m3-end', 'damir', { flag: 's34-status-closed' }, undefined],
     ['alice', 's36-after-m3-end', 'alice', undefined, undefined],
   ]);
   assert.equal(scene('s37-active')?.nextSceneId, 's37-c1');

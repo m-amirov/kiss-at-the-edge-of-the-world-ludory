@@ -253,6 +253,8 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         closed.act('narrative:choose:s36-c1-choice:a');
         const atEnd = runtime(clone(closed.get()));
         walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-active');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s36-route-choice:damir-paused');
         atEnd.act('narrative:choose:s36-route-choice:eric-closed');
         walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'eric');
@@ -284,6 +286,10 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         resumed.act('narrative:choose:s36-c1-choice:' + path);
         const throughS36 = runtime(clone(resumed.get()));
         walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+        if (path === 'a' && evening === 'a' && status === 'a') {
+          rejectWithoutWrite(throughS36, 'narrative:choose:s36-route-choice:damir-active');
+          rejectWithoutWrite(throughS36, 'narrative:choose:s36-route-choice:damir-paused');
+        }
         throughS36.act('narrative:choose:s36-route-choice:' +
           (status === 'a' ? 'eric-active' : 'eric-paused'));
         walkUntil(throughS36, (beat) => beat.id === 's37-c1-choice');

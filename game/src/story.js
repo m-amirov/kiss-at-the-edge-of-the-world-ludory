@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 plus Eric S37 / Nick S38.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 plus Eric S37 / Nick S38 / Damir S39.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -135,6 +135,7 @@ import * as s63 from './scenes/s63.js';
 import * as s36 from './scenes/s36.js';
 import * as s37 from './scenes/s37.js';
 import * as s38 from './scenes/s38.js';
+import * as s39 from './scenes/s39.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2116,7 +2117,12 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's33-status-paused' }, targetSceneId: 's38-paused' },
       { id: 'nick-closed', label: t('Продолжить'), routeId: 'nick',
         when: { flag: 's33-status-closed' }, targetSceneId: 's36-after-m3-end' },
-      { id: 'damir', label: t('Продолжить'), routeId: 'damir',
+      { id: 'damir-active', label: t('Продолжить'), routeId: 'damir',
+        when: { flag: 's34-status-active' }, targetSceneId: 's39-active' },
+      { id: 'damir-paused', label: t('Продолжить'), routeId: 'damir',
+        when: { flag: 's34-status-paused' }, targetSceneId: 's39-paused' },
+      { id: 'damir-closed', label: t('Продолжить'), routeId: 'damir',
+        when: { flag: 's34-status-closed' },
         targetSceneId: 's36-after-m3-end' },
       { id: 'alice', label: t('Продолжить'), routeId: 'alice',
         targetSceneId: 's36-after-m3-end' },
@@ -2237,6 +2243,63 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's38-after-closed-end', beats: [
     { id: 's38-after-closed-end-beat', type: 'ending', endingId: 'm3-nick-day18-closed',
+      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
+  ] },
+  // Damir day 18: S34 paused/active opens distinct original paragraphs.
+  // The original post-breakup shared paragraph is retained, but a closed
+  // romance cannot enter the future date choice or S56 callback.
+  { id: 's39-active', beats: beats('s39-active', s39.s39Active), nextSceneId: 's39-c1' },
+  { id: 's39-paused', beats: beats('s39-paused', s39.s39Paused), nextSceneId: 's39-c1' },
+  { id: 's39-c1', beats: [
+    { id: 's39-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Назначить три новых свидания в разных местах'),
+        targetSceneId: 's39-c1-a', effects: [{ op: 'flag_set', id: 's39-status-continues', value: true }] },
+      { id: 'b', label: t('Закончить попытку снова стать парой'),
+        targetSceneId: 's39-c1-b', effects: [{ op: 'flag_set', id: 's39-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's39-c1-a', beats: beats('s39-c1-a', s39.s39C1A), nextSceneId: 's39-common' },
+  { id: 's39-c1-b', beats: beats('s39-c1-b', s39.s39C1B), nextSceneId: 's39-common' },
+  { id: 's39-common', beats: beats('s39-common', s39.s39Common),
+    nextSceneId: 's39-status-dispatch' },
+  { id: 's39-status-dispatch', beats: [
+    { id: 's39-status-choice', type: 'choice', choices: [
+      { id: 'continue', label: t('Продолжить'), when: { flag: 's39-status-continues' },
+        targetSceneId: 's39-c2' },
+      { id: 'closed', label: t('Продолжить'), when: { flag: 's39-status-closed' },
+        targetSceneId: 's39-after-closed-end' },
+    ] },
+  ] },
+  { id: 's39-c2', beats: [
+    { id: 's39-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Предложить ему рассказать о своём самом обычном дне'),
+        targetSceneId: 's39-c2-a', effects: [{ op: 'flag_set', id: 's39-memory-ordinary-day', value: true }] },
+      { id: 'b', label: t('Самой пригласить его на прогулку перед завтраком'),
+        targetSceneId: 's39-c2-b', effects: [{ op: 'flag_set', id: 's39-memory-morning-walk', value: true }] },
+    ] },
+  ] },
+  { id: 's39-c2-a', beats: beats('s39-c2-a', s39.s39C2A),
+    nextSceneId: 's39-s56-dispatch' },
+  { id: 's39-c2-b', beats: beats('s39-c2-b', s39.s39C2B),
+    nextSceneId: 's39-s56-dispatch' },
+  { id: 's39-s56-dispatch', beats: [
+    { id: 's39-s56-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's56-next-dish' },
+        targetSceneId: 's39-s56-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's56-next-chorus' },
+        targetSceneId: 's39-s56-b' },
+    ] },
+  ] },
+  { id: 's39-s56-a', beats: beats('s39-s56-a', s39.s39S56A),
+    nextSceneId: 's39-after-open-end' },
+  { id: 's39-s56-b', beats: beats('s39-s56-b', s39.s39S56B),
+    nextSceneId: 's39-after-open-end' },
+  { id: 's39-after-open-end', beats: [
+    { id: 's39-after-open-end-beat', type: 'ending', endingId: 'm3-damir-day18-open',
+      text: t('Технический фрагмент завершён. S57 ещё не перенесена.') },
+  ] },
+  { id: 's39-after-closed-end', beats: [
+    { id: 's39-after-closed-end-beat', type: 'ending', endingId: 'm3-damir-day18-closed',
       text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
   ] },
 ] };
