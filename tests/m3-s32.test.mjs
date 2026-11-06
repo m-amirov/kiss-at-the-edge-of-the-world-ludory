@@ -58,7 +58,14 @@ test('S49 enters Eric-only S32; three free authored relationship statuses remain
   }
   for (const id of ['a', 'b', 'c'])
     assert.equal(scene(`s32-c1-${id}`).nextSceneId, 's32-common');
-  assert.equal(scene('s32-common').nextSceneId, 's32-after-m3-end');
+  assert.equal(scene('s32-common').nextSceneId, 's32-status-dispatch');
+  assert.deepEqual(choice('s32-status-dispatch', 's32-status-choice').choices
+    .map(({ id, label, targetSceneId, when, effects }) =>
+      [id, label.ru, targetSceneId, when, effects]), [
+    ['a', 'Продолжить', 's32-after-m3-end', { flag: 's32-status-active' }, undefined],
+    ['b', 'Продолжить', 's32-after-m3-end', { flag: 's32-status-paused' }, undefined],
+    ['c', 'Продолжить', 's35-intro', { flag: 's32-status-closed' }, undefined],
+  ]);
   assert.equal(scene('s32-after-m3-end').beats[0].type, 'ending');
   assert.equal(scene('s50-intro'), undefined, 'closed S32 must not enter future S50');
   assert.deepEqual(catalogData.interactions, []);
@@ -215,7 +222,11 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON',
       assert.equal(flags[evening === 'a' ? 's28-evening-dance' : 's28-evening-quiet'], true);
       assert.equal(flags[evening === 'a' ? 's28-evening-quiet' : 's28-evening-dance'], undefined);
       const fresh = runtime(clone(run.get()));
-      walkUntil(fresh, (_beat, id) => id === 's32-after-m3-end');
+      walkUntil(fresh, (beat) => beat.id === 's32-status-choice');
+      for (const other of ['a', 'b', 'c'].filter((id) => id !== status))
+        rejectWithoutWrite(fresh, `narrative:choose:s32-status-choice:${other}`);
+      fresh.act(`narrative:choose:s32-status-choice:${status}`);
+      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro' : 's32-after-m3-end');
       assert.equal(fresh.get().routeIntent, 'eric');
       assert.equal(fresh.get().routeLock, 'eric');
       assert.equal(fresh.get().flags[statusFlags[status]], true);

@@ -87,7 +87,7 @@ test('S31/S62 attach only Alice route and retain three free privacy-safe decisio
     assert.equal(scene(`s31-c1-${id}`).nextSceneId, 's31-common');
     assert.equal(scene(`s31-c2-${id}`).nextSceneId, 's62-intro');
     assert.equal(scene(`s62-c1-${id}`).nextSceneId, 's62-common');
-    assert.equal(scene(`s62-callback-${id}`).nextSceneId, 's62-after-m3-end');
+    assert.equal(scene(`s62-callback-${id}`).nextSceneId, 's35-intro');
   }
   assert.equal(scene('s62-common').nextSceneId, 's62-callback-dispatch');
   assert.deepEqual(choice('s62-callback-dispatch', 's62-callback-choice').choices
@@ -97,7 +97,7 @@ test('S31/S62 attach only Alice route and retain three free privacy-safe decisio
     ['b', 'Продолжить', 's62-callback-b', { flag: 's31-self-breakfast' }, undefined],
   ]);
   assert.equal(scene('s59-after-m3-end'), undefined, 'obsolete technical S59 ending removed');
-  assert.equal(scene('s62-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s62-after-m3-end'), undefined, 'obsolete draft end removed');
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -269,7 +269,7 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
       chosen.act(`narrative:choose:s62-callback-choice:${day}`);
       assert.equal(chosen.get().sceneId, `s62-callback-${day}`);
       const fresh = runtime(clone(chosen.get()));
-      walkUntil(fresh, (_beat, id) => id === 's62-after-m3-end');
+      walkUntil(fresh, (_beat, id) => id === 's35-intro');
       assert.equal(fresh.get().routeIntent, 'alice');
       assert.equal(fresh.get().routeLock, 'alice');
       assert.equal(fresh.get().flags[day === 'a' ? 's31-self-letter' : 's31-self-breakfast'], true);
@@ -279,6 +279,72 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
         assert.equal(fresh.get().flags[forbidden], undefined);
       }
       assert.equal(fresh.get().flags['beach-footage-safe-only'], true);
+      // One genuine S01→Alice checkpoint exercises all eight S35/S63 authorial
+      // combinations; the outer loop above separately verifies all S62 entrances.
+      if (article === 'a' && day === 'a' && reply === 'a') {
+        const atS35 = clone(fresh.get());
+        for (const editorial of ['a', 'b']) for (const concert of ['a', 'b'])
+          for (const evening of ['a', 'b']) {
+            const solo = runtime(atS35);
+            walkUntil(solo, (beat) => beat.id === 's35-c1-choice');
+            rejectWithoutWrite(solo, 'narrative:choose:s35-c1-choice:premium');
+            const beforeEditorial = JSON.stringify(solo.get());
+            solo.act('narrative:choose:s35-c1-choice:' + (editorial === 'a' ? 'b' : 'a'));
+            solo.act('narrative:back');
+            assert.equal(JSON.stringify(solo.get()), beforeEditorial);
+            solo.act('narrative:choose:s35-c1-choice:' + editorial);
+            walkUntil(solo, (beat) => beat.id === 's63-c1-choice');
+            const beforeConcert = JSON.stringify(solo.get());
+            solo.act('narrative:choose:s63-c1-choice:' + (concert === 'a' ? 'b' : 'a'));
+            solo.act('narrative:back');
+            assert.equal(JSON.stringify(solo.get()), beforeConcert);
+            solo.act('narrative:choose:s63-c1-choice:' + concert);
+            walkUntil(solo, (beat) => beat.id === 's63-c2-choice');
+            const beforeEvening = JSON.stringify(solo.get());
+            solo.act('narrative:choose:s63-c2-choice:' + (evening === 'a' ? 'b' : 'a'));
+            solo.act('narrative:back');
+            assert.equal(JSON.stringify(solo.get()), beforeEvening);
+            solo.act('narrative:choose:s63-c2-choice:' + evening);
+            const finalState = clone(solo.get());
+            const resumed = runtime(finalState);
+            walkUntil(resumed, (_beat, id) => id === 's63-after-m3-end');
+            assert.equal(resumed.get().routeIntent, 'alice');
+            assert.equal(resumed.get().routeLock, 'alice');
+            assert.equal(resumed.get().flags[evening === 'a'
+              ? 's63-next-ticket' : 's63-next-venue'], true);
+            assert.equal(resumed.get().flags[evening === 'a'
+              ? 's63-next-venue' : 's63-next-ticket'], undefined);
+            for (const forbidden of ['article-published', 'inga-publish-approved',
+              'friend-message-sent', 'concert-booked', 's63-premium'])
+              assert.equal(resumed.get().flags[forbidden], undefined);
+            if (editorial === 'a' && concert === 'a' && evening === 'a') {
+              const forged = [
+                { ...finalState, routeLock: 'damir' },
+                { ...finalState, flags: { ...finalState.flags, 's63-next-ticket': false } },
+                { ...finalState, flags: { ...finalState.flags, 's63-next-venue': true } },
+                { ...finalState, actionLog: finalState.actionLog.map((entry) =>
+                  entry.beatId === 's35-c1-choice' ? { ...entry, optionId: 'b' } : entry) },
+                { ...finalState, actionLog: finalState.actionLog.map((entry) =>
+                  entry.beatId === 's63-c1-choice' ? { ...entry, optionId: 'b' } : entry) },
+                { ...finalState, actionLog: finalState.actionLog.map((entry) =>
+                  entry.beatId === 's63-c2-choice' ? { ...entry, optionId: 'b' } : entry) },
+              ];
+              for (const invalid of forged) {
+                const original = JSON.stringify(invalid);
+                let writes = 0;
+                const update = createNarrativeRuntimeUpdate({ graph: solo.graph, catalog: solo.catalog });
+                assert.throws(() => update({ deltaMs: 16, state: { narrative: invalid },
+                  inputs: [{ schemaVersion: 1, type: 'pointer',
+                    action: 'narrative:next:s63-c2-a-01', phase: 'up',
+                    timestamp: 204, source: 'renderer' }],
+                  setState() { writes += 1; },
+                }), /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+                assert.equal(writes, 0);
+                assert.equal(JSON.stringify(invalid), original);
+              }
+            }
+          }
+      }
     }
   }
 });

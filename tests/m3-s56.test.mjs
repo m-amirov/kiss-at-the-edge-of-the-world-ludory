@@ -38,10 +38,10 @@ test('S56 status guard only admits active/paused; closed bypasses romance toward
       [id, label.ru, targetSceneId, when, effects]), [
     ['a', 'Продолжить', 's56-active', { flag: 's34-status-active' }, undefined],
     ['b', 'Продолжить', 's56-paused', { flag: 's34-status-paused' }, undefined],
-    ['c', 'Продолжить', 's34-closed-after-m3-end', { flag: 's34-status-closed' }, undefined],
+    ['c', 'Продолжить', 's35-intro', { flag: 's34-status-closed' }, undefined],
   ]);
-  assert.equal(scene('s34-closed-after-m3-end').beats[0].type, 'ending');
-  assert.equal(scene('s35-intro'), undefined, 'S35 is not yet migrated');
+  assert.equal(scene('s34-closed-after-m3-end'), undefined, 'obsolete draft end removed');
+  assert.ok(scene('s35-intro'), 'closed relationships enter independent S35');
   for (const id of ['active', 'paused'])
     assert.equal(scene('s56-' + id).nextSceneId, 's56-c1-dispatch');
 });

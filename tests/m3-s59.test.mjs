@@ -61,7 +61,7 @@ test('S59 is mandatory after all S27 outcomes and songs are free route-neutral c
   assert.equal(scene('s59-common').nextSceneId, 's59-route-dispatch');
   assert.equal(scene('s59-route-dispatch').beats[0].id, 's59-route-choice');
   assert.equal(scene('s59-after-m3-end'), undefined);
-  assert.equal(scene('s62-after-m3-end').beats[0].endingId, 'm3-alice-s62-only');
+  assert.equal(scene('s62-after-m3-end'), undefined);
   assert.ok(scene('s28-intro'));
   assert.deepEqual(catalogData.interactions, []);
 });

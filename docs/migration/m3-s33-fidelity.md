@@ -19,7 +19,7 @@ Five original blocks / **15 Russian paragraphs**. Source checksums were independ
 - Only locked Nick's two authorial S52 callback paths enter S33. Eric (S28/S49/S32), Damir (S30/S55), and independent Alice (S31/S62) remain on their own branches. No general day-15 shared scene is invented.
 - The three **free** S33-C1 decisions record mutually exclusive local flags `s33-status-active|paused|closed` for later manuscript S53. Native N1 Back, actionLog and JSON replay govern them. S33 never grants implicit rights to expose personal footage, private quotes, files or recordings.
 - The deletion, edit and delivery of a teaser are **events narrated in the original manuscript**, not application side effects: no real file access, external message, consent, uploader or publisher is invoked. The pre-existing S29 footage choice and privacy state remain unchanged.
-- All three choice paths converge through the same verbatim common text and stop at the Draft-only marker `s33-after-m3-end`; S53 is **not implemented** and `closed` cannot enter romance content. An old *unpublished* save on the removed S52 Draft stop may require Restart; no save rewrite is claimed.
+- All three paths converge through the same verbatim common text. As of [S35/S63](m3-s35-s63-fidelity.md), guarded status continuation sends **closed** to S35/S63, and only `active/paused` to Draft-only `s33-after-m3-end` while S53 remains unimplemented. Closed can never enter future romantic S53. An old *unpublished* save on the removed S52 Draft stop may require Restart; no save rewrite is claimed.
 - The first game's Economy remains OFF: no crystal currency, paid choices, rewarded ads or IAP.
 
 ## Verification and blockers

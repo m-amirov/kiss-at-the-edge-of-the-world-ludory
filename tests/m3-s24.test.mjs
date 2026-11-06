@@ -325,5 +325,5 @@ test('S24 never enables economy or marks photo review as publishing consent',()=
   assert.deepEqual(catalogData.interactions,[]);
   assert.equal(scene('s25-after-m3-end'),undefined);
   assert.equal(scene('s58-after-m3-end'),undefined);
-  assert.equal(scene('s62-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s62-callback-a').nextSceneId,'s35-intro');
 });

@@ -51,7 +51,7 @@ test('S59 continues into only the selected locked route; Eric three choices free
     ['damir', 'damir', 's30-intro', 'Продолжить', undefined, undefined],
     ['alice', 'alice', 's31-intro', 'Продолжить', undefined, undefined],
   ]);
-  assert.equal(scene('s62-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s62-callback-a').nextSceneId, 's35-intro');
   const checks = [
     ['s28-intro', 's28-c1-choice', [
       ['a', 'Попросить Эрика показать более спокойную дорогу', 's28-c1-a'],

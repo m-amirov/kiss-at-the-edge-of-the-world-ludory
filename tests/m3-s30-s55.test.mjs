@@ -284,7 +284,7 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
         rejectWithoutWrite(fresh, 'narrative:choose:s34-status-choice:' + (status === 'a' ? 'b' : 'a'));
         fresh.act('narrative:choose:s34-status-choice:' + allowed);
         if (status === 'c') {
-          assert.equal(fresh.get().sceneId, 's34-closed-after-m3-end');
+          assert.equal(fresh.get().sceneId, 's35-intro');
         } else {
           assert.equal(fresh.get().sceneId, status === 'a' ? 's56-active' : 's56-paused');
           walkUntil(fresh, (beat) => beat.id === 's56-c1-choice');

@@ -57,7 +57,14 @@ test('only both Nick S52 callbacks enter free S33 and status branches converge',
       assert.equal(option[forbidden], undefined, option.id + ' ' + forbidden);
   for (const id of ['a', 'b', 'c'])
     assert.equal(scene('s33-c1-' + id).nextSceneId, 's33-common');
-  assert.equal(scene('s33-common').nextSceneId, 's33-after-m3-end');
+  assert.equal(scene('s33-common').nextSceneId, 's33-status-dispatch');
+  assert.deepEqual(choice('s33-status-dispatch', 's33-status-choice').choices
+    .map(({ id, label, targetSceneId, when, effects }) =>
+      [id, label.ru, targetSceneId, when, effects]), [
+    ['a', 'Продолжить', 's33-after-m3-end', { flag: 's33-status-active' }, undefined],
+    ['b', 'Продолжить', 's33-after-m3-end', { flag: 's33-status-paused' }, undefined],
+    ['c', 'Продолжить', 's35-intro', { flag: 's33-status-closed' }, undefined],
+  ]);
   assert.equal(scene('s33-after-m3-end').beats[0].type, 'ending');
   assert.equal(scene('s53-intro'), undefined, 'closed S33 must not enter unreleased S53');
   assert.deepEqual(catalogData.interactions, []);
@@ -212,7 +219,11 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and exclusive sta
       for (const [key, flag] of Object.entries(statusFlags))
         assert.equal(run.get().flags[flag], key === status ? true : undefined, flag);
       const fresh = runtime(clone(run.get()));
-      walkUntil(fresh, (_beat, id) => id === 's33-after-m3-end');
+      walkUntil(fresh, (beat) => beat.id === 's33-status-choice');
+      for (const other of ['a', 'b', 'c'].filter((id) => id !== status))
+        rejectWithoutWrite(fresh, `narrative:choose:s33-status-choice:${other}`);
+      fresh.act(`narrative:choose:s33-status-choice:${status}`);
+      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro' : 's33-after-m3-end');
       assert.equal(fresh.get().routeIntent, 'nick');
       assert.equal(fresh.get().routeLock, 'nick');
       assert.equal(fresh.get().flags[statusFlags[status]], true);

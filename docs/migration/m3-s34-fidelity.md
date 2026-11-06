@@ -16,7 +16,7 @@ Five distinct original text blocks, **17 paragraphs**, independently derived fro
 
 - Both S55 callback scenes enter S34; only the N1-locked Damir route can reach those scenes. Eric, Nick and independent Alice routes remain separate.
 - S34-C1 retains all **three free manuscript labels** and mutually exclusive `s34-status-active|paused|closed` flags. They represent Alice's relationship intention, not a move, clinic contract, media permission, or monetary transaction. Existing N1 actionLog, Back, and JSON replay govern persistence; no invented N1 `routeStatus` setter.
-- At the S34 stage all choices stopped at the **Draft-only** `s34-after-m3-end` marker. Subsequent [S56 migration](m3-s56-fidelity.md) now replaces that obsolete end with guarded `active/paused` entries into S56 and a separate `closed` Draft stop pending independent S35. No closed route enters romantic scenes. Superseded unpublished S55/S34 stop saves are not automatically migrated, and old snapshots might need Restart.
+- At the S34 stage all choices stopped at Draft-only `s34-after-m3-end`. Subsequent [S56 migration](m3-s56-fidelity.md) guarded `active/paused` entries into S56; [S35/S63](m3-s35-s63-fidelity.md) now also sends `closed` to the independent continuation, removing obsolete `s34-closed-after-m3-end`. No closed route enters romantic scenes. Superseded unpublished S55/S34 stop saves are not automatically migrated, and old snapshots might need Restart.
 - First-game Economy OFF (no crystals/premium/rewarded/IAP); fictional text messages/clinic interview/dinner do not issue real messages, uploads, permissions or employment decisions.
 
 ## Verification

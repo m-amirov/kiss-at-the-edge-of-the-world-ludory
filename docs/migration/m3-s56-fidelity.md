@@ -18,9 +18,9 @@ Seven independent blocks, **9 Russian paragraphs**, original hashes computed fro
 
 ## Routing and constraints
 
-- S34-C1 stores three exclusive existing N1 flags. A guarded `s34-status-choice` leads to S56 only for `active` or `paused`, each with different authorial introduction. Closed cannot enter S56 and waits at **Draft-only** `s34-closed-after-m3-end` until independent S35 is migrated; no fictional S35 prose is invented.
+- S34-C1 stores three exclusive existing N1 flags. A guarded `s34-status-choice` leads to S56 only for `active` or `paused`, each with different authorial introduction. The subsequent [S35/S63 migration](m3-s35-s63-fidelity.md) routes **closed** into authored S35 instead of the superseded Draft-only `s34-closed-after-m3-end`.
 - Both statuses share the two authorial free S56 choices: C1 stays for one song or walks home (no invented effect); C2 chooses a dish or singing chorus. C2 writes only exclusive `s56-next-dish|s56-next-chorus` flags for future original S39 payoff.
-- Both C2 outcomes reach **Draft-only** `s56-after-m3-end` pending S36/S39; closed path must instead continue to S35/S63 once actually ported. Previously unpublished `s34-after-m3-end` is removed, old draft saves at that marker may need Restart; there is no unverified migration claim.
+- Both C2 outcomes reach **Draft-only** `s56-after-m3-end` pending S36/S39; closed path now continues to S35/S63. Previously unpublished `s34-after-m3-end` and `s34-closed-after-m3-end` are removed; old draft saves at those markers may need Restart, with no unverified migration claim.
 - S56 contains no real media, messages, clinic job/relocation consent, upload or publication actions; all choices free, Economy disabled in first game.
 
 ## Verification and open gates

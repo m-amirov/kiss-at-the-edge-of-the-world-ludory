@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/Nick S33/Damir S34/S56.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/Nick S33/Damir S34/S56/Alice S35/S63.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -128,6 +128,8 @@ import * as s32 from './scenes/s32.js';
 import * as s33 from './scenes/s33.js';
 import * as s34 from './scenes/s34.js';
 import * as s56 from './scenes/s56.js';
+import * as s35 from './scenes/s35.js';
+import * as s63 from './scenes/s63.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1765,7 +1767,17 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's32-c1-b', beats: beats('s32-c1-b', s32.s32C1B), nextSceneId: 's32-common' },
   { id: 's32-c1-c', beats: beats('s32-c1-c', s32.s32C1C), nextSceneId: 's32-common' },
   { id: 's32-common', beats: beats('s32-common', s32.s32Common),
-    nextSceneId: 's32-after-m3-end' },
+    nextSceneId: 's32-status-dispatch' },
+  { id: 's32-status-dispatch', beats: [
+    { id: 's32-status-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's32-after-m3-end',
+        when: { flag: 's32-status-active' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's32-after-m3-end',
+        when: { flag: 's32-status-paused' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's35-intro',
+        when: { flag: 's32-status-closed' } },
+    ] },
+  ] },
   { id: 's32-after-m3-end', beats: [
     { id: 's32-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-s32-only',
       text: t('Технический фрагмент завершён. Следующее продолжение дня 15 ещё не перенесено.') },
@@ -1832,7 +1844,17 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's33-c1-b', beats: beats('s33-c1-b', s33.s33C1B), nextSceneId: 's33-common' },
   { id: 's33-c1-c', beats: beats('s33-c1-c', s33.s33C1C), nextSceneId: 's33-common' },
   { id: 's33-common', beats: beats('s33-common', s33.s33Common),
-    nextSceneId: 's33-after-m3-end' },
+    nextSceneId: 's33-status-dispatch' },
+  { id: 's33-status-dispatch', beats: [
+    { id: 's33-status-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's33-after-m3-end',
+        when: { flag: 's33-status-active' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's33-after-m3-end',
+        when: { flag: 's33-status-paused' } },
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's35-intro',
+        when: { flag: 's33-status-closed' } },
+    ] },
+  ] },
   { id: 's33-after-m3-end', beats: [
     { id: 's33-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s33-only',
       text: t('Технический фрагмент завершён. Следующая сцена маршрута Ника ещё не перенесена.') },
@@ -1908,13 +1930,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's34-status-active' } },
       { id: 'b', label: t('Продолжить'), targetSceneId: 's56-paused',
         when: { flag: 's34-status-paused' } },
-      { id: 'c', label: t('Продолжить'), targetSceneId: 's34-closed-after-m3-end',
+      { id: 'c', label: t('Продолжить'), targetSceneId: 's35-intro',
         when: { flag: 's34-status-closed' } },
     ] },
-  ] },
-  { id: 's34-closed-after-m3-end', beats: [
-    { id: 's34-closed-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-closed-s35-pending',
-      text: t('Романтическая ветка завершена. Самостоятельная сцена S35 ещё не перенесена.') },
   ] },
   { id: 's56-active', beats: beats('s56-active', s56.s56Active),
     nextSceneId: 's56-c1-dispatch' },
@@ -1990,12 +2008,50 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's62-callback-a', beats: beats('s62-callback-a', s62.s62CallbackA),
-    nextSceneId: 's62-after-m3-end' },
+    nextSceneId: 's35-intro' },
   { id: 's62-callback-b', beats: beats('s62-callback-b', s62.s62CallbackB),
-    nextSceneId: 's62-after-m3-end' },
-  { id: 's62-after-m3-end', beats: [
-    { id: 's62-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-s62-only',
-      text: t('Технический фрагмент завершён. Следующая общая сцена ещё не перенесена.') },
+    nextSceneId: 's35-intro' },
+  // Independent day 16: authored editorial privacy decision then a concert for one.
+  // The photograph and draft correspondence are narrative, not consent or external actions.
+  { id: 's35-intro', beats: [
+    ...beats('s35-intro', s35.s35Intro),
+    { id: 's35-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Сохранить согласованные прямые цитаты и убрать личные подробности'),
+        targetSceneId: 's35-c1-a' },
+      { id: 'b', label: t('Пересобрать материал вокруг собственных наблюдений'),
+        targetSceneId: 's35-c1-b' },
+    ] },
+  ] },
+  { id: 's35-c1-a', beats: beats('s35-c1-a', s35.s35C1A), nextSceneId: 's35-common' },
+  { id: 's35-c1-b', beats: beats('s35-c1-b', s35.s35C1B), nextSceneId: 's35-common' },
+  { id: 's35-common', beats: beats('s35-common', s35.s35Common), nextSceneId: 's63-intro' },
+  { id: 's63-intro', beats: [
+    ...beats('s63-intro', s63.s63Intro),
+    { id: 's63-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Остаться на короткую встречу с музыкантами'),
+        targetSceneId: 's63-c1-a' },
+      { id: 'b', label: t('Вернуться в гостиницу пешком, не задерживаясь'),
+        targetSceneId: 's63-c1-b' },
+    ] },
+  ] },
+  { id: 's63-c1-a', beats: beats('s63-c1-a', s63.s63C1A), nextSceneId: 's63-common' },
+  { id: 's63-c1-b', beats: beats('s63-c1-b', s63.s63C1B), nextSceneId: 's63-common' },
+  { id: 's63-common', beats: [
+    ...beats('s63-common', s63.s63Common),
+    { id: 's63-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Сохранить билет и написать несколько строк для себя'),
+        targetSceneId: 's63-c2-a', effects: [{ op: 'flag_set', id: 's63-next-ticket', value: true }] },
+      { id: 'b', label: t('Спросить соседку по ряду о следующем концерте'),
+        targetSceneId: 's63-c2-b', effects: [{ op: 'flag_set', id: 's63-next-venue', value: true }] },
+    ] },
+  ] },
+  { id: 's63-c2-a', beats: beats('s63-c2-a', s63.s63C2A),
+    nextSceneId: 's63-after-m3-end' },
+  { id: 's63-c2-b', beats: beats('s63-c2-b', s63.s63C2B),
+    nextSceneId: 's63-after-m3-end' },
+  { id: 's63-after-m3-end', beats: [
+    { id: 's63-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-s63-only',
+      text: t('Технический фрагмент завершён. Следующая самостоятельная сцена ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
