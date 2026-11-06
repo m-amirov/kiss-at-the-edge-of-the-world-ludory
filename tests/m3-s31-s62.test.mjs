@@ -307,9 +307,18 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
             solo.act('narrative:choose:s63-c2-choice:' + evening);
             const finalState = clone(solo.get());
             const resumed = runtime(finalState);
-            walkUntil(resumed, (_beat, id) => id === 's63-after-m3-end');
+            walkUntil(resumed, (beat) => beat.id === 's36-c1-choice');
+            rejectWithoutWrite(resumed, 'narrative:choose:s36-c1-choice:premium');
+            const beforeS36 = JSON.stringify(resumed.get());
+            resumed.act('narrative:choose:s36-c1-choice:' + (evening === 'a' ? 'b' : 'a'));
+            resumed.act('narrative:back');
+            assert.equal(JSON.stringify(resumed.get()), beforeS36, 'S36-C1 Back on Alice route');
+            resumed.act('narrative:choose:s36-c1-choice:' + evening);
+            const throughS36 = runtime(clone(resumed.get()));
+            walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
             assert.equal(resumed.get().routeIntent, 'alice');
             assert.equal(resumed.get().routeLock, 'alice');
+            assert.equal(throughS36.get().routeLock, 'alice');
             assert.equal(resumed.get().flags[evening === 'a'
               ? 's63-next-ticket' : 's63-next-venue'], true);
             assert.equal(resumed.get().flags[evening === 'a'

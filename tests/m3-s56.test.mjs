@@ -64,8 +64,8 @@ test('S56 both source choices stay free, C2 retains exclusive S39 callback prove
       [{ op: 'flag_set', id: 's56-next-chorus', value: true }]],
   ]);
   for (const id of ['a', 'b'])
-    assert.equal(scene('s56-c2-' + id).nextSceneId, 's56-after-m3-end');
-  assert.equal(scene('s56-after-m3-end').beats[0].type, 'ending');
+    assert.equal(scene('s56-c2-' + id).nextSceneId, 's36-intro');
+  assert.equal(scene('s56-after-m3-end'), undefined);
   assert.equal(scene('s39-intro'), undefined, 'S39 is not yet migrated');
   for (const node of ['s56-c1-dispatch', 's56-common']) {
     const decision = scene(node).beats.find((beat) => beat.type === 'choice');

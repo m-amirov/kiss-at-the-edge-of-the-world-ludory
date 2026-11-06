@@ -1,5 +1,7 @@
 # M3 — Nick S53 «Один день без камеры» (day 16)
 
+**Current continuation:** both S53-C2 options now enter shared day-17 S36; the former `s53-after-m3-end` stop described below is historical evidence for the prior stage. See [S36 fidelity](m3-s36-fidelity.md).
+
 ## Source and exact text
 
 - Pinned read-only original: `kiss-at-the-edge-of-the-world@1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c`, `content/season-1-literary-episode-08.md` lines 141–181. EP08 whole-file SHA-256: `181f05d7d838aeaf3b21b6b18ad8b01395aff3dc0534a51f01281c678309f900`.

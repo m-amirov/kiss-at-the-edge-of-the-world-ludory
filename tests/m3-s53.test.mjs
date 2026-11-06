@@ -55,8 +55,8 @@ test('S53 active/paused require Nick S33 status; closed leads to independent rou
     opts.map(([id, label, target]) => [id, label, target, undefined, undefined]));
   for (const id of ['a', 'b']) {
     assert.equal(scene('s53-c1-' + id)?.nextSceneId, 's53-common');
-    assert.equal(scene('s53-c2-' + id)?.nextSceneId, 's53-after-m3-end');
+    assert.equal(scene('s53-c2-' + id)?.nextSceneId, 's36-intro');
   }
-  assert.equal(scene('s53-after-m3-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s53-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });

@@ -236,6 +236,31 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
       for (const forbidden of ['eric-quote-released', 's32-premium', 'eric-trip-planned',
         'alice-work-abandoned', 'article-published'])
         assert.equal(fresh.get().flags[forbidden], undefined);
+      if (status === 'c' && path === 'a' && evening === 'a' && city === 'a') {
+        walkUntil(fresh, (beat) => beat.id === 's35-c1-choice');
+        fresh.act('narrative:choose:s35-c1-choice:a');
+        walkUntil(fresh, (beat) => beat.id === 's63-c1-choice');
+        fresh.act('narrative:choose:s63-c1-choice:b');
+        walkUntil(fresh, (beat) => beat.id === 's63-c2-choice');
+        fresh.act('narrative:choose:s63-c2-choice:a');
+        const closed = runtime(clone(fresh.get()));
+        walkUntil(closed, (beat) => beat.id === 's36-c1-choice');
+        rejectWithoutWrite(closed, 'narrative:choose:s36-c1-choice:premium');
+        const before = JSON.stringify(closed.get());
+        closed.act('narrative:choose:s36-c1-choice:b');
+        closed.act('narrative:back');
+        assert.equal(JSON.stringify(closed.get()), before, 'Eric-closed S36 Back');
+        closed.act('narrative:choose:s36-c1-choice:a');
+        const atEnd = runtime(clone(closed.get()));
+        walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
+        assert.equal(atEnd.get().routeLock, 'eric');
+        assert.equal(atEnd.get().flags['s32-status-closed'], true);
+        assert.equal(atEnd.get().flags['s32-status-active'], undefined);
+        assert.equal(atEnd.get().flags['s32-status-paused'], undefined);
+        assert.equal(atEnd.get().flags['s63-next-ticket'], true);
+        assert.equal(atEnd.get().flags['s63-next-venue'], undefined);
+        assert.deepEqual(atEnd.get().flags, closed.get().flags);
+      }
       if (status !== 'c') {
         walkUntil(fresh, (beat) => beat.id === 's50-c1-choice');
         rejectWithoutWrite(fresh, 'narrative:choose:s50-c1-choice:invalid');
@@ -248,8 +273,17 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         rejectWithoutWrite(fresh, 'narrative:choose:s50-c2-choice:invalid');
         const resumed = runtime(clone(fresh.get()));
         resumed.act(`narrative:choose:s50-c2-choice:${evening}`);
-        walkUntil(resumed, (beat) => beat.id === 's50-after-m3-end-beat');
+        walkUntil(resumed, (beat) => beat.id === 's36-c1-choice');
+        rejectWithoutWrite(resumed, 'narrative:choose:s36-c1-choice:premium');
+        const beforeS36 = JSON.stringify(resumed.get());
+        resumed.act('narrative:choose:s36-c1-choice:' + (path === 'a' ? 'b' : 'a'));
+        resumed.act('narrative:back');
+        assert.equal(JSON.stringify(resumed.get()), beforeS36, 'S36-C1 Back on Eric route');
+        resumed.act('narrative:choose:s36-c1-choice:' + path);
+        const throughS36 = runtime(clone(resumed.get()));
+        walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(resumed.get().routeLock, 'eric');
+        assert.equal(throughS36.get().routeLock, 'eric');
         assert.equal(resumed.get().flags[statusFlags[status]], true);
         for (const forbidden of ['s50-premium', 's50-purchase',
           'eric-family-commitment', 'eric-photo-published'])

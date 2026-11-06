@@ -57,8 +57,8 @@ test('S50 guards Eric active/paused, preserves closed independent exit and two f
   }
   for (const branch of ['a', 'b']) {
     assert.equal(scene(`s50-c1-${branch}`).nextSceneId, 's50-common');
-    assert.equal(scene(`s50-c2-${branch}`).nextSceneId, 's50-after-m3-end');
+    assert.equal(scene(`s50-c2-${branch}`).nextSceneId, 's36-intro');
   }
-  assert.equal(scene('s50-after-m3-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s50-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });

@@ -235,6 +235,31 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
       for (const forbidden of ['nick-quote-released', 's33-publish-approved',
         's33-premium', 'teaser-uploaded', 'personal-recordings-deleted'])
         assert.equal(fresh.get().flags[forbidden], undefined);
+      if (status === 'c' && clip === 'a' && hour === 'a' && reply === 'a') {
+        walkUntil(fresh, (beat) => beat.id === 's35-c1-choice');
+        fresh.act('narrative:choose:s35-c1-choice:b');
+        walkUntil(fresh, (beat) => beat.id === 's63-c1-choice');
+        fresh.act('narrative:choose:s63-c1-choice:a');
+        walkUntil(fresh, (beat) => beat.id === 's63-c2-choice');
+        fresh.act('narrative:choose:s63-c2-choice:b');
+        const closed = runtime(clone(fresh.get()));
+        walkUntil(closed, (beat) => beat.id === 's36-c1-choice');
+        rejectWithoutWrite(closed, 'narrative:choose:s36-c1-choice:premium');
+        const before = JSON.stringify(closed.get());
+        closed.act('narrative:choose:s36-c1-choice:a');
+        closed.act('narrative:back');
+        assert.equal(JSON.stringify(closed.get()), before, 'Nick-closed S36 Back');
+        closed.act('narrative:choose:s36-c1-choice:b');
+        const atEnd = runtime(clone(closed.get()));
+        walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
+        assert.equal(atEnd.get().routeLock, 'nick');
+        assert.equal(atEnd.get().flags['s33-status-closed'], true);
+        assert.equal(atEnd.get().flags['s33-status-active'], undefined);
+        assert.equal(atEnd.get().flags['s33-status-paused'], undefined);
+        assert.equal(atEnd.get().flags['s63-next-venue'], true);
+        assert.equal(atEnd.get().flags['s63-next-ticket'], undefined);
+        assert.deepEqual(atEnd.get().flags, closed.get().flags);
+      }
       if (status !== 'c') {
         walkUntil(fresh, (beat) => beat.id === 's53-c1-choice');
         rejectWithoutWrite(fresh, 'narrative:choose:s53-c1-choice:premium');
@@ -247,8 +272,17 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         rejectWithoutWrite(fresh, 'narrative:choose:s53-c2-choice:purchase');
         const restored = runtime(clone(fresh.get()));
         restored.act('narrative:choose:s53-c2-choice:' + reply);
-        walkUntil(restored, (beat) => beat.id === 's53-after-m3-end-beat');
+        walkUntil(restored, (beat) => beat.id === 's36-c1-choice');
+        rejectWithoutWrite(restored, 'narrative:choose:s36-c1-choice:premium');
+        const beforeS36 = JSON.stringify(restored.get());
+        restored.act('narrative:choose:s36-c1-choice:' + (hour === 'a' ? 'b' : 'a'));
+        restored.act('narrative:back');
+        assert.equal(JSON.stringify(restored.get()), beforeS36, 'S36-C1 Back on Nick route');
+        restored.act('narrative:choose:s36-c1-choice:' + hour);
+        const throughS36 = runtime(clone(restored.get()));
+        walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(restored.get().routeLock, 'nick');
+        assert.equal(throughS36.get().routeLock, 'nick');
         assert.equal(restored.get().flags[statusFlags[status]], true);
         for (const forbidden of ['s53-premium', 's53-purchase',
           's53-share-approved', 'nick-date-booked', 's53-photo-uploaded',

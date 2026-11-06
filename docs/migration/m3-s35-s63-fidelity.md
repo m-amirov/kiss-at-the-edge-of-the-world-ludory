@@ -1,5 +1,7 @@
 # M3 — S35 «День 16. Не дать им чужих слов» → S63 «Концерт для одного человека»
 
+**Current continuation:** both S63-C2 options now enter shared day-17 S36 for Alice and all closed romantic lines; the former `s63-after-m3-end` stop described below is historical evidence. See [S36 fidelity](m3-s36-fidelity.md).
+
 **Pinned source:** read-only `m-amirov/kiss-at-the-edge-of-the-world@1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c`, `content/season-1-literary-episode-08.md` lines 273–328; whole EP08 SHA-256 `181f05d7d838aeaf3b21b6b18ad8b01395aff3dc0534a51f01281c678309f900`. The source and framework were not changed.
 
 ## Original fidelity

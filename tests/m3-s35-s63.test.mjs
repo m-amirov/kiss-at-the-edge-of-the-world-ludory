@@ -69,10 +69,10 @@ test('S35 article and S63 concert decisions follow only authorial free outcomes'
   for (const id of ['a', 'b']) {
     assert.equal(scene(`s35-c1-${id}`).nextSceneId, 's35-common');
     assert.equal(scene(`s63-c1-${id}`).nextSceneId, 's63-common');
-    assert.equal(scene(`s63-c2-${id}`).nextSceneId, 's63-after-m3-end');
+    assert.equal(scene(`s63-c2-${id}`).nextSceneId, 's36-intro');
   }
   assert.equal(scene('s35-common').nextSceneId, 's63-intro');
-  assert.equal(scene('s63-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s63-after-m3-end'), undefined);
   assert.equal(scene('s40-intro'), undefined, 'future S40 remains unported');
   assert.deepEqual(catalogData.interactions, []);
 });
