@@ -19,6 +19,6 @@
 ## Task 3 — evidence and publish to Draft only
 
 - [x] Update README and fidelity evidence; syntax, manifest hash, independent read-only review **PASS (0/0/0)**, full npm test **185/185 PASS**.
-- [ ] Commit scoped files and CAS sync exact tree to existing Draft PR #2, verify remote base/main untouched and CI status honestly.
+- [x] Commit scoped files and CAS sync exact tree to existing Draft PR #2, verify remote base/main untouched and CI status honestly (10/10 blobs, exact `3d346992...`, `main` unchanged, CI NOT_RUN).
 
 **Constraints:** Original `1e775f1` and Ludory read-only; no main merge, no release, no platform publication; no Economy for first game; no consent/relocation inferred.
