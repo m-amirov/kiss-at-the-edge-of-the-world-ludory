@@ -49,8 +49,7 @@ test('S34 is a Damir-only day-16 choice with three free status outcomes', () => 
   }
   for (const id of ['a', 'b', 'c'])
     assert.equal(scene('s34-c1-' + id).nextSceneId, 's34-common');
-  assert.equal(scene('s34-common').nextSceneId, 's34-after-m3-end');
-  assert.equal(scene('s34-after-m3-end').beats[0].type, 'ending');
-  assert.equal(scene('s56-intro'), undefined, 'S56 must not be entered before migration');
+  assert.equal(scene('s34-common').nextSceneId, 's34-status-dispatch');
+  assert.equal(scene('s34-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });
