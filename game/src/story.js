@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49, Nick S29/S52 and Damir S30/S55.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49, Nick S29/S52, Damir S30/S55 and independent Alice S31/S62.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -122,6 +122,8 @@ import * as s29 from './scenes/s29.js';
 import * as s52 from './scenes/s52.js';
 import * as s30 from './scenes/s30.js';
 import * as s55 from './scenes/s55.js';
+import * as s31 from './scenes/s31.js';
+import * as s62 from './scenes/s62.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1695,7 +1697,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
       { id: 'eric', label: t('Продолжить'), routeId: 'eric', targetSceneId: 's28-intro' },
       { id: 'nick', label: t('Продолжить'), routeId: 'nick', targetSceneId: 's29-intro' },
       { id: 'damir', label: t('Продолжить'), routeId: 'damir', targetSceneId: 's30-intro' },
-      { id: 'alice', label: t('Продолжить'), routeId: 'alice', targetSceneId: 's59-after-m3-end' },
+      { id: 'alice', label: t('Продолжить'), routeId: 'alice', targetSceneId: 's31-intro' },
     ] },
   ] },
   // Eric-exclusive day-14 arc: two free local S28 choices and one free S49 choice.
@@ -1847,9 +1849,56 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     { id: 's55-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-s55-only',
       text: t('Технический фрагмент завершён. Следующая сцена маршрута Дамира ещё не перенесена.') },
   ] },
-  { id: 's59-after-m3-end', beats: [
-    { id: 's59-after-m3-end-beat', type: 'ending', endingId: 'm3-s59-only',
-      text: t('Технический фрагмент завершён. Выбранный маршрут дня 14 ещё не перенесён.') },
+  // Independent Alice arc: Inga's participation requires separate agreement;
+  // no choice grants blanket publication rights or sends a real message.
+  { id: 's31-intro', beats: [
+    ...beats('s31-intro', s31.s31Intro),
+    { id: 's31-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Сделать героиней Ингу — после отдельного согласования'),
+        targetSceneId: 's31-c1-a' },
+      { id: 'b', label: t('Рассказать об общей поездке без чужих личных подробностей'),
+        targetSceneId: 's31-c1-b' },
+    ] },
+  ] },
+  { id: 's31-c1-a', beats: beats('s31-c1-a', s31.s31C1A), nextSceneId: 's31-common' },
+  { id: 's31-c1-b', beats: beats('s31-c1-b', s31.s31C1B), nextSceneId: 's31-common' },
+  { id: 's31-common', beats: [
+    ...beats('s31-common', s31.s31Common),
+    { id: 's31-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Записать короткое письмо себе домой'),
+        targetSceneId: 's31-c2-a', effects: [{ op: 'flag_set', id: 's31-self-letter', value: true }] },
+      { id: 'b', label: t('Самостоятельно выбрать место для завтрашнего завтрака'),
+        targetSceneId: 's31-c2-b', effects: [{ op: 'flag_set', id: 's31-self-breakfast', value: true }] },
+    ] },
+  ] },
+  { id: 's31-c2-a', beats: beats('s31-c2-a', s31.s31C2A), nextSceneId: 's62-intro' },
+  { id: 's31-c2-b', beats: beats('s31-c2-b', s31.s31C2B), nextSceneId: 's62-intro' },
+  { id: 's62-intro', beats: [
+    ...beats('s62-intro', s62.s62Intro),
+    { id: 's62-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Подруге, с которой давно не виделась'), targetSceneId: 's62-c1-a' },
+      { id: 'b', label: t('Никому: оставить этот день без отчёта'), targetSceneId: 's62-c1-b' },
+    ] },
+  ] },
+  { id: 's62-c1-a', beats: beats('s62-c1-a', s62.s62C1A), nextSceneId: 's62-common' },
+  { id: 's62-c1-b', beats: beats('s62-c1-b', s62.s62C1B), nextSceneId: 's62-common' },
+  { id: 's62-common', beats: beats('s62-common', s62.s62Common),
+    nextSceneId: 's62-callback-dispatch' },
+  { id: 's62-callback-dispatch', beats: [
+    { id: 's62-callback-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's62-callback-a',
+        when: { flag: 's31-self-letter' } },
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's62-callback-b',
+        when: { flag: 's31-self-breakfast' } },
+    ] },
+  ] },
+  { id: 's62-callback-a', beats: beats('s62-callback-a', s62.s62CallbackA),
+    nextSceneId: 's62-after-m3-end' },
+  { id: 's62-callback-b', beats: beats('s62-callback-b', s62.s62CallbackB),
+    nextSceneId: 's62-after-m3-end' },
+  { id: 's62-after-m3-end', beats: [
+    { id: 's62-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-s62-only',
+      text: t('Технический фрагмент завершён. Следующая общая сцена ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

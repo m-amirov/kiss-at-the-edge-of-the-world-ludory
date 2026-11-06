@@ -110,7 +110,7 @@ test('S17-C1 and S17-C2 each have four free authored paths, without route lock',
   assert.equal(scene('s24-after-m3-end'),undefined);
   assert.equal(scene('s25-after-m3-end'),undefined);
   assert.equal(scene('s58-after-m3-end'),undefined);
-  assert.equal(scene('s59-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s62-after-m3-end').beats[0].type,'ending');
   for(const id of ['s18','s19','s20']){
     assert.equal(scene(id+'-m3-end'),undefined);
     assert.equal(scene(id+'-after-m3-end'),undefined);

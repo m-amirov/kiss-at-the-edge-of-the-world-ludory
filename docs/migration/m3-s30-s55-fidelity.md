@@ -28,6 +28,7 @@ All **12 independent source blocks / 30 Russian paragraphs** are transferred ver
 - S30-C2 offers two free alternatives for spending time: a new song/walk or funny souvenirs. Only the exclusive flags `s30-time-song` and `s30-time-souvenirs` are set, and they determine exactly one post-S55 authored callback after the shared S55 paragraph. No invented affection/relationship scores.
 - S55-C1 has two free personal alternatives. The photograph sent privately to Damir in authorial prose does **not** grant general sharing/publication permission; no file upload, camera access or SDK-based media transfer is implemented. First-game Economy remains OFF: no premium, currency, rewarded ads, IAP or entitlement.
 - `s55-after-m3-end` is a **Draft-only technical marker**, not a published story ending. The source narrative chronology/text is preserved exactly without rewriting.
+- Subsequent [S31/S62 independent Alice migration](m3-s31-s62-fidelity.md) completed the fourth S59 route and removed the obsolete `s59-after-m3-end` marker; S30/S55 itself remains untouched.
 
 ## Saves and release blockers
 

@@ -48,7 +48,7 @@ test('S30/S55 add only Damir-locked route, three free choices and exact guarded 
     ['eric', 'eric', 's28-intro', undefined],
     ['nick', 'nick', 's29-intro', undefined],
     ['damir', 'damir', 's30-intro', undefined],
-    ['alice', 'alice', 's59-after-m3-end', undefined],
+    ['alice', 'alice', 's31-intro', undefined],
   ]);
   for (const option of gate.choices) assert.equal(option.label.ru, 'Продолжить');
   const authored = [
@@ -212,7 +212,7 @@ test('real N1 S59 accepts only the locked Damir route and preserves other routes
     run.act(`narrative:choose:s59-route-choice:${route}`);
     const expected = route === 'damir' ? 's30-intro'
       : route === 'nick' ? 's29-intro'
-        : route === 'eric' ? 's28-intro' : 's59-after-m3-end';
+        : route === 'eric' ? 's28-intro' : 's31-intro';
     assert.equal(run.get().sceneId, expected);
     run.act('narrative:back');
     assert.equal(JSON.stringify(run.get()), before);

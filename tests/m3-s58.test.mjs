@@ -274,7 +274,7 @@ test('N1 rejects forged S58 shopping flags and replay provenance without writes'
 test('S58 remains group dinner, not a monetization or S26 route lock',()=>{
   assert.deepEqual(catalogData.interactions,[]);
   assert.equal(scene('s58-after-m3-end'),undefined);
-  assert.equal(scene('s59-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s62-after-m3-end').beats[0].type,'ending');
   const text=dialogue('s58-common-b').join('\n');
   assert.match(text,/не как три возможных ответа на один вопрос/);
 });

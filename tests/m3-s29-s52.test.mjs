@@ -49,7 +49,7 @@ test('S29/S52 have three free decisions and one exact guarded C2 payoff', () => 
     ['eric', 'eric', 's28-intro', undefined],
     ['nick', 'nick', 's29-intro', undefined],
     ['damir', 'damir', 's30-intro', undefined],
-    ['alice', 'alice', 's59-after-m3-end', undefined],
+    ['alice', 'alice', 's31-intro', undefined],
   ]);
   for (const option of gate.choices) assert.equal(option.label.ru, 'Продолжить');
   const authored = [
@@ -214,7 +214,7 @@ test('real N1 Nick route gate rejects Eric/Damir/Alice entry, Back and JSON', ()
     const before = JSON.stringify(run.get());
     run.act(`narrative:choose:s59-route-choice:${route}`);
     const expected = route === 'nick' ? 's29-intro'
-      : route === 'eric' ? 's28-intro' : route === 'damir' ? 's30-intro' : 's59-after-m3-end';
+      : route === 'eric' ? 's28-intro' : route === 'damir' ? 's30-intro' : 's31-intro';
     assert.equal(run.get().sceneId, expected);
     run.act('narrative:back');
     assert.equal(JSON.stringify(run.get()), before);

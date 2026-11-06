@@ -60,7 +60,8 @@ test('S59 is mandatory after all S27 outcomes and songs are free route-neutral c
   }
   assert.equal(scene('s59-common').nextSceneId, 's59-route-dispatch');
   assert.equal(scene('s59-route-dispatch').beats[0].id, 's59-route-choice');
-  assert.equal(scene('s59-after-m3-end').beats[0].endingId, 'm3-s59-only');
+  assert.equal(scene('s59-after-m3-end'), undefined);
+  assert.equal(scene('s62-after-m3-end').beats[0].endingId, 'm3-alice-s62-only');
   assert.ok(scene('s28-intro'));
   assert.deepEqual(catalogData.interactions, []);
 });
@@ -191,7 +192,7 @@ test('real N1: four locked routes × three S59 songs, Back, alternate choice, JS
       restored.act(`narrative:choose:s59-route-choice:${route}`);
       assert.equal(restored.get().sceneId,
         route === 'eric' ? 's28-intro'
-          : route === 'nick' ? 's29-intro' : route === 'damir' ? 's30-intro' : 's59-after-m3-end');
+          : route === 'nick' ? 's29-intro' : route === 'damir' ? 's30-intro' : 's31-intro');
       assert.equal(restored.get().routeLock, route);
       assert.equal(restored.get().routeIntent, route);
       assert.equal(restored.get().flags['s17-evening-self'], true);

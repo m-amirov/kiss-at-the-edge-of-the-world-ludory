@@ -78,7 +78,7 @@ test('S58 always enters free four-way S26 route lock, with 16 guarded evening ca
     assert.equal(scene('s26-common-'+route).nextSceneId,'s27-intro');
   }
   assert.equal(scene('s26-after-m3-end'),undefined);
-  assert.equal(scene('s59-after-m3-end').beats[0].endingId,'m3-s59-only');
+  assert.equal(scene('s62-after-m3-end').beats[0].endingId,'m3-alice-s62-only');
   for(const c of [choice('s26-intro','s26-route-choice'),
     ...routes.map(r=>choice('s26-'+r+'-evening-dispatch','s26-'+r+'-evening-choice'))])
     for(const option of c.choices)
@@ -309,7 +309,7 @@ test('N1 rejects forged S26 intent/lock, evening flags and actionLog without sta
 
 test('S26 keeps autonomy, consent boundaries and first-game monetization disabled',()=>{
   assert.deepEqual(catalogData.interactions,[]);
-  assert.equal(scene('s59-after-m3-end').beats[0].type,'ending');
+  assert.equal(scene('s62-after-m3-end').beats[0].type,'ending');
   assert.match(dialogue('s26-choice-eric').join(' '),/Без обещания переехать/);
   assert.match(dialogue('s26-common-eric').join(' '),/Сейчас можно/);
   assert.match(dialogue('s26-common-damir').join(' '),/Пока нет/);

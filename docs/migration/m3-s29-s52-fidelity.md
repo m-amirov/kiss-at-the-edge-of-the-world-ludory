@@ -28,6 +28,7 @@ All **13 unique source blocks / 27 Russian paragraphs** are transferred verbatim
 - S29-C1 is exactly three free, distinct authorial decisions about a **single 40-second clip**: delete, Alice-only private copy, or an agreed replacement shot. These are represented as N1 narrative outcomes, **not actual file editing**. Even the third option is not generalized filming/publication consent. No new permission flags, uploading, sharing, affinity points or releases.
 - S29-C2 is two free authorial options for the remaining hour. It sets only exclusive `s29-hour-walk` / `s29-hour-film` flags, used later to show exactly one S52 callback. S52-C1 has two free authored romance responses, both followed by a shared text block and the relevant callback. Conditional callbacks remain after the shared S52 paragraph, preserving the manuscript order.
 - Only Nick can reach S29/S52; no dialogue, route or consent leaks to Eric, Damir or independent Alice. `s52-after-m3-end` is a **Draft-only technical stop**, not the novel's ending. No premium, currency, rewarded ads or IAP: first-game Economy OFF.
+- The later [S31/S62 Alice migration](m3-s31-s62-fidelity.md) removed the previously direct `s59-after-m3-end` technical stop after completing all four route-specific day-14 branches.
 
 ## Saves and release
 
