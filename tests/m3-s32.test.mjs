@@ -62,12 +62,13 @@ test('S49 enters Eric-only S32; three free authored relationship statuses remain
   assert.deepEqual(choice('s32-status-dispatch', 's32-status-choice').choices
     .map(({ id, label, targetSceneId, when, effects }) =>
       [id, label.ru, targetSceneId, when, effects]), [
-    ['a', 'Продолжить', 's32-after-m3-end', { flag: 's32-status-active' }, undefined],
-    ['b', 'Продолжить', 's32-after-m3-end', { flag: 's32-status-paused' }, undefined],
+    ['a', 'Продолжить', 's50-active', { flag: 's32-status-active' }, undefined],
+    ['b', 'Продолжить', 's50-paused', { flag: 's32-status-paused' }, undefined],
     ['c', 'Продолжить', 's35-intro', { flag: 's32-status-closed' }, undefined],
   ]);
-  assert.equal(scene('s32-after-m3-end').beats[0].type, 'ending');
-  assert.equal(scene('s50-intro'), undefined, 'closed S32 must not enter future S50');
+  assert.equal(scene('s32-after-m3-end'), undefined);
+  assert.ok(scene('s50-active'));
+  assert.ok(scene('s50-paused'));
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -196,7 +197,7 @@ test('real N1 S26/S59 locks keep all non-Eric routes out of S32', () => {
   }
 });
 
-test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON', () => {
+test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON through S50', () => {
   const checkpoint = checkpointS28();
   for (const path of ['a', 'b']) for (const evening of ['a', 'b']) {
     for (const city of ['a', 'b']) for (const status of ['a', 'b', 'c']) {
@@ -226,7 +227,8 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON',
       for (const other of ['a', 'b', 'c'].filter((id) => id !== status))
         rejectWithoutWrite(fresh, `narrative:choose:s32-status-choice:${other}`);
       fresh.act(`narrative:choose:s32-status-choice:${status}`);
-      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro' : 's32-after-m3-end');
+      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro'
+        : status === 'a' ? 's50-active' : 's50-paused');
       assert.equal(fresh.get().routeIntent, 'eric');
       assert.equal(fresh.get().routeLock, 'eric');
       assert.equal(fresh.get().flags[statusFlags[status]], true);
@@ -234,6 +236,25 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON',
       for (const forbidden of ['eric-quote-released', 's32-premium', 'eric-trip-planned',
         'alice-work-abandoned', 'article-published'])
         assert.equal(fresh.get().flags[forbidden], undefined);
+      if (status !== 'c') {
+        walkUntil(fresh, (beat) => beat.id === 's50-c1-choice');
+        rejectWithoutWrite(fresh, 'narrative:choose:s50-c1-choice:invalid');
+        const beforeC1 = JSON.stringify(fresh.get());
+        fresh.act(`narrative:choose:s50-c1-choice:${path === 'a' ? 'b' : 'a'}`);
+        fresh.act('narrative:back');
+        assert.equal(JSON.stringify(fresh.get()), beforeC1, 'Back restores S50-C1');
+        fresh.act(`narrative:choose:s50-c1-choice:${path}`);
+        walkUntil(fresh, (beat) => beat.id === 's50-c2-choice');
+        rejectWithoutWrite(fresh, 'narrative:choose:s50-c2-choice:invalid');
+        const resumed = runtime(clone(fresh.get()));
+        resumed.act(`narrative:choose:s50-c2-choice:${evening}`);
+        walkUntil(resumed, (beat) => beat.id === 's50-after-m3-end-beat');
+        assert.equal(resumed.get().routeLock, 'eric');
+        assert.equal(resumed.get().flags[statusFlags[status]], true);
+        for (const forbidden of ['s50-premium', 's50-purchase',
+          'eric-family-commitment', 'eric-photo-published'])
+          assert.equal(resumed.get().flags[forbidden], undefined);
+      }
     }
   }
 });
