@@ -252,7 +252,7 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         closed.act('narrative:choose:s36-c1-choice:b');
         const atEnd = runtime(clone(closed.get()));
         walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
-        atEnd.act('narrative:choose:s36-route-choice:nick');
+        atEnd.act('narrative:choose:s36-route-choice:nick-closed');
         walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'nick');
         assert.equal(atEnd.get().flags['s33-status-closed'], true);
@@ -283,8 +283,9 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         restored.act('narrative:choose:s36-c1-choice:' + hour);
         const throughS36 = runtime(clone(restored.get()));
         walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
-        throughS36.act('narrative:choose:s36-route-choice:nick');
-        walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
+        throughS36.act('narrative:choose:s36-route-choice:' +
+          (status === 'a' ? 'nick-active' : 'nick-paused'));
+        walkUntil(throughS36, (beat) => beat.id === 's38-c1-choice');
         assert.equal(restored.get().routeLock, 'nick');
         assert.equal(throughS36.get().routeLock, 'nick');
         assert.equal(restored.get().flags[statusFlags[status]], true);
@@ -294,6 +295,110 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
           assert.equal(restored.get().flags[forbidden], undefined);
       }
     }
+});
+
+test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and free memories', () => {
+  const checkpoint = checkpointS29();
+  for (const status of ['a', 'b']) for (const callback of ['a', 'b']) {
+    const run = runtime(checkpoint);
+    run.act('narrative:choose:s29-c1-choice:b');
+    walkUntil(run, (beat) => beat.id === 's29-c2-choice');
+    run.act('narrative:choose:s29-c2-choice:a');
+    walkUntil(run, (beat) => beat.id === 's52-c1-choice');
+    run.act('narrative:choose:s52-c1-choice:a');
+    walkUntil(run, (beat) => beat.id === 's52-callback-choice');
+    run.act('narrative:choose:s52-callback-choice:a');
+    walkUntil(run, (beat) => beat.id === 's33-c1-choice');
+    run.act('narrative:choose:s33-c1-choice:' + status);
+    walkUntil(run, (beat) => beat.id === 's33-status-choice');
+    run.act('narrative:choose:s33-status-choice:' + status);
+    walkUntil(run, (beat) => beat.id === 's53-c1-choice');
+    run.act('narrative:choose:s53-c1-choice:a');
+    walkUntil(run, (beat) => beat.id === 's53-c2-choice');
+    rejectWithoutWrite(run, 'narrative:choose:s53-c2-choice:premium');
+    run.act('narrative:choose:s53-c2-choice:' + callback);
+    assert.equal(run.get().flags[callback === 'a' ? 's53-next-coffee' : 's53-next-books'], true);
+    assert.equal(run.get().flags[callback === 'a' ? 's53-next-books' : 's53-next-coffee'], undefined);
+    const restored = runtime(clone(run.get()));
+    walkUntil(restored, (beat) => beat.id === 's36-c1-choice');
+    restored.act('narrative:choose:s36-c1-choice:a');
+    walkUntil(restored, (beat) => beat.id === 's36-route-choice');
+    const requiredDispatch = status === 'a' ? 'nick-active' : 'nick-paused';
+    rejectWithoutWrite(restored, 'narrative:choose:s36-route-choice:nick-closed');
+    rejectWithoutWrite(restored, 'narrative:choose:s36-route-choice:eric-active');
+    restored.act('narrative:choose:s36-route-choice:' + requiredDispatch);
+    assert.equal(restored.get().sceneId, status === 'a' ? 's38-active' : 's38-paused');
+    walkUntil(restored, (beat) => beat.id === 's38-c1-choice');
+    const atC1 = clone(restored.get());
+    if (status === 'a' && callback === 'a') {
+      const forged = [
+        { ...atC1, routeLock: 'eric' },
+        { ...atC1, flags: { ...atC1.flags, 's33-status-closed': true } },
+        { ...atC1, flags: { ...atC1.flags, 's53-next-books': true } },
+        { ...atC1, flags: { ...atC1.flags, 's53-next-coffee': false } },
+        { ...atC1, actionLog: atC1.actionLog.map((entry) =>
+          entry.beatId === 's53-c2-choice' ? { ...entry, optionId: 'b' } : entry) },
+        { ...atC1, actionLog: atC1.actionLog.map((entry) =>
+          entry.beatId === 's36-route-choice' ? { ...entry, optionId: 'nick-paused' } : entry) },
+      ];
+      for (const invalid of forged) {
+        const probe = runtime(invalid);
+        const beforeForged = JSON.stringify(probe.get());
+        assert.throws(() => probe.act('narrative:choose:s38-c1-choice:a'),
+          /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+        assert.equal(probe.writes(), 0, 'forged S38 state must not persist');
+        assert.equal(JSON.stringify(probe.get()), beforeForged);
+      }
+    }
+    for (const c1 of ['a', 'b']) {
+      const branch = runtime(atC1);
+      rejectWithoutWrite(branch, 'narrative:choose:s38-c1-choice:premium');
+      const before = JSON.stringify(branch.get());
+      branch.act('narrative:choose:s38-c1-choice:' + (c1 === 'a' ? 'b' : 'a'));
+      branch.act('narrative:back');
+      assert.equal(JSON.stringify(branch.get()), before, 'S38-C1 Back');
+      branch.act('narrative:choose:s38-c1-choice:' + c1);
+      assert.equal(branch.get().flags[c1 === 'a' ? 's38-status-continues' : 's38-status-closed'], true);
+      assert.equal(branch.get().flags[c1 === 'a' ? 's38-status-closed' : 's38-status-continues'], undefined);
+      walkUntil(branch, (beat) => beat.id === 's38-status-choice');
+      rejectWithoutWrite(branch,
+        'narrative:choose:s38-status-choice:' + (c1 === 'a' ? 'closed' : 'continue'));
+      branch.act('narrative:choose:s38-status-choice:' + (c1 === 'a' ? 'continue' : 'closed'));
+      assert.equal(branch.get().routeLock, 'nick');
+      assert.equal(branch.get().flags[statusFlags[status]], true);
+      if (c1 === 'b') {
+        assert.equal(branch.get().sceneId, 's38-after-closed-end');
+        assert.equal(branch.get().flags['s38-memory-date'], undefined);
+        assert.equal(branch.get().flags['s38-memory-books'], undefined);
+        rejectWithoutWrite(branch, 'narrative:choose:s38-c2-choice:a');
+        rejectWithoutWrite(branch, 'narrative:choose:s38-s53-choice:' + callback);
+      } else {
+        assert.equal(branch.get().sceneId, 's38-c2');
+        const atC2 = clone(branch.get());
+        for (const c2 of ['a', 'b']) {
+          const memory = runtime(atC2);
+          rejectWithoutWrite(memory, 'narrative:choose:s38-c2-choice:purchase');
+          const beforeC2 = JSON.stringify(memory.get());
+          memory.act('narrative:choose:s38-c2-choice:' + (c2 === 'a' ? 'b' : 'a'));
+          memory.act('narrative:back');
+          assert.equal(JSON.stringify(memory.get()), beforeC2, 'S38-C2 Back');
+          memory.act('narrative:choose:s38-c2-choice:' + c2);
+          walkUntil(memory, (beat) => beat.id === 's38-s53-choice');
+          rejectWithoutWrite(memory,
+            'narrative:choose:s38-s53-choice:' + (callback === 'a' ? 'b' : 'a'));
+          memory.act('narrative:choose:s38-s53-choice:' + callback);
+          assert.equal(memory.get().sceneId, 's38-s53-' + callback);
+          walkUntil(memory, (beat) => beat.id === 's38-after-open-end-beat');
+          assert.equal(memory.get().routeLock, 'nick');
+          assert.equal(memory.get().flags[c2 === 'a' ? 's38-memory-date' : 's38-memory-books'], true);
+          assert.equal(memory.get().flags[c2 === 'a' ? 's38-memory-books' : 's38-memory-date'], undefined);
+          for (const forbidden of ['s38-premium', 's38-purchase', 's38-uploaded',
+            's38-message-sent', 'nick-date-booked', 's38-photo-published'])
+            assert.equal(memory.get().flags[forbidden], undefined);
+        }
+      }
+    }
+  }
 });
 
 test('real N1 rejects forged S33 status, route and actionLog with zero state writes', () => {

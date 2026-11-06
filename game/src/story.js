@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 and Eric S37.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 plus Eric S37 / Nick S38.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -134,6 +134,7 @@ import * as s35 from './scenes/s35.js';
 import * as s63 from './scenes/s63.js';
 import * as s36 from './scenes/s36.js';
 import * as s37 from './scenes/s37.js';
+import * as s38 from './scenes/s38.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1892,9 +1893,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ...beats('s53-common', s53.s53Common),
     { id: 's53-c2-choice', type: 'choice', choices: [
       { id: 'a', label: t('Договориться о коротком свидании после возвращения домой'),
-        targetSceneId: 's53-c2-a' },
+        targetSceneId: 's53-c2-a', effects: [{ op: 'flag_set', id: 's53-next-coffee', value: true }] },
       { id: 'b', label: t('Обменяться любимыми книгами из дорожных сумок'),
-        targetSceneId: 's53-c2-b' },
+        targetSceneId: 's53-c2-b', effects: [{ op: 'flag_set', id: 's53-next-books', value: true }] },
     ] },
   ] },
   { id: 's53-c2-a', beats: beats('s53-c2-a', s53.s53C2A), nextSceneId: 's36-intro' },
@@ -2109,8 +2110,12 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's32-status-paused' }, targetSceneId: 's37-paused' },
       { id: 'eric-closed', label: t('Продолжить'), routeId: 'eric',
         when: { flag: 's32-status-closed' }, targetSceneId: 's36-after-m3-end' },
-      { id: 'nick', label: t('Продолжить'), routeId: 'nick',
-        targetSceneId: 's36-after-m3-end' },
+      { id: 'nick-active', label: t('Продолжить'), routeId: 'nick',
+        when: { flag: 's33-status-active' }, targetSceneId: 's38-active' },
+      { id: 'nick-paused', label: t('Продолжить'), routeId: 'nick',
+        when: { flag: 's33-status-paused' }, targetSceneId: 's38-paused' },
+      { id: 'nick-closed', label: t('Продолжить'), routeId: 'nick',
+        when: { flag: 's33-status-closed' }, targetSceneId: 's36-after-m3-end' },
       { id: 'damir', label: t('Продолжить'), routeId: 'damir',
         targetSceneId: 's36-after-m3-end' },
       { id: 'alice', label: t('Продолжить'), routeId: 'alice',
@@ -2119,7 +2124,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's36-after-m3-end', beats: [
     { id: 's36-after-m3-end-beat', type: 'ending', endingId: 'm3-day17-s36-only',
-      text: t('Технический фрагмент завершён. Маршрутные сцены дня 18 ещё не перенесены.') },
+      text: t('Технический фрагмент завершён. Остальные маршруты дня 18 и независимые продолжения ещё не перенесены.') },
   ] },
   // Eric day 18: the S32 active/paused distinction survives the S36 reunion.
   { id: 's37-active', beats: beats('s37-active', s37.s37Active), nextSceneId: 's37-c1' },
@@ -2175,6 +2180,63 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's37-after-closed-end', beats: [
     { id: 's37-after-closed-end-beat', type: 'ending', endingId: 'm3-eric-day18-closed',
+      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
+  ] },
+  // Nick day 18: S33 active/paused both enter their own exact authorial opening.
+  { id: 's38-active', beats: beats('s38-active', s38.s38Active), nextSceneId: 's38-c1' },
+  { id: 's38-paused', beats: beats('s38-paused', s38.s38Paused), nextSceneId: 's38-c1' },
+  { id: 's38-c1', beats: [
+    { id: 's38-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Провести вместе обычный уикенд дома после путешествия'),
+        targetSceneId: 's38-c1-a', effects: [{ op: 'flag_set', id: 's38-status-continues', value: true }] },
+      { id: 'b', label: t('Оставить их историю прекрасной поездкой'),
+        targetSceneId: 's38-c1-b', effects: [{ op: 'flag_set', id: 's38-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's38-c1-a', beats: beats('s38-c1-a', s38.s38C1A), nextSceneId: 's38-common' },
+  { id: 's38-c1-b', beats: beats('s38-c1-b', s38.s38C1B), nextSceneId: 's38-common' },
+  { id: 's38-common', beats: beats('s38-common', s38.s38Common),
+    nextSceneId: 's38-status-dispatch' },
+  { id: 's38-s53-dispatch', beats: [
+    { id: 's38-s53-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's53-next-coffee' },
+        targetSceneId: 's38-s53-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's53-next-books' },
+        targetSceneId: 's38-s53-b' },
+    ] },
+  ] },
+  { id: 's38-s53-a', beats: beats('s38-s53-a', s38.s38S53A),
+    nextSceneId: 's38-after-open-end' },
+  { id: 's38-s53-b', beats: beats('s38-s53-b', s38.s38S53B),
+    nextSceneId: 's38-after-open-end' },
+  { id: 's38-status-dispatch', beats: [
+    { id: 's38-status-choice', type: 'choice', choices: [
+      { id: 'continue', label: t('Продолжить'), when: { flag: 's38-status-continues' },
+        targetSceneId: 's38-c2' },
+      { id: 'closed', label: t('Продолжить'), when: { flag: 's38-status-closed' },
+        targetSceneId: 's38-after-closed-end' },
+    ] },
+  ] },
+  // S38-C1-B ends this romance; never offer a subsequent date or a future-date
+  // callback after that. The S53 payoff follows the original S38-C2 order.
+  { id: 's38-c2', beats: [
+    { id: 's38-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Пригласить его на свидание без шуток о съёмке'),
+        targetSceneId: 's38-c2-a', effects: [{ op: 'flag_set', id: 's38-memory-date', value: true }] },
+      { id: 'b', label: t('Предложить выбрать друг другу книгу в магазине'),
+        targetSceneId: 's38-c2-b', effects: [{ op: 'flag_set', id: 's38-memory-books', value: true }] },
+    ] },
+  ] },
+  { id: 's38-c2-a', beats: beats('s38-c2-a', s38.s38C2A),
+    nextSceneId: 's38-s53-dispatch' },
+  { id: 's38-c2-b', beats: beats('s38-c2-b', s38.s38C2B),
+    nextSceneId: 's38-s53-dispatch' },
+  { id: 's38-after-open-end', beats: [
+    { id: 's38-after-open-end-beat', type: 'ending', endingId: 'm3-nick-day18-open',
+      text: t('Технический фрагмент завершён. S54 ещё не перенесена.') },
+  ] },
+  { id: 's38-after-closed-end', beats: [
+    { id: 's38-after-closed-end-beat', type: 'ending', endingId: 'm3-nick-day18-closed',
       text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
   ] },
 ] };

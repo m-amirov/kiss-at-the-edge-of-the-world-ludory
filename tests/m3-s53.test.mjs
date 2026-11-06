@@ -52,7 +52,10 @@ test('S53 active/paused require Nick S33 status; closed leads to independent rou
   for (const [node, beat, opts] of expected)
     assert.deepEqual(choice(node, beat)?.choices.map(({ id, label, targetSceneId, effects, when }) =>
       [id, label.ru, targetSceneId, effects, when]),
-    opts.map(([id, label, target]) => [id, label, target, undefined, undefined]));
+    opts.map(([id, label, target]) => [id, label, target,
+      node === 's53-common'
+        ? [{ op: 'flag_set', id: id === 'a' ? 's53-next-coffee' : 's53-next-books', value: true }]
+        : undefined, undefined]));
   for (const id of ['a', 'b']) {
     assert.equal(scene('s53-c1-' + id)?.nextSceneId, 's53-common');
     assert.equal(scene('s53-c2-' + id)?.nextSceneId, 's36-intro');

@@ -10,10 +10,10 @@
 ## State transitions and narrative boundaries
 
 - `S36` stays common to all routes. After its common text, a guarded technical `Продолжить` dispatch sends only Eric `s32-status-active|paused` into `s37-active|paused`.
-- Other existing paths remain at the **Draft-only** `s36-after-m3-end` stop: Nick, Damir, independent Alice and romances already closed in S32. `routeLock` is not changed.
+- Current subsequent S38 stage now also admits Nick with S33 active/paused status, without changing `routeLock`. Damir, independent Alice and closed romances still reach the **Draft-only** `s36-after-m3-end` stop. This supersedes the earlier S37-only dispatch snapshot.
 - `S50-C2` now writes exactly one exclusive callback flag, `s50-family-story` or `s50-sister-gift`. No relationship score, permission, premium entitlement or media operation is added.
 - `S37-C1-A` stores `s37-status-continues`; `S37-C1-B` stores `s37-status-closed`. The original shared evening paragraph and S50 callback follow both outcomes. A **closed** relationship then bypasses the later romantic-morning choice and stops at `s37-after-closed-end`, waiting for independent S40/S64.
-- Continuing the relationship admits free `S37-C2` (sunrise or breakfast) with one exclusive `s37-morning-*` flag for S51. It stops at `s37-after-open-end`, not a release ending. S51 and the other day-18 routes are not yet integrated.
+- Continuing the relationship admits free `S37-C2` (sunrise or breakfast) with one exclusive `s37-morning-*` flag for S51. It stops at `s37-after-open-end`, not a release ending. S51, S39 and S40 are not yet integrated; Nick S38 is tracked separately.
 - The original S37 manuscript places C2 after the shared evening paragraph, even though C1-B explicitly ends the romance. The implementation intentionally prevents a post-breakup romantic invitation. This is a visible branch-order editorial decision, **not** a claim that the original manuscript resolved that contradiction.
 - Preexisting Draft saves after S50-C2 and at the former S36 technical stop may not be replay-compatible because S50 choice effects and S36 transitions changed. No automatic storage wipe or unverified save migration is attempted. Use explicit Restart in a draft test session if needed.
 - Economy & Monetization remains **OFF** for this first game. No server, real messages, uploads, permission grants, purchases or publication.

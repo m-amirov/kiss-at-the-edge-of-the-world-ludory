@@ -1,6 +1,6 @@
 # M3 — shared S36 «Место для остановки» (day 17)
 
-**Current continuation:** S36 now hands off through a guarded `s36-route-dispatch` to Eric S37 on active/paused statuses; all other routes still reach the historical `s36-after-m3-end` Draft stop. The earlier direct `s36-common` → stop edge below documents the previous accepted snapshot. See [S37](m3-s37-fidelity.md).
+**Current continuation:** S36 hands off through a guarded `s36-route-dispatch`: Eric active/paused → S37; Nick active/paused → S38. Damir, independent Alice and already-closed romances still stop at `s36-after-m3-end` in Draft. The earlier direct `s36-common` → stop edge below documents the previous accepted snapshot. See [S37](m3-s37-fidelity.md) and [S38](m3-s38-fidelity.md).
 
 ## Source fidelity
 

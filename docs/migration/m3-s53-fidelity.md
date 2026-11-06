@@ -1,6 +1,6 @@
 # M3 — Nick S53 «Один день без камеры» (day 16)
 
-**Current continuation:** both S53-C2 options now enter shared day-17 S36; the former `s53-after-m3-end` stop described below is historical evidence for the prior stage. See [S36 fidelity](m3-s36-fidelity.md).
+**Current continuation:** both S53-C2 options enter shared day-17 S36; after S36, Nick active/paused now enters S38. S53-C2 also sets one exclusive `s53-next-coffee` or `s53-next-books` flag so that S38 can display the exact authored callback. The former `s53-after-m3-end` stop described below is historical evidence. See [S36](m3-s36-fidelity.md) and [S38](m3-s38-fidelity.md).
 
 ## Source and exact text
 
@@ -20,8 +20,8 @@
 ## Route and limitations
 
 - Nick-only S33 guarded dispatch admits `s33-status-active` to S53 active, `s33-status-paused` to S53 paused, and sends `s33-status-closed` directly into independent S35. No new `routeStatus` setter is invented; actual `routeLock` stays Nick for active/paused.
-- Both S53-C1 and S53-C2 are exact-label, completely free two-way decisions with no effects. They preserve original consent boundaries: photo exchange, a confirmation email and messages are prose, not real network/file/media actions. Neither a public release nor a privacy entitlement is inferred. First-game Economy OFF.
-- S53-C2 paths end at the unpublished `s53-after-m3-end` stop before original shared day-17 S36; it is neither an authorial ending nor release gate. Previous unpublished `s33-after-m3-end` saves may require Restart; no automatic migration or deletion.
+- Both S53-C1 and S53-C2 retain exact labels and free two-way decisions. In the later S38 integration, **only** S53-C2 gained one exclusive local callback flag (`s53-next-coffee` or `s53-next-books`); S53-C1 has no effects. Photo exchange, a confirmation email and messages remain prose, not real network/file/media actions. Neither a public release nor privacy entitlement is inferred. First-game Economy OFF.
+- **Historical snapshot:** S53-C2 used to stop at unpublished `s53-after-m3-end` before the shared day-17 S36 was integrated. **Current:** S53-C2 enters S36, then Nick active/paused continues to S38. Neither previous technical stop was an authorial ending or release gate. Older unpublished saves may require explicit Restart; no automatic migration or deletion.
 
 ## Verification
 
