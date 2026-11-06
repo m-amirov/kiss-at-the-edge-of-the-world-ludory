@@ -61,12 +61,13 @@ test('only both Nick S52 callbacks enter free S33 and status branches converge',
   assert.deepEqual(choice('s33-status-dispatch', 's33-status-choice').choices
     .map(({ id, label, targetSceneId, when, effects }) =>
       [id, label.ru, targetSceneId, when, effects]), [
-    ['a', 'Продолжить', 's33-after-m3-end', { flag: 's33-status-active' }, undefined],
-    ['b', 'Продолжить', 's33-after-m3-end', { flag: 's33-status-paused' }, undefined],
+    ['a', 'Продолжить', 's53-active', { flag: 's33-status-active' }, undefined],
+    ['b', 'Продолжить', 's53-paused', { flag: 's33-status-paused' }, undefined],
     ['c', 'Продолжить', 's35-intro', { flag: 's33-status-closed' }, undefined],
   ]);
-  assert.equal(scene('s33-after-m3-end').beats[0].type, 'ending');
-  assert.equal(scene('s53-intro'), undefined, 'closed S33 must not enter unreleased S53');
+  assert.equal(scene('s33-after-m3-end'), undefined);
+  assert.ok(scene('s53-active'));
+  assert.ok(scene('s53-paused'));
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -195,7 +196,7 @@ test('real N1 route-lock keeps non-Nick routes out of S33', () => {
   }
 });
 
-test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and exclusive status', () => {
+test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status through S53', () => {
   const checkpoint = checkpointS29();
   for (const clip of ['a', 'b', 'c']) for (const hour of ['a', 'b'])
     for (const reply of ['a', 'b']) for (const status of ['a', 'b', 'c']) {
@@ -223,7 +224,8 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and exclusive sta
       for (const other of ['a', 'b', 'c'].filter((id) => id !== status))
         rejectWithoutWrite(fresh, `narrative:choose:s33-status-choice:${other}`);
       fresh.act(`narrative:choose:s33-status-choice:${status}`);
-      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro' : 's33-after-m3-end');
+      assert.equal(fresh.get().sceneId, status === 'c' ? 's35-intro'
+        : status === 'a' ? 's53-active' : 's53-paused');
       assert.equal(fresh.get().routeIntent, 'nick');
       assert.equal(fresh.get().routeLock, 'nick');
       assert.equal(fresh.get().flags[statusFlags[status]], true);
@@ -233,6 +235,26 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and exclusive sta
       for (const forbidden of ['nick-quote-released', 's33-publish-approved',
         's33-premium', 'teaser-uploaded', 'personal-recordings-deleted'])
         assert.equal(fresh.get().flags[forbidden], undefined);
+      if (status !== 'c') {
+        walkUntil(fresh, (beat) => beat.id === 's53-c1-choice');
+        rejectWithoutWrite(fresh, 'narrative:choose:s53-c1-choice:premium');
+        const beforeC1 = JSON.stringify(fresh.get());
+        fresh.act('narrative:choose:s53-c1-choice:' + (hour === 'a' ? 'b' : 'a'));
+        fresh.act('narrative:back');
+        assert.equal(JSON.stringify(fresh.get()), beforeC1, 'Back restores S53-C1');
+        fresh.act('narrative:choose:s53-c1-choice:' + hour);
+        walkUntil(fresh, (beat) => beat.id === 's53-c2-choice');
+        rejectWithoutWrite(fresh, 'narrative:choose:s53-c2-choice:purchase');
+        const restored = runtime(clone(fresh.get()));
+        restored.act('narrative:choose:s53-c2-choice:' + reply);
+        walkUntil(restored, (beat) => beat.id === 's53-after-m3-end-beat');
+        assert.equal(restored.get().routeLock, 'nick');
+        assert.equal(restored.get().flags[statusFlags[status]], true);
+        for (const forbidden of ['s53-premium', 's53-purchase',
+          's53-share-approved', 'nick-date-booked', 's53-photo-uploaded',
+          's53-external-message-sent'])
+          assert.equal(restored.get().flags[forbidden], undefined);
+      }
     }
 });
 

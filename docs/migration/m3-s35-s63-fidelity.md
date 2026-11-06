@@ -21,10 +21,10 @@ Ten authored blocks, **13 Russian paragraphs**, hashes independently derived fro
 
 ## Routing and constraints
 
-- All valid independent Alice S62 callbacks lead into S35. Eric S32, Nick S33 and Damir S34 enter S35 **only when their existing authored romance status is `closed`**. Guarded N1 continuations preserve the original `routeLock` and action history. Eric `active/paused` now continue through [S50](m3-s50-fidelity.md); Nick `active/paused` remain at a draft marker pending S53; Damir `active/paused` still lead into S56, whose draft stop awaits S39. No route is silently rewritten to Alice.
+- All valid independent Alice S62 callbacks lead into S35. Eric S32, Nick S33 and Damir S34 enter S35 **only when their existing authored romance status is `closed`**. Guarded N1 continuations preserve the original `routeLock` and action history. Eric `active/paused` continue through [S50](m3-s50-fidelity.md); Nick `active/paused` through [S53](m3-s53-fidelity.md); Damir `active/paused` through S56, whose draft stop awaits S39. No route is silently rewritten to Alice.
 - S35-C1 has two free choices about consent-conscious reporting; S63-C1 two free post-concert decisions. Neither changes state or grants consent. S63-C2 has two free choices that set exactly one of `s63-next-ticket` and `s63-next-venue` for original EP09 S40 conditional callbacks. The only subsequent S63 node is draft marker `s63-after-m3-end`, **not** a game ending or release endpoint. The shared S36 day-17 scene must be migrated before later S40; neither S36 nor S40 is implemented here.
 - Original text references calls, editor messages, a photo and a concert. Those are **narrated events**, not real server, media, upload, email, checkout, ticket purchase, consent or social actions. First-game Economy stays OFF. EN remains RU fallback.
-- The removed unpublished `s62-after-m3-end`, `s34-closed-after-m3-end` and (at S50) `s32-after-m3-end` may invalidate obsolete Draft-only save positions; no automatic save migration is claimed. Technical `s33-after-m3-end` is retained for Nick's non-closed paths.
+- The removed unpublished `s62-after-m3-end`, `s34-closed-after-m3-end`, `s32-after-m3-end` and (at S53) `s33-after-m3-end` may invalidate obsolete Draft-only save positions; no automatic save migration is claimed. New `s53-after-m3-end` remains until shared S36 is migrated.
 
 ## Verification and open gates
 

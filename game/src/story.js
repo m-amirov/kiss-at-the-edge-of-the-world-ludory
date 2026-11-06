@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/S50/Nick S33/Damir S34/S56/Alice S35/S63.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/S50/Nick S33/S53/Damir S34/S56/Alice S35/S63.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -127,6 +127,7 @@ import * as s62 from './scenes/s62.js';
 import * as s32 from './scenes/s32.js';
 import * as s50 from './scenes/s50.js';
 import * as s33 from './scenes/s33.js';
+import * as s53 from './scenes/s53.js';
 import * as s34 from './scenes/s34.js';
 import * as s56 from './scenes/s56.js';
 import * as s35 from './scenes/s35.js';
@@ -1868,17 +1869,39 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     nextSceneId: 's33-status-dispatch' },
   { id: 's33-status-dispatch', beats: [
     { id: 's33-status-choice', type: 'choice', choices: [
-      { id: 'a', label: t('Продолжить'), targetSceneId: 's33-after-m3-end',
+      { id: 'a', label: t('Продолжить'), targetSceneId: 's53-active',
         when: { flag: 's33-status-active' } },
-      { id: 'b', label: t('Продолжить'), targetSceneId: 's33-after-m3-end',
+      { id: 'b', label: t('Продолжить'), targetSceneId: 's53-paused',
         when: { flag: 's33-status-paused' } },
       { id: 'c', label: t('Продолжить'), targetSceneId: 's35-intro',
         when: { flag: 's33-status-closed' } },
     ] },
   ] },
-  { id: 's33-after-m3-end', beats: [
-    { id: 's33-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s33-only',
-      text: t('Технический фрагмент завершён. Следующая сцена маршрута Ника ещё не перенесена.') },
+  // Nick-exclusive day-16 no-camera walk. Privacy prose does not send or delete media.
+  { id: 's53-active', beats: beats('s53-active', s53.s53Active), nextSceneId: 's53-c1' },
+  { id: 's53-paused', beats: beats('s53-paused', s53.s53Paused), nextSceneId: 's53-c1' },
+  { id: 's53-c1', beats: [
+    { id: 's53-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Пойти к книжному без цели и без камеры'), targetSceneId: 's53-c1-a' },
+      { id: 'b', label: t('Вернуться к группе и не требовать продолжения дня'), targetSceneId: 's53-c1-b' },
+    ] },
+  ] },
+  { id: 's53-c1-a', beats: beats('s53-c1-a', s53.s53C1A), nextSceneId: 's53-common' },
+  { id: 's53-c1-b', beats: beats('s53-c1-b', s53.s53C1B), nextSceneId: 's53-common' },
+  { id: 's53-common', beats: [
+    ...beats('s53-common', s53.s53Common),
+    { id: 's53-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Договориться о коротком свидании после возвращения домой'),
+        targetSceneId: 's53-c2-a' },
+      { id: 'b', label: t('Обменяться любимыми книгами из дорожных сумок'),
+        targetSceneId: 's53-c2-b' },
+    ] },
+  ] },
+  { id: 's53-c2-a', beats: beats('s53-c2-a', s53.s53C2A), nextSceneId: 's53-after-m3-end' },
+  { id: 's53-c2-b', beats: beats('s53-c2-b', s53.s53C2B), nextSceneId: 's53-after-m3-end' },
+  { id: 's53-after-m3-end', beats: [
+    { id: 's53-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s53-only',
+      text: t('Технический фрагмент завершён. Общее продолжение дня 17 ещё не перенесено.') },
   ] },
   // Damir-exclusive day-14 arc: discussing a clinic interview grants no relocation consent.
   { id: 's30-intro', beats: [
