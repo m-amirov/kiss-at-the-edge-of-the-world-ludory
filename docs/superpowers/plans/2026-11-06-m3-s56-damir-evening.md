@@ -49,4 +49,4 @@
 **Files:** Create `docs/migration/m3-s56-fidelity.md`, update README, historical S34 fidelity and this plan.
 
 - [x] Document source/economy/consent boundaries; syntax/manifest PASS, `npm test` **189/189 PASS**, independent read-only review **0 Critical / 0 Important / 0 Minor**.
-- [ ] Commit only scoped files; upload exact Git blobs, CAS-update the existing Draft PR #2 without force; fresh-fetch verify tree/main/Draft and report CI honestly.
+- [x] Commit only scoped files; uploaded **11/11 exact Git blobs**, non-force CAS-update Draft PR #2, fresh-fetch verified tree, unchanged `main`, GitHub CI **NOT_RUN**.
