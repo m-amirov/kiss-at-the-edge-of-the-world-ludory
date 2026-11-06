@@ -57,5 +57,5 @@
 
 - [x] Record source SHA/paragraphs, verified routes, counts and explicit NOT_RUN/BLOCKED gates, update stage references.
 - [x] Run final full suite after code and test edits, request independent read-only whole-stage review, triage findings with regression coverage for any corrections.
-- [ ] Commit in existing feature branch; sync exact Git blobs/tree to existing Draft PR #2 using `force:false` CAS; independently fetch and compare tree; keep `main` untouched.
-- [ ] Close evidence document with actual code/remote SHAs, PR state and CI status. No merge or publish.
+- [x] Commit in existing feature branch; sync exact Git blobs/tree to existing Draft PR #2 using `force:false` CAS; independently fetch and compare tree; keep `main` untouched.
+- [x] Close evidence document with actual code/remote SHAs, PR state and CI status. No merge or publish.
