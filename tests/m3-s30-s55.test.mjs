@@ -87,7 +87,7 @@ test('S30/S55 add only Damir-locked route, three free choices and exact guarded 
     assert.equal(scene(`s30-c1-${id}`).nextSceneId, 's30-common');
     assert.equal(scene(`s30-c2-${id}`).nextSceneId, 's55-intro');
     assert.equal(scene(`s55-c1-${id}`).nextSceneId, 's55-common');
-    assert.equal(scene(`s55-callback-${id}`).nextSceneId, 's55-after-m3-end');
+    assert.equal(scene(`s55-callback-${id}`).nextSceneId, 's34-intro');
   }
   assert.equal(scene('s55-common').nextSceneId, 's55-callback-dispatch');
   assert.deepEqual(choice('s55-callback-dispatch', 's55-callback-choice').choices
@@ -96,7 +96,7 @@ test('S30/S55 add only Damir-locked route, three free choices and exact guarded 
     ['a', 'Продолжить', 's55-callback-a', { flag: 's30-time-song' }, undefined],
     ['b', 'Продолжить', 's55-callback-b', { flag: 's30-time-souvenirs' }, undefined],
   ]);
-  assert.equal(scene('s55-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s55-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -224,7 +224,7 @@ test('real N1 S59 accepts only the locked Damir route and preserves other routes
   }
 });
 
-test('real N1 Damir: all 2×2×2 routes, changing Back choice, callback and JSON restore', () => {
+test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', () => {
   const run = runtime(checkpointS26());
   run.act('narrative:choose:s26-route-choice:damir');
   walkUntil(run, (beat) => beat.id === 's26-damir-evening-choice');
@@ -264,17 +264,31 @@ test('real N1 Damir: all 2×2×2 routes, changing Back choice, callback and JSON
         `narrative:choose:s55-callback-choice:${alternate}`);
       chosen.act(`narrative:choose:s55-callback-choice:${time}`);
       assert.equal(chosen.get().sceneId, `s55-callback-${time}`);
-      const fresh = runtime(clone(chosen.get()));
-      walkUntil(fresh, (_beat, id) => id === 's55-after-m3-end');
-      assert.equal(fresh.get().routeIntent, 'damir');
-      assert.equal(fresh.get().routeLock, 'damir');
-      assert.equal(fresh.get().flags[time === 'a' ? 's30-time-song' : 's30-time-souvenirs'], true);
-      assert.equal(fresh.get().flags[time === 'a' ? 's30-time-souvenirs' : 's30-time-song'], undefined);
-      for (const forbidden of ['s30-relocation-approved', 'clinic-contract-signed',
-        'damir-photo-publish-approved', 'media-release-approved', 's30-premium']) {
-        assert.equal(fresh.get().flags[forbidden], undefined);
+      walkUntil(chosen, (beat) => beat.id === 's34-c1-choice');
+      const beforeS34 = JSON.stringify(chosen.get());
+      for (const status of ['a', 'b', 'c']) {
+        const statusRun = runtime(clone(chosen.get()));
+        const alternateStatus = status === 'a' ? 'c' : 'a';
+        rejectWithoutWrite(statusRun, 'narrative:choose:s34-c1-choice:premium');
+        statusRun.act(`narrative:choose:s34-c1-choice:${alternateStatus}`);
+        statusRun.act('narrative:back');
+        assert.equal(JSON.stringify(statusRun.get()), beforeS34, 'Back restores S34 choice');
+        statusRun.act(`narrative:choose:s34-c1-choice:${status}`);
+        for (const flag of ['a', 'b', 'c']) {
+          assert.equal(statusRun.get().flags[`s34-status-${{ a: 'active', b: 'paused', c: 'closed' }[flag]}`],
+            flag === status ? true : undefined);
+        }
+        const fresh = runtime(clone(statusRun.get()));
+        walkUntil(fresh, (_beat, id) => id === 's34-after-m3-end');
+        assert.equal(fresh.get().routeIntent, 'damir');
+        assert.equal(fresh.get().routeLock, 'damir');
+        assert.equal(fresh.get().flags[time === 'a' ? 's30-time-song' : 's30-time-souvenirs'], true);
+        assert.equal(fresh.get().flags[time === 'a' ? 's30-time-souvenirs' : 's30-time-song'], undefined);
+        for (const forbidden of ['s30-relocation-approved', 'clinic-contract-signed',
+          'damir-photo-publish-approved', 'media-release-approved', 's30-premium'])
+          assert.equal(fresh.get().flags[forbidden], undefined);
+        assert.equal(fresh.get().flags['beach-footage-safe-only'], true);
       }
-      assert.equal(fresh.get().flags['beach-footage-safe-only'], true);
     }
   }
 });
@@ -298,18 +312,24 @@ test('real N1 rejects forged Damir route, flags and actionLog without writes', (
   run.act('narrative:choose:s55-c1-choice:a');
   walkUntil(run, (beat) => beat.id === 's55-callback-choice');
   run.act('narrative:choose:s55-callback-choice:b');
+  walkUntil(run, (beat) => beat.id === 's34-c1-choice');
+  run.act('narrative:choose:s34-c1-choice:b');
   const valid = clone(run.get());
   const forged = [
     { ...valid, routeLock: 'eric' },
     { ...valid, routeIntent: 'alice' },
     { ...valid, flags: { ...valid.flags, 's30-time-souvenirs': false } },
     { ...valid, flags: { ...valid.flags, 's30-time-song': true } },
+    { ...valid, flags: { ...valid.flags, 's34-status-paused': false } },
+    { ...valid, flags: { ...valid.flags, 's34-status-active': true } },
     { ...valid, actionLog: valid.actionLog.map((entry) =>
       entry.beatId === 's59-route-choice' ? { ...entry, optionId: 'nick' } : entry) },
     { ...valid, actionLog: valid.actionLog.map((entry) =>
       entry.beatId === 's30-c2-choice' ? { ...entry, optionId: 'a' } : entry) },
     { ...valid, actionLog: valid.actionLog.map((entry) =>
       entry.beatId === 's55-callback-choice' ? { ...entry, optionId: 'a' } : entry) },
+    { ...valid, actionLog: valid.actionLog.map((entry) =>
+      entry.beatId === 's34-c1-choice' ? { ...entry, optionId: 'a' } : entry) },
   ];
   for (const invalid of forged) {
     let writes = 0;
@@ -317,7 +337,7 @@ test('real N1 rejects forged Damir route, flags and actionLog without writes', (
     const update = createNarrativeRuntimeUpdate({ graph: run.graph, catalog: run.catalog });
     assert.throws(() => update({ deltaMs: 16, state: { narrative: invalid },
       inputs: [{ schemaVersion: 1, type: 'pointer',
-        action: 'narrative:next:s55-callback-b-01', phase: 'up',
+        action: 'narrative:next:s34-c1-b-01', phase: 'up',
         timestamp: 204, source: 'renderer' }],
       setState() { writes += 1; },
     // A forged earlier choice can change the replay path: N1 then rejects the

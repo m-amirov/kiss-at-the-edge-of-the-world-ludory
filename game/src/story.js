@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/Nick S33.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/Nick S33/Damir S34.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -126,6 +126,7 @@ import * as s31 from './scenes/s31.js';
 import * as s62 from './scenes/s62.js';
 import * as s32 from './scenes/s32.js';
 import * as s33 from './scenes/s33.js';
+import * as s34 from './scenes/s34.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1879,11 +1880,29 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's55-callback-a', beats: beats('s55-callback-a', s55.s55CallbackA),
-    nextSceneId: 's55-after-m3-end' },
+    nextSceneId: 's34-intro' },
   { id: 's55-callback-b', beats: beats('s55-callback-b', s55.s55CallbackB),
-    nextSceneId: 's55-after-m3-end' },
-  { id: 's55-after-m3-end', beats: [
-    { id: 's55-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-s55-only',
+    nextSceneId: 's34-intro' },
+  // S34 is day 16: all three free authored outcomes retain their relationship status.
+  // The original S56 is gated by active/paused status, and is not yet migrated.
+  { id: 's34-intro', beats: [
+    ...beats('s34-intro', s34.s34Intro),
+    { id: 's34-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Предложить встретиться позже, без обязательства решить будущее'),
+        targetSceneId: 's34-c1-a', effects: [{ op: 'flag_set', id: 's34-status-active', value: true }] },
+      { id: 'b', label: t('Взять паузу до конца следующего дня'),
+        targetSceneId: 's34-c1-b', effects: [{ op: 'flag_set', id: 's34-status-paused', value: true }] },
+      { id: 'c', label: t('Закончить романтическую историю'),
+        targetSceneId: 's34-c1-c', effects: [{ op: 'flag_set', id: 's34-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's34-c1-a', beats: beats('s34-c1-a', s34.s34C1A), nextSceneId: 's34-common' },
+  { id: 's34-c1-b', beats: beats('s34-c1-b', s34.s34C1B), nextSceneId: 's34-common' },
+  { id: 's34-c1-c', beats: beats('s34-c1-c', s34.s34C1C), nextSceneId: 's34-common' },
+  { id: 's34-common', beats: beats('s34-common', s34.s34Common),
+    nextSceneId: 's34-after-m3-end' },
+  { id: 's34-after-m3-end', beats: [
+    { id: 's34-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-s34-only',
       text: t('Технический фрагмент завершён. Следующая сцена маршрута Дамира ещё не перенесена.') },
   ] },
   // Independent Alice arc: Inga's participation requires separate agreement;
