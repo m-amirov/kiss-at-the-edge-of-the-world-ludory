@@ -1,5 +1,7 @@
 # M3 — shared S36 «Место для остановки» (day 17)
 
+**Current continuation:** S36 now hands off through a guarded `s36-route-dispatch` to Eric S37 on active/paused statuses; all other routes still reach the historical `s36-after-m3-end` Draft stop. The earlier direct `s36-common` → stop edge below documents the previous accepted snapshot. See [S37](m3-s37-fidelity.md).
+
 ## Source fidelity
 
 - Original read-only repository: `m-amirov/kiss-at-the-edge-of-the-world@1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c`.

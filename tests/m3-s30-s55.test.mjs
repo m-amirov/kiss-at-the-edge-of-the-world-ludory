@@ -301,6 +301,8 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             assert.equal(JSON.stringify(closed.get()), before, 'Damir-closed S36 Back');
             closed.act('narrative:choose:s36-c1-choice:b');
             const atEnd = runtime(clone(closed.get()));
+            walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
+            atEnd.act('narrative:choose:s36-route-choice:damir');
             walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
             assert.equal(atEnd.get().routeLock, 'damir');
             assert.equal(atEnd.get().flags['s34-status-closed'], true);
@@ -319,6 +321,8 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
           walkUntil(fresh, (beat) => beat.id === 's36-c1-choice');
           rejectWithoutWrite(fresh, 'narrative:choose:s36-c1-choice:premium');
           fresh.act('narrative:choose:s36-c1-choice:a');
+          walkUntil(fresh, (beat) => beat.id === 's36-route-choice');
+          fresh.act('narrative:choose:s36-route-choice:damir');
           walkUntil(fresh, (beat) => beat.id === 's36-after-m3-end-beat');
           assert.equal(fresh.get().flags['s56-next-dish'], true);
           assert.equal(fresh.get().flags['s56-next-chorus'], undefined);
@@ -386,6 +390,8 @@ test('real N1 S56 active/paused: both music decisions, Back and JSON retain S39 
       assert.equal(JSON.stringify(fresh.get()), beforeS36, 'S36-C1 Back on Damir route');
       fresh.act('narrative:choose:s36-c1-choice:' + next);
       const throughS36 = runtime(clone(fresh.get()));
+      walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+      throughS36.act('narrative:choose:s36-route-choice:damir');
       walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
       assert.equal(fresh.get().routeLock, 'damir');
       assert.equal(throughS36.get().routeLock, 'damir');

@@ -251,6 +251,8 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         assert.equal(JSON.stringify(closed.get()), before, 'Nick-closed S36 Back');
         closed.act('narrative:choose:s36-c1-choice:b');
         const atEnd = runtime(clone(closed.get()));
+        walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
+        atEnd.act('narrative:choose:s36-route-choice:nick');
         walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'nick');
         assert.equal(atEnd.get().flags['s33-status-closed'], true);
@@ -280,6 +282,8 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         assert.equal(JSON.stringify(restored.get()), beforeS36, 'S36-C1 Back on Nick route');
         restored.act('narrative:choose:s36-c1-choice:' + hour);
         const throughS36 = runtime(clone(restored.get()));
+        walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+        throughS36.act('narrative:choose:s36-route-choice:nick');
         walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(restored.get().routeLock, 'nick');
         assert.equal(throughS36.get().routeLock, 'nick');

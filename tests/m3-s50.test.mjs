@@ -53,7 +53,10 @@ test('S50 guards Eric active/paused, preserves closed independent exit and two f
   for (const [node, beat, options] of expected) {
     assert.deepEqual(choice(node, beat)?.choices.map(({ id, label, targetSceneId, effects, when }) =>
       [id, label.ru, targetSceneId, effects, when]),
-    options.map(([id, label, target]) => [id, label, target, undefined, undefined]));
+    options.map(([id, label, target]) => [id, label, target,
+      node === 's50-common'
+        ? [{ op: 'flag_set', id: id === 'a' ? 's50-family-story' : 's50-sister-gift', value: true }]
+        : undefined, undefined]));
   }
   for (const branch of ['a', 'b']) {
     assert.equal(scene(`s50-c1-${branch}`).nextSceneId, 's50-common');

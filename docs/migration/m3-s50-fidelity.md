@@ -1,5 +1,7 @@
 # M3 — Eric S50 «Город без карты» (day 15)
 
+**Current continuation:** S50-C2 now stores one exclusive callback flag for its original S37 day-18 payoff; previously published Draft state snapshots after S50-C2 can require explicit Restart. See [S37 fidelity](m3-s37-fidelity.md).
+
 **Current continuation:** both S50-C2 options now enter shared day-17 S36; the former `s50-after-m3-end` stop described below is historical evidence for the prior stage. See [S36 fidelity](m3-s36-fidelity.md).
 
 ## Source and textual fidelity

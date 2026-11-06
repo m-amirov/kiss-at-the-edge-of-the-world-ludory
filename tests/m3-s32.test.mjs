@@ -252,6 +252,8 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         assert.equal(JSON.stringify(closed.get()), before, 'Eric-closed S36 Back');
         closed.act('narrative:choose:s36-c1-choice:a');
         const atEnd = runtime(clone(closed.get()));
+        walkUntil(atEnd, (beat) => beat.id === 's36-route-choice');
+        atEnd.act('narrative:choose:s36-route-choice:eric-closed');
         walkUntil(atEnd, (beat) => beat.id === 's36-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'eric');
         assert.equal(atEnd.get().flags['s32-status-closed'], true);
@@ -281,7 +283,10 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         assert.equal(JSON.stringify(resumed.get()), beforeS36, 'S36-C1 Back on Eric route');
         resumed.act('narrative:choose:s36-c1-choice:' + path);
         const throughS36 = runtime(clone(resumed.get()));
-        walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
+        walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+        throughS36.act('narrative:choose:s36-route-choice:' +
+          (status === 'a' ? 'eric-active' : 'eric-paused'));
+        walkUntil(throughS36, (beat) => beat.id === 's37-c1-choice');
         assert.equal(resumed.get().routeLock, 'eric');
         assert.equal(throughS36.get().routeLock, 'eric');
         assert.equal(resumed.get().flags[statusFlags[status]], true);
@@ -332,5 +337,116 @@ test('real N1 rejects forged S32 status, previous callback, route and action pro
     /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
     assert.equal(writes, 0);
     assert.equal(JSON.stringify(invalid), before);
+  }
+});
+
+test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back and JSON', () => {
+  const origin = runtime(checkpointS28());
+  origin.act('narrative:choose:s28-c1-choice:a');
+  walkUntil(origin, (beat) => beat.id === 's28-c2-choice');
+  origin.act('narrative:choose:s28-c2-choice:b');
+  walkUntil(origin, (beat) => beat.id === 's49-c1-choice');
+  origin.act('narrative:choose:s49-c1-choice:a');
+  walkUntil(origin, (beat) => beat.id === 's49-callback-choice');
+  origin.act('narrative:choose:s49-callback-choice:b');
+  walkUntil(origin, (beat) => beat.id === 's32-c1-choice');
+  const beforeStatus = clone(origin.get());
+
+  for (const status of ['a', 'b']) for (const family of ['a', 'b']) {
+    for (const outcome of ['a', 'b']) {
+      const run = runtime(beforeStatus);
+      run.act(`narrative:choose:s32-c1-choice:${status}`);
+      walkUntil(run, (beat) => beat.id === 's32-status-choice');
+      run.act(`narrative:choose:s32-status-choice:${status}`);
+      walkUntil(run, (beat) => beat.id === 's50-c1-choice');
+      run.act('narrative:choose:s50-c1-choice:a');
+      walkUntil(run, (beat) => beat.id === 's50-c2-choice');
+      run.act(`narrative:choose:s50-c2-choice:${family}`);
+      walkUntil(run, (beat) => beat.id === 's36-c1-choice');
+      run.act('narrative:choose:s36-c1-choice:b');
+      walkUntil(run, (beat) => beat.id === 's36-route-choice');
+      rejectWithoutWrite(run, 'narrative:choose:s36-route-choice:eric-closed');
+      rejectWithoutWrite(run, 'narrative:choose:s36-route-choice:nick');
+      rejectWithoutWrite(run, 'narrative:choose:s36-route-choice:' +
+        (status === 'a' ? 'eric-paused' : 'eric-active'));
+      run.act('narrative:choose:s36-route-choice:' +
+        (status === 'a' ? 'eric-active' : 'eric-paused'));
+      walkUntil(run, (beat) => beat.id === 's37-c1-choice');
+      assert.equal(run.get().routeLock, 'eric');
+      assert.equal(run.get().flags[statusFlags[status]], true);
+      assert.ok(run.get().visitedScenes.includes(status === 'a' ? 's37-active' : 's37-paused'));
+      const beforeC1 = JSON.stringify(run.get());
+      run.act('narrative:choose:s37-c1-choice:' + (outcome === 'a' ? 'b' : 'a'));
+      run.act('narrative:back');
+      assert.equal(JSON.stringify(run.get()), beforeC1, 'S37-C1 Back restores status choice');
+      run.act(`narrative:choose:s37-c1-choice:${outcome}`);
+      assert.equal(run.get().flags[outcome === 'a' ? 's37-status-continues' : 's37-status-closed'], true);
+      assert.equal(run.get().flags[outcome === 'a' ? 's37-status-closed' : 's37-status-continues'], undefined);
+      walkUntil(run, (beat) => beat.id === 's37-s50-choice');
+      rejectWithoutWrite(run, 'narrative:choose:s37-s50-choice:' + (family === 'a' ? 'b' : 'a'));
+      run.act(`narrative:choose:s37-s50-choice:${family}`);
+      assert.equal(run.get().flags[family === 'a' ? 's50-family-story' : 's50-sister-gift'], true);
+      assert.equal(run.get().flags[family === 'a' ? 's50-sister-gift' : 's50-family-story'], undefined);
+      walkUntil(run, (beat) => beat.id === 's37-status-choice');
+      rejectWithoutWrite(run, 'narrative:choose:s37-status-choice:' +
+        (outcome === 'a' ? 'closed' : 'continue'));
+      const resumed = runtime(clone(run.get())); // fresh N1 validates complete action provenance
+      resumed.act('narrative:choose:s37-status-choice:' +
+        (outcome === 'a' ? 'continue' : 'closed'));
+      if (outcome === 'b') {
+        walkUntil(resumed, (beat) => beat.id === 's37-after-closed-end-beat');
+        assert.ok(!resumed.get().visitedScenes.includes('s37-c2'),
+          'explicit end of romance must skip the later romantic morning');
+        assert.equal(resumed.get().flags['s37-status-closed'], true);
+      } else {
+        walkUntil(resumed, (beat) => beat.id === 's37-c2-choice');
+        rejectWithoutWrite(resumed, 'narrative:choose:s37-c2-choice:premium');
+        const beforeC2 = JSON.stringify(resumed.get());
+        resumed.act('narrative:choose:s37-c2-choice:' + (family === 'a' ? 'b' : 'a'));
+        resumed.act('narrative:back');
+        assert.equal(JSON.stringify(resumed.get()), beforeC2, 'S37-C2 Back restores the choice');
+        resumed.act(`narrative:choose:s37-c2-choice:${family}`);
+        const restored = runtime(clone(resumed.get()));
+        walkUntil(restored, (beat) => beat.id === 's37-after-open-end-beat');
+        assert.equal(restored.get().flags[family === 'a'
+          ? 's37-morning-sunrise' : 's37-morning-breakfast'], true);
+        assert.equal(restored.get().flags[family === 'a'
+          ? 's37-morning-breakfast' : 's37-morning-sunrise'], undefined);
+      }
+      assert.equal(resumed.get().routeLock, 'eric');
+      assert.equal(resumed.get().flags['s28-evening-quiet'], true);
+      assert.equal(resumed.get().flags['beach-footage-safe-only'], true);
+    }
+  }
+
+  // An externally modified status or choice log must not become valid on resume.
+  const valid = runtime(beforeStatus);
+  valid.act('narrative:choose:s32-c1-choice:a');
+  walkUntil(valid, (beat) => beat.id === 's32-status-choice');
+  valid.act('narrative:choose:s32-status-choice:a');
+  walkUntil(valid, (beat) => beat.id === 's50-c1-choice');
+  valid.act('narrative:choose:s50-c1-choice:a');
+  walkUntil(valid, (beat) => beat.id === 's50-c2-choice');
+  valid.act('narrative:choose:s50-c2-choice:a');
+  walkUntil(valid, (beat) => beat.id === 's36-c1-choice');
+  valid.act('narrative:choose:s36-c1-choice:a');
+  walkUntil(valid, (beat) => beat.id === 's36-route-choice');
+  valid.act('narrative:choose:s36-route-choice:eric-active');
+  walkUntil(valid, (beat) => beat.id === 's37-c1-choice');
+  valid.act('narrative:choose:s37-c1-choice:a');
+  const snapshot = clone(valid.get());
+  for (const forged of [
+    { ...snapshot, flags: { ...snapshot.flags, 's37-status-closed': true } },
+    { ...snapshot, flags: { ...snapshot.flags, 's50-sister-gift': true } },
+    { ...snapshot, actionLog: snapshot.actionLog.map((entry) =>
+      entry.beatId === 's37-c1-choice' ? { ...entry, optionId: 'b' } : entry) },
+  ]) {
+    let writes = 0;
+    const update = createNarrativeRuntimeUpdate({ graph: valid.graph, catalog: valid.catalog });
+    assert.throws(() => update({ deltaMs: 16, state: { narrative: forged },
+      inputs: [{ schemaVersion: 1, type: 'pointer',
+        action: 'narrative:next:s37-c1-a-01', phase: 'up', timestamp: 205,
+        source: 'renderer' }], setState() { writes += 1; } }), TypeError);
+    assert.equal(writes, 0, 'forged S37 state is never written');
   }
 });

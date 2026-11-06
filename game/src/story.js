@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the day-14 routes, episode-08 four day-16 routes, and shared episode-09 S36.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 shared S36 and Eric S37.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -133,6 +133,7 @@ import * as s56 from './scenes/s56.js';
 import * as s35 from './scenes/s35.js';
 import * as s63 from './scenes/s63.js';
 import * as s36 from './scenes/s36.js';
+import * as s37 from './scenes/s37.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1795,8 +1796,10 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's50-common', beats: [
     ...beats('s50-common', s50.s50Common),
     { id: 's50-c2-choice', type: 'choice', choices: [
-      { id: 'a', label: t('Попросить рассказать о любимом семейном вечере'), targetSceneId: 's50-c2-a' },
-      { id: 'b', label: t('Пригласить его вместе выбрать небольшой подарок сестре'), targetSceneId: 's50-c2-b' },
+      { id: 'a', label: t('Попросить рассказать о любимом семейном вечере'),
+        targetSceneId: 's50-c2-a', effects: [{ op: 'flag_set', id: 's50-family-story', value: true }] },
+      { id: 'b', label: t('Пригласить его вместе выбрать небольшой подарок сестре'),
+        targetSceneId: 's50-c2-b', effects: [{ op: 'flag_set', id: 's50-sister-gift', value: true }] },
     ] },
   ] },
   { id: 's50-c2-a', beats: beats('s50-c2-a', s50.s50C2A), nextSceneId: 's36-intro' },
@@ -2095,10 +2098,84 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's36-c1-a', beats: beats('s36-c1-a', s36.s36C1A), nextSceneId: 's36-common' },
   { id: 's36-c1-b', beats: beats('s36-c1-b', s36.s36C1B), nextSceneId: 's36-common' },
   { id: 's36-common', beats: beats('s36-common', s36.s36Common),
-    nextSceneId: 's36-after-m3-end' },
+    nextSceneId: 's36-route-dispatch' },
+  // One enabled technical Continue for each route/status. Closed romance stays
+  // on the independent path; routeLock is never rewritten to Alice.
+  { id: 's36-route-dispatch', beats: [
+    { id: 's36-route-choice', type: 'choice', choices: [
+      { id: 'eric-active', label: t('Продолжить'), routeId: 'eric',
+        when: { flag: 's32-status-active' }, targetSceneId: 's37-active' },
+      { id: 'eric-paused', label: t('Продолжить'), routeId: 'eric',
+        when: { flag: 's32-status-paused' }, targetSceneId: 's37-paused' },
+      { id: 'eric-closed', label: t('Продолжить'), routeId: 'eric',
+        when: { flag: 's32-status-closed' }, targetSceneId: 's36-after-m3-end' },
+      { id: 'nick', label: t('Продолжить'), routeId: 'nick',
+        targetSceneId: 's36-after-m3-end' },
+      { id: 'damir', label: t('Продолжить'), routeId: 'damir',
+        targetSceneId: 's36-after-m3-end' },
+      { id: 'alice', label: t('Продолжить'), routeId: 'alice',
+        targetSceneId: 's36-after-m3-end' },
+    ] },
+  ] },
   { id: 's36-after-m3-end', beats: [
     { id: 's36-after-m3-end-beat', type: 'ending', endingId: 'm3-day17-s36-only',
       text: t('Технический фрагмент завершён. Маршрутные сцены дня 18 ещё не перенесены.') },
+  ] },
+  // Eric day 18: the S32 active/paused distinction survives the S36 reunion.
+  { id: 's37-active', beats: beats('s37-active', s37.s37Active), nextSceneId: 's37-c1' },
+  { id: 's37-paused', beats: beats('s37-paused', s37.s37Paused), nextSceneId: 's37-c1' },
+  { id: 's37-c1', beats: [
+    { id: 's37-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Предложить конкретную встречу после возвращения домой'),
+        targetSceneId: 's37-c1-a', effects: [{ op: 'flag_set', id: 's37-status-continues', value: true }] },
+      { id: 'b', label: t('Оставить близость путешествию и завершить роман'),
+        targetSceneId: 's37-c1-b', effects: [{ op: 'flag_set', id: 's37-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's37-c1-a', beats: beats('s37-c1-a', s37.s37C1A), nextSceneId: 's37-common' },
+  { id: 's37-c1-b', beats: beats('s37-c1-b', s37.s37C1B), nextSceneId: 's37-common' },
+  { id: 's37-common', beats: beats('s37-common', s37.s37Common),
+    nextSceneId: 's37-s50-dispatch' },
+  { id: 's37-s50-dispatch', beats: [
+    { id: 's37-s50-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's50-family-story' },
+        targetSceneId: 's37-s50-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's50-sister-gift' },
+        targetSceneId: 's37-s50-b' },
+    ] },
+  ] },
+  { id: 's37-s50-a', beats: beats('s37-s50-a', s37.s37S50A),
+    nextSceneId: 's37-status-dispatch' },
+  { id: 's37-s50-b', beats: beats('s37-s50-b', s37.s37S50B),
+    nextSceneId: 's37-status-dispatch' },
+  { id: 's37-status-dispatch', beats: [
+    { id: 's37-status-choice', type: 'choice', choices: [
+      { id: 'continue', label: t('Продолжить'), when: { flag: 's37-status-continues' },
+        targetSceneId: 's37-c2' },
+      { id: 'closed', label: t('Продолжить'), when: { flag: 's37-status-closed' },
+        targetSceneId: 's37-after-closed-end' },
+    ] },
+  ] },
+  // The romantic morning is not offered after S37-C1 explicitly ends romance.
+  { id: 's37-c2', beats: [
+    { id: 's37-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Позвать его увидеть рассвет вдвоём'),
+        targetSceneId: 's37-c2-a', effects: [{ op: 'flag_set', id: 's37-morning-sunrise', value: true }] },
+      { id: 'b', label: t('Пригласить его вместе приготовить поздний завтрак'),
+        targetSceneId: 's37-c2-b', effects: [{ op: 'flag_set', id: 's37-morning-breakfast', value: true }] },
+    ] },
+  ] },
+  { id: 's37-c2-a', beats: beats('s37-c2-a', s37.s37C2A),
+    nextSceneId: 's37-after-open-end' },
+  { id: 's37-c2-b', beats: beats('s37-c2-b', s37.s37C2B),
+    nextSceneId: 's37-after-open-end' },
+  { id: 's37-after-open-end', beats: [
+    { id: 's37-after-open-end-beat', type: 'ending', endingId: 'm3-eric-day18-open',
+      text: t('Технический фрагмент завершён. S51 ещё не перенесена.') },
+  ] },
+  { id: 's37-after-closed-end', beats: [
+    { id: 's37-after-closed-end-beat', type: 'ending', endingId: 'm3-eric-day18-closed',
+      text: t('Технический фрагмент завершён. Независимая S40 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

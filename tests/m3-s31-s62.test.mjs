@@ -315,6 +315,8 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
             assert.equal(JSON.stringify(resumed.get()), beforeS36, 'S36-C1 Back on Alice route');
             resumed.act('narrative:choose:s36-c1-choice:' + evening);
             const throughS36 = runtime(clone(resumed.get()));
+            walkUntil(throughS36, (beat) => beat.id === 's36-route-choice');
+            throughS36.act('narrative:choose:s36-route-choice:alice');
             walkUntil(throughS36, (beat) => beat.id === 's36-after-m3-end-beat');
             assert.equal(resumed.get().routeIntent, 'alice');
             assert.equal(resumed.get().routeLock, 'alice');
