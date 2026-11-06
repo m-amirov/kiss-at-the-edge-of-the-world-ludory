@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32/Nick S33.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -125,6 +125,7 @@ import * as s55 from './scenes/s55.js';
 import * as s31 from './scenes/s31.js';
 import * as s62 from './scenes/s62.js';
 import * as s32 from './scenes/s32.js';
+import * as s33 from './scenes/s33.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1810,11 +1811,28 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's52-callback-a', beats: beats('s52-callback-a', s52.s52CallbackA),
-    nextSceneId: 's52-after-m3-end' },
+    nextSceneId: 's33-intro' },
   { id: 's52-callback-b', beats: beats('s52-callback-b', s52.s52CallbackB),
-    nextSceneId: 's52-after-m3-end' },
-  { id: 's52-after-m3-end', beats: [
-    { id: 's52-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s52-only',
+    nextSceneId: 's33-intro' },
+  // Nick-exclusive day-15 teaser privacy decision. No real sharing/deletion is performed.
+  { id: 's33-intro', beats: [
+    ...beats('s33-intro', s33.s33Intro),
+    { id: 's33-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Попросить увидеть исправленный тизер до новой отправки'),
+        targetSceneId: 's33-c1-a', effects: [{ op: 'flag_set', id: 's33-status-active', value: true }] },
+      { id: 'b', label: t('Взять паузу и отказаться обсуждать фильм сегодня'),
+        targetSceneId: 's33-c1-b', effects: [{ op: 'flag_set', id: 's33-status-paused', value: true }] },
+      { id: 'c', label: t('Закончить романтическую историю'),
+        targetSceneId: 's33-c1-c', effects: [{ op: 'flag_set', id: 's33-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's33-c1-a', beats: beats('s33-c1-a', s33.s33C1A), nextSceneId: 's33-common' },
+  { id: 's33-c1-b', beats: beats('s33-c1-b', s33.s33C1B), nextSceneId: 's33-common' },
+  { id: 's33-c1-c', beats: beats('s33-c1-c', s33.s33C1C), nextSceneId: 's33-common' },
+  { id: 's33-common', beats: beats('s33-common', s33.s33Common),
+    nextSceneId: 's33-after-m3-end' },
+  { id: 's33-after-m3-end', beats: [
+    { id: 's33-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-s33-only',
       text: t('Технический фрагмент завершён. Следующая сцена маршрута Ника ещё не перенесена.') },
   ] },
   // Damir-exclusive day-14 arc: discussing a clinic interview grants no relocation consent.

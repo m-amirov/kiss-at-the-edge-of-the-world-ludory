@@ -90,7 +90,7 @@ test('S29/S52 have three free decisions and one exact guarded C2 payoff', () => 
   for (const id of ['a', 'b']) {
     assert.equal(scene(`s29-c2-${id}`).nextSceneId, 's52-intro');
     assert.equal(scene(`s52-c1-${id}`).nextSceneId, 's52-common');
-    assert.equal(scene(`s52-callback-${id}`).nextSceneId, 's52-after-m3-end');
+    assert.equal(scene(`s52-callback-${id}`).nextSceneId, 's33-intro');
   }
   assert.equal(scene('s52-common').nextSceneId, 's52-callback-dispatch');
   assert.deepEqual(choice('s52-callback-dispatch', 's52-callback-choice').choices
@@ -99,7 +99,7 @@ test('S29/S52 have three free decisions and one exact guarded C2 payoff', () => 
     ['a', 'Продолжить', 's52-callback-a', { flag: 's29-hour-walk' }, undefined],
     ['b', 'Продолжить', 's52-callback-b', { flag: 's29-hour-film' }, undefined],
   ]);
-  assert.equal(scene('s52-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s52-after-m3-end'), undefined, 'S52 Draft stop replaced by S33');
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -260,7 +260,7 @@ test('real N1 Nick: 3 clip permissions × 2 hours × 2 S52 responses, Back and J
       branch.act(`narrative:choose:s52-callback-choice:${hour}`);
       assert.equal(branch.get().sceneId, `s52-callback-${hour}`);
       const fresh = runtime(clone(branch.get()));
-      walkUntil(fresh, (_beat, id) => id === 's52-after-m3-end');
+      walkUntil(fresh, (_beat, id) => id === 's33-intro');
       assert.equal(fresh.get().routeIntent, 'nick');
       assert.equal(fresh.get().routeLock, 'nick');
       assert.equal(fresh.get().flags[hour === 'a' ? 's29-hour-walk' : 's29-hour-film'], true);
