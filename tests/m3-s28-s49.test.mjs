@@ -99,9 +99,9 @@ test('S59 continues into only the selected locked route; Eric three choices free
     assert.equal(option.effects, undefined);
   }
   assert.equal(scene('s49-common').nextSceneId, 's49-callback-dispatch');
-  assert.equal(scene('s49-callback-a').nextSceneId, 's49-after-m3-end');
-  assert.equal(scene('s49-callback-b').nextSceneId, 's49-after-m3-end');
-  assert.equal(scene('s49-after-m3-end').beats[0].type, 'ending');
+  assert.equal(scene('s49-callback-a').nextSceneId, 's32-intro');
+  assert.equal(scene('s49-callback-b').nextSceneId, 's32-intro');
+  assert.equal(scene('s49-after-m3-end'), undefined);
   assert.deepEqual(catalogData.interactions, []);
 });
 
@@ -260,7 +260,7 @@ test('real N1 Eric: S28-C1 × S28-C2 × S49-C1, callbacks, Back and JSON provena
       run.act(`narrative:choose:s49-callback-choice:${evening}`);
       assert.equal(run.get().sceneId, `s49-callback-${evening}`);
       const reloaded = runtime(clone(run.get()));
-      walkUntil(reloaded, (_beat, id) => id === 's49-after-m3-end');
+      walkUntil(reloaded, (_beat, id) => id === 's32-intro');
       assert.equal(reloaded.get().routeLock, 'eric');
       assert.equal(reloaded.get().routeIntent, 'eric');
       assert.equal(reloaded.get().flags[`s28-evening-${evening === 'a' ? 'dance' : 'quiet'}`], true);

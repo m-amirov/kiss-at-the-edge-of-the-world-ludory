@@ -28,7 +28,7 @@ All **12 independent authorial blocks / 20 Russian paragraphs** are represented 
 - **S31-C2** offers the unsent self-letter or choosing tomorrow's breakfast. The two exclusive flags `s31-self-letter` and `s31-self-breakfast` guard exactly one S62 callback, with native Back and JSON actionLog provenance; no invented scores or authorial choice.
 - **S62-C1** offers an authored message to an old friend or no message. The text is narrative only: no actual outgoing messages, server or external SDK actions. Both choices converge at the same dinner paragraph.
 - As authored, S62's conditional **morning** recollection blocks follow the common **dinner** paragraph in manuscript order. This source-order time shift is preserved rather than silently editing the author's chronology.
-- `s62-after-m3-end` is a Draft-only **technical stop**, not a game ending. This first novel's Economy remains OFF: no currency, premium choices, rewarded advertising or IAP.
+- `s62-after-m3-end` is a Draft-only **technical stop**, not a game ending. The subsequent EP08 S32 is Eric-only, not a common scene; the independent Alice continuation remains to be migrated. This first novel's Economy remains OFF: no currency, premium choices, rewarded advertising or IAP.
 
 ## Save and release gates
 

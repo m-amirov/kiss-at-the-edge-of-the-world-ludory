@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66 and literary episodes 3–7 through Eric S28/S49, Nick S29/S52, Damir S30/S55 and independent Alice S31/S62.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–7 through the four day-14 routes, and episode-08 Eric S32.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -124,6 +124,7 @@ import * as s30 from './scenes/s30.js';
 import * as s55 from './scenes/s55.js';
 import * as s31 from './scenes/s31.js';
 import * as s62 from './scenes/s62.js';
+import * as s32 from './scenes/s32.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -1741,12 +1742,30 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's49-callback-a', beats: beats('s49-callback-a', s49.s49CallbackA),
-    nextSceneId: 's49-after-m3-end' },
+    nextSceneId: 's32-intro' },
   { id: 's49-callback-b', beats: beats('s49-callback-b', s49.s49CallbackB),
-    nextSceneId: 's49-after-m3-end' },
-  { id: 's49-after-m3-end', beats: [
-    { id: 's49-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-s49-only',
-      text: t('Технический фрагмент завершён. Следующая сцена маршрута Эрика ещё не перенесена.') },
+    nextSceneId: 's32-intro' },
+  // Episode-08 day 15: Eric only; authorial pause/close are state, not release endings.
+  // N1 has no verified routeStatus setter; exclusive backed-up flags carry it to S50.
+  { id: 's32-intro', beats: [
+    ...beats('s32-intro', s32.s32Intro),
+    { id: 's32-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить отношения, не решая зиму немедленно'),
+        targetSceneId: 's32-c1-a', effects: [{ op: 'flag_set', id: 's32-status-active', value: true }] },
+      { id: 'b', label: t('Попросить паузу без обещания свиданий'),
+        targetSceneId: 's32-c1-b', effects: [{ op: 'flag_set', id: 's32-status-paused', value: true }] },
+      { id: 'c', label: t('Закончить романтическую историю сейчас'),
+        targetSceneId: 's32-c1-c', effects: [{ op: 'flag_set', id: 's32-status-closed', value: true }] },
+    ] },
+  ] },
+  { id: 's32-c1-a', beats: beats('s32-c1-a', s32.s32C1A), nextSceneId: 's32-common' },
+  { id: 's32-c1-b', beats: beats('s32-c1-b', s32.s32C1B), nextSceneId: 's32-common' },
+  { id: 's32-c1-c', beats: beats('s32-c1-c', s32.s32C1C), nextSceneId: 's32-common' },
+  { id: 's32-common', beats: beats('s32-common', s32.s32Common),
+    nextSceneId: 's32-after-m3-end' },
+  { id: 's32-after-m3-end', beats: [
+    { id: 's32-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-s32-only',
+      text: t('Технический фрагмент завершён. Следующее продолжение дня 15 ещё не перенесено.') },
   ] },
   // Nick-exclusive day-14 arc: the S29-C1 clip choice never grants publication rights.
   { id: 's29-intro', beats: [
