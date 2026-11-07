@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S54/S57/S64 and shared S60.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through shared day-19 S60, and EP10 shared day-20 S41.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -142,6 +142,7 @@ import * as s57 from './scenes/s57.js';
 import * as s40 from './scenes/s40.js';
 import * as s64 from './scenes/s64.js';
 import * as s60 from './scenes/s60.js';
+import * as s41 from './scenes/s41.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2444,10 +2445,55 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's60-c1-b', beats: beats('s60-c1-b', s60.s60C1B), nextSceneId: 's60-common' },
   { id: 's60-c1-c', beats: beats('s60-c1-c', s60.s60C1C), nextSceneId: 's60-common' },
   { id: 's60-common', beats: beats('s60-common', s60.s60Common),
-    nextSceneId: 's60-after-m3-end' },
-  { id: 's60-after-m3-end', beats: [
-    { id: 's60-after-m3-end-beat', type: 'ending', endingId: 'm3-shared-day19',
-      text: t('Технический фрагмент завершён. Общая сцена S41 из эпизода 10 ещё не перенесена.') },
+    nextSceneId: 's41-intro' },
+  // Shared EP10 day 20. Existing S02 thesis selects exactly one authored
+  // paragraph; there is no fallback for malformed/provenance-invalid saves.
+  { id: 's41-intro', beats: beats('s41-intro', s41.s41Intro),
+    nextSceneId: 's41-career-dispatch' },
+  { id: 's41-career-dispatch', beats: [
+    { id: 's41-career-choice', type: 'choice', choices: [
+      { id: 'people', label: t('Продолжить'), when: { flag: 'career-thesis-people' },
+        targetSceneId: 's41-career-people' },
+      { id: 'place', label: t('Продолжить'), when: { flag: 'career-thesis-place' },
+        targetSceneId: 's41-career-place' },
+      { id: 'own-choice', label: t('Продолжить'), when: { flag: 'career-thesis-own-choice' },
+        targetSceneId: 's41-career-own' },
+    ] },
+  ] },
+  { id: 's41-career-people', beats: beats('s41-career-people', s41.s41CareerPeople),
+    nextSceneId: 's41-title-choice' },
+  { id: 's41-career-place', beats: beats('s41-career-place', s41.s41CareerPlace),
+    nextSceneId: 's41-title-choice' },
+  { id: 's41-career-own', beats: beats('s41-career-own', s41.s41CareerOwn),
+    nextSceneId: 's41-title-choice' },
+  { id: 's41-title-choice', beats: [
+    { id: 's41-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Дорога, на которой пришлось остановиться'),
+        targetSceneId: 's41-c1-a',
+        effects: [{ op: 'flag_set', id: 's41-headline-road', value: true }] },
+      { id: 'b', label: t('Три недели, которые не уместились в карту'),
+        targetSceneId: 's41-c1-b',
+        effects: [{ op: 'flag_set', id: 's41-headline-map', value: true }] },
+    ] },
+  ] },
+  { id: 's41-c1-a', beats: beats('s41-c1-a', s41.s41C1A), nextSceneId: 's41-common' },
+  { id: 's41-c1-b', beats: beats('s41-c1-b', s41.s41C1B), nextSceneId: 's41-common' },
+  { id: 's41-common', beats: [
+    ...beats('s41-common', s41.s41Common),
+    { id: 's41-c2-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Позвать всю группу на короткую общую прогулку'),
+        targetSceneId: 's41-c2-a',
+        effects: [{ op: 'flag_set', id: 's41-aftertext-group-walk', value: true }] },
+      { id: 'b', label: t('Оставить себе час одиночества перед общим прощанием'),
+        targetSceneId: 's41-c2-b',
+        effects: [{ op: 'flag_set', id: 's41-aftertext-alone', value: true }] },
+    ] },
+  ] },
+  { id: 's41-c2-a', beats: beats('s41-c2-a', s41.s41C2A), nextSceneId: 's41-after-m3-end' },
+  { id: 's41-c2-b', beats: beats('s41-c2-b', s41.s41C2B), nextSceneId: 's41-after-m3-end' },
+  { id: 's41-after-m3-end', beats: [
+    { id: 's41-after-m3-end-beat', type: 'ending', endingId: 'm3-shared-day20',
+      text: t('Технический фрагмент завершён. Личный вечер S42/S43 из эпизода 10 ещё не перенесён.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

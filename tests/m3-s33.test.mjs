@@ -143,6 +143,19 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
+function finishS41(run, title = 'a', after = 'a') {
+  walkUntil(run, (beat) => beat.id === 's41-career-choice');
+  run.act('narrative:choose:s41-career-choice:people');
+  walkUntil(run, (beat) => beat.id === 's41-c1-choice');
+  run.act(`narrative:choose:s41-c1-choice:${title}`);
+  walkUntil(run, (beat) => beat.id === 's41-c2-choice');
+  run.act(`narrative:choose:s41-c2-choice:${after}`);
+  walkUntil(run, (beat) => beat.id === 's41-after-m3-end-beat');
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+}
 function checkpointS26() {
   const run = runtime();
   walkUntil(run, (beat) => beat.id === 's17-evening-choice', preS17);
@@ -277,7 +290,7 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         atEnd.act('narrative:choose:s64-s40-choice:b');
         walkUntil(atEnd, (beat) => beat.id === 's60-c1-choice');
         atEnd.act('narrative:choose:s60-c1-choice:a');
-        walkUntil(atEnd, (beat) => beat.id === 's60-after-m3-end-beat');
+        finishS41(atEnd, 'a', 'b');
         assert.equal(atEnd.get().flags['s60-souvenir-bird'], true);
         assert.equal(atEnd.get().flags['s60-souvenir-map'], undefined);
         assert.equal(atEnd.get().flags['s60-souvenir-chocolate'], undefined);
@@ -418,7 +431,7 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
           solo.act('narrative:choose:s64-s40-choice:a');
           walkUntil(solo, (beat) => beat.id === 's60-c1-choice');
           solo.act('narrative:choose:s60-c1-choice:b');
-          walkUntil(solo, (beat) => beat.id === 's60-after-m3-end-beat');
+          finishS41(solo, 'b', 'b');
           assert.equal(solo.get().flags['s60-souvenir-map'], true);
           assert.equal(solo.get().flags['s60-souvenir-bird'], undefined);
           assert.equal(solo.get().flags['s60-souvenir-chocolate'], undefined);
@@ -471,7 +484,7 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
             walkUntil(reloaded, (beat) => beat.id === 's60-c1-choice');
             assert.ok(reloaded.get().visitedScenes.includes('s54-s38-' + c2));
             reloaded.act('narrative:choose:s60-c1-choice:c');
-            walkUntil(reloaded, (beat) => beat.id === 's60-after-m3-end-beat');
+            finishS41(reloaded, 'a', 'a');
             assert.equal(reloaded.get().flags['s60-souvenir-chocolate'], true);
             assert.equal(reloaded.get().flags['s60-souvenir-bird'], undefined);
             assert.equal(reloaded.get().flags['s60-souvenir-map'], undefined);

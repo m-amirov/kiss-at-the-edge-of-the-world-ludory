@@ -52,9 +52,9 @@ test('all three S60 souvenirs are free, exclusive, and rejoin common S41 boundar
   ]);
   for (const id of ['a', 'b', 'c'])
     assert.equal(scene(`s60-c1-${id}`)?.nextSceneId, 's60-common');
-  assert.equal(scene('s60-common')?.nextSceneId, 's60-after-m3-end');
-  assert.equal(scene('s60-after-m3-end')?.beats[0].type, 'ending',
-    'EP10 S41 is not migrated yet, so this is an unpublished technical boundary');
+  assert.equal(scene('s60-common')?.nextSceneId, 's41-intro');
+  assert.equal(scene('s60-after-m3-end'), undefined,
+    'former unpublished technical stop removed after canonical EP10 S41 integration');
   for (const option of choices('s60-intro', 's60-c1-choice'))
     for (const key of ['cost', 'premium', 'requiredEntitlement', 'purchase',
       'routeId', 'realDelivery', 'realMessaging', 'mediaPermission', 'publishPermission'])

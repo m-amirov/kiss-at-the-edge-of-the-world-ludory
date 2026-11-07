@@ -172,6 +172,21 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
+function finishS41(run, title = 'a', after = 'a') {
+  walkUntil(run, (beat) => beat.id === 's41-career-choice');
+  rejectWithoutWrite(run, 'narrative:choose:s41-career-choice:place');
+  rejectWithoutWrite(run, 'narrative:choose:s41-career-choice:own-choice');
+  run.act('narrative:choose:s41-career-choice:people');
+  walkUntil(run, (beat) => beat.id === 's41-c1-choice');
+  run.act(`narrative:choose:s41-c1-choice:${title}`);
+  walkUntil(run, (beat) => beat.id === 's41-c2-choice');
+  run.act(`narrative:choose:s41-c2-choice:${after}`);
+  walkUntil(run, (beat) => beat.id === 's41-after-m3-end-beat');
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+}
 function checkpointS26() {
   const run = runtime();
   walkUntil(run, (beat) => beat.id === 's17-evening-choice', preS17);
@@ -327,7 +342,7 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             atEnd.act('narrative:choose:s64-s40-choice:a');
             walkUntil(atEnd, (beat) => beat.id === 's60-c1-choice');
             atEnd.act('narrative:choose:s60-c1-choice:c');
-            walkUntil(atEnd, (beat) => beat.id === 's60-after-m3-end-beat');
+            finishS41(atEnd, 'a', 'b');
             assert.equal(atEnd.get().routeLock, 'damir');
             assert.equal(atEnd.get().flags['s64-career-project'], true);
             assert.ok(atEnd.get().visitedScenes.includes('s64-s40-a'));
@@ -614,7 +629,7 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
             /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
           assert.equal(forgedReopened.writes(), 0, 'closed romance forged open must not write');
           assert.equal(JSON.stringify(forgedReopened.get()), beforeForgedClosed);
-          walkUntil(solo, (beat) => beat.id === 's60-after-m3-end-beat');
+          finishS41(solo, 'b', 'a');
           assert.equal(solo.get().routeLock, 'damir');
           assert.equal(solo.get().flags['s64-career-break'], true);
           assert.ok(solo.get().visitedScenes.includes('s64-s40-b'));
@@ -731,7 +746,7 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
                 }
               }
               const restoredS60 = runtime(afterSouvenir);
-              walkUntil(restoredS60, (beat) => beat.id === 's60-after-m3-end-beat');
+              finishS41(restoredS60, 'b', 'b');
               assert.ok(restoredS60.get().visitedScenes.includes('s60-common'));
               assert.equal(restoredS60.get().routeLock, 'damir');
               assert.equal(restoredS60.get().flags['s39-status-continues'], true);

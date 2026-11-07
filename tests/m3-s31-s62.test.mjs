@@ -173,9 +173,28 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
-function checkpointS26() {
+function finishS41(run, title = 'a', after = 'a') {
+  walkUntil(run, (beat) => beat.id === 's41-career-choice');
+  run.act('narrative:choose:s41-career-choice:people');
+  walkUntil(run, (beat) => beat.id === 's41-c1-choice');
+  run.act(`narrative:choose:s41-c1-choice:${title}`);
+  walkUntil(run, (beat) => beat.id === 's41-c2-choice');
+  run.act(`narrative:choose:s41-c2-choice:${after}`);
+  walkUntil(run, (beat) => beat.id === 's41-after-m3-end-beat');
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
+  assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
+  assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+}
+function checkpointS26(career = 'people') {
   const run = runtime();
-  walkUntil(run, (beat) => beat.id === 's17-evening-choice', preS17);
+  const preCareer = { ...preS17,
+    's02-career-choice': career,
+    's03-career-dispatch': career,
+    's66-career-dispatch': career,
+    's09-career-dispatch': career,
+  };
+  walkUntil(run, (beat) => beat.id === 's17-evening-choice', preCareer);
   run.act('narrative:choose:s17-evening-choice:self');
   walkUntil(run, (_beat, id) => id === 's58-intro', afterS17);
   walkUntil(run, (beat) => beat.id === 's58-shop-choice');
@@ -185,6 +204,84 @@ function checkpointS26() {
   walkUntil(run, (beat) => beat.id === 's26-route-choice');
   return clone(run.get());
 }
+
+test('real N1 S01→S41 preserves distinct place and own-choice career theses, Back, replay and anti-forgery', () => {
+  const authored = [
+    ['s26-route-choice', 'alice'],
+    ['s26-alice-evening-choice', 'self'],
+    ['s27-work-choice', 'bags'],
+    ['s59-song-choice', 'eric'],
+    ['s59-route-choice', 'alice'],
+    ['s31-c1-choice', 'a'],
+    ['s31-c2-choice', 'a'],
+    ['s62-c1-choice', 'a'],
+    ['s62-callback-choice', 'a'],
+    ['s35-c1-choice', 'a'],
+    ['s63-c1-choice', 'a'],
+    ['s63-c2-choice', 'a'],
+    ['s36-c1-choice', 'a'],
+    ['s36-route-choice', 'alice'],
+    ['s40-c1-choice', 'a'],
+    ['s40-c2-choice', 'a'],
+    ['s40-s63-choice', 'a'],
+    ['s64-c1-choice', 'a'],
+    ['s64-s40-choice', 'a'],
+    ['s60-c1-choice', 'a'],
+  ];
+  for (const career of ['place', 'own-choice']) {
+    const run = runtime(checkpointS26(career));
+    for (const [beatId, optionId] of authored) {
+      walkUntil(run, (beat) => beat.id === beatId);
+      run.act(`narrative:choose:${beatId}:${optionId}`);
+    }
+    walkUntil(run, (beat) => beat.id === 's41-career-choice');
+    const others = ['people', 'place', 'own-choice'].filter((id) => id !== career);
+    for (const other of others) rejectWithoutWrite(run, `narrative:choose:s41-career-choice:${other}`);
+    assert.deepEqual(['people', 'place', 'own-choice'].filter((id) =>
+      run.get().flags[`career-thesis-${id}`] === true), [career]);
+    run.act(`narrative:choose:s41-career-choice:${career}`);
+    assert.equal(run.get().sceneId,
+      career === 'place' ? 's41-career-place' : 's41-career-own');
+    walkUntil(run, (beat) => beat.id === 's41-c1-choice');
+    const beforeC1 = JSON.stringify(run.get());
+    run.act('narrative:choose:s41-c1-choice:b');
+    run.act('narrative:back');
+    assert.equal(JSON.stringify(run.get()), beforeC1, 'S41 C1 Back restores choice');
+    run.act('narrative:choose:s41-c1-choice:a');
+    walkUntil(run, (beat) => beat.id === 's41-c2-choice');
+    const beforeC2 = JSON.stringify(run.get());
+    run.act('narrative:choose:s41-c2-choice:a');
+    run.act('narrative:back');
+    assert.equal(JSON.stringify(run.get()), beforeC2, 'S41 C2 Back restores choice');
+    run.act('narrative:choose:s41-c2-choice:b');
+    const afterC2 = clone(run.get());
+    const forgedStates = [
+      { ...afterC2, flags: { ...afterC2.flags, 'career-thesis-people': true } },
+      { ...afterC2, flags: { ...afterC2.flags, 's41-headline-map': true } },
+      { ...afterC2, flags: { ...afterC2.flags, 's41-aftertext-group-walk': true } },
+      { ...afterC2, actionLog: afterC2.actionLog.map((entry) =>
+        entry.beatId === 's41-c1-choice' ? { ...entry, optionId: 'b' } : entry) },
+      { ...afterC2, actionLog: afterC2.actionLog.map((entry) =>
+        entry.beatId === 's41-c2-choice' ? { ...entry, optionId: 'a' } : entry) },
+    ];
+    for (const invalid of forgedStates) {
+      const probe = runtime(invalid);
+      const before = JSON.stringify(probe.get());
+      assert.throws(() => probe.act('narrative:next:s41-c2-b-01'),
+        /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+      assert.equal(probe.writes(), 0);
+      assert.equal(JSON.stringify(probe.get()), before);
+    }
+    const restored = runtime(afterC2);
+    walkUntil(restored, (beat) => beat.id === 's41-after-m3-end-beat');
+    assert.equal(restored.get().routeLock, 'alice');
+    assert.equal(restored.get().flags['s41-headline-road'], true);
+    assert.equal(restored.get().flags['s41-headline-map'], undefined);
+    assert.equal(restored.get().flags['s41-aftertext-alone'], true);
+    assert.equal(restored.get().flags['s41-aftertext-group-walk'], undefined);
+    assert.equal(restored.get().flags['s60-souvenir-bird'], true);
+  }
+});
 function rejectWithoutWrite(run, action) {
   const before = JSON.stringify(run.get());
   const writes = run.writes();
@@ -406,7 +503,7 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
                   restored.act('narrative:choose:s64-s40-choice:' + ending);
                   walkUntil(restored, (beat) => beat.id === 's60-c1-choice');
                   restored.act('narrative:choose:s60-c1-choice:b');
-                  walkUntil(restored, (beat) => beat.id === 's60-after-m3-end-beat');
+                  finishS41(restored, 'b', 'a');
                   assert.equal(restored.get().flags['s60-souvenir-map'], true);
                   assert.equal(restored.get().flags['s60-souvenir-bird'], undefined);
                   assert.equal(restored.get().flags['s60-souvenir-chocolate'], undefined);
