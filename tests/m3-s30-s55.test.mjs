@@ -173,7 +173,7 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
-function finishS41(run, title = 'a', after = 'a') {
+function finishS41(run, title = 'a', after = 'a', overrides = {}) {
   walkUntil(run, (beat) => beat.id === 's41-career-choice');
   rejectWithoutWrite(run, 'narrative:choose:s41-career-choice:place');
   rejectWithoutWrite(run, 'narrative:choose:s41-career-choice:own-choice');
@@ -182,14 +182,17 @@ function finishS41(run, title = 'a', after = 'a') {
   run.act(`narrative:choose:s41-c1-choice:${title}`);
   walkUntil(run, (beat) => beat.id === 's41-c2-choice');
   run.act(`narrative:choose:s41-c2-choice:${after}`);
-  finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
+  const terminal = finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
     romanceChoice: title === 'b' && after === 'a' ? 'c' : after === 'b' ? 'b' : 'a',
     independentChoice: after,
+    finalChoice: after,
+    ...overrides,
   });
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+  return terminal;
 }
 function checkpointS26() {
   const run = runtime();
@@ -751,6 +754,25 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
               }
               const restoredS60 = runtime(afterSouvenir);
               finishS41(restoredS60, 'b', 'b');
+              // Genuine active Damir route must reach *both* S46 terminal IDs;
+              // independently verify S42-C closes the romance into S47.
+              if (representative && souvenir === 'a') {
+                for (const finalChoice of ['a', 'b']) {
+                  const romance = runtime(afterSouvenir);
+                  const ending = finishS41(romance, 'a', 'a',
+                    { romanceChoice: 'a', finalChoice });
+                  assert.equal(ending.endingId, `damir-${finalChoice}`);
+                  assert.ok(ending.result.visitedScenes.includes('s46-intro'));
+                  assert.equal(ending.result.flags['s42-decision-continue'], true);
+                }
+                const parted = runtime(afterSouvenir);
+                const independence = finishS41(parted, 'b', 'a',
+                  { romanceChoice: 'c', finalChoice: 'b' });
+                assert.equal(independence.endingId, 'alice');
+                assert.ok(independence.result.visitedScenes.includes('s47-intro'));
+                assert.equal(independence.result.flags['s42-decision-close'], true);
+                assert.ok(!independence.result.visitedScenes.includes('s46-intro'));
+              }
               assert.ok(restoredS60.get().visitedScenes.includes('s60-common'));
               assert.equal(restoredS60.get().routeLock, 'damir');
               assert.equal(restoredS60.get().flags['s39-status-continues'], true);

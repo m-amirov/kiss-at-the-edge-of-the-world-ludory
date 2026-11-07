@@ -1,5 +1,5 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 day-20 S41/S42/S43.
-// M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
+// Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
 import {
@@ -145,6 +145,11 @@ import * as s60 from './scenes/s60.js';
 import * as s41 from './scenes/s41.js';
 import * as s42 from './scenes/s42.js';
 import * as s43 from './scenes/s43.js';
+import * as s44 from './scenes/s44.js';
+import * as s45 from './scenes/s45.js';
+import * as s46 from './scenes/s46.js';
+import * as s47 from './scenes/s47.js';
+import * as s48 from './scenes/s48.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2539,7 +2544,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's42-c1-b', beats: beats('s42-c1-b', s42.s42C1B), nextSceneId: 's42-common' },
   { id: 's42-c1-c', beats: beats('s42-c1-c', s42.s42C1C), nextSceneId: 's42-common' },
   { id: 's42-common', beats: beats('s42-common', s42.s42Common),
-    nextSceneId: 's42-s43-after-m3-end' },
+    nextSceneId: 's48-intro' },
   { id: 's43-intro', beats: [
     ...beats('s43-intro', s43.s43Intro),
     { id: 's43-c1-choice', type: 'choice', choices: [
@@ -2554,11 +2559,128 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's43-c1-a', beats: beats('s43-c1-a', s43.s43C1A), nextSceneId: 's43-common' },
   { id: 's43-c1-b', beats: beats('s43-c1-b', s43.s43C1B), nextSceneId: 's43-common' },
   { id: 's43-common', beats: beats('s43-common', s43.s43Common),
-    nextSceneId: 's42-s43-after-m3-end' },
-  { id: 's42-s43-after-m3-end', beats: [
-    { id: 's42-s43-after-m3-end-beat', type: 'ending', endingId: 'm3-day20-branches',
-      text: t('Технический фрагмент завершён. Индивидуальные финалы S44–S47 из эпизода 10 ещё не перенесены.') },
+    nextSceneId: 's48-intro' },
+  // S48 appears after the personal epilogues in the source document, but its
+  // authored morning and last group photo explicitly happen before departure.
+  // Locked route is identical to S26 routeIntent in genuine actionLog replay.
+  { id: 's48-intro', beats: [
+    ...beats('s48-intro', s48.s48Intro),
+    { id: 's48-route-choice', type: 'choice', choices: [
+      ...['eric', 'nick', 'damir', 'alice'].map((id) => ({
+        id, label: t('Продолжить'), routeId: id, targetSceneId: `s48-route-${id}` })),
+    ] },
   ] },
+  { id: 's48-route-eric', beats: beats('s48-route-eric', s48.s48RouteEric), nextSceneId: 's48-common' },
+  { id: 's48-route-nick', beats: beats('s48-route-nick', s48.s48RouteNick), nextSceneId: 's48-common' },
+  { id: 's48-route-damir', beats: beats('s48-route-damir', s48.s48RouteDamir), nextSceneId: 's48-common' },
+  { id: 's48-route-alice', beats: beats('s48-route-alice', s48.s48RouteAlice), nextSceneId: 's48-common' },
+  { id: 's48-common', beats: beats('s48-common', s48.s48Common), nextSceneId: 's48-c2-dispatch' },
+  { id: 's48-c2-dispatch', beats: [
+    { id: 's48-c2-route', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's41-aftertext-group-walk' },
+        targetSceneId: 's48-c2-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's41-aftertext-alone' },
+        targetSceneId: 's48-c2-b' },
+    ] },
+  ] },
+  { id: 's48-c2-a', beats: beats('s48-c2-a', s48.s48C2A), nextSceneId: 's48-final-dispatch' },
+  { id: 's48-c2-b', beats: beats('s48-c2-b', s48.s48C2B), nextSceneId: 's48-final-dispatch' },
+  // S42-C1 B/C suspend/close a romance and therefore reach independent S47.
+  // Likewise S43 (Alice or closed earlier) cannot reopen a former romance.
+  { id: 's48-final-dispatch', beats: [
+    { id: 's48-final-route', type: 'choice', choices: [
+      { id: 'eric', label: t('Продолжить'), routeId: 'eric',
+        when: { flag: 's42-decision-continue' }, targetSceneId: 's44-intro' },
+      { id: 'nick', label: t('Продолжить'), routeId: 'nick',
+        when: { flag: 's42-decision-continue' }, targetSceneId: 's45-intro' },
+      { id: 'damir', label: t('Продолжить'), routeId: 'damir',
+        when: { flag: 's42-decision-continue' }, targetSceneId: 's46-intro' },
+      { id: 'alice', label: t('Продолжить'), routeId: 'alice', targetSceneId: 's47-intro' },
+      ...['eric', 'nick', 'damir'].map((id) => ({
+        id: `${id}-independent`, label: t('Продолжить'), routeId: id,
+        when: { not: { flag: 's42-decision-continue' } }, targetSceneId: 's47-intro' })),
+    ] },
+  ] },
+  { id: 's44-intro', beats: [
+    ...beats('s44-intro', s44.s44Intro),
+    { id: 's44-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Поцеловать Эрика и подтвердить их следующую встречу'),
+        targetSceneId: 's44-c1-a', effects: [{ op: 'flag_set', id: 's44-choice-a', value: true }] },
+      { id: 'b', label: t('Обнять его и оставить свидание без красивого финального жеста'),
+        targetSceneId: 's44-c1-b', effects: [{ op: 'flag_set', id: 's44-choice-b', value: true }] },
+    ] },
+  ] },
+  { id: 's44-c1-a', beats: beats('s44-c1-a', s44.s44C1A), nextSceneId: 's44-common' },
+  { id: 's44-c1-b', beats: beats('s44-c1-b', s44.s44C1B), nextSceneId: 's44-common' },
+  { id: 's44-common', beats: beats('s44-common', s44.s44Common), nextSceneId: 's44-end-dispatch' },
+  { id: 's44-end-dispatch', beats: [
+    { id: 's44-end-route', type: 'choice', choices: [
+      { id: 'a', label: t('Завершить'), when: { flag: 's44-choice-a' }, targetSceneId: 's44-ending-a' },
+      { id: 'b', label: t('Завершить'), when: { flag: 's44-choice-b' }, targetSceneId: 's44-ending-b' },
+    ] },
+  ] },
+  { id: 's44-ending-a', beats: [{ id: 's44-ending-a-beat', type: 'ending',
+    endingId: 'eric-a', text: t('Конец сезона') }] },
+  { id: 's44-ending-b', beats: [{ id: 's44-ending-b-beat', type: 'ending',
+    endingId: 'eric-b', text: t('Конец сезона') }] },
+  { id: 's45-intro', beats: [
+    ...beats('s45-intro', s45.s45Intro),
+    { id: 's45-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Поцеловать Ника без камеры'),
+        targetSceneId: 's45-c1-a', effects: [{ op: 'flag_set', id: 's45-choice-a', value: true }] },
+      { id: 'b', label: t('Договориться посмотреть фильм вместе дома'),
+        targetSceneId: 's45-c1-b', effects: [{ op: 'flag_set', id: 's45-choice-b', value: true }] },
+    ] },
+  ] },
+  { id: 's45-c1-a', beats: beats('s45-c1-a', s45.s45C1A), nextSceneId: 's45-common' },
+  { id: 's45-c1-b', beats: beats('s45-c1-b', s45.s45C1B), nextSceneId: 's45-common' },
+  { id: 's45-common', beats: beats('s45-common', s45.s45Common), nextSceneId: 's45-end-dispatch' },
+  { id: 's45-end-dispatch', beats: [
+    { id: 's45-end-route', type: 'choice', choices: [
+      { id: 'a', label: t('Завершить'), when: { flag: 's45-choice-a' }, targetSceneId: 's45-ending-a' },
+      { id: 'b', label: t('Завершить'), when: { flag: 's45-choice-b' }, targetSceneId: 's45-ending-b' },
+    ] },
+  ] },
+  { id: 's45-ending-a', beats: [{ id: 's45-ending-a-beat', type: 'ending',
+    endingId: 'nick-a', text: t('Конец сезона') }] },
+  { id: 's45-ending-b', beats: [{ id: 's45-ending-b-beat', type: 'ending',
+    endingId: 'nick-b', text: t('Конец сезона') }] },
+  { id: 's46-intro', beats: [
+    ...beats('s46-intro', s46.s46Intro),
+    { id: 's46-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Назвать встречу дома их первым новым свиданием'),
+        targetSceneId: 's46-c1-a', effects: [{ op: 'flag_set', id: 's46-choice-a', value: true }] },
+      { id: 'b', label: t('Попросить ещё раз подтвердить дату после возвращения'),
+        targetSceneId: 's46-c1-b', effects: [{ op: 'flag_set', id: 's46-choice-b', value: true }] },
+    ] },
+  ] },
+  { id: 's46-c1-a', beats: beats('s46-c1-a', s46.s46C1A), nextSceneId: 's46-common' },
+  { id: 's46-c1-b', beats: beats('s46-c1-b', s46.s46C1B), nextSceneId: 's46-common' },
+  { id: 's46-common', beats: beats('s46-common', s46.s46Common), nextSceneId: 's46-end-dispatch' },
+  { id: 's46-end-dispatch', beats: [
+    { id: 's46-end-route', type: 'choice', choices: [
+      { id: 'a', label: t('Завершить'), when: { flag: 's46-choice-a' }, targetSceneId: 's46-ending-a' },
+      { id: 'b', label: t('Завершить'), when: { flag: 's46-choice-b' }, targetSceneId: 's46-ending-b' },
+    ] },
+  ] },
+  { id: 's46-ending-a', beats: [{ id: 's46-ending-a-beat', type: 'ending',
+    endingId: 'damir-a', text: t('Конец сезона') }] },
+  { id: 's46-ending-b', beats: [{ id: 's46-ending-b-beat', type: 'ending',
+    endingId: 'damir-b', text: t('Конец сезона') }] },
+  { id: 's47-intro', beats: [
+    ...beats('s47-intro', s47.s47Intro),
+    { id: 's47-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Сохранить его только для себя'),
+        targetSceneId: 's47-c1-a', effects: [{ op: 'flag_set', id: 's47-choice-a', value: true }] },
+      { id: 'b', label: t('Написать подруге и договориться о встрече'),
+        targetSceneId: 's47-c1-b', effects: [{ op: 'flag_set', id: 's47-choice-b', value: true }] },
+    ] },
+  ] },
+  { id: 's47-c1-a', beats: beats('s47-c1-a', s47.s47C1A), nextSceneId: 's47-common' },
+  { id: 's47-c1-b', beats: beats('s47-c1-b', s47.s47C1B), nextSceneId: 's47-common' },
+  { id: 's47-common', beats: beats('s47-common', s47.s47Common), nextSceneId: 's47-ending' },
+  { id: 's47-ending', beats: [{ id: 's47-ending-beat', type: 'ending',
+    endingId: 'alice', text: t('Конец сезона') }] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

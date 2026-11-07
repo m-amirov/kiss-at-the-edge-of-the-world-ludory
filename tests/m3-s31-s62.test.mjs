@@ -181,7 +181,8 @@ function finishS41(run, title = 'a', after = 'a') {
   run.act(`narrative:choose:s41-c1-choice:${title}`);
   walkUntil(run, (beat) => beat.id === 's41-c2-choice');
   run.act(`narrative:choose:s41-c2-choice:${after}`);
-  finishDay20(run, walkUntil, rejectWithoutWrite, runtime, { independentChoice: after });
+  finishDay20(run, walkUntil, rejectWithoutWrite, runtime,
+    { independentChoice: after, finalChoice: after });
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
@@ -276,6 +277,7 @@ test('real N1 S01→S41 preserves distinct place and own-choice career theses, B
     const restored = runtime(afterC2);
     finishDay20(restored, walkUntil, rejectWithoutWrite, runtime, {
       independentChoice: career === 'place' ? 'a' : 'b',
+      finalChoice: career === 'place' ? 'a' : 'b',
     });
     assert.equal(restored.get().routeLock, 'alice');
     assert.equal(restored.get().flags['s41-headline-road'], true);

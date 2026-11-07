@@ -144,21 +144,24 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
-function finishS41(run, title = 'a', after = 'a') {
+function finishS41(run, title = 'a', after = 'a', overrides = {}) {
   walkUntil(run, (beat) => beat.id === 's41-career-choice');
   run.act('narrative:choose:s41-career-choice:people');
   walkUntil(run, (beat) => beat.id === 's41-c1-choice');
   run.act(`narrative:choose:s41-c1-choice:${title}`);
   walkUntil(run, (beat) => beat.id === 's41-c2-choice');
   run.act(`narrative:choose:s41-c2-choice:${after}`);
-  finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
+  const terminal = finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
     romanceChoice: title === 'b' && after === 'a' ? 'c' : after === 'b' ? 'b' : 'a',
     independentChoice: after,
+    finalChoice: after,
+    ...overrides,
   });
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+  return terminal;
 }
 function checkpointS26() {
   const run = runtime();
@@ -488,7 +491,18 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
             walkUntil(reloaded, (beat) => beat.id === 's60-c1-choice');
             assert.ok(reloaded.get().visitedScenes.includes('s54-s38-' + c2));
             reloaded.act('narrative:choose:s60-c1-choice:c');
+            const preS41 = clone(reloaded.get());
             finishS41(reloaded, 'a', 'a');
+            if (status === 'a' && callback === 'a' && c2 === 'a' && reply === 'a') {
+              for (const finalChoice of ['a', 'b']) {
+                const romance = runtime(preS41);
+                const ending = finishS41(romance, 'a', 'b',
+                  { romanceChoice: 'a', finalChoice });
+                assert.equal(ending.endingId, `nick-${finalChoice}`);
+                assert.ok(ending.result.visitedScenes.includes('s45-intro'));
+                assert.equal(ending.result.flags['s42-decision-continue'], true);
+              }
+            }
             assert.equal(reloaded.get().flags['s60-souvenir-chocolate'], true);
             assert.equal(reloaded.get().flags['s60-souvenir-bird'], undefined);
             assert.equal(reloaded.get().flags['s60-souvenir-map'], undefined);

@@ -145,21 +145,24 @@ function walkUntil(run, stop, actions = {}, max = 7500) {
   }
   assert.fail('narrative traversal limit exceeded');
 }
-function finishS41(run, title = 'a', after = 'a') {
+function finishS41(run, title = 'a', after = 'a', overrides = {}) {
   walkUntil(run, (beat) => beat.id === 's41-career-choice');
   run.act('narrative:choose:s41-career-choice:people');
   walkUntil(run, (beat) => beat.id === 's41-c1-choice');
   run.act(`narrative:choose:s41-c1-choice:${title}`);
   walkUntil(run, (beat) => beat.id === 's41-c2-choice');
   run.act(`narrative:choose:s41-c2-choice:${after}`);
-  finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
+  const terminal = finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
     romanceChoice: title === 'b' && after === 'a' ? 'c' : after === 'b' ? 'b' : 'a',
     independentChoice: after,
+    finalChoice: after,
+    ...overrides,
   });
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-alone' : 's41-aftertext-group-walk'], undefined);
+  return terminal;
 }
 function checkpointS26() {
   const run = runtime();
@@ -537,7 +540,19 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
         walkUntil(completed, (beat) => beat.id === 's60-c1-choice');
         assert.ok(completed.get().visitedScenes.includes('s51-s37-' + family));
         completed.act('narrative:choose:s60-c1-choice:a');
+        const preS41 = clone(completed.get());
         finishS41(completed, 'a', 'b');
+        // Both actual Eric epilogues from one proven continued S37/S51 history.
+        if (status === 'a' && family === 'a' && outcome === 'a') {
+          for (const finalChoice of ['a', 'b']) {
+            const romance = runtime(preS41);
+            const ending = finishS41(romance, 'a', 'a',
+              { romanceChoice: 'a', finalChoice });
+            assert.equal(ending.endingId, `eric-${finalChoice}`);
+            assert.ok(ending.result.visitedScenes.includes('s44-intro'));
+            assert.equal(ending.result.flags['s42-decision-continue'], true);
+          }
+        }
         assert.equal(completed.get().flags['s60-souvenir-bird'], true);
         assert.equal(completed.get().flags['s60-souvenir-map'], undefined);
         assert.equal(completed.get().flags['s60-souvenir-chocolate'], undefined);

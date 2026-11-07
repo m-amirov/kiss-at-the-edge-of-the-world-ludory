@@ -59,7 +59,7 @@ test('S41 routes to exactly ten guarded S42/S43 entries and never reopens a clos
   assert.doesNotThrow(() => defineNarrativeGraph(graphData));
 });
 
-test('S42 C1 and S43 C1 offer exact free exclusive decisions and join one Draft boundary', () => {
+test('S42 C1 and S43 C1 offer exact free exclusive decisions and join S48 farewell', () => {
   assert.deepEqual(choice('s42-c1-choice', 's42-c1-choice')?.map(
     ({ id, label, targetSceneId, effects }) => [id, label.ru, targetSceneId, effects]), [
     ['a', 'Продолжить роман и назначить следующую конкретную встречу', 's42-c1-a',
@@ -80,11 +80,11 @@ test('S42 C1 and S43 C1 offer exact free exclusive decisions and join one Draft 
     assert.equal(scene(`s42-c1-${id}`)?.nextSceneId, 's42-common');
   for (const id of ['a', 'b'])
     assert.equal(scene(`s43-c1-${id}`)?.nextSceneId, 's43-common');
-  assert.equal(scene('s42-common')?.nextSceneId, 's42-s43-after-m3-end');
-  assert.equal(scene('s43-common')?.nextSceneId, 's42-s43-after-m3-end');
-  assert.equal(scene('s42-s43-after-m3-end')?.beats[0]?.type, 'ending');
+  assert.equal(scene('s42-common')?.nextSceneId, 's48-intro');
+  assert.equal(scene('s43-common')?.nextSceneId, 's48-intro');
+  assert.equal(scene('s42-s43-after-m3-end'), undefined, 'old Draft stop retired');
   for (const id of ['s44-intro', 's45-intro', 's46-intro', 's47-intro'])
-    assert.equal(scene(id), undefined, `${id} not yet migrated`);
+    assert.ok(scene(id), `${id} migrated`);
   for (const option of [...choice('s42-c1-choice', 's42-c1-choice'),
     ...choice('s43-intro', 's43-c1-choice')]) {
     for (const key of ['cost', 'premium', 'requiredEntitlement', 'purchase',
