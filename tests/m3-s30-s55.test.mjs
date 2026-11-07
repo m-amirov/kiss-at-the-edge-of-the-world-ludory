@@ -625,12 +625,82 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
             (callback === 'a' ? 'b' : 'a'));
           memory.act('narrative:choose:s39-s56-choice:' + callback);
           assert.equal(memory.get().sceneId, 's39-s56-' + callback);
-          walkUntil(memory, (beat) => beat.id === 's39-after-open-end-beat');
+          walkUntil(memory, (beat) => beat.id === 's57-c1-choice');
           assert.equal(memory.get().routeLock, 'damir');
+          assert.ok(memory.get().visitedScenes.includes('s57-intro'),
+            'continued Damir route must reach the canonical sunrise');
           assert.equal(memory.get().flags[c2 === 'a'
             ? 's39-memory-ordinary-day' : 's39-memory-morning-walk'], true);
           assert.equal(memory.get().flags[c2 === 'a'
             ? 's39-memory-morning-walk' : 's39-memory-ordinary-day'], undefined);
+          const s57Checkpoint = clone(memory.get());
+          for (const answer of ['a', 'b']) {
+            const day19 = runtime(s57Checkpoint);
+            rejectWithoutWrite(day19, 'narrative:choose:s57-c1-choice:premium');
+            if (status === 'a' && callback === 'a' && c2 === 'a') {
+              const beforeS57 = JSON.stringify(day19.get());
+              day19.act('narrative:choose:s57-c1-choice:' + answer);
+              day19.act('narrative:back');
+              assert.equal(JSON.stringify(day19.get()), beforeS57, 'S57-C1 Back');
+            }
+            day19.act('narrative:choose:s57-c1-choice:' + answer);
+            assert.equal(day19.get().flags[answer === 'a' ? 's57-next-meeting' : 's57-more-time'], true);
+            assert.equal(day19.get().flags[answer === 'a' ? 's57-more-time' : 's57-next-meeting'], undefined);
+            assert.equal(day19.get().flags['s39-status-continues'], true,
+              'S57-C1 B postpones promises but does not close the romance');
+            if (status === 'a' && callback === 'a' && c2 === 'a') {
+              const afterS57 = clone(day19.get());
+              const selected = answer === 'a' ? 's57-next-meeting' : 's57-more-time';
+              const opposite = answer === 'a' ? 's57-more-time' : 's57-next-meeting';
+              assert.ok(afterS57.actionLog.some((entry) => entry.beatId === 's57-c1-choice'
+                && entry.optionId === answer), 'must forge a real persisted S57 choice');
+              const s57Forgeries = [
+                { ...afterS57, flags: { ...afterS57.flags, [opposite]: true } },
+                { ...afterS57, flags: { ...afterS57.flags, [selected]: false } },
+                { ...afterS57, actionLog: afterS57.actionLog.map((entry) =>
+                  entry.beatId === 's57-c1-choice'
+                    ? { ...entry, optionId: answer === 'a' ? 'b' : 'a' } : entry) },
+              ];
+              for (const invalid of s57Forgeries) {
+                const probe = runtime(invalid);
+                const beforeForgery = JSON.stringify(probe.get());
+                assert.throws(() => probe.act(`narrative:next:s57-c1-${answer}-01`),
+                  /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+                assert.equal(probe.writes(), 0, 'forged S57-C1 continuation must not write');
+                assert.equal(JSON.stringify(probe.get()), beforeForgery);
+              }
+            }
+            const reloaded = runtime(clone(day19.get()));
+            walkUntil(reloaded, (beat) => beat.id === 's57-s39-choice');
+            rejectWithoutWrite(reloaded,
+              'narrative:choose:s57-s39-choice:' + (c2 === 'a' ? 'b' : 'a'));
+            reloaded.act('narrative:choose:s57-s39-choice:' + c2);
+            walkUntil(reloaded, (beat) => beat.id === 's57-after-m3-end-beat');
+            assert.ok(reloaded.get().visitedScenes.includes('s57-s39-' + c2));
+            assert.ok(!reloaded.get().visitedScenes.includes('s57-s39-' +
+              (c2 === 'a' ? 'b' : 'a')), 'opposite S39-C2 callback must remain unavailable');
+            assert.equal(reloaded.get().routeLock, 'damir');
+            for (const forbidden of ['s57-premium', 's57-purchase', 's57-real-message',
+              's57-video-published', 's57-date-booked'])
+              assert.equal(reloaded.get().flags[forbidden], undefined);
+          }
+          if (status === 'a' && callback === 'a' && c2 === 'a') {
+            const forged = [
+              { ...s57Checkpoint, routeLock: 'nick' },
+              { ...s57Checkpoint, flags: { ...s57Checkpoint.flags, 's39-memory-morning-walk': true } },
+              { ...s57Checkpoint, flags: { ...s57Checkpoint.flags, 's39-status-closed': true } },
+              { ...s57Checkpoint, actionLog: s57Checkpoint.actionLog.map((entry) =>
+                entry.beatId === 's39-c2-choice' ? { ...entry, optionId: 'b' } : entry) },
+            ];
+            for (const invalid of forged) {
+              const probe = runtime(invalid);
+              const before = JSON.stringify(probe.get());
+              assert.throws(() => probe.act('narrative:choose:s57-c1-choice:a'),
+                /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+              assert.equal(probe.writes(), 0, 'forged S57 state must not write');
+              assert.equal(JSON.stringify(probe.get()), before);
+            }
+          }
           for (const forbidden of ['s39-premium', 's39-purchase', 's39-photo-published',
             's39-real-call-made', 's39-date-booked', 's39-message-sent'])
             assert.equal(memory.get().flags[forbidden], undefined);

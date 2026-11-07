@@ -82,8 +82,8 @@ test('S39 free C1/C2 and S56 callback preserve manuscript order and closure boun
     ['b', { flag: 's56-next-chorus' }, 's39-s56-b', undefined],
   ]);
   for (const id of ['a', 'b'])
-    assert.equal(scene('s39-s56-' + id)?.nextSceneId, 's39-after-open-end');
-  assert.equal(scene('s39-after-open-end')?.beats[0].type, 'ending');
+    assert.equal(scene('s39-s56-' + id)?.nextSceneId, 's57-intro');
+  assert.equal(scene('s39-after-open-end'), undefined);
   assert.equal(scene('s39-after-closed-end'), undefined);
   for (const id of ['s39-c1', 's39-c2'])
     for (const option of choice(id, id + '-choice').choices)
