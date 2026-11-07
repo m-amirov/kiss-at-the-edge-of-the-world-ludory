@@ -275,7 +275,12 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
         rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:a');
         atEnd.act('narrative:choose:s64-s40-choice:b');
-        walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's60-c1-choice');
+        atEnd.act('narrative:choose:s60-c1-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's60-after-m3-end-beat');
+        assert.equal(atEnd.get().flags['s60-souvenir-bird'], true);
+        assert.equal(atEnd.get().flags['s60-souvenir-map'], undefined);
+        assert.equal(atEnd.get().flags['s60-souvenir-chocolate'], undefined);
         assert.equal(atEnd.get().routeLock, 'nick');
         assert.equal(atEnd.get().flags['s40-evening-friend'], true);
         assert.equal(atEnd.get().flags['s64-career-break'], true);
@@ -411,7 +416,12 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
           walkUntil(solo, (beat) => beat.id === 's64-s40-choice');
           rejectWithoutWrite(solo, 'narrative:choose:s64-s40-choice:b');
           solo.act('narrative:choose:s64-s40-choice:a');
-          walkUntil(solo, (beat) => beat.id === 's64-after-m3-end-beat');
+          walkUntil(solo, (beat) => beat.id === 's60-c1-choice');
+          solo.act('narrative:choose:s60-c1-choice:b');
+          walkUntil(solo, (beat) => beat.id === 's60-after-m3-end-beat');
+          assert.equal(solo.get().flags['s60-souvenir-map'], true);
+          assert.equal(solo.get().flags['s60-souvenir-bird'], undefined);
+          assert.equal(solo.get().flags['s60-souvenir-chocolate'], undefined);
           assert.equal(solo.get().routeLock, 'nick');
           assert.equal(solo.get().flags['s64-career-project'], true);
           assert.ok(solo.get().visitedScenes.includes('s64-s40-a'));
@@ -458,7 +468,13 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
             rejectWithoutWrite(reloaded,
               'narrative:choose:s54-s38-choice:' + (c2 === 'a' ? 'b' : 'a'));
             reloaded.act('narrative:choose:s54-s38-choice:' + c2);
-            walkUntil(reloaded, (beat) => beat.id === 's54-after-m3-end-beat');
+            walkUntil(reloaded, (beat) => beat.id === 's60-c1-choice');
+            assert.ok(reloaded.get().visitedScenes.includes('s54-s38-' + c2));
+            reloaded.act('narrative:choose:s60-c1-choice:c');
+            walkUntil(reloaded, (beat) => beat.id === 's60-after-m3-end-beat');
+            assert.equal(reloaded.get().flags['s60-souvenir-chocolate'], true);
+            assert.equal(reloaded.get().flags['s60-souvenir-bird'], undefined);
+            assert.equal(reloaded.get().flags['s60-souvenir-map'], undefined);
             assert.ok(reloaded.get().visitedScenes.includes('s54-s38-' + c2));
             assert.ok(!reloaded.get().visitedScenes.includes('s54-s38-' +
               (c2 === 'a' ? 'b' : 'a')), 'only authored S38-C2 callback may appear');

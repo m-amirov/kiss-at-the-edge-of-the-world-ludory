@@ -52,8 +52,8 @@ test('S54 free reply and exclusive S38-C2 payoff converge on Draft-only S60 boun
     ['a', { flag: 's38-memory-date' }, 's54-s38-a', undefined],
     ['b', { flag: 's38-memory-books' }, 's54-s38-b', undefined],
   ]);
-  for (const id of ['a', 'b']) assert.equal(scene(`s54-s38-${id}`)?.nextSceneId, 's54-after-m3-end');
-  assert.equal(scene('s54-after-m3-end')?.beats[0].type, 'ending');
+  for (const id of ['a', 'b']) assert.equal(scene(`s54-s38-${id}`)?.nextSceneId, 's60-intro');
+  assert.equal(scene('s54-after-m3-end'), undefined);
   for (const [id, beat] of [['s54-intro', 's54-c1-choice'], ['s54-s38-dispatch', 's54-s38-choice']]) {
     for (const opt of choice(id, beat)) for (const forbidden of [
       'premium', 'cost', 'requiredEntitlement', 'routeId', 'mediaPermission',

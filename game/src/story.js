@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S54/S57/S64.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S54/S57/S64 and shared S60.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -141,6 +141,7 @@ import * as s39 from './scenes/s39.js';
 import * as s57 from './scenes/s57.js';
 import * as s40 from './scenes/s40.js';
 import * as s64 from './scenes/s64.js';
+import * as s60 from './scenes/s60.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2204,13 +2205,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's51-s37-a', beats: beats('s51-s37-a', s51.s51S37A),
-    nextSceneId: 's51-after-m3-end' },
+    nextSceneId: 's60-intro' },
   { id: 's51-s37-b', beats: beats('s51-s37-b', s51.s51S37B),
-    nextSceneId: 's51-after-m3-end' },
-  { id: 's51-after-m3-end', beats: [
-    { id: 's51-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-day19',
-      text: t('Технический фрагмент завершён. Общее продолжение S60 ещё не перенесено.') },
-  ] },
+    nextSceneId: 's60-intro' },
   // Nick day 18: S33 active/paused both enter their own exact authorial opening.
   { id: 's38-active', beats: beats('s38-active', s38.s38Active), nextSceneId: 's38-c1' },
   { id: 's38-paused', beats: beats('s38-paused', s38.s38Paused), nextSceneId: 's38-c1' },
@@ -2283,13 +2280,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's54-s38-a', beats: beats('s54-s38-a', s54.s54S38A),
-    nextSceneId: 's54-after-m3-end' },
+    nextSceneId: 's60-intro' },
   { id: 's54-s38-b', beats: beats('s54-s38-b', s54.s54S38B),
-    nextSceneId: 's54-after-m3-end' },
-  { id: 's54-after-m3-end', beats: [
-    { id: 's54-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-day19',
-      text: t('Технический фрагмент завершён. Общее продолжение S60 ещё не перенесено.') },
-  ] },
+    nextSceneId: 's60-intro' },
   // Damir day 18: S34 paused/active opens distinct original paragraphs.
   // The original post-breakup shared paragraph is retained, but a closed
   // romance cannot enter the future date choice or S56 callback.
@@ -2362,13 +2355,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's57-s39-a', beats: beats('s57-s39-a', s57.s57S39A),
-    nextSceneId: 's57-after-m3-end' },
+    nextSceneId: 's60-intro' },
   { id: 's57-s39-b', beats: beats('s57-s39-b', s57.s57S39B),
-    nextSceneId: 's57-after-m3-end' },
-  { id: 's57-after-m3-end', beats: [
-    { id: 's57-after-m3-end-beat', type: 'ending', endingId: 'm3-damir-day19',
-      text: t('Технический фрагмент завершён. Общее продолжение S60 ещё не перенесено.') },
-  ] },
+    nextSceneId: 's60-intro' },
   // Independent/closed day 18: the full authored S40 is accessible on all
   // four locked routes without retroactively changing routeLock.
   { id: 's40-intro', beats: [
@@ -2436,12 +2425,29 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's64-s40-a', beats: beats('s64-s40-a', s64.s64S40A),
-    nextSceneId: 's64-after-m3-end' },
+    nextSceneId: 's60-intro' },
   { id: 's64-s40-b', beats: beats('s64-s40-b', s64.s64S40B),
-    nextSceneId: 's64-after-m3-end' },
-  { id: 's64-after-m3-end', beats: [
-    { id: 's64-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-day19',
-      text: t('Технический фрагмент завершён. Общая сцена S60 ещё не перенесена.') },
+    nextSceneId: 's60-intro' },
+  // Shared day 19 after every genuine route-specific day-19 finale.
+  { id: 's60-intro', beats: [
+    ...beats('s60-intro', s60.s60Intro),
+    { id: 's60-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Деревянную птицу'), targetSceneId: 's60-c1-a',
+        effects: [{ op: 'flag_set', id: 's60-souvenir-bird', value: true }] },
+      { id: 'b', label: t('Салфетку с нарисованной картой'), targetSceneId: 's60-c1-b',
+        effects: [{ op: 'flag_set', id: 's60-souvenir-map', value: true }] },
+      { id: 'c', label: t('Шоколадку, которую можно съесть сразу'), targetSceneId: 's60-c1-c',
+        effects: [{ op: 'flag_set', id: 's60-souvenir-chocolate', value: true }] },
+    ] },
+  ] },
+  { id: 's60-c1-a', beats: beats('s60-c1-a', s60.s60C1A), nextSceneId: 's60-common' },
+  { id: 's60-c1-b', beats: beats('s60-c1-b', s60.s60C1B), nextSceneId: 's60-common' },
+  { id: 's60-c1-c', beats: beats('s60-c1-c', s60.s60C1C), nextSceneId: 's60-common' },
+  { id: 's60-common', beats: beats('s60-common', s60.s60Common),
+    nextSceneId: 's60-after-m3-end' },
+  { id: 's60-after-m3-end', beats: [
+    { id: 's60-after-m3-end-beat', type: 'ending', endingId: 'm3-shared-day19',
+      text: t('Технический фрагмент завершён. Общая сцена S41 из эпизода 10 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };

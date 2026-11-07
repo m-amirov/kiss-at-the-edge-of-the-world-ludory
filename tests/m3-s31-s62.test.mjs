@@ -404,7 +404,12 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
                   }
                   const restored = runtime(clone(s64.get()));
                   restored.act('narrative:choose:s64-s40-choice:' + ending);
-                  walkUntil(restored, (beat) => beat.id === 's64-after-m3-end-beat');
+                  walkUntil(restored, (beat) => beat.id === 's60-c1-choice');
+                  restored.act('narrative:choose:s60-c1-choice:b');
+                  walkUntil(restored, (beat) => beat.id === 's60-after-m3-end-beat');
+                  assert.equal(restored.get().flags['s60-souvenir-map'], true);
+                  assert.equal(restored.get().flags['s60-souvenir-bird'], undefined);
+                  assert.equal(restored.get().flags['s60-souvenir-chocolate'], undefined);
                   assert.equal(restored.get().routeLock, 'alice');
                   assert.ok(restored.get().visitedScenes.includes('s40-s63-' + evening));
                   assert.ok(!restored.get().visitedScenes.includes('s40-s63-' +

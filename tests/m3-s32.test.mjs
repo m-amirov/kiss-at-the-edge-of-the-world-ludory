@@ -276,7 +276,12 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
         rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:b');
         atEnd.act('narrative:choose:s64-s40-choice:a');
-        walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's60-c1-choice');
+        atEnd.act('narrative:choose:s60-c1-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's60-after-m3-end-beat');
+        assert.equal(atEnd.get().flags['s60-souvenir-map'], true);
+        assert.equal(atEnd.get().flags['s60-souvenir-bird'], undefined);
+        assert.equal(atEnd.get().flags['s60-souvenir-chocolate'], undefined);
         assert.equal(atEnd.get().routeLock, 'eric');
         assert.equal(atEnd.get().flags['s40-evening-music'], true);
         assert.equal(atEnd.get().flags['s64-career-project'], true);
@@ -446,7 +451,12 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
         walkUntil(resumed, (beat) => beat.id === 's64-s40-choice');
         rejectWithoutWrite(resumed, 'narrative:choose:s64-s40-choice:a');
         resumed.act('narrative:choose:s64-s40-choice:b');
-        walkUntil(resumed, (beat) => beat.id === 's64-after-m3-end-beat');
+        walkUntil(resumed, (beat) => beat.id === 's60-c1-choice');
+        resumed.act('narrative:choose:s60-c1-choice:c');
+        walkUntil(resumed, (beat) => beat.id === 's60-after-m3-end-beat');
+        assert.equal(resumed.get().flags['s60-souvenir-chocolate'], true);
+        assert.equal(resumed.get().flags['s60-souvenir-bird'], undefined);
+        assert.equal(resumed.get().flags['s60-souvenir-map'], undefined);
         assert.equal(resumed.get().flags['s64-career-break'], true);
         assert.ok(resumed.get().visitedScenes.includes('s64-s40-b'));
         assert.equal(resumed.get().visitedScenes.includes('s40-s63-a'), false);
@@ -507,7 +517,13 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
         }
         const completed = runtime(genuine);
         completed.act(`narrative:choose:s51-s37-choice:${family}`);
-        walkUntil(completed, (beat) => beat.id === 's51-after-m3-end-beat');
+        walkUntil(completed, (beat) => beat.id === 's60-c1-choice');
+        assert.ok(completed.get().visitedScenes.includes('s51-s37-' + family));
+        completed.act('narrative:choose:s60-c1-choice:a');
+        walkUntil(completed, (beat) => beat.id === 's60-after-m3-end-beat');
+        assert.equal(completed.get().flags['s60-souvenir-bird'], true);
+        assert.equal(completed.get().flags['s60-souvenir-map'], undefined);
+        assert.equal(completed.get().flags['s60-souvenir-chocolate'], undefined);
         assert.ok(completed.get().visitedScenes.includes(`s51-s37-${family}`));
         assert.equal(completed.get().visitedScenes.includes(`s51-s37-${family === 'a' ? 'b' : 'a'}`), false);
         assert.equal(completed.get().routeLock, 'eric');

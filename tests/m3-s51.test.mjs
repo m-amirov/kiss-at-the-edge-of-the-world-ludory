@@ -53,8 +53,8 @@ test('S51 free C1 A/B and guarded S37 morning payoff end at Draft-only S60 bound
     ['a', { flag: 's37-morning-sunrise' }, 's51-s37-a', undefined],
     ['b', { flag: 's37-morning-breakfast' }, 's51-s37-b', undefined],
   ]);
-  for (const id of ['a', 'b']) assert.equal(scene(`s51-s37-${id}`)?.nextSceneId, 's51-after-m3-end');
-  assert.equal(scene('s51-after-m3-end')?.beats[0].type, 'ending');
+  for (const id of ['a', 'b']) assert.equal(scene(`s51-s37-${id}`)?.nextSceneId, 's60-intro');
+  assert.equal(scene('s51-after-m3-end'), undefined);
   for (const [id, beat] of [['s51-intro', 's51-c1-choice'],
     ['s51-s37-dispatch', 's51-s37-choice']]) {
     for (const option of choice(id, beat)) {

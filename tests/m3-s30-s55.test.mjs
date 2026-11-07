@@ -325,7 +325,9 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
             rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:b');
             atEnd.act('narrative:choose:s64-s40-choice:a');
-            walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
+            walkUntil(atEnd, (beat) => beat.id === 's60-c1-choice');
+            atEnd.act('narrative:choose:s60-c1-choice:c');
+            walkUntil(atEnd, (beat) => beat.id === 's60-after-m3-end-beat');
             assert.equal(atEnd.get().routeLock, 'damir');
             assert.equal(atEnd.get().flags['s64-career-project'], true);
             assert.ok(atEnd.get().visitedScenes.includes('s64-s40-a'));
@@ -601,7 +603,18 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
           walkUntil(solo, (beat) => beat.id === 's64-s40-choice');
           rejectWithoutWrite(solo, 'narrative:choose:s64-s40-choice:a');
           solo.act('narrative:choose:s64-s40-choice:b');
-          walkUntil(solo, (beat) => beat.id === 's64-after-m3-end-beat');
+          walkUntil(solo, (beat) => beat.id === 's60-c1-choice');
+          solo.act('narrative:choose:s60-c1-choice:b');
+          const afterClosedSouvenir = clone(solo.get());
+          const forgedReopened = runtime({ ...afterClosedSouvenir, flags: {
+            ...afterClosedSouvenir.flags, 's39-status-continues': true,
+          } });
+          const beforeForgedClosed = JSON.stringify(forgedReopened.get());
+          assert.throws(() => forgedReopened.act('narrative:next:s60-c1-b-01'),
+            /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+          assert.equal(forgedReopened.writes(), 0, 'closed romance forged open must not write');
+          assert.equal(JSON.stringify(forgedReopened.get()), beforeForgedClosed);
+          walkUntil(solo, (beat) => beat.id === 's60-after-m3-end-beat');
           assert.equal(solo.get().routeLock, 'damir');
           assert.equal(solo.get().flags['s64-career-break'], true);
           assert.ok(solo.get().visitedScenes.includes('s64-s40-b'));
@@ -675,11 +688,54 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
             rejectWithoutWrite(reloaded,
               'narrative:choose:s57-s39-choice:' + (c2 === 'a' ? 'b' : 'a'));
             reloaded.act('narrative:choose:s57-s39-choice:' + c2);
-            walkUntil(reloaded, (beat) => beat.id === 's57-after-m3-end-beat');
+            walkUntil(reloaded, (beat) => beat.id === 's60-c1-choice');
             assert.ok(reloaded.get().visitedScenes.includes('s57-s39-' + c2));
             assert.ok(!reloaded.get().visitedScenes.includes('s57-s39-' +
               (c2 === 'a' ? 'b' : 'a')), 'opposite S39-C2 callback must remain unavailable');
             assert.equal(reloaded.get().routeLock, 'damir');
+            const beforeSouvenir = clone(reloaded.get());
+            const representative = status === 'a' && callback === 'a' && c2 === 'a' && answer === 'a';
+            for (const souvenir of representative ? ['a', 'b', 'c'] : ['a']) {
+              const shared = runtime(beforeSouvenir);
+              rejectWithoutWrite(shared, 'narrative:choose:s60-c1-choice:premium');
+              const beforeChoice = JSON.stringify(shared.get());
+              if (representative) {
+                shared.act('narrative:choose:s60-c1-choice:' + souvenir);
+                shared.act('narrative:back');
+                assert.equal(JSON.stringify(shared.get()), beforeChoice, 'S60-C1 Back');
+              }
+              shared.act('narrative:choose:s60-c1-choice:' + souvenir);
+              const flags = { a: 's60-souvenir-bird', b: 's60-souvenir-map', c: 's60-souvenir-chocolate' };
+              assert.equal(shared.get().flags[flags[souvenir]], true);
+              for (const other of ['a', 'b', 'c'].filter((id) => id !== souvenir))
+                assert.equal(shared.get().flags[flags[other]], undefined);
+              const afterSouvenir = clone(shared.get());
+              if (representative) {
+                assert.ok(afterSouvenir.actionLog.some((entry) =>
+                  entry.beatId === 's60-c1-choice' && entry.optionId === souvenir));
+                const other = souvenir === 'a' ? 'b' : 'a';
+                const forged = [
+                  { ...afterSouvenir, routeLock: 'nick' },
+                  { ...afterSouvenir, flags: { ...afterSouvenir.flags, [flags[other]]: true } },
+                  { ...afterSouvenir, flags: { ...afterSouvenir.flags, [flags[souvenir]]: false } },
+                  { ...afterSouvenir, actionLog: afterSouvenir.actionLog.map((entry) =>
+                    entry.beatId === 's60-c1-choice' ? { ...entry, optionId: other } : entry) },
+                ];
+                for (const invalid of forged) {
+                  const probe = runtime(invalid);
+                  const beforeForged = JSON.stringify(probe.get());
+                  assert.throws(() => probe.act(`narrative:next:s60-c1-${souvenir}-01`),
+                    /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+                  assert.equal(probe.writes(), 0, 'forged S60 state must not write');
+                  assert.equal(JSON.stringify(probe.get()), beforeForged);
+                }
+              }
+              const restoredS60 = runtime(afterSouvenir);
+              walkUntil(restoredS60, (beat) => beat.id === 's60-after-m3-end-beat');
+              assert.ok(restoredS60.get().visitedScenes.includes('s60-common'));
+              assert.equal(restoredS60.get().routeLock, 'damir');
+              assert.equal(restoredS60.get().flags['s39-status-continues'], true);
+            }
             for (const forbidden of ['s57-premium', 's57-purchase', 's57-real-message',
               's57-video-published', 's57-date-booked'])
               assert.equal(reloaded.get().flags[forbidden], undefined);

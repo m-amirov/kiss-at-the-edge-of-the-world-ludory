@@ -55,8 +55,8 @@ test('S57-C1 is free; exclusive S39-C2 callback reaches unpublished S60 boundary
     ['b', { flag: 's39-memory-morning-walk' }, 's57-s39-b', undefined],
   ]);
   for (const id of ['a', 'b'])
-    assert.equal(scene(`s57-s39-${id}`)?.nextSceneId, 's57-after-m3-end');
-  assert.equal(scene('s57-after-m3-end')?.beats[0].type, 'ending');
+    assert.equal(scene(`s57-s39-${id}`)?.nextSceneId, 's60-intro');
+  assert.equal(scene('s57-after-m3-end'), undefined);
   for (const [id, beat] of [['s57-intro', 's57-c1-choice'],
     ['s57-s39-dispatch', 's57-s39-choice']])
     for (const option of choice(id, beat)) for (const prohibited of [

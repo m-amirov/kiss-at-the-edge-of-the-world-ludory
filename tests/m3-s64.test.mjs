@@ -52,8 +52,8 @@ test('S64 free career choice and exclusive S40 callback converge at a Draft-only
     ['a', 'Продолжить', { flag: 's40-evening-music' }, 's64-s40-a', undefined],
     ['b', 'Продолжить', { flag: 's40-evening-friend' }, 's64-s40-b', undefined],
   ]);
-  for (const id of ['a', 'b']) assert.equal(scene(`s64-s40-${id}`).nextSceneId, 's64-after-m3-end');
-  assert.equal(scene('s64-after-m3-end')?.beats[0].type, 'ending');
+  for (const id of ['a', 'b']) assert.equal(scene(`s64-s40-${id}`).nextSceneId, 's60-intro');
+  assert.equal(scene('s64-after-m3-end'), undefined);
   for (const id of ['s64-intro', 's64-s40-dispatch']) {
     for (const option of choice(id, id === 's64-intro' ? 's64-c1-choice' : 's64-s40-choice')) {
       for (const field of ['premium', 'cost', 'requiredEntitlement', 'routeId',
