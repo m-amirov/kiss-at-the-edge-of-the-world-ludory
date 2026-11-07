@@ -271,9 +271,16 @@ test('real N1 all 2×2×2×3 Eric day-15 outcomes restore Back, flags and JSON t
         rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:b');
         rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
         atEnd.act('narrative:choose:s40-s63-choice:a');
-        walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's64-c1-choice');
+        atEnd.act('narrative:choose:s64-c1-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:b');
+        atEnd.act('narrative:choose:s64-s40-choice:a');
+        walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'eric');
         assert.equal(atEnd.get().flags['s40-evening-music'], true);
+        assert.equal(atEnd.get().flags['s64-career-project'], true);
+        assert.ok(atEnd.get().visitedScenes.includes('s64-s40-a'));
         assert.ok(atEnd.get().visitedScenes.includes('s40-s63-a'));
       }
       if (status !== 'c') {
@@ -434,7 +441,14 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
         rejectWithoutWrite(resumed, 'narrative:choose:s40-s63-choice:a');
         rejectWithoutWrite(resumed, 'narrative:choose:s40-s63-choice:b');
         resumed.act('narrative:choose:s40-s63-choice:none');
-        walkUntil(resumed, (beat) => beat.id === 's40-after-m3-end-beat');
+        walkUntil(resumed, (beat) => beat.id === 's64-c1-choice');
+        resumed.act('narrative:choose:s64-c1-choice:b');
+        walkUntil(resumed, (beat) => beat.id === 's64-s40-choice');
+        rejectWithoutWrite(resumed, 'narrative:choose:s64-s40-choice:a');
+        resumed.act('narrative:choose:s64-s40-choice:b');
+        walkUntil(resumed, (beat) => beat.id === 's64-after-m3-end-beat');
+        assert.equal(resumed.get().flags['s64-career-break'], true);
+        assert.ok(resumed.get().visitedScenes.includes('s64-s40-b'));
         assert.equal(resumed.get().visitedScenes.includes('s40-s63-a'), false);
         assert.equal(resumed.get().visitedScenes.includes('s40-s63-b'), false);
       } else {

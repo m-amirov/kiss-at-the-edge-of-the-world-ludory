@@ -270,9 +270,16 @@ test('real N1 all 3×2×2×3 Nick outcomes preserve Back, JSON and status throug
         rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:a');
         rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
         atEnd.act('narrative:choose:s40-s63-choice:b');
-        walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+        walkUntil(atEnd, (beat) => beat.id === 's64-c1-choice');
+        atEnd.act('narrative:choose:s64-c1-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
+        rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:a');
+        atEnd.act('narrative:choose:s64-s40-choice:b');
+        walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
         assert.equal(atEnd.get().routeLock, 'nick');
         assert.equal(atEnd.get().flags['s40-evening-friend'], true);
+        assert.equal(atEnd.get().flags['s64-career-break'], true);
+        assert.ok(atEnd.get().visitedScenes.includes('s64-s40-b'));
         assert.ok(atEnd.get().visitedScenes.includes('s40-s63-b'));
       }
       if (status !== 'c') {
@@ -399,8 +406,15 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
           rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:a');
           rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:b');
           solo.act('narrative:choose:s40-s63-choice:none');
-          walkUntil(solo, (beat) => beat.id === 's40-after-m3-end-beat');
+          walkUntil(solo, (beat) => beat.id === 's64-c1-choice');
+          solo.act('narrative:choose:s64-c1-choice:a');
+          walkUntil(solo, (beat) => beat.id === 's64-s40-choice');
+          rejectWithoutWrite(solo, 'narrative:choose:s64-s40-choice:b');
+          solo.act('narrative:choose:s64-s40-choice:a');
+          walkUntil(solo, (beat) => beat.id === 's64-after-m3-end-beat');
           assert.equal(solo.get().routeLock, 'nick');
+          assert.equal(solo.get().flags['s64-career-project'], true);
+          assert.ok(solo.get().visitedScenes.includes('s64-s40-a'));
           assert.ok(!solo.get().visitedScenes.includes('s40-s63-a'));
           assert.ok(!solo.get().visitedScenes.includes('s40-s63-b'));
         }

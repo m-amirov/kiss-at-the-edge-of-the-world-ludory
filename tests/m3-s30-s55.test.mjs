@@ -320,8 +320,15 @@ test('real N1 Damir: all 2×2×2×3 outcomes, Back, callback and JSON restore', 
             rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:a');
             rejectWithoutWrite(atEnd, 'narrative:choose:s40-s63-choice:none');
             atEnd.act('narrative:choose:s40-s63-choice:b');
-            walkUntil(atEnd, (beat) => beat.id === 's40-after-m3-end-beat');
+            walkUntil(atEnd, (beat) => beat.id === 's64-c1-choice');
+            atEnd.act('narrative:choose:s64-c1-choice:a');
+            walkUntil(atEnd, (beat) => beat.id === 's64-s40-choice');
+            rejectWithoutWrite(atEnd, 'narrative:choose:s64-s40-choice:b');
+            atEnd.act('narrative:choose:s64-s40-choice:a');
+            walkUntil(atEnd, (beat) => beat.id === 's64-after-m3-end-beat');
             assert.equal(atEnd.get().routeLock, 'damir');
+            assert.equal(atEnd.get().flags['s64-career-project'], true);
+            assert.ok(atEnd.get().visitedScenes.includes('s64-s40-a'));
             assert.ok(atEnd.get().visitedScenes.includes('s40-s63-b'));
           }
         } else {
@@ -589,8 +596,15 @@ test('real N1 S39: status × S56 payoff, free continuation, closure, Back and fo
           rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:a');
           rejectWithoutWrite(solo, 'narrative:choose:s40-s63-choice:b');
           solo.act('narrative:choose:s40-s63-choice:none');
-          walkUntil(solo, (beat) => beat.id === 's40-after-m3-end-beat');
+          walkUntil(solo, (beat) => beat.id === 's64-c1-choice');
+          solo.act('narrative:choose:s64-c1-choice:b');
+          walkUntil(solo, (beat) => beat.id === 's64-s40-choice');
+          rejectWithoutWrite(solo, 'narrative:choose:s64-s40-choice:a');
+          solo.act('narrative:choose:s64-s40-choice:b');
+          walkUntil(solo, (beat) => beat.id === 's64-after-m3-end-beat');
           assert.equal(solo.get().routeLock, 'damir');
+          assert.equal(solo.get().flags['s64-career-break'], true);
+          assert.ok(solo.get().visitedScenes.includes('s64-s40-b'));
           assert.equal(solo.get().flags['s40-evening-friend'], true);
           assert.ok(!solo.get().visitedScenes.includes('s40-s63-a'));
           assert.ok(!solo.get().visitedScenes.includes('s40-s63-b'));

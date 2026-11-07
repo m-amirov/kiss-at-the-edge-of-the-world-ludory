@@ -79,10 +79,10 @@ test('S40 free choices and optional S63 callbacks have exclusive guarded fallthr
     ['a', { flag: 's63-next-ticket' }, 's40-s63-a', undefined],
     ['b', { flag: 's63-next-venue' }, 's40-s63-b', undefined],
     ['none', { not: { any: [{ flag: 's63-next-ticket' }, { flag: 's63-next-venue' }] } },
-      's40-after-m3-end', undefined],
+      's64-intro', undefined],
   ]);
-  for (const id of ['a', 'b']) assert.equal(scene(`s40-s63-${id}`).nextSceneId, 's40-after-m3-end');
-  assert.equal(scene('s40-after-m3-end')?.beats[0].type, 'ending');
+  for (const id of ['a', 'b']) assert.equal(scene(`s40-s63-${id}`).nextSceneId, 's64-intro');
+  assert.equal(scene('s40-after-m3-end'), undefined);
   for (const id of ['s40-intro', 's40-common'])
     for (const option of choice(id, id === 's40-intro' ? 's40-c1-choice' : 's40-c2-choice'))
       for (const field of ['premium', 'cost', 'requiredEntitlement', 'routeId',

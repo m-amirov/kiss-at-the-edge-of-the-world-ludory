@@ -373,14 +373,49 @@ test('real N1 Alice: all 2×2×2 paths, sequential Back changes, callback and JS
                 rejectWithoutWrite(replay, 'narrative:choose:s40-s63-choice:' +
                   (evening === 'a' ? 'b' : 'a'));
                 replay.act('narrative:choose:s40-s63-choice:' + evening);
-                walkUntil(replay, (beat) => beat.id === 's40-after-m3-end-beat');
-                assert.equal(replay.get().routeLock, 'alice');
-                assert.equal(replay.get().visitedScenes.includes('s40-s63-' + evening), true);
-                assert.equal(replay.get().visitedScenes.includes('s40-s63-' +
-                  (evening === 'a' ? 'b' : 'a')), false);
-                for (const forbidden of ['article-published', 'friend-message-sent',
-                  'music-ticket-purchased', 's40-premium'])
-                  assert.equal(replay.get().flags[forbidden], undefined);
+                walkUntil(replay, (beat) => beat.id === 's64-c1-choice');
+                const day19 = clone(replay.get());
+                for (const career of ['a', 'b']) {
+                  const s64 = runtime(clone(day19));
+                  const beforeC1 = JSON.stringify(s64.get());
+                  rejectWithoutWrite(s64, 'narrative:choose:s64-c1-choice:premium');
+                  s64.act('narrative:choose:s64-c1-choice:' + (career === 'a' ? 'b' : 'a'));
+                  s64.act('narrative:back');
+                  assert.equal(JSON.stringify(s64.get()), beforeC1, 'S64-C1 Back');
+                  s64.act('narrative:choose:s64-c1-choice:' + career);
+                  assert.equal(s64.get().flags[career === 'a'
+                    ? 's64-career-project' : 's64-career-break'], true);
+                  assert.equal(s64.get().flags[career === 'a'
+                    ? 's64-career-break' : 's64-career-project'], undefined);
+                  walkUntil(s64, (beat) => beat.id === 's64-s40-choice');
+                  rejectWithoutWrite(s64, 'narrative:choose:s64-s40-choice:' +
+                    (ending === 'a' ? 'b' : 'a'));
+                  rejectWithoutWrite(s64, 'narrative:choose:s64-s40-choice:none');
+                  if (career === 'a') {
+                    const invalid = clone(s64.get());
+                    invalid.flags[ending === 'a'
+                      ? 's40-evening-friend' : 's40-evening-music'] = true;
+                    const original = JSON.stringify(invalid);
+                    const forged = runtime(invalid);
+                    assert.throws(() => forged.act('narrative:choose:s64-s40-choice:' + ending),
+                      /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+                    assert.equal(forged.writes(), 0);
+                    assert.equal(JSON.stringify(forged.get()), original);
+                  }
+                  const restored = runtime(clone(s64.get()));
+                  restored.act('narrative:choose:s64-s40-choice:' + ending);
+                  walkUntil(restored, (beat) => beat.id === 's64-after-m3-end-beat');
+                  assert.equal(restored.get().routeLock, 'alice');
+                  assert.ok(restored.get().visitedScenes.includes('s40-s63-' + evening));
+                  assert.ok(!restored.get().visitedScenes.includes('s40-s63-' +
+                    (evening === 'a' ? 'b' : 'a')));
+                  assert.ok(restored.get().visitedScenes.includes('s64-s40-' + ending));
+                  assert.ok(!restored.get().visitedScenes.includes('s64-s40-' +
+                    (ending === 'a' ? 'b' : 'a')));
+                  for (const forbidden of ['article-published', 'friend-message-sent',
+                    'music-ticket-purchased', 's40-premium', 'editor-message-sent'])
+                    assert.equal(restored.get().flags[forbidden], undefined);
+                }
               }
             }
             assert.equal(resumed.get().flags[evening === 'a'

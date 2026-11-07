@@ -137,6 +137,7 @@ import * as s37 from './scenes/s37.js';
 import * as s38 from './scenes/s38.js';
 import * as s39 from './scenes/s39.js';
 import * as s40 from './scenes/s40.js';
+import * as s64 from './scenes/s64.js';
 const t = (ru) => ({ ru, en: ru });
 const beats = (prefix, prose) => prose.trim().split(/\n\s*\n/u).map((paragraph, index) => ({
   id: `${prefix}-${String(index + 1).padStart(2, '0')}`,
@@ -2321,16 +2322,45 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         targetSceneId: 's40-s63-b' },
       { id: 'none', label: t('Продолжить'),
         when: { not: { any: [{ flag: 's63-next-ticket' }, { flag: 's63-next-venue' }] } },
-        targetSceneId: 's40-after-m3-end' },
+        targetSceneId: 's64-intro' },
     ] },
   ] },
   { id: 's40-s63-a', beats: beats('s40-s63-a', s40.s40S63A),
-    nextSceneId: 's40-after-m3-end' },
+    nextSceneId: 's64-intro' },
   { id: 's40-s63-b', beats: beats('s40-s63-b', s40.s40S63B),
-    nextSceneId: 's40-after-m3-end' },
-  { id: 's40-after-m3-end', beats: [
-    { id: 's40-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-day18',
-      text: t('Технический фрагмент завершён. День 19 (S64) ещё не перенесён.') },
+    nextSceneId: 's64-intro' },
+  // Independent day 19: exactly one free career choice, followed by the
+  // matching S40-C2 memory. No phone recording or editor message is sent.
+  { id: 's64-intro', beats: [
+    ...beats('s64-intro', s64.s64Intro),
+    { id: 's64-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Подать заявку на самостоятельный журналистский проект'),
+        targetSceneId: 's64-c1-a',
+        effects: [{ op: 'flag_set', id: 's64-career-project', value: true }] },
+      { id: 'b', label: t('Оставить себе свободный месяц после поездки'),
+        targetSceneId: 's64-c1-b',
+        effects: [{ op: 'flag_set', id: 's64-career-break', value: true }] },
+    ] },
+  ] },
+  { id: 's64-c1-a', beats: beats('s64-c1-a', s64.s64C1A), nextSceneId: 's64-common' },
+  { id: 's64-c1-b', beats: beats('s64-c1-b', s64.s64C1B), nextSceneId: 's64-common' },
+  { id: 's64-common', beats: beats('s64-common', s64.s64Common),
+    nextSceneId: 's64-s40-dispatch' },
+  { id: 's64-s40-dispatch', beats: [
+    { id: 's64-s40-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'),
+        when: { flag: 's40-evening-music' }, targetSceneId: 's64-s40-a' },
+      { id: 'b', label: t('Продолжить'),
+        when: { flag: 's40-evening-friend' }, targetSceneId: 's64-s40-b' },
+    ] },
+  ] },
+  { id: 's64-s40-a', beats: beats('s64-s40-a', s64.s64S40A),
+    nextSceneId: 's64-after-m3-end' },
+  { id: 's64-s40-b', beats: beats('s64-s40-b', s64.s64S40B),
+    nextSceneId: 's64-after-m3-end' },
+  { id: 's64-after-m3-end', beats: [
+    { id: 's64-after-m3-end-beat', type: 'ending', endingId: 'm3-alice-day19',
+      text: t('Технический фрагмент завершён. Общая сцена S60 ещё не перенесена.') },
   ] },
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
