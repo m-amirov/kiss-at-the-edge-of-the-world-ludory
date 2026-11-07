@@ -1,0 +1,2 @@
+# Host-scoped Ludory component transition backups must stay on the operator's machine.
+game/.ludory-components-backup-*/

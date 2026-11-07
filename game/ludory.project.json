@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiss-at-the-edge-of-the-world",
+  "version": "0.1.0",
+  "title": {
+    "ru": "Поцелуй на краю света"
+  },
+  "engine": "web",
+  "targets": [
+    "yandex-games",
+    "vk-games"
+  ]
+}
