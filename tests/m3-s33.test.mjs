@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
+import { finishDay20 } from './helpers/m3-day20.mjs';
 import { graphData, catalogData } from '../game/src/story.js';
 import {
   defineNarrativeGraph, defineNarrativeCatalog, createNarrativeState,
@@ -150,7 +151,10 @@ function finishS41(run, title = 'a', after = 'a') {
   run.act(`narrative:choose:s41-c1-choice:${title}`);
   walkUntil(run, (beat) => beat.id === 's41-c2-choice');
   run.act(`narrative:choose:s41-c2-choice:${after}`);
-  walkUntil(run, (beat) => beat.id === 's41-after-m3-end-beat');
+  finishDay20(run, walkUntil, rejectWithoutWrite, runtime, {
+    romanceChoice: title === 'b' && after === 'a' ? 'c' : after === 'b' ? 'b' : 'a',
+    independentChoice: after,
+  });
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-road' : 's41-headline-map'], true);
   assert.equal(run.get().flags[title === 'a' ? 's41-headline-map' : 's41-headline-road'], undefined);
   assert.equal(run.get().flags[after === 'a' ? 's41-aftertext-group-walk' : 's41-aftertext-alone'], true);

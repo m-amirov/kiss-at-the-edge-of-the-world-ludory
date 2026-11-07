@@ -64,10 +64,10 @@ test('S41 free headline and after-article choices preserve source order and Draf
     ['b', 'Оставить себе час одиночества перед общим прощанием', 's41-c2-b',
       [{ op: 'flag_set', id: 's41-aftertext-alone', value: true }]],
   ]);
-  for (const id of ['a', 'b']) assert.equal(scene(`s41-c2-${id}`)?.nextSceneId, 's41-after-m3-end');
-  assert.equal(scene('s41-after-m3-end')?.beats[0]?.type, 'ending');
-  assert.equal(scene('s42-intro'), undefined, 'romantic EP10 scenes not migrated');
-  assert.equal(scene('s43-intro'), undefined, 'independent EP10 scenes not migrated');
+  for (const id of ['a', 'b']) assert.equal(scene(`s41-c2-${id}`)?.nextSceneId, 's42-s43-dispatch');
+  assert.equal(scene('s41-after-m3-end'), undefined, 'old unpublished S41 Draft stop removed');
+  assert.equal(scene('s42-eric')?.nextSceneId, 's42-c1-choice', 'romantic EP10 now migrated');
+  assert.equal(scene('s43-intro')?.id, 's43-intro', 'independent EP10 now migrated');
   for (const opt of [...choices('s41-title-choice', 's41-c1-choice'),
     ...choices('s41-common', 's41-c2-choice')]) {
     for (const key of ['cost', 'premium', 'requiredEntitlement', 'purchase',
