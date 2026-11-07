@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S64.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S54/S64.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -136,6 +136,7 @@ import * as s36 from './scenes/s36.js';
 import * as s37 from './scenes/s37.js';
 import * as s51 from './scenes/s51.js';
 import * as s38 from './scenes/s38.js';
+import * as s54 from './scenes/s54.js';
 import * as s39 from './scenes/s39.js';
 import * as s40 from './scenes/s40.js';
 import * as s64 from './scenes/s64.js';
@@ -2233,9 +2234,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's38-s53-a', beats: beats('s38-s53-a', s38.s38S53A),
-    nextSceneId: 's38-after-open-end' },
+    nextSceneId: 's54-intro' },
   { id: 's38-s53-b', beats: beats('s38-s53-b', s38.s38S53B),
-    nextSceneId: 's38-after-open-end' },
+    nextSceneId: 's54-intro' },
   { id: 's38-status-dispatch', beats: [
     { id: 's38-status-choice', type: 'choice', choices: [
       { id: 'continue', label: t('Продолжить'), when: { flag: 's38-status-continues' },
@@ -2258,9 +2259,35 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     nextSceneId: 's38-s53-dispatch' },
   { id: 's38-c2-b', beats: beats('s38-c2-b', s38.s38C2B),
     nextSceneId: 's38-s53-dispatch' },
-  { id: 's38-after-open-end', beats: [
-    { id: 's38-after-open-end-beat', type: 'ending', endingId: 'm3-nick-day18-open',
-      text: t('Технический фрагмент завершён. S54 ещё не перенесена.') },
+  // Nick day 19 after his continued S38/S53 path, never after an explicit breakup.
+  { id: 's54-intro', beats: [
+    ...beats('s54-intro', s54.s54Intro),
+    { id: 's54-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Ответить словами'), targetSceneId: 's54-c1-a',
+        effects: [{ op: 'flag_set', id: 's54-answer-words', value: true }] },
+      { id: 'b', label: t('Ответить короткой песенной строчкой'), targetSceneId: 's54-c1-b',
+        effects: [{ op: 'flag_set', id: 's54-answer-song', value: true }] },
+    ] },
+  ] },
+  { id: 's54-c1-a', beats: beats('s54-c1-a', s54.s54C1A), nextSceneId: 's54-common' },
+  { id: 's54-c1-b', beats: beats('s54-c1-b', s54.s54C1B), nextSceneId: 's54-common' },
+  { id: 's54-common', beats: beats('s54-common', s54.s54Common),
+    nextSceneId: 's54-s38-dispatch' },
+  { id: 's54-s38-dispatch', beats: [
+    { id: 's54-s38-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's38-memory-date' },
+        targetSceneId: 's54-s38-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's38-memory-books' },
+        targetSceneId: 's54-s38-b' },
+    ] },
+  ] },
+  { id: 's54-s38-a', beats: beats('s54-s38-a', s54.s54S38A),
+    nextSceneId: 's54-after-m3-end' },
+  { id: 's54-s38-b', beats: beats('s54-s38-b', s54.s54S38B),
+    nextSceneId: 's54-after-m3-end' },
+  { id: 's54-after-m3-end', beats: [
+    { id: 's54-after-m3-end-beat', type: 'ending', endingId: 'm3-nick-day19',
+      text: t('Технический фрагмент завершён. Общее продолжение S60 ещё не перенесено.') },
   ] },
   // Damir day 18: S34 paused/active opens distinct original paragraphs.
   // The original post-breakup shared paragraph is retained, but a closed

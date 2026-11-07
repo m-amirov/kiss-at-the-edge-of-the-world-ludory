@@ -67,7 +67,7 @@ test('S38 free C1/C2, S53 callback and closed-romance boundary are guarded', () 
     ['b', { flag: 's53-next-books' }, 's38-s53-b', undefined],
   ]);
   for (const variant of ['a', 'b'])
-    assert.equal(scene(`s38-s53-${variant}`)?.nextSceneId, 's38-after-open-end');
+    assert.equal(scene(`s38-s53-${variant}`)?.nextSceneId, 's54-intro');
   assert.deepEqual(choice('s38-status-dispatch', 's38-status-choice')?.choices
     .map(({ id, when, targetSceneId, effects }) => [id, when, targetSceneId, effects]), [
     ['continue', { flag: 's38-status-continues' }, 's38-c2', undefined],
@@ -82,7 +82,7 @@ test('S38 free C1/C2, S53 callback and closed-romance boundary are guarded', () 
   ]);
   for (const variant of ['a', 'b'])
     assert.equal(scene(`s38-c2-${variant}`)?.nextSceneId, 's38-s53-dispatch');
-  assert.equal(scene('s38-after-open-end')?.beats[0].type, 'ending');
+  assert.equal(scene('s38-after-open-end'), undefined);
   assert.equal(scene('s38-after-closed-end'), undefined);
   for (const node of ['s38-c1', 's38-c2'])
     for (const option of choice(node, `${node}-choice`).choices)

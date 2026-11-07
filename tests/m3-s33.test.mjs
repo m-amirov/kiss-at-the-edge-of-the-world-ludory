@@ -434,10 +434,56 @@ test('real N1 S38 preserves both Nick statuses, both S53 callbacks, closure and 
             'narrative:choose:s38-s53-choice:' + (callback === 'a' ? 'b' : 'a'));
           memory.act('narrative:choose:s38-s53-choice:' + callback);
           assert.equal(memory.get().sceneId, 's38-s53-' + callback);
-          walkUntil(memory, (beat) => beat.id === 's38-after-open-end-beat');
+          walkUntil(memory, (beat) => beat.id === 's54-c1-choice');
           assert.equal(memory.get().routeLock, 'nick');
+          assert.ok(memory.get().visitedScenes.includes('s54-intro'),
+            'continued Nick route must enter canonical day-19 karaoke scene');
           assert.equal(memory.get().flags[c2 === 'a' ? 's38-memory-date' : 's38-memory-books'], true);
           assert.equal(memory.get().flags[c2 === 'a' ? 's38-memory-books' : 's38-memory-date'], undefined);
+          const s54Checkpoint = clone(memory.get());
+          for (const reply of ['a', 'b']) {
+            const day19 = runtime(s54Checkpoint);
+            rejectWithoutWrite(day19, 'narrative:choose:s54-c1-choice:premium');
+            if (status === 'a' && callback === 'a' && c2 === 'a') {
+              const beforeS54 = JSON.stringify(day19.get());
+              day19.act('narrative:choose:s54-c1-choice:' + reply);
+              day19.act('narrative:back');
+              assert.equal(JSON.stringify(day19.get()), beforeS54, 'S54-C1 Back');
+            }
+            day19.act('narrative:choose:s54-c1-choice:' + reply);
+            assert.equal(day19.get().flags[reply === 'a' ? 's54-answer-words' : 's54-answer-song'], true);
+            assert.equal(day19.get().flags[reply === 'a' ? 's54-answer-song' : 's54-answer-words'], undefined);
+            const reloaded = runtime(clone(day19.get()));
+            walkUntil(reloaded, (beat) => beat.id === 's54-s38-choice');
+            rejectWithoutWrite(reloaded,
+              'narrative:choose:s54-s38-choice:' + (c2 === 'a' ? 'b' : 'a'));
+            reloaded.act('narrative:choose:s54-s38-choice:' + c2);
+            walkUntil(reloaded, (beat) => beat.id === 's54-after-m3-end-beat');
+            assert.ok(reloaded.get().visitedScenes.includes('s54-s38-' + c2));
+            assert.ok(!reloaded.get().visitedScenes.includes('s54-s38-' +
+              (c2 === 'a' ? 'b' : 'a')), 'only authored S38-C2 callback may appear');
+            assert.equal(reloaded.get().routeLock, 'nick');
+            for (const forbidden of ['s54-purchase', 's54-premium', 's54-video-recorded',
+              's54-video-published', 's54-message-sent'])
+              assert.equal(reloaded.get().flags[forbidden], undefined);
+          }
+          if (status === 'a' && callback === 'a' && c2 === 'a') {
+            const forged = [
+              { ...s54Checkpoint, routeLock: 'eric' },
+              { ...s54Checkpoint, flags: { ...s54Checkpoint.flags, 's38-memory-books': true } },
+              { ...s54Checkpoint, flags: { ...s54Checkpoint.flags, 's38-status-closed': true } },
+              { ...s54Checkpoint, actionLog: s54Checkpoint.actionLog.map((entry) =>
+                entry.beatId === 's38-c2-choice' ? { ...entry, optionId: 'b' } : entry) },
+            ];
+            for (const invalid of forged) {
+              const probe = runtime(invalid);
+              const beforeForged = JSON.stringify(probe.get());
+              assert.throws(() => probe.act('narrative:choose:s54-c1-choice:a'),
+                /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+              assert.equal(probe.writes(), 0, 'forged S54 state must not persist');
+              assert.equal(JSON.stringify(probe.get()), beforeForged);
+            }
+          }
           for (const forbidden of ['s38-premium', 's38-purchase', 's38-uploaded',
             's38-message-sent', 'nick-date-booked', 's38-photo-published'])
             assert.equal(memory.get().flags[forbidden], undefined);
