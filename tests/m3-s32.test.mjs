@@ -460,7 +460,57 @@ test('real N1 Eric day-18 S37 respects active/paused, S50 callback, close, Back 
         assert.equal(JSON.stringify(resumed.get()), beforeC2, 'S37-C2 Back restores the choice');
         resumed.act(`narrative:choose:s37-c2-choice:${family}`);
         const restored = runtime(clone(resumed.get()));
-        walkUntil(restored, (beat) => beat.id === 's37-after-open-end-beat');
+        walkUntil(restored, (beat) => beat.id === 's51-c1-choice');
+        assert.equal(restored.get().routeLock, 'eric');
+        assert.ok(!restored.get().visitedScenes.includes('s40-intro'));
+        // Two complete paths exercise both statuses, both prior morning choices
+        // and both evening answers; the cross-pairs still prove S51 admission.
+        if (status !== family) {
+          assert.equal(restored.get().flags[family === 'a'
+            ? 's37-morning-sunrise' : 's37-morning-breakfast'], true);
+          assert.equal(resumed.get().routeLock, 'eric');
+          assert.equal(resumed.get().flags['s28-evening-quiet'], true);
+          assert.equal(resumed.get().flags['beach-footage-safe-only'], true);
+          continue;
+        }
+        rejectWithoutWrite(restored, 'narrative:choose:s51-c1-choice:premium');
+        const evening = family === 'a' ? 'a' : 'b';
+        const beforeS51C1 = JSON.stringify(restored.get());
+        restored.act(`narrative:choose:s51-c1-choice:${evening === 'a' ? 'b' : 'a'}`);
+        restored.act('narrative:back');
+        assert.equal(JSON.stringify(restored.get()), beforeS51C1,
+          'S51-C1 Back restores the original evening decision');
+        restored.act(`narrative:choose:s51-c1-choice:${evening}`);
+        assert.equal(restored.get().flags[evening === 'a'
+          ? 's51-evening-together' : 's51-evening-apart'], true);
+        assert.equal(restored.get().flags[evening === 'a'
+          ? 's51-evening-apart' : 's51-evening-together'], undefined);
+        walkUntil(restored, (beat) => beat.id === 's51-s37-choice');
+        rejectWithoutWrite(restored, `narrative:choose:s51-s37-choice:${family === 'a' ? 'b' : 'a'}`);
+        const genuine = clone(restored.get());
+        // These negative probes revalidate the full S01 action history; one
+        // authentic active route is enough to cover each independent forgery.
+        if (status === 'a' && family === 'a' && outcome === 'a') for (const forged of [
+          { ...genuine, flags: { ...genuine.flags,
+            [family === 'a' ? 's37-morning-breakfast' : 's37-morning-sunrise']: true } },
+          { ...genuine, flags: { ...genuine.flags,
+            [evening === 'a' ? 's51-evening-apart' : 's51-evening-together']: true } },
+          { ...genuine, actionLog: genuine.actionLog.map((entry) =>
+            entry.beatId === 's51-c1-choice' ? { ...entry, optionId: evening === 'a' ? 'b' : 'a' } : entry) },
+        ]) {
+          const probe = runtime(forged);
+          const beforeForged = JSON.stringify(probe.get());
+          assert.throws(() => probe.act(`narrative:choose:s51-s37-choice:${family}`),
+            /inconsistent actionLog provenance or position|unavailable choice|action beat mismatch/);
+          assert.equal(probe.writes(), 0);
+          assert.equal(JSON.stringify(probe.get()), beforeForged);
+        }
+        const completed = runtime(genuine);
+        completed.act(`narrative:choose:s51-s37-choice:${family}`);
+        walkUntil(completed, (beat) => beat.id === 's51-after-m3-end-beat');
+        assert.ok(completed.get().visitedScenes.includes(`s51-s37-${family}`));
+        assert.equal(completed.get().visitedScenes.includes(`s51-s37-${family === 'a' ? 'b' : 'a'}`), false);
+        assert.equal(completed.get().routeLock, 'eric');
         assert.equal(restored.get().flags[family === 'a'
           ? 's37-morning-sunrise' : 's37-morning-breakfast'], true);
         assert.equal(restored.get().flags[family === 'a'

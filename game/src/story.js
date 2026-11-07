@@ -1,4 +1,4 @@
-// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36 and day-18 S37/S38/S39/S40.
+// Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–8 through day 16, and episode-09 day-17 S36, day-18 S37/S38/S39/S40, day-19 S51/S64.
 // M3 scene boundaries are not release endings. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
 import { s65Evening } from './scenes/s65.js';
@@ -134,6 +134,7 @@ import * as s35 from './scenes/s35.js';
 import * as s63 from './scenes/s63.js';
 import * as s36 from './scenes/s36.js';
 import * as s37 from './scenes/s37.js';
+import * as s51 from './scenes/s51.js';
 import * as s38 from './scenes/s38.js';
 import * as s39 from './scenes/s39.js';
 import * as s40 from './scenes/s40.js';
@@ -2175,12 +2176,38 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's37-c2-a', beats: beats('s37-c2-a', s37.s37C2A),
-    nextSceneId: 's37-after-open-end' },
+    nextSceneId: 's51-intro' },
   { id: 's37-c2-b', beats: beats('s37-c2-b', s37.s37C2B),
-    nextSceneId: 's37-after-open-end' },
-  { id: 's37-after-open-end', beats: [
-    { id: 's37-after-open-end-beat', type: 'ending', endingId: 'm3-eric-day18-open',
-      text: t('Технический фрагмент завершён. S51 ещё не перенесена.') },
+    nextSceneId: 's51-intro' },
+  // Eric day 19: common dinner, one free evening choice and an exclusive S37-C2 callback.
+  { id: 's51-intro', beats: [
+    ...beats('s51-intro', s51.s51Intro),
+    { id: 's51-c1-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Остаться ещё на час вдвоём'), targetSceneId: 's51-c1-a',
+        effects: [{ op: 'flag_set', id: 's51-evening-together', value: true }] },
+      { id: 'b', label: t('Пожелать спокойной ночи и закончить день отдельно'), targetSceneId: 's51-c1-b',
+        effects: [{ op: 'flag_set', id: 's51-evening-apart', value: true }] },
+    ] },
+  ] },
+  { id: 's51-c1-a', beats: beats('s51-c1-a', s51.s51C1A), nextSceneId: 's51-common' },
+  { id: 's51-c1-b', beats: beats('s51-c1-b', s51.s51C1B), nextSceneId: 's51-common' },
+  { id: 's51-common', beats: beats('s51-common', s51.s51Common),
+    nextSceneId: 's51-s37-dispatch' },
+  { id: 's51-s37-dispatch', beats: [
+    { id: 's51-s37-choice', type: 'choice', choices: [
+      { id: 'a', label: t('Продолжить'), when: { flag: 's37-morning-sunrise' },
+        targetSceneId: 's51-s37-a' },
+      { id: 'b', label: t('Продолжить'), when: { flag: 's37-morning-breakfast' },
+        targetSceneId: 's51-s37-b' },
+    ] },
+  ] },
+  { id: 's51-s37-a', beats: beats('s51-s37-a', s51.s51S37A),
+    nextSceneId: 's51-after-m3-end' },
+  { id: 's51-s37-b', beats: beats('s51-s37-b', s51.s51S37B),
+    nextSceneId: 's51-after-m3-end' },
+  { id: 's51-after-m3-end', beats: [
+    { id: 's51-after-m3-end-beat', type: 'ending', endingId: 'm3-eric-day19',
+      text: t('Технический фрагмент завершён. Общее продолжение S60 ещё не перенесено.') },
   ] },
   // Nick day 18: S33 active/paused both enter their own exact authorial opening.
   { id: 's38-active', beats: beats('s38-active', s38.s38Active), nextSceneId: 's38-c1' },

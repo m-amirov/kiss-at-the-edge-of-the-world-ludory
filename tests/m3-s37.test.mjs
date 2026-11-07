@@ -87,8 +87,8 @@ test('S37 preserves free authored decisions, a closed-romance boundary and S50 c
       [{ op: 'flag_set', id: 's37-morning-breakfast', value: true }]],
   ]);
   for (const variant of ['a', 'b'])
-    assert.equal(scene(`s37-c2-${variant}`)?.nextSceneId, 's37-after-open-end');
-  assert.equal(scene('s37-after-open-end')?.beats[0].type, 'ending');
+    assert.equal(scene(`s37-c2-${variant}`)?.nextSceneId, 's51-intro');
+  assert.equal(scene('s37-after-open-end'), undefined);
   assert.equal(scene('s37-after-closed-end'), undefined);
   for (const id of ['s37-c1', 's37-c2']) {
     for (const option of choice(id, `${id}-choice`).choices) {
