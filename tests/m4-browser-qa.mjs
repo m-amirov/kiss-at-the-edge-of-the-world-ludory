@@ -52,6 +52,44 @@ async function advanceToSeatChoice(page) {
   assert.fail('S01 seat choice was not reached within 100 beats');
 }
 
+// Deliberately follow an actual free authored route. Unknown choices stop QA
+// instead of allowing a test to silently take whichever option renders first.
+const pilotChoices = new Map([
+  ['s02-career-choice', 'people'],
+  ['s03-career-dispatch', 'people'],
+]);
+
+async function advanceToBeat(page, targetBeatId) {
+  for (let index = 0; index < 300; index++) {
+    const panel = page.locator('.ludory-narrative__panel');
+    const before = await panel.getAttribute('aria-label');
+    const beatId = before?.split(': ').at(-1);
+    if (beatId === targetBeatId) return;
+    const next = page.locator('button[data-action^="narrative:next:"]');
+    if (await next.count() === 1) {
+      await next.click();
+    } else {
+      const optionId = pilotChoices.get(beatId);
+      assert.ok(optionId, `Unexpected choice or interaction en route to ${targetBeatId}: ${before}`);
+      const choice = page.locator(`button[data-action="narrative:choose:${beatId}:${optionId}"]`);
+      assert.equal(await choice.count(), 1, `Expected free choice ${beatId}:${optionId}`);
+      await choice.click();
+    }
+    await waitForBeatChange(page, before);
+  }
+  assert.fail(`Narrative did not reach ${targetBeatId} within 300 interactions`);
+}
+
+async function assertPilotCue(page, beatId, variantId, label) {
+  const current = await page.locator('.ludory-narrative__panel').getAttribute('aria-label');
+  assert.equal(current?.split(': ').at(-1), beatId, `${label}: unexpected beat`);
+  const stage = page.locator('.ludory-narrative__stage');
+  assert.equal(await stage.getAttribute('data-variant-id'), variantId, `${label}: wrong visual mapping`);
+  assert.ok((await stage.getAttribute('data-neutral'))?.length, `${label}: unadmitted art lacks neutral reason`);
+  assert.equal(await stage.locator('img').count(), 0, `${label}: unadmitted media rendered`);
+  await assertViewport(page, label);
+}
+
 async function assertViewport(page, label) {
   const geometry = await page.evaluate(() => {
     const panel = document.querySelector('.ludory-narrative__panel')?.getBoundingClientRect();
@@ -127,9 +165,23 @@ async function main() {
       assert.equal(await desktop.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-damir');
       await assertViewport(desktop.page, 'desktop-damir');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-damir.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's01-common-01');
+      await assertPilotCue(desktop.page, 's01-common-01', 'common-road', 'S01 shared road');
+      await advanceToBeat(desktop.page, 's02-road-01');
+      await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-road.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's02-road-32');
+      await assertPilotCue(desktop.page, 's02-road-32', 'roadside-cafe', 'S02 roadside cafe');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-cafe.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's03-editorial-01');
+      await assertPilotCue(desktop.page, 's03-editorial-01', 'editor-call', 'S03 editorial call');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-editorial.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's03-coffee-01');
+      await assertPilotCue(desktop.page, 's03-coffee-01', 'damir-enters', 'S03 Damir coffee');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-coffee.png'), fullPage: true });
       assert.deepEqual(desktop.errors, [], `desktop JS errors: ${desktop.errors.join('; ')}`);
     } finally { await desktop.context.close(); }
-    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, neutral art, geometry\n');
+    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, neutral art, geometry\n');
   } finally {
     if (browser) await browser.close();
     await new Promise(fulfill => server.close(fulfill));
