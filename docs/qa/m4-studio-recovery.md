@@ -102,3 +102,24 @@ ZIPs execute correctly inside Yandex/VK SDKs. Local Chromium remains blocked by
 the executor's `socket() EPERM`; the recorded PASS applies only to the GitHub
 runner and tested source commit. Documentation-only follow-up commits do not
 substitute for a fresh check if game code changes.
+
+## Extended S01–S03 Chromium path and renderer diagnosis — 2026-11-08
+
+The browser gate was extended at code commit
+`654ca52711c3fe2c03270070bbb1c43fd2729d90`. It now drives real
+`narrative:next` / `narrative:choose` interactions along a deterministic
+Damir → S02 people → S03 people path, checking mapped cues and required
+neutral provenance at four additional points:
+
+| Beat | Expected presentation variant | Recorded screenshot |
+|---|---|---|
+| `s02-road-01` | `road-opening` | `desktop-s02-road.png` |
+| `s02-road-32` | `roadside-cafe` | `desktop-s02-cafe.png` |
+| `s03-editorial-01` | `editor-call` | `desktop-s03-editorial.png` |
+| `s03-coffee-01` | `damir-enters` | `desktop-s03-coffee.png` |
+
+- [Push Actions 42463983780](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42463983780) and [PR Actions 42463986870](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42463986870): **SUCCESS**, with actual Chromium `M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, neutral art, geometry`.
+- Focused static gate: **19 pass, 1 intentionally skipped, 0 fail**; presentation mapping check **PASS**. The browser artifact `m4-actual-game-browser-qa` is ID `13610856146`, ZIP SHA-256 `195e3ff87bf383b251f67f9680c3d6c724529fccc9a9ce9651ab62caa6dd540a`, containing nine screenshots (five existing and four extended).
+- Visual inspection of the new desktop captures: dialogue text and navigation remain legible; no visible clipping or overlapping buttons in the four captured states. This does **not** validate every S02–S03 branch or mobile layout at each extended beat.
+- Root cause of raw headings: Ludory `packages/narrative/src/engine.mjs` does not provide authored `view.label` for ordinary dialogue or choice beats; `packages/runtime-narrative/src/renderer.mjs` falls back to `view.sceneId` for its `<h2>` heading. Technical IDs are therefore a shared Runtime renderer behavior, **not** corrupt Studio migration data. A framework-level, backward-compatible title policy needs an independently reviewed Ludory change; do not patch Studio-owned launcher files or replace the source scene IDs.
+- Neutral artwork is expected: nine S01–S03 visual cues are mapped but the artwork admission gate remains **0 accepted images**. Rights, hashes, music, full narrative paths, actual platform SDKs, moderation, and publication stay **OPEN**. Economy/premium choices stay **OFF**.
