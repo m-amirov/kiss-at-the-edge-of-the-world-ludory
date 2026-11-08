@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+  "sourceCueManifestPath": "src/literary-visual-directions.js",
+  "scope": "pilot-s01-s03",
+  "admissionPolicy": "metadata-only; no legacy image or audio file admitted",
+  "openingStages": [
+    {
+      "sourceSceneId": "S01",
+      "graphBeatId": "s01-airport-01",
+      "location": "Кефлавик: зал прилёта",
+      "sourceArt": "keflavik-airport-arrivals-v1.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral"
+    },
+    {
+      "sourceSceneId": "S02",
+      "graphBeatId": "s02-road-01",
+      "location": "Автомобиль по дороге в Рейкьявик",
+      "sourceArt": "road-trip-van-interior-rain.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral"
+    },
+    {
+      "sourceSceneId": "S03",
+      "graphBeatId": "s03-editorial-01",
+      "location": "Гостевой дом Рейкьявика: гостиная",
+      "sourceArt": "s03-reykjavik-guesthouse-morning.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral"
+    }
+  ],
+  "neutralResets": ["s01-common-01", "s02-road-01", "s03-editorial-01"],
+  "entries": [
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "nick-arrives",
+      "at": [0, 4],
+      "graphBeatId": "s01-airport-05",
+      "status": "mapped",
+      "location": "Кефлавик: зал прилёта",
+      "sourceArt": null,
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Source S01 chunk 0 paragraph 4, arrival board introduction"
+    },
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "airport-outside",
+      "at": [0, 16],
+      "graphBeatId": "s01-airport-17",
+      "status": "mapped",
+      "location": "Кефлавик: выход под дождь",
+      "sourceArt": null,
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Source S01 chunk 0 paragraph 16, airport glass doors and sideways rain"
+    },
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "damir-arrives",
+      "at": [0, 24],
+      "graphBeatId": "s01-airport-25",
+      "status": "mapped",
+      "location": "Кефлавик: зал прилёта, автомат с кофе",
+      "sourceArt": null,
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Source S01 chunk 0 paragraph 24, first recognition of Damir"
+    },
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "car-eric",
+      "at": [2, 0],
+      "graphBeatId": "s01-eric-01",
+      "status": "mapped",
+      "when": { "flag": "s01-seat-eric" },
+      "location": "Автомобиль: переднее сиденье",
+      "sourceArt": "road-trip-van-interior-rain.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Explicit front seat branch; old S01-C1 A maps to s01-seat-eric"
+    },
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "car-nick",
+      "at": [3, 0],
+      "graphBeatId": "s01-nick-01",
+      "status": "mapped",
+      "when": { "flag": "s01-seat-nick" },
+      "location": "Автомобиль: заднее сиденье, Ник",
+      "sourceArt": "road-trip-van-interior-rain.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Explicit Nick seat branch; old S01-C1 B maps to s01-seat-nick"
+    },
+    {
+      "sourceSceneId": "S01",
+      "sourceCueId": "car-damir",
+      "at": [4, 0],
+      "graphBeatId": "s01-damir-01",
+      "status": "mapped",
+      "when": { "flag": "s01-seat-damir" },
+      "location": "Автомобиль: заднее сиденье, Дамир",
+      "sourceArt": "road-trip-van-interior-rain.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Explicit Damir seat branch; old S01-C1 C maps to s01-seat-damir"
+    },
+    {
+      "sourceSceneId": "S02",
+      "sourceCueId": "roadside-cafe",
+      "at": [0, 31],
+      "graphBeatId": "s02-road-32",
+      "status": "mapped",
+      "location": "Придорожное кафе, остановка по пути в Рейкьявик",
+      "sourceArt": "s02-roadside-cafe.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "S02 intro paragraph 31 (zero-based), roadside cafe begins after Damir laugh"
+    },
+    {
+      "sourceSceneId": "S03",
+      "sourceCueId": "editor-call",
+      "at": [0, 0],
+      "graphBeatId": "s03-editorial-01",
+      "status": "mapped",
+      "location": "Гостевой дом Рейкьявика: гостиная",
+      "sourceArt": "s03-reykjavik-guesthouse-morning.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Source S03 intro chunk 0; first beat establishes living room; editor call begins at beat 03"
+    },
+    {
+      "sourceSceneId": "S03",
+      "sourceCueId": "damir-enters",
+      "at": [4, 0],
+      "graphBeatId": "s03-coffee-01",
+      "status": "mapped",
+      "location": "Гостевой дом Рейкьявика: гостиная, Дамир с двумя чашками",
+      "sourceArt": "cg/s03-editor-call-damir.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Source S03 chunk 4 start matches s03Coffee paragraph 0"
+    }
+  ]
+}
