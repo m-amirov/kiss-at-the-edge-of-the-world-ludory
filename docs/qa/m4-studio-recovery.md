@@ -80,9 +80,9 @@ From the same verified Studio-owned source digest `c9863a6270d4e43279a2ef40ecba0
 
 The exporter returned `CANDIDATES_BUILT_LOCAL`, `releaseReady: false`, `publicationAllowed: false`; no production SDK execution, platform upload, moderation, image rights admission or interactive browser acceptance occurred. The temporary ZIPs and five receipts are local QA artifacts, not committed release candidates. Browser/visual/rights gates remain open; do not reinterpret this packaging result as release approval.
 
-## Actual-game browser CI gate (added; result pending)
+## Actual-game browser CI evidence — 2026-11-08
 
-The M4 Draft branch now provides `.github/workflows/m4-browser-qa.yml` and
+The M4 Draft branch provides `.github/workflows/m4-browser-qa.yml` and
 `npm run qa:m4:browser`. On GitHub's Linux Chromium runner, this deliberately
 serves the tracked `game-studio/` source without bypassing or fabricating
 Studio host-trust registration. It checks mobile 390×844 and desktop 1000×720,
@@ -90,8 +90,15 @@ the three S01 seat branches, Back, the local Save→Reload restore contract,
 English shell labels, neutral artwork and horizontal overflow. Screenshots are
 uploaded as a **test artifact**, including when a later check fails.
 
+- Proven commit: `2b1eb4a3ab32d75874e2bc644eb81493d99fbf67`.
+- [Push run 42460064791](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42460064791): **SUCCESS**, and PR run 42460064812: **SUCCESS**.
+- Actual Chromium log: `M4_BROWSER_QA_PASS`, no page exceptions. Focused Node tests: **19 passed / 1 skipped** (the legacy, host-local owner-registration test); M4 presentation check passed.
+- Screenshots: `m4-actual-game-browser-qa`, artifact `13609396975`, ZIP digest `sha256:45d7cf63be64a164673f23f724106d9756df6a054e32ed8131f9a15dd4170373`; five images for both sizes and route states were downloaded and visually inspected.
+- Visual observation: the body text and controls are legible, but the scene headers still show technical IDs (`s01-airport`, `s01-nick`, `s01-damir`), and the neutral artwork stage is a large empty gradient until media is accepted. This is **not** final visual acceptance.
+
 This is a separate actual-browser test, not a source-asset admission, an
 independent visual review, full S01–S66 route acceptance or a claim that the
-ZIPs execute correctly inside Yandex/VK SDKs. Results are **NOT_RUN** until the
-new workflow finishes on the exact PR HEAD. Local Chromium is still blocked by
-the executor's `socket() EPERM`; CI's reported result must be checked directly.
+ZIPs execute correctly inside Yandex/VK SDKs. Local Chromium remains blocked by
+the executor's `socket() EPERM`; the recorded PASS applies only to the GitHub
+runner and tested source commit. Documentation-only follow-up commits do not
+substitute for a fresh check if game code changes.
