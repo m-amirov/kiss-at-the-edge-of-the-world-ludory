@@ -68,3 +68,14 @@ A dedicated Ludory branch updates the template declaration to `1.2.4` and adds a
 - No image/admission, CDN audio, economy activation, remote publication or real-platform QA performed.
 
 Ludory 1.2.4 must be integrated through its own reviewed PR before treating this game's updated Studio component as compatible with framework `main`. The game PR remains Draft and keeps all other gates open.
+
+## Local dual-platform packaging preflight — 2026-11-08
+
+From the same verified Studio-owned source digest `c9863a6270d4e43279a2ef40ecba07e88b4caa842f46778c14c1e8cc78f2ae43`, the Ludory 1.2.4 branch's `planNarrativePlatformExport` returned `READY_TO_DERIVE` for Yandex Games and VK Games (73 source files). Both candidates were built into a separate temporary output directory and independently checked with `verifyNarrativePlatformCandidates`:
+
+| Candidate | Size | ZIP SHA-256 | Verification |
+|---|---:|---|---|
+| Yandex Games | ~2 MB | `b566acfe88375afcae51116b0312d2bf45592054d4b5b274d36dca0494eac11b` | `LOCAL_ARCHIVES_VERIFIED` |
+| VK Games | ~2 MB | `edbd33d2d0334b2051b7c8f79c2accf1f3c323efaade900a181816ee616d0c5b` | `LOCAL_ARCHIVES_VERIFIED` |
+
+The exporter returned `CANDIDATES_BUILT_LOCAL`, `releaseReady: false`, `publicationAllowed: false`; no production SDK execution, platform upload, moderation, image rights admission or interactive browser acceptance occurred. The temporary ZIPs and five receipts are local QA artifacts, not committed release candidates. Browser/visual/rights gates remain open; do not reinterpret this packaging result as release approval.
