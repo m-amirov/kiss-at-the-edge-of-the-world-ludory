@@ -2,15 +2,15 @@
   "schemaVersion": 2,
   "template": {
     "id": "narrative-interactive",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "profile": "narrative-game",
     "origin": "builtin",
-    "sourceSha256": "3299aa475ad46701accbeefb3d64f47d1da624e535a1e10bbe43cbb1862f3502"
+    "sourceSha256": "62640a8a7a615aedd069075573e2ae1ecec592bc06493d179c2eb9dab0043d16"
   },
   "files": {
     "index.html": "4be3787c2893b078fc48c38537e542dd5561505a809e458d347ef483d776871a",
     "src/entry.js": "a0a58029bf18bf14cd41f2ab1a90a255972420b4cd932994fbebf7a35bb0f669",
-    "src/main.js": "9c50a1fee60fb6156ce411286eb1dcf609f37fe9df462495fdec02f9f669cb8a",
+    "src/main.js": "3c6855df43381e831f6a9ad482b89ba887457d12aa864a76ce0b3332ca6d8da0",
     "assets/ludory-narrative.js": "7a07bdd234be02046ae6889d8a9fc893a94765b9f4eb1d37cd4bf0b35259a032"
   },
   "authorFiles": [

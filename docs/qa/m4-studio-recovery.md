@@ -53,3 +53,18 @@ Read-only check in the transferred workspace:
 - `node --test tests/m4-inventory.test.mjs tests/m4-source-map.test.mjs tests/m4-presentation.test.mjs tests/m4-fresh-studio.test.mjs`: **9 PASS, 0 FAIL**; `node tools/m4-build-presentation.mjs --check`: presentation hash `17a6cf4e39da3eec88a90c6a1f588fe523e7cc0d9a16399f84b11d908a96429f`, story hash `1f3201851be79cb48b4c9692ed4fe5858307a1c8597ad0150e60a4a9a89b21d9`, 9 deliberately blocked images.
 
 Next legitimate step is an owner-authorized `components trust --accept-state-sha256 <digest-from-fresh-preview> --apply` on the actual new host, followed by fresh `components status` and Studio preview. No manual trust-registry writes, asset admission, screenshots, merge, or release are included in this revalidation. A future host transfer requires a **new** preview and confirmation; this digest is not a reusable authorization.
+
+## Owner-approved trust and template update — 2026-11-08
+
+Following explicit owner approval of the exact host transfer (state digest above), the native CLI returned `TRUSTED` with no project-file writes. The subsequent component status exposed a genuine template compatibility issue: the post-merge Ludory `narrative-interactive@1.2.3` launcher had a different SHA-256 from the original 1.2.3 Studio-created game, and Studio refused a same-version replacement. `src/main.js` had switched from a static `story.presentationData` property read to `Reflect.get(story, 'presentationData')` to avoid bundler warnings with legacy stories; the managed source change lacked a version bump.
+
+A dedicated Ludory branch updates the template declaration to `1.2.4` and adds a regression test covering the original 1.2.3 launcher digest; tests observed RED on the unbumped template and GREEN on the new version. The original 1.2.3 game then received a native `components update --apply` with **only** `src/main.js` and `ludory.components.json` in the write list; Studio returned `APPLIED` and subsequent `components status` returned `IN_SYNC` for `narrative-interactive@1.2.4`. The backup directory `.ludory-components-backup-Axt6XO/` was preserved locally and excluded from Git. Both project-owned files and all visual author data retained their exact pre-update SHA-256 (including `story.js` `1f3201851be79cb48b4c9692ed4fe5858307a1c8597ad0150e60a4a9a89b21d9`).
+
+- Game tests: `node --test tests/m4-fresh-studio.test.mjs tests/m4-presentation.test.mjs` → **5/5 PASS**.
+- Presentation proof: `node tools/m4-build-presentation.mjs --check` → PASS, 9 blocked visual placements, 0 admitted media.
+- Native Studio preview → **STARTED**, `sourceDigest` `c9863a6270d4e43279a2ef40ecba07e88b4caa842f46778c14c1e8cc78f2ae43`.
+- Same-process HTTP requests to `/`, `/src/main.js`, `/src/story.js`, `/src/presentation.js` and `/ludory.project.json` → **all HTTP 200**.
+- Chromium `--headless --no-sandbox --dump-dom about:blank` → exit 134, `chrome/browser/process_singleton_posix.cc:297`, `socket() failed: Operation not permitted (1)`; browser screenshots and actual UI interactions remain **BLOCKED_BROWSER**, not PASS.
+- No image/admission, CDN audio, economy activation, remote publication or real-platform QA performed.
+
+Ludory 1.2.4 must be integrated through its own reviewed PR before treating this game's updated Studio component as compatible with framework `main`. The game PR remains Draft and keeps all other gates open.

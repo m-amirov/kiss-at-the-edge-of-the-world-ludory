@@ -15,14 +15,14 @@ test('fresh Studio game is independently owned and consumes native presentation'
   const project = JSON.parse(readFileSync(join(studio, 'ludory.project.json')));
   assert.equal(ownership.schemaVersion, 2);
   assert.equal(ownership.template.id, 'narrative-interactive');
-  assert.equal(ownership.template.version, '1.2.3');
+  assert.equal(ownership.template.version, '1.2.4');
   assert.equal(project.id, 'kiss-at-the-edge-of-the-world');
   assert.deepEqual(project.targets, ['yandex-games', 'vk-games']);
   assert.ok(ownership.authorFiles.includes('src/story.js'));
   assert.ok(ownership.authorFiles.includes('narrative-assets.json'));
   const main = readFileSync(join(studio, 'src/main.js'), 'utf8');
   assert.match(main, /defineNarrativePresentation/);
-  assert.match(main, /story\.presentationData === undefined/);
+  assert.match(main, /Reflect\.get\(story, 'presentationData'\)/);
   assert.doesNotMatch(main, /defineEconomy|premiumChoice/);
   for (const file of ['src/story.js', 'src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
     assert.equal(sha(join(studio, file)), sha(join(original, file)), `authored file drift: ${file}`);
