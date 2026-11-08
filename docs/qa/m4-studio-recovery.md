@@ -79,3 +79,19 @@ From the same verified Studio-owned source digest `c9863a6270d4e43279a2ef40ecba0
 | VK Games | ~2 MB | `edbd33d2d0334b2051b7c8f79c2accf1f3c323efaade900a181816ee616d0c5b` | `LOCAL_ARCHIVES_VERIFIED` |
 
 The exporter returned `CANDIDATES_BUILT_LOCAL`, `releaseReady: false`, `publicationAllowed: false`; no production SDK execution, platform upload, moderation, image rights admission or interactive browser acceptance occurred. The temporary ZIPs and five receipts are local QA artifacts, not committed release candidates. Browser/visual/rights gates remain open; do not reinterpret this packaging result as release approval.
+
+## Actual-game browser CI gate (added; result pending)
+
+The M4 Draft branch now provides `.github/workflows/m4-browser-qa.yml` and
+`npm run qa:m4:browser`. On GitHub's Linux Chromium runner, this deliberately
+serves the tracked `game-studio/` source without bypassing or fabricating
+Studio host-trust registration. It checks mobile 390×844 and desktop 1000×720,
+the three S01 seat branches, Back, the local Save→Reload restore contract,
+English shell labels, neutral artwork and horizontal overflow. Screenshots are
+uploaded as a **test artifact**, including when a later check fails.
+
+This is a separate actual-browser test, not a source-asset admission, an
+independent visual review, full S01–S66 route acceptance or a claim that the
+ZIPs execute correctly inside Yandex/VK SDKs. Results are **NOT_RUN** until the
+new workflow finishes on the exact PR HEAD. Local Chromium is still blocked by
+the executor's `socket() EPERM`; CI's reported result must be checked directly.
