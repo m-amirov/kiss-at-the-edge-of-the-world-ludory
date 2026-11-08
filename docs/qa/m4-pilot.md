@@ -1,5 +1,7 @@
 # M4B pilot — S01–S03 (7 November 2026)
 
+> Historical initial pilot evidence from 7 November. Ludory PR #91 was subsequently merged; a fresh Studio host-transfer verification is recorded in [`m4-studio-recovery.md`](m4-studio-recovery.md#host-transfer-revalidation--2026-11-08). The original trust blocker below concerns legacy `game/`, not the newly created `game-studio/`.
+
 ## Scope and immutable baseline
 
 - Game M4 branch: `feat/m4-visual-migration` (isolated game worktree, not `main`).

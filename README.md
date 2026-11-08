@@ -11,7 +11,7 @@
 
 ## M4B — новый Studio-managed проект (Draft)
 
-`game-studio/` — новая изолированная Studio-инициализация на шаблоне `narrative-interactive` **1.2.3** из Ludory [Draft PR #91](https://github.com/m-amirov/ludory/pull/91). Каталог `game/` сохранён в качестве исходного авторского и исторического технического среза; его устаревшие Studio-managed файлы не перезаписывались. Миграция `game-studio/` выполнена только по авторским `src/story.js`, `src/scenes/`, `src/presentation.js`, `visuals/` и `narrative-assets.json`. Вся нативная оболочка, `src/main.js`, `src/entry.js` и runtime bundle созданы официальной Studio CLI и принадлежат Studio.
+`game-studio/` — новая изолированная Studio-инициализация на шаблоне `narrative-interactive` **1.2.3** из Ludory [объединённого PR #91](https://github.com/m-amirov/ludory/pull/91) (`main`: `28f5d6445ad06f82c3910474d79fbf465a650567`). Каталог `game/` сохранён в качестве исходного авторского и исторического технического среза; его устаревшие Studio-managed файлы не перезаписывались. Миграция `game-studio/` выполнена только по авторским `src/story.js`, `src/scenes/`, `src/presentation.js`, `visuals/` и `narrative-assets.json`. Вся нативная оболочка, `src/main.js`, `src/entry.js` и runtime bundle созданы официальной Studio CLI и принадлежат Studio.
 
 Для локального предварительного запуска из checkout Ludory с проверенным M4A tree `d0fb1175acd662526b3b4a45188341d18a7737aa`:
 
@@ -20,7 +20,7 @@ node packages/studio/bin/ludory.mjs components status --project /absolute/path/t
 node packages/studio/bin/ludory.mjs preview --project /absolute/path/to/game-repository/game-studio --json
 ```
 
-В новом Studio-проекте `components status` был `IN_SYNC`, `preview` — `STARTED`; на другом хосте могут потребоваться штатные действия по доверию к скопированному Studio-проекту. Старый `game/` этой процедурой автоматически не обновляется. Из M4B пока проверена карта **только S01–S03**: 9 привязанных visual cues, 12 нейтральных native beats, 0 допущенных картинок, 0 включённых музыкальных файлов. Правовой gate для ассетов и браузерный pixel QA остаются открытыми. Экономика игры выключена; никакие покупки/премиум-выборы не добавлялись. [Результаты M4 Studio](docs/qa/m4-studio-recovery.md).
+На исходном Studio-хосте `components status` был `IN_SYNC`, `preview` — `STARTED`. В текущем перенесённом checkout (08.11.2026) `components trust --json` возвращает `NEEDS_USER_ACTION`: нужен отдельный осознанный допуск доверия по контрольной сумме состояния, указанной в [M4 Studio QA](docs/qa/m4-studio-recovery.md). До этого штатные `components update` и `preview` заблокированы. Нельзя редактировать реестр доверия, компоненты или receipt вручную; старый `game/` этой процедурой не обновляется. Из M4B пока проверена карта **только S01–S03**: 9 привязанных visual cues, 12 нейтральных native beats, 0 допущенных картинок, 0 включённых музыкальных файлов. Правовой gate для ассетов и браузерный pixel QA остаются открытыми. Экономика игры выключена; никакие покупки/премиум-выборы не добавлялись.
 
 ## Материалы миграции
 
