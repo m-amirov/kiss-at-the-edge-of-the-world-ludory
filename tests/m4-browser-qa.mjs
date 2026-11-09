@@ -170,6 +170,23 @@ async function createPage(browser, name, viewport) {
     return { background, loaded: image.naturalWidth === 1920 && image.naturalHeight === 900 };
   });
   assert.equal(cover.loaded, true, `${name}: original menu cover missing or undecodable: ${cover.background}`);
+  assert.match(cover.background, /kiss-at-the-edge-cover\.png/, `${name}: low-quality WebP is still used for the menu`);
+  const typography = await originalMenu.evaluate(async menu => {
+    await document.fonts.ready;
+    const title = getComputedStyle(menu.querySelector('h1')).fontFamily;
+    const summary = getComputedStyle(menu.querySelector('.original-home__summary')).fontFamily;
+    const actions = getComputedStyle(menu.querySelector('.original-home__primary')).fontFamily;
+    const sourceFonts = [...document.fonts].filter(face =>
+      ['Cinematic Cormorant', 'Cinematic Manrope'].includes(face.family));
+    return { title, summary, actions, fonts: sourceFonts.map(({ family, status }) => ({ family, status })) };
+  });
+  assert.match(typography.title, /Cinematic Cormorant/, `${name}: source display face missing`);
+  assert.match(typography.summary, /Cinematic Manrope/, `${name}: source body face missing`);
+  assert.match(typography.actions, /Cinematic Manrope/, `${name}: source button face missing`);
+  for (const family of ['Cinematic Cormorant', 'Cinematic Manrope']) {
+    assert.ok(typography.fonts.some(face => face.family === family && face.status === 'loaded'),
+      `${name}: local font ${family} not loaded: ${JSON.stringify(typography)}`);
+  }
   const menuBounds = await originalMenu.locator('[data-ui="continue-story"]').boundingBox();
   assert.ok(menuBounds && menuBounds.y >= 0 && menuBounds.y + menuBounds.height <= viewport.height,
     `${name}: Continue menu action not visible on screen`);
@@ -177,6 +194,8 @@ async function createPage(browser, name, viewport) {
   await originalMenu.locator('[data-ui="continue-story"]').click();
   assert.equal(await originalMenu.isVisible(), false, `${name}: reader did not open`);
   await page.locator('.ludory-narrative__panel').waitFor();
+  const storyFont = await page.locator('.ludory-narrative__panel > p').first().evaluate(el => getComputedStyle(el).fontFamily);
+  assert.match(storyFont, /Cinematic Manrope/, `${name}: original narrative typeface missing`);
   assert.equal(await page.locator('.reader-chrome button:visible').count(), 1,
     `${name}: reading HUD must expose only Menu (native utilities belong in settings)`);
   await page.waitForFunction(() => document.querySelector('#status')?.textContent === 'История запущена');

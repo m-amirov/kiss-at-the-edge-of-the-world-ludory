@@ -1,11 +1,22 @@
 /* Author-owned visual skin over native Ludory controls and story state. */
+/* Source fonts are OFL licensed and bundled locally, never loaded from a CDN. */
+@font-face {
+  font-family: 'Cinematic Cormorant';
+  src: url('../../assets/fonts/CormorantGaramond[wght].ttf') format('truetype');
+  font-style: normal; font-weight: 300 700; font-display: swap;
+}
+@font-face {
+  font-family: 'Cinematic Manrope';
+  src: url('../../assets/fonts/Manrope[wght].ttf') format('truetype');
+  font-style: normal; font-weight: 200 800; font-display: swap;
+}
 :root { color-scheme: dark; --novel-ink: #fff8ea; --novel-accent: #edcd9c; }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; margin: 0; }
 body.original-game {
   position: relative; min-height: 100dvh; overflow: hidden;
   color: var(--novel-ink); background: #142531;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cinematic Manrope', Arial, sans-serif;
 }
 /* The native Studio shell also has inline mobile rules; preserve its source
    hashes and override those rules only in the authored visual theme. */
@@ -34,7 +45,7 @@ html[data-mobile-preference="portrait"] header.reader-chrome .reader-chrome__act
   min-height: 44px; border: 1px solid rgba(214,171,126,.63);
   border-radius: 11px; padding: 7px 11px;
   color: var(--novel-ink); background: rgba(12,24,32,.68);
-  font: 600 13px/1.2 system-ui,sans-serif; cursor: pointer;
+  font: 600 13px/1.2 'Cinematic Manrope',Arial,sans-serif; cursor: pointer;
 }
 .reader-chrome__actions button:hover { background: rgba(118,87,68,.93); }
 .reader-chrome__actions button:focus-visible { outline: 2px solid #f3d2a8; outline-offset: 2px; }
@@ -50,7 +61,7 @@ html[data-mobile-preference="portrait"] header.reader-chrome .reader-chrome__act
   padding: clamp(28px,6vw,88px) clamp(22px,8vw,150px);
   background-color: #0c1722;
   background-image: linear-gradient(90deg,rgba(5,13,20,.92),rgba(5,13,20,.66) 42%,rgba(5,13,20,.12) 78%),
-    url('../../assets/branding/menu-hero.webp');
+    url('../../assets/branding/kiss-at-the-edge-cover.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -61,14 +72,14 @@ html[data-mobile-preference="portrait"] header.reader-chrome .reader-chrome__act
   content: ''; display: block; width: 58px; height: 1px; margin-bottom: 24px;
   background: #d9a37c; box-shadow: 0 0 18px #d9a37c99;
 }
-.original-home__kicker { margin: 0; color: #e8be9c; font: 600 12px/1.5 system-ui,sans-serif; letter-spacing: .2em; text-transform: uppercase; }
-.original-home h1 { max-width: 8ch; margin: 14px 0 24px; font: 400 clamp(54px,7vw,104px)/.95 Georgia,serif; letter-spacing: -.04em; }
-.original-home__summary { max-width: 31ch; color: #e7d9c6; font: 400 clamp(16px,1.8vw,21px)/1.6 Georgia,serif; }
+.original-home__kicker { margin: 0; color: #e8be9c; font: 700 12px/1.5 'Cinematic Manrope',Arial,sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+.original-home h1 { max-width: 8ch; margin: 14px 0 24px; font: 600 clamp(48px,7vw,92px)/.92 'Cinematic Cormorant',Georgia,serif; letter-spacing: -.045em; }
+.original-home__summary { max-width: 31ch; color: #e7d9c6; font: 500 clamp(16px,1.8vw,21px)/1.6 'Cinematic Manrope',Arial,sans-serif; }
 .original-home__actions { display: flex; flex-direction: column; gap: 8px; max-width: 430px; margin-top: 30px; }
 .original-home button {
   min-height: 54px; padding: 14px 18px; border: 1px solid #f4dabb70; border-radius: 999px;
   color: #fff8ea; background: #0a141b77;
-  font: 600 15px/1.3 system-ui,sans-serif; text-align: left; cursor: pointer;
+  font: 600 15px/1.3 'Cinematic Manrope',Arial,sans-serif; text-align: left; cursor: pointer;
 }
 .original-home button:hover, .original-home button:focus-visible { background: #845841ba; border-color: #f3d2a8; }
 .original-home button:focus-visible { outline: 2px solid #f3d2a8; outline-offset: 3px; }
@@ -82,7 +93,7 @@ body.original-game #game .ludory-narrative {
   position: relative; display: flex; flex-direction: column; justify-content: flex-end;
   width: 100%; height: 100%; min-height: 0; padding: 0; overflow: hidden;
   isolation: isolate; background: #111b24; color: var(--novel-ink);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cinematic Manrope', Arial, sans-serif;
 }
 body.original-game #game .ludory-narrative__stage {
   position: absolute; z-index: 0; inset: 0; overflow: hidden;
@@ -117,11 +128,11 @@ body.original-game #game .ludory-narrative__panel > .ludory-narrative__actions {
 }
 body.original-game #game .ludory-narrative__panel > p {
   margin-block: 0 20px; color: var(--novel-ink);
-  font: 400 clamp(17px,2.2vw,21px)/1.55 Georgia,'Times New Roman',serif;
+  font: 500 clamp(17px,2.2vw,21px)/1.62 'Cinematic Manrope',Arial,sans-serif;
   white-space: pre-wrap; text-shadow: 0 2px 16px #000e;
 }
 body.original-game #game .ludory-narrative__panel h2 {
-  color: var(--novel-accent); font: 600 15px/1.4 system-ui,sans-serif;
+  color: var(--novel-accent); font: 600 22px/1.1 'Cinematic Cormorant',Georgia,serif;
   text-shadow: 0 2px 16px #000e;
 }
 body.original-game #game .ludory-narrative__toolbar {
@@ -132,7 +143,7 @@ body.original-game #game .ludory-narrative__toolbar {
 }
 body.original-game #game .ludory-narrative__toolbar button {
   min-height: 44px; padding: 7px 11px; border-radius: 11px;
-  background: rgba(12,24,32,.68); font: 600 13px/1.2 system-ui,sans-serif;
+  background: rgba(12,24,32,.68); font: 600 13px/1.2 'Cinematic Manrope',Arial,sans-serif;
 }
 body.original-game #game .ludory-narrative__actions {
   display: flex; flex-direction: column; align-items: stretch; gap: 11px; margin-top: 11px;
@@ -142,7 +153,7 @@ body.original-game #game .ludory-narrative__actions button {
   padding: 15px 18px 15px 44px; border-radius: 16px;
   border: 1px solid rgba(231,187,145,.58);
   background: linear-gradient(110deg,rgba(18,33,42,.94),rgba(29,47,55,.82));
-  color: var(--novel-ink); font: 500 17px/1.4 Georgia,serif;
+  color: var(--novel-ink); font: 500 17px/1.45 'Cinematic Manrope',Arial,sans-serif;
   text-align: left; box-shadow: none;
 }
 body.original-game #game .ludory-narrative__actions button::before {
@@ -160,7 +171,7 @@ body.original-game #game .ludory-narrative__actions button[data-action^="narrati
   width: max-content; min-width: 132px; margin-left: auto;
   padding: 12px 20px; border-radius: 14px;
   background: linear-gradient(135deg,#be865d,#916149);
-  font: 700 15px/1.3 system-ui,sans-serif; text-align: center;
+  font: 700 15px/1.3 'Cinematic Manrope',Arial,sans-serif; text-align: center;
 }
 body.original-game #game .ludory-narrative__actions button[data-action^="narrative:next:"]::before { display: none; }
 body.original-game #game .ludory-narrative button:focus-visible { outline: 2px solid #f3d2a8; outline-offset: 2px; }
@@ -169,7 +180,7 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
   .original-home {
     align-items: flex-end; padding: 24px 20px max(24px,env(safe-area-inset-bottom,0px));
     background-image: linear-gradient(180deg,rgba(5,13,20,.08),rgba(5,13,20,.42) 44%,rgba(5,13,20,.96) 100%),
-      url('../../assets/branding/menu-hero.webp');
+      url('../../assets/branding/kiss-at-the-edge-cover.png');
     background-position: 28% center;
   }
   .original-home__card { width: 100%; }

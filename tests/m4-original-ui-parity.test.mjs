@@ -49,3 +49,27 @@ test('mobile top actions have accessible touch target height', async () => {
   const css = await readFile(new URL('src/ui/original-game.css', game), 'utf8');
   assert.match(css, /\.reader-chrome__actions button\s*\{[^}]*min-height:\s*44px/s);
 });
+
+test('original Cormorant and Manrope variable fonts are bundled with OFL licenses and used for their source roles', async () => {
+  const css = await readFile(new URL('src/ui/original-game.css', game), 'utf8');
+  const original = [
+    ['CormorantGaramond[wght].ttf', 'b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0'],
+    ['Manrope[wght].ttf', '3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6'],
+  ];
+  for (const [filename, sha256] of original) {
+    const font = await readFile(new URL(`assets/fonts/${filename}`, game));
+    assert.equal(createHash('sha256').update(font).digest('hex'), sha256, `source font changed: ${filename}`);
+    assert.equal(font.toString('hex', 0, 4), '00010000', `${filename}: not a TrueType font`);
+    assert.ok(css.includes(`../../assets/fonts/${filename}`), `${filename}: relative source path missing`);
+  }
+  for (const license of ['OFL-CormorantGaramond.txt', 'OFL-Manrope.txt']) {
+    const text = await readFile(new URL(`assets/fonts/${license}`, game), 'utf8');
+    assert.match(text, /SIL OPEN FONT LICENSE Version 1\.1/);
+  }
+  assert.match(css, /@font-face\s*\{[^}]*font-family:\s*'Cinematic Cormorant'/s);
+  assert.match(css, /@font-face\s*\{[^}]*font-family:\s*'Cinematic Manrope'/s);
+  assert.match(css, /\.original-home h1\s*\{[^}]*Cinematic Cormorant/s);
+  assert.match(css, /\.original-home__summary\s*\{[^}]*Cinematic Manrope/s);
+  assert.match(css, /\.original-home button\s*\{[^}]*Cinematic Manrope/s);
+  assert.match(css, /\.ludory-narrative__panel > p\s*\{[^}]*Cinematic Manrope/s);
+});

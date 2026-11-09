@@ -19,13 +19,13 @@
 | `.choice-button`, `.reader-options` | `.ludory-narrative__actions button` | Warm visual controls and large touch targets |
 | Original stage tap handler | Author-owned presentation adapter → current native Next action | Exactly one advancement on dialogue, none on choices |
 
-Reference source CSS uses a viewport-filling stage, lower linear-gradient dialog overlay, Georgia serif body typography, warm gold strokes and full-bleed CG presentation with authored focus. The target must retain native `data-action`, `data-scene-id` and `data-beat-id` for state/QA.
+The original source's later cinematic CSS overrides its early Georgia fallback: `Cinematic Cormorant` (bundled Cormorant Garamond) is used for display/scene headings; `Cinematic Manrope` (bundled Manrope) is used for prose, buttons and other UI. The reference also uses a viewport-filling stage, lower gradient dialog overlay, warm gold strokes and full-bleed CG. The target must retain native `data-action`, `data-scene-id` and `data-beat-id` for state/QA.
 
 ## Implemented parity shell (pending browser acceptance)
 
-- The authored `src/ui/original-game.css` restores full-screen stage, bottom-gradient dialogue, warm pill actions, Georgia typography and large mobile touch targets. It does not replace the native renderer's state or input actions.
+- The authored `src/ui/original-game.css` restores full-screen stage, bottom-gradient dialogue, warm pill actions, exact bundled Cormorant/Manrope typography and large mobile touch targets. It does not replace the native renderer's state or input actions.
 - The authored `src/ui/original-game-ui.js` restores the original source menu hierarchy (kicker, display title, summary and actions), stage tap, keyboard progression and UI-only text size. The generated, author-owned `src/presentation.js` imports the adapter before the native launcher boots; it decorates the existing page without editing Studio-managed `index.html` or `src/entry.js`. `startNarrative()` remains the only narrative boot path, and `#restart` is the only path that clears a save after an explicit confirmation.
-- The original main-menu cover is admitted as `assets/branding/menu-hero.webp` and restored behind the source-style desktop/mobile scrims. All unapproved S01 backgrounds, sprites and audio still use explicit neutral fallbacks. Exact overall visual parity is not yet a PASS.
+- The first main-menu WebP admission proved visually inadequate due to compression; it has been superseded by the owner's approved `assets/branding/kiss-at-the-edge-cover.png`, a different original key visual with much higher source detail. All unapproved S01 backgrounds, sprites and audio still use explicit neutral fallbacks. Exact overall visual parity is not yet a PASS.
 - The source's longer episode-selection menu is not restored as an interactive selector: navigating there would require native engine APIs to restore arbitrary checkpoints, which are not available in the pinned component. A misleading selector must not be presented.
 
 ## Screenshot checkpoints (not yet accepted)

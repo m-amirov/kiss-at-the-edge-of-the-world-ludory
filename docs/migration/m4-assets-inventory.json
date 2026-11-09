@@ -332,8 +332,15 @@
       "targetPath": "assets/branding/kiss-at-the-edge-cover.png",
       "sourceBlobSha": "a0da5d576eeb97156897876e3088d56b6c8686fd",
       "sha256": "8f38b9516533fa0cdc760cd44e7dfd21f05d87e7a3589f5229b90a9d5b9fa6a5",
-      "status": "candidate",
-      "reason": "provenance_matched_admission_pending",
+      "status": "accepted",
+      "reason": null,
+      "admittedPath": "assets/branding/kiss-at-the-edge-cover.png",
+      "admissionEvidence": {
+        "method": "owner-approved source-quality title-art replacement; byte-identical source Git blob",
+        "date": "2026-11-09",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "a0da5d576eeb97156897876e3088d56b6c8686fd"
+      },
       "licenseEvidence": {
         "manifestPath": "assets/provenance/rights-manifest.json",
         "path": "assets/branding/kiss-at-the-edge-cover.png",
@@ -2324,8 +2331,8 @@
   "summary": {
     "total": 123,
     "byStatus": {
-      "candidate": 59,
-      "accepted": 4,
+      "candidate": 58,
+      "accepted": 5,
       "blocked": 60
     },
     "byFamily": {
