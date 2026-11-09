@@ -160,6 +160,16 @@ async function createPage(browser, name, viewport) {
   await originalMenu.waitFor();
   assert.equal(await originalMenu.isVisible(), true, `${name}: original title menu missing`);
   assert.equal(await page.locator('#game').getAttribute('inert'), '', `${name}: story must be inert behind menu`);
+  const cover = await originalMenu.evaluate(async menu => {
+    const background = getComputedStyle(menu).backgroundImage;
+    const candidate = background.match(/url\(["']?([^"')]+)["']?\)/)?.[1];
+    if (!candidate) return { background, loaded: false };
+    const image = new Image();
+    image.src = candidate;
+    try { await image.decode(); } catch { return { background, loaded: false }; }
+    return { background, loaded: image.naturalWidth === 1920 && image.naturalHeight === 900 };
+  });
+  assert.equal(cover.loaded, true, `${name}: original menu cover missing or undecodable: ${cover.background}`);
   const menuBounds = await originalMenu.locator('[data-ui="continue-story"]').boundingBox();
   assert.ok(menuBounds && menuBounds.y >= 0 && menuBounds.y + menuBounds.height <= viewport.height,
     `${name}: Continue menu action not visible on screen`);
