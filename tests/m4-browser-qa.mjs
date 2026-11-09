@@ -113,8 +113,20 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
 async function assertViewport(page, label) {
   const geometry = await page.evaluate(() => {
     const panel = document.querySelector('.ludory-narrative__panel')?.getBoundingClientRect();
+    const reader = document.querySelector('.ludory-narrative')?.getBoundingClientRect();
+    const stage = document.querySelector('.ludory-narrative__stage')?.getBoundingClientRect();
+    const dialogue = document.querySelector('.ludory-narrative__panel > p');
+    const actions = [...document.querySelectorAll('.ludory-narrative__actions button')]
+      .filter(button => button.getClientRects().length).map(button => button.getBoundingClientRect());
+    const chromeButtons = [...document.querySelectorAll('.reader-chrome button')]
+      .filter(button => button.getClientRects().length).map(button => button.getBoundingClientRect());
     return { width: innerWidth, height: innerHeight, scrollWidth: document.documentElement.scrollWidth,
-      panel: panel && { left: panel.left, right: panel.right, top: panel.top, bottom: panel.bottom } };
+      reader: reader && { top: reader.top, bottom: reader.bottom, left: reader.left, right: reader.right },
+      stage: stage && { top: stage.top, bottom: stage.bottom, left: stage.left, right: stage.right },
+      font: dialogue ? parseFloat(getComputedStyle(dialogue).fontSize) : null,
+      panel: panel && { left: panel.left, right: panel.right, top: panel.top, bottom: panel.bottom },
+      actions: actions.map(box => ({ top: box.top, bottom: box.bottom, height: box.height })),
+      chromeButtons: chromeButtons.map(box => ({ top: box.top, bottom: box.bottom, height: box.height })) };
   });
   assert.ok(geometry.panel, `${label}: visible narrative panel missing`);
   assert.ok(geometry.scrollWidth <= geometry.width + 2, `${label}: horizontal overflow: ${JSON.stringify(geometry)}`);
@@ -122,6 +134,20 @@ async function assertViewport(page, label) {
     `${label}: narrative panel clipped horizontally: ${JSON.stringify(geometry)}`);
   assert.ok(geometry.panel.bottom > 0 && geometry.panel.top < geometry.height,
     `${label}: narrative panel out of viewport: ${JSON.stringify(geometry)}`);
+  for (const [name, box] of [['reader', geometry.reader], ['stage', geometry.stage]]) {
+    assert.ok(box && Math.abs(box.top) <= 2 && Math.abs(box.left) <= 2 &&
+      Math.abs(box.right - geometry.width) <= 2 && Math.abs(box.bottom - geometry.height) <= 2,
+    `${label}: ${name} must fill the screen: ${JSON.stringify(geometry)}`);
+  }
+  assert.ok(Math.abs(geometry.panel.bottom - geometry.height) <= 2,
+    `${label}: dialogue must anchor to the bottom: ${JSON.stringify(geometry)}`);
+  assert.ok(geometry.font === null || geometry.font >= 16,
+    `${label}: dialogue text too small: ${JSON.stringify(geometry)}`);
+  for (const box of [...geometry.actions, ...geometry.chromeButtons]) {
+    assert.ok(box.height >= 44, `${label}: touch target too small: ${JSON.stringify(box)}`);
+    assert.ok(box.top >= -2 && box.bottom <= geometry.height + 2,
+      `${label}: touch target outside viewport: ${JSON.stringify(box)}`);
+  }
 }
 
 async function createPage(browser, name, viewport) {
@@ -130,6 +156,16 @@ async function createPage(browser, name, viewport) {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'networkidle' });
+  const originalMenu = page.locator('#original-home');
+  await originalMenu.waitFor();
+  assert.equal(await originalMenu.isVisible(), true, `${name}: original title menu missing`);
+  assert.equal(await page.locator('#game').getAttribute('inert'), '', `${name}: story must be inert behind menu`);
+  const menuBounds = await originalMenu.locator('[data-ui="continue-story"]').boundingBox();
+  assert.ok(menuBounds && menuBounds.y >= 0 && menuBounds.y + menuBounds.height <= viewport.height,
+    `${name}: Continue menu action not visible on screen`);
+  await page.screenshot({ path: join(evidenceDir, `${name}-menu.png`), fullPage: true });
+  await originalMenu.locator('[data-ui="continue-story"]').click();
+  assert.equal(await originalMenu.isVisible(), false, `${name}: reader did not open`);
   await page.locator('.ludory-narrative__panel').waitFor();
   await page.waitForFunction(() => document.querySelector('#status')?.textContent === 'История запущена');
   assert.match(await page.title(), /Поцелуй на краю света/);
@@ -147,6 +183,32 @@ async function createPage(browser, name, viewport) {
   return { context, page, errors };
 }
 
+async function verifyStageNavigation(page, label) {
+  const panel = page.locator('.ludory-narrative__panel');
+  const first = await panel.getAttribute('data-beat-id');
+  await page.locator('.ludory-narrative').click({ position: { x: 180, y: 190 } });
+  await waitForBeatChange(page, first);
+  const second = await panel.getAttribute('data-beat-id');
+  await panel.focus();
+  await page.keyboard.press('ArrowRight');
+  await waitForBeatChange(page, second);
+  const third = await panel.getAttribute('data-beat-id');
+  assert.notEqual(third, first, `${label}: keyboard did not advance`);
+  await panel.focus();
+  await page.keyboard.press('Space');
+  await waitForBeatChange(page, third);
+  const fourth = await panel.getAttribute('data-beat-id');
+  await panel.focus();
+  await page.keyboard.press('Enter');
+  await waitForBeatChange(page, fourth);
+  const previous = await panel.getAttribute('data-beat-id');
+  await page.locator('[data-ui="open-menu"]').click();
+  assert.equal(await page.locator('#original-home').isVisible(), true, `${label}: menu cannot reopen`);
+  await page.locator('[data-ui="continue-story"]').click();
+  assert.equal(await panel.getAttribute('data-beat-id'), previous,
+    `${label}: opening the menu must not change story progress`);
+}
+
 async function main() {
   await mkdir(evidenceDir, { recursive: true });
   await new Promise((fulfill, reject) => server.listen(0, '127.0.0.1', error => error ? reject(error) : fulfill()));
@@ -156,12 +218,17 @@ async function main() {
       ...(process.env.M4_BROWSER_CHROMIUM_PATH ? { executablePath: process.env.M4_BROWSER_CHROMIUM_PATH } : {}) });
     const mobile = await createPage(browser, 'mobile-390x844', { width: 390, height: 844 });
     try {
+      await verifyStageNavigation(mobile.page, 'mobile');
       await mobile.page.locator('#language').click();
       assert.equal(await mobile.page.locator('#save').textContent(), 'Save');
       assert.equal(await mobile.page.locator('html').getAttribute('lang'), 'en');
       assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('aria-label'), 'Narrative');
       await mobile.page.locator('#language').click();
       await advanceToSeatChoice(mobile.page);
+      const choiceBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
+      await mobile.page.locator('.ludory-narrative').click({ position: { x: 180, y: 190 } });
+      assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'), choiceBeat,
+        'stage tap must not skip a choice');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-seat-choice.png'), fullPage: true });
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:front-eric"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-eric');
@@ -176,6 +243,7 @@ async function main() {
       const savedBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
       await mobile.page.reload({ waitUntil: 'networkidle' });
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранение восстановлено');
+      await mobile.page.locator('[data-ui="continue-story"]').click();
       assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'), savedBeat);
       await assertViewport(mobile.page, 'mobile-restored');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-restored-nick.png'), fullPage: true });
@@ -193,6 +261,7 @@ async function main() {
 
     const desktop = await createPage(browser, 'desktop-1000x720', { width: 1000, height: 720 });
     try {
+      await verifyStageNavigation(desktop.page, 'desktop');
       await advanceToSeatChoice(desktop.page);
       await desktop.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-damir"]').click();
       await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-damir');

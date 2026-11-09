@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, lstatSync, readdirSync } from 'node:fs';
-import { join, resolve, dirname } from 'node:path';
+import { join, resolve, dirname, basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -106,7 +106,10 @@ export function buildPresentation({ projectRoot, write = false }) {
   }
   const storySha256 = hash(storyBytes);
   const presentationSha256 = hash(raw);
-  const generated = `// Generated from visuals/presentation.json by tools/m4-build-presentation.mjs. Do not edit.\nexport const presentationData = ${JSON.stringify(manifest, null, 2)};\n`;
+  // The Studio-managed entrypoint cannot be edited. Only the new Studio game's
+  // author-owned presentation export installs the reader UI; legacy game/ is immutable.
+  const readerAdapter = basename(root) === 'game-studio' ? "import './ui/original-game-ui.js';\n" : '';
+  const generated = `// Generated from visuals/presentation.json by tools/m4-build-presentation.mjs. Do not edit.\n${readerAdapter}export const presentationData = ${JSON.stringify(manifest, null, 2)};\n`;
   const proof = `${JSON.stringify({ schemaVersion: 1, storySha256, assets }, null, 2)}\n`;
   const generatedPath = join(root, 'src/presentation.js');
   const proofPath = join(root, 'narrative-assets.json');
