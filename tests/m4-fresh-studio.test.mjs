@@ -15,7 +15,7 @@ test('fresh Studio game is independently owned and consumes native presentation'
   const project = JSON.parse(readFileSync(join(studio, 'ludory.project.json')));
   assert.equal(ownership.schemaVersion, 2);
   assert.equal(ownership.template.id, 'narrative-interactive');
-  assert.equal(ownership.template.version, '1.2.4');
+  assert.equal(ownership.template.version, '1.2.5');
   assert.equal(project.id, 'kiss-at-the-edge-of-the-world');
   assert.deepEqual(project.targets, ['yandex-games', 'vk-games']);
   assert.ok(ownership.authorFiles.includes('src/story.js'));

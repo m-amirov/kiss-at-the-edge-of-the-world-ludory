@@ -123,3 +123,46 @@ neutral provenance at four additional points:
 - Visual inspection of the new desktop captures: dialogue text and navigation remain legible; no visible clipping or overlapping buttons in the four captured states. This does **not** validate every S02–S03 branch or mobile layout at each extended beat.
 - Root cause of raw headings: Ludory `packages/narrative/src/engine.mjs` does not provide authored `view.label` for ordinary dialogue or choice beats; `packages/runtime-narrative/src/renderer.mjs` falls back to `view.sceneId` for its `<h2>` heading. Technical IDs are therefore a shared Runtime renderer behavior, **not** corrupt Studio migration data. A framework-level, backward-compatible title policy needs an independently reviewed Ludory change; do not patch Studio-owned launcher files or replace the source scene IDs.
 - Neutral artwork is expected: nine S01–S03 visual cues are mapped but the artwork admission gate remains **0 accepted images**. Rights, hashes, music, full narrative paths, actual platform SDKs, moderation, and publication stay **OPEN**. Economy/premium choices stay **OFF**.
+
+## Git recovery, host trust and native 1.2.5 upgrade — 2026-11-08
+
+This separate clean game PR #3 checkout had full local, non-shallow Git
+history. Current Ludory `main` (merged #94) validated authentic committed
+Studio creation `51848bdf960e8cf3c907797afdad924365c5fc37` and the
+subsequent committed native 1.2.3→1.2.4 transition
+`8aa49878dfc742f7db8a9364f10226bbef183bcc`, including managed-file
+continuity. A fresh read-only `components recover` returned
+`NEEDS_USER_ACTION`, zero conflicts and recovery SHA-256
+`610134bb6637fb4d71f4a1fb8e374559debb4d6a68e0854da9db67e0b5120ce8`.
+The owner explicitly approved that exact operation; `components recover
+--accept-recovery-sha256 … --apply` returned **RECOVERED**, zero project
+writes. Git continuity is not proof of independent host ownership.
+
+The owner then separately approved `components trust` for fresh state SHA-256
+`35a3cd981e893352e6e05adc33a400ca7d7377ef537e2239b552a62d30b9b395`.
+The native CLI returned **TRUSTED** with no project changes. From the
+subsequent conflict-free `READY` preview, `components update --apply`
+advanced `game-studio/` from `narrative-interactive@1.2.4` to **1.2.5**,
+changing only `assets/ludory-narrative.js` and `ludory.components.json`.
+The new `components status` returned **IN_SYNC**. The genuine ignored
+backup `.ludory-components-backup-siUUYx/` remains in this local host.
+No host registry, recovered checkpoint or ignored backup is committed.
+
+Game tests following the native upgrade: `node --test tests/m4-*.test.mjs
+tests/m2-s01.test.mjs` → **19 PASS / 1 SKIP / 0 FAIL** after updating the
+version expectation. `node tools/m4-build-presentation.mjs --check` →
+**PASS** with the unchanged authored `storySha256`
+`1f3201851be79cb48b4c9692ed4fe5858307a1c8597ad0150e60a4a9a89b21d9`
+and 9 blocked images. The browser QA harness was adapted to the 1.2.5
+accessibility contract: stable `data-scene-id`/`data-beat-id` drive
+automation, while the localized `aria-label` is no longer a technical
+checkpoint. It also rejects raw scene IDs in visible headings.
+
+**Actual-game 1.2.5 Chromium result is NOT_RUN** in this host:
+`npm run qa:m4:browser` first lacked Playwright, then lacked its browser
+binary after the test-only driver was installed. Direct system Chromium
+`--headless --no-sandbox --dump-dom about:blank` failed exit 134,
+`socket() failed: Operation not permitted (1)`. Prior successful CI runs
+tested version 1.2.4 and do **not** validate this upgrade. Fresh GitHub
+browser CI and screenshots are required before any UI PASS claim.
+Do not merge Draft PR #3, activate economy, admit artwork or publish.

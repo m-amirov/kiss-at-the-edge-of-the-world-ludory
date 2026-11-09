@@ -33,7 +33,7 @@ const server = createServer(async (request, response) => {
 
 async function waitForBeatChange(page, previous) {
   await page.waitForFunction(before => {
-    const now = document.querySelector('.ludory-narrative__panel')?.getAttribute('aria-label');
+    const now = document.querySelector('.ludory-narrative__panel')?.dataset.beatId;
     return now && now !== before;
   }, previous, { timeout: 5000 });
 }
@@ -43,7 +43,7 @@ async function advanceToSeatChoice(page) {
   for (let index = 0; index < 100; index++) {
     if (await seat.count()) return;
     const panel = page.locator('.ludory-narrative__panel');
-    const before = await panel.getAttribute('aria-label');
+    const before = await panel.getAttribute('data-beat-id');
     const next = page.locator('button[data-action^="narrative:next:"]');
     assert.equal(await next.count(), 1, `Unexpected interaction before seat choice: ${before}`);
     await next.click();
@@ -62,27 +62,28 @@ const pilotChoices = new Map([
 async function advanceToBeat(page, targetBeatId) {
   for (let index = 0; index < 300; index++) {
     const panel = page.locator('.ludory-narrative__panel');
-    const before = await panel.getAttribute('aria-label');
-    const beatId = before?.split(': ').at(-1);
+    const beatId = await panel.getAttribute('data-beat-id');
     if (beatId === targetBeatId) return;
     const next = page.locator('button[data-action^="narrative:next:"]');
     if (await next.count() === 1) {
       await next.click();
     } else {
       const optionId = pilotChoices.get(beatId);
-      assert.ok(optionId, `Unexpected choice or interaction en route to ${targetBeatId}: ${before}`);
+      assert.ok(optionId, `Unexpected choice or interaction en route to ${targetBeatId}: ${beatId}`);
       const choice = page.locator(`button[data-action="narrative:choose:${beatId}:${optionId}"]`);
       assert.equal(await choice.count(), 1, `Expected free choice ${beatId}:${optionId}`);
       await choice.click();
     }
-    await waitForBeatChange(page, before);
+    await waitForBeatChange(page, beatId);
   }
   assert.fail(`Narrative did not reach ${targetBeatId} within 300 interactions`);
 }
 
 async function assertPilotCue(page, beatId, variantId, label) {
-  const current = await page.locator('.ludory-narrative__panel').getAttribute('aria-label');
-  assert.equal(current?.split(': ').at(-1), beatId, `${label}: unexpected beat`);
+  const current = await page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
+  assert.equal(current, beatId, `${label}: unexpected beat`);
+  assert.equal(await page.locator('.ludory-narrative__panel h2')
+    .filter({ hasText: /^s\d{2}-/ }).count(), 0, `${label}: raw scene ID visible as heading`);
   const stage = page.locator('.ludory-narrative__stage');
   assert.equal(await stage.getAttribute('data-variant-id'), variantId, `${label}: wrong visual mapping`);
   assert.ok((await stage.getAttribute('data-neutral'))?.length, `${label}: unadmitted art lacks neutral reason`);
@@ -113,7 +114,10 @@ async function createPage(browser, name, viewport) {
   await page.locator('.ludory-narrative__panel').waitFor();
   await page.waitForFunction(() => document.querySelector('#status')?.textContent === 'История запущена');
   assert.match(await page.title(), /Поцелуй на краю света/);
-  assert.match(await page.locator('.ludory-narrative__panel').getAttribute('aria-label'), /^s01-airport:/);
+  assert.equal(await page.locator('.ludory-narrative__panel').getAttribute('data-scene-id'), 's01-airport');
+  assert.equal(await page.locator('.ludory-narrative__panel').getAttribute('aria-label'), 'История');
+  assert.equal(await page.locator('.ludory-narrative__panel h2')
+    .filter({ hasText: /^s\d{2}-/ }).count(), 0, `${name}: raw scene ID visible as heading`);
   assert.equal(await page.locator('.ludory-narrative').getAttribute('data-visual'), 'true');
   assert.equal(await page.locator('.ludory-narrative__stage img').count(), 0,
     `${name}: unadmitted media unexpectedly rendered`);
@@ -135,23 +139,24 @@ async function main() {
       await mobile.page.locator('#language').click();
       assert.equal(await mobile.page.locator('#save').textContent(), 'Save');
       assert.equal(await mobile.page.locator('html').getAttribute('lang'), 'en');
+      assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('aria-label'), 'Narrative');
       await mobile.page.locator('#language').click();
       await advanceToSeatChoice(mobile.page);
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-seat-choice.png'), fullPage: true });
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:front-eric"]').click();
-      await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.getAttribute('aria-label')?.startsWith('s01-eric:'));
+      await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-eric');
       assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-eric');
       await mobile.page.locator('button[data-action="narrative:back"]').click();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').waitFor();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').click();
-      await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.getAttribute('aria-label')?.startsWith('s01-nick:'));
+      await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-nick');
       assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-nick');
       await mobile.page.locator('#save').click();
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранено');
-      const savedBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('aria-label');
+      const savedBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
       await mobile.page.reload({ waitUntil: 'networkidle' });
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранение восстановлено');
-      assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('aria-label'), savedBeat);
+      assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'), savedBeat);
       await assertViewport(mobile.page, 'mobile-restored');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-restored-nick.png'), fullPage: true });
       assert.deepEqual(mobile.errors, [], `mobile JS errors: ${mobile.errors.join('; ')}`);
@@ -161,7 +166,7 @@ async function main() {
     try {
       await advanceToSeatChoice(desktop.page);
       await desktop.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-damir"]').click();
-      await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.getAttribute('aria-label')?.startsWith('s01-damir:'));
+      await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-damir');
       assert.equal(await desktop.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-damir');
       await assertViewport(desktop.page, 'desktop-damir');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-damir.png'), fullPage: true });
