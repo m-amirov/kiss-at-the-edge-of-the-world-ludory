@@ -209,6 +209,13 @@ async function verifyStageNavigation(page, label) {
     `${label}: opening the menu must not change story progress`);
 }
 
+async function openReaderSettings(page) {
+  await page.locator('[data-ui="open-menu"]').click();
+  if (!(await page.locator('[data-ui="settings-panel"]').isVisible())) {
+    await page.locator('[data-ui="settings"]').click();
+  }
+}
+
 async function main() {
   await mkdir(evidenceDir, { recursive: true });
   await new Promise((fulfill, reject) => server.listen(0, '127.0.0.1', error => error ? reject(error) : fulfill()));
@@ -219,11 +226,13 @@ async function main() {
     const mobile = await createPage(browser, 'mobile-390x844', { width: 390, height: 844 });
     try {
       await verifyStageNavigation(mobile.page, 'mobile');
+      await openReaderSettings(mobile.page);
       await mobile.page.locator('#language').click();
       assert.equal(await mobile.page.locator('#save').textContent(), 'Save');
       assert.equal(await mobile.page.locator('html').getAttribute('lang'), 'en');
       assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('aria-label'), 'Narrative');
       await mobile.page.locator('#language').click();
+      await mobile.page.locator('[data-ui="continue-story"]').click();
       await advanceToSeatChoice(mobile.page);
       const choiceBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
       await mobile.page.locator('.ludory-narrative').click({ position: { x: 180, y: 190 } });
@@ -238,6 +247,7 @@ async function main() {
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-nick');
       assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-nick');
+      await openReaderSettings(mobile.page);
       await mobile.page.locator('#save').click();
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранено');
       const savedBeat = await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');

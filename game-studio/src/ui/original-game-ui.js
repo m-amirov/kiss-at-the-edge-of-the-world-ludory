@@ -66,6 +66,15 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
     </div>`;
   doc.body.append(home);
 
+  const settingsPanel = home.querySelector('[data-ui="settings-panel"]');
+  // These remain the actual native Studio buttons, with their native handlers.
+  // Keep the reading HUD minimal like the original game; expose utilities in menu.
+  for (const id of ['language', 'save', 'restart']) {
+    const nativeButton = doc.querySelector(`#${id}`);
+    if (nativeButton) settingsPanel.append(nativeButton);
+    if (id === 'restart' && nativeButton) nativeButton.hidden = true;
+  }
+
   const menu = doc.createElement('button');
   menu.type = 'button';
   menu.textContent = 'Меню';
