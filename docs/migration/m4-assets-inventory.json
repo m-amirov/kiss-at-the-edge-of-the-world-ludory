@@ -739,8 +739,10 @@
       "targetPath": "assets/backgrounds/s02-roadside-cafe.webp",
       "sourceBlobSha": "e7f84b8674c4b232928e72e8854905fa06b95b42",
       "sha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13",
-      "status": "candidate",
-      "reason": "provenance_matched_admission_pending",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s02-roadside-cafe.png",
+      "admittedProject": "game-studio",
       "licenseEvidence": {
         "manifestPath": "assets/provenance/rights-manifest.json",
         "path": "assets/backgrounds/s02-roadside-cafe.png",
@@ -760,8 +762,10 @@
       "targetPath": "assets/cg/s03-editor-call-damir.webp",
       "sourceBlobSha": "a28ee8f30312d5db8a56091655c086f8a184cbf3",
       "sha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a",
-      "status": "candidate",
-      "reason": "provenance_matched_admission_pending",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s03-damir.png",
+      "admittedProject": "game-studio",
       "licenseEvidence": {
         "manifestPath": "assets/provenance/rights-manifest.json",
         "path": "assets/cg/s03-editor-call-damir.png",
@@ -783,8 +787,10 @@
       "targetPath": "assets/backgrounds/s03-reykjavik-guesthouse-morning.webp",
       "sourceBlobSha": "81c748f7fd5b58dd0ebf5c15b941d06256c6171b",
       "sha256": "2ca12077112219ffbc9dfd916f504574ee624c2504a3a3c3fad90e741d3ed4bd",
-      "status": "candidate",
-      "reason": "provenance_matched_admission_pending",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s03-guesthouse-morning.png",
+      "admittedProject": "game-studio",
       "licenseEvidence": {
         "manifestPath": "assets/provenance/rights-manifest.json",
         "path": "assets/backgrounds/s03-reykjavik-guesthouse-morning.png",
@@ -2310,8 +2316,8 @@
   "summary": {
     "total": 123,
     "byStatus": {
-      "candidate": 63,
-      "accepted": 0,
+      "candidate": 60,
+      "accepted": 3,
       "blocked": 60
     },
     "byFamily": {

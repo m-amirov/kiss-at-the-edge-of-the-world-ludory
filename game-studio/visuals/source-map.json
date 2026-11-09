@@ -3,7 +3,7 @@
   "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
   "sourceCueManifestPath": "src/literary-visual-directions.js",
   "scope": "pilot-s01-s03",
-  "admissionPolicy": "metadata-only; no legacy image or audio file admitted",
+  "admissionPolicy": "three owner-approved, hash-verified source PNGs admitted to game-studio; remaining media neutral",
   "openingStages": [
     {
       "sourceSceneId": "S01",
@@ -26,11 +26,11 @@
       "graphBeatId": "s03-editorial-01",
       "location": "Гостевой дом Рейкьявика: гостиная",
       "sourceArt": "s03-reykjavik-guesthouse-morning.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "guesthouse-morning",
       "fallback": "neutral"
     }
   ],
-  "neutralResets": ["s01-common-01", "s02-road-01", "s03-editorial-01"],
+  "neutralResets": ["s01-common-01", "s02-road-01"],
   "entries": [
     {
       "sourceSceneId": "S01",
@@ -115,7 +115,7 @@
       "status": "mapped",
       "location": "Придорожное кафе, остановка по пути в Рейкьявик",
       "sourceArt": "s02-roadside-cafe.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "roadside-cafe",
       "fallback": "neutral",
       "mappingNote": "S02 intro paragraph 31 (zero-based), roadside cafe begins after Damir laugh"
     },
@@ -127,7 +127,7 @@
       "status": "mapped",
       "location": "Гостевой дом Рейкьявика: гостиная",
       "sourceArt": "s03-reykjavik-guesthouse-morning.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "guesthouse-morning",
       "fallback": "neutral",
       "mappingNote": "Source S03 intro chunk 0; first beat establishes living room; editor call begins at beat 03"
     },
@@ -139,7 +139,7 @@
       "status": "mapped",
       "location": "Гостевой дом Рейкьявика: гостиная, Дамир с двумя чашками",
       "sourceArt": "cg/s03-editor-call-damir.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "damir-coffee-cg",
       "fallback": "neutral",
       "mappingNote": "Source S03 chunk 4 start matches s03Coffee paragraph 0"
     }

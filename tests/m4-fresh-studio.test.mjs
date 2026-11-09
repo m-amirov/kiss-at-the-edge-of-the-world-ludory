@@ -24,22 +24,24 @@ test('fresh Studio game is independently owned and consumes native presentation'
   assert.match(main, /defineNarrativePresentation/);
   assert.match(main, /Reflect\.get\(story, 'presentationData'\)/);
   assert.doesNotMatch(main, /defineEconomy|premiumChoice/);
-  for (const file of ['src/story.js', 'src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
-    assert.equal(sha(join(studio, file)), sha(join(original, file)), `authored file drift: ${file}`);
+  assert.equal(sha(join(studio, 'src/story.js')), sha(join(original, 'src/story.js')), 'ported narrative must remain unchanged');
+  for (const file of ['src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
+    assert.equal(ownership.files[file], undefined, `visual migration must not alter a managed component: ${file}`);
   }
   for (const scene of ['s02.js', 's03.js', 's17.js', 's48.js']) {
     assert.equal(sha(join(studio, `src/scenes/${scene}`)), sha(join(original, `src/scenes/${scene}`)));
   }
 });
 
-test('fresh Studio game contains only admitted assets, with canonical proof', () => {
+test('fresh Studio game contains only three approved visuals, with canonical proof', () => {
   const manifest = JSON.parse(readFileSync(join(studio, 'narrative-assets.json')));
+  const authored = JSON.parse(readFileSync(join(studio, 'visuals/presentation.json')));
   assert.equal(manifest.storySha256, sha(join(studio, 'src/story.js')));
-  assert.deepEqual(manifest.assets, {});
-  assert.deepEqual(readdirSync(join(studio, 'assets')).filter(name => /\.(?:png|jpe?g|webp)$/i.test(name)), []);
+  const admitted = ['vis-s02-roadside-cafe.png', 'vis-s03-guesthouse-morning.png', 'vis-s03-damir.png'];
+  assert.deepEqual(readdirSync(join(studio, 'assets')).filter(name => /\.(?:png|jpe?g|webp)$/i.test(name)).sort(), admitted.sort());
+  assert.deepEqual(Object.keys(manifest.assets).sort(), ['damir-coffee-cg', 'guesthouse-morning', 'roadside-cafe']);
+  assert.deepEqual(Object.keys(authored.media).sort(), Object.keys(manifest.assets).sort());
   for (const demo of ['lighthouse.svg', 'shoreline.svg']) {
     assert.equal(existsSync(join(studio, 'assets', demo)), false, `unreferenced starter artwork must be excluded: ${demo}`);
   }
-  const authored = JSON.parse(readFileSync(join(studio, 'visuals/presentation.json')));
-  assert.deepEqual(authored.media, {});
 });

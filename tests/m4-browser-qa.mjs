@@ -10,7 +10,7 @@ import { chromium } from 'playwright';
 const gameRoot = fileURLToPath(new URL('../game-studio/', import.meta.url));
 const evidenceDir = resolve(process.env.M4_BROWSER_EVIDENCE_DIR || 'artifacts/m4-browser-qa');
 const types = new Map([['.html', 'text/html'], ['.js', 'text/javascript'], ['.json', 'application/json'],
-  ['.css', 'text/css'], ['.svg', 'image/svg+xml'], ['.webp', 'image/webp']]);
+  ['.css', 'text/css'], ['.svg', 'image/svg+xml'], ['.webp', 'image/webp'], ['.png', 'image/png']]);
 
 const server = createServer(async (request, response) => {
   try {
@@ -79,15 +79,34 @@ async function advanceToBeat(page, targetBeatId) {
   assert.fail(`Narrative did not reach ${targetBeatId} within 300 interactions`);
 }
 
-async function assertPilotCue(page, beatId, variantId, label) {
+async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = null) {
   const current = await page.locator('.ludory-narrative__panel').getAttribute('data-beat-id');
   assert.equal(current, beatId, `${label}: unexpected beat`);
   assert.equal(await page.locator('.ludory-narrative__panel h2')
     .filter({ hasText: /^s\d{2}-/ }).count(), 0, `${label}: raw scene ID visible as heading`);
   const stage = page.locator('.ludory-narrative__stage');
   assert.equal(await stage.getAttribute('data-variant-id'), variantId, `${label}: wrong visual mapping`);
-  assert.ok((await stage.getAttribute('data-neutral'))?.length, `${label}: unadmitted art lacks neutral reason`);
-  assert.equal(await stage.locator('img').count(), 0, `${label}: unadmitted media rendered`);
+  if (expectedMediaId === null) {
+    assert.ok((await stage.getAttribute('data-neutral'))?.length, `${label}: unadmitted art lacks neutral reason`);
+    assert.equal(await stage.locator('img').count(), 0, `${label}: unadmitted media rendered`);
+  } else {
+    assert.equal(await stage.getAttribute('data-neutral'), null, `${label}: admitted art must not be neutral`);
+    const images = stage.locator('img');
+    assert.equal(await images.count(), 1, `${label}: exactly one admitted art layer expected`);
+    const image = images.first();
+    const files = {
+      'roadside-cafe': 'vis-s02-roadside-cafe.png',
+      'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
+      'damir-coffee-cg': 'vis-s03-damir.png',
+    };
+    assert.ok((await image.getAttribute('src'))?.endsWith(`/assets/${files[expectedMediaId]}`), `${label}: wrong media URL`);
+    await page.waitForFunction(() => {
+      const img = document.querySelector('.ludory-narrative__stage img');
+      return img?.complete && img.naturalWidth > 0;
+    }, undefined, { timeout: 10000 });
+    assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
+    assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
+  }
   await assertViewport(page, label);
 }
 
@@ -133,7 +152,8 @@ async function main() {
   await new Promise((fulfill, reject) => server.listen(0, '127.0.0.1', error => error ? reject(error) : fulfill()));
   let browser;
   try {
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: true,
+      ...(process.env.M4_BROWSER_CHROMIUM_PATH ? { executablePath: process.env.M4_BROWSER_CHROMIUM_PATH } : {}) });
     const mobile = await createPage(browser, 'mobile-390x844', { width: 390, height: 844 });
     try {
       await mobile.page.locator('#language').click();
@@ -159,6 +179,15 @@ async function main() {
       assert.equal(await mobile.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'), savedBeat);
       await assertViewport(mobile.page, 'mobile-restored');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-restored-nick.png'), fullPage: true });
+      await advanceToBeat(mobile.page, 's02-road-32');
+      await assertPilotCue(mobile.page, 's02-road-32', 'roadside-cafe', 'mobile S02 café', 'roadside-cafe');
+      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s02-cafe.png'), fullPage: true });
+      await advanceToBeat(mobile.page, 's03-editorial-01');
+      await assertPilotCue(mobile.page, 's03-editorial-01', 'editor-call', 'mobile S03 guesthouse', 'guesthouse-morning');
+      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s03-guesthouse.png'), fullPage: true });
+      await advanceToBeat(mobile.page, 's03-coffee-01');
+      await assertPilotCue(mobile.page, 's03-coffee-01', 'damir-enters', 'mobile S03 Damir CG', 'damir-coffee-cg');
+      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s03-damir.png'), fullPage: true });
       assert.deepEqual(mobile.errors, [], `mobile JS errors: ${mobile.errors.join('; ')}`);
     } finally { await mobile.context.close(); }
 
@@ -176,17 +205,23 @@ async function main() {
       await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-road.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's02-road-32');
-      await assertPilotCue(desktop.page, 's02-road-32', 'roadside-cafe', 'S02 roadside cafe');
+      await assertPilotCue(desktop.page, 's02-road-32', 'roadside-cafe', 'S02 roadside cafe', 'roadside-cafe');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-cafe.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's02-road-33');
+      await assertPilotCue(desktop.page, 's02-road-33', 'roadside-cafe-continuation', 'S02 café continuity', 'roadside-cafe');
       await advanceToBeat(desktop.page, 's03-editorial-01');
-      await assertPilotCue(desktop.page, 's03-editorial-01', 'editor-call', 'S03 editorial call');
+      await assertPilotCue(desktop.page, 's03-editorial-01', 'editor-call', 'S03 editorial call', 'guesthouse-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-editorial.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's03-editorial-02');
+      await assertPilotCue(desktop.page, 's03-editorial-02', 'guesthouse-morning-continuation', 'S03 morning continuity', 'guesthouse-morning');
       await advanceToBeat(desktop.page, 's03-coffee-01');
-      await assertPilotCue(desktop.page, 's03-coffee-01', 'damir-enters', 'S03 Damir coffee');
+      await assertPilotCue(desktop.page, 's03-coffee-01', 'damir-enters', 'S03 Damir coffee', 'damir-coffee-cg');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-coffee.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's03-coffee-02');
+      await assertPilotCue(desktop.page, 's03-coffee-02', 'damir-coffee-continuation', 'S03 coffee continuity', 'damir-coffee-cg');
       assert.deepEqual(desktop.errors, [], `desktop JS errors: ${desktop.errors.join('; ')}`);
     } finally { await desktop.context.close(); }
-    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, neutral art, geometry\n');
+    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, three admitted image layers, continuity, geometry\n');
   } finally {
     if (browser) await browser.close();
     await new Promise(fulfill => server.close(fulfill));

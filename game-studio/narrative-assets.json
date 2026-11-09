@@ -1,5 +1,18 @@
 {
   "schemaVersion": 1,
   "storySha256": "1f3201851be79cb48b4c9692ed4fe5858307a1c8597ad0150e60a4a9a89b21d9",
-  "assets": {}
+  "assets": {
+    "damir-coffee-cg": {
+      "path": "assets/vis-s03-damir.png",
+      "sha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a"
+    },
+    "guesthouse-morning": {
+      "path": "assets/vis-s03-guesthouse-morning.png",
+      "sha256": "2ca12077112219ffbc9dfd916f504574ee624c2504a3a3c3fad90e741d3ed4bd"
+    },
+    "roadside-cafe": {
+      "path": "assets/vis-s02-roadside-cafe.png",
+      "sha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13"
+    }
+  }
 }
