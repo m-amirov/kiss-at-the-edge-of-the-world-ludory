@@ -167,6 +167,8 @@ async function createPage(browser, name, viewport) {
   await originalMenu.locator('[data-ui="continue-story"]').click();
   assert.equal(await originalMenu.isVisible(), false, `${name}: reader did not open`);
   await page.locator('.ludory-narrative__panel').waitFor();
+  assert.equal(await page.locator('.reader-chrome button:visible').count(), 1,
+    `${name}: reading HUD must expose only Menu (native utilities belong in settings)`);
   await page.waitForFunction(() => document.querySelector('#status')?.textContent === 'История запущена');
   assert.match(await page.title(), /Поцелуй на краю света/);
   assert.equal(await page.locator('.ludory-narrative__panel').getAttribute('data-scene-id'), 's01-airport');
@@ -298,6 +300,15 @@ async function main() {
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-coffee.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's03-coffee-02');
       await assertPilotCue(desktop.page, 's03-coffee-02', 'damir-coffee-continuation', 'S03 coffee continuity', 'damir-coffee-cg');
+      // A new story must use the one native restart handler and explicitly clear the save.
+      await desktop.page.locator('[data-ui="open-menu"]').click();
+      desktop.page.once('dialog', dialog => dialog.accept());
+      await desktop.page.locator('[data-ui="new-story"]').click();
+      await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.beatId === 's01-airport-01' &&
+        document.querySelector('#original-home')?.hidden === false, undefined, { timeout: 10000 });
+      await desktop.page.locator('[data-ui="continue-story"]').click();
+      assert.equal(await desktop.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'), 's01-airport-01',
+        'explicit New Story must restart the native graph from S01');
       assert.deepEqual(desktop.errors, [], `desktop JS errors: ${desktop.errors.join('; ')}`);
     } finally { await desktop.context.close(); }
     process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, three admitted image layers, continuity, geometry\n');
