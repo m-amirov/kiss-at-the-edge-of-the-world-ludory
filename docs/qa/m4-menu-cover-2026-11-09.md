@@ -23,6 +23,10 @@ The author-owned `game-studio/src/ui/original-game.css` references this local
 asset from the title-menu `background-image`, under the original source-style
 desktop horizontal gradient and mobile vertical gradient. The admission record
 is the `menu-hero-alice` entry in `docs/migration/m4-assets-inventory.json`.
+The follow-up mobile screenshot review found that the source's `62% center`
+crop excluded Alice completely at 390×844. The mobile-only position is now
+`28% center` to keep her face in the frame at 390×844 and 320×700; desktop
+composition remains unchanged. This is a deliberate responsive framing fix.
 The image is **branding only**: it does not become an authorized story beat or
 change `narrative-assets.json`, the scene graph, saves, economy or any
 Studio-managed file.

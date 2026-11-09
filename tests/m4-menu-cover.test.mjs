@@ -42,3 +42,21 @@ test('original home uses the admitted local WebP with an accessible gradient ove
   assert.equal(new URL(source, cssPath).pathname, imagePath.pathname);
   assert.match(home, /linear-gradient\(/);
 });
+
+test('mobile title-cover crop keeps the heroine focal point in view', () => {
+  const css = readFileSync(cssPath, 'utf8');
+  const mobile = css.match(/@media \(max-width:\s*680px\)\s*\{\s*\.original-home\s*\{([^}]+)\}/s)?.[1];
+  assert.ok(mobile, 'mobile title menu overrides missing');
+  const position = mobile.match(/background-position:\s*([\d.]+)%\s+center\s*;/)?.[1];
+  assert.ok(position, 'mobile background position must be defined');
+
+  // The pinned 1920×900 WebP places Alice's facial focal point near x=610.
+  // Verify the actual cover-crop geometry, not a particular chosen percentage.
+  for (const [width, height] of [[390, 844], [320, 700]]) {
+    const scale = Math.max(width / 1920, height / 900);
+    const renderedWidth = 1920 * scale;
+    const faceX = 610 * scale + (width - renderedWidth) * Number(position) / 100;
+    assert.ok(faceX > 30 && faceX < width - 30,
+      `Alice's face is cropped out at ${width}×${height}: visible x=${faceX.toFixed(1)}`);
+  }
+});
