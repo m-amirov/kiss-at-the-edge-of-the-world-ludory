@@ -427,6 +427,10 @@ async function main() {
       await advanceToBeat(desktop.page, 's26-choice-eric-01');
       await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'S26 Eric route', 's26-eric-choice');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s26-eric.png'), fullPage: true });
+      await desktop.page.setViewportSize({ width: 390, height: 844 });
+      await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'mobile-s26-choice-eric-01.png'), fullPage: true });
+      await desktop.page.setViewportSize({ width: 1000, height: 720 });
       await advanceToBeat(desktop.page, 's48-common-01');
       await assertPilotCue(desktop.page, 's48-common-01', 'visual-s48-guesthouse-exit-group-1', 'S48 departure morning', 's48-guesthouse-exit-group');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s48-departure.png'), fullPage: true });
@@ -458,37 +462,23 @@ async function main() {
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
+        await special.page.setViewportSize({ width: 390, height: 844 });
+        await assertPilotCue(special.page, target, variant, `mobile ${label}`, media);
+        await special.page.screenshot({ path: join(evidenceDir, `mobile-${target}.png`), fullPage: true });
+        await special.page.setViewportSize({ width: 1000, height: 720 });
         if (target === 's39-active-01') {
           await advanceToBeat(special.page, 's39-common-01');
           await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
+          await special.page.setViewportSize({ width: 390, height: 844 });
+          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
+          await special.page.screenshot({ path: join(evidenceDir, 'mobile-s39-cafe-walk.png'), fullPage: true });
+          await special.page.setViewportSize({ width: 1000, height: 720 });
           await advanceToBeat(special.page, 's46-intro-01');
           await assertPilotCue(special.page, 's46-intro-01', 'visual-s46-airport-bus-day-1', 'S46 airport bus', 's46-airport-bus-day');
           await advanceToBeat(special.page, 's46-common-01');
           await assertPilotCue(special.page, 's46-common-01', 'visual-s46-damir-epilogue-month-later-1', 'S46 month-later epilogue', 's46-damir-epilogue-month-later');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s46-epilogue.png'), fullPage: true });
-        }
-        assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
-      } finally { await special.context.close(); }
-    }
-    const mobileSpecialRoutes = [
-      ['s26-choice-eric-01', 0, new Map(), 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice'],
-      ['s38-paused-01', 1, new Map([['s26-route-choice', 1], ['s33-c1-choice', 1], ['s36-route-choice', 0]]),
-        'visual-s38-alice-nick-ordinary-day-1', 'mobile S38 ordinary day', 's38-alice-nick-ordinary-day'],
-      ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
-        'visual-s39-alice-damir-cafe-1', 'mobile S39 café', 's39-alice-damir-cafe'],
-    ];
-    for (const [target, routeChoice, extraOverrides, variant, label, media] of mobileSpecialRoutes) {
-      const special = await createPage(browser, `mobile-${target}`, { width: 390, height: 844 });
-      try {
-        const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
-        await advanceToBeat(special.page, target, overrides);
-        await assertPilotCue(special.page, target, variant, label, media);
-        await special.page.screenshot({ path: join(evidenceDir, `mobile-${target}.png`), fullPage: true });
-        if (target === 's39-active-01') {
-          await advanceToBeat(special.page, 's39-common-01');
-          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
-          await special.page.screenshot({ path: join(evidenceDir, 'mobile-s39-cafe-walk.png'), fullPage: true });
         }
         assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
       } finally { await special.context.close(); }
