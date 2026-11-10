@@ -10,6 +10,10 @@ export function originalReaderTitle(title) {
   return title.replace(/\s*·\s*Ludory\s*$/u, '');
 }
 
+export function originalMenuActionLabel(hasSave) {
+  return hasSave ? 'Продолжить чтение' : 'Новая игра';
+}
+
 function mayAdvanceFromKeyboardTarget(target) {
   // The narrative panel itself is a native focus target; its child buttons are not.
   if (target?.matches?.('.ludory-narrative__panel')) return true;
@@ -52,13 +56,15 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
   home.innerHTML = `
     <div class="original-home__card">
       <img class="original-home__icon" src="${iconUrl}" alt="" width="64" height="64">
-      <p class="original-home__kicker">Интерактивный роман</p>
+      <p class="original-home__kicker">РОМАНТИЧЕСКАЯ ИСТОРИЯ · ИСЛАНДИЯ</p>
       <h1>Поцелуй на краю света</h1>
-      <p class="original-home__summary">На краю света даже случайная встреча может изменить всё.</p>
+      <p class="original-home__summary">Три недели дороги. Три возможные истории любви. И возможность выбрать себя.</p>
       <div class="original-home__actions">
-        <button type="button" class="original-home__primary" data-ui="continue-story">Продолжить чтение</button>
-        <button type="button" data-ui="new-story">Начать заново</button>
-        <button type="button" data-ui="settings">Настройки чтения</button>
+        <button type="button" class="original-home__primary" data-ui="continue-story">Новая игра</button>
+        <div class="original-home__secondary">
+          <button type="button" data-ui="new-story">Начать заново</button>
+          <button type="button" data-ui="settings">Настройки</button>
+        </div>
       </div>
       <div class="original-home__settings" data-ui="settings-panel" hidden>
         <p>Размер текста</p>
@@ -84,6 +90,15 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
   controls.prepend(menu);
 
   const storageKey = 'kiss-at-the-edge-ui-preferences-v1';
+  const saveStorageKey = 'ludory-narrative-v1:kiss-at-the-edge-of-the-world-ludory:narrative-demo';
+  const primaryAction = home.querySelector('[data-ui="continue-story"]');
+  function hasStoredSave() {
+    try { return doc.defaultView.localStorage.getItem(saveStorageKey) !== null; }
+    catch { return false; }
+  }
+  function updateMenuAction() {
+    primaryAction.textContent = originalMenuActionLabel(hasStoredSave());
+  }
   try { doc.body.dataset.readingSize = doc.defaultView.localStorage.getItem(storageKey) === 'large' ? 'large' : 'normal'; }
   catch { doc.body.dataset.readingSize = 'normal'; }
 
@@ -91,9 +106,10 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
   function showMenu() {
     menuOpen = true;
     home.hidden = false;
+    updateMenuAction();
     root.inert = true;
     visualChrome.inert = true;
-    home.querySelector('[data-ui="continue-story"]').focus();
+    primaryAction.focus();
   }
   function hideMenu() {
     menuOpen = false;
@@ -101,6 +117,19 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
     root.inert = false;
     visualChrome.inert = false;
     root.querySelector('.ludory-narrative__panel')?.focus();
+  }
+
+  function syncCgBackdrop() {
+    const stage = root.querySelector('.ludory-narrative__stage');
+    const image = stage?.querySelector('.ludory-narrative__cg');
+    if (!stage || !image?.src) return;
+    stage.dataset.originalCg = 'true';
+    stage.style.setProperty('--original-cg-backdrop', `url("${image.currentSrc || image.src}")`);
+  }
+  if (doc.defaultView.MutationObserver) {
+    const visualObserver = new doc.defaultView.MutationObserver(syncCgBackdrop);
+    visualObserver.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
+    syncCgBackdrop();
   }
 
   menu.addEventListener('click', showMenu);

@@ -135,6 +135,13 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
       geometry.y + geometry.height <= (await page.evaluate(() => innerHeight)) + 2,
     `${label}: image is clipped by the viewport: ${JSON.stringify(geometry)}`);
+    if (['damir-coffee-cg', 's07-kitchen-pasta', 's07-kitchen-cards', 's26-eric-choice',
+      's26-nick-choice', 's26-damir-choice', 's26-alice-choice', 's38-alice-nick-ordinary-day',
+      's39-alice-damir-cafe'].includes(expectedMediaId) &&
+      await page.evaluate(() => innerWidth <= 680)) {
+      assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'contain',
+        `${label}: mobile CG must preserve the complete authored frame`);
+    }
   }
   await assertViewport(page, label);
 }
@@ -144,6 +151,8 @@ async function assertViewport(page, label) {
     const panel = document.querySelector('.ludory-narrative__panel')?.getBoundingClientRect();
     const reader = document.querySelector('.ludory-narrative')?.getBoundingClientRect();
     const stage = document.querySelector('.ludory-narrative__stage')?.getBoundingClientRect();
+    const menu = document.querySelector('[data-ui="open-menu"]')?.getBoundingClientRect();
+    const toolbar = document.querySelector('.ludory-narrative__toolbar')?.getBoundingClientRect();
     const dialogue = document.querySelector('.ludory-narrative__panel > p');
     const actions = [...document.querySelectorAll('.ludory-narrative__actions button')]
       .filter(button => button.getClientRects().length).map(button => button.getBoundingClientRect());
@@ -152,6 +161,9 @@ async function assertViewport(page, label) {
     return { width: innerWidth, height: innerHeight, scrollWidth: document.documentElement.scrollWidth,
       reader: reader && { top: reader.top, bottom: reader.bottom, left: reader.left, right: reader.right },
       stage: stage && { top: stage.top, bottom: stage.bottom, left: stage.left, right: stage.right },
+      menu: menu && { left: menu.left, right: menu.right, top: menu.top, bottom: menu.bottom },
+      toolbar: toolbar && { left: toolbar.left, right: toolbar.right, top: toolbar.top, bottom: toolbar.bottom },
+      panelScrollable: panel ? panel.scrollHeight > panel.clientHeight + 1 : false,
       font: dialogue ? parseFloat(getComputedStyle(dialogue).fontSize) : null,
       panel: panel && { left: panel.left, right: panel.right, top: panel.top, bottom: panel.bottom },
       actions: actions.map(box => ({ top: box.top, bottom: box.bottom, height: box.height })),
@@ -163,6 +175,10 @@ async function assertViewport(page, label) {
     `${label}: narrative panel clipped horizontally: ${JSON.stringify(geometry)}`);
   assert.ok(geometry.panel.bottom > 0 && geometry.panel.top < geometry.height,
     `${label}: narrative panel out of viewport: ${JSON.stringify(geometry)}`);
+  if (geometry.menu) assert.ok(geometry.menu.left <= 18,
+    `${label}: menu must remain in the original top-left hierarchy: ${JSON.stringify(geometry)}`);
+  if (geometry.toolbar) assert.ok(geometry.toolbar.right >= geometry.width - 18,
+    `${label}: runtime toolbar must stay in the secondary top-right position: ${JSON.stringify(geometry)}`);
   for (const [name, box] of [['reader', geometry.reader], ['stage', geometry.stage]]) {
     assert.ok(box && Math.abs(box.top) <= 2 && Math.abs(box.left) <= 2 &&
       Math.abs(box.right - geometry.width) <= 2 && Math.abs(box.bottom - geometry.height) <= 2,
@@ -174,8 +190,18 @@ async function assertViewport(page, label) {
     `${label}: dialogue text too small: ${JSON.stringify(geometry)}`);
   for (const box of [...geometry.actions, ...geometry.chromeButtons]) {
     assert.ok(box.height >= 44, `${label}: touch target too small: ${JSON.stringify(box)}`);
-    assert.ok(box.top >= -2 && box.bottom <= geometry.height + 2,
-      `${label}: touch target outside viewport: ${JSON.stringify(box)}`);
+    const inViewport = box.top >= -2 && box.bottom <= geometry.height + 2;
+    assert.ok(inViewport || geometry.panelScrollable,
+      `${label}: touch target outside viewport without a scrollable dialogue: ${JSON.stringify(geometry)}`);
+  }
+  if (geometry.panelScrollable && geometry.actions.some(box => box.bottom > geometry.height + 2)) {
+    const panelLocator = page.locator('.ludory-narrative__panel');
+    const actionLocator = page.locator('.ludory-narrative__actions button').last();
+    await actionLocator.scrollIntoViewIfNeeded();
+    const action = await actionLocator.boundingBox();
+    assert.ok(action && action.top >= -2 && action.bottom <= geometry.height + 2,
+      `${label}: scrollable dialogue action cannot be brought into viewport: ${JSON.stringify(action)}`);
+    await panelLocator.evaluate(panelElement => { panelElement.scrollTop = 0; });
   }
 }
 
@@ -189,6 +215,11 @@ async function createPage(browser, name, viewport) {
   await originalMenu.waitFor();
   assert.equal(await originalMenu.isVisible(), true, `${name}: original title menu missing`);
   assert.equal(await page.locator('#game').getAttribute('inert'), '', `${name}: story must be inert behind menu`);
+  assert.equal(await originalMenu.locator('.original-home__kicker').textContent(), 'РОМАНТИЧЕСКАЯ ИСТОРИЯ · ИСЛАНДИЯ');
+  assert.equal(await originalMenu.locator('.original-home__summary').textContent(),
+    'Три недели дороги. Три возможные истории любви. И возможность выбрать себя.');
+  assert.equal(await originalMenu.locator('[data-ui="continue-story"]').textContent(), 'Новая игра');
+  assert.deepEqual(await originalMenu.locator('.original-home__secondary button').allTextContents(), ['Начать заново', 'Настройки']);
   const cover = await originalMenu.evaluate(async menu => {
     const background = getComputedStyle(menu).backgroundImage;
     const candidate = background.match(/url\(["']?([^"')]+)["']?\)/)?.[1];
@@ -440,7 +471,29 @@ async function main() {
         assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
       } finally { await special.context.close(); }
     }
-    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 Eric route plus static four-route proof, S38, S39, S44/S46→S48, fonts, image geometry, no JS errors\n');
+    const mobileSpecialRoutes = [
+      ['s26-choice-eric-01', 0, new Map(), 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice'],
+      ['s38-paused-01', 1, new Map([['s26-route-choice', 1], ['s33-c1-choice', 1], ['s36-route-choice', 0]]),
+        'visual-s38-alice-nick-ordinary-day-1', 'mobile S38 ordinary day', 's38-alice-nick-ordinary-day'],
+      ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
+        'visual-s39-alice-damir-cafe-1', 'mobile S39 café', 's39-alice-damir-cafe'],
+    ];
+    for (const [target, routeChoice, extraOverrides, variant, label, media] of mobileSpecialRoutes) {
+      const special = await createPage(browser, `mobile-${target}`, { width: 390, height: 844 });
+      try {
+        const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
+        await advanceToBeat(special.page, target, overrides);
+        await assertPilotCue(special.page, target, variant, label, media);
+        await special.page.screenshot({ path: join(evidenceDir, `mobile-${target}.png`), fullPage: true });
+        if (target === 's39-active-01') {
+          await advanceToBeat(special.page, 's39-common-01');
+          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
+          await special.page.screenshot({ path: join(evidenceDir, 'mobile-s39-cafe-walk.png'), fullPage: true });
+        }
+        assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
+      } finally { await special.context.close(); }
+    }
+    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 mobile/desktop, S38/S39 mobile/desktop, S44/S46→S48, fonts, image geometry, no JS errors\n');
   } finally {
     if (browser) await browser.close();
     await new Promise(fulfill => server.close(fulfill));
