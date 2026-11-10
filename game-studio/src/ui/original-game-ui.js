@@ -14,6 +14,23 @@ export function originalMenuActionLabel(hasSave) {
   return hasSave ? 'Продолжить чтение' : 'Новая игра';
 }
 
+const ORIGINAL_CG_COMPOSITIONS = Object.freeze({
+  'vis-s03-damir.png': 'a2-s03',
+  'vis-s07-kitchen-pasta.png': 'a1-s07',
+  'vis-s07-kitchen-cards.png': 'a1-s07',
+  'vis-s26-eric-choice.png': 'a2-s26',
+  'vis-s26-nick-choice.png': 'a2-s26',
+  'vis-s26-damir-choice.png': 'a2-s26',
+  'vis-s26-alice-choice.png': 'a2-s26',
+  'vis-s38-alice-nick-ordinary-day.png': 'a2-group',
+  'vis-s39-alice-damir-cafe.png': 'a2-s39',
+  'vis-s39-alice-damir-cafe-walk.png': 'a2-s39',
+});
+
+export function originalCgComposition(mediaFile) {
+  return ORIGINAL_CG_COMPOSITIONS[mediaFile] || 'default';
+}
+
 function mayAdvanceFromKeyboardTarget(target) {
   // The narrative panel itself is a native focus target; its child buttons are not.
   if (target?.matches?.('.ludory-narrative__panel')) return true;
@@ -121,16 +138,43 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
 
   function syncCgBackdrop() {
     const stage = root.querySelector('.ludory-narrative__stage');
-    const image = stage?.querySelector('.ludory-narrative__cg');
-    if (!stage || !image?.src) return;
+    const image = stage?.querySelector('.ludory-narrative__cg') ||
+      stage?.querySelector('.ludory-narrative__background');
+    const narrative = stage?.closest('.ludory-narrative');
+    if (!stage) return false;
+    if (!image?.src) {
+      stage.removeAttribute('data-original-cg');
+      stage.removeAttribute('data-original-cg-media');
+      stage.removeAttribute('data-original-cg-composition');
+      narrative?.removeAttribute('data-original-cg-composition');
+      return false;
+    }
+    const imageUrl = image.currentSrc || image.src;
+    const mediaFile = decodeURIComponent(new URL(imageUrl, doc.baseURI).pathname.split('/').pop() || '');
+    const composition = originalCgComposition(mediaFile);
     stage.dataset.originalCg = 'true';
-    stage.style.setProperty('--original-cg-backdrop', `url("${image.currentSrc || image.src}")`);
+    stage.dataset.originalCgMedia = mediaFile;
+    stage.dataset.originalCgComposition = composition;
+    if (narrative) narrative.dataset.originalCgComposition = composition;
+    stage.style.setProperty('--original-cg-backdrop', `url("${imageUrl}")`);
+    return true;
+  }
+  function resyncCgBackdrop() {
+    let attempts = 0;
+    const retry = () => {
+      if (syncCgBackdrop() || attempts++ >= 12) return;
+      doc.defaultView.requestAnimationFrame(retry);
+    };
+    retry();
   }
   if (doc.defaultView.MutationObserver) {
-    const visualObserver = new doc.defaultView.MutationObserver(syncCgBackdrop);
+    const visualObserver = new doc.defaultView.MutationObserver(resyncCgBackdrop);
     visualObserver.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
-    syncCgBackdrop();
+    resyncCgBackdrop();
   }
+  root.addEventListener('load', event => {
+    if (event.target?.matches?.('.ludory-narrative__cg')) resyncCgBackdrop();
+  }, true);
 
   menu.addEventListener('click', showMenu);
   home.querySelector('[data-ui="continue-story"]').addEventListener('click', hideMenu);

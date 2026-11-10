@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const ui = new URL('../game-studio/src/ui/original-game-ui.js', import.meta.url);
 const css = new URL('../game-studio/src/ui/original-game.css', import.meta.url);
+const browserQaScript = new URL('./m4-browser-qa.mjs', import.meta.url);
 
 test('menu copy and action grouping follow the pinned original without inventing episode controls', async () => {
   const source = await readFile(ui, 'utf8');
@@ -28,4 +29,40 @@ test('reader parity keeps the menu first, keeps runtime utilities real, and prot
   assert.match(source, /#game \.ludory-narrative__panel\s*\{[^}]*overflow-y:\s*auto/s);
   assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__panel\s*\{[^}]*max-height:\s*min\(64dvh,560px\)/s);
   assert.match(source, /stage\[data-original-cg\]::before/);
+  const uiSource = await readFile(ui, 'utf8');
+  assert.match(uiSource, /addEventListener\('load',[\s\S]*?ludory-narrative__cg/);
+  assert.match(uiSource, /requestAnimationFrame\(retry\)/);
+});
+
+test('approved mobile CG compositions are explicit and keep the runtime controls in one row', async () => {
+  const { originalCgComposition } = await import(`${ui.href}?composition-regression`);
+  const expected = {
+    'vis-s03-damir.png': 'a2-s03',
+    'vis-s07-kitchen-pasta.png': 'a1-s07',
+    'vis-s07-kitchen-cards.png': 'a1-s07',
+    'vis-s26-eric-choice.png': 'a2-s26',
+    'vis-s26-nick-choice.png': 'a2-s26',
+    'vis-s26-damir-choice.png': 'a2-s26',
+    'vis-s26-alice-choice.png': 'a2-s26',
+    'vis-s38-alice-nick-ordinary-day.png': 'a2-group',
+    'vis-s39-alice-damir-cafe.png': 'a2-s39',
+    'vis-s39-alice-damir-cafe-walk.png': 'a2-s39',
+  };
+  for (const [mediaFile, composition] of Object.entries(expected)) {
+    assert.equal(originalCgComposition(mediaFile), composition, mediaFile);
+  }
+  assert.equal(originalCgComposition('vis-unmapped.png'), 'default');
+
+  const source = await readFile(css, 'utf8');
+  assert.match(source, /data-original-cg-composition="a1-s07"[\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /data-original-cg-composition="a2-s03"[\s\S]*?transform:\s*scale\(1\.45\)/);
+  assert.match(source, /data-original-cg-composition="a2-s26"[\s\S]*?transform:\s*scale\(1\.6\)/);
+  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?transform:\s*scale\(1\.48\)/);
+  assert.match(source, /data-original-cg-composition="a2-group"[\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?\.ludory-narrative__background[\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /\.ludory-narrative__panel\s*\{[^}]*min-height:\s*0/);
+  assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__toolbar \{\s*top:\s*max\(10px,/);
+  const browserQa = await readFile(browserQaScript, 'utf8');
+  assert.match(browserQa, /panelScrollable:\s*panelElement\s*\?\s*panelElement\.scrollHeight\s*>\s*panelElement\.clientHeight/);
+  assert.match(browserQa, /action\.y\s*>=\s*-2[\s\S]*?action\.y\s*\+\s*action\.height/);
 });

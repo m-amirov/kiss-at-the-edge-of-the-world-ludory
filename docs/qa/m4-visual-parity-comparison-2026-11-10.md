@@ -65,3 +65,44 @@ push-run и PR-run для HEAD `5593b76` завершились успешно. 
 заблокированных portrait-файлов. Меню сохраняет утверждённую PNG-обложку, хотя
 её композиция отличается от indoor baseline; это зафиксированное требование
 качества PNG, а не основание возвращать старый WebP.
+
+## Реализация утверждённых прототипов A1/A2
+
+Рабочая реализация выполнена поверх author-owned presentation/UI на HEAD,
+производном от `b1a13025a11fee21f71fa87bc81cb411a0d909ec`; managed Studio-файлы,
+сюжет, сохранения, шрифты, PNG и экономика не изменялись.
+
+| Cue | Утверждённая композиция | Реализация |
+| --- | --- | --- |
+| S03 Damir | A2 | scene-specific scale `1.45`, `contain`, верхняя фокусировка |
+| S07 pasta/cards | A1 | полный authored frame, `contain`, без crop |
+| S26 Eric/Nick/Damir/Alice | A2 | scene-specific scale `1.6`, `contain` |
+| S38 Alice/Nick | A2 group | умеренный scale `1.18`, обязательный `contain` |
+| S39 café / walk | A2 | scale `1.48`; walk корректно обрабатывается как presentation background |
+
+На мобильных 320×700, 390×844 и 430×932 `Меню`, `Назад` и `Журнал`
+проверяются в одной строке с touch target не менее 44×44 CSS px, безопасными
+отступами и без горизонтального overflow. Нижняя panel имеет `min-height: 0`
+и native vertical scroll; браузерный gate действительно прокручивает длинный
+S38 dialogue до кнопки `Далее`, а не ослабляет проверку.
+
+Фактическое локальное browser evidence создано из этого рабочего состояния в:
+`C:\Users\user\AppData\Local\Temp\pr3-m4-visual-b1a13025-final4`.
+Набор включает desktop/mobile menu, S03, обе ветки S07, S26, S38, обе ветки
+S39, S44/S46/S48 и все три мобильных viewport для шести утверждённых
+композиций. `npm run qa:m4:browser` завершился строкой
+`M4_BROWSER_QA_PASS` без JavaScript errors.
+
+## Текущие release gates
+
+- Static: `41` тест, `40` pass, `1` существующий intentional skip, `0` fail.
+- Presentation check: legacy `--check` и `--check --project game-studio` pass.
+- Browser: локальный реальный Chromium pass; CI artifact для нового commit ещё
+  ожидается и будет добавлен после push.
+- Independent art gate: **OPEN** до просмотра CI screenshots, созданных из
+  фактического commit PR, и сравнения с `final-ui-menu-*`/`final-ui-reader-*`.
+  Уже подтверждено локально: лица и group-CG не исчезают, S38 сохраняет
+  `contain`, длинный текст прокручивается, а оригинальные шрифты загружаются.
+- Известное визуальное отличие: утверждённая lossless PNG-обложка меню
+  сохраняется; она композиционно отличается от исходного indoor
+  `final-ui-menu-*`, поэтому старый пережатый WebP не возвращается.

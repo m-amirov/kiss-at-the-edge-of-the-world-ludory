@@ -11,6 +11,18 @@ const gameRoot = fileURLToPath(new URL('../game-studio/', import.meta.url));
 const evidenceDir = resolve(process.env.M4_BROWSER_EVIDENCE_DIR || 'artifacts/m4-browser-qa');
 const types = new Map([['.html', 'text/html'], ['.js', 'text/javascript'], ['.json', 'application/json'],
   ['.css', 'text/css'], ['.svg', 'image/svg+xml'], ['.webp', 'image/webp'], ['.png', 'image/png']]);
+const mobileCgCompositions = new Map([
+  ['damir-coffee-cg', 'a2-s03'],
+  ['s07-kitchen-pasta', 'a1-s07'],
+  ['s07-kitchen-cards', 'a1-s07'],
+  ['s26-eric-choice', 'a2-s26'],
+  ['s26-nick-choice', 'a2-s26'],
+  ['s26-damir-choice', 'a2-s26'],
+  ['s26-alice-choice', 'a2-s26'],
+  ['s38-alice-nick-ordinary-day', 'a2-group'],
+  ['s39-alice-damir-cafe', 'a2-s39'],
+  ['s39-alice-damir-cafe-walk', 'a2-s39'],
+]);
 
 const server = createServer(async (request, response) => {
   try {
@@ -129,18 +141,35 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
+    const expectedComposition = mobileCgCompositions.get(expectedMediaId);
+    if (expectedComposition) {
+      const actualComposition = await stage.getAttribute('data-original-cg-composition');
+      if (actualComposition !== null) assert.equal(actualComposition, expectedComposition,
+        `${label}: wrong approved mobile composition`);
+      else if (expectedComposition.startsWith('a2-')) {
+        assert.notEqual(await image.evaluate(element => getComputedStyle(element).transform), 'none',
+          `${label}: source-bound adaptive crop fallback was not applied`);
+      }
+    }
     const geometry = await image.boundingBox();
     assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
-    assert.ok(geometry.x >= -2 && geometry.y >= -2 &&
-      geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
-      geometry.y + geometry.height <= (await page.evaluate(() => innerHeight)) + 2,
-    `${label}: image is clipped by the viewport: ${JSON.stringify(geometry)}`);
+    const intentionallyFramed = expectedComposition?.startsWith('a2-');
+    if (!intentionallyFramed) {
+      assert.ok(geometry.x >= -2 && geometry.y >= -2 &&
+        geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
+        geometry.y + geometry.height <= (await page.evaluate(() => innerHeight)) + 2,
+      `${label}: image is clipped by the viewport: ${JSON.stringify(geometry)}`);
+    }
     if (['damir-coffee-cg', 's07-kitchen-pasta', 's07-kitchen-cards', 's26-eric-choice',
       's26-nick-choice', 's26-damir-choice', 's26-alice-choice', 's38-alice-nick-ordinary-day',
-      's39-alice-damir-cafe'].includes(expectedMediaId) &&
+      's39-alice-damir-cafe', 's39-alice-damir-cafe-walk'].includes(expectedMediaId) &&
       await page.evaluate(() => innerWidth <= 680)) {
       assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'contain',
         `${label}: mobile CG must preserve the complete authored frame`);
+      if (intentionallyFramed) {
+        assert.notEqual(await image.evaluate(element => getComputedStyle(element).transform), 'none',
+          `${label}: approved adaptive crop must enlarge the complete authored frame`);
+      }
     }
   }
   await assertViewport(page, label);
@@ -148,7 +177,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
 
 async function assertViewport(page, label) {
   const geometry = await page.evaluate(() => {
-    const panel = document.querySelector('.ludory-narrative__panel')?.getBoundingClientRect();
+    const panelElement = document.querySelector('.ludory-narrative__panel');
+    const panel = panelElement?.getBoundingClientRect();
     const reader = document.querySelector('.ludory-narrative')?.getBoundingClientRect();
     const stage = document.querySelector('.ludory-narrative__stage')?.getBoundingClientRect();
     const menu = document.querySelector('[data-ui="open-menu"]')?.getBoundingClientRect();
@@ -163,7 +193,7 @@ async function assertViewport(page, label) {
       stage: stage && { top: stage.top, bottom: stage.bottom, left: stage.left, right: stage.right },
       menu: menu && { left: menu.left, right: menu.right, top: menu.top, bottom: menu.bottom },
       toolbar: toolbar && { left: toolbar.left, right: toolbar.right, top: toolbar.top, bottom: toolbar.bottom },
-      panelScrollable: panel ? panel.scrollHeight > panel.clientHeight + 1 : false,
+      panelScrollable: panelElement ? panelElement.scrollHeight > panelElement.clientHeight + 1 : false,
       font: dialogue ? parseFloat(getComputedStyle(dialogue).fontSize) : null,
       panel: panel && { left: panel.left, right: panel.right, top: panel.top, bottom: panel.bottom },
       actions: actions.map(box => ({ top: box.top, bottom: box.bottom, height: box.height })),
@@ -179,6 +209,12 @@ async function assertViewport(page, label) {
     `${label}: menu must remain in the original top-left hierarchy: ${JSON.stringify(geometry)}`);
   if (geometry.toolbar) assert.ok(geometry.toolbar.right >= geometry.width - 18,
     `${label}: runtime toolbar must stay in the secondary top-right position: ${JSON.stringify(geometry)}`);
+  if (geometry.width <= 680 && geometry.menu && geometry.toolbar) {
+    assert.ok(Math.abs(geometry.menu.top - geometry.toolbar.top) <= 2,
+      `${label}: mobile navigation must share one horizontal row: ${JSON.stringify(geometry)}`);
+    assert.ok(geometry.menu.right + 4 <= geometry.toolbar.left,
+      `${label}: mobile navigation controls overlap: ${JSON.stringify(geometry)}`);
+  }
   for (const [name, box] of [['reader', geometry.reader], ['stage', geometry.stage]]) {
     assert.ok(box && Math.abs(box.top) <= 2 && Math.abs(box.left) <= 2 &&
       Math.abs(box.right - geometry.width) <= 2 && Math.abs(box.bottom - geometry.height) <= 2,
@@ -199,10 +235,22 @@ async function assertViewport(page, label) {
     const actionLocator = page.locator('.ludory-narrative__actions button').last();
     await actionLocator.scrollIntoViewIfNeeded();
     const action = await actionLocator.boundingBox();
-    assert.ok(action && action.top >= -2 && action.bottom <= geometry.height + 2,
+    assert.ok(action && action.y >= -2 && action.y + action.height <= geometry.height + 2,
       `${label}: scrollable dialogue action cannot be brought into viewport: ${JSON.stringify(action)}`);
     await panelLocator.evaluate(panelElement => { panelElement.scrollTop = 0; });
   }
+}
+
+async function captureMobileViewports(page, prefix, beatId, variantId, label, mediaId) {
+  const originalViewport = page.viewportSize();
+  for (const viewport of [{ width: 320, height: 700 }, { width: 390, height: 844 }, { width: 430, height: 932 }]) {
+    await page.setViewportSize(viewport);
+    await page.evaluate(() => new Promise(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+    await assertPilotCue(page, beatId, variantId, `${label} ${viewport.width}x${viewport.height}`, mediaId);
+    await page.screenshot({ path: join(evidenceDir, `${prefix}-${viewport.width}x${viewport.height}.png`), fullPage: true });
+  }
+  if (originalViewport) await page.setViewportSize(originalViewport);
 }
 
 async function createPage(browser, name, viewport) {
@@ -367,10 +415,10 @@ async function main() {
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s03-guesthouse.png'), fullPage: true });
       await advanceToBeat(mobile.page, 's03-coffee-01');
       await assertPilotCue(mobile.page, 's03-coffee-01', 'damir-enters', 'mobile S03 Damir CG', 'damir-coffee-cg');
-      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s03-damir.png'), fullPage: true });
+      await captureMobileViewports(mobile.page, 'mobile-s03-damir', 's03-coffee-01', 'damir-enters', 'mobile S03 Damir CG', 'damir-coffee-cg');
       await advanceToBeat(mobile.page, 's07-common-a-01');
       await assertPilotCue(mobile.page, 's07-common-a-01', 'visual-s07-kitchen-pasta-1', 'mobile S07 pasta', 's07-kitchen-pasta');
-      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s07-kitchen-pasta.png'), fullPage: true });
+      await captureMobileViewports(mobile.page, 'mobile-s07-kitchen-pasta', 's07-common-a-01', 'visual-s07-kitchen-pasta-1', 'mobile S07 pasta', 's07-kitchen-pasta');
       await advanceToBeat(mobile.page, 's18-common-01');
       await assertPilotCue(mobile.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'mobile S18 day-ten morning', 's18-hofn-breakfast-morning');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s18-day-ten-morning.png'), fullPage: true });
@@ -412,6 +460,7 @@ async function main() {
       await advanceToBeat(desktop.page, 's07-common-a-43');
       await assertPilotCue(desktop.page, 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'S07 kitchen cards', 's07-kitchen-cards');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s07-kitchen-cards.png'), fullPage: true });
+      await captureMobileViewports(desktop.page, 'mobile-s07-kitchen-cards', 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'mobile S07 kitchen cards', 's07-kitchen-cards');
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
@@ -427,9 +476,7 @@ async function main() {
       await advanceToBeat(desktop.page, 's26-choice-eric-01');
       await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'S26 Eric route', 's26-eric-choice');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s26-eric.png'), fullPage: true });
-      await desktop.page.setViewportSize({ width: 390, height: 844 });
-      await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice');
-      await desktop.page.screenshot({ path: join(evidenceDir, 'mobile-s26-choice-eric-01.png'), fullPage: true });
+      await captureMobileViewports(desktop.page, 'mobile-s26-choice-eric', 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice');
       await desktop.page.setViewportSize({ width: 1000, height: 720 });
       await advanceToBeat(desktop.page, 's48-common-01');
       await assertPilotCue(desktop.page, 's48-common-01', 'visual-s48-guesthouse-exit-group-1', 'S48 departure morning', 's48-guesthouse-exit-group');
@@ -462,18 +509,12 @@ async function main() {
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
-        await special.page.setViewportSize({ width: 390, height: 844 });
-        await assertPilotCue(special.page, target, variant, `mobile ${label}`, media);
-        await special.page.screenshot({ path: join(evidenceDir, `mobile-${target}.png`), fullPage: true });
-        await special.page.setViewportSize({ width: 1000, height: 720 });
+        await captureMobileViewports(special.page, `mobile-${target}`, target, variant, `mobile ${label}`, media);
         if (target === 's39-active-01') {
           await advanceToBeat(special.page, 's39-common-01');
           await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
-          await special.page.setViewportSize({ width: 390, height: 844 });
-          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
-          await special.page.screenshot({ path: join(evidenceDir, 'mobile-s39-cafe-walk.png'), fullPage: true });
-          await special.page.setViewportSize({ width: 1000, height: 720 });
+          await captureMobileViewports(special.page, 'mobile-s39-cafe-walk', 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
           await advanceToBeat(special.page, 's46-intro-01');
           await assertPilotCue(special.page, 's46-intro-01', 'visual-s46-airport-bus-day-1', 'S46 airport bus', 's46-airport-bus-day');
           await advanceToBeat(special.page, 's46-common-01');
