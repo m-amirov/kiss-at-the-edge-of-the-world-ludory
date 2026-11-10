@@ -125,6 +125,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       const img = document.querySelector('.ludory-narrative__stage img');
       return img?.complete && img.naturalWidth > 0;
     }, undefined, { timeout: 10000 });
+    await image.evaluate(async img => { if (typeof img.decode === 'function') await img.decode(); });
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
     const geometry = await image.boundingBox();
