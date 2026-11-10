@@ -97,12 +97,23 @@ S39, S44/S46/S48 и все три мобильных viewport для шести 
 
 - Static: `41` тест, `40` pass, `1` существующий intentional skip, `0` fail.
 - Presentation check: legacy `--check` и `--check --project game-studio` pass.
-- Browser: локальный реальный Chromium pass; CI artifact для нового commit ещё
-  ожидается и будет добавлен после push.
-- Independent art gate: **OPEN** до просмотра CI screenshots, созданных из
-  фактического commit PR, и сравнения с `final-ui-menu-*`/`final-ui-reader-*`.
-  Уже подтверждено локально: лица и group-CG не исчезают, S38 сохраняет
-  `contain`, длинный текст прокручивается, а оригинальные шрифты загружаются.
+- Browser: локальный реальный Chromium pass и GitHub Actions pass на фактическом
+  HEAD `0f92fb050a98646cfc71a36daa93d3f0f0f1e64e`.
+  [Run 42869965437](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42869965437)
+  завершился `success`; статические/provenance checks, Chromium, реальная
+  browser QA и сохранение screenshots прошли.
+- Новый CI screenshot artifact:
+  [m4-actual-game-browser-qa, artifact 13789731891](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42869965437/artifacts/13789731891),
+  ZIP SHA-256 `99d4ceee9930b77c14d9038822f66506951ba910e9f1041846e1f7ba8b55861c`.
+  В нём есть мобильные 320×700, 390×844 и 430×932 кадры для S03, S07 pasta/cards,
+  S26, S38, S39 café/walk, а также desktop menu и проверенные эпилоги.
+- Независимое визуальное сравнение фактических CI-кадров выполнено, но
+  художественный gate остаётся **OPEN**, а не `PASS`: лица и group-CG не
+  исчезают, S38 сохраняет `contain`, длинный текст прокручивается, кнопки и
+  оригинальные шрифты проходят техническую проверку; при этом меню с
+  утверждённой lossless PNG-обложкой композиционно отличается от indoor
+  `final-ui-menu-*` baseline. Требуется отдельное решение владельца дизайна по
+  этому расхождению.
 - Известное визуальное отличие: утверждённая lossless PNG-обложка меню
   сохраняется; она композиционно отличается от исходного indoor
   `final-ui-menu-*`, поэтому старый пережатый WebP не возвращается.
