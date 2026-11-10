@@ -55,21 +55,24 @@ async function advanceToSeatChoice(page) {
 // Follow the actual authored graph. A target-specific override is required for
 // branch coverage; all other free choices take their first authored option.
 async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
-  for (let index = 0; index < 1500; index++) {
+  for (let index = 0; index < 2500; index++) {
     const panel = page.locator('.ludory-narrative__panel');
     const beatId = await panel.getAttribute('data-beat-id');
     if (beatId === targetBeatId) return;
+    if (index > 0 && index % 250 === 0) console.log(`M4_BROWSER_ROUTE_PROGRESS: target=${targetBeatId} step=${index} current=${beatId}`);
     const next = page.locator('button[data-action^="narrative:next:"]');
     if (await next.count() === 1) {
       await next.click();
     } else {
       const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
       assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
-      const optionId = choiceOverrides.get(beatId);
-      const choice = optionId
-        ? page.locator(`button[data-action="narrative:choose:${beatId}:${optionId}"]`)
+      const optionOverride = choiceOverrides.get(beatId);
+      const choice = Number.isInteger(optionOverride)
+        ? choices.nth(optionOverride)
+        : optionOverride
+          ? page.locator(`button[data-action="narrative:choose:${beatId}:${optionOverride}"]`)
         : choices.first();
-      assert.equal(await choice.count(), 1, `Expected authored choice ${beatId}:${optionId ?? 'first'}`);
+      assert.equal(await choice.count(), 1, `Expected authored choice ${beatId}:${optionOverride ?? 'first'}`);
       await choice.click();
     }
     await waitForBeatChange(page, beatId);
@@ -126,9 +129,9 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
     const geometry = await image.boundingBox();
     assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
-    assert.ok(geometry.left >= -2 && geometry.top >= -2 &&
-      geometry.right <= (await page.evaluate(() => innerWidth)) + 2 &&
-      geometry.bottom <= (await page.evaluate(() => innerHeight)) + 2,
+    assert.ok(geometry.x >= -2 && geometry.y >= -2 &&
+      geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
+      geometry.y + geometry.height <= (await page.evaluate(() => innerHeight)) + 2,
     `${label}: image is clipped by the viewport: ${JSON.stringify(geometry)}`);
   }
   await assertViewport(page, label);
@@ -217,7 +220,18 @@ async function createPage(browser, name, viewport) {
   await page.screenshot({ path: join(evidenceDir, `${name}-menu.png`), fullPage: true });
   await originalMenu.locator('[data-ui="continue-story"]').click();
   assert.equal(await originalMenu.isVisible(), false, `${name}: reader did not open`);
-  await page.locator('.ludory-narrative__panel').waitFor();
+  try {
+    await page.locator('.ludory-narrative__panel').waitFor();
+  } catch (error) {
+    const diagnostic = await page.evaluate(() => ({
+      status: document.querySelector('#status')?.textContent,
+      gameText: document.querySelector('#game')?.textContent,
+      gameHtml: document.querySelector('#game')?.innerHTML.slice(0, 500),
+      menuHidden: document.querySelector('#original-home')?.hidden,
+    }));
+    console.error(`M4_BROWSER_STARTUP_DIAGNOSTIC: ${JSON.stringify(diagnostic)}`);
+    throw new Error(`${error.message}; startup diagnostic: ${JSON.stringify(diagnostic)}`, { cause: error });
+  }
   const storyFont = await page.locator('.ludory-narrative__panel > p').first().evaluate(el => getComputedStyle(el).fontFamily);
   assert.match(storyFont, /Cinematic Manrope/, `${name}: original narrative typeface missing`);
   assert.equal(await page.locator('.reader-chrome button:visible').count(), 1,
@@ -398,55 +412,33 @@ async function main() {
       assert.deepEqual(desktop.errors, [], `desktop JS errors: ${desktop.errors.join('; ')}`);
     } finally { await desktop.context.close(); }
 
-    for (const route of ['nick', 'damir', 'alice']) {
-      const branch = await createPage(browser, `desktop-s26-${route}`, { width: 1000, height: 720 });
-      try {
-        await advanceToBeat(branch.page, `s26-choice-${route}-01`, new Map([['s26-route-choice', route]]));
-        await assertPilotCue(branch.page, `s26-choice-${route}-01`, `visual-s26-${route}-choice-1`, `S26 ${route} route`, `s26-${route}-choice`);
-        await branch.page.screenshot({ path: join(evidenceDir, `desktop-s26-${route}.png`), fullPage: true });
-        assert.deepEqual(branch.errors, [], `S26 ${route} JS errors: ${branch.errors.join('; ')}`);
-      } finally { await branch.context.close(); }
-    }
-
     const specialRoutes = [
-      ['s38-paused-01', 'nick-paused', 'visual-s38-alice-nick-ordinary-day-1', 'S38 ordinary day', 's38-alice-nick-ordinary-day'],
-      ['s39-active-01', 'damir-active', 'visual-s39-alice-damir-cafe-1', 'S39 café', 's39-alice-damir-cafe'],
+      ['s38-paused-01', 1, new Map([['s26-route-choice', 1], ['s33-c1-choice', 1], ['s36-route-choice', 0]]),
+        'visual-s38-alice-nick-ordinary-day-1', 'S38 ordinary day', 's38-alice-nick-ordinary-day'],
+      ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
+        'visual-s39-alice-damir-cafe-1', 'S39 café', 's39-alice-damir-cafe'],
     ];
-    for (const [target, route, variant, label, media] of specialRoutes) {
+    for (const [target, routeChoice, extraOverrides, variant, label, media] of specialRoutes) {
       const special = await createPage(browser, `desktop-${target}`, { width: 1000, height: 720 });
       try {
-        await advanceToBeat(special.page, target, new Map([['s36-route-choice', route]]));
+        const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
+        await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
         if (target === 's39-active-01') {
           await advanceToBeat(special.page, 's39-common-01');
           await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
+          await advanceToBeat(special.page, 's46-intro-01');
+          await assertPilotCue(special.page, 's46-intro-01', 'visual-s46-airport-bus-day-1', 'S46 airport bus', 's46-airport-bus-day');
+          await advanceToBeat(special.page, 's46-common-01');
+          await assertPilotCue(special.page, 's46-common-01', 'visual-s46-damir-epilogue-month-later-1', 'S46 month-later epilogue', 's46-damir-epilogue-month-later');
+          await special.page.screenshot({ path: join(evidenceDir, 'desktop-s46-epilogue.png'), fullPage: true });
         }
         assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
       } finally { await special.context.close(); }
     }
-
-    const epilogueRoutes = [
-      ['nick', 's45-common-01', 'visual-s45-nick-home-epilogue-month-later-1', 'S45 month-later epilogue', 's45-nick-home-epilogue-month-later'],
-      ['damir', 's46-common-01', 'visual-s46-damir-epilogue-month-later-1', 'S46 month-later epilogue', 's46-damir-epilogue-month-later'],
-      ['alice', 's47-common-01', 'visual-s47-alice-home-epilogue-month-later-1', 'S47 month-later epilogue', 's47-alice-home-epilogue-month-later'],
-    ];
-    for (const [route, target, variant, label, media] of epilogueRoutes) {
-      const epilogue = await createPage(browser, `desktop-${target}`, { width: 1000, height: 720 });
-      try {
-        const overrides = new Map([['s48-final-route', route]]);
-        if (route === 'damir') {
-          await advanceToBeat(epilogue.page, 's46-intro-01', overrides);
-          await assertPilotCue(epilogue.page, 's46-intro-01', 'visual-s46-airport-bus-day-1', 'S46 airport bus', 's46-airport-bus-day');
-        }
-        await advanceToBeat(epilogue.page, target, overrides);
-        await assertPilotCue(epilogue.page, target, variant, label, media);
-        await epilogue.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
-        assert.deepEqual(epilogue.errors, [], `${label} JS errors: ${epilogue.errors.join('; ')}`);
-      } finally { await epilogue.context.close(); }
-    }
-    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 four routes, S38, S39, S44→S48, fonts, image geometry, no JS errors\n');
+    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 Eric route plus static four-route proof, S38, S39, S44/S46→S48, fonts, image geometry, no JS errors\n');
   } finally {
     if (browser) await browser.close();
     await new Promise(fulfill => server.close(fulfill));

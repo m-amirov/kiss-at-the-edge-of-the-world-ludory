@@ -1469,9 +1469,6 @@ export const presentationData = {
     "s30-c1-a-02": [
       {
         "id": "neutral-s30-c1-a-02-1",
-        "when": {
-          "S30-C1": "A"
-        },
         "neutral": {
           "reason": "source visual asset is blocked or has no admitted provenance"
         }
@@ -1540,16 +1537,18 @@ export const presentationData = {
       {
         "id": "neutral-s56-active-01-1",
         "when": {
-          "S34-C1": "A"
+          "flag": "s34-status-active"
         },
         "neutral": {
           "reason": "source visual asset is blocked or has no admitted provenance"
         }
-      },
+      }
+    ],
+    "s56-paused-01": [
       {
-        "id": "neutral-s56-active-01-2",
+        "id": "neutral-s56-paused-01-1",
         "when": {
-          "S34-C1": "B"
+          "flag": "s34-status-paused"
         },
         "neutral": {
           "reason": "source visual asset is blocked or has no admitted provenance"

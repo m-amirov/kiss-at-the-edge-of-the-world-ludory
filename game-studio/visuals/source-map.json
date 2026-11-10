@@ -762,10 +762,7 @@
       "sourceArt": "cg/s30-damir-sleeve-promise.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s30-c1-a-02; source art remains neutral because it is not admitted",
-      "when": {
-        "S30-C1": "A"
-      }
+      "mappingNote": "Pinned source cue mapped to the authored S30 choice-A branch beat; source art remains neutral because it is not admitted"
     },
     {
       "sourceSceneId": "S55",
@@ -885,9 +882,9 @@
       "sourceArt": "cg/s56-cafe-musicians.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s56-active-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned source cue mapped to the authored S56 active branch beat; source art remains neutral because it is not admitted",
       "when": {
-        "S34-C1": "A"
+        "flag": "s34-status-active"
       }
     },
     {
@@ -897,15 +894,15 @@
         0,
         0
       ],
-      "graphBeatId": "s56-active-01",
+      "graphBeatId": "s56-paused-01",
       "status": "mapped",
       "location": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
       "sourceArt": "cg/s56-cafe-musicians.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s56-active-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned source cue mapped to the authored S56 paused branch beat; source art remains neutral because it is not admitted",
       "when": {
-        "S34-C1": "B"
+        "flag": "s34-status-paused"
       }
     },
     {
