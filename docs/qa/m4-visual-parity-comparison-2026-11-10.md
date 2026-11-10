@@ -53,8 +53,9 @@ S01 остаётся намеренно нейтральным. В `game-studio/
   `desktop-s44-epilogue.png`, `desktop-s46-epilogue.png`,
   `desktop-s48-departure.png`.
 
-Фактический CI URL нового набора будет добавлен после push этой ревизии;
-предыдущий «до» набор остаётся доступен как
+Фактический CI «после» набор доступен как
+[artifact 13765636255](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42815577308/artifacts/13765636255);
+push-run и PR-run для HEAD `5593b76` завершились успешно. Предыдущий «до» набор остаётся доступен как
 [artifact 13749536584](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42784377417/artifacts/13749536584).
 
 Независимое визуальное заключение по кадрам после исправлений: механическая
