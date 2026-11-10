@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
   "sourceCueManifestPath": "src/literary-visual-directions.js",
-  "scope": "pilot-s01-s03",
-  "admissionPolicy": "three owner-approved, hash-verified source PNGs admitted to game-studio; remaining media neutral",
+  "scope": "full-s01-s66-original-candidate-admission",
+  "admissionPolicy": "owner-approved original PNGs from the pinned Git source; blocked source art remains neutral",
   "openingStages": [
     {
       "sourceSceneId": "S01",
@@ -30,118 +30,1408 @@
       "fallback": "neutral"
     }
   ],
-  "neutralResets": ["s01-common-01", "s02-road-01"],
+  "neutralResets": [
+    "s01-common-01",
+    "s02-road-01"
+  ],
   "entries": [
     {
       "sourceSceneId": "S01",
       "sourceCueId": "nick-arrives",
-      "at": [0, 4],
+      "at": [
+        0,
+        4
+      ],
       "graphBeatId": "s01-airport-05",
       "status": "mapped",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Source S01 chunk 0 paragraph 4, arrival board introduction"
+      "mappingNote": "Pinned source cue mapped to s01-airport-05; source art remains neutral because it is not admitted"
     },
     {
       "sourceSceneId": "S01",
       "sourceCueId": "airport-outside",
-      "at": [0, 16],
+      "at": [
+        0,
+        16
+      ],
       "graphBeatId": "s01-airport-17",
       "status": "mapped",
       "location": "Кефлавик: выход под дождь",
       "sourceArt": null,
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Source S01 chunk 0 paragraph 16, airport glass doors and sideways rain"
+      "mappingNote": "Pinned source cue mapped to s01-airport-17; source art remains neutral because it is not admitted"
     },
     {
       "sourceSceneId": "S01",
       "sourceCueId": "damir-arrives",
-      "at": [0, 24],
+      "at": [
+        0,
+        24
+      ],
       "graphBeatId": "s01-airport-25",
       "status": "mapped",
-      "location": "Кефлавик: зал прилёта, автомат с кофе",
+      "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Source S01 chunk 0 paragraph 24, first recognition of Damir"
+      "mappingNote": "Pinned source cue mapped to s01-airport-25; source art remains neutral because it is not admitted"
     },
     {
       "sourceSceneId": "S01",
       "sourceCueId": "car-eric",
-      "at": [2, 0],
+      "at": [
+        2,
+        0
+      ],
       "graphBeatId": "s01-eric-01",
       "status": "mapped",
-      "when": { "flag": "s01-seat-eric" },
       "location": "Автомобиль: переднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Explicit front seat branch; old S01-C1 A maps to s01-seat-eric"
+      "mappingNote": "Pinned source cue mapped to s01-eric-01; source art remains neutral because it is not admitted",
+      "when": {
+        "flag": "s01-seat-eric"
+      }
     },
     {
       "sourceSceneId": "S01",
       "sourceCueId": "car-nick",
-      "at": [3, 0],
+      "at": [
+        3,
+        0
+      ],
       "graphBeatId": "s01-nick-01",
       "status": "mapped",
-      "when": { "flag": "s01-seat-nick" },
-      "location": "Автомобиль: заднее сиденье, Ник",
+      "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Explicit Nick seat branch; old S01-C1 B maps to s01-seat-nick"
+      "mappingNote": "Pinned source cue mapped to s01-nick-01; source art remains neutral because it is not admitted",
+      "when": {
+        "flag": "s01-seat-nick"
+      }
     },
     {
       "sourceSceneId": "S01",
       "sourceCueId": "car-damir",
-      "at": [4, 0],
+      "at": [
+        4,
+        0
+      ],
       "graphBeatId": "s01-damir-01",
       "status": "mapped",
-      "when": { "flag": "s01-seat-damir" },
-      "location": "Автомобиль: заднее сиденье, Дамир",
+      "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
       "admittedMediaId": null,
       "fallback": "neutral",
-      "mappingNote": "Explicit Damir seat branch; old S01-C1 C maps to s01-seat-damir"
+      "mappingNote": "Pinned source cue mapped to s01-damir-01; source art remains neutral because it is not admitted",
+      "when": {
+        "flag": "s01-seat-damir"
+      }
     },
     {
       "sourceSceneId": "S02",
       "sourceCueId": "roadside-cafe",
-      "at": [0, 31],
+      "at": [
+        0,
+        31
+      ],
       "graphBeatId": "s02-road-32",
       "status": "mapped",
-      "location": "Придорожное кафе, остановка по пути в Рейкьявик",
+      "location": "Придорожное кафе",
       "sourceArt": "s02-roadside-cafe.webp",
       "admittedMediaId": "roadside-cafe",
       "fallback": "neutral",
-      "mappingNote": "S02 intro paragraph 31 (zero-based), roadside cafe begins after Damir laugh"
+      "mappingNote": "Pinned source cue mapped to s02-road-32; admitted s02-roadside-cafe as byte-identical PNG"
     },
     {
       "sourceSceneId": "S03",
       "sourceCueId": "editor-call",
-      "at": [0, 0],
+      "at": [
+        0,
+        0
+      ],
       "graphBeatId": "s03-editorial-01",
       "status": "mapped",
       "location": "Гостевой дом Рейкьявика: гостиная",
       "sourceArt": "s03-reykjavik-guesthouse-morning.webp",
       "admittedMediaId": "guesthouse-morning",
       "fallback": "neutral",
-      "mappingNote": "Source S03 intro chunk 0; first beat establishes living room; editor call begins at beat 03"
+      "mappingNote": "Pinned source cue mapped to s03-editorial-01; admitted s03-reykjavik-guesthouse-morning as byte-identical PNG"
     },
     {
       "sourceSceneId": "S03",
       "sourceCueId": "damir-enters",
-      "at": [4, 0],
+      "at": [
+        4,
+        0
+      ],
       "graphBeatId": "s03-coffee-01",
       "status": "mapped",
-      "location": "Гостевой дом Рейкьявика: гостиная, Дамир с двумя чашками",
+      "location": "Гостевой дом Рейкьявика: гостиная",
       "sourceArt": "cg/s03-editor-call-damir.webp",
       "admittedMediaId": "damir-coffee-cg",
       "fallback": "neutral",
-      "mappingNote": "Source S03 chunk 4 start matches s03Coffee paragraph 0"
+      "mappingNote": "Pinned source cue mapped to s03-coffee-01; admitted s03-editor-call-damir as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S04",
+      "sourceCueId": "thingvellir-trail",
+      "at": [
+        0,
+        4
+      ],
+      "graphBeatId": "s04-intro-05",
+      "status": "mapped",
+      "location": "Þingvellir: тропа и ущелье",
+      "sourceArt": "thingvellir-master.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s04-intro-05; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S09",
+      "sourceCueId": "skogafoss-trail",
+      "at": [
+        0,
+        8
+      ],
+      "graphBeatId": "s09-intro-09",
+      "status": "mapped",
+      "location": "Skógafoss: водопад",
+      "sourceArt": "skogafoss-master.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s09-intro-09; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S10",
+      "sourceCueId": "s10-vik-road-song",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s10-intro-01",
+      "status": "mapped",
+      "location": "АЗС у дороги к Vík: переднее сиденье автомобиля",
+      "sourceArt": "cg/s10-vik-road-song.webp",
+      "admittedMediaId": "s10-vik-road-song",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s10-intro-01; admitted s10-vik-road-song as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S10",
+      "sourceCueId": "s10-vik-arrival",
+      "at": [
+        6,
+        0
+      ],
+      "graphBeatId": "s10-common-01",
+      "status": "mapped",
+      "location": "Гостевой дом Vík: заселение",
+      "sourceArt": "s10-vik-guesthouse-arrival.webp",
+      "admittedMediaId": "s10-vik-guesthouse-arrival",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s10-common-01; admitted s10-vik-guesthouse-arrival as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S12",
+      "sourceCueId": "s12-vik-cafe-damir",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s12-intro-01",
+      "status": "mapped",
+      "location": "Кафе Vík: стол у окна",
+      "sourceArt": "cg/s12-vik-cafe-damir.webp",
+      "admittedMediaId": "s12-vik-cafe-damir",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s12-intro-01; admitted s12-vik-cafe-damir as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S12",
+      "sourceCueId": "s12-vik-street",
+      "at": [
+        11,
+        0
+      ],
+      "graphBeatId": "s12-common-c-01",
+      "status": "mapped",
+      "location": "Улица Vík после кафе",
+      "sourceArt": "s12-vik-street-day.webp",
+      "admittedMediaId": "s12-vik-street-day",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s12-common-c-01; admitted s12-vik-street-day as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S13",
+      "sourceCueId": "skaftafell-parking",
+      "at": [
+        0,
+        7
+      ],
+      "graphBeatId": "s13-intro-08",
+      "status": "mapped",
+      "location": "Скафтафетль: информационный центр",
+      "sourceArt": "s13-skaftafell-visitor-parking.webp",
+      "admittedMediaId": "s13-skaftafell-visitor-parking",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s13-intro-08; admitted s13-skaftafell-visitor-parking as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S13",
+      "sourceCueId": "skaftafell-notebook",
+      "at": [
+        0,
+        12
+      ],
+      "graphBeatId": "s13-intro-13",
+      "status": "mapped",
+      "location": "Скафтафетль: тропа и блокнот",
+      "sourceArt": "cg/s13-skaftafell-travelers.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s13-intro-13; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S14",
+      "sourceCueId": "s14-skaftafell-pace",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s14-intro-01",
+      "status": "mapped",
+      "location": "Скафтафетль: тропа над ледниковой равниной",
+      "sourceArt": "cg/s14-skaftafell-pace.webp",
+      "admittedMediaId": "s14-skaftafell-pace",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s14-intro-01; admitted s14-skaftafell-pace as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S14",
+      "sourceCueId": "s14-lagoon-road",
+      "at": [
+        7,
+        0
+      ],
+      "graphBeatId": "s14-common-b-01",
+      "status": "mapped",
+      "location": "Дорога к ледниковой лагуне",
+      "sourceArt": "s14-lagoon-road.webp",
+      "admittedMediaId": "s14-lagoon-road",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s14-common-b-01; admitted s14-lagoon-road as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S15",
+      "sourceCueId": "jokulsarlon-lagoon",
+      "at": [
+        0,
+        5
+      ],
+      "graphBeatId": "s15-intro-06",
+      "status": "mapped",
+      "location": "Jökulsárlón: лагуна",
+      "sourceArt": "jokulsarlon-master.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s15-intro-06; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S16",
+      "sourceCueId": "s16-guesthouse-help",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s16-intro-02",
+      "status": "mapped",
+      "location": "Придорожный гостевой дом: вход и скамья",
+      "sourceArt": "cg/s16-guesthouse-help.webp",
+      "admittedMediaId": "s16-guesthouse-help",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s16-intro-02; admitted s16-guesthouse-help as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S16",
+      "sourceCueId": "s16-kitchen-soup",
+      "at": [
+        4,
+        0
+      ],
+      "graphBeatId": "s16-common-01",
+      "status": "mapped",
+      "location": "Придорожный гостевой дом: общая кухня",
+      "sourceArt": "cg/s16-kitchen-soup.webp",
+      "admittedMediaId": "s16-kitchen-soup",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s16-common-01; admitted s16-kitchen-soup as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S17",
+      "sourceCueId": "s17-hofn-guesthouse",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s17-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом Höfn: общая кухня",
+      "sourceArt": "cg/s17-hofn-guesthouse.webp",
+      "admittedMediaId": "s17-hofn-guesthouse",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s17-intro-01; admitted s17-hofn-guesthouse as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "hofn-lighthouse",
+      "at": [
+        0,
+        5
+      ],
+      "graphBeatId": "s18-intro-06",
+      "status": "mapped",
+      "location": "Höfn: прогулка к маяку",
+      "sourceArt": "s18-hofn-harbour.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s18-intro-06; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "hofn-dance",
+      "at": [
+        0,
+        35
+      ],
+      "graphBeatId": "s18-intro-36",
+      "status": "mapped",
+      "location": "Höfn: танец у гавани",
+      "sourceArt": "cg/s18-hofn-dance-lights.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s18-intro-36; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "hofn-walk-back",
+      "at": [
+        0,
+        39
+      ],
+      "graphBeatId": "s18-intro-40",
+      "status": "mapped",
+      "location": "Höfn: обратная дорога",
+      "sourceArt": "s18-hofn-harbour.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s18-intro-40; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "hofn-day10-room",
+      "at": [
+        5,
+        1
+      ],
+      "graphBeatId": "s18-common-02",
+      "status": "mapped",
+      "location": "Höfn: комната на следующее утро",
+      "sourceArt": "s18-hofn-room-morning.webp",
+      "admittedMediaId": "s18-hofn-room-morning",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s18-common-02; admitted s18-hofn-room-morning as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "hofn-day10-breakfast",
+      "at": [
+        5,
+        3
+      ],
+      "graphBeatId": "s18-common-04",
+      "status": "mapped",
+      "location": "Höfn: общий завтрак",
+      "sourceArt": "cg/s18-hofn-breakfast-group.webp",
+      "admittedMediaId": "s18-hofn-breakfast-group",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s18-common-04; admitted s18-hofn-breakfast-group as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S19",
+      "sourceCueId": "s19-hofn-pool",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s19-intro-01",
+      "status": "mapped",
+      "location": "Бассейн Höfn: отражения и камера",
+      "sourceArt": "cg/s19-hofn-pool.webp",
+      "admittedMediaId": "s19-hofn-pool",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s19-intro-01; admitted s19-hofn-pool as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S20",
+      "sourceCueId": "s20-hofn-damir-kitchen",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s20-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом Höfn: магазин и общая кухня",
+      "sourceArt": "cg/s20-hofn-damir-kitchen.webp",
+      "admittedMediaId": "s20-hofn-damir-kitchen",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s20-intro-01; admitted s20-hofn-damir-kitchen as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S21",
+      "sourceCueId": "s21-alice-hofn-room",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s21-intro-01",
+      "status": "mapped",
+      "location": "Номер Алисы в Höfn: письмо Марине",
+      "sourceArt": "cg/s21-alice-hofn-room.webp",
+      "admittedMediaId": "s21-alice-hofn-room",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s21-intro-01; admitted s21-alice-hofn-room as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S61",
+      "sourceCueId": "s61-hofn-streets",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s61-intro-01",
+      "status": "mapped",
+      "location": "Höfn: улицы, рынок и магазины",
+      "sourceArt": "s61-hofn-streets.webp",
+      "admittedMediaId": "s61-hofn-streets",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s61-intro-01; admitted s61-hofn-streets as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S23",
+      "sourceCueId": "s23-eric-harbor-plan",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s23-intro-01",
+      "status": "mapped",
+      "location": "Рыбная гавань Seyðisfjörður: разговор у ящика",
+      "sourceArt": "cg/s23-eric-harbor-plan.webp",
+      "admittedMediaId": "s23-eric-harbor-plan",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s23-intro-01; admitted s23-eric-harbor-plan as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S24",
+      "sourceCueId": "s24-nick-pier-consent",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s24-intro-01",
+      "status": "mapped",
+      "location": "Причал Seyðisfjörður: кофе и тизер",
+      "sourceArt": "cg/s24-nick-pier-consent.webp",
+      "admittedMediaId": "s24-nick-pier-consent",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s24-intro-01; admitted s24-nick-pier-consent as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S25",
+      "sourceCueId": "s25-damir-clarity-talk",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s25-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом Seyðisfjörður: разговор о вакансии",
+      "sourceArt": "cg/s25-damir-clarity-talk.webp",
+      "admittedMediaId": "s25-damir-clarity-talk",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s25-intro-01; admitted s25-damir-clarity-talk as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "guesthouse-courtyard",
+      "at": [
+        0,
+        2
+      ],
+      "graphBeatId": "s26-intro-03",
+      "status": "mapped",
+      "location": "Двор у гостевого дома",
+      "sourceArt": "cg/s26-eastfjords-courtyard-group.webp",
+      "admittedMediaId": "s26-eastfjords-courtyard-group",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-intro-03; admitted s26-eastfjords-courtyard-group as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "route-eric",
+      "at": [
+        2,
+        0
+      ],
+      "graphBeatId": "s26-choice-eric-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "cg/s26-eric-choice.webp",
+      "admittedMediaId": "s26-eric-choice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-choice-eric-01; admitted s26-eric-choice as byte-identical PNG",
+      "when": {
+        "routeIntent": "eric"
+      }
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "eric-consensual-embrace",
+      "at": [
+        7,
+        0
+      ],
+      "graphBeatId": "s26-common-eric-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "cg/s26-eric-choice.webp",
+      "admittedMediaId": "s26-eric-choice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-common-eric-01; admitted s26-eric-choice as byte-identical PNG",
+      "when": {
+        "routeIntent": "eric"
+      }
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "route-nick",
+      "at": [
+        8,
+        0
+      ],
+      "graphBeatId": "s26-choice-nick-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "cg/s26-nick-choice.webp",
+      "admittedMediaId": "s26-nick-choice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-choice-nick-01; admitted s26-nick-choice as byte-identical PNG",
+      "when": {
+        "routeIntent": "nick"
+      }
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "route-damir",
+      "at": [
+        14,
+        0
+      ],
+      "graphBeatId": "s26-choice-damir-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "cg/s26-damir-choice.webp",
+      "admittedMediaId": "s26-damir-choice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-choice-damir-01; admitted s26-damir-choice as byte-identical PNG",
+      "when": {
+        "routeIntent": "damir"
+      }
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "route-independent",
+      "at": [
+        20,
+        0
+      ],
+      "graphBeatId": "s26-choice-alice-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "cg/s26-alice-choice.webp",
+      "admittedMediaId": "s26-alice-choice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s26-choice-alice-01; admitted s26-alice-choice as byte-identical PNG",
+      "when": {
+        "routeIntent": "alice"
+      }
+    },
+    {
+      "sourceSceneId": "S27",
+      "sourceCueId": "s27-egilsstadir-boardwalk",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s27-intro-01",
+      "status": "mapped",
+      "location": "Lagarfljót: ремонт приозёрного настила",
+      "sourceArt": "cg/s27-egilsstadir-boardwalk.webp",
+      "admittedMediaId": "s27-egilsstadir-boardwalk",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s27-intro-01; admitted s27-egilsstadir-boardwalk as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S28",
+      "sourceCueId": "s28-hverfjall-hood",
+      "at": [
+        0,
+        3
+      ],
+      "graphBeatId": "s28-intro-04",
+      "status": "mapped",
+      "location": "Hverfjall: разрешённый участок тропы и обзорная площадка",
+      "sourceArt": "cg/s28-hverfjall-hood.webp",
+      "admittedMediaId": "s28-hverfjall-hood",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s28-intro-04; admitted s28-hverfjall-hood as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S49",
+      "sourceCueId": "s49-reykjahlid-window-dance",
+      "at": [
+        0,
+        4
+      ],
+      "graphBeatId": "s49-intro-05",
+      "status": "mapped",
+      "location": "Reykjahlíð: зал гостевого дома у окна",
+      "sourceArt": "cg/s49-reykjahlid-window-dance.webp",
+      "admittedMediaId": "s49-reykjahlid-window-dance",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s49-intro-05; admitted s49-reykjahlid-window-dance as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S29",
+      "sourceCueId": "s29-nick-playback",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s29-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом: общая комната и монтажная папка",
+      "sourceArt": "cg/s29-nick-playback.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s29-intro-01; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S52",
+      "sourceCueId": "s52-glove-found",
+      "at": [
+        0,
+        4
+      ],
+      "graphBeatId": "s52-intro-05",
+      "status": "mapped",
+      "location": "Улица у почты и мастерской",
+      "sourceArt": "cg/s52-glove-found.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s52-intro-05; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S30",
+      "sourceCueId": "s30-damir-sleeve-promise",
+      "at": [
+        2,
+        1
+      ],
+      "graphBeatId": "s30-c1-a-02",
+      "status": "mapped",
+      "location": "Кафе Reykjahlíð у Mývatn: честный разговор о будущем",
+      "sourceArt": "cg/s30-damir-sleeve-promise.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s30-c1-a-02; source art remains neutral because it is not admitted",
+      "when": {
+        "S30-C1": "A"
+      }
+    },
+    {
+      "sourceSceneId": "S55",
+      "sourceCueId": "s55-shum-first-step",
+      "at": [
+        0,
+        3
+      ],
+      "graphBeatId": "s55-intro-04",
+      "status": "mapped",
+      "location": "Конная ферма у Mývatn: огороженная дорожка",
+      "sourceArt": "cg/s55-shum-first-step.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s55-intro-04; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S31",
+      "sourceCueId": "s31-alice-independent-evening",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s31-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом у Mývatn: подоконник и стол",
+      "sourceArt": "cg/s31-alice-independent-evening.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s31-intro-01; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S62",
+      "sourceCueId": "s62-alice-bookstore-choice",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s62-intro-02",
+      "status": "mapped",
+      "location": "Reykjahlíð: небольшой книжный магазин",
+      "sourceArt": "cg/s62-alice-bookstore-choice.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s62-intro-02; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S32",
+      "sourceCueId": "s32-eric-calendar-crossroads",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s32-intro-01",
+      "status": "mapped",
+      "location": "Акюрейри: перекрёсток после переезда, бумажный пакет с булочками и рукопожатие",
+      "sourceArt": "cg/s32-eric-calendar-crossroads.webp",
+      "admittedMediaId": "s32-eric-calendar-crossroads",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s32-intro-01; admitted s32-eric-calendar-crossroads as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S33",
+      "sourceCueId": "hotel-teaser",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s33-intro-02",
+      "status": "mapped",
+      "location": "Гостиница Акюрейри: Ник появляется в дверях с наушниками, Алиса показывает ссылку на тизер",
+      "sourceArt": "cg/s33-nick-teaser-reveal.webp",
+      "admittedMediaId": "s33-nick-teaser-reveal",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s33-intro-02; admitted s33-nick-teaser-reveal as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S53",
+      "sourceCueId": "s53-nick-no-camera-pool",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s53-active-01",
+      "status": "mapped",
+      "location": "Акюрейри: бассейн, чай после камеры в багажнике",
+      "sourceArt": "cg/s53-nick-no-camera-pool.webp",
+      "admittedMediaId": "s53-nick-no-camera-pool",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s53-active-01; admitted s53-nick-no-camera-pool as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S34",
+      "sourceCueId": "s34-cancelled-evening-entrance",
+      "at": [
+        0,
+        3
+      ],
+      "graphBeatId": "s34-intro-04",
+      "status": "mapped",
+      "location": "Акюрейри: вход в гостиницу после дождя, Дамир с пакетом из аптеки; Алиса сама останавливается",
+      "sourceArt": "cg/s34-cancelled-evening.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s34-intro-04; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S56",
+      "sourceCueId": "s56-cafe-new-song-active",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s56-active-01",
+      "status": "mapped",
+      "location": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
+      "sourceArt": "cg/s56-cafe-musicians.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s56-active-01; source art remains neutral because it is not admitted",
+      "when": {
+        "S34-C1": "A"
+      }
+    },
+    {
+      "sourceSceneId": "S56",
+      "sourceCueId": "s56-cafe-new-song-paused",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s56-active-01",
+      "status": "mapped",
+      "location": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
+      "sourceArt": "cg/s56-cafe-musicians.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s56-active-01; source art remains neutral because it is not admitted",
+      "when": {
+        "S34-C1": "B"
+      }
+    },
+    {
+      "sourceSceneId": "S63",
+      "sourceCueId": "s63-alice-solo-concert",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s63-intro-02",
+      "status": "mapped",
+      "location": "Акюрейри: небольшой камерный зал со складными стульями и случайными слушателями",
+      "sourceArt": "cg/s63-alice-solo-concert.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s63-intro-02; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S37",
+      "sourceCueId": "s37-eric-alice-cafe",
+      "at": [
+        1,
+        2
+      ],
+      "graphBeatId": "s37-active-03",
+      "status": "mapped",
+      "location": "Небольшое кафе Snæfellsnes после музея рыболовства, большое окно",
+      "sourceArt": "cg/s37-eric-alice-cafe.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s37-active-03; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S36",
+      "sourceCueId": "snaefellsnes-drive",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s36-intro-02",
+      "status": "mapped",
+      "location": "Дорога по Snæfellsnes",
+      "sourceArt": "snaefellsnes-master.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s36-intro-02; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S41",
+      "sourceCueId": "editor-cafe-call",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s41-intro-02",
+      "status": "mapped",
+      "location": "Рейкьявик: кафе, видеозвонок редактору",
+      "sourceArt": null,
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s41-intro-02; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S44",
+      "sourceCueId": "eric-morning-harbour",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s44-intro-01",
+      "status": "mapped",
+      "location": "Рейкьявик: утренняя гавань",
+      "sourceArt": "reykjavik-harbour-master.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s44-intro-01; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S44",
+      "sourceCueId": "eric-month-later",
+      "at": [
+        4,
+        0
+      ],
+      "graphBeatId": "s44-common-01",
+      "status": "mapped",
+      "location": "Город Алисы: мастерская и новая дата",
+      "sourceArt": "cg/s44-eric-epilogue-month-later.webp",
+      "admittedMediaId": "s44-eric-epilogue-month-later",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s44-common-01; admitted s44-eric-epilogue-month-later as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S45",
+      "sourceCueId": "nick-film-final",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s45-intro-01",
+      "status": "mapped",
+      "location": "Рейкьявик: просмотр финального монтажа",
+      "sourceArt": "cg/s45-reykjavik-warm-montage.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s45-intro-01; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S45",
+      "sourceCueId": "nick-month-later",
+      "at": [
+        4,
+        0
+      ],
+      "graphBeatId": "s45-common-01",
+      "status": "mapped",
+      "location": "Дом Алисы: монтаж на выходных",
+      "sourceArt": "cg/s45-nick-home-epilogue-month-later.webp",
+      "admittedMediaId": "s45-nick-home-epilogue-month-later",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s45-common-01; admitted s45-nick-home-epilogue-month-later as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S46",
+      "sourceCueId": "airport-bus",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s46-intro-01",
+      "status": "mapped",
+      "location": "Автобус до аэропорта",
+      "sourceArt": "s46-airport-bus-day.webp",
+      "admittedMediaId": "s46-airport-bus-day",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s46-intro-01; admitted s46-airport-bus-day as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S46",
+      "sourceCueId": "airport-checkin",
+      "at": [
+        0,
+        1
+      ],
+      "graphBeatId": "s46-intro-02",
+      "status": "mapped",
+      "location": "Кефлавик: стойка регистрации",
+      "sourceArt": "cg/s46-airport-goodbye.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s46-intro-02; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S46",
+      "sourceCueId": "damir-month-later",
+      "at": [
+        4,
+        0
+      ],
+      "graphBeatId": "s46-common-01",
+      "status": "mapped",
+      "location": "Аэропортовый автобус: поздняя встреча",
+      "sourceArt": "cg/s46-damir-epilogue-month-later.webp",
+      "admittedMediaId": "s46-damir-epilogue-month-later",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s46-common-01; admitted s46-damir-epilogue-month-later as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S47",
+      "sourceCueId": "alice-morning-harbour",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s47-intro-01",
+      "status": "mapped",
+      "location": "Рейкьявик: утренняя городская гавань",
+      "sourceArt": "cg/s47-reykjavik-harbour-alice.webp",
+      "admittedMediaId": null,
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s47-intro-01; source art remains neutral because it is not admitted"
+    },
+    {
+      "sourceSceneId": "S47",
+      "sourceCueId": "alice-month-later",
+      "at": [
+        4,
+        0
+      ],
+      "graphBeatId": "s47-common-01",
+      "status": "mapped",
+      "location": "Дом Алисы: новый маршрут",
+      "sourceArt": "cg/s47-alice-home-epilogue-month-later.webp",
+      "admittedMediaId": "s47-alice-home-epilogue-month-later",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s47-common-01; admitted s47-alice-home-epilogue-month-later as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S06",
+      "sourceCueId": "s06-eric-alice-stream",
+      "at": [
+        6,
+        6
+      ],
+      "graphBeatId": "s06-common-b-07",
+      "status": "mapped",
+      "location": "Геотермальная долина Hveragerði: площадка над ручьём",
+      "sourceArt": "cg/s06-hveragerdi-eric-alice.webp",
+      "admittedMediaId": "s06-hveragerdi-eric-alice",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s06-common-b-07; admitted s06-hveragerdi-eric-alice as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S07",
+      "sourceCueId": "s07-kitchen-pasta",
+      "at": [
+        3,
+        0
+      ],
+      "graphBeatId": "s07-common-a-01",
+      "status": "mapped",
+      "location": "Общая кухня Hveragerði: плита и стол",
+      "sourceArt": "cg/s07-kitchen-pasta.webp",
+      "admittedMediaId": "s07-kitchen-pasta",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s07-common-a-01; admitted s07-kitchen-pasta as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S07",
+      "sourceCueId": "s07-kitchen-cards",
+      "at": [
+        3,
+        42
+      ],
+      "graphBeatId": "s07-common-a-43",
+      "status": "mapped",
+      "location": "Общая кухня Hveragerði: карточная игра",
+      "sourceArt": "cg/s07-kitchen-cards.webp",
+      "admittedMediaId": "s07-kitchen-cards",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s07-common-a-43; admitted s07-kitchen-cards as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S08",
+      "sourceCueId": "s08-guesthouse-strap",
+      "at": [
+        2,
+        0
+      ],
+      "graphBeatId": "s08-common-01",
+      "status": "mapped",
+      "location": "Гостевой дом Hveragerði: лестница и коридор",
+      "sourceArt": "cg/s08-guesthouse-strap.webp",
+      "admittedMediaId": "s08-guesthouse-strap",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s08-common-01; admitted s08-guesthouse-strap as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S48",
+      "sourceCueId": "group-hotel-exit",
+      "at": [
+        5,
+        0
+      ],
+      "graphBeatId": "s48-common-01",
+      "status": "mapped",
+      "location": "Выход из гостевого дома",
+      "sourceArt": "cg/s48-guesthouse-exit-group.webp",
+      "admittedMediaId": "s48-guesthouse-exit-group",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s48-common-01; admitted s48-guesthouse-exit-group as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S38",
+      "sourceCueId": "s38-ordinary-day",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s38-paused-01",
+      "status": "mapped",
+      "location": "Улица и музейный квартал",
+      "sourceArt": "cg/s38-alice-nick-ordinary-day.webp",
+      "admittedMediaId": "s38-alice-nick-ordinary-day",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s38-paused-01; admitted s38-alice-nick-ordinary-day as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S54",
+      "sourceCueId": "s54-karaoke-evening",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s54-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом: вечер караоке",
+      "sourceArt": "cg/s54-alice-nick-karaoke.webp",
+      "admittedMediaId": "s54-alice-nick-karaoke",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s54-intro-01; admitted s54-alice-nick-karaoke as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S39",
+      "sourceCueId": "s39-cafe-conversation",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s39-paused-01",
+      "status": "mapped",
+      "location": "Кафе на улице у гавани",
+      "sourceArt": "cg/s39-alice-damir-cafe.webp",
+      "admittedMediaId": "s39-alice-damir-cafe",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s39-paused-01; admitted s39-alice-damir-cafe as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S40",
+      "sourceCueId": "s40-laptop-window",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s40-intro-01",
+      "status": "mapped",
+      "location": "Номер Алисы: ноутбук у окна",
+      "sourceArt": "cg/s40-alice-laptop-window.webp",
+      "admittedMediaId": "s40-alice-laptop-window",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s40-intro-01; admitted s40-alice-laptop-window as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S64",
+      "sourceCueId": "s64-snaefellsnes-trail",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s64-intro-01",
+      "status": "mapped",
+      "location": "Пешеходная тропа Snæfellsnes",
+      "sourceArt": "cg/s64-alice-snaefellsnes-trail.webp",
+      "admittedMediaId": "s64-alice-snaefellsnes-trail",
+      "fallback": "neutral",
+      "mappingNote": "Pinned source cue mapped to s64-intro-01; admitted s64-alice-snaefellsnes-trail as byte-identical PNG"
+    },
+    {
+      "sourceSceneId": "S05",
+      "sourceCueId": "s05-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s05-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом и дорога к Hveragerði",
+      "sourceArt": "assets/backgrounds/s05-hveragerdi-road.png",
+      "admittedMediaId": "s05-hveragerdi-road",
+      "fallback": "neutral",
+      "mappingNote": "Hveragerði road establishing background"
+    },
+    {
+      "sourceSceneId": "S06",
+      "sourceCueId": "s06-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s06-intro-01",
+      "status": "mapped",
+      "location": "Геотермальная долина Hveragerði",
+      "sourceArt": "assets/backgrounds/s06-hveragerdi-geothermal-day.png",
+      "admittedMediaId": "s06-hveragerdi-geothermal-day",
+      "fallback": "neutral",
+      "mappingNote": "Geothermal valley establishing background"
+    },
+    {
+      "sourceSceneId": "S09",
+      "sourceCueId": "s09-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s09-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом → водопад Skógafoss",
+      "sourceArt": "assets/backgrounds/s09-guesthouse-to-skogafoss-morning.png",
+      "admittedMediaId": "s09-guesthouse-to-skogafoss-morning",
+      "fallback": "neutral",
+      "mappingNote": "Road-to-Skógafoss establishing background"
+    },
+    {
+      "sourceSceneId": "S15",
+      "sourceCueId": "s15-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s15-intro-01",
+      "status": "mapped",
+      "location": "Парковка и лагуна Jökulsárlón",
+      "sourceArt": "assets/backgrounds/s15-jokulsarlon-parking-day.png",
+      "admittedMediaId": "s15-jokulsarlon-parking-day",
+      "fallback": "neutral",
+      "mappingNote": "Jökulsárlón parking establishing background"
+    },
+    {
+      "sourceSceneId": "S18",
+      "sourceCueId": "s18-day10-background",
+      "at": [
+        5,
+        0
+      ],
+      "graphBeatId": "s18-common-01",
+      "status": "mapped",
+      "location": "Höfn: гостевой дом и маяк",
+      "sourceArt": "assets/backgrounds/s18-hofn-breakfast-morning.png",
+      "admittedMediaId": "s18-hofn-breakfast-morning",
+      "fallback": "neutral",
+      "mappingNote": "Day-ten breakfast transition background"
+    },
+    {
+      "sourceSceneId": "S26",
+      "sourceCueId": "s26-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s26-intro-01",
+      "status": "mapped",
+      "location": "Гостевой дом восточных фьордов: коридор и двор",
+      "sourceArt": "assets/backgrounds/s26-eastfjords-guesthouse-courtyard.png",
+      "admittedMediaId": "s26-eastfjords-guesthouse-courtyard",
+      "fallback": "neutral",
+      "mappingNote": "Eastfjords guesthouse courtyard establishing background"
+    },
+    {
+      "sourceSceneId": "S37",
+      "sourceCueId": "s37-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s37-active-01",
+      "status": "mapped",
+      "location": "Гостевой дом: Эрик и Алиса",
+      "sourceArt": "assets/backgrounds/s37-snaefellsnes-guesthouse-day.png",
+      "admittedMediaId": "s37-snaefellsnes-guesthouse-day",
+      "fallback": "neutral",
+      "mappingNote": "Snæfellsnes guesthouse establishing background"
+    },
+    {
+      "sourceSceneId": "S39",
+      "sourceCueId": "s39-walk-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s39-common-01",
+      "status": "mapped",
+      "location": "Разговор Алисы и Дамира",
+      "sourceArt": "assets/backgrounds/s39-alice-damir-cafe-walk.png",
+      "admittedMediaId": "s39-alice-damir-cafe-walk",
+      "fallback": "neutral",
+      "mappingNote": "Continuation from the café to the subsequent walk"
+    },
+    {
+      "sourceSceneId": "S40",
+      "sourceCueId": "s40-room-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s40-intro-01",
+      "status": "mapped",
+      "location": "Номер Алисы: ноутбук у окна",
+      "sourceArt": "assets/backgrounds/s40-alice-room-laptop-window.png",
+      "admittedMediaId": "s40-alice-room-laptop-window",
+      "fallback": "neutral",
+      "mappingNote": "Alice room background under the laptop CG"
+    },
+    {
+      "sourceSceneId": "S48",
+      "sourceCueId": "s48-morning-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s48-common-01",
+      "status": "mapped",
+      "location": "Общая кухня: последний завтрак",
+      "sourceArt": "assets/backgrounds/s48-guesthouse-exit-morning.png",
+      "admittedMediaId": "s48-guesthouse-exit-morning",
+      "fallback": "neutral",
+      "mappingNote": "Departure-morning background behind the group exit CG"
+    },
+    {
+      "sourceSceneId": "S52",
+      "sourceCueId": "s52-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s52-intro-01",
+      "status": "mapped",
+      "location": "Улицы, почта и мастерская",
+      "sourceArt": "assets/backgrounds/s52-hofn-streets-post-workshop.png",
+      "admittedMediaId": "s52-hofn-streets-post-workshop",
+      "fallback": "neutral",
+      "mappingNote": "Street/post-workshop establishing background"
+    },
+    {
+      "sourceSceneId": "S66",
+      "sourceCueId": "s66-background",
+      "at": [
+        0,
+        0
+      ],
+      "graphBeatId": "s66-intro-01",
+      "status": "mapped",
+      "location": "Теплица Hveragerði: грядки и кафе",
+      "sourceArt": "assets/backgrounds/s66-hveragerdi-greenhouse.png",
+      "admittedMediaId": "s66-hveragerdi-greenhouse",
+      "fallback": "neutral",
+      "mappingNote": "Hveragerði greenhouse establishing background"
     }
   ]
 }

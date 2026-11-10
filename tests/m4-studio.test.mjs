@@ -4,10 +4,11 @@ import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const game = resolve(new URL('../game/', import.meta.url).pathname);
+const game = resolve(fileURLToPath(new URL('../game/', import.meta.url)));
 const managed = ['src/main.js', 'src/entry.js', 'index.html', 'assets/ludory-narrative.js'];
-const hash = file => createHash('sha256').update(readFileSync(file)).digest('hex');
+const hash = file => createHash('sha256').update(readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex');
 
 test('M4 author migration never modifies managed Studio files or enables the economy', () => {
   const components = JSON.parse(readFileSync(join(game, 'ludory.components.json')));
@@ -23,7 +24,7 @@ test('M4 author migration never modifies managed Studio files or enables the eco
 });
 
 test('Studio owner registry gate is explicitly unresolved; no component update is claimed', t => {
-  const cli = resolve(new URL('../../ludory/.worktrees/m4-native-presentation/packages/studio/bin/ludory.mjs', import.meta.url).pathname);
+  const cli = resolve(fileURLToPath(new URL('../../ludory/.worktrees/m4-native-presentation/packages/studio/bin/ludory.mjs', import.meta.url)));
   // This integration probe runs only when the sibling Ludory checkout exists.
   // A project CI without the checkout should retain the explicit review gate.
   if (!existsSync(cli)) return t.skip('Ludory M4A local checkout is unavailable; component adoption gate remains open');

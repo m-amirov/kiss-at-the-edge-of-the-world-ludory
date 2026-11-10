@@ -48,8 +48,10 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
   home.setAttribute('role', 'dialog');
   home.setAttribute('aria-modal', 'true');
   home.setAttribute('aria-label', 'Главное меню');
+  const iconUrl = new URL('../../assets/branding/kiss-at-the-edge-icon.png', import.meta.url).href;
   home.innerHTML = `
     <div class="original-home__card">
+      <img class="original-home__icon" src="${iconUrl}" alt="" width="64" height="64">
       <p class="original-home__kicker">Интерактивный роман</p>
       <h1>Поцелуй на краю света</h1>
       <p class="original-home__summary">На краю света даже случайная встреча может изменить всё.</p>

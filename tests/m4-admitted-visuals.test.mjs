@@ -3,12 +3,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { graphData } from '../game-studio/src/story.js';
 import { buildPresentation } from '../tools/m4-build-presentation.mjs';
 
-const studio = new URL('../game-studio/', import.meta.url).pathname;
-const original = new URL('../game/', import.meta.url).pathname;
-const inventory = new URL('../docs/migration/m4-assets-inventory.json', import.meta.url).pathname;
+const studio = fileURLToPath(new URL('../game-studio/', import.meta.url));
+const original = fileURLToPath(new URL('../game/', import.meta.url));
+const inventory = fileURLToPath(new URL('../docs/migration/m4-assets-inventory.json', import.meta.url));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 
@@ -27,22 +28,27 @@ const admitted = [
   },
 ];
 
-test('studio admits exactly three pinned project images with byte-identical proof', () => {
+test('studio admits all 60 pinned project images with byte-identical proof', () => {
   const entries = read(inventory).entries;
   const proof = read(join(studio, 'narrative-assets.json'));
   const presentation = read(join(studio, 'visuals/presentation.json'));
-  for (const asset of admitted) {
-    const entry = entries.find(item => item.id === asset.id);
-    assert.equal(entry.status, 'accepted', `${asset.id}: admission missing`);
-    assert.equal(entry.admittedPath, asset.path);
-    assert.equal(entry.sha256, asset.sha256);
-    assert.equal(hash(readFileSync(join(studio, asset.path))), asset.sha256);
-    assert.equal(presentation.media[asset.mediaId].src, asset.path);
-    assert.equal(proof.assets[asset.mediaId].sha256, asset.sha256);
+  const storyEntries = entries.filter(entry => entry.status === 'accepted' && entry.admittedProject === 'game-studio' && entry.role !== 'branding');
+  const mediaId = entry => ({
+    's02-roadside-cafe': 'roadside-cafe',
+    's03-reykjavik-guesthouse-morning': 'guesthouse-morning',
+    's03-editor-call-damir': 'damir-coffee-cg',
+  }[entry.id] ?? entry.id);
+  assert.equal(storyEntries.length, 60);
+  for (const entry of storyEntries) {
+    const id = mediaId(entry);
+    assert.equal(entry.status, 'accepted', `${entry.id}: admission missing`);
+    assert.equal(hash(readFileSync(join(studio, entry.admittedPath))), entry.sha256);
+    assert.equal(presentation.media[id].src, entry.admittedPath);
+    assert.equal(proof.assets[id].sha256, entry.sha256);
   }
-  assert.deepEqual(Object.keys(presentation.media).sort(), admitted.map(a => a.mediaId).sort());
-  assert.deepEqual(Object.keys(proof.assets).sort(), admitted.map(a => a.mediaId).sort());
-  assert.deepEqual(buildPresentation({ projectRoot: studio }).assetIds.sort(), admitted.map(a => a.mediaId).sort());
+  assert.deepEqual(Object.keys(presentation.media).sort(), storyEntries.map(mediaId).sort());
+  assert.deepEqual(Object.keys(proof.assets).sort(), storyEntries.map(mediaId).sort());
+  assert.deepEqual(buildPresentation({ projectRoot: studio }).assetIds.sort(), storyEntries.map(mediaId).sort());
   assert.deepEqual(buildPresentation({ projectRoot: original }).assetIds, [], 'legacy game remains unchanged');
 });
 

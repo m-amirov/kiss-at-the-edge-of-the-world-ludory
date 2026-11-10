@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
-const repoRoot = resolve(new URL('..', import.meta.url).pathname);
+const repoRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const original = join(repoRoot, 'game');
 const studio = join(repoRoot, 'game-studio');
 const sha = file => createHash('sha256').update(readFileSync(file)).digest('hex');
@@ -33,13 +34,17 @@ test('fresh Studio game is independently owned and consumes native presentation'
   }
 });
 
-test('fresh Studio game contains only three approved visuals, with canonical proof', () => {
+test('fresh Studio game contains all approved visuals, with canonical proof', () => {
   const manifest = JSON.parse(readFileSync(join(studio, 'narrative-assets.json')));
   const authored = JSON.parse(readFileSync(join(studio, 'visuals/presentation.json')));
   assert.equal(manifest.storySha256, sha(join(studio, 'src/story.js')));
-  const admitted = ['vis-s02-roadside-cafe.png', 'vis-s03-guesthouse-morning.png', 'vis-s03-damir.png'];
-  assert.deepEqual(readdirSync(join(studio, 'assets')).filter(name => /\.(?:png|jpe?g|webp)$/i.test(name)).sort(), admitted.sort());
-  assert.deepEqual(Object.keys(manifest.assets).sort(), ['damir-coffee-cg', 'guesthouse-morning', 'roadside-cafe']);
+  const admitted = readdirSync(join(studio, 'assets')).filter(name => /^vis-.*\.png$/i.test(name)).sort();
+  assert.equal(admitted.length, 60);
+  assert.ok(existsSync(join(studio, 'assets/branding/kiss-at-the-edge-icon.png')));
+  assert.ok(admitted.includes('vis-s02-roadside-cafe.png'));
+  assert.ok(admitted.includes('vis-s03-guesthouse-morning.png'));
+  assert.ok(admitted.includes('vis-s03-damir.png'));
+  assert.equal(Object.keys(manifest.assets).length, 60);
   assert.deepEqual(Object.keys(authored.media).sort(), Object.keys(manifest.assets).sort());
   for (const demo of ['lighthouse.svg', 'shoreline.svg']) {
     assert.equal(existsSync(join(studio, 'assets', demo)), false, `unreferenced starter artwork must be excluded: ${demo}`);

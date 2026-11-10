@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "storySha256": "1f3201851be79cb48b4c9692ed4fe5858307a1c8597ad0150e60a4a9a89b21d9",
+  "storySha256": "18fb5805bac46f0aefc9af6554d5e982a7af224af301352358dbacdc625ecdae",
   "assets": {
     "damir-coffee-cg": {
       "path": "assets/vis-s03-damir.png",
@@ -13,6 +13,234 @@
     "roadside-cafe": {
       "path": "assets/vis-s02-roadside-cafe.png",
       "sha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13"
+    },
+    "s05-hveragerdi-road": {
+      "path": "assets/vis-s05-hveragerdi-road.png",
+      "sha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f"
+    },
+    "s06-hveragerdi-eric-alice": {
+      "path": "assets/vis-s06-hveragerdi-eric-alice.png",
+      "sha256": "03541d251c355d14f35b2e6efc813a83a2a304b0729ef413d78b34553c21e8f9"
+    },
+    "s06-hveragerdi-geothermal-day": {
+      "path": "assets/vis-s06-hveragerdi-geothermal-day.png",
+      "sha256": "0610dbae504ca1a3de51f9c74936f402b02d9af016f2c1020eb07ffb4dd6d1a7"
+    },
+    "s07-kitchen-cards": {
+      "path": "assets/vis-s07-kitchen-cards.png",
+      "sha256": "ed50cfb8cad1615427df2b0e1802f32cc4c17f32b313cc6367403ebfeba73b8b"
+    },
+    "s07-kitchen-pasta": {
+      "path": "assets/vis-s07-kitchen-pasta.png",
+      "sha256": "452ab108a997fd6371dd338635ddfe94bdbcf7b85a39fb552ae00fbcde3dd6df"
+    },
+    "s08-guesthouse-strap": {
+      "path": "assets/vis-s08-guesthouse-strap.png",
+      "sha256": "cd8e44eb13dcbec7a8d5ccd1612cdbda1a0c92edad3b93a77e3118e8cca990d6"
+    },
+    "s09-guesthouse-to-skogafoss-morning": {
+      "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
+      "sha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49"
+    },
+    "s10-vik-guesthouse-arrival": {
+      "path": "assets/vis-s10-vik-guesthouse-arrival.png",
+      "sha256": "94356b1e97aa3ed8559b6864d4d948de03e96df4a07872b3f82dedbf98ddb894"
+    },
+    "s10-vik-road-song": {
+      "path": "assets/vis-s10-vik-road-song.png",
+      "sha256": "df56b1a22cbb3a94868c4e9a5815fe60fbe8a574375d5c3a5c89ae135f1acc93"
+    },
+    "s12-vik-cafe-damir": {
+      "path": "assets/vis-s12-vik-cafe-damir.png",
+      "sha256": "7344fdda79eea8bf02bc3fb49e79bb94df78e93e387bd2a198a610cd648be99e"
+    },
+    "s12-vik-street-day": {
+      "path": "assets/vis-s12-vik-street-day.png",
+      "sha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770"
+    },
+    "s13-skaftafell-visitor-parking": {
+      "path": "assets/vis-s13-skaftafell-visitor-parking.png",
+      "sha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7"
+    },
+    "s14-lagoon-road": {
+      "path": "assets/vis-s14-lagoon-road.png",
+      "sha256": "17c88d319dff19d82022a8369f51c0614b369391a1282f1422f07392108eb2a9"
+    },
+    "s14-skaftafell-pace": {
+      "path": "assets/vis-s14-skaftafell-pace.png",
+      "sha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e"
+    },
+    "s15-jokulsarlon-parking-day": {
+      "path": "assets/vis-s15-jokulsarlon-parking-day.png",
+      "sha256": "4ee1645d83e732806438c1c19156f06840c44b39b626b9332dce488c551447d8"
+    },
+    "s16-guesthouse-help": {
+      "path": "assets/vis-s16-guesthouse-help.png",
+      "sha256": "8b492ae3e84d9dcdfc830e00fd0dcf18b3cfc0048748db67b49fa3fdd37d6656"
+    },
+    "s16-kitchen-soup": {
+      "path": "assets/vis-s16-kitchen-soup.png",
+      "sha256": "4f5afd577454e72853bbdfcbde639801f2c127d9c8df9dc22520ac4e5db5e718"
+    },
+    "s17-hofn-guesthouse": {
+      "path": "assets/vis-s17-hofn-guesthouse.png",
+      "sha256": "385b4795f708736ac0caa56d860eff9f1c4090f094f5a8c5af8cb342ca2dcc37"
+    },
+    "s18-hofn-breakfast-group": {
+      "path": "assets/vis-s18-hofn-breakfast-group.png",
+      "sha256": "163e828c7eefaf887fd7276da86e906941ebf9fee0acafcb90456ff2794cf2b4"
+    },
+    "s18-hofn-breakfast-morning": {
+      "path": "assets/vis-s18-hofn-breakfast-morning.png",
+      "sha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d"
+    },
+    "s18-hofn-room-morning": {
+      "path": "assets/vis-s18-hofn-room-morning.png",
+      "sha256": "fc75aa2d8fbd96ae2ac78a0d47906b8f211680bebdff8bf1f2443894ce33f2ed"
+    },
+    "s19-hofn-pool": {
+      "path": "assets/vis-s19-hofn-pool.png",
+      "sha256": "f1d5704a588a699ddb09acc3dfc7f2d7ac9626544f349f93810156384d11d213"
+    },
+    "s20-hofn-damir-kitchen": {
+      "path": "assets/vis-s20-hofn-damir-kitchen.png",
+      "sha256": "1dc4dc153162ed94c4d1315558576c23cc29964a090b30f02dc2c82deea70996"
+    },
+    "s21-alice-hofn-room": {
+      "path": "assets/vis-s21-alice-hofn-room.png",
+      "sha256": "0039e3ec3ddea4d771bb7b844d06a23f6c92a0ac1fc0ad42f0a2ffd64ce97683"
+    },
+    "s23-eric-harbor-plan": {
+      "path": "assets/vis-s23-eric-harbor-plan.png",
+      "sha256": "5d49a086898a4dccbde332a8681ee3c99d52df326bc0236515512a51b979918e"
+    },
+    "s24-nick-pier-consent": {
+      "path": "assets/vis-s24-nick-pier-consent.png",
+      "sha256": "acd6f882a04dc2c35c509ee40eda183d531f6b8522afeb1b6a30f9a808b2e15a"
+    },
+    "s25-damir-clarity-talk": {
+      "path": "assets/vis-s25-damir-clarity-talk.png",
+      "sha256": "445889b4e4ec41e45eab64c36d64c48283530e7d892336108a5c8ab37dc5518b"
+    },
+    "s26-alice-choice": {
+      "path": "assets/vis-s26-alice-choice.png",
+      "sha256": "d6b566b4ec753e88603d0eb16822ea4bf9fb1d9415615fad7d4e0c96829cef4f"
+    },
+    "s26-damir-choice": {
+      "path": "assets/vis-s26-damir-choice.png",
+      "sha256": "16ec16e047283ab0fc858c6a52d7b54d6932c0037d04395cbd7a7835447cc206"
+    },
+    "s26-eastfjords-courtyard-group": {
+      "path": "assets/vis-s26-eastfjords-courtyard-group.png",
+      "sha256": "dff3a7f5738ef5ea7c6369fdefed6a81285dece3a3892a92146047144c0c05b9"
+    },
+    "s26-eastfjords-guesthouse-courtyard": {
+      "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
+      "sha256": "f165bd26a68f0c9c1ab1d4ec73d6fc6d28780fe9004fd5f965e781bc71ed9431"
+    },
+    "s26-eric-choice": {
+      "path": "assets/vis-s26-eric-choice.png",
+      "sha256": "ef229a99516f80dd39cfac49ef021a25ac00630e01bf5e30d676a2401869721f"
+    },
+    "s26-nick-choice": {
+      "path": "assets/vis-s26-nick-choice.png",
+      "sha256": "1320a9dce97e3905c1296de8d4c4634866614d3d0db3567ac10d3fb35827fa2b"
+    },
+    "s27-egilsstadir-boardwalk": {
+      "path": "assets/vis-s27-egilsstadir-boardwalk.png",
+      "sha256": "2f8c46ad171940ca1b0ffaae9c8ece0ed72f7c470dc0cd81887b972b34fc26d6"
+    },
+    "s28-hverfjall-hood": {
+      "path": "assets/vis-s28-hverfjall-hood.png",
+      "sha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c"
+    },
+    "s32-eric-calendar-crossroads": {
+      "path": "assets/vis-s32-eric-calendar-crossroads.png",
+      "sha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92"
+    },
+    "s33-nick-teaser-reveal": {
+      "path": "assets/vis-s33-nick-teaser-reveal.png",
+      "sha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb"
+    },
+    "s37-snaefellsnes-guesthouse-day": {
+      "path": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
+      "sha256": "eaef888cc0f4d38058c4f8c58eba13818903dc1e26a264ae65fabd28050f60df"
+    },
+    "s38-alice-nick-ordinary-day": {
+      "path": "assets/vis-s38-alice-nick-ordinary-day.png",
+      "sha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935"
+    },
+    "s39-alice-damir-cafe": {
+      "path": "assets/vis-s39-alice-damir-cafe.png",
+      "sha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397"
+    },
+    "s39-alice-damir-cafe-walk": {
+      "path": "assets/vis-s39-alice-damir-cafe-walk.png",
+      "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e"
+    },
+    "s40-alice-laptop-window": {
+      "path": "assets/vis-s40-alice-laptop-window.png",
+      "sha256": "8192692fe1b4baf4d0ec1228349a9732aa462b0079f0e11b01271983d656969c"
+    },
+    "s40-alice-room-laptop-window": {
+      "path": "assets/vis-s40-alice-room-laptop-window.png",
+      "sha256": "7687839e21f6c71266779e7b2da273beec93b45985be7357fb3cc14399529a48"
+    },
+    "s44-eric-epilogue-month-later": {
+      "path": "assets/vis-s44-eric-epilogue-month-later.png",
+      "sha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b"
+    },
+    "s45-nick-home-epilogue-month-later": {
+      "path": "assets/vis-s45-nick-home-epilogue-month-later.png",
+      "sha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734"
+    },
+    "s46-airport-bus-day": {
+      "path": "assets/vis-s46-airport-bus-day.png",
+      "sha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13"
+    },
+    "s46-damir-epilogue-month-later": {
+      "path": "assets/vis-s46-damir-epilogue-month-later.png",
+      "sha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e"
+    },
+    "s47-alice-home-epilogue-month-later": {
+      "path": "assets/vis-s47-alice-home-epilogue-month-later.png",
+      "sha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d"
+    },
+    "s48-guesthouse-exit-group": {
+      "path": "assets/vis-s48-guesthouse-exit-group.png",
+      "sha256": "7a695ba7a055539dc80dd04f5c69563b264f6f74f634cb71b21af451aa29bc85"
+    },
+    "s48-guesthouse-exit-morning": {
+      "path": "assets/vis-s48-guesthouse-exit-morning.png",
+      "sha256": "9548fc8a82ac62142694d65d182f7a6f6b799efffc0e564f8ebf8175c1ff2d37"
+    },
+    "s49-reykjahlid-window-dance": {
+      "path": "assets/vis-s49-reykjahlid-window-dance.png",
+      "sha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f"
+    },
+    "s52-hofn-streets-post-workshop": {
+      "path": "assets/vis-s52-hofn-streets-post-workshop.png",
+      "sha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332"
+    },
+    "s53-nick-no-camera-pool": {
+      "path": "assets/vis-s53-nick-no-camera-pool.png",
+      "sha256": "f1b6bb4204e8034520c5644f1e94e9019983c666962d67cfeb845ec94f29b8df"
+    },
+    "s54-alice-nick-karaoke": {
+      "path": "assets/vis-s54-alice-nick-karaoke.png",
+      "sha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e"
+    },
+    "s61-hofn-streets": {
+      "path": "assets/vis-s61-hofn-streets.png",
+      "sha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8"
+    },
+    "s64-alice-snaefellsnes-trail": {
+      "path": "assets/vis-s64-alice-snaefellsnes-trail.png",
+      "sha256": "697c61cfc89eae4fb8494dd15dd223258c920e7c6bfa940c55bd626819e0aab1"
+    },
+    "s66-hveragerdi-greenhouse": {
+      "path": "assets/vis-s66-hveragerdi-greenhouse.png",
+      "sha256": "07b303976b97d186c37f3dc7950e5c4207c8f78a6681ae156733ef019e3c75af"
     }
   }
 }

@@ -2,9 +2,11 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { buildPresentation } from '../tools/m4-build-presentation.mjs';
 
 const game = new URL('../game-studio/', import.meta.url);
+const gamePath = fileURLToPath(game);
 
 test('game installs original UI from author-owned presentation without changing native Studio shell', async () => {
   const index = await readFile(new URL('index.html', game), 'utf8');
@@ -12,15 +14,16 @@ test('game installs original UI from author-owned presentation without changing 
   const presentation = await readFile(new URL('src/presentation.js', game), 'utf8');
   const adapter = await readFile(new URL('src/ui/original-game-ui.js', game), 'utf8');
   const registry = JSON.parse(await readFile(new URL('ludory.components.json', game), 'utf8'));
-  const digest = content => createHash('sha256').update(content).digest('hex');
-  assert.equal(digest(index), registry.files['index.html']);
-  assert.equal(digest(entry), registry.files['src/entry.js']);
+  const digest = content => createHash('sha256').update(content.replace(/\r\n/g, '\n')).digest('hex');
+  for (const [path, content] of [['index.html', index], ['src/entry.js', entry], ['src/main.js', await readFile(new URL('src/main.js', game), 'utf8')], ['assets/ludory-narrative.js', await readFile(new URL('assets/ludory-narrative.js', game), 'utf8')]]) {
+    assert.equal(digest(content), registry.files[path], `Studio-managed file mutated: ${path}`);
+  }
   assert.match(index, /<header(?:\s|>)/);
   assert.match(presentation, /import '\.\/ui\/original-game-ui\.js';/);
   assert.match(adapter, /new URL\('\.\/original-game\.css', import\.meta\.url\)/);
   assert.match(index, /id="game"/);
   assert.match(index, /id="status"/);
-  assert.doesNotThrow(() => buildPresentation({ projectRoot: new URL('.', game).pathname }));
+  assert.doesNotThrow(() => buildPresentation({ projectRoot: gamePath }));
 });
 
 test('authored presentation stylesheet defines a viewport-filling scene and bottom dialogue overlay', async () => {

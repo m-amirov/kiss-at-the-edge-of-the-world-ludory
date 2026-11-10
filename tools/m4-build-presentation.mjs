@@ -127,8 +127,15 @@ export function buildPresentation({ projectRoot, write = false }) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const action = process.argv[2] ?? '--check';
-  if (!['--check', '--write'].includes(action)) throw new Error('Usage: node tools/m4-build-presentation.mjs [--check|--write]');
-  const result = buildPresentation({ projectRoot: resolve('game'), write: action === '--write' });
+  const args = process.argv.slice(2);
+  const action = args[0] ?? '--check';
+  if (!['--check', '--write'].includes(action)) throw new Error('Usage: node tools/m4-build-presentation.mjs [--check|--write] [--project game|game-studio]');
+  const projectName = args.length === 1 && args[0] === action
+    ? 'game'
+    : args.length === 3 && args[1] === '--project' ? args[2] : undefined;
+  if (!['game', 'game-studio'].includes(projectName)) {
+    throw new Error('Usage: node tools/m4-build-presentation.mjs [--check|--write] [--project game|game-studio]');
+  }
+  const result = buildPresentation({ projectRoot: resolve(projectName), write: action === '--write' });
   process.stdout.write(`${JSON.stringify(result)}\n`);
 }

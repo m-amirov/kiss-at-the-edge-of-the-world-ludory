@@ -68,6 +68,10 @@ html[data-mobile-preference="portrait"] header.reader-chrome .reader-chrome__act
 }
 .original-home[hidden], .original-home__settings[hidden] { display: none; }
 .original-home__card { width: min(590px,58vw); }
+.original-home__icon {
+  display: block; width: 64px; height: 64px; margin-bottom: 20px;
+  border-radius: 18px; box-shadow: 0 10px 28px rgba(0,0,0,.32);
+}
 .original-home__card::before {
   content: ''; display: block; width: 58px; height: 1px; margin-bottom: 24px;
   background: #d9a37c; box-shadow: 0 0 18px #d9a37c99;

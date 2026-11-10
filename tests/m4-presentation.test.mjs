@@ -4,11 +4,12 @@ import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, cpSync, symlinkSyn
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { graphData } from '../game/src/story.js';
 import { presentationData } from '../game/src/presentation.js';
 import { buildPresentation } from '../tools/m4-build-presentation.mjs';
 
-const ROOT = new URL('../game/', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('../game/', import.meta.url));
 const hash = input => createHash('sha256').update(input).digest('hex');
 const beatById = new Map(graphData.scenes.flatMap(scene => scene.beats.map(beat => [beat.id, beat])));
 
@@ -24,7 +25,7 @@ function fixture(callback) {
     }
     const inventoryPath = join(base, 'docs/migration/m4-assets-inventory.json');
     mkdirSync(dirname(inventoryPath), { recursive: true });
-    cpSync(new URL('../docs/migration/m4-assets-inventory.json', import.meta.url).pathname, inventoryPath);
+    cpSync(fileURLToPath(new URL('../docs/migration/m4-assets-inventory.json', import.meta.url)), inventoryPath);
     const mediaPath = join(game, 'assets/vis-fixture.webp');
     mkdirSync(dirname(mediaPath), { recursive: true });
     const mediaBytes = Buffer.from('RIFF-fixture-WEBP-bytes');
