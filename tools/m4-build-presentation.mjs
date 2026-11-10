@@ -4,6 +4,14 @@ import { join, resolve, dirname, basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+const canonicalText = text => text.replace(/\r\n?/g, '\n');
+
+/** Hash authored text after canonicalizing line endings, without changing the source file. */
+export function canonicalTextSha256(bytesOrText) {
+  const text = Buffer.isBuffer(bytesOrText) ? bytesOrText.toString('utf8') : String(bytesOrText);
+  return hash(Buffer.from(canonicalText(text), 'utf8'));
+}
+
 const MEDIA_ID = /^[a-z][a-z0-9_-]{0,63}$/;
 const MEDIA_PATH = /^assets\/vis-[a-z0-9_-]+\.(?:webp|png|jpg|jpeg)$/;
 const VALID_KINDS = new Set(['background', 'portrait', 'cg']);
@@ -104,7 +112,7 @@ export function buildPresentation({ projectRoot, write = false }) {
   if (!storyBytes.toString('utf8').includes("export { presentationData } from './presentation.js';")) {
     throw new Error('story.js must re-export native presentationData without editing prose');
   }
-  const storySha256 = hash(storyBytes);
+  const storySha256 = canonicalTextSha256(storyBytes);
   const presentationSha256 = hash(raw);
   // The Studio-managed entrypoint cannot be edited. Only the new Studio game's
   // author-owned presentation export installs the reader UI; legacy game/ is immutable.

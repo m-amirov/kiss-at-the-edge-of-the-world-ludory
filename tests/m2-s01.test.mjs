@@ -17,6 +17,7 @@ const sourceBlockSha256 = {
   's01-common': '0d4a17c945ffa6f564f8bc2a4552ddf9ce23d6cca05cef9221ffde6bd699c720',
 };
 const hash = (source) => createHash('sha256').update(source).digest('hex');
+const canonicalTextHash = (source) => hash(Buffer.from(source.toString('utf8').replace(/\r\n?/g, '\n'), 'utf8'));
 
 test('S01 starts with original red suitcase scene and validates as Ludory graph', () => {
   assert.doesNotThrow(() => defineNarrativeGraph(graphData));
@@ -61,7 +62,7 @@ test('S01 canonical paragraphs remain byte-identical to the audited literary sou
 test('narrative asset proof follows the authored story and does not publish template demo art', () => {
   const proof = JSON.parse(readFileSync(new URL('../game/narrative-assets.json', import.meta.url), 'utf8'));
   const bytes = readFileSync(new URL('../game/src/story.js', import.meta.url));
-  assert.equal(proof.storySha256, hash(bytes));
+  assert.equal(proof.storySha256, canonicalTextHash(bytes));
   assert.deepEqual(proof.assets, {});
   for (const filename of ['lighthouse.svg', 'shoreline.svg']) {
     assert.equal(existsSync(new URL(`../game/assets/${filename}`, import.meta.url)), false);
@@ -78,7 +79,7 @@ test('Ludory 1.2.2 keeps canonical authored files outside managed components', (
     'assets/ludory-narrative.js', 'index.html', 'src/entry.js', 'src/main.js',
   ]);
   const proof = JSON.parse(readFileSync(new URL('../game/narrative-assets.json', import.meta.url), 'utf8'));
-  assert.equal(proof.storySha256, hash(readFileSync(new URL('../game/src/story.js', import.meta.url))));
+  assert.equal(proof.storySha256, canonicalTextHash(readFileSync(new URL('../game/src/story.js', import.meta.url))));
 });
 
 test('Ludory launcher displays the manifest title, not a template demo title', () => {

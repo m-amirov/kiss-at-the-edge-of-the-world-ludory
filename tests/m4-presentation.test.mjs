@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { graphData } from '../game/src/story.js';
 import { presentationData } from '../game/src/presentation.js';
-import { buildPresentation } from '../tools/m4-build-presentation.mjs';
+import { buildPresentation, canonicalTextSha256 } from '../tools/m4-build-presentation.mjs';
 
 const ROOT = fileURLToPath(new URL('../game/', import.meta.url));
 const hash = input => createHash('sha256').update(input).digest('hex');
@@ -52,7 +52,7 @@ test('generated presentation is reproducible, with immutable graph and no unappr
   assert.deepEqual(expected.assetIds, []);
   assert.equal(expected.blocked, 9, 'all nine art placements remain unadmitted and neutral');
   assert.match(expected.presentationSha256, /^[0-9a-f]{64}$/);
-  assert.equal(expected.storySha256, hash(readFileSync(join(ROOT, 'src/story.js'))));
+  assert.equal(expected.storySha256, canonicalTextSha256(readFileSync(join(ROOT, 'src/story.js'))));
   assert.deepEqual(presentationData, JSON.parse(readFileSync(join(ROOT, 'visuals/presentation.json'))));
   assert.deepEqual(JSON.parse(readFileSync(join(ROOT, 'narrative-assets.json'))), {
     schemaVersion: 1, storySha256: expected.storySha256, assets: {},

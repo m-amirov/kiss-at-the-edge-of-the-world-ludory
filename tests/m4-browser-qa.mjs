@@ -52,15 +52,10 @@ async function advanceToSeatChoice(page) {
   assert.fail('S01 seat choice was not reached within 100 beats');
 }
 
-// Deliberately follow an actual free authored route. Unknown choices stop QA
-// instead of allowing a test to silently take whichever option renders first.
-const pilotChoices = new Map([
-  ['s02-career-choice', 'people'],
-  ['s03-career-dispatch', 'people'],
-]);
-
-async function advanceToBeat(page, targetBeatId) {
-  for (let index = 0; index < 300; index++) {
+// Follow the actual authored graph. A target-specific override is required for
+// branch coverage; all other free choices take their first authored option.
+async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
+  for (let index = 0; index < 1500; index++) {
     const panel = page.locator('.ludory-narrative__panel');
     const beatId = await panel.getAttribute('data-beat-id');
     if (beatId === targetBeatId) return;
@@ -68,10 +63,13 @@ async function advanceToBeat(page, targetBeatId) {
     if (await next.count() === 1) {
       await next.click();
     } else {
-      const optionId = pilotChoices.get(beatId);
-      assert.ok(optionId, `Unexpected choice or interaction en route to ${targetBeatId}: ${beatId}`);
-      const choice = page.locator(`button[data-action="narrative:choose:${beatId}:${optionId}"]`);
-      assert.equal(await choice.count(), 1, `Expected free choice ${beatId}:${optionId}`);
+      const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
+      assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
+      const optionId = choiceOverrides.get(beatId);
+      const choice = optionId
+        ? page.locator(`button[data-action="narrative:choose:${beatId}:${optionId}"]`)
+        : choices.first();
+      assert.equal(await choice.count(), 1, `Expected authored choice ${beatId}:${optionId ?? 'first'}`);
       await choice.click();
     }
     await waitForBeatChange(page, beatId);
@@ -98,6 +96,26 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
+      's07-kitchen-pasta': 'vis-s07-kitchen-pasta.png',
+      's07-kitchen-cards': 'vis-s07-kitchen-cards.png',
+      's18-hofn-breakfast-morning': 'vis-s18-hofn-breakfast-morning.png',
+      's18-hofn-room-morning': 'vis-s18-hofn-room-morning.png',
+      's18-hofn-breakfast-group': 'vis-s18-hofn-breakfast-group.png',
+      's26-eastfjords-guesthouse-courtyard': 'vis-s26-eastfjords-guesthouse-courtyard.png',
+      's26-eastfjords-courtyard-group': 'vis-s26-eastfjords-courtyard-group.png',
+      's26-eric-choice': 'vis-s26-eric-choice.png',
+      's26-nick-choice': 'vis-s26-nick-choice.png',
+      's26-damir-choice': 'vis-s26-damir-choice.png',
+      's26-alice-choice': 'vis-s26-alice-choice.png',
+      's38-alice-nick-ordinary-day': 'vis-s38-alice-nick-ordinary-day.png',
+      's39-alice-damir-cafe': 'vis-s39-alice-damir-cafe.png',
+      's39-alice-damir-cafe-walk': 'vis-s39-alice-damir-cafe-walk.png',
+      's44-eric-epilogue-month-later': 'vis-s44-eric-epilogue-month-later.png',
+      's45-nick-home-epilogue-month-later': 'vis-s45-nick-home-epilogue-month-later.png',
+      's46-airport-bus-day': 'vis-s46-airport-bus-day.png',
+      's46-damir-epilogue-month-later': 'vis-s46-damir-epilogue-month-later.png',
+      's47-alice-home-epilogue-month-later': 'vis-s47-alice-home-epilogue-month-later.png',
+      's48-guesthouse-exit-group': 'vis-s48-guesthouse-exit-group.png',
     };
     assert.ok((await image.getAttribute('src'))?.endsWith(`/assets/${files[expectedMediaId]}`), `${label}: wrong media URL`);
     await page.waitForFunction(() => {
@@ -106,6 +124,12 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     }, undefined, { timeout: 10000 });
     assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
+    const geometry = await image.boundingBox();
+    assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
+    assert.ok(geometry.left >= -2 && geometry.top >= -2 &&
+      geometry.right <= (await page.evaluate(() => innerWidth)) + 2 &&
+      geometry.bottom <= (await page.evaluate(() => innerHeight)) + 2,
+    `${label}: image is clipped by the viewport: ${JSON.stringify(geometry)}`);
   }
   await assertViewport(page, label);
 }
@@ -297,6 +321,12 @@ async function main() {
       await advanceToBeat(mobile.page, 's03-coffee-01');
       await assertPilotCue(mobile.page, 's03-coffee-01', 'damir-enters', 'mobile S03 Damir CG', 'damir-coffee-cg');
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s03-damir.png'), fullPage: true });
+      await advanceToBeat(mobile.page, 's07-common-a-01');
+      await assertPilotCue(mobile.page, 's07-common-a-01', 'visual-s07-kitchen-pasta-1', 'mobile S07 pasta', 's07-kitchen-pasta');
+      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s07-kitchen-pasta.png'), fullPage: true });
+      await advanceToBeat(mobile.page, 's18-common-01');
+      await assertPilotCue(mobile.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'mobile S18 day-ten morning', 's18-hofn-breakfast-morning');
+      await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-s18-day-ten-morning.png'), fullPage: true });
       assert.deepEqual(mobile.errors, [], `mobile JS errors: ${mobile.errors.join('; ')}`);
     } finally { await mobile.context.close(); }
 
@@ -329,6 +359,33 @@ async function main() {
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s03-coffee.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's03-coffee-02');
       await assertPilotCue(desktop.page, 's03-coffee-02', 'damir-coffee-continuation', 'S03 coffee continuity', 'damir-coffee-cg');
+      await advanceToBeat(desktop.page, 's07-common-a-01');
+      await assertPilotCue(desktop.page, 's07-common-a-01', 'visual-s07-kitchen-pasta-1', 'S07 kitchen pasta', 's07-kitchen-pasta');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s07-kitchen-pasta.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's07-common-a-43');
+      await assertPilotCue(desktop.page, 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'S07 kitchen cards', 's07-kitchen-cards');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s07-kitchen-cards.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's18-common-01');
+      await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's18-common-02');
+      await assertPilotCue(desktop.page, 's18-common-02', 'visual-s18-hofn-room-morning-1', 'S18 morning room', 's18-hofn-room-morning');
+      await advanceToBeat(desktop.page, 's18-common-04');
+      await assertPilotCue(desktop.page, 's18-common-04', 'visual-s18-hofn-breakfast-group-1', 'S18 breakfast group', 's18-hofn-breakfast-group');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-breakfast-group.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's26-intro-01');
+      await assertPilotCue(desktop.page, 's26-intro-01', 'visual-s26-eastfjords-guesthouse-courtyard-1', 'S26 guesthouse courtyard', 's26-eastfjords-guesthouse-courtyard');
+      await advanceToBeat(desktop.page, 's26-intro-03');
+      await assertPilotCue(desktop.page, 's26-intro-03', 'visual-s26-eastfjords-courtyard-group-1', 'S26 courtyard group', 's26-eastfjords-courtyard-group');
+      await advanceToBeat(desktop.page, 's26-choice-eric-01');
+      await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'S26 Eric route', 's26-eric-choice');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s26-eric.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's48-common-01');
+      await assertPilotCue(desktop.page, 's48-common-01', 'visual-s48-guesthouse-exit-group-1', 'S48 departure morning', 's48-guesthouse-exit-group');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s48-departure.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's44-common-01');
+      await assertPilotCue(desktop.page, 's44-common-01', 'visual-s44-eric-epilogue-month-later-1', 'S44 month-later epilogue', 's44-eric-epilogue-month-later');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s44-epilogue.png'), fullPage: true });
       // A new story must use the one native restart handler and explicitly clear the save.
       await desktop.page.locator('[data-ui="open-menu"]').click();
       desktop.page.once('dialog', dialog => dialog.accept());
@@ -340,7 +397,56 @@ async function main() {
         'explicit New Story must restart the native graph from S01');
       assert.deepEqual(desktop.errors, [], `desktop JS errors: ${desktop.errors.join('; ')}`);
     } finally { await desktop.context.close(); }
-    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Eric/Nick/Damir, Back, Save/Reload, S01→S02→S03 pilot, three admitted image layers, continuity, geometry\n');
+
+    for (const route of ['nick', 'damir', 'alice']) {
+      const branch = await createPage(browser, `desktop-s26-${route}`, { width: 1000, height: 720 });
+      try {
+        await advanceToBeat(branch.page, `s26-choice-${route}-01`, new Map([['s26-route-choice', route]]));
+        await assertPilotCue(branch.page, `s26-choice-${route}-01`, `visual-s26-${route}-choice-1`, `S26 ${route} route`, `s26-${route}-choice`);
+        await branch.page.screenshot({ path: join(evidenceDir, `desktop-s26-${route}.png`), fullPage: true });
+        assert.deepEqual(branch.errors, [], `S26 ${route} JS errors: ${branch.errors.join('; ')}`);
+      } finally { await branch.context.close(); }
+    }
+
+    const specialRoutes = [
+      ['s38-paused-01', 'nick-paused', 'visual-s38-alice-nick-ordinary-day-1', 'S38 ordinary day', 's38-alice-nick-ordinary-day'],
+      ['s39-active-01', 'damir-active', 'visual-s39-alice-damir-cafe-1', 'S39 café', 's39-alice-damir-cafe'],
+    ];
+    for (const [target, route, variant, label, media] of specialRoutes) {
+      const special = await createPage(browser, `desktop-${target}`, { width: 1000, height: 720 });
+      try {
+        await advanceToBeat(special.page, target, new Map([['s36-route-choice', route]]));
+        await assertPilotCue(special.page, target, variant, label, media);
+        await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
+        if (target === 's39-active-01') {
+          await advanceToBeat(special.page, 's39-common-01');
+          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
+          await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
+        }
+        assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
+      } finally { await special.context.close(); }
+    }
+
+    const epilogueRoutes = [
+      ['nick', 's45-common-01', 'visual-s45-nick-home-epilogue-month-later-1', 'S45 month-later epilogue', 's45-nick-home-epilogue-month-later'],
+      ['damir', 's46-common-01', 'visual-s46-damir-epilogue-month-later-1', 'S46 month-later epilogue', 's46-damir-epilogue-month-later'],
+      ['alice', 's47-common-01', 'visual-s47-alice-home-epilogue-month-later-1', 'S47 month-later epilogue', 's47-alice-home-epilogue-month-later'],
+    ];
+    for (const [route, target, variant, label, media] of epilogueRoutes) {
+      const epilogue = await createPage(browser, `desktop-${target}`, { width: 1000, height: 720 });
+      try {
+        const overrides = new Map([['s48-final-route', route]]);
+        if (route === 'damir') {
+          await advanceToBeat(epilogue.page, 's46-intro-01', overrides);
+          await assertPilotCue(epilogue.page, 's46-intro-01', 'visual-s46-airport-bus-day-1', 'S46 airport bus', 's46-airport-bus-day');
+        }
+        await advanceToBeat(epilogue.page, target, overrides);
+        await assertPilotCue(epilogue.page, target, variant, label, media);
+        await epilogue.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
+        assert.deepEqual(epilogue.errors, [], `${label} JS errors: ${epilogue.errors.join('; ')}`);
+      } finally { await epilogue.context.close(); }
+    }
+    process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 four routes, S38, S39, S44→S48, fonts, image geometry, no JS errors\n');
   } finally {
     if (browser) await browser.close();
     await new Promise(fulfill => server.close(fulfill));

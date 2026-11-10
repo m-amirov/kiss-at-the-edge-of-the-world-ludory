@@ -8,7 +8,9 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const original = join(repoRoot, 'game');
 const studio = join(repoRoot, 'game-studio');
-const sha = file => createHash('sha256').update(readFileSync(file)).digest('hex');
+const textSha = file => createHash('sha256')
+  .update(readFileSync(file, 'utf8').replace(/\r\n?/g, '\n'))
+  .digest('hex');
 
 test('fresh Studio game is independently owned and consumes native presentation', () => {
   assert.ok(existsSync(join(studio, 'ludory.components.json')), 'new Studio project not created');
@@ -25,19 +27,19 @@ test('fresh Studio game is independently owned and consumes native presentation'
   assert.match(main, /defineNarrativePresentation/);
   assert.match(main, /Reflect\.get\(story, 'presentationData'\)/);
   assert.doesNotMatch(main, /defineEconomy|premiumChoice/);
-  assert.equal(sha(join(studio, 'src/story.js')), sha(join(original, 'src/story.js')), 'ported narrative must remain unchanged');
+  assert.equal(textSha(join(studio, 'src/story.js')), textSha(join(original, 'src/story.js')), 'ported narrative must remain unchanged');
   for (const file of ['src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
     assert.equal(ownership.files[file], undefined, `visual migration must not alter a managed component: ${file}`);
   }
   for (const scene of ['s02.js', 's03.js', 's17.js', 's48.js']) {
-    assert.equal(sha(join(studio, `src/scenes/${scene}`)), sha(join(original, `src/scenes/${scene}`)));
+    assert.equal(textSha(join(studio, `src/scenes/${scene}`)), textSha(join(original, `src/scenes/${scene}`)));
   }
 });
 
 test('fresh Studio game contains all approved visuals, with canonical proof', () => {
   const manifest = JSON.parse(readFileSync(join(studio, 'narrative-assets.json')));
   const authored = JSON.parse(readFileSync(join(studio, 'visuals/presentation.json')));
-  assert.equal(manifest.storySha256, sha(join(studio, 'src/story.js')));
+  assert.equal(manifest.storySha256, textSha(join(studio, 'src/story.js')));
   const admitted = readdirSync(join(studio, 'assets')).filter(name => /^vis-.*\.png$/i.test(name)).sort();
   assert.equal(admitted.length, 60);
   assert.ok(existsSync(join(studio, 'assets/branding/kiss-at-the-edge-icon.png')));
