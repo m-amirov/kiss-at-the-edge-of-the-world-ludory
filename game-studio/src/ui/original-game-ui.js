@@ -14,21 +14,43 @@ export function originalMenuActionLabel(hasSave) {
   return hasSave ? 'Продолжить чтение' : 'Новая игра';
 }
 
-const ORIGINAL_CG_COMPOSITIONS = Object.freeze({
-  'vis-s03-damir.png': 'a2-s03',
-  'vis-s07-kitchen-pasta.png': 'a1-s07',
-  'vis-s07-kitchen-cards.png': 'a1-s07',
-  'vis-s26-eric-choice.png': 'a2-s26',
-  'vis-s26-nick-choice.png': 'a2-s26',
-  'vis-s26-damir-choice.png': 'a2-s26',
-  'vis-s26-alice-choice.png': 'a2-s26',
-  'vis-s38-alice-nick-ordinary-day.png': 'a2-group',
-  'vis-s39-alice-damir-cafe.png': 'a2-s39',
-  'vis-s39-alice-damir-cafe-walk.png': 'a2-s39',
+const ORIGINAL_CG_RESPONSIVE_SOURCES = Object.freeze({
+  'vis-s03-damir.png': Object.freeze({ portrait: 'vis-s03-damir-portrait-v2.png', composition: 'a2-s03' }),
+  'vis-s07-kitchen-pasta.png': Object.freeze({ portrait: 'vis-s07-kitchen-pasta-portrait.png', composition: 'a1-s07' }),
+  'vis-s07-kitchen-cards.png': Object.freeze({ portrait: 'vis-s07-kitchen-cards-portrait.png', composition: 'a1-s07' }),
+  'vis-s26-eric-choice.png': Object.freeze({ portrait: 'vis-s26-eric-choice-portrait.png', composition: 'a2-s26' }),
+  'vis-s26-nick-choice.png': Object.freeze({ portrait: 'vis-s26-nick-choice-portrait.png', composition: 'a2-s26' }),
+  'vis-s26-damir-choice.png': Object.freeze({ portrait: 'vis-s26-damir-choice-portrait.png', composition: 'a2-s26' }),
+  'vis-s26-alice-choice.png': Object.freeze({ portrait: 'vis-s26-alice-choice-portrait.png', composition: 'a2-s26' }),
+  'vis-s38-alice-nick-ordinary-day.png': Object.freeze({ portrait: 'vis-s38-alice-nick-ordinary-day-portrait-v2.png', composition: 'a2-group' }),
+  'vis-s39-alice-damir-cafe.png': Object.freeze({ portrait: 'vis-s39-alice-damir-cafe-portrait-v2.png', composition: 'a2-s39' }),
+  // This is a transition background, not a romantic CG. Keep the authored
+  // desktop source on mobile and frame it without substituting another scene.
+  'vis-s39-alice-damir-cafe-walk.png': Object.freeze({ portrait: null, composition: 'mobile-fallback-s39-walk' }),
 });
 
+function originalCgDesktopMediaFile(mediaFile) {
+  if (ORIGINAL_CG_RESPONSIVE_SOURCES[mediaFile]) return mediaFile;
+  return Object.entries(ORIGINAL_CG_RESPONSIVE_SOURCES)
+    .find(([, source]) => source.portrait === mediaFile)?.[0] || mediaFile;
+}
+
+export function originalCgSource(mediaFile, viewportWidth = 1440) {
+  const desktop = originalCgDesktopMediaFile(mediaFile);
+  const source = ORIGINAL_CG_RESPONSIVE_SOURCES[desktop];
+  return viewportWidth <= 680 && source?.portrait ? source.portrait : desktop;
+}
+
+export function originalCgMobileMode(mediaFile, viewportWidth = 1440) {
+  const desktop = originalCgDesktopMediaFile(mediaFile);
+  const source = ORIGINAL_CG_RESPONSIVE_SOURCES[desktop];
+  if (viewportWidth > 680 || !source) return 'desktop';
+  return source.portrait ? 'portrait' : 'desktop-fallback';
+}
+
 export function originalCgComposition(mediaFile) {
-  return ORIGINAL_CG_COMPOSITIONS[mediaFile] || 'default';
+  const desktop = originalCgDesktopMediaFile(mediaFile);
+  return ORIGINAL_CG_RESPONSIVE_SOURCES[desktop]?.composition || 'default';
 }
 
 function mayAdvanceFromKeyboardTarget(target) {
@@ -149,14 +171,27 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
       narrative?.removeAttribute('data-original-cg-composition');
       return false;
     }
-    const imageUrl = image.currentSrc || image.src;
-    const mediaFile = decodeURIComponent(new URL(imageUrl, doc.baseURI).pathname.split('/').pop() || '');
+    // Read the authored attribute first. During a responsive swap currentSrc
+    // may still describe the previous resource until the new PNG loads; using
+    // it here can make the MutationObserver write the same src repeatedly.
+    const imageUrl = image.getAttribute('src') || image.currentSrc || image.src;
+    const currentFile = decodeURIComponent(new URL(imageUrl, doc.baseURI).pathname.split('/').pop() || '');
+    const mediaFile = originalCgDesktopMediaFile(image.dataset.originalCgDesktopMedia || currentFile);
+    const viewportWidth = doc.defaultView.innerWidth;
+    const sourceFile = originalCgSource(mediaFile, viewportWidth);
+    const sourceMode = originalCgMobileMode(mediaFile, viewportWidth);
+    const sourceUrl = new URL(`../../assets/${sourceFile}`, import.meta.url).href;
+    if (currentFile !== sourceFile) image.src = sourceUrl;
     const composition = originalCgComposition(mediaFile);
+    image.dataset.originalCgDesktopMedia = mediaFile;
     stage.dataset.originalCg = 'true';
     stage.dataset.originalCgMedia = mediaFile;
+    stage.dataset.originalCgSource = sourceFile;
+    stage.dataset.originalCgSourceMode = sourceMode;
+    stage.dataset.originalCgMobileFallback = sourceMode === 'desktop-fallback' ? 'true' : 'false';
     stage.dataset.originalCgComposition = composition;
     if (narrative) narrative.dataset.originalCgComposition = composition;
-    stage.style.setProperty('--original-cg-backdrop', `url("${imageUrl}")`);
+    stage.style.setProperty('--original-cg-backdrop', `url("${sourceUrl}")`);
     return true;
   }
   function resyncCgBackdrop() {
@@ -175,6 +210,14 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
   root.addEventListener('load', event => {
     if (event.target?.matches?.('.ludory-narrative__cg')) resyncCgBackdrop();
   }, true);
+  let resizeFrame = 0;
+  doc.defaultView.addEventListener('resize', () => {
+    if (resizeFrame) return;
+    resizeFrame = doc.defaultView.requestAnimationFrame(() => {
+      resizeFrame = 0;
+      resyncCgBackdrop();
+    });
+  }, { passive: true });
 
   menu.addEventListener('click', showMenu);
   home.querySelector('[data-ui="continue-story"]').addEventListener('click', hideMenu);

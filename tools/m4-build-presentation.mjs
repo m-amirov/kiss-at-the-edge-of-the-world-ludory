@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFileSync, writeFileSync, lstatSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, lstatSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname, basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -24,6 +24,13 @@ function exactKeys(value, allowed, required, context) {
 
 function readJson(file) { return JSON.parse(readFileSync(file, 'utf8')); }
 
+function pngDimensions(bytes, description) {
+  if (bytes.length < 24 || !bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) {
+    throw new Error(`${description}: expected PNG`);
+  }
+  return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
+}
+
 function checkRegular(file, description) {
   let stat;
   try { stat = lstatSync(file); } catch { throw new Error(`${description}: missing regular file`); }
@@ -33,6 +40,65 @@ function checkRegular(file, description) {
 function checkDirectory(file) {
   const stat = lstatSync(file);
   if (!stat.isDirectory() || stat.isSymbolicLink()) throw new Error(`unsafe symlink media directory: ${file}`);
+}
+
+export function validateMobileAssets({ projectRoot, presentation }) {
+  if (basename(projectRoot) !== 'game-studio') return { ids: [], proof: {}, paths: new Set() };
+  const file = join(dirname(projectRoot), 'docs/migration/m4-mobile-assets.json');
+  if (!existsSync(file)) throw new Error('game-studio: mobile provenance manifest missing');
+  const manifest = readJson(file);
+  exactKeys(manifest, ['schemaVersion', 'sourceCommit', 'project', 'mobileBreakpoint', 'entries', 'rejectedCandidates', 'fallbacks'],
+    ['schemaVersion', 'sourceCommit', 'project', 'mobileBreakpoint', 'entries'], 'mobile provenance');
+  if (manifest.schemaVersion !== 1 || manifest.project !== 'game-studio' || manifest.mobileBreakpoint !== 680) {
+    throw new Error('mobile provenance: unsupported schema/project/breakpoint');
+  }
+  if (!/^[0-9a-f]{40}$/i.test(manifest.sourceCommit)) throw new Error('mobile provenance: sourceCommit must be pinned');
+  const seen = new Set();
+  const ids = [];
+  const proof = {};
+  const paths = new Set();
+  for (const entry of manifest.entries) {
+    exactKeys(entry, ['id', 'desktopMediaId', 'desktopPath', 'portraitPath', 'sourceKind', 'status', 'artStatus', 'useOnMobile',
+      'sha256', 'dimensions', 'sourceBlobSha', 'licenseEvidence', 'referenceSources', 'admissionEvidence'],
+    ['id', 'desktopMediaId', 'desktopPath', 'portraitPath', 'sourceKind', 'status', 'artStatus', 'useOnMobile', 'sha256', 'dimensions',
+      'licenseEvidence', 'admissionEvidence'], `mobile entry ${entry.id}`);
+    if (seen.has(entry.id)) throw new Error(`mobile provenance: duplicate entry ${entry.id}`);
+    seen.add(entry.id);
+    if (!entry.useOnMobile || entry.status !== 'accepted') throw new Error(`mobile entry ${entry.id}: not admitted for mobile use`);
+    const desktop = presentation.media[entry.desktopMediaId];
+    if (!desktop || desktop.src !== entry.desktopPath) throw new Error(`mobile entry ${entry.id}: desktop media mismatch`);
+    if (!MEDIA_PATH.test(entry.portraitPath) || !entry.portraitPath.endsWith('.png')) {
+      throw new Error(`mobile entry ${entry.id}: unsafe portrait path`);
+    }
+    const portraitFile = join(projectRoot, entry.portraitPath);
+    checkRegular(portraitFile, `mobile entry ${entry.id}`);
+    const bytes = readFileSync(portraitFile);
+    const dimensions = pngDimensions(bytes, `mobile entry ${entry.id}`);
+    const blobHash = hash(bytes);
+    if (blobHash !== entry.sha256) throw new Error(`mobile entry ${entry.id}: SHA-256 mismatch`);
+    if (`${dimensions.width}x${dimensions.height}` !== entry.dimensions) throw new Error(`mobile entry ${entry.id}: dimensions mismatch`);
+    if (entry.licenseEvidence?.sha256?.toLowerCase() !== blobHash || !entry.licenseEvidence?.license || !entry.licenseEvidence?.method) {
+      throw new Error(`mobile entry ${entry.id}: incomplete rights evidence`);
+    }
+    if (entry.sourceKind.startsWith('pinned') && !/^[0-9a-f]{40}$/i.test(entry.sourceBlobSha ?? '')) {
+      throw new Error(`mobile entry ${entry.id}: pinned source blob evidence missing`);
+    }
+    if (entry.sourceKind.startsWith('generated') && !entry.referenceSources?.length) {
+      throw new Error(`mobile entry ${entry.id}: generated source references missing`);
+    }
+    ids.push(entry.id);
+    paths.add(entry.portraitPath);
+    proof[entry.id] = {
+      desktopMediaId: entry.desktopMediaId,
+      desktopPath: entry.desktopPath,
+      portraitPath: entry.portraitPath,
+      sha256: blobHash,
+      dimensions: entry.dimensions,
+      sourceKind: entry.sourceKind,
+      artStatus: entry.artStatus,
+    };
+  }
+  return { ids, proof, paths };
 }
 
 function validateManifest(manifest, sourceMap) {
@@ -103,8 +169,9 @@ export function buildPresentation({ projectRoot, write = false }) {
     if (matching.length !== 1) throw new Error(`media ${mediaId}: missing accepted admission or SHA256 hash mismatch`);
     assets[mediaId] = { path: media.src, sha256: blobHash };
   }
+  const mobile = validateMobileAssets({ projectRoot: root, presentation: manifest });
   const raster = readdirSync(join(root, 'assets')).filter(name => /\.(?:png|webp|jpe?g)$/i.test(name));
-  const proved = new Set(Object.values(assets).map(asset => asset.path));
+  const proved = new Set([...Object.values(assets).map(asset => asset.path), ...mobile.paths]);
   for (const name of raster) if (!proved.has(`assets/${name}`)) throw new Error(`unproved raster asset: ${name}`);
 
   const storyFile = join(root, 'src/story.js');
@@ -118,7 +185,9 @@ export function buildPresentation({ projectRoot, write = false }) {
   // author-owned presentation export installs the reader UI; legacy game/ is immutable.
   const readerAdapter = basename(root) === 'game-studio' ? "import './ui/original-game-ui.js';\n" : '';
   const generated = `// Generated from visuals/presentation.json by tools/m4-build-presentation.mjs. Do not edit.\n${readerAdapter}export const presentationData = ${JSON.stringify(manifest, null, 2)};\n`;
-  const proof = `${JSON.stringify({ schemaVersion: 1, storySha256, assets }, null, 2)}\n`;
+  const proofObject = { schemaVersion: 1, storySha256, assets };
+  if (mobile.ids.length) proofObject.mobileAssets = mobile.proof;
+  const proof = `${JSON.stringify(proofObject, null, 2)}\n`;
   const generatedPath = join(root, 'src/presentation.js');
   const proofPath = join(root, 'narrative-assets.json');
   if (write) {
@@ -131,7 +200,7 @@ export function buildPresentation({ projectRoot, write = false }) {
   }
   const blocked = [...sourceMap.entries, ...sourceMap.openingStages]
     .filter(cue => cue.sourceArt && !cue.admittedMediaId).length;
-  return { presentationSha256, storySha256, assetIds: Object.keys(assets), blocked };
+  return { presentationSha256, storySha256, assetIds: Object.keys(assets), mobileAssetIds: mobile.ids, blocked };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

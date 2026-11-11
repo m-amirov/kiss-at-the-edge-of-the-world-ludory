@@ -9,6 +9,7 @@ import { buildPresentation, canonicalTextSha256 } from '../tools/m4-build-presen
 const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 const studioRoot = join(repoRoot, 'game-studio');
 const inventorySource = join(repoRoot, 'docs/migration/m4-assets-inventory.json');
+const mobileInventorySource = join(repoRoot, 'docs/migration/m4-mobile-assets.json');
 
 test('canonical story proof is stable for LF, CRLF, and CR sources', () => {
   const lf = Buffer.from('first line\nsecond line\n', 'utf8');
@@ -26,6 +27,7 @@ test('presentation proof is reproducible when story.js line endings change', () 
     const inventoryPath = join(base, 'docs/migration/m4-assets-inventory.json');
     mkdirSync(dirname(inventoryPath), { recursive: true });
     cpSync(inventorySource, inventoryPath);
+    cpSync(mobileInventorySource, join(base, 'docs/migration/m4-mobile-assets.json'));
 
     const story = readFileSync(join(studioRoot, 'src/story.js'), 'utf8').replace(/\r\n?/g, '\n');
     const storyPath = join(projectRoot, 'src/story.js');

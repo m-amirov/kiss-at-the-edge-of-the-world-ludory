@@ -21,7 +21,18 @@ const mobileCgCompositions = new Map([
   ['s26-alice-choice', 'a2-s26'],
   ['s38-alice-nick-ordinary-day', 'a2-group'],
   ['s39-alice-damir-cafe', 'a2-s39'],
-  ['s39-alice-damir-cafe-walk', 'a2-s39'],
+  ['s39-alice-damir-cafe-walk', 'mobile-fallback-s39-walk'],
+]);
+const mobileCgSources = new Map([
+  ['damir-coffee-cg', 'vis-s03-damir-portrait-v2.png'],
+  ['s07-kitchen-pasta', 'vis-s07-kitchen-pasta-portrait.png'],
+  ['s07-kitchen-cards', 'vis-s07-kitchen-cards-portrait.png'],
+  ['s26-eric-choice', 'vis-s26-eric-choice-portrait.png'],
+  ['s26-nick-choice', 'vis-s26-nick-choice-portrait.png'],
+  ['s26-damir-choice', 'vis-s26-damir-choice-portrait.png'],
+  ['s26-alice-choice', 'vis-s26-alice-choice-portrait.png'],
+  ['s38-alice-nick-ordinary-day', 'vis-s38-alice-nick-ordinary-day-portrait-v2.png'],
+  ['s39-alice-damir-cafe', 'vis-s39-alice-damir-cafe-portrait-v2.png'],
 ]);
 
 const server = createServer(async (request, response) => {
@@ -132,23 +143,29 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's47-alice-home-epilogue-month-later': 'vis-s47-alice-home-epilogue-month-later.png',
       's48-guesthouse-exit-group': 'vis-s48-guesthouse-exit-group.png',
     };
-    assert.ok((await image.getAttribute('src'))?.endsWith(`/assets/${files[expectedMediaId]}`), `${label}: wrong media URL`);
+    const mobileViewport = await page.evaluate(() => innerWidth <= 680);
+    const expectedSource = mobileViewport ? (mobileCgSources.get(expectedMediaId) || files[expectedMediaId]) : files[expectedMediaId];
+    assert.ok((await image.getAttribute('src'))?.endsWith(`/assets/${expectedSource}`), `${label}: wrong media URL`);
+    if (process.env.M4_BROWSER_DEBUG) console.log(`M4_BROWSER_IMAGE_WAIT: ${label} src=${expectedSource}`);
     await page.waitForFunction(() => {
       const img = document.querySelector('.ludory-narrative__stage img');
       return img?.complete && img.naturalWidth > 0;
     }, undefined, { timeout: 10000 });
+    if (process.env.M4_BROWSER_DEBUG) console.log(`M4_BROWSER_IMAGE_READY: ${label}`);
     await image.evaluate(async img => { if (typeof img.decode === 'function') await img.decode(); });
+    if (process.env.M4_BROWSER_DEBUG) console.log(`M4_BROWSER_IMAGE_DECODED: ${label}`);
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
     const expectedComposition = mobileCgCompositions.get(expectedMediaId);
+    const sourceMode = await stage.getAttribute('data-original-cg-source-mode');
     if (expectedComposition) {
       const actualComposition = await stage.getAttribute('data-original-cg-composition');
-      if (actualComposition !== null) assert.equal(actualComposition, expectedComposition,
-        `${label}: wrong approved mobile composition`);
-      else if (expectedComposition.startsWith('a2-')) {
-        assert.notEqual(await image.evaluate(element => getComputedStyle(element).transform), 'none',
-          `${label}: source-bound adaptive crop fallback was not applied`);
+      assert.equal(actualComposition, expectedComposition, `${label}: wrong approved mobile composition`);
+      if (mobileViewport && mobileCgSources.has(expectedMediaId)) assert.equal(sourceMode, 'portrait', `${label}: portrait source not active`);
+      if (mobileViewport && expectedMediaId === 's39-alice-damir-cafe-walk') {
+        assert.equal(sourceMode, 'desktop-fallback', `${label}: S39 walk must keep the transition background`);
+        assert.equal(await stage.getAttribute('data-original-cg-mobile-fallback'), 'true');
       }
     }
     const geometry = await image.boundingBox();
@@ -161,7 +178,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       assert.ok(geometry.y >= navigationBottom - 1,
         `${label}: main CG begins beneath mobile navigation safe area: ${JSON.stringify({ geometry, navigationBottom })}`);
     }
-    const intentionallyFramed = expectedComposition?.startsWith('a2-');
+    const intentionallyFramed = expectedComposition?.startsWith('a2-') && !(mobileViewport &&
+      (sourceMode === 'portrait' || sourceMode === 'desktop-fallback'));
     if (!intentionallyFramed) {
       assert.ok(geometry.x >= -2 && geometry.y >= -2 &&
         geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
@@ -174,9 +192,9 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       await page.evaluate(() => innerWidth <= 680)) {
       assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'contain',
         `${label}: mobile CG must preserve the complete authored frame`);
-      if (intentionallyFramed) {
-        assert.notEqual(await image.evaluate(element => getComputedStyle(element).transform), 'none',
-          `${label}: approved adaptive crop must enlarge the complete authored frame`);
+      if (mobileCgSources.has(expectedMediaId) || expectedMediaId === 's39-alice-damir-cafe-walk') {
+        assert.equal(await image.evaluate(element => getComputedStyle(element).transform), 'none',
+          `${label}: mobile source must not use an uncontrolled crop transform`);
       }
     }
   }
@@ -252,6 +270,7 @@ async function assertViewport(page, label) {
 async function captureMobileViewports(page, prefix, beatId, variantId, label, mediaId) {
   const originalViewport = page.viewportSize();
   for (const viewport of [{ width: 320, height: 700 }, { width: 390, height: 844 }, { width: 430, height: 932 }]) {
+    if (process.env.M4_BROWSER_DEBUG) console.log(`M4_BROWSER_CAPTURE: ${prefix} ${viewport.width}x${viewport.height}`);
     await page.setViewportSize(viewport);
     await page.evaluate(() => new Promise(resolve =>
       requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
@@ -259,6 +278,34 @@ async function captureMobileViewports(page, prefix, beatId, variantId, label, me
     await page.screenshot({ path: join(evidenceDir, `${prefix}-${viewport.width}x${viewport.height}.png`), fullPage: true });
   }
   if (originalViewport) await page.setViewportSize(originalViewport);
+}
+
+async function assertResponsiveSourceSwitch(page, mediaId, label) {
+  const desktopFile = {
+    'damir-coffee-cg': 'vis-s03-damir.png',
+    's07-kitchen-pasta': 'vis-s07-kitchen-pasta.png',
+    's07-kitchen-cards': 'vis-s07-kitchen-cards.png',
+    's26-eric-choice': 'vis-s26-eric-choice.png',
+    's26-nick-choice': 'vis-s26-nick-choice.png',
+    's26-damir-choice': 'vis-s26-damir-choice.png',
+    's26-alice-choice': 'vis-s26-alice-choice.png',
+    's38-alice-nick-ordinary-day': 'vis-s38-alice-nick-ordinary-day.png',
+    's39-alice-damir-cafe': 'vis-s39-alice-damir-cafe.png',
+    's39-alice-damir-cafe-walk': 'vis-s39-alice-damir-cafe-walk.png',
+  }[mediaId];
+  const portraitFile = mobileCgSources.get(mediaId) || desktopFile;
+  for (const [viewport, expected] of [
+    [{ width: 390, height: 844 }, portraitFile],
+    [{ width: 1440, height: 900 }, desktopFile],
+    [{ width: 390, height: 844 }, portraitFile],
+  ]) {
+    if (process.env.M4_BROWSER_DEBUG) console.log(`M4_BROWSER_RESIZE: ${label} ${viewport.width}x${viewport.height}`);
+    await page.setViewportSize(viewport);
+    await page.waitForFunction(file => document.querySelector('.ludory-narrative__stage img')?.src.endsWith(`/assets/${file}`), expected,
+      { timeout: 5000 });
+  }
+  assert.equal(await page.locator('.ludory-narrative__stage').getAttribute('data-original-cg-source-mode'),
+    mobileCgSources.has(mediaId) ? 'portrait' : 'desktop-fallback', `${label}: final responsive source mode`);
 }
 
 async function createPage(browser, name, viewport) {
@@ -433,7 +480,7 @@ async function main() {
       assert.deepEqual(mobile.errors, [], `mobile JS errors: ${mobile.errors.join('; ')}`);
     } finally { await mobile.context.close(); }
 
-    const desktop = await createPage(browser, 'desktop-1000x720', { width: 1000, height: 720 });
+    const desktop = await createPage(browser, 'desktop-1440x900', { width: 1440, height: 900 });
     try {
       await verifyStageNavigation(desktop.page, 'desktop');
       await advanceToSeatChoice(desktop.page);
@@ -485,7 +532,7 @@ async function main() {
       await assertPilotCue(desktop.page, 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'S26 Eric route', 's26-eric-choice');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s26-eric.png'), fullPage: true });
       await captureMobileViewports(desktop.page, 'mobile-s26-choice-eric', 's26-choice-eric-01', 'visual-s26-eric-choice-1', 'mobile S26 Eric route', 's26-eric-choice');
-      await desktop.page.setViewportSize({ width: 1000, height: 720 });
+      await desktop.page.setViewportSize({ width: 1440, height: 900 });
       await advanceToBeat(desktop.page, 's48-common-01');
       await assertPilotCue(desktop.page, 's48-common-01', 'visual-s48-guesthouse-exit-group-1', 'S48 departure morning', 's48-guesthouse-exit-group');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s48-departure.png'), fullPage: true });
@@ -505,18 +552,25 @@ async function main() {
     } finally { await desktop.context.close(); }
 
     const specialRoutes = [
+      ['s26-choice-nick-01', 0, new Map([['s26-route-choice', 1]]),
+        'visual-s26-nick-choice-1', 'S26 Nick route', 's26-nick-choice'],
+      ['s26-choice-damir-01', 0, new Map([['s26-route-choice', 2]]),
+        'visual-s26-damir-choice-1', 'S26 Damir route', 's26-damir-choice'],
+      ['s26-choice-alice-01', 0, new Map([['s26-route-choice', 3]]),
+        'visual-s26-alice-choice-1', 'S26 Alice route', 's26-alice-choice'],
       ['s38-paused-01', 1, new Map([['s26-route-choice', 1], ['s33-c1-choice', 1], ['s36-route-choice', 0]]),
         'visual-s38-alice-nick-ordinary-day-1', 'S38 ordinary day', 's38-alice-nick-ordinary-day'],
       ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
         'visual-s39-alice-damir-cafe-1', 'S39 café', 's39-alice-damir-cafe'],
     ];
     for (const [target, routeChoice, extraOverrides, variant, label, media] of specialRoutes) {
-      const special = await createPage(browser, `desktop-${target}`, { width: 1000, height: 720 });
+      const special = await createPage(browser, `desktop-${target}`, { width: 1440, height: 900 });
       try {
         const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
+        await assertResponsiveSourceSwitch(special.page, media, label);
         await captureMobileViewports(special.page, `mobile-${target}`, target, variant, `mobile ${label}`, media);
         if (target === 's39-active-01') {
           await advanceToBeat(special.page, 's39-common-01');

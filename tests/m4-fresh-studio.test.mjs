@@ -40,7 +40,9 @@ test('fresh Studio game contains all approved visuals, with canonical proof', ()
   const manifest = JSON.parse(readFileSync(join(studio, 'narrative-assets.json')));
   const authored = JSON.parse(readFileSync(join(studio, 'visuals/presentation.json')));
   assert.equal(manifest.storySha256, textSha(join(studio, 'src/story.js')));
-  const admitted = readdirSync(join(studio, 'assets')).filter(name => /^vis-.*\.png$/i.test(name)).sort();
+  const admitted = readdirSync(join(studio, 'assets'))
+    .filter(name => /^vis-.*\.png$/i.test(name) && !/-portrait(?:-v2)?\.png$/i.test(name))
+    .sort();
   assert.equal(admitted.length, 60);
   assert.ok(existsSync(join(studio, 'assets/branding/kiss-at-the-edge-icon.png')));
   assert.ok(admitted.includes('vis-s02-roadside-cafe.png'));

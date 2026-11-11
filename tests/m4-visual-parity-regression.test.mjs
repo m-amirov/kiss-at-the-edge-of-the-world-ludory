@@ -30,6 +30,8 @@ test('reader parity keeps the menu first, keeps runtime utilities real, and prot
   assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__panel\s*\{[^}]*max-height:\s*min\(64dvh,560px\)/s);
   assert.match(source, /stage\[data-original-cg\]::before/);
   const uiSource = await readFile(ui, 'utf8');
+  assert.match(uiSource, /getAttribute\('src'\)\s*\|\|\s*image\.currentSrc/,
+    'responsive source switching must use the current src attribute before currentSrc');
   assert.match(uiSource, /addEventListener\('load',[\s\S]*?ludory-narrative__cg/);
   assert.match(uiSource, /requestAnimationFrame\(retry\)/);
 });
@@ -46,7 +48,7 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
     'vis-s26-alice-choice.png': 'a2-s26',
     'vis-s38-alice-nick-ordinary-day.png': 'a2-group',
     'vis-s39-alice-damir-cafe.png': 'a2-s39',
-    'vis-s39-alice-damir-cafe-walk.png': 'a2-s39',
+    'vis-s39-alice-damir-cafe-walk.png': 'mobile-fallback-s39-walk',
   };
   for (const [mediaFile, composition] of Object.entries(expected)) {
     assert.equal(originalCgComposition(mediaFile), composition, mediaFile);
@@ -54,15 +56,15 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.equal(originalCgComposition('vis-unmapped.png'), 'default');
 
   const source = await readFile(css, 'utf8');
-  assert.match(source, /data-original-cg-composition="a1-s07"[\s\S]*?object-fit:\s*contain/);
-  assert.match(source, /data-original-cg-composition="a2-s03"[\s\S]*?transform:\s*scale\(1\.45\)/);
-  assert.match(source, /data-original-cg-composition="a2-s26"[\s\S]*?transform:\s*scale\(1\.6\)/);
-  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?transform:\s*scale\(1\.48\)/);
-  assert.match(source, /data-original-cg-composition="a2-group"[\s\S]*?object-fit:\s*contain/);
-  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?\.ludory-narrative__background[\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /data-original-cg-composition\][\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /data-original-cg-source-mode="portrait"\][\s\S]*?display:\s*none/);
+  assert.match(source, /data-original-cg-mobile-fallback="true"\][\s\S]*?transform:\s*none/);
+  assert.doesNotMatch(source, /transform:\s*scale\((?:1\.45|1\.6|1\.48|1\.18)\)/);
+  assert.match(source, /data-original-cg-composition\][\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /data-original-cg-mobile-fallback="true"[\s\S]*?\.ludory-narrative__background[\s\S]*?object-fit:\s*contain/);
   assert.match(source, /--original-cg-safe-top:\s*max\(58px,[\s\S]*?env\(safe-area-inset-top/);
   assert.match(source, /data-original-cg-composition\][\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
-  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?\.ludory-narrative__background[\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
+  assert.match(source, /data-original-cg-mobile-fallback="true"[\s\S]*?\.ludory-narrative__background[\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
   assert.match(source, /\.ludory-narrative__panel\s*\{[^}]*min-height:\s*0/);
   assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__toolbar \{\s*top:\s*max\(10px,/);
   const browserQa = await readFile(browserQaScript, 'utf8');

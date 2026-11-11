@@ -224,73 +224,22 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
   body.original-game #game .ludory-narrative[data-original-cg-composition^="a"] .ludory-narrative__panel {
     background: linear-gradient(180deg,rgba(7,15,22,0),rgba(7,15,22,.18) 30%,rgba(7,15,22,.9) 100%);
   }
+  /* A real portrait already fills the authored mobile frame. The old
+     landscape blur-fill is reserved for unmapped legacy media only. */
+  body.original-game #game .ludory-narrative__stage[data-original-cg-source-mode="portrait"]::before,
+  body.original-game #game .ludory-narrative__stage[data-original-cg-mobile-fallback="true"]::before {
+    display: none;
+  }
   body.original-game #game .ludory-narrative__stage[data-original-cg-composition] .ludory-narrative__cg {
     inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
   }
-  /* The renderer can replace a cached stage between two paints. Keep the
-     approved framing bound to the admitted source as a presentation fallback. */
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s03-damir.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s07-kitchen-pasta.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s07-kitchen-cards.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-eric-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-nick-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-damir-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-alice-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s38-alice-nick-ordinary-day.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe-walk.png"] {
+  body.original-game #game .ludory-narrative__stage[data-original-cg-mobile-fallback="true"] .ludory-narrative__background {
     inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a1-s07"] .ludory-narrative__cg {
     transform: none;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s07-kitchen-pasta.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s07-kitchen-cards.png"] {
-    transform: none;
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-s03"] .ludory-narrative__cg {
-    transform: scale(1.45); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s03-damir.png"] {
-    transform: scale(1.45); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-s26"] .ludory-narrative__cg {
-    transform: scale(1.6); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-eric-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-nick-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-damir-choice.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s26-alice-choice.png"] {
-    transform: scale(1.6); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-group"] .ludory-narrative__cg {
-    object-fit: contain; transform: scale(1.18); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s38-alice-nick-ordinary-day.png"] {
-    object-fit: contain; transform: scale(1.18); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-s39"] .ludory-narrative__cg {
-    transform: scale(1.48); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-s39"] .ludory-narrative__background {
-    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
-    object-fit: contain; object-position: center top; display: block;
-    mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
-    transform: scale(1.48); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe.png"],
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe-walk.png"] {
-    transform: scale(1.48); transform-origin: center top;
-  }
-  body.original-game #game .ludory-narrative__stage .ludory-narrative__background[src$="/vis-s39-alice-damir-cafe-walk.png"] {
-    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
-    object-fit: contain; object-position: center top; display: block;
-    mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
-    transform: scale(1.48); transform-origin: center top;
   }
   body.original-game #game .ludory-narrative__panel {
     max-height: min(64dvh,560px);

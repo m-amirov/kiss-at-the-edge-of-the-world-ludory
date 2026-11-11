@@ -157,3 +157,53 @@ S38 и обеих S39; safe-area дефекты устранены. Художе
 общей visual parity по-прежнему остаётся открытой до независимого решения
 по отличию утверждённой lossless PNG-обложки от indoor `final-ui-menu-*`
 baseline.
+
+## Issue #4 — мобильные portrait sources и responsive admission (2026-11-11)
+
+Этот раздел фиксирует актуальную реализацию поверх исторических наблюдений
+выше. Старые описания scale `1.45/1.6/1.18/1.48` относятся к предыдущему
+состоянию PR и не являются текущими правилами для portrait PNG.
+
+### Admission и provenance
+
+Добавлен отдельный `docs/migration/m4-mobile-assets.json` с pinned source
+commit `1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c`, breakpoint `680`, SHA-256,
+размерами, license/admission evidence и соответствующим desktop media ID.
+Для S07 pasta/cards и всех четырёх S26 choice-веток Git blob SHA совпал с
+источником; PNG байты и разрешение сохранены. S03/S38/S39 используют
+source-bound portrait candidates и имеют статус `pending-independent-review`,
+а не художественный `PASS`.
+
+Старые portrait candidates S03/S38/S39 записаны в `rejectedCandidates` и не
+подключаются автоматически. Для S39 walk сохранён authored transition
+background с fail-closed `desktop-fallback`; романтический portrait вместо него
+не подставляется. Заблокированные S01 assets не допущены.
+
+### Runtime/UI
+
+`original-game-ui.js` выбирает portrait source при ширине `<=680px`, desktop
+landscape source при большей ширине и переключает source на resize без reload.
+Текущий HTML `src` читается до `currentSrc`, поэтому задержка загрузки PNG не
+создаёт повторную запись через `MutationObserver`. `original-game.css` отключает
+blur-fill только для admitted portrait/fallback слоя, сохраняет `contain`,
+safe-area верхней навигации, читаемую прокрутку диалоговой панели и touch
+targets `44px+`. Managed Studio files, story graph, text, fonts, desktop
+landscape PNG и economy не менялись.
+
+### Фактический Chromium evidence
+
+Локальный запуск `npm run qa:m4:browser` на обновлённом рабочем состоянии
+завершился `M4_BROWSER_QA_PASS` без JavaScript errors. Evidence directory:
+
+`C:\Users\user\AppData\Local\Temp\issue4-m4-browser-final-d32c7381-9206-4c9d-aadc-99ccb8f5bb88`
+
+В наборе есть реальные кадры меню и reader для desktop `1440x900`, mobile
+`320x700`, `390x844`, `430x932`, а также S03, обе S07, Eric/Nick/Damir/Alice
+ветки S26, S38, S39 café и S39 walk, S44/S46/S48. Проверены source switch
+без reload, Save/Reload/Back/Continue, длинный текст, safe-area, отсутствие
+горизонтального overflow и загрузка оригинальных шрифтов.
+
+Автоматический browser/static gate проходит; независимый художественный gate
+остаётся `OPEN` для S03/S38/S39 до отдельного просмотра portrait candidates и
+сравнения с canonical `final-ui-*`. Наличие корректного runtime evidence не
+подменяет это независимое решение.
