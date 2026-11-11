@@ -153,6 +153,14 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     }
     const geometry = await image.boundingBox();
     assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
+    if (expectedComposition && await page.evaluate(() => innerWidth <= 680)) {
+      const navigationBottom = await page.evaluate(() => Math.max(
+        document.querySelector('[data-ui="open-menu"]')?.getBoundingClientRect().bottom ?? 0,
+        document.querySelector('.ludory-narrative__toolbar')?.getBoundingClientRect().bottom ?? 0,
+      ));
+      assert.ok(geometry.y >= navigationBottom - 1,
+        `${label}: main CG begins beneath mobile navigation safe area: ${JSON.stringify({ geometry, navigationBottom })}`);
+    }
     const intentionallyFramed = expectedComposition?.startsWith('a2-');
     if (!intentionallyFramed) {
       assert.ok(geometry.x >= -2 && geometry.y >= -2 &&

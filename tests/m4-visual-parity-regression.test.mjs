@@ -60,9 +60,13 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?transform:\s*scale\(1\.48\)/);
   assert.match(source, /data-original-cg-composition="a2-group"[\s\S]*?object-fit:\s*contain/);
   assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?\.ludory-narrative__background[\s\S]*?object-fit:\s*contain/);
+  assert.match(source, /--original-cg-safe-top:\s*max\(58px,[\s\S]*?env\(safe-area-inset-top/);
+  assert.match(source, /data-original-cg-composition\][\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
+  assert.match(source, /data-original-cg-composition="a2-s39"[\s\S]*?\.ludory-narrative__background[\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
   assert.match(source, /\.ludory-narrative__panel\s*\{[^}]*min-height:\s*0/);
   assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__toolbar \{\s*top:\s*max\(10px,/);
   const browserQa = await readFile(browserQaScript, 'utf8');
   assert.match(browserQa, /panelScrollable:\s*panelElement\s*\?\s*panelElement\.scrollHeight\s*>\s*panelElement\.clientHeight/);
   assert.match(browserQa, /action\.y\s*>=\s*-2[\s\S]*?action\.y\s*\+\s*action\.height/);
+  assert.match(browserQa, /navigationBottom[\s\S]*?geometry\.y\s*>=\s*navigationBottom\s*-\s*1/);
 });

@@ -117,3 +117,34 @@ S39, S44/S46/S48 и все три мобильных viewport для шести 
 - Известное визуальное отличие: утверждённая lossless PNG-обложка меню
   сохраняется; она композиционно отличается от исходного indoor
   `final-ui-menu-*`, поэтому старый пережатый WebP не возвращается.
+
+## Safe-area follow-up — 2026-11-11
+
+Независимый просмотр кадров из предыдущего CI-артефакта подтвердил одну
+первопричину для S03, S07, S38 и S39: основной image layer имел `top: 0`, а
+fixed-навигация занимала верхние 44px плюс верхний отступ. `transform-origin:
+center top` сохранял масштаб, но не создавал safe area, поэтому лица и правые
+участники оказывались под кнопками. Blur-fill остаётся полноэкранным и может
+быть под навигацией; сдвигается только основной CG/background layer.
+
+Исправление ограничено mobile presentation: `--original-cg-safe-top` равен
+`max(58px, calc(env(safe-area-inset-top, 0px) + 48px))` и применяется к
+утверждённым CG и S39 background, включая source-bound fallback selectors.
+Масштабы A1/A2, `contain`, PNG, шрифты, текст, сюжет и managed Studio-файлы
+не менялись. Browser QA теперь проверяет фактические bounding boxes: верх
+основного media layer не может пересекать нижнюю границу `Меню`/`Назад`/
+`Журнал`.
+
+Новый локальный прогон `npm run qa:m4:browser` создал кадры из исправленного
+рабочего состояния в:
+`C:\Users\user\AppData\Local\Temp\pr3-m4-visual-safe-top-26b9941b-031c-4868-96cf-26b9a7d1d3e1`.
+Проверены S03, S07 pasta/cards, S26 Eric, S38 group и S39 café/walk на
+320×700, 390×844 и 430×932; результат — `M4_BROWSER_QA_PASS`.
+
+Side-by-side comparisons `before → after` подготовлены из предыдущего
+CI-артефакта [13791325367](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/actions/runs/42871890763/artifacts/13791325367)
+и новых кадров в:
+`C:\Users\user\AppData\Local\Temp\pr3-m4-before-after-acbec444-5019-40f8-a1a2-00eec26360ae`.
+После отправки этого изменения новый CI-артефакт будет добавлен сюда отдельной
+ссылкой; художественная приёмка по-прежнему остаётся открытой до просмотра
+фактических кадров нового HEAD.

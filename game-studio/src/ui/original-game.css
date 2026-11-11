@@ -201,6 +201,9 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
   .reader-chrome__title { font-size: 12px; max-width: 95px; }
   .reader-chrome__actions { gap: 4px; }
   .reader-chrome__actions button { min-height: 44px; padding: 6px 7px; font-size: 11px; }
+  body.original-game #game .ludory-narrative__stage {
+    --original-cg-safe-top: max(58px, calc(env(safe-area-inset-top, 0px) + 48px));
+  }
   body.original-game #game .ludory-narrative__cg {
     z-index: 1; object-fit: contain; object-position: center top; background: transparent;
   }
@@ -222,7 +225,7 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
     background: linear-gradient(180deg,rgba(7,15,22,0),rgba(7,15,22,.18) 30%,rgba(7,15,22,.9) 100%);
   }
   body.original-game #game .ludory-narrative__stage[data-original-cg-composition] .ludory-narrative__cg {
-    inset: 0 auto auto 0; width: 100%; height: auto; max-height: none;
+    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
   }
@@ -238,7 +241,7 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
   body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s38-alice-nick-ordinary-day.png"],
   body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe.png"],
   body.original-game #game .ludory-narrative__stage .ludory-narrative__cg[src$="/vis-s39-alice-damir-cafe-walk.png"] {
-    inset: 0 auto auto 0; width: 100%; height: auto; max-height: none;
+    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
   }
@@ -274,7 +277,7 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
     transform: scale(1.48); transform-origin: center top;
   }
   body.original-game #game .ludory-narrative__stage[data-original-cg-composition="a2-s39"] .ludory-narrative__background {
-    inset: 0 auto auto 0; width: 100%; height: auto; max-height: none;
+    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
     transform: scale(1.48); transform-origin: center top;
@@ -284,7 +287,7 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
     transform: scale(1.48); transform-origin: center top;
   }
   body.original-game #game .ludory-narrative__stage .ludory-narrative__background[src$="/vis-s39-alice-damir-cafe-walk.png"] {
-    inset: 0 auto auto 0; width: 100%; height: auto; max-height: none;
+    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
     object-fit: contain; object-position: center top; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
     transform: scale(1.48); transform-origin: center top;
