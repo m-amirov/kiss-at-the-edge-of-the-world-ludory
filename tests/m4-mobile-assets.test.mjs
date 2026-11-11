@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { validateMobileAssets } from '../tools/m4-build-presentation.mjs';
 import {
   originalCgComposition,
+  originalCgDesktopMediaForSource,
   originalCgMobileMode,
   originalCgSource,
 } from '../game-studio/src/ui/original-game-ui.js';
@@ -89,6 +90,21 @@ test('responsive source mapping switches without changing the authored desktop s
     assert.equal(originalCgMobileMode(desktop, 1440), 'desktop', `${desktop}: desktop mode`);
     assert.equal(originalCgComposition(portrait), composition, `${portrait}: composition alias`);
   }
+});
+
+test('reused image elements cannot retain stale desktop media after a scene change', () => {
+  assert.equal(
+    originalCgDesktopMediaForSource('vis-s03-damir.png', 'vis-s39-alice-damir-cafe.png'),
+    'vis-s39-alice-damir-cafe.png',
+  );
+  assert.equal(
+    originalCgDesktopMediaForSource('vis-s03-damir.png', 'vis-s39-alice-damir-cafe-portrait-v2.png'),
+    'vis-s39-alice-damir-cafe.png',
+  );
+  assert.equal(
+    originalCgDesktopMediaForSource('vis-s39-alice-damir-cafe.png', 'vis-s39-alice-damir-cafe-portrait-v2.png'),
+    'vis-s39-alice-damir-cafe.png',
+  );
 });
 
 test('mobile admission fails closed for missing or tampered portrait PNGs', () => {

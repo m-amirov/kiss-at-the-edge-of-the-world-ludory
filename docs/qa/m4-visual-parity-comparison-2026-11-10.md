@@ -207,3 +207,36 @@ landscape PNG и economy не менялись.
 остаётся `OPEN` для S03/S38/S39 до отдельного просмотра portrait candidates и
 сравнения с canonical `final-ui-*`. Наличие корректного runtime evidence не
 подменяет это независимое решение.
+
+## Final Issue #4 visual QA follow-up — 2026-11-11
+
+На актуальном исправленном worktree выполнен реальный Chromium прогон:
+
+`C:\Users\user\AppData\Local\Temp\issue4-final-qa-dbf3cadb-801b-40ae-8a91-6a3250affc61`
+
+Изолированные исправления после просмотра кадров:
+
+- S39 walk сохраняет исходный transition background и использует только для
+  этого desktop-fallback контролируемое mobile fill `object-fit: cover`, без
+  portrait- или случайной character-подстановки. Desktop правило не менялось.
+- S38 получил локальную тёмную reading veil и усиленную тень текста; шрифты,
+  цвет текста и исходный PNG не менялись.
+- Для длинных диалогов добавлены `scroll-padding`/`scroll-margin`, а browser
+  QA отдельно прокручивает «Далее» в видимую область на 320×700 и проверяет
+  touch target `44px+`.
+- Для переиспользуемого `<img>` введена проверка, что сохранённая подсказка
+  `data-original-cg-desktop-media` соответствует текущему `src`; при смене
+  сцены устаревшая подсказка отбрасывается. Добавлена unit regression и
+  browser assertion на `data-original-cg-media`.
+
+Фактические кадры просмотрены для S38, S39 café/walk на 320×700 и 390×844;
+также в evidence присутствуют все обязательные mobile viewport и desktop
+1440×900 кадры для проверяемых маршрутов. S39 walk больше не оставляет пустую
+верхнюю четверть экрана; S38 сохраняет видимых персонажей и читаемый текст,
+а доступность «Далее» подтверждена автоматической прокруткой на 320×700.
+
+Итоговые gates этого follow-up: `46` тестов, `45 PASS`, `1` intentional
+`SKIP`, `0 FAIL`; оба presentation `--check`, `git diff --check` и реальный
+Chromium `M4_BROWSER_QA_PASS`. Независимый художественный gate остаётся
+`OPEN`: техническое улучшение проверено, но финальный art verdict требует
+отдельной оценки фактических кадров относительно canonical `final-ui-*`.

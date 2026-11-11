@@ -125,6 +125,7 @@ body.original-game #game .ludory-narrative__panel {
   width: 100%; min-height: 0; max-width: none; max-height: min(68dvh,680px);
   margin: 0; padding: 86px max(20px,5vw) max(24px,env(safe-area-inset-bottom,0px));
   overflow-y: auto; overscroll-behavior: contain;
+  scroll-padding-block-end: max(18px,env(safe-area-inset-bottom,0px));
   border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none;
   background: linear-gradient(180deg,rgba(7,15,22,0),rgba(7,15,22,.74) 22%,rgba(7,15,22,.95) 100%);
 }
@@ -177,6 +178,7 @@ body.original-game #game .ludory-narrative__actions button:focus-visible {
 body.original-game #game .ludory-narrative__actions button[data-action^="narrative:next:"] {
   width: max-content; min-width: 132px; margin-left: auto;
   padding: 12px 20px; border-radius: 14px;
+  scroll-margin-block-end: max(18px,env(safe-area-inset-bottom,0px));
   background: linear-gradient(135deg,#be865d,#916149);
   font: 700 15px/1.3 'Cinematic Manrope',Arial,sans-serif; text-align: center;
 }
@@ -224,6 +226,16 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
   body.original-game #game .ludory-narrative[data-original-cg-composition^="a"] .ludory-narrative__panel {
     background: linear-gradient(180deg,rgba(7,15,22,0),rgba(7,15,22,.18) 30%,rgba(7,15,22,.9) 100%);
   }
+  /* S38 is a light group photograph. Keep the approved palette and fonts,
+     but add a local reading veil so the long dialogue remains legible. */
+  body.original-game #game .ludory-narrative[data-original-cg-composition="a2-group"] .ludory-narrative__panel {
+    background: linear-gradient(180deg,rgba(7,15,22,.08),rgba(7,15,22,.48) 30%,rgba(7,15,22,.96) 92%);
+  }
+  body.original-game #game .ludory-narrative[data-original-cg-composition="a2-group"] .ludory-narrative__panel > p,
+  body.original-game #game .ludory-narrative[data-original-cg-composition="a2-group"] .ludory-narrative__panel > h2,
+  body.original-game #game .ludory-narrative[data-original-cg-composition="a2-group"] .ludory-narrative__panel > .ludory-narrative__actions {
+    text-shadow: 0 2px 5px rgba(0,0,0,.96),0 2px 18px rgba(0,0,0,.7);
+  }
   /* A real portrait already fills the authored mobile frame. The old
      landscape blur-fill is reserved for unmapped legacy media only. */
   body.original-game #game .ludory-narrative__stage[data-original-cg-source-mode="portrait"]::before,
@@ -236,8 +248,8 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
   }
   body.original-game #game .ludory-narrative__stage[data-original-cg-mobile-fallback="true"] .ludory-narrative__background {
-    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
-    object-fit: contain; object-position: center top; display: block;
+    inset: 0; top: 0; width: 100%; height: 100%; max-height: none;
+    object-fit: cover; object-position: center center; display: block;
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
     transform: none;
   }

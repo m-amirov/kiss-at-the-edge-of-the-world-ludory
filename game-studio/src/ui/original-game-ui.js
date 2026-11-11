@@ -35,6 +35,15 @@ function originalCgDesktopMediaFile(mediaFile) {
     .find(([, source]) => source.portrait === mediaFile)?.[0] || mediaFile;
 }
 
+export function originalCgDesktopMediaForSource(mediaFileHint, sourceFile) {
+  const hintedDesktop = mediaFileHint ? originalCgDesktopMediaFile(mediaFileHint) : '';
+  const hintedSource = ORIGINAL_CG_RESPONSIVE_SOURCES[hintedDesktop];
+  const hintMatchesSource = hintedDesktop && (
+    sourceFile === hintedDesktop || sourceFile === hintedSource?.portrait
+  );
+  return hintMatchesSource ? hintedDesktop : originalCgDesktopMediaFile(sourceFile);
+}
+
 export function originalCgSource(mediaFile, viewportWidth = 1440) {
   const desktop = originalCgDesktopMediaFile(mediaFile);
   const source = ORIGINAL_CG_RESPONSIVE_SOURCES[desktop];
@@ -176,7 +185,7 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
     // it here can make the MutationObserver write the same src repeatedly.
     const imageUrl = image.getAttribute('src') || image.currentSrc || image.src;
     const currentFile = decodeURIComponent(new URL(imageUrl, doc.baseURI).pathname.split('/').pop() || '');
-    const mediaFile = originalCgDesktopMediaFile(image.dataset.originalCgDesktopMedia || currentFile);
+    const mediaFile = originalCgDesktopMediaForSource(image.dataset.originalCgDesktopMedia, currentFile);
     const viewportWidth = doc.defaultView.innerWidth;
     const sourceFile = originalCgSource(mediaFile, viewportWidth);
     const sourceMode = originalCgMobileMode(mediaFile, viewportWidth);

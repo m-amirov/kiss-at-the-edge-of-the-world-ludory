@@ -158,6 +158,9 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     assert.ok((await image.getAttribute('alt'))?.length, `${label}: accessible image description missing`);
     assert.equal(await stage.getAttribute('data-degraded'), null, `${label}: image degraded`);
     const expectedComposition = mobileCgCompositions.get(expectedMediaId);
+    const expectedDesktopMedia = files[expectedMediaId];
+    assert.equal(await stage.getAttribute('data-original-cg-media'), expectedDesktopMedia,
+      `${label}: stale desktop media metadata on reused image element`);
     const sourceMode = await stage.getAttribute('data-original-cg-source-mode');
     if (expectedComposition) {
       const actualComposition = await stage.getAttribute('data-original-cg-composition');
@@ -166,11 +169,14 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       if (mobileViewport && expectedMediaId === 's39-alice-damir-cafe-walk') {
         assert.equal(sourceMode, 'desktop-fallback', `${label}: S39 walk must keep the transition background`);
         assert.equal(await stage.getAttribute('data-original-cg-mobile-fallback'), 'true');
+        assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'cover',
+          `${label}: S39 transition background must use the controlled mobile fill`);
       }
     }
     const geometry = await image.boundingBox();
     assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
-    if (expectedComposition && await page.evaluate(() => innerWidth <= 680)) {
+    const backgroundOnlyFallback = expectedMediaId === 's39-alice-damir-cafe-walk' && sourceMode === 'desktop-fallback';
+    if (expectedComposition && !backgroundOnlyFallback && await page.evaluate(() => innerWidth <= 680)) {
       const navigationBottom = await page.evaluate(() => Math.max(
         document.querySelector('[data-ui="open-menu"]')?.getBoundingClientRect().bottom ?? 0,
         document.querySelector('.ludory-narrative__toolbar')?.getBoundingClientRect().bottom ?? 0,
@@ -190,8 +196,12 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's26-nick-choice', 's26-damir-choice', 's26-alice-choice', 's38-alice-nick-ordinary-day',
       's39-alice-damir-cafe', 's39-alice-damir-cafe-walk'].includes(expectedMediaId) &&
       await page.evaluate(() => innerWidth <= 680)) {
-      assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'contain',
-        `${label}: mobile CG must preserve the complete authored frame`);
+      const objectFit = await image.evaluate(element => getComputedStyle(element).objectFit);
+      if (expectedMediaId !== 's39-alice-damir-cafe-walk') {
+        assert.equal(objectFit, 'contain', `${label}: mobile CG must preserve the complete authored frame`);
+      } else {
+        assert.equal(objectFit, 'cover', `${label}: transition background must use the controlled fill`);
+      }
       if (mobileCgSources.has(expectedMediaId) || expectedMediaId === 's39-alice-damir-cafe-walk') {
         assert.equal(await image.evaluate(element => getComputedStyle(element).transform), 'none',
           `${label}: mobile source must not use an uncontrolled crop transform`);
@@ -263,6 +273,16 @@ async function assertViewport(page, label) {
     const action = await actionLocator.boundingBox();
     assert.ok(action && action.y >= -2 && action.y + action.height <= geometry.height + 2,
       `${label}: scrollable dialogue action cannot be brought into viewport: ${JSON.stringify(action)}`);
+    await panelLocator.evaluate(panelElement => { panelElement.scrollTop = 0; });
+  }
+  if (geometry.width <= 320 && geometry.panelScrollable && geometry.actions.length) {
+    const panelLocator = page.locator('.ludory-narrative__panel');
+    const actionLocator = page.locator('.ludory-narrative__actions button[data-action^="narrative:next:"]').last();
+    await actionLocator.scrollIntoViewIfNeeded();
+    const action = await actionLocator.boundingBox();
+    assert.ok(action && action.y >= -2 && action.y + action.height <= geometry.height + 2,
+      `${label}: Далее must be reachable at 320x700: ${JSON.stringify(action)}`);
+    assert.ok(action?.height >= 44, `${label}: Далее touch target is too small: ${JSON.stringify(action)}`);
     await panelLocator.evaluate(panelElement => { panelElement.scrollTop = 0; });
   }
 }
