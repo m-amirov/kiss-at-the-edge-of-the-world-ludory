@@ -74,6 +74,10 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.match(source, /@media \(max-width: 680px\)[\s\S]*?\.ludory-narrative__toolbar \{\s*top:\s*max\(10px,/);
   const browserQa = await readFile(browserQaScript, 'utf8');
   assert.match(browserQa, /panelScrollable:\s*panelElement\s*\?\s*panelElement\.scrollHeight\s*>\s*panelElement\.clientHeight/);
+  assert.match(browserQa, /assertShortReaderPages\(/,
+    'browser QA must cover real short-page narrative progression');
+  assert.match(browserQa, /Далее must not be visible/);
+  assert.doesNotMatch(browserQa, /Далее must be reachable/);
   assert.match(browserQa, /data-original-cg-media/);
   assert.match(browserQa, /objectFit.*cover/);
   assert.match(browserQa, /scrollIntoViewIfNeeded\(\)/);

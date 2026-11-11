@@ -1,9 +1,10 @@
 /* Author-owned reader controls. All story transitions and saves remain Ludory-owned. */
+import { installReaderPagination } from './reader-pagination.js';
 
 export function mayAdvanceFromTarget(target) {
   return typeof target?.closest === 'function' &&
     !target.closest('button, a, input, textarea, select, [contenteditable], [role="button"]') &&
-    !target.closest('.ludory-narrative__panel, .ludory-narrative__toolbar, .ludory-narrative__journal');
+    !target.closest('.ludory-narrative__toolbar, .ludory-narrative__journal');
 }
 
 export function originalReaderTitle(title) {
@@ -243,20 +244,19 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
     home.querySelector(`[data-ui="${size}-text"]`).addEventListener('click', () => {
       doc.body.dataset.readingSize = size;
       try { doc.defaultView.localStorage.setItem(storageKey, size); } catch { /* UI-only preference */ }
+      doc.defaultView.requestAnimationFrame(() => readerPages.repaginate());
     });
   }
 
+  const readerPages = installReaderPagination({ root, document: doc, isMenuOpen: () => menuOpen });
+
   function advance() {
-    if (menuOpen) return false;
-    // Choice beats deliberately have no native Next action. Never choose automatically.
-    const next = root.querySelector('.ludory-narrative__panel button[data-action^="narrative:next:"]');
-    if (!next || next.disabled) return false;
-    next.click();
-    return true;
+    return readerPages.advance();
   }
 
   root.addEventListener('click', event => {
-    if (event.target?.closest?.('.ludory-narrative') && mayAdvanceFromTarget(event.target)) advance();
+    if (event.target?.closest?.('.ludory-narrative') &&
+        mayAdvanceFromTarget(event.target) && !readerPages.shouldIgnoreTap()) advance();
   });
   doc.addEventListener('keydown', event => {
     if (!['Enter', ' ', 'Spacebar', 'ArrowRight'].includes(event.key) || event.repeat ||

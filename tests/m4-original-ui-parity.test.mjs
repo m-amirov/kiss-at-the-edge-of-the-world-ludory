@@ -34,12 +34,32 @@ test('authored presentation stylesheet defines a viewport-filling scene and bott
   assert.match(css, /#game \.ludory-narrative__actions button\s*\{/);
 });
 
-test('stage-advance guard rejects controls and dialogue, but accepts the visual stage', async () => {
+test('stage-advance guard accepts prose taps but rejects buttons, journal and toolbar', async () => {
   const { mayAdvanceFromTarget } = await import('../game-studio/src/ui/original-game-ui.js');
   const target = selector => ({ closest: candidate => candidate.split(/,\s*/).includes(selector) ? {} : null });
-  assert.equal(mayAdvanceFromTarget(target('.ludory-narrative__panel')), false);
+  assert.equal(mayAdvanceFromTarget(target('.ludory-narrative__panel')), true);
   assert.equal(mayAdvanceFromTarget(target('button')), false);
+  assert.equal(mayAdvanceFromTarget(target('.ludory-narrative__toolbar')), false);
+  assert.equal(mayAdvanceFromTarget(target('.ludory-narrative__journal')), false);
   assert.equal(mayAdvanceFromTarget({ closest: () => null }), true);
+});
+
+test('author-owned reader visually removes native Next while retaining native action in DOM', async () => {
+  const css = await readFile(new URL('src/ui/original-game.css', game), 'utf8');
+  const ui = await readFile(new URL('src/ui/original-game-ui.js', game), 'utf8');
+  assert.match(css, /button\[data-action\^="narrative:next:"\]\s*\{[^}]*display:\s*none/s);
+  assert.match(ui, /installReaderPagination\(/);
+  const pager = await readFile(new URL('src/ui/reader-pagination.js', game), 'utf8');
+  assert.match(pager, /if\s*\(!nextButton\)\s*\{[\s\S]*?pageState\.clearPendingBack\(\)/,
+    'a Back into a choice cannot leave a pending return-to-last-page for a later beat');
+  assert.match(pager, /nativeAdvancePending\s*=\s*true/, 'tap dispatch should have an in-flight guard');
+  assert.match(pager, /if\s*\(nativeAdvancePending\)\s*return false/, 'rapid double tap may not queue the same native advance');
+  assert.match(pager, /dataset\.readerLocalBack\s*=/,
+    'saved multi-page beats need an author-owned Back if runtime history is empty');
+  assert.match(pager, /journalPageKey/,
+    'journal must preserve local position and native Back return intent');
+  assert.match(pager, /gestureDragged/,
+    'long press-and-drag must not dispatch narrative advance on release');
 });
 
 test('technical engine suffix does not appear in the authored reader title', async () => {
