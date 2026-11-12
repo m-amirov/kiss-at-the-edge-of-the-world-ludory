@@ -313,7 +313,17 @@ async function assertShortReaderPages(page, label, originalText) {
   assert.ok(initial.height <= initial.lineHeight * 5 + 2,
     `${label}: prose occupies more than five lines: ${JSON.stringify(initial)}`);
   const fragments = [];
-  for (let index = 0; index < initial.count; index++) {
+  let finalPageCount = initial.count;
+  // Font readiness and a journal round-trip may reflow the same native beat.
+  // Use live pagination metadata rather than assuming the initial page count is fixed.
+  for (let index = 0; index < 100; index++) {
+    const position = await panel.evaluate(element => ({
+      page: Number(element.dataset.readerPage),
+      count: Number(element.dataset.readerPageCount),
+    }));
+    assert.equal(position.page, index + 1, `${label}: reader page was skipped or repeated`);
+    assert.ok(position.count >= position.page, `${label}: invalid live page count ${JSON.stringify(position)}`);
+    finalPageCount = position.count;
     const current = await panel.locator(':scope > p:not([class])').textContent();
     fragments.push(current);
     const lines = await panel.locator(':scope > p:not([class])').evaluate(p => ({
@@ -321,7 +331,7 @@ async function assertShortReaderPages(page, label, originalText) {
     }));
     assert.ok(lines.height <= lines.lineHeight * 5 + 2,
       `${label}: page ${index + 1} exceeds five lines: ${JSON.stringify(lines)}`);
-    if (index < initial.count - 1) {
+    if (position.page < position.count) {
       await panel.locator(':scope > p:not([class])').click();
       assert.equal(await panel.getAttribute('data-beat-id'), originalBeat, `${label}: tap skipped the native beat`);
       assert.equal(Number(await panel.getAttribute('data-reader-page')), index + 2,
@@ -344,19 +354,23 @@ async function assertShortReaderPages(page, label, originalText) {
         assert.equal(Number(await panel.getAttribute('data-reader-page')), 2,
           `${label}: reader should resume the same fragment after journal Back`);
       }
+    } else {
+      break;
     }
+    assert.ok(index < 99, `${label}: pagination did not reach its final page`);
   }
+  assert.equal(fragments.length, finalPageCount, `${label}: not all live reader pages were visited`);
   assert.equal(fragments.join(''), originalText, `${label}: lost or duplicated authored characters`);
-  if (initial.count > 1) {
+  if (finalPageCount > 1) {
     const back = panel.locator('button[data-action="narrative:back"], button[data-reader-local-back]');
     assert.ok(await back.count(), `${label}: reader Back not available`);
     await back.click();
     assert.equal(await panel.getAttribute('data-beat-id'), originalBeat,
       `${label}: Back unexpectedly changed the native beat`);
-    assert.equal(Number(await panel.getAttribute('data-reader-page')), initial.count - 1,
+    assert.equal(Number(await panel.getAttribute('data-reader-page')), finalPageCount - 1,
       `${label}: Back did not return to the preceding local page`);
     await panel.locator(':scope > p:not([class])').click();
-    assert.equal(Number(await panel.getAttribute('data-reader-page')), initial.count,
+    assert.equal(Number(await panel.getAttribute('data-reader-page')), finalPageCount,
       `${label}: after Back, text tap did not restore the last page`);
   }
   const lastStep = await currentReaderStep(page);
