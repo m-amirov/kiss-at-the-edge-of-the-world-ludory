@@ -2,7 +2,7 @@
 // This exercises the actual Studio-owned static game, not a synthetic renderer fixture.
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { readFile, stat, mkdir } from 'node:fs/promises';
+import { readFile, stat, mkdir, copyFile } from 'node:fs/promises';
 import { extname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
@@ -548,8 +548,24 @@ async function openReaderSettings(page) {
   }
 }
 
+async function captureSourceArtEvidence() {
+  // Source-byte evidence for the independent S03/S38/S39 art review.
+  // Do not derive future CGs from resized browser screenshots.
+  const rawFiles = [
+    'vis-s03-damir-portrait-v2.png',
+    'vis-s38-alice-nick-ordinary-day-portrait-v2.png',
+    'vis-s39-alice-damir-cafe-portrait-v2.png',
+  ];
+  const target = join(evidenceDir, 'source-art');
+  await mkdir(target, { recursive: true });
+  for (const filename of rawFiles) {
+    await copyFile(join(gameRoot, 'assets', filename), join(target, filename));
+  }
+}
+
 async function main() {
   await mkdir(evidenceDir, { recursive: true });
+  await captureSourceArtEvidence();
   await new Promise((fulfill, reject) => server.listen(0, '127.0.0.1', error => error ? reject(error) : fulfill()));
   let browser;
   try {
