@@ -24,11 +24,11 @@ test('mobile provenance admits only explicit portrait sources and preserves thei
   assert.equal(mobile.schemaVersion, 1);
   assert.equal(mobile.sourceCommit, '1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c');
   assert.equal(mobile.mobileBreakpoint, 680);
-  assert.equal(mobile.entries.length, 9);
+  assert.equal(mobile.entries.length, 10);
   assert.deepEqual([...active.keys()].sort(), [
     'damir-coffee-cg', 's07-kitchen-cards', 's07-kitchen-pasta',
     's26-alice-choice', 's26-damir-choice', 's26-eric-choice', 's26-nick-choice',
-    's38-alice-nick-ordinary-day', 's39-alice-damir-cafe',
+    's38-alice-nick-ordinary-day', 's39-alice-damir-cafe', 's39-alice-damir-cafe-walk',
   ].sort());
   for (const entry of mobile.entries) {
     assert.equal(entry.status, 'accepted', `${entry.id}: technical admission missing`);
@@ -49,26 +49,27 @@ test('mobile provenance admits only explicit portrait sources and preserves thei
       assert.equal(entry.sourceBlobSha, null);
       assert.ok(entry.referenceSources?.length, `${entry.id}: generated source references missing`);
       assert.equal(entry.artStatus, 'pending-independent-review');
+      assert.equal(entry.admissionEvidence.sourceCommit, mobile.sourceCommit, `${entry.id}: admission commit mismatch`);
+      assert.ok(entry.admissionEvidence.verification, `${entry.id}: admission verification missing`);
     }
   }
+  const walk = active.get('s39-alice-damir-cafe-walk');
+  assert.equal(walk.sha256, '815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe');
+  assert.equal(walk.referenceSources[0].sha256, '229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e');
+  assert.equal(walk.referenceSources[0].sourceBlobSha, 'bd7be888ae455d686618935c30ad306c742967ff');
 });
 
-test('rejected original portraits and S39 walk fallback are explicit and never auto-connected', () => {
+test('rejected original portraits stay explicit and S39 walk portrait is connected source-bound', () => {
   assert.deepEqual(mobile.rejectedCandidates.map(entry => entry.id).sort(), [
     's03-editor-call-damir-portrait-original',
     's38-alice-nick-ordinary-day-portrait-original',
     's39-alice-damir-cafe-portrait-original',
   ].sort());
   assert.ok(mobile.rejectedCandidates.every(entry => entry.artStatus === 'rejected-crop'));
-  assert.deepEqual(mobile.fallbacks, [{
-    desktopMediaId: 's39-alice-damir-cafe-walk',
-    portraitPath: null,
-    mobileMode: 'desktop-contain',
-    reason: 'No admitted vertical source exists for the transition background; keep the authored background and avoid substituting a romantic portrait',
-  }]);
-  assert.equal(originalCgSource('vis-s39-alice-damir-cafe-walk.png', 390), 'vis-s39-alice-damir-cafe-walk.png');
-  assert.equal(originalCgMobileMode('vis-s39-alice-damir-cafe-walk.png', 390), 'desktop-fallback');
-  assert.equal(originalCgComposition('vis-s39-alice-damir-cafe-walk.png'), 'mobile-fallback-s39-walk');
+  assert.deepEqual(mobile.fallbacks, []);
+  assert.equal(originalCgSource('vis-s39-alice-damir-cafe-walk.png', 390), 'vis-s39-alice-damir-cafe-walk-portrait.png');
+  assert.equal(originalCgMobileMode('vis-s39-alice-damir-cafe-walk.png', 390), 'portrait');
+  assert.equal(originalCgComposition('vis-s39-alice-damir-cafe-walk.png'), 'a2-s39');
 });
 
 test('responsive source mapping switches without changing the authored desktop source', () => {
@@ -82,6 +83,7 @@ test('responsive source mapping switches without changing the authored desktop s
     ['vis-s26-alice-choice.png', 'vis-s26-alice-choice-portrait.png', 'a2-s26'],
     ['vis-s38-alice-nick-ordinary-day.png', 'vis-s38-alice-nick-ordinary-day-portrait-v2.png', 'a2-group'],
     ['vis-s39-alice-damir-cafe.png', 'vis-s39-alice-damir-cafe-portrait-v2.png', 'a2-s39'],
+    ['vis-s39-alice-damir-cafe-walk.png', 'vis-s39-alice-damir-cafe-walk-portrait.png', 'a2-s39'],
   ];
   for (const [desktop, portrait, composition] of cases) {
     assert.equal(originalCgSource(desktop, 390), portrait, `${desktop}: portrait mapping`);

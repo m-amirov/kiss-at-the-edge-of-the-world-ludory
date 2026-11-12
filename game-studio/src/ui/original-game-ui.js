@@ -25,9 +25,10 @@ const ORIGINAL_CG_RESPONSIVE_SOURCES = Object.freeze({
   'vis-s26-alice-choice.png': Object.freeze({ portrait: 'vis-s26-alice-choice-portrait.png', composition: 'a2-s26' }),
   'vis-s38-alice-nick-ordinary-day.png': Object.freeze({ portrait: 'vis-s38-alice-nick-ordinary-day-portrait-v2.png', composition: 'a2-group' }),
   'vis-s39-alice-damir-cafe.png': Object.freeze({ portrait: 'vis-s39-alice-damir-cafe-portrait-v2.png', composition: 'a2-s39' }),
-  // This is a transition background, not a romantic CG. Keep the authored
-  // desktop source on mobile and frame it without substituting another scene.
-  'vis-s39-alice-damir-cafe-walk.png': Object.freeze({ portrait: null, composition: 'mobile-fallback-s39-walk' }),
+  'vis-s39-alice-damir-cafe-walk.png': Object.freeze({
+    portrait: 'vis-s39-alice-damir-cafe-walk-portrait.png',
+    composition: 'a2-s39',
+  }),
 });
 
 function originalCgDesktopMediaFile(mediaFile) {
@@ -218,7 +219,7 @@ export async function installOriginalGameUi({ document: doc, start = null }) {
     resyncCgBackdrop();
   }
   root.addEventListener('load', event => {
-    if (event.target?.matches?.('.ludory-narrative__cg')) resyncCgBackdrop();
+    if (event.target?.matches?.('.ludory-narrative__cg, .ludory-narrative__background')) resyncCgBackdrop();
   }, true);
   let resizeFrame = 0;
   doc.defaultView.addEventListener('resize', () => {

@@ -270,6 +270,40 @@
         "verifiedOn": "2026-11-11",
         "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
       }
+    },
+    {
+      "id": "s39-alice-damir-cafe-walk-portrait",
+      "desktopMediaId": "s39-alice-damir-cafe-walk",
+      "desktopPath": "assets/vis-s39-alice-damir-cafe-walk.png",
+      "portraitPath": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
+      "sourceKind": "generated-source-bound",
+      "status": "accepted",
+      "artStatus": "pending-independent-review",
+      "useOnMobile": true,
+      "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
+      "dimensions": "1024x1536",
+      "sourceBlobSha": null,
+      "licenseEvidence": {
+        "manifestPath": "docs/migration/m4-mobile-assets.json",
+        "license": "generated for this project",
+        "method": "Built-in image generation from the pinned S39 walk desktop environment as an independent portrait environment; no crop, upscale, characters, text, or watermark",
+        "source": "Built-in image_gen, 2026-11-12",
+        "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe"
+      },
+      "referenceSources": [
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.png",
+          "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+          "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e"
+        }
+      ],
+      "admissionEvidence": {
+        "method": "Generated PNG copied without recompression; PNG signature, dimensions, bytes, and SHA-256 verified after import",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+        "verifiedOn": "2026-11-12",
+        "verification": "Original desktop source SHA-256 and Git blob recorded; portrait remains pending independent art review"
+      }
     }
   ],
   "rejectedCandidates": [
@@ -298,12 +332,5 @@
       "reason": "Both faces are materially cropped from the café composition; never connect automatically"
     }
   ],
-  "fallbacks": [
-    {
-      "desktopMediaId": "s39-alice-damir-cafe-walk",
-      "portraitPath": null,
-      "mobileMode": "desktop-contain",
-      "reason": "No admitted vertical source exists for the transition background; keep the authored background and avoid substituting a romantic portrait"
-    }
-  ]
+  "fallbacks": []
 }

@@ -23,7 +23,7 @@ const mobileCgCompositions = new Map([
   ['s26-alice-choice', 'a2-s26'],
   ['s38-alice-nick-ordinary-day', 'a2-group'],
   ['s39-alice-damir-cafe', 'a2-s39'],
-  ['s39-alice-damir-cafe-walk', 'mobile-fallback-s39-walk'],
+  ['s39-alice-damir-cafe-walk', 'a2-s39'],
 ]);
 const mobileCgSources = new Map([
   ['damir-coffee-cg', 'vis-s03-damir-portrait-v2.png'],
@@ -35,6 +35,7 @@ const mobileCgSources = new Map([
   ['s26-alice-choice', 'vis-s26-alice-choice-portrait.png'],
   ['s38-alice-nick-ordinary-day', 'vis-s38-alice-nick-ordinary-day-portrait-v2.png'],
   ['s39-alice-damir-cafe', 'vis-s39-alice-damir-cafe-portrait-v2.png'],
+  ['s39-alice-damir-cafe-walk', 'vis-s39-alice-damir-cafe-walk-portrait.png'],
 ]);
 
 const server = createServer(async (request, response) => {
@@ -180,17 +181,10 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       const actualComposition = await stage.getAttribute('data-original-cg-composition');
       assert.equal(actualComposition, expectedComposition, `${label}: wrong approved mobile composition`);
       if (mobileViewport && mobileCgSources.has(expectedMediaId)) assert.equal(sourceMode, 'portrait', `${label}: portrait source not active`);
-      if (mobileViewport && expectedMediaId === 's39-alice-damir-cafe-walk') {
-        assert.equal(sourceMode, 'desktop-fallback', `${label}: S39 walk must keep the transition background`);
-        assert.equal(await stage.getAttribute('data-original-cg-mobile-fallback'), 'true');
-        assert.equal(await image.evaluate(element => getComputedStyle(element).objectFit), 'cover',
-          `${label}: S39 transition background must use the controlled mobile fill`);
-      }
     }
     const geometry = await image.boundingBox();
     assert.ok(geometry && geometry.width > 0 && geometry.height > 0, `${label}: image has no rendered area`);
-    const backgroundOnlyFallback = expectedMediaId === 's39-alice-damir-cafe-walk' && sourceMode === 'desktop-fallback';
-    if (expectedComposition && !backgroundOnlyFallback && await page.evaluate(() => innerWidth <= 680)) {
+    if (expectedComposition && await page.evaluate(() => innerWidth <= 680)) {
       const navigationBottom = await page.evaluate(() => Math.max(
         document.querySelector('[data-ui="open-menu"]')?.getBoundingClientRect().bottom ?? 0,
         document.querySelector('.ludory-narrative__toolbar')?.getBoundingClientRect().bottom ?? 0,
@@ -198,8 +192,7 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       assert.ok(geometry.y >= navigationBottom - 1,
         `${label}: main CG begins beneath mobile navigation safe area: ${JSON.stringify({ geometry, navigationBottom })}`);
     }
-    const intentionallyFramed = expectedComposition?.startsWith('a2-') && !(mobileViewport &&
-      (sourceMode === 'portrait' || sourceMode === 'desktop-fallback'));
+    const intentionallyFramed = expectedComposition?.startsWith('a2-') && !(mobileViewport && sourceMode === 'portrait');
     if (!intentionallyFramed) {
       assert.ok(geometry.x >= -2 && geometry.y >= -2 &&
         geometry.x + geometry.width <= (await page.evaluate(() => innerWidth)) + 2 &&
@@ -211,12 +204,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's39-alice-damir-cafe', 's39-alice-damir-cafe-walk'].includes(expectedMediaId) &&
       await page.evaluate(() => innerWidth <= 680)) {
       const objectFit = await image.evaluate(element => getComputedStyle(element).objectFit);
-      if (expectedMediaId !== 's39-alice-damir-cafe-walk') {
-        assert.equal(objectFit, 'contain', `${label}: mobile CG must preserve the complete authored frame`);
-      } else {
-        assert.equal(objectFit, 'cover', `${label}: transition background must use the controlled fill`);
-      }
-      if (mobileCgSources.has(expectedMediaId) || expectedMediaId === 's39-alice-damir-cafe-walk') {
+      assert.equal(objectFit, 'contain', `${label}: mobile CG must preserve the complete authored frame`);
+      if (mobileCgSources.has(expectedMediaId)) {
         assert.equal(await image.evaluate(element => getComputedStyle(element).transform), 'none',
           `${label}: mobile source must not use an uncontrolled crop transform`);
       }
@@ -733,6 +722,11 @@ async function main() {
           await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
           await captureMobileViewports(special.page, 'mobile-s39-cafe-walk', 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'mobile S39 café walk', 's39-alice-damir-cafe-walk');
+          await special.page.setViewportSize({ width: 1440, height: 900 });
+          await special.page.evaluate(() => new Promise(resolve =>
+            requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+          await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'desktop S39 café walk 1440x900', 's39-alice-damir-cafe-walk');
+          await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk-1440x900.png'), fullPage: true });
           await special.page.setViewportSize({ width: 390, height: 844 });
           await special.page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
           await assertShortReaderPages(special.page, 's39-common-390x844', s39Common);

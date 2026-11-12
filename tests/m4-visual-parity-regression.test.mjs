@@ -48,7 +48,7 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
     'vis-s26-alice-choice.png': 'a2-s26',
     'vis-s38-alice-nick-ordinary-day.png': 'a2-group',
     'vis-s39-alice-damir-cafe.png': 'a2-s39',
-    'vis-s39-alice-damir-cafe-walk.png': 'mobile-fallback-s39-walk',
+    'vis-s39-alice-damir-cafe-walk.png': 'a2-s39',
   };
   for (const [mediaFile, composition] of Object.entries(expected)) {
     assert.equal(originalCgComposition(mediaFile), composition, mediaFile);
@@ -64,6 +64,7 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.match(source, /data-original-cg-mobile-fallback="true"[\s\S]*?\.ludory-narrative__background[\s\S]*?object-fit:\s*cover/);
   assert.match(source, /data-original-cg-mobile-fallback="true"[\s\S]*?object-position:\s*center center/);
   assert.match(source, /--original-cg-safe-top:\s*max\(58px,[\s\S]*?env\(safe-area-inset-top/);
+  assert.match(source, /data-original-cg-media="vis-s39-alice-damir-cafe-walk\.png"\]\[data-original-cg-source-mode="portrait"\][\s\S]*?\.ludory-narrative__background[\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
   assert.match(source, /data-original-cg-composition\][\s\S]*?top:\s*var\(--original-cg-safe-top\)/);
   assert.match(source, /data-original-cg-mobile-fallback="true"[\s\S]*?\.ludory-narrative__background[\s\S]*?top:\s*0/);
   assert.match(source, /data-original-cg-composition="a2-group"[\s\S]*?\.ludory-narrative__panel/);
@@ -79,7 +80,6 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.match(browserQa, /Далее must not be visible/);
   assert.doesNotMatch(browserQa, /Далее must be reachable/);
   assert.match(browserQa, /data-original-cg-media/);
-  assert.match(browserQa, /objectFit.*cover/);
   assert.match(browserQa, /scrollIntoViewIfNeeded\(\)/);
   assert.match(browserQa, /action\.y\s*>=\s*-2[\s\S]*?action\.y\s*\+\s*action\.height/);
   assert.match(browserQa, /navigationBottom[\s\S]*?geometry\.y\s*>=\s*navigationBottom\s*-\s*1/);

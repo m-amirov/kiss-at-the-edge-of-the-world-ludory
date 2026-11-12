@@ -260,6 +260,12 @@ body.original-game #game .ludory-narrative button:focus-visible { outline: 2px s
     mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
     transform: none;
   }
+  body.original-game #game .ludory-narrative__stage[data-original-cg-media="vis-s39-alice-damir-cafe-walk.png"][data-original-cg-source-mode="portrait"] .ludory-narrative__background {
+    inset: 0 auto auto 0; top: var(--original-cg-safe-top); width: 100%; height: auto; max-height: none;
+    object-fit: contain; object-position: center top; display: block;
+    mask-image: linear-gradient(to bottom,#000 0 84%,transparent 100%);
+    transform: none;
+  }
   body.original-game #game .ludory-narrative__panel {
     max-height: min(64dvh,560px);
     padding: 46px 16px max(18px,env(safe-area-inset-bottom,0px));
