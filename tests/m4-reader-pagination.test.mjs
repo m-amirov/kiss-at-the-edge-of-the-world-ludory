@@ -88,3 +88,22 @@ test('a short reader page always offers local Back even when restored runtime ha
   assert.equal(needsLocalReaderBack(3, false), true);
   assert.equal(needsLocalReaderBack(1, true), false);
 });
+
+test('reflow adds another local page after journal Back without truncating the native beat', () => {
+  const state = createReaderPageState();
+  const text = 'first middle more last';
+  state.sync('s39:active:ru', ['first ', 'middle more ', 'last']);
+  assert.equal(state.advance(), 'page');
+  assert.equal(state.previous(), 'page'); // Journal Back.
+  assert.equal(state.advance(), 'page'); // Resume second local page.
+  state.sync('s39:active:ru', ['first ', 'middle ', 'more ', 'last']);
+  assert.equal(state.pageCount(), 4);
+  assert.equal(state.pageIndex(), 1);
+  const seen = ['first ', state.currentText()];
+  assert.equal(state.advance(), 'page');
+  seen.push(state.currentText());
+  assert.equal(state.advance(), 'page');
+  seen.push(state.currentText());
+  assert.equal(seen.join(''), text);
+  assert.equal(state.advance(), 'native');
+});
