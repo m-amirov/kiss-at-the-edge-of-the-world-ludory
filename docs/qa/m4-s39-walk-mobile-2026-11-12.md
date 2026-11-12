@@ -37,7 +37,7 @@ Desktop provenance закреплён в `docs/migration/m4-mobile-assets.json`:
 - Mechanical/provenance: **PASS**.
 - Runtime/browser responsive behavior: **PASS**.
 - Local pixel visual QA: **PASS** по перечисленным captures и raw PNG.
-- Independent artistic acceptance: **OPEN** (`artStatus: pending-independent-review`); автоматические и локальные проверки не заменяют независимый art sign-off.
+- Независимая художественная приёмка **конкретно S39 walk**: **ACCEPTED** 2026-11-12 по мобильным скриншотам 320×700, 390×844 и 430×932 (подробности и ограничения: https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/issues/5#issuecomment-6824910484). Статус `artStatus: approved-independent`. Было проверено визуальное качество браузерных кадров и Git blob identity; отдельная полнопиксельная инспекция raw PNG не заявляется. Остальные source-bound кандидаты S03/S38/S39 café по-прежнему pending.
 - Release readiness, merge и публикация игры: **не заявляются и не выполнялись**; PR должен оставаться Draft.
 
 ## Full-suite note
@@ -50,3 +50,10 @@ Desktop provenance закреплён в `docs/migration/m4-mobile-assets.json`:
 - M3 S06 (`tests/m3-s06.test.mjs:192`) — `assert.ok(gameRoot.endsWith('/game/'))` на Windows path; это POSIX-only assertion, не Issue #5.
 
 Тот же M1 failure записан в `artifacts/issue-5-baseline/npm-test-issue5-worktree-comparison.log` на publish worktree. M4 target suite завершён отдельно без failures; full-suite PASS локально не заявляется. Известный stale legacy generated proof также воспроизведён на clean baseline и устраняется штатным `--write`; legacy generated files не входят в Issue #5 commit.
+
+## Post-review provenance sign-off
+
+- Независимое визуальное заключение: [Issue #5, комментарий 6824910484](https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/issues/5#issuecomment-6824910484).
+- По сравнению с прежним desktop fallback новый портретный S39 walk лучше сохраняет детализацию гавани, гор, освещения и мокрой набережной; надписи, игровые кнопки и персонажи на проверенных скриншотах отсутствуют внутри самого фона.
+- Согласованная правка только метаданных: `artStatus: approved-independent` для S39 walk; source PNG, desktop PNG, story, runtime и mobile mapping не модифицированы.
+- Подтверждение окончательной записи зависит от успешных проверок GitHub Actions на коммите с этой поправкой. Глобальная художественная и релизная приёмка PR #3 остаётся открытой.

@@ -332,7 +332,7 @@
       "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
       "dimensions": "1024x1536",
       "sourceKind": "generated-source-bound",
-      "artStatus": "pending-independent-review"
+      "artStatus": "approved-independent"
     }
   }
 }

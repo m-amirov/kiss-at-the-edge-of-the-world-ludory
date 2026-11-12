@@ -278,7 +278,7 @@
       "portraitPath": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
       "sourceKind": "generated-source-bound",
       "status": "accepted",
-      "artStatus": "pending-independent-review",
+      "artStatus": "approved-independent",
       "useOnMobile": true,
       "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
       "dimensions": "1024x1536",
@@ -302,7 +302,7 @@
         "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
         "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
         "verifiedOn": "2026-11-12",
-        "verification": "Original desktop source SHA-256 and Git blob recorded; portrait remains pending independent art review"
+        "verification": "Original desktop source SHA-256 and Git blob recorded; independent S39 walk mobile composition accepted on 2026-11-12 based on 320x700, 390x844 and 430x932 browser captures. Review: https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/issues/5#issuecomment-6824910484 . Full raw-image scan was not claimed."
       }
     }
   ],

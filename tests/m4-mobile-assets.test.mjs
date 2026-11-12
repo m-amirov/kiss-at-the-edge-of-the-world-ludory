@@ -48,12 +48,19 @@ test('mobile provenance admits only explicit portrait sources and preserves thei
     } else {
       assert.equal(entry.sourceBlobSha, null);
       assert.ok(entry.referenceSources?.length, `${entry.id}: generated source references missing`);
-      assert.equal(entry.artStatus, 'pending-independent-review');
+      assert.equal(
+        entry.artStatus,
+        entry.id === 's39-alice-damir-cafe-walk-portrait' ? 'approved-independent' : 'pending-independent-review',
+        `${entry.id}: independent art gate unexpectedly changed`,
+      );
       assert.equal(entry.admissionEvidence.sourceCommit, mobile.sourceCommit, `${entry.id}: admission commit mismatch`);
       assert.ok(entry.admissionEvidence.verification, `${entry.id}: admission verification missing`);
     }
   }
   const walk = active.get('s39-alice-damir-cafe-walk');
+  assert.equal(walk.artStatus, 'approved-independent');
+  assert.equal(mobile.entries.filter(entry => entry.artStatus === 'pending-independent-review').length, 3,
+    'S03, S38 and S39 café still await independent art approval');
   assert.equal(walk.sha256, '815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe');
   assert.equal(walk.referenceSources[0].sha256, '229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e');
   assert.equal(walk.referenceSources[0].sourceBlobSha, 'bd7be888ae455d686618935c30ad306c742967ff');
