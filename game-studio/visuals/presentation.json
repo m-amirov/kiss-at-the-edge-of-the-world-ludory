@@ -1819,6 +1819,21 @@
     ],
     "s39-active-01": [
       {
+        "id": "visual-s39-alice-damir-walk-prelude-1",
+        "background": "s39-alice-damir-cafe-walk"
+      }
+    ],
+    "s39-active-02": [
+      {
+        "id": "visual-s39-alice-damir-cafe-1",
+        "cg": {
+          "mediaId": "s39-alice-damir-cafe",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s39-active-03": [
+      {
         "id": "visual-s39-alice-damir-cafe-1",
         "cg": {
           "mediaId": "s39-alice-damir-cafe",

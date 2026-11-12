@@ -84,3 +84,22 @@ test('approved mobile CG compositions are explicit and keep the runtime controls
   assert.match(browserQa, /action\.y\s*>=\s*-2[\s\S]*?action\.y\s*\+\s*action\.height/);
   assert.match(browserQa, /navigationBottom[\s\S]*?geometry\.y\s*>=\s*navigationBottom\s*-\s*1/);
 });
+
+test('S39 active artwork follows canonical paragraph beats without UI page-count coupling', async () => {
+  const story = await import('../game-studio/src/scenes/s39.js');
+  const authored = story.s39Active.trim().split(/\n\s*\n/u);
+  const presentation = JSON.parse(await readFile(new URL('../game-studio/visuals/presentation.json', import.meta.url), 'utf8'));
+  assert.equal(authored.length, 3);
+  assert.match(authored[0], /^Они вышли из гостевого дома/u);
+  assert.match(authored[1], /^В кафе они заказали/u);
+  assert.match(authored[2], /^У Дамира зазвонил телефон/u);
+  assert.equal(presentation.beats['s39-active-01'][0].background, 's39-alice-damir-cafe-walk');
+  assert.equal(presentation.beats['s39-active-01'][0].cg, undefined);
+  for (const id of ['s39-active-02', 's39-active-03']) {
+    assert.equal(presentation.beats[id][0].cg.mediaId, 's39-alice-damir-cafe');
+    assert.equal(presentation.beats[id][0].cg.mode, 'replace-stage');
+  }
+  // The paused-route opening is already in the café; do not move its cue.
+  assert.equal(presentation.beats['s39-paused-01'][0].cg.mediaId, 's39-alice-damir-cafe');
+  assert.equal(presentation.beats['s39-common-01'][0].background, 's39-alice-damir-cafe-walk');
+});

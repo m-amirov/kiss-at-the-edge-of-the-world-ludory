@@ -688,7 +688,7 @@ async function main() {
       ['s38-paused-01', 1, new Map([['s26-route-choice', 1], ['s33-c1-choice', 1], ['s36-route-choice', 0]]),
         'visual-s38-alice-nick-ordinary-day-1', 'S38 ordinary day', 's38-alice-nick-ordinary-day'],
       ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
-        'visual-s39-alice-damir-cafe-1', 'S39 café', 's39-alice-damir-cafe'],
+        'visual-s39-alice-damir-walk-prelude-1', 'S39 pre-café street', 's39-alice-damir-cafe-walk'],
     ];
     for (const [target, routeChoice, extraOverrides, variant, label, media] of specialRoutes) {
       const special = await createPage(browser, `desktop-${target}`, { width: 1440, height: 900 });
@@ -718,6 +718,16 @@ async function main() {
           await assertShortReaderPages(special.page, `${target}-320x700`, target === 's38-paused-01' ? s38Paused : s39Active.split(/\n\s*\n/u)[0]);
         }
         if (target === 's39-active-01') {
+          // S39 active starts outdoors. Café art appears only from the native
+          // second paragraph beat, independently of viewport-local page count.
+          await advanceToBeat(special.page, 's39-active-02');
+          await assertPilotCue(special.page, 's39-active-02', 'visual-s39-alice-damir-cafe-1',
+            'S39 café begins at second native beat', 's39-alice-damir-cafe');
+          await captureMobileViewports(special.page, 'mobile-s39-active-02', 's39-active-02',
+            'visual-s39-alice-damir-cafe-1', 'S39 café second beat', 's39-alice-damir-cafe');
+          await advanceToBeat(special.page, 's39-active-03');
+          await assertPilotCue(special.page, 's39-active-03', 'visual-s39-alice-damir-cafe-1',
+            'S39 café remains through third beat', 's39-alice-damir-cafe');
           await advanceToBeat(special.page, 's39-common-01');
           await assertPilotCue(special.page, 's39-common-01', 'visual-s39-alice-damir-cafe-walk-1', 'S39 café walk', 's39-alice-damir-cafe-walk');
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s39-cafe-walk.png'), fullPage: true });
