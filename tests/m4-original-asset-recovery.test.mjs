@@ -100,7 +100,11 @@ test('presentation contains every admitted story image and keeps authored route 
     assert.deepEqual(beat(scene).when, { routeIntent: mediaId.replace('s26-', '').replace('-choice', '') });
   }
   assert.equal(beat('s39-paused-01').cg.mediaId, 's39-alice-damir-cafe');
-  assert.equal(beat('s39-active-01').cg.mediaId, 's39-alice-damir-cafe');
+  assert.equal(beat('s39-active-01').background, 's39-alice-damir-cafe-walk');
+  assert.equal(beat('s39-active-01').cg, undefined,
+    'café artwork must not appear during the departure and music-card shop');
+  assert.equal(beat('s39-active-02').cg.mediaId, 's39-alice-damir-cafe');
+  assert.equal(beat('s39-active-03').cg.mediaId, 's39-alice-damir-cafe');
   assert.equal(beat('s39-common-01').background, 's39-alice-damir-cafe-walk');
   assert.equal(beat('s44-common-01').cg.mediaId, 's44-eric-epilogue-month-later');
   assert.equal(beat('s45-common-01').cg.mediaId, 's45-nick-home-epilogue-month-later');
