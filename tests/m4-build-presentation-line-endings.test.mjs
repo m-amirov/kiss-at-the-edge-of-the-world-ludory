@@ -47,3 +47,18 @@ test('presentation proof is reproducible when story.js line endings change', () 
     rmSync(base, { recursive: true, force: true });
   }
 });
+
+test('presentation proof derives accepted branding assets from the inventory', () => {
+  buildPresentation({ projectRoot: studioRoot, write: false });
+  const proof = JSON.parse(readFileSync(join(studioRoot, 'narrative-assets.json'), 'utf8'));
+  assert.deepEqual(Object.keys(proof.brandingAssets).sort(), [
+    'kiss-at-the-edge-cover', 'kiss-at-the-edge-icon', 'menu-hero-alice',
+  ]);
+  const inventory = JSON.parse(readFileSync(inventorySource, 'utf8'));
+  for (const entry of inventory.entries.filter(item => item.role === 'branding' && item.status === 'accepted')) {
+    assert.deepEqual(proof.brandingAssets[entry.id], {
+      path: entry.admittedPath,
+      sha256: entry.sha256,
+    });
+  }
+});

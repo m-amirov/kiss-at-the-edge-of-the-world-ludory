@@ -334,5 +334,19 @@
       "sourceKind": "generated-source-bound",
       "artStatus": "approved-independent"
     }
+  },
+  "brandingAssets": {
+    "kiss-at-the-edge-cover": {
+      "path": "assets/branding/kiss-at-the-edge-cover.png",
+      "sha256": "8f38b9516533fa0cdc760cd44e7dfd21f05d87e7a3589f5229b90a9d5b9fa6a5"
+    },
+    "kiss-at-the-edge-icon": {
+      "path": "assets/branding/kiss-at-the-edge-icon.png",
+      "sha256": "4079ecac6b6cf45523def3026288540858f897677cf3686712e56a61eced6c2b"
+    },
+    "menu-hero-alice": {
+      "path": "assets/branding/menu-hero.webp",
+      "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b"
+    }
   }
 }

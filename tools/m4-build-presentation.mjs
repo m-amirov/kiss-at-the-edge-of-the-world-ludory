@@ -14,6 +14,7 @@ export function canonicalTextSha256(bytesOrText) {
 
 const MEDIA_ID = /^[a-z][a-z0-9_-]{0,63}$/;
 const MEDIA_PATH = /^assets\/vis-[a-z0-9_-]+\.(?:webp|png|jpg|jpeg)$/;
+const BRANDING_PATH = /^assets\/branding\/[a-z0-9][a-z0-9._-]*\.(?:webp|png|jpg|jpeg)$/i;
 const VALID_KINDS = new Set(['background', 'portrait', 'cg']);
 
 function exactKeys(value, allowed, required, context) {
@@ -101,6 +102,44 @@ export function validateMobileAssets({ projectRoot, presentation }) {
   return { ids, proof, paths };
 }
 
+export function validateBrandingAssets({ projectRoot, inventory }) {
+  if (basename(projectRoot) !== 'game-studio') return { ids: [], proof: {}, paths: new Set() };
+  const entries = inventory.entries.filter(entry => entry.status === 'accepted' &&
+    entry.role === 'branding');
+  const ids = [];
+  const proof = {};
+  const paths = new Set();
+  for (const entry of entries) {
+    if (!MEDIA_ID.test(entry.id) || !BRANDING_PATH.test(entry.admittedPath) || paths.has(entry.admittedPath) ||
+        Object.hasOwn(proof, entry.id) || !/^[a-f0-9]{64}$/i.test(entry.sha256 ?? '')) {
+      throw new Error(`branding entry ${entry.id}: unsafe or duplicate inventory record`);
+    }
+    const assetFile = join(projectRoot, entry.admittedPath);
+    checkRegular(assetFile, `branding entry ${entry.id}`);
+    const blobHash = hash(readFileSync(assetFile));
+    if (blobHash !== entry.sha256.toLowerCase()) throw new Error(`branding entry ${entry.id}: SHA-256 mismatch`);
+    ids.push(entry.id);
+    paths.add(entry.admittedPath);
+    proof[entry.id] = { path: entry.admittedPath, sha256: blobHash };
+  }
+  return { ids, proof, paths };
+}
+
+function rasterFiles(directory, prefix = '') {
+  const files = [];
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const relative = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const filename = join(directory, entry.name);
+    if (entry.isSymbolicLink()) throw new Error(`unsafe symlink raster asset: ${filename}`);
+    if (entry.isDirectory()) files.push(...rasterFiles(filename, relative));
+    else if (entry.isFile() && /\.(?:png|webp|jpe?g)$/i.test(entry.name)) {
+      checkRegular(filename, `raster asset ${relative}`);
+      files.push(`assets/${relative}`);
+    }
+  }
+  return files;
+}
+
 function validateManifest(manifest, sourceMap) {
   exactKeys(manifest, ['schemaVersion', 'media', 'beats'], ['schemaVersion', 'media', 'beats'], 'presentation');
   if (manifest.schemaVersion !== 1) throw new Error('unsupported presentation schemaVersion');
@@ -170,9 +209,10 @@ export function buildPresentation({ projectRoot, write = false }) {
     assets[mediaId] = { path: media.src, sha256: blobHash };
   }
   const mobile = validateMobileAssets({ projectRoot: root, presentation: manifest });
-  const raster = readdirSync(join(root, 'assets')).filter(name => /\.(?:png|webp|jpe?g)$/i.test(name));
-  const proved = new Set([...Object.values(assets).map(asset => asset.path), ...mobile.paths]);
-  for (const name of raster) if (!proved.has(`assets/${name}`)) throw new Error(`unproved raster asset: ${name}`);
+  const branding = validateBrandingAssets({ projectRoot: root, inventory });
+  const raster = rasterFiles(join(root, 'assets'));
+  const proved = new Set([...Object.values(assets).map(asset => asset.path), ...mobile.paths, ...branding.paths]);
+  for (const filename of raster) if (!proved.has(filename)) throw new Error(`unproved raster asset: ${filename}`);
 
   const storyFile = join(root, 'src/story.js');
   const storyBytes = readFileSync(storyFile);
@@ -187,6 +227,7 @@ export function buildPresentation({ projectRoot, write = false }) {
   const generated = `// Generated from visuals/presentation.json by tools/m4-build-presentation.mjs. Do not edit.\n${readerAdapter}export const presentationData = ${JSON.stringify(manifest, null, 2)};\n`;
   const proofObject = { schemaVersion: 1, storySha256, assets };
   if (mobile.ids.length) proofObject.mobileAssets = mobile.proof;
+  if (branding.ids.length) proofObject.brandingAssets = branding.proof;
   const proof = `${JSON.stringify(proofObject, null, 2)}\n`;
   const generatedPath = join(root, 'src/presentation.js');
   const proofPath = join(root, 'narrative-assets.json');
