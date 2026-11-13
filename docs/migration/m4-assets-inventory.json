@@ -1,0 +1,2934 @@
+{
+  "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+  "assetManifestPath": "assets/asset-manifest.json",
+  "rightsManifestPath": "assets/provenance/rights-manifest.json",
+  "entries": [
+    {
+      "id": "akureyri-street-master",
+      "role": "background",
+      "path": "assets/backgrounds/akureyri-street-master.png",
+      "targetPath": "assets/backgrounds/akureyri-street-master.webp",
+      "sourceBlobSha": "f9198fb08218ffef1217c12b91038acff12a4e84",
+      "sha256": "ba50fb5282814f2a515380eaa1b1ad09f92d20f764f50474ebb05d207b3e0ae4",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/akureyri-street-master.webp"
+      ]
+    },
+    {
+      "id": "alice-independent-ending",
+      "role": "cg",
+      "path": "assets/cg/alice-independent-ending.png",
+      "targetPath": "assets/cg/alice-independent-ending.webp",
+      "sourceBlobSha": "ffc92586b36a856e347f36ce7cc8c06d690a8c65",
+      "sha256": "4f12cf21985b0be820c077c707beb514ca97cd288ffa02c165622a240bca4152",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/alice-independent-ending.webp"
+      ]
+    },
+    {
+      "id": "alice-master",
+      "role": "character",
+      "path": "assets/characters/alice-master.png",
+      "targetPath": "assets/characters/alice-master.webp",
+      "sourceBlobSha": "e46ddd373ab407bdbfcfff7d68fa1409e7dd9bce",
+      "sha256": "d261c464d1d40913e3bd377b206b9d59e86310ecfbedc0357d6fe4def1179d5d",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/alice-master.webp"
+      ]
+    },
+    {
+      "id": "alice-reflective",
+      "role": "character-variant",
+      "path": "assets/characters/alice-reflective.png",
+      "targetPath": "assets/characters/alice-reflective.webp",
+      "sourceBlobSha": "e03e79808ad08f31ee1fc9533c0594b41bc3ba33",
+      "sha256": "11e793386dd474a0b409b43f6e12588c88690190d113d428216474fdbca28f3d",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/alice-reflective.webp"
+      ]
+    },
+    {
+      "id": "alice-stage",
+      "role": "character-stage",
+      "path": "assets/characters/alice-stage.png",
+      "targetPath": "assets/characters/alice-stage.webp",
+      "sourceBlobSha": "f637708ee19f6a7d06c2e46baca1bc485584233e",
+      "sha256": "c2a47cbe11657e96e645c4a8daf19ac5ed294579a2ca580eaf9912cb3e4a3dcf",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/alice-stage.webp"
+      ]
+    },
+    {
+      "id": "damir-master",
+      "role": "character",
+      "path": "assets/characters/damir-master.png",
+      "targetPath": "assets/characters/damir-master.webp",
+      "sourceBlobSha": "41a6c2c80f18da19d225ca9fe36630e91eadc830",
+      "sha256": "221df2cdd61880de169b500fa56095c99c9784595d156201ee65f15f76c69ef3",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/damir-master.webp"
+      ]
+    },
+    {
+      "id": "damir-road-letter",
+      "role": "cg",
+      "path": "assets/cg/damir-road-letter.png",
+      "targetPath": "assets/cg/damir-road-letter.webp",
+      "sourceBlobSha": "bfde49a219e858aca7e5d2bef8b455740e26b5bb",
+      "sha256": "7a054f68fb12d61ec3fa1469e5675ea4a8312ec8ca7c6e81d285478b1085ec14",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/damir-road-letter.webp"
+      ]
+    },
+    {
+      "id": "damir-route-letter",
+      "role": "cg",
+      "path": "assets/cg/damir-route-letter.png",
+      "targetPath": "assets/cg/damir-route-letter.webp",
+      "sourceBlobSha": "1bc1174372ef4b795db6bb2ec521b8e65c04555a",
+      "sha256": "1aafc4e3a2e6604a04eaaf06a0a043b7ab808baff66aa87a77ffbde6a3133f17",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/damir-route-letter.webp"
+      ]
+    },
+    {
+      "id": "damir-stage",
+      "role": "character-stage",
+      "path": "assets/characters/damir-stage.png",
+      "targetPath": "assets/characters/damir-stage.webp",
+      "sourceBlobSha": "471882d38798147b6cab8d13f1b59c78795eea07",
+      "sha256": "fddd058838e918141c8525ace8627acdfad35b16f386ccc3d666a9a08698a1d3",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/damir-stage.webp"
+      ]
+    },
+    {
+      "id": "damir-vulnerable",
+      "role": "character-variant",
+      "path": "assets/characters/damir-vulnerable.png",
+      "targetPath": "assets/characters/damir-vulnerable.webp",
+      "sourceBlobSha": "7ebf82972deddd9b401917813a43e4d73d65ac9a",
+      "sha256": "8b9e9f4abfb92c09d79e4b0171b7bd65282be8722623c0a401c3cee2cf8186be",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/damir-vulnerable.webp"
+      ]
+    },
+    {
+      "id": "eastfjords-road-master",
+      "role": "background",
+      "path": "assets/backgrounds/eastfjords-road-master.png",
+      "targetPath": "assets/backgrounds/eastfjords-road-master.webp",
+      "sourceBlobSha": "00ebd33ca3e772cb2cedacf70416143f80a1f085",
+      "sha256": "36a4f35cc18eae9d2ba9f9d613096ad6963991311444610599dbdb0d2f30b810",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/eastfjords-road-master.webp"
+      ]
+    },
+    {
+      "id": "eric-master",
+      "role": "character",
+      "path": "assets/characters/eric-master.png",
+      "targetPath": "assets/characters/eric-master.webp",
+      "sourceBlobSha": "d9d09f068a54414b1186bd6ce2c53b085acb96ee",
+      "sha256": "aa66cc7e0a58bd409b1066dbc07cd5780796245fd79a7eb5c8e0fb98f0322f14",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/eric-master.webp"
+      ]
+    },
+    {
+      "id": "eric-myvattn-dawn",
+      "role": "cg",
+      "path": "assets/cg/eric-myvattn-dawn.png",
+      "targetPath": "assets/cg/eric-myvattn-dawn.webp",
+      "sourceBlobSha": "3864d110bc9a80e463ff42b2720471ab6c9b0da2",
+      "sha256": "f3f0cccb0d0a36e992b2b81a72655851b1c0fc40c6226318d1252896a95f1f5c",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/eric-myvattn-dawn.webp"
+      ]
+    },
+    {
+      "id": "eric-route-hand",
+      "role": "cg",
+      "path": "assets/cg/eric-route-hand.png",
+      "targetPath": "assets/cg/eric-route-hand.webp",
+      "sourceBlobSha": "294bc805879452b77a8f342bd4d3fb76d7eb4032",
+      "sha256": "9401884c8743fb005f982aa205e5a664201af00e56299a938d1b719e9c87835f",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/eric-route-hand.webp"
+      ]
+    },
+    {
+      "id": "eric-stage",
+      "role": "character-stage",
+      "path": "assets/characters/eric-stage.png",
+      "targetPath": "assets/characters/eric-stage.webp",
+      "sourceBlobSha": "2b8ced6549ba7d47f24d01bacf87d837bf08377a",
+      "sha256": "5c396c694a2aa9cae9382330cb12911eedfd78a5821f7f2a7e83223db199ae0a",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/eric-stage.webp"
+      ]
+    },
+    {
+      "id": "eric-tender",
+      "role": "character-variant",
+      "path": "assets/characters/eric-tender.png",
+      "targetPath": "assets/characters/eric-tender.webp",
+      "sourceBlobSha": "8b8a14bd7f1bca2c5c5503c205fc25e09f896b1f",
+      "sha256": "552507c76a80e3487ac4f48275f59aeb27df19a15c4a7219d7ab34520aec5026",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/eric-tender.webp"
+      ]
+    },
+    {
+      "id": "guesthouse-common-kitchen-evening",
+      "role": "background",
+      "path": "assets/backgrounds/guesthouse-common-kitchen-evening.png",
+      "targetPath": "assets/backgrounds/guesthouse-common-kitchen-evening.webp",
+      "sourceBlobSha": "328a53070a5b2e9fd23075964d2a6c9fc16511e0",
+      "sha256": "f6c3e566baf906961a9540d927f73477dcd1734cd8850051a1abce31af9e2fb8",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/guesthouse-common-kitchen-evening.webp"
+      ]
+    },
+    {
+      "id": "hofn-open-pool-evening",
+      "role": "background",
+      "path": "assets/backgrounds/hofn-open-pool-evening.png",
+      "targetPath": "assets/backgrounds/hofn-open-pool-evening.webp",
+      "sourceBlobSha": "0d7f5395aec0fce761c51e98285248ff2ce6fae0",
+      "sha256": "c9f0034f869c6a4ea574460c38ebe91549e847871e739ec39bbc58a90f08bef5",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/hofn-open-pool-evening.webp"
+      ]
+    },
+    {
+      "id": "horse-farm-riding-lane",
+      "role": "background",
+      "path": "assets/backgrounds/horse-farm-riding-lane.png",
+      "targetPath": "assets/backgrounds/horse-farm-riding-lane.webp",
+      "sourceBlobSha": "65e2d41d5fb8d183a4ce527ed2b7f49f027a81aa",
+      "sha256": "1844afcbd548c34acb1694e97bd925295a94c2a746bdb90bc31c4cebdd1a70a5",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/horse-farm-riding-lane.webp"
+      ]
+    },
+    {
+      "id": "hveragerdi-greenhouse-cafe",
+      "role": "background",
+      "path": "assets/backgrounds/hveragerdi-greenhouse-cafe.png",
+      "targetPath": "assets/backgrounds/hveragerdi-greenhouse-cafe.webp",
+      "sourceBlobSha": "a5c2162011a871702da10a788311b6593d3a66a6",
+      "sha256": "f19d430c65a0b92f313bc89ae57c45f63482da8bf10ff1018af862f8203d018f",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/hveragerdi-greenhouse-cafe.webp"
+      ]
+    },
+    {
+      "id": "jokulsarlon-master",
+      "role": "background",
+      "path": "assets/backgrounds/jokulsarlon-master.png",
+      "targetPath": "assets/backgrounds/jokulsarlon-master.webp",
+      "sourceBlobSha": "bbd85025b844a7e98f3fc1eb991ecbad09ea651d",
+      "sha256": "735738568f696d69c5e54a366c7336e6c6a6322546f2ec23349e37dd5c5a3bd6",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/jokulsarlon-master.webp"
+      ]
+    },
+    {
+      "id": "keflavik-airport-arrivals-v1",
+      "role": "background",
+      "path": "assets/backgrounds/keflavik-airport-arrivals-v1.png",
+      "targetPath": "assets/backgrounds/keflavik-airport-arrivals-v1.webp",
+      "sourceBlobSha": "3129bba5df37f55ba03fb9dd0d4be27ce2969129",
+      "sha256": "20d598392ad68f96c9f3ff1efaa416cdb1430f9dd381569706fb778e1f447f8d",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/keflavik-airport-arrivals-v1.webp"
+      ]
+    },
+    {
+      "id": "keflavik-airport-departures",
+      "role": "background",
+      "path": "assets/backgrounds/keflavik-airport-departures.png",
+      "targetPath": "assets/backgrounds/keflavik-airport-departures.webp",
+      "sourceBlobSha": "4eb2e2d73fb5717ccf3cdfbb1ecb174176732d97",
+      "sha256": "a232967851c5a47b21005c85d2622ee0a9bd75f985fe7d4609e8c8a399c79c05",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/keflavik-airport-departures.webp"
+      ]
+    },
+    {
+      "id": "kiss-at-the-edge-cover",
+      "role": "branding",
+      "path": "assets/branding/kiss-at-the-edge-cover.png",
+      "targetPath": "assets/branding/kiss-at-the-edge-cover.png",
+      "sourceBlobSha": "a0da5d576eeb97156897876e3088d56b6c8686fd",
+      "sha256": "8f38b9516533fa0cdc760cd44e7dfd21f05d87e7a3589f5229b90a9d5b9fa6a5",
+      "status": "accepted",
+      "reason": null,
+      "admittedPath": "assets/branding/kiss-at-the-edge-cover.png",
+      "admissionEvidence": {
+        "method": "owner-approved source-quality title-art replacement; byte-identical source Git blob",
+        "date": "2026-11-09",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "a0da5d576eeb97156897876e3088d56b6c8686fd"
+      },
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/branding/kiss-at-the-edge-cover.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; store cover key visual",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "8F38B9516533FA0CDC760CD44E7DFD21F05D87E7A3589F5229B90A9D5B9FA6A5"
+      },
+      "sourceVariants": [
+        "assets/branding/kiss-at-the-edge-cover.png"
+      ]
+    },
+    {
+      "id": "kiss-at-the-edge-icon",
+      "role": "branding",
+      "path": "assets/branding/kiss-at-the-edge-icon.png",
+      "targetPath": "assets/branding/kiss-at-the-edge-icon.png",
+      "sourceBlobSha": "ba55374818e4bc5114b1f0165157da12333c6a8f",
+      "sha256": "4079ecac6b6cf45523def3026288540858f897677cf3686712e56a61eced6c2b",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/branding/kiss-at-the-edge-icon.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; small canonical Alice icon",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "4079ECAC6B6CF45523DEF3026288540858F897677CF3686712E56A61ECED6C2B"
+      },
+      "sourceVariants": [
+        "assets/branding/kiss-at-the-edge-icon.png"
+      ],
+      "admittedPath": "assets/branding/kiss-at-the-edge-icon.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "ba55374818e4bc5114b1f0165157da12333c6a8f",
+        "sha256": "4079ecac6b6cf45523def3026288540858f897677cf3686712e56a61eced6c2b",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "lagarfljot-volunteer-trail",
+      "role": "background",
+      "path": "assets/backgrounds/lagarfljot-volunteer-trail.png",
+      "targetPath": "assets/backgrounds/lagarfljot-volunteer-trail.webp",
+      "sourceBlobSha": "bd8c8a306ab67d58fe3cb1a0f9c95bf3df9e0d16",
+      "sha256": "c75abb37b42483f40f47b37f75c047986d77c78b1a9fbf85f21c2d25064bef87",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/lagarfljot-volunteer-trail.webp"
+      ]
+    },
+    {
+      "id": "menu-hero-alice",
+      "role": "branding",
+      "path": "assets/branding/menu-hero.webp",
+      "targetPath": "assets/branding/menu-hero.webp",
+      "sourceBlobSha": "345b55a861af17433b4a20da9cc374bdeb5c3192",
+      "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+      "status": "accepted",
+      "reason": null,
+      "admittedPath": "assets/branding/menu-hero.webp",
+      "admissionEvidence": {
+        "method": "owner-approved direct GitHub source-blob transfer (game-dev unavailable)",
+        "date": "2026-11-09",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "345b55a861af17433b4a20da9cc374bdeb5c3192",
+        "verification": "source Git blob SHA-1 and SHA-256 checked against pinned manifest; no recompression"
+      },
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/branding/menu-hero.webp",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; title-free menu key visual with canonical Alice",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "5667BEC6163EF908F42EA4F0FBD291307F4C9CF91EAE04019C6BA82D7C97F07B"
+      },
+      "sourceVariants": [
+        "assets/branding/menu-hero.webp"
+      ]
+    },
+    {
+      "id": "music-cafe",
+      "role": "music",
+      "path": "assets/audio/music/cafe.ogg",
+      "targetPath": "assets/audio/music/cafe.ogg",
+      "sourceBlobSha": "c72fa1cae5dc71e42d85197774025ab844ed0603",
+      "sha256": "520bb76925ddaaccbc8bc3e9924924ceff3f7bf3b097768d77372f8e85c6e58b",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/cafe.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-ending",
+      "role": "music",
+      "path": "assets/audio/music/ending.ogg",
+      "targetPath": "assets/audio/music/ending.ogg",
+      "sourceBlobSha": "e50dbb1a4cdf2ca594d00eca5e81e1282db4ae5d",
+      "sha256": "9562ebec3527d252f85e599bfa465a8791e7652dd5d699cf1a601bf3d659aae3",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/ending.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-iceland-calm",
+      "role": "music",
+      "path": "assets/audio/music/iceland-calm.ogg",
+      "targetPath": "assets/audio/music/iceland-calm.ogg",
+      "sourceBlobSha": "5321836ebdede345c4052f8e7a756d8c4430990b",
+      "sha256": "b71467ac89012eaa13077aff09276c328bec804d5def1af1d263b0b4020406a2",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/iceland-calm.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-main-theme",
+      "role": "music",
+      "path": "assets/audio/music/main-theme.ogg",
+      "targetPath": "assets/audio/music/main-theme.ogg",
+      "sourceBlobSha": "4dd6ec6bedc0b4dbe3e77118f5c4fffe06aaffe5",
+      "sha256": "8b8d82236a89ebe5506ba7d6458ef72e09a66ac88671f3b968fa8cf81f266b4f",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/main-theme.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-road",
+      "role": "music",
+      "path": "assets/audio/music/road.ogg",
+      "targetPath": "assets/audio/music/road.ogg",
+      "sourceBlobSha": "64a72ac9680fcc018c064c4cc585c1db73482f83",
+      "sha256": "a1b9859be4192f47f0c78b30bd4aa6650bc9348787bf1aa87b798d8493e8e160",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/road.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-romantic",
+      "role": "music",
+      "path": "assets/audio/music/romantic.ogg",
+      "targetPath": "assets/audio/music/romantic.ogg",
+      "sourceBlobSha": "f64a62d0f7388549e594d877355ed25ff406ed02",
+      "sha256": "806561a239df784c38ec7d6462af6a12eaf2b7d11e49933aeb0a1cb204da1d58",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/romantic.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-sad",
+      "role": "music",
+      "path": "assets/audio/music/sad.ogg",
+      "targetPath": "assets/audio/music/sad.ogg",
+      "sourceBlobSha": "b871b23eba53f1b7820b7d93dec83cf89b92f7d9",
+      "sha256": "1b89bea3e219e43df8f81ea22afe647273caa1b203c6a9fda6cd3930ae14b191",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/sad.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "music-tension",
+      "role": "music",
+      "path": "assets/audio/music/tension.ogg",
+      "targetPath": "assets/audio/music/tension.ogg",
+      "sourceBlobSha": "10f10aaf37cfcae0c2068fb349b129708dee43f4",
+      "sha256": "79116d5f5b1158e0c5c9b61985068768fddb6b983384e2ea2ace092503e2a0a3",
+      "status": "blocked",
+      "reason": "rights_hash_missing",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/audio/music/tension.ogg",
+        "license": "ACE-Step code and model MIT; generated output permitted for commercial use per official model card",
+        "method": "ACE-Step 1.5 local generation from machine-readable music cue spec; normalized and encoded to OGG Vorbis q4",
+        "source": "ACE-Step/Ace-Step1.5, ACE-Step 1.5 v0.1.8, local CPU generation",
+        "sha256": null
+      },
+      "sourceVariants": []
+    },
+    {
+      "id": "myvatn-hverfjall-viewpoint-overcast",
+      "role": "background",
+      "path": "assets/backgrounds/myvatn-hverfjall-viewpoint-overcast.png",
+      "targetPath": "assets/backgrounds/myvatn-hverfjall-viewpoint-overcast.webp",
+      "sourceBlobSha": "d50ed5cc9f0e7a4f4478dccca7eab9abdbab7d6d",
+      "sha256": "c66c1ac0ee9942cc9cfc3add3f29399b8dc04ef8e5ef9993c78430ebedb85620",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/myvatn-hverfjall-viewpoint-overcast.webp"
+      ]
+    },
+    {
+      "id": "myvatn-pool-master",
+      "role": "background",
+      "path": "assets/backgrounds/myvatn-pool-master.png",
+      "targetPath": "assets/backgrounds/myvatn-pool-master.png",
+      "sourceBlobSha": "49870858eb0552f900839f49477212fff7b09c0e",
+      "sha256": "f5ea3c2fe821410533850122293b8968a05bdf6bc2883e7211301226390a44bc",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": []
+    },
+    {
+      "id": "myvatn-rainy-lodge-interior",
+      "role": "background",
+      "path": "assets/backgrounds/myvatn-rainy-lodge-interior.png",
+      "targetPath": "assets/backgrounds/myvatn-rainy-lodge-interior.webp",
+      "sourceBlobSha": "5e0f6ecc463555b370c3d94c52f4b93347dcaa91",
+      "sha256": "8d04133a79bca4dbc6f37664a144496c709902a8c5c09c5f3bcf0fafb4a23bf3",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/myvatn-rainy-lodge-interior.webp"
+      ]
+    },
+    {
+      "id": "nick-akureyri-edit",
+      "role": "cg",
+      "path": "assets/cg/nick-akureyri-edit.png",
+      "targetPath": "assets/cg/nick-akureyri-edit.webp",
+      "sourceBlobSha": "9edf92ebe9ef6da94b0bb61015aa160640e544be",
+      "sha256": "3efec5cd22a7a6579c2896679d4e821d47b693632d9122873e997b11035f60e0",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/nick-akureyri-edit.webp"
+      ]
+    },
+    {
+      "id": "nick-master",
+      "role": "character",
+      "path": "assets/characters/nick-master.png",
+      "targetPath": "assets/characters/nick-master.webp",
+      "sourceBlobSha": "4e83b42378441c4b975e09d03cd3e1445bb22168",
+      "sha256": "a1c4aae9230b21a7ce9eaf4605a62ed54e225e35ab1b2470049902a63fe44fdd",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/nick-master.webp"
+      ]
+    },
+    {
+      "id": "nick-route-editing",
+      "role": "cg",
+      "path": "assets/cg/nick-route-editing.png",
+      "targetPath": "assets/cg/nick-route-editing.webp",
+      "sourceBlobSha": "48abd18d0dbb97b5f3e38080211bdf03543c3448",
+      "sha256": "b945b46767cf379e820eabb19519db45cc30408b90a97fb54ad68bdc118d3c61",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/nick-route-editing.webp"
+      ]
+    },
+    {
+      "id": "nick-serious",
+      "role": "character-variant",
+      "path": "assets/characters/nick-serious.png",
+      "targetPath": "assets/characters/nick-serious.webp",
+      "sourceBlobSha": "554aa4292a35249201d260bda3768635974b40e8",
+      "sha256": "68ec60b8250b85f4dd475e39df8c4d6708dcb3ab41260aa16df19ce8865d0e4c",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/nick-serious.webp"
+      ]
+    },
+    {
+      "id": "nick-stage",
+      "role": "character-stage",
+      "path": "assets/characters/nick-stage.png",
+      "targetPath": "assets/characters/nick-stage.webp",
+      "sourceBlobSha": "dfd00a33ab574e3cc29ffb87857f18043281e516",
+      "sha256": "b1a691a2e4abfe060c916dea9ff08acf9f0115ae50233e85f7e009232454c9e4",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/characters/nick-stage.webp"
+      ]
+    },
+    {
+      "id": "reykjahlid-bookshop-day",
+      "role": "background",
+      "path": "assets/backgrounds/reykjahlid-bookshop-day.png",
+      "targetPath": "assets/backgrounds/reykjahlid-bookshop-day.webp",
+      "sourceBlobSha": "efe49df10fdf319dd06609d6eb00dd04afb4d2f9",
+      "sha256": "f08067b3a390987dde0d7b9de89bf88c90fb664ed04bb2d0af35948ecb1d15b9",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/reykjahlid-bookshop-day.webp"
+      ]
+    },
+    {
+      "id": "reykjavik-harbour-master",
+      "role": "background",
+      "path": "assets/backgrounds/reykjavik-harbour-master.png",
+      "targetPath": "assets/backgrounds/reykjavik-harbour-master.webp",
+      "sourceBlobSha": "f9e3daf2020a39edd9140d8a300fe1937cab84f4",
+      "sha256": "3d755af79e017335c9cc61757ddc2bac0bf020617a85ab675494660e58295057",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/reykjavik-harbour-master.webp"
+      ]
+    },
+    {
+      "id": "reynisfjara-master",
+      "role": "background",
+      "path": "assets/backgrounds/reynisfjara-master.png",
+      "targetPath": "assets/backgrounds/reynisfjara-master.webp",
+      "sourceBlobSha": "729eff642080931fcf618b2524055ca6c7e0579e",
+      "sha256": "686558828c88c9201f1a21c4927e0fc0202752d04b22d6380de3a52cc995924f",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/reynisfjara-master.webp"
+      ]
+    },
+    {
+      "id": "road-trip-van-interior-rain",
+      "role": "background",
+      "path": "assets/backgrounds/road-trip-van-interior-rain.png",
+      "targetPath": "assets/backgrounds/road-trip-van-interior-rain.webp",
+      "sourceBlobSha": "58423e266231b2c584b01f958c9f9167a13da1b3",
+      "sha256": "dbd19409c079c98e0141818e85935ae84ed14655d2897c0400953191d5a7c269",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/road-trip-van-interior-rain.webp"
+      ]
+    },
+    {
+      "id": "s02-expedition-planning-iceland",
+      "role": "cg",
+      "path": "assets/cg/s02-expedition-planning-iceland.png",
+      "targetPath": "assets/cg/s02-expedition-planning-iceland.png",
+      "sourceBlobSha": "c78f5d26adb8b4a7691f5be884bde49eed350711",
+      "sha256": "fbb61e3cc29b1185f0fb901d0a0f72d433e1c7c3dfa9eca6d28cc57a819378e8",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": []
+    },
+    {
+      "id": "s02-roadside-cafe",
+      "role": "background",
+      "path": "assets/backgrounds/s02-roadside-cafe.png",
+      "targetPath": "assets/backgrounds/s02-roadside-cafe.webp",
+      "sourceBlobSha": "e7f84b8674c4b232928e72e8854905fa06b95b42",
+      "sha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s02-roadside-cafe.png",
+      "admittedProject": "game-studio",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s02-roadside-cafe.png",
+        "license": "generated for this project",
+        "method": "Built-in image generation; empty roadside cafe background reviewed against ART_BIBLE and existing location masters",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "F6D2ADC4A65D2B30E9EB86203E34A848CC79C69A206A9F81A5A6C9B823BB1C13"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s02-roadside-cafe.webp"
+      ]
+    },
+    {
+      "id": "s03-editor-call-damir",
+      "role": "cg",
+      "path": "assets/cg/s03-editor-call-damir.png",
+      "targetPath": "assets/cg/s03-editor-call-damir.webp",
+      "sourceBlobSha": "a28ee8f30312d5db8a56091655c086f8a184cbf3",
+      "sha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s03-damir.png",
+      "admittedProject": "game-studio",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s03-editor-call-damir.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "AEA38CDCFFAFE5233E8E6D3D93AD5618E41AB94ADDAE40C0A143325A9B80561A"
+      },
+      "sourceVariants": [
+        "assets/cg/s03-editor-call-damir.webp",
+        "assets/cg/s03-editor-call-damir-portrait.png",
+        "assets/cg/s03-editor-call-damir-portrait.webp"
+      ]
+    },
+    {
+      "id": "s03-reykjavik-guesthouse-morning",
+      "role": "background",
+      "path": "assets/backgrounds/s03-reykjavik-guesthouse-morning.png",
+      "targetPath": "assets/backgrounds/s03-reykjavik-guesthouse-morning.webp",
+      "sourceBlobSha": "81c748f7fd5b58dd0ebf5c15b941d06256c6171b",
+      "sha256": "2ca12077112219ffbc9dfd916f504574ee624c2504a3a3c3fad90e741d3ed4bd",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-09",
+      "admittedPath": "assets/vis-s03-guesthouse-morning.png",
+      "admittedProject": "game-studio",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s03-reykjavik-guesthouse-morning.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "2CA12077112219FFBC9DFD916F504574EE624C2504A3A3C3FAD90E741D3ED4BD"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s03-reykjavik-guesthouse-morning.webp"
+      ]
+    },
+    {
+      "id": "s05-hveragerdi-road",
+      "role": "background",
+      "path": "assets/backgrounds/s05-hveragerdi-road.png",
+      "targetPath": "assets/backgrounds/s05-hveragerdi-road.webp",
+      "sourceBlobSha": "f2b3f42435509ee925bcd9058f7d5e0be21a5e5a",
+      "sha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s05-hveragerdi-road.png",
+        "license": "generated for this project",
+        "method": "Built-in image generation from ART_BIBLE direction; empty environment reviewed for authored S05 road transition",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "A01B6CA5147810CDB88FAEFC7187053027FD69105E976B7AD2F42A586A6D030F"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s05-hveragerdi-road.webp",
+        "assets/backgrounds/s05-hveragerdi-road-portrait.png",
+        "assets/backgrounds/s05-hveragerdi-road-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s05-hveragerdi-road.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f2b3f42435509ee925bcd9058f7d5e0be21a5e5a",
+        "sha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s06-hveragerdi-eric-alice",
+      "role": "cg",
+      "path": "assets/cg/s06-hveragerdi-eric-alice.png",
+      "targetPath": "assets/cg/s06-hveragerdi-eric-alice.webp",
+      "sourceBlobSha": "e7906d6728a1070529ce7ebbcb73d30058b63c80",
+      "sha256": "03541d251c355d14f35b2e6efc813a83a2a304b0729ef413d78b34553c21e8f9",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s06-hveragerdi-eric-alice.png",
+        "license": "generated for this project",
+        "method": "Cinematic composition generated from Alice and Eric masters; reviewed for authored S06 event",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "03541D251C355D14F35B2E6EFC813A83A2A304B0729EF413D78B34553C21E8F9"
+      },
+      "sourceVariants": [
+        "assets/cg/s06-hveragerdi-eric-alice.webp",
+        "assets/cg/s06-hveragerdi-eric-alice-portrait.png",
+        "assets/cg/s06-hveragerdi-eric-alice-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s06-hveragerdi-eric-alice.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "e7906d6728a1070529ce7ebbcb73d30058b63c80",
+        "sha256": "03541d251c355d14f35b2e6efc813a83a2a304b0729ef413d78b34553c21e8f9",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s06-hveragerdi-geothermal-day",
+      "role": "background",
+      "path": "assets/backgrounds/s06-hveragerdi-geothermal-day.png",
+      "targetPath": "assets/backgrounds/s06-hveragerdi-geothermal-day.webp",
+      "sourceBlobSha": "9789bc51def802335b8af3379b4220adfbffafc8",
+      "sha256": "0610dbae504ca1a3de51f9c74936f402b02d9af016f2c1020eb07ffb4dd6d1a7",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s06-hveragerdi-geothermal-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "0610DBAE504CA1A3DE51F9C74936F402B02D9AF016F2C1020EB07FFB4DD6D1A7"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s06-hveragerdi-geothermal-day.webp"
+      ],
+      "admittedPath": "assets/vis-s06-hveragerdi-geothermal-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "9789bc51def802335b8af3379b4220adfbffafc8",
+        "sha256": "0610dbae504ca1a3de51f9c74936f402b02d9af016f2c1020eb07ffb4dd6d1a7",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s07-kitchen-cards",
+      "role": "cg",
+      "path": "assets/cg/s07-kitchen-cards.png",
+      "targetPath": "assets/cg/s07-kitchen-cards.webp",
+      "sourceBlobSha": "c018974b15f1caf9c21cf3c4fb1bbb95227ccf11",
+      "sha256": "ed50cfb8cad1615427df2b0e1802f32cc4c17f32b313cc6367403ebfeba73b8b",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s07-kitchen-cards.png",
+        "license": "generated for this project",
+        "method": "Cinematic group composition generated from four character masters; reviewed for authored S07 card event",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "ED50CFB8CAD1615427DF2B0E1802F32CC4C17F32B313CC6367403EBFEBA73B8B"
+      },
+      "sourceVariants": [
+        "assets/cg/s07-kitchen-cards.webp",
+        "assets/cg/s07-kitchen-cards-portrait.png",
+        "assets/cg/s07-kitchen-cards-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s07-kitchen-cards.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "c018974b15f1caf9c21cf3c4fb1bbb95227ccf11",
+        "sha256": "ed50cfb8cad1615427df2b0e1802f32cc4c17f32b313cc6367403ebfeba73b8b",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s07-kitchen-pasta",
+      "role": "cg",
+      "path": "assets/cg/s07-kitchen-pasta.png",
+      "targetPath": "assets/cg/s07-kitchen-pasta.webp",
+      "sourceBlobSha": "8a6fc3ee078afa6a4a203d68ea7a3b9bdd0f2dff",
+      "sha256": "452ab108a997fd6371dd338635ddfe94bdbcf7b85a39fb552ae00fbcde3dd6df",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s07-kitchen-pasta.png",
+        "license": "generated for this project",
+        "method": "Cinematic group composition generated from four character masters; reviewed for authored S07 pasta event",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "452AB108A997FD6371DD338635DDFE94BDBCF7B85A39FB552AE00FBCDE3DD6DF"
+      },
+      "sourceVariants": [
+        "assets/cg/s07-kitchen-pasta.webp",
+        "assets/cg/s07-kitchen-pasta-portrait.png",
+        "assets/cg/s07-kitchen-pasta-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s07-kitchen-pasta.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8a6fc3ee078afa6a4a203d68ea7a3b9bdd0f2dff",
+        "sha256": "452ab108a997fd6371dd338635ddfe94bdbcf7b85a39fb552ae00fbcde3dd6df",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s08-guesthouse-strap",
+      "role": "cg",
+      "path": "assets/cg/s08-guesthouse-strap.png",
+      "targetPath": "assets/cg/s08-guesthouse-strap.webp",
+      "sourceBlobSha": "46a62270488c7fa1f38994f2b2afd1cf52ef2eb6",
+      "sha256": "cd8e44eb13dcbec7a8d5ccd1612cdbda1a0c92edad3b93a77e3118e8cca990d6",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s08-guesthouse-strap.png",
+        "license": "generated for this project",
+        "method": "Cinematic composition generated from Alice and Damir masters; reviewed for authored S08 repair event",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "CD8E44EB13DCBEC7A8D5CCD1612CDBDA1A0C92EDAD3B93A77E3118E8CCA990D6"
+      },
+      "sourceVariants": [
+        "assets/cg/s08-guesthouse-strap.webp",
+        "assets/cg/s08-guesthouse-strap-portrait.png",
+        "assets/cg/s08-guesthouse-strap-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s08-guesthouse-strap.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "46a62270488c7fa1f38994f2b2afd1cf52ef2eb6",
+        "sha256": "cd8e44eb13dcbec7a8d5ccd1612cdbda1a0c92edad3b93a77e3118e8cca990d6",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s09-guesthouse-to-skogafoss-morning",
+      "role": "background",
+      "path": "assets/backgrounds/s09-guesthouse-to-skogafoss-morning.png",
+      "targetPath": "assets/backgrounds/s09-guesthouse-to-skogafoss-morning.webp",
+      "sourceBlobSha": "7c696378c82841d095ab62677d8cba9e50a0194a",
+      "sha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s09-guesthouse-to-skogafoss-morning.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "F47A9A30B9668D4C50E466D914E2612DC45C61BFC4BA46B85A29EA686DF91A49"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s09-guesthouse-to-skogafoss-morning.webp"
+      ],
+      "admittedPath": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "7c696378c82841d095ab62677d8cba9e50a0194a",
+        "sha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s10-vik-guesthouse-arrival",
+      "role": "background",
+      "path": "assets/backgrounds/s10-vik-guesthouse-arrival.png",
+      "targetPath": "assets/backgrounds/s10-vik-guesthouse-arrival.webp",
+      "sourceBlobSha": "603dd1f0eb4683a054690b561dbc085acaf83a38",
+      "sha256": "94356b1e97aa3ed8559b6864d4d948de03e96df4a07872b3f82dedbf98ddb894",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s10-vik-guesthouse-arrival.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "94356B1E97AA3ED8559B6864D4D948DE03E96DF4A07872B3F82DEDBF98DDB894"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s10-vik-guesthouse-arrival.webp"
+      ],
+      "admittedPath": "assets/vis-s10-vik-guesthouse-arrival.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "603dd1f0eb4683a054690b561dbc085acaf83a38",
+        "sha256": "94356b1e97aa3ed8559b6864d4d948de03e96df4a07872b3f82dedbf98ddb894",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s10-vik-road-song",
+      "role": "cg",
+      "path": "assets/cg/s10-vik-road-song.png",
+      "targetPath": "assets/cg/s10-vik-road-song.webp",
+      "sourceBlobSha": "d2c9e0863c3b270334ce7c4b7b448970846fe151",
+      "sha256": "df56b1a22cbb3a94868c4e9a5815fe60fbe8a574375d5c3a5c89ae135f1acc93",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s10-vik-road-song.png",
+        "license": "generated for this project",
+        "method": "Cinematic composition generated from Alice and Eric masters; reviewed for authored S10 music conversation",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "DF56B1A22CBB3A94868C4E9A5815FE60FBE8A574375D5C3A5C89AE135F1ACC93"
+      },
+      "sourceVariants": [
+        "assets/cg/s10-vik-road-song.webp",
+        "assets/cg/s10-vik-road-song-portrait.png",
+        "assets/cg/s10-vik-road-song-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s10-vik-road-song.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d2c9e0863c3b270334ce7c4b7b448970846fe151",
+        "sha256": "df56b1a22cbb3a94868c4e9a5815fe60fbe8a574375d5c3a5c89ae135f1acc93",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s12-vik-cafe-damir",
+      "role": "cg",
+      "path": "assets/cg/s12-vik-cafe-damir.png",
+      "targetPath": "assets/cg/s12-vik-cafe-damir.webp",
+      "sourceBlobSha": "771eb8054777fab9f053becf0e9515be80153c5e",
+      "sha256": "7344fdda79eea8bf02bc3fb49e79bb94df78e93e387bd2a198a610cd648be99e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s12-vik-cafe-damir.png",
+        "license": "generated for this project",
+        "method": "Cinematic composition generated from Alice and Damir masters; reviewed for authored S12 cafe conversation",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "7344FDDA79EEA8BF02BC3FB49E79BB94DF78E93E387BD2A198A610CD648BE99E"
+      },
+      "sourceVariants": [
+        "assets/cg/s12-vik-cafe-damir.webp",
+        "assets/cg/s12-vik-cafe-damir-portrait.png",
+        "assets/cg/s12-vik-cafe-damir-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s12-vik-cafe-damir.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "771eb8054777fab9f053becf0e9515be80153c5e",
+        "sha256": "7344fdda79eea8bf02bc3fb49e79bb94df78e93e387bd2a198a610cd648be99e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s12-vik-street-day",
+      "role": "background",
+      "path": "assets/backgrounds/s12-vik-street-day.png",
+      "targetPath": "assets/backgrounds/s12-vik-street-day.webp",
+      "sourceBlobSha": "8ba670bb993c16ec5416c87cd91ebd3d39f16513",
+      "sha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s12-vik-street-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "31CBBEBD5A782F5F0CFBB77495EF39CEE2FBB14939FEED6F44DEEA25C7B4B770"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s12-vik-street-day.webp"
+      ],
+      "admittedPath": "assets/vis-s12-vik-street-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8ba670bb993c16ec5416c87cd91ebd3d39f16513",
+        "sha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s13-skaftafell-travelers",
+      "role": "cg",
+      "path": "assets/cg/s13-skaftafell-travelers.png",
+      "targetPath": "assets/cg/s13-skaftafell-travelers.webp",
+      "sourceBlobSha": "89f1afde49556e1a930e37f6a3d05fd1b7fc57cb",
+      "sha256": "b20479b93dd4d0ad3a3d9a1013a8c963b105b70ec4ab85f6501eb405a7a95c31",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/s13-skaftafell-travelers.webp",
+        "assets/cg/s13-skaftafell-travelers-portrait.png",
+        "assets/cg/s13-skaftafell-travelers-portrait.webp"
+      ]
+    },
+    {
+      "id": "s13-skaftafell-visitor-parking",
+      "role": "background",
+      "path": "assets/backgrounds/s13-skaftafell-visitor-parking.png",
+      "targetPath": "assets/backgrounds/s13-skaftafell-visitor-parking.webp",
+      "sourceBlobSha": "68132d4c1e0636c36feeb944e82db41959ba2c83",
+      "sha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s13-skaftafell-visitor-parking.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "2B7425C0B1A6DA2E03A78CD88AD07A5974C509530EA9CDACFFA8C89674A782E7"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s13-skaftafell-visitor-parking.webp"
+      ],
+      "admittedPath": "assets/vis-s13-skaftafell-visitor-parking.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "68132d4c1e0636c36feeb944e82db41959ba2c83",
+        "sha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s14-lagoon-road",
+      "role": "background",
+      "path": "assets/backgrounds/s14-lagoon-road.png",
+      "targetPath": "assets/backgrounds/s14-lagoon-road.webp",
+      "sourceBlobSha": "afbde0fd66bfe54754cc4138b05e19cd7e1ce63c",
+      "sha256": "17c88d319dff19d82022a8369f51c0614b369391a1282f1422f07392108eb2a9",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s14-lagoon-road.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "17C88D319DFF19D82022A8369F51C0614B369391A1282F1422F07392108EB2A9"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s14-lagoon-road.webp"
+      ],
+      "admittedPath": "assets/vis-s14-lagoon-road.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "afbde0fd66bfe54754cc4138b05e19cd7e1ce63c",
+        "sha256": "17c88d319dff19d82022a8369f51c0614b369391a1282f1422f07392108eb2a9",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s14-skaftafell-pace",
+      "role": "cg",
+      "path": "assets/cg/s14-skaftafell-pace.png",
+      "targetPath": "assets/cg/s14-skaftafell-pace.webp",
+      "sourceBlobSha": "85f76eeba24a3ae2c953424966e1403a3bd333d3",
+      "sha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s14-skaftafell-pace.png",
+        "license": "generated for this project",
+        "method": "Cinematic composition generated from Alice and Eric masters; reviewed for authored S14 pace event",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "E13E3A9296CEA4CB8EEF1DDDCFA0C734BD0391F5A4F6E1FA5CC44C60D822406E"
+      },
+      "sourceVariants": [
+        "assets/cg/s14-skaftafell-pace.webp",
+        "assets/cg/s14-skaftafell-pace-portrait.png",
+        "assets/cg/s14-skaftafell-pace-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s14-skaftafell-pace.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "85f76eeba24a3ae2c953424966e1403a3bd333d3",
+        "sha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s15-jokulsarlon-parking-day",
+      "role": "background",
+      "path": "assets/backgrounds/s15-jokulsarlon-parking-day.png",
+      "targetPath": "assets/backgrounds/s15-jokulsarlon-parking-day.webp",
+      "sourceBlobSha": "f1f5122e132e7ea4774983387bc4d04d01a1d62e",
+      "sha256": "4ee1645d83e732806438c1c19156f06840c44b39b626b9332dce488c551447d8",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s15-jokulsarlon-parking-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "4EE1645D83E732806438C1C19156F06840C44B39B626B9332DCE488C551447D8"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s15-jokulsarlon-parking-day.webp"
+      ],
+      "admittedPath": "assets/vis-s15-jokulsarlon-parking-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f1f5122e132e7ea4774983387bc4d04d01a1d62e",
+        "sha256": "4ee1645d83e732806438c1c19156f06840c44b39b626b9332dce488c551447d8",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s16-guesthouse-help",
+      "role": "cg",
+      "path": "assets/cg/s16-guesthouse-help.png",
+      "targetPath": "assets/cg/s16-guesthouse-help.webp",
+      "sourceBlobSha": "0a6451b654bfba0a76bcea6873e647accb7a4612",
+      "sha256": "8b492ae3e84d9dcdfc830e00fd0dcf18b3cfc0048748db67b49fa3fdd37d6656",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s16-guesthouse-help.png",
+        "license": "generated for this project",
+        "method": "Replacement cinematic composition generated from Alice and Damir masters with distinct older tourist and companion; reviewed for identity separation, consented ankle help and no duplicate main characters",
+        "source": "Generated in Codex imagegen, 2026-09-24; replacement after ART_IDENTITY_FAIL",
+        "sha256": "8B492AE3E84D9DCDFC830E00FD0DCF18B3CFC0048748DB67B49FA3FDD37D6656"
+      },
+      "sourceVariants": [
+        "assets/cg/s16-guesthouse-help.webp",
+        "assets/cg/s16-guesthouse-help-portrait.png",
+        "assets/cg/s16-guesthouse-help-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s16-guesthouse-help.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "0a6451b654bfba0a76bcea6873e647accb7a4612",
+        "sha256": "8b492ae3e84d9dcdfc830e00fd0dcf18b3cfc0048748db67b49fa3fdd37d6656",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s16-kitchen-soup",
+      "role": "cg",
+      "path": "assets/cg/s16-kitchen-soup.png",
+      "targetPath": "assets/cg/s16-kitchen-soup.webp",
+      "sourceBlobSha": "afc0e3b7e9e2ff6c1186b92048c0c59115b12f50",
+      "sha256": "4f5afd577454e72853bbdfcbde639801f2c127d9c8df9dc22520ac4e5db5e718",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s16-kitchen-soup.png",
+        "license": "generated for this project",
+        "method": "Cinematic group composition generated from four character masters; reviewed for authored S16 kitchen continuation",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "4F5AFD577454E72853BBDFCBDE639801F2C127D9C8DF9DC22520AC4E5DB5E718"
+      },
+      "sourceVariants": [
+        "assets/cg/s16-kitchen-soup.webp",
+        "assets/cg/s16-kitchen-soup-portrait.png",
+        "assets/cg/s16-kitchen-soup-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s16-kitchen-soup.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "afc0e3b7e9e2ff6c1186b92048c0c59115b12f50",
+        "sha256": "4f5afd577454e72853bbdfcbde639801f2c127d9c8df9dc22520ac4e5db5e718",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s17-hofn-guesthouse",
+      "role": "cg",
+      "path": "assets/cg/s17-hofn-guesthouse.png",
+      "targetPath": "assets/cg/s17-hofn-guesthouse.webp",
+      "sourceBlobSha": "395461cb0f8feae73de6b04f06bd470cca6c8f38",
+      "sha256": "385b4795f708736ac0caa56d860eff9f1c4090f094f5a8c5af8cb342ca2dcc37",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s17-hofn-guesthouse.png",
+        "license": "generated for this project",
+        "method": "Independent desktop/mobile composition generated from canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "385B4795F708736AC0CAA56D860EFF9F1C4090F094F5A8C5AF8CB342CA2DCC37"
+      },
+      "sourceVariants": [
+        "assets/cg/s17-hofn-guesthouse.webp",
+        "assets/cg/s17-hofn-guesthouse-portrait.png",
+        "assets/cg/s17-hofn-guesthouse-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s17-hofn-guesthouse.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "395461cb0f8feae73de6b04f06bd470cca6c8f38",
+        "sha256": "385b4795f708736ac0caa56d860eff9f1c4090f094f5a8c5af8cb342ca2dcc37",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s18-hofn-breakfast-group",
+      "role": "cg",
+      "path": "assets/cg/s18-hofn-breakfast-group.png",
+      "targetPath": "assets/cg/s18-hofn-breakfast-group.webp",
+      "sourceBlobSha": "a41fc1cfe5a43a2b2d936560a93e64e7b3bef617",
+      "sha256": "163e828c7eefaf887fd7276da86e906941ebf9fee0acafcb90456ff2794cf2b4",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s18-hofn-breakfast-group.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "163E828C7EEFAF887FD7276DA86E906941EBF9FEE0ACAFCB90456FF2794CF2B4"
+      },
+      "sourceVariants": [
+        "assets/cg/s18-hofn-breakfast-group.webp",
+        "assets/cg/s18-hofn-breakfast-group-portrait.png",
+        "assets/cg/s18-hofn-breakfast-group-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s18-hofn-breakfast-group.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "a41fc1cfe5a43a2b2d936560a93e64e7b3bef617",
+        "sha256": "163e828c7eefaf887fd7276da86e906941ebf9fee0acafcb90456ff2794cf2b4",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s18-hofn-breakfast-morning",
+      "role": "background",
+      "path": "assets/backgrounds/s18-hofn-breakfast-morning.png",
+      "targetPath": "assets/backgrounds/s18-hofn-breakfast-morning.png",
+      "sourceBlobSha": "4cbdd2a1d3a06ed5d7c26e4c866cd736cd709f04",
+      "sha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s18-hofn-breakfast-morning.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "C9CE23E9E1E82FDD2BC521A0B3501D5F76715B64E300DFC3E4BE98FA8DDC2C8D"
+      },
+      "sourceVariants": [],
+      "admittedPath": "assets/vis-s18-hofn-breakfast-morning.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4cbdd2a1d3a06ed5d7c26e4c866cd736cd709f04",
+        "sha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s18-hofn-dance-lights",
+      "role": "cg",
+      "path": "assets/cg/s18-hofn-dance-lights.png",
+      "targetPath": "assets/cg/s18-hofn-dance-lights.webp",
+      "sourceBlobSha": "4a9296d138481c864a11a14712178134eb3a1c2e",
+      "sha256": "9e39e79a56c4dbc28a0f2e0ecd5fda8dbd8f8907ceeb943a40c52e11fa86a8b1",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/s18-hofn-dance-lights.webp",
+        "assets/cg/s18-hofn-dance-lights-portrait.png",
+        "assets/cg/s18-hofn-dance-lights-portrait.webp"
+      ]
+    },
+    {
+      "id": "s18-hofn-room-morning",
+      "role": "background",
+      "path": "assets/backgrounds/s18-hofn-room-morning.png",
+      "targetPath": "assets/backgrounds/s18-hofn-room-morning.webp",
+      "sourceBlobSha": "83e58d7986571d8fac94e90768f6f8f07a7582f8",
+      "sha256": "fc75aa2d8fbd96ae2ac78a0d47906b8f211680bebdff8bf1f2443894ce33f2ed",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s18-hofn-room-morning.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "FC75AA2D8FBD96AE2AC78A0D47906B8F211680BEBDFF8BF1F2443894CE33F2ED"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s18-hofn-room-morning.webp"
+      ],
+      "admittedPath": "assets/vis-s18-hofn-room-morning.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "83e58d7986571d8fac94e90768f6f8f07a7582f8",
+        "sha256": "fc75aa2d8fbd96ae2ac78a0d47906b8f211680bebdff8bf1f2443894ce33f2ed",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s19-hofn-pool",
+      "role": "cg",
+      "path": "assets/cg/s19-hofn-pool.png",
+      "targetPath": "assets/cg/s19-hofn-pool.webp",
+      "sourceBlobSha": "158f074aef6917caaa98183c29197bbda0660088",
+      "sha256": "f1d5704a588a699ddb09acc3dfc7f2d7ac9626544f349f93810156384d11d213",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s19-hofn-pool.png",
+        "license": "generated for this project",
+        "method": "Independent desktop/mobile composition generated from canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "F1D5704A588A699DDB09ACC3DFC7F2D7AC9626544F349F93810156384D11D213"
+      },
+      "sourceVariants": [
+        "assets/cg/s19-hofn-pool.webp",
+        "assets/cg/s19-hofn-pool-portrait.png",
+        "assets/cg/s19-hofn-pool-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s19-hofn-pool.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "158f074aef6917caaa98183c29197bbda0660088",
+        "sha256": "f1d5704a588a699ddb09acc3dfc7f2d7ac9626544f349f93810156384d11d213",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s20-hofn-damir-kitchen",
+      "role": "cg",
+      "path": "assets/cg/s20-hofn-damir-kitchen.png",
+      "targetPath": "assets/cg/s20-hofn-damir-kitchen.webp",
+      "sourceBlobSha": "0ac32dff29af0de743e7f643a76029c634f7797d",
+      "sha256": "1dc4dc153162ed94c4d1315558576c23cc29964a090b30f02dc2c82deea70996",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s20-hofn-damir-kitchen.png",
+        "license": "generated for this project",
+        "method": "Independent desktop/mobile composition generated from canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "1DC4DC153162ED94C4D1315558576C23CC29964A090B30F02DC2C82DEEA70996"
+      },
+      "sourceVariants": [
+        "assets/cg/s20-hofn-damir-kitchen.webp",
+        "assets/cg/s20-hofn-damir-kitchen-portrait.png",
+        "assets/cg/s20-hofn-damir-kitchen-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s20-hofn-damir-kitchen.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "0ac32dff29af0de743e7f643a76029c634f7797d",
+        "sha256": "1dc4dc153162ed94c4d1315558576c23cc29964a090b30f02dc2c82deea70996",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s21-alice-hofn-room",
+      "role": "cg",
+      "path": "assets/cg/s21-alice-hofn-room.png",
+      "targetPath": "assets/cg/s21-alice-hofn-room.webp",
+      "sourceBlobSha": "c6d374b976e8abb0310883988a3d83cebbf4118c",
+      "sha256": "0039e3ec3ddea4d771bb7b844d06a23f6c92a0ac1fc0ad42f0a2ffd64ce97683",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s21-alice-hofn-room.png",
+        "license": "generated for this project",
+        "method": "Independent desktop/mobile composition generated from canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "0039E3EC3DDEA4D771BB7B844D06A23F6C92A0AC1FC0AD42F0A2FFD64CE97683"
+      },
+      "sourceVariants": [
+        "assets/cg/s21-alice-hofn-room.webp",
+        "assets/cg/s21-alice-hofn-room-portrait.png",
+        "assets/cg/s21-alice-hofn-room-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s21-alice-hofn-room.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "c6d374b976e8abb0310883988a3d83cebbf4118c",
+        "sha256": "0039e3ec3ddea4d771bb7b844d06a23f6c92a0ac1fc0ad42f0a2ffd64ce97683",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s23-eric-harbor-plan",
+      "role": "cg",
+      "path": "assets/cg/s23-eric-harbor-plan.png",
+      "targetPath": "assets/cg/s23-eric-harbor-plan.webp",
+      "sourceBlobSha": "25d0c9d2d37aee079513da401bd64346062e5459",
+      "sha256": "5d49a086898a4dccbde332a8681ee3c99d52df326bc0236515512a51b979918e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s23-eric-harbor-plan.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Eric canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "5D49A086898A4DCCBDE332A8681EE3C99D52DF326BC0236515512A51B979918E"
+      },
+      "sourceVariants": [
+        "assets/cg/s23-eric-harbor-plan.webp",
+        "assets/cg/s23-eric-harbor-plan-portrait.png",
+        "assets/cg/s23-eric-harbor-plan-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s23-eric-harbor-plan.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "25d0c9d2d37aee079513da401bd64346062e5459",
+        "sha256": "5d49a086898a4dccbde332a8681ee3c99d52df326bc0236515512a51b979918e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s24-nick-pier-consent",
+      "role": "cg",
+      "path": "assets/cg/s24-nick-pier-consent.png",
+      "targetPath": "assets/cg/s24-nick-pier-consent.webp",
+      "sourceBlobSha": "834c37caed4dce7dff19b11ad800f818f08038ba",
+      "sha256": "acd6f882a04dc2c35c509ee40eda183d531f6b8522afeb1b6a30f9a808b2e15a",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s24-nick-pier-consent.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Nick canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "ACD6F882A04DC2C35C509EE40EDA183D531F6B8522AFEB1B6A30F9A808B2E15A"
+      },
+      "sourceVariants": [
+        "assets/cg/s24-nick-pier-consent.webp",
+        "assets/cg/s24-nick-pier-consent-portrait.png",
+        "assets/cg/s24-nick-pier-consent-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s24-nick-pier-consent.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "834c37caed4dce7dff19b11ad800f818f08038ba",
+        "sha256": "acd6f882a04dc2c35c509ee40eda183d531f6b8522afeb1b6a30f9a808b2e15a",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s25-damir-clarity-talk",
+      "role": "cg",
+      "path": "assets/cg/s25-damir-clarity-talk.png",
+      "targetPath": "assets/cg/s25-damir-clarity-talk.webp",
+      "sourceBlobSha": "61bd48117ac600526d429244743aae967db70866",
+      "sha256": "445889b4e4ec41e45eab64c36d64c48283530e7d892336108a5c8ab37dc5518b",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s25-damir-clarity-talk.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Damir canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "445889B4E4EC41E45EAB64C36D64C48283530E7D892336108A5C8AB37DC5518B"
+      },
+      "sourceVariants": [
+        "assets/cg/s25-damir-clarity-talk.webp",
+        "assets/cg/s25-damir-clarity-talk-portrait.png",
+        "assets/cg/s25-damir-clarity-talk-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s25-damir-clarity-talk.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "61bd48117ac600526d429244743aae967db70866",
+        "sha256": "445889b4e4ec41e45eab64c36d64c48283530e7d892336108a5c8ab37dc5518b",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-alice-choice",
+      "role": "cg",
+      "path": "assets/cg/s26-alice-choice.png",
+      "targetPath": "assets/cg/s26-alice-choice.webp",
+      "sourceBlobSha": "e253a64ce4b2d6a76146b57880b76102247431ee",
+      "sha256": "d6b566b4ec753e88603d0eb16822ea4bf9fb1d9415615fad7d4e0c96829cef4f",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-alice-choice.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice canonical master reference; reviewed for independent route fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "D6B566B4EC753E88603D0EB16822EA4BF9FB1D9415615FAD7D4E0C96829CEF4F"
+      },
+      "sourceVariants": [
+        "assets/cg/s26-alice-choice.webp",
+        "assets/cg/s26-alice-choice-portrait.png",
+        "assets/cg/s26-alice-choice-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s26-alice-choice.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "e253a64ce4b2d6a76146b57880b76102247431ee",
+        "sha256": "d6b566b4ec753e88603d0eb16822ea4bf9fb1d9415615fad7d4e0c96829cef4f",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-damir-choice",
+      "role": "cg",
+      "path": "assets/cg/s26-damir-choice.png",
+      "targetPath": "assets/cg/s26-damir-choice.webp",
+      "sourceBlobSha": "bb06aa3ecdf65a0ebfb200963420e2f6fd5cd421",
+      "sha256": "16ec16e047283ab0fc858c6a52d7b54d6932c0037d04395cbd7a7835447cc206",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-damir-choice.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Damir canonical master references; reviewed for route-lock fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "16EC16E047283AB0FC858C6A52D7B54D6932C0037D04395CBD7A7835447CC206"
+      },
+      "sourceVariants": [
+        "assets/cg/s26-damir-choice.webp",
+        "assets/cg/s26-damir-choice-portrait.png",
+        "assets/cg/s26-damir-choice-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s26-damir-choice.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "bb06aa3ecdf65a0ebfb200963420e2f6fd5cd421",
+        "sha256": "16ec16e047283ab0fc858c6a52d7b54d6932c0037d04395cbd7a7835447cc206",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-eastfjords-courtyard-group",
+      "role": "cg",
+      "path": "assets/cg/s26-eastfjords-courtyard-group.png",
+      "targetPath": "assets/cg/s26-eastfjords-courtyard-group.webp",
+      "sourceBlobSha": "b2d6ca3b1b446e05f4135915e497ad6c0ae08c0c",
+      "sha256": "dff3a7f5738ef5ea7c6369fdefed6a81285dece3a3892a92146047144c0c05b9",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-eastfjords-courtyard-group.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "DFF3A7F5738EF5EA7C6369FDEFED6A81285DECE3A3892A92146047144C0C05B9"
+      },
+      "sourceVariants": [
+        "assets/cg/s26-eastfjords-courtyard-group.webp",
+        "assets/cg/s26-eastfjords-courtyard-group-portrait.png",
+        "assets/cg/s26-eastfjords-courtyard-group-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s26-eastfjords-courtyard-group.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "b2d6ca3b1b446e05f4135915e497ad6c0ae08c0c",
+        "sha256": "dff3a7f5738ef5ea7c6369fdefed6a81285dece3a3892a92146047144c0c05b9",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-eastfjords-guesthouse-courtyard",
+      "role": "background",
+      "path": "assets/backgrounds/s26-eastfjords-guesthouse-courtyard.png",
+      "targetPath": "assets/backgrounds/s26-eastfjords-guesthouse-courtyard.webp",
+      "sourceBlobSha": "492c74eb7830870a612d57d145b5ba134bacbefb",
+      "sha256": "f165bd26a68f0c9c1ab1d4ec73d6fc6d28780fe9004fd5f965e781bc71ed9431",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s26-eastfjords-guesthouse-courtyard.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "F165BD26A68F0C9C1AB1D4EC73D6FC6D28780FE9004FD5F965E781BC71ED9431"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s26-eastfjords-guesthouse-courtyard.webp"
+      ],
+      "admittedPath": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "492c74eb7830870a612d57d145b5ba134bacbefb",
+        "sha256": "f165bd26a68f0c9c1ab1d4ec73d6fc6d28780fe9004fd5f965e781bc71ed9431",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-eric-choice",
+      "role": "cg",
+      "path": "assets/cg/s26-eric-choice.png",
+      "targetPath": "assets/cg/s26-eric-choice.webp",
+      "sourceBlobSha": "2fb19fd8eac102f8abf3144bff8dd216bd08466c",
+      "sha256": "ef229a99516f80dd39cfac49ef021a25ac00630e01bf5e30d676a2401869721f",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-eric-choice.png",
+        "license": "generated for this project",
+        "method": "Built-in image generation using Alice and Eric master references; reviewed for identity, event fidelity and no text artifacts",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "EF229A99516F80DD39CFAC49EF021A25AC00630E01BF5E30D676A2401869721F"
+      },
+      "sourceVariants": [
+        "assets/cg/s26-eric-choice.webp",
+        "assets/cg/s26-eric-choice-portrait.png",
+        "assets/cg/s26-eric-choice-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s26-eric-choice.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "2fb19fd8eac102f8abf3144bff8dd216bd08466c",
+        "sha256": "ef229a99516f80dd39cfac49ef021a25ac00630e01bf5e30d676a2401869721f",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-nick-choice",
+      "role": "cg",
+      "path": "assets/cg/s26-nick-choice.png",
+      "targetPath": "assets/cg/s26-nick-choice.webp",
+      "sourceBlobSha": "94ec6068d91f3b2d578b37173e4fbb7bab550e92",
+      "sha256": "1320a9dce97e3905c1296de8d4c4634866614d3d0db3567ac10d3fb35827fa2b",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-nick-choice.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Nick canonical master references; reviewed for route-lock fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "1320A9DCE97E3905C1296DE8D4C4634866614D3D0DB3567AC10D3FB35827FA2B"
+      },
+      "sourceVariants": [
+        "assets/cg/s26-nick-choice.webp",
+        "assets/cg/s26-nick-choice-portrait.png",
+        "assets/cg/s26-nick-choice-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s26-nick-choice.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "94ec6068d91f3b2d578b37173e4fbb7bab550e92",
+        "sha256": "1320a9dce97e3905c1296de8d4c4634866614d3d0db3567ac10d3fb35827fa2b",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s27-egilsstadir-boardwalk",
+      "role": "cg",
+      "path": "assets/cg/s27-egilsstadir-boardwalk.png",
+      "targetPath": "assets/cg/s27-egilsstadir-boardwalk.webp",
+      "sourceBlobSha": "3ae6324e0df49a01c0c39ca2809a45e1ee883e8e",
+      "sha256": "2f8c46ad171940ca1b0ffaae9c8ece0ed72f7c470dc0cd81887b972b34fc26d6",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s27-egilsstadir-boardwalk.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from canonical master references; authored S27 boardwalk repair event",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "2F8C46AD171940CA1B0FFAAE9C8ECE0ED72F7C470DC0CD81887B972B34FC26D6"
+      },
+      "sourceVariants": [
+        "assets/cg/s27-egilsstadir-boardwalk.webp",
+        "assets/cg/s27-egilsstadir-boardwalk-portrait.png",
+        "assets/cg/s27-egilsstadir-boardwalk-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s27-egilsstadir-boardwalk.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "3ae6324e0df49a01c0c39ca2809a45e1ee883e8e",
+        "sha256": "2f8c46ad171940ca1b0ffaae9c8ece0ed72f7c470dc0cd81887b972b34fc26d6",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s28-hverfjall-hood",
+      "role": "cg",
+      "path": "assets/cg/s28-hverfjall-hood.png",
+      "targetPath": "assets/cg/s28-hverfjall-hood.webp",
+      "sourceBlobSha": "8f5f24aecf653db42df4fa5988511f271ffecbda",
+      "sha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s28-hverfjall-hood.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Eric canonical masters; authored S28 hood action",
+        "source": "Generated in Codex imagegen, 2026-09-24; resized to runtime dimensions",
+        "sha256": "0627FEA5615891262A1393B011EB4549B3130952FF55233F3E0D6C2F8825BB5C"
+      },
+      "sourceVariants": [
+        "assets/cg/s28-hverfjall-hood.webp",
+        "assets/cg/s28-hverfjall-hood-portrait.png",
+        "assets/cg/s28-hverfjall-hood-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s28-hverfjall-hood.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8f5f24aecf653db42df4fa5988511f271ffecbda",
+        "sha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s30-damir-sleeve-promise",
+      "role": "cg",
+      "path": "assets/cg/s30-damir-sleeve-promise.png",
+      "targetPath": "assets/cg/s30-damir-sleeve-promise.webp",
+      "sourceBlobSha": "731d4b60e34ac11aae166e4a4b9c0caebd697d5a",
+      "sha256": "95f352b51c39c318394b673de98ee66bafbe34dffc918d1b4a7f271505059359",
+      "status": "blocked",
+      "reason": "rights_hash_mismatch",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s30-damir-sleeve-promise.png",
+        "license": "generated for this project",
+        "method": "Independent desktop cinematic composition generated from Alice and Damir canonical master references; blank letter and sleeve-touch beat",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "3067CF10304648180C9B7FF41066D107D3BF09A081CCB33002517D56489D2A95"
+      },
+      "sourceVariants": [
+        "assets/cg/s30-damir-sleeve-promise.webp",
+        "assets/cg/s30-damir-sleeve-promise-portrait.png",
+        "assets/cg/s30-damir-sleeve-promise-portrait.webp"
+      ]
+    },
+    {
+      "id": "s32-eric-calendar-crossroads",
+      "role": "cg",
+      "path": "assets/cg/s32-eric-calendar-crossroads.png",
+      "targetPath": "assets/cg/s32-eric-calendar-crossroads.webp",
+      "sourceBlobSha": "f39a2d4e7b18bd38f4341d70cdc727d4519d463b",
+      "sha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s32-eric-calendar-crossroads.png",
+        "license": "generated for this project",
+        "method": "Independent desktop cinematic composition generated from canonical Alice and Eric masters; authored crossroads hand-taking beat",
+        "source": "Generated in Codex imagegen, 2026-09-25",
+        "sha256": "2C24734A24B7FBF58EA281E52F230813A9B07C5747DD7C590BC40A8800F1DA92"
+      },
+      "sourceVariants": [
+        "assets/cg/s32-eric-calendar-crossroads.webp",
+        "assets/cg/s32-eric-calendar-crossroads-portrait.png",
+        "assets/cg/s32-eric-calendar-crossroads-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s32-eric-calendar-crossroads.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f39a2d4e7b18bd38f4341d70cdc727d4519d463b",
+        "sha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s33-nick-teaser-reveal",
+      "role": "cg",
+      "path": "assets/cg/s33-nick-teaser-reveal.png",
+      "targetPath": "assets/cg/s33-nick-teaser-reveal.webp",
+      "sourceBlobSha": "033e8189a758d8a5968489bcf1025e4334f9193d",
+      "sha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s33-nick-teaser-reveal.png",
+        "license": "generated for this project",
+        "method": "Independent desktop cinematic composition generated from canonical Alice and Nick masters; exact first teaser reveal cue",
+        "source": "Generated in Codex imagegen, 2026-09-25",
+        "sha256": "C0CE7B64C632F148B8F984F2AE21EEC01C09C0C958AA65F42629A8180B4556CB"
+      },
+      "sourceVariants": [
+        "assets/cg/s33-nick-teaser-reveal.webp",
+        "assets/cg/s33-nick-teaser-reveal-portrait.png",
+        "assets/cg/s33-nick-teaser-reveal-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s33-nick-teaser-reveal.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "033e8189a758d8a5968489bcf1025e4334f9193d",
+        "sha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s37-snaefellsnes-guesthouse-day",
+      "role": "background",
+      "path": "assets/backgrounds/s37-snaefellsnes-guesthouse-day.png",
+      "targetPath": "assets/backgrounds/s37-snaefellsnes-guesthouse-day.webp",
+      "sourceBlobSha": "f6617b858c89a42f55ff966af7dffc0ce1e76515",
+      "sha256": "eaef888cc0f4d38058c4f8c58eba13818903dc1e26a264ae65fabd28050f60df",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s37-snaefellsnes-guesthouse-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "EAEF888CC0F4D38058C4F8C58EBA13818903DC1E26A264AE65FABD28050F60DF"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s37-snaefellsnes-guesthouse-day.webp"
+      ],
+      "admittedPath": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f6617b858c89a42f55ff966af7dffc0ce1e76515",
+        "sha256": "eaef888cc0f4d38058c4f8c58eba13818903dc1e26a264ae65fabd28050f60df",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s38-alice-nick-ordinary-day",
+      "role": "cg",
+      "path": "assets/cg/s38-alice-nick-ordinary-day.png",
+      "targetPath": "assets/cg/s38-alice-nick-ordinary-day.webp",
+      "sourceBlobSha": "f0c68993a06872b42f4d1695037df64731097b5b",
+      "sha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s38-alice-nick-ordinary-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "C67F933507FE2E560FE805B15105EACDDE757E419B0BDBDED50EB4B553E6B935"
+      },
+      "sourceVariants": [
+        "assets/cg/s38-alice-nick-ordinary-day.webp",
+        "assets/cg/s38-alice-nick-ordinary-day-portrait.png",
+        "assets/cg/s38-alice-nick-ordinary-day-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s38-alice-nick-ordinary-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f0c68993a06872b42f4d1695037df64731097b5b",
+        "sha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s39-alice-damir-cafe",
+      "role": "cg",
+      "path": "assets/cg/s39-alice-damir-cafe.png",
+      "targetPath": "assets/cg/s39-alice-damir-cafe.webp",
+      "sourceBlobSha": "9ec1088b99df9a5659b1e7df73f9ca514d2b884c",
+      "sha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s39-alice-damir-cafe.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "AC78F268A1D82832A34DF2F930E98416C29A26E3454B750D6B15742E05899397"
+      },
+      "sourceVariants": [
+        "assets/cg/s39-alice-damir-cafe.webp",
+        "assets/cg/s39-alice-damir-cafe-portrait.png",
+        "assets/cg/s39-alice-damir-cafe-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s39-alice-damir-cafe.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "9ec1088b99df9a5659b1e7df73f9ca514d2b884c",
+        "sha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s39-alice-damir-cafe-walk",
+      "role": "background",
+      "path": "assets/backgrounds/s39-alice-damir-cafe-walk.png",
+      "targetPath": "assets/backgrounds/s39-alice-damir-cafe-walk.png",
+      "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+      "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s39-alice-damir-cafe-walk.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "229F4D2898D66F135E027D6D871517363174C4E40C9FC580DBCF1FE0163F282E"
+      },
+      "sourceVariants": [],
+      "admittedPath": "assets/vis-s39-alice-damir-cafe-walk.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+        "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s40-alice-laptop-window",
+      "role": "cg",
+      "path": "assets/cg/s40-alice-laptop-window.png",
+      "targetPath": "assets/cg/s40-alice-laptop-window.webp",
+      "sourceBlobSha": "d2d1a82625af2f672eb6603a5abcde0e8eeb5148",
+      "sha256": "8192692fe1b4baf4d0ec1228349a9732aa462b0079f0e11b01271983d656969c",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s40-alice-laptop-window.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "8192692FE1B4BAF4D0EC1228349A9732AA462B0079F0E11B01271983D656969C"
+      },
+      "sourceVariants": [
+        "assets/cg/s40-alice-laptop-window.webp",
+        "assets/cg/s40-alice-laptop-window-portrait.png",
+        "assets/cg/s40-alice-laptop-window-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s40-alice-laptop-window.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d2d1a82625af2f672eb6603a5abcde0e8eeb5148",
+        "sha256": "8192692fe1b4baf4d0ec1228349a9732aa462b0079f0e11b01271983d656969c",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s40-alice-room-laptop-window",
+      "role": "background",
+      "path": "assets/backgrounds/s40-alice-room-laptop-window.png",
+      "targetPath": "assets/backgrounds/s40-alice-room-laptop-window.png",
+      "sourceBlobSha": "4da1b19a3afcc96cd273a929ed85516b4a54aaf2",
+      "sha256": "7687839e21f6c71266779e7b2da273beec93b45985be7357fb3cc14399529a48",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s40-alice-room-laptop-window.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "7687839E21F6C71266779E7B2DA273BEEC93B45985BE7357FB3CC14399529A48"
+      },
+      "sourceVariants": [],
+      "admittedPath": "assets/vis-s40-alice-room-laptop-window.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4da1b19a3afcc96cd273a929ed85516b4a54aaf2",
+        "sha256": "7687839e21f6c71266779e7b2da273beec93b45985be7357fb3cc14399529a48",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s44-eric-epilogue-month-later",
+      "role": "cg",
+      "path": "assets/cg/s44-eric-epilogue-month-later.png",
+      "targetPath": "assets/cg/s44-eric-epilogue-month-later.webp",
+      "sourceBlobSha": "24d7b6fc29c7b1c6895a5774f5e9ad00d3522d17",
+      "sha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s44-eric-epilogue-month-later.png",
+        "license": "user-provided for this project",
+        "method": "Targeted text-artifact cleanup of user-supplied ChatGPT image; identities and composition reviewed against Eric and Alice master references",
+        "source": "User-provided image attachment, 2026-09-23; targeted inpainting, 2026-09-23",
+        "sha256": "D1987EAD5DAC9FD26C74694C8D64DADF73C6A79066C8C1C829F426CBF520A03B"
+      },
+      "sourceVariants": [
+        "assets/cg/s44-eric-epilogue-month-later.webp",
+        "assets/cg/s44-eric-epilogue-month-later-portrait.png",
+        "assets/cg/s44-eric-epilogue-month-later-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s44-eric-epilogue-month-later.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "24d7b6fc29c7b1c6895a5774f5e9ad00d3522d17",
+        "sha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s45-nick-home-epilogue-month-later",
+      "role": "cg",
+      "path": "assets/cg/s45-nick-home-epilogue-month-later.png",
+      "targetPath": "assets/cg/s45-nick-home-epilogue-month-later.webp",
+      "sourceBlobSha": "767c8a91b9aefac29150dcc327be55397d94f7db",
+      "sha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s45-nick-home-epilogue-month-later.png",
+        "license": "user-provided for this project",
+        "method": "Targeted text-artifact cleanup of user-supplied ChatGPT image; identities and composition reviewed against Nick and Alice master references",
+        "source": "User-provided image attachment, 2026-09-23; targeted inpainting, 2026-09-23",
+        "sha256": "0A95116942E8046EE71BD6D008FAA0FCF3E2EA34B8E792F8B388B79C0F0A8734"
+      },
+      "sourceVariants": [
+        "assets/cg/s45-nick-home-epilogue-month-later.webp",
+        "assets/cg/s45-nick-home-epilogue-month-later-portrait.png",
+        "assets/cg/s45-nick-home-epilogue-month-later-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s45-nick-home-epilogue-month-later.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "767c8a91b9aefac29150dcc327be55397d94f7db",
+        "sha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s45-reykjavik-warm-montage",
+      "role": "cg",
+      "path": "assets/cg/s45-reykjavik-warm-montage.png",
+      "targetPath": "assets/cg/s45-reykjavik-warm-montage.webp",
+      "sourceBlobSha": "43d7dcb5d85be8c0c927e88cecdfc5fd77e20c75",
+      "sha256": "16f1b501c2de4d2b3934208d6d06ed5ae8c1e913806e44e748d7674e8ec8c508",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/s45-reykjavik-warm-montage.webp",
+        "assets/cg/s45-reykjavik-warm-montage-portrait.png",
+        "assets/cg/s45-reykjavik-warm-montage-portrait.webp"
+      ]
+    },
+    {
+      "id": "s46-airport-bus-day",
+      "role": "background",
+      "path": "assets/backgrounds/s46-airport-bus-day.png",
+      "targetPath": "assets/backgrounds/s46-airport-bus-day.webp",
+      "sourceBlobSha": "8a04b8c9f3b4d2a3b21474e9237ba7234d6268bf",
+      "sha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s46-airport-bus-day.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "BDD60DB4665FFBEFB7D18A2B63F16E19042073920254A7AA8EAC6A0A59A39C13"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s46-airport-bus-day.webp"
+      ],
+      "admittedPath": "assets/vis-s46-airport-bus-day.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8a04b8c9f3b4d2a3b21474e9237ba7234d6268bf",
+        "sha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s46-airport-goodbye",
+      "role": "cg",
+      "path": "assets/cg/s46-airport-goodbye.png",
+      "targetPath": "assets/cg/s46-airport-goodbye.webp",
+      "sourceBlobSha": "d07157dadff640564b09655e7b8b2ba926d85f8b",
+      "sha256": "9956381bedd545aa27baa3c74e10592146a1bb6a32488bd7fabf540f3d97e3ae",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/s46-airport-goodbye.webp",
+        "assets/cg/s46-airport-goodbye-portrait.png",
+        "assets/cg/s46-airport-goodbye-portrait.webp"
+      ]
+    },
+    {
+      "id": "s46-damir-epilogue-month-later",
+      "role": "cg",
+      "path": "assets/cg/s46-damir-epilogue-month-later.png",
+      "targetPath": "assets/cg/s46-damir-epilogue-month-later.webp",
+      "sourceBlobSha": "948787e5c752a2f247f88baa41fedc18d1b53d30",
+      "sha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s46-damir-epilogue-month-later.png",
+        "license": "user-provided for this project",
+        "method": "Targeted text-artifact cleanup of user-supplied ChatGPT image; identities and composition reviewed against Damir and Alice master references",
+        "source": "User-provided image attachment, 2026-09-23; targeted inpainting, 2026-09-23",
+        "sha256": "4FF183BADAC5D980DA2565086C4E5BE520CFB8BD824B19BB825BC1648960CE0E"
+      },
+      "sourceVariants": [
+        "assets/cg/s46-damir-epilogue-month-later.webp",
+        "assets/cg/s46-damir-epilogue-month-later-portrait.png",
+        "assets/cg/s46-damir-epilogue-month-later-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s46-damir-epilogue-month-later.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "948787e5c752a2f247f88baa41fedc18d1b53d30",
+        "sha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s47-alice-home-epilogue-month-later",
+      "role": "cg",
+      "path": "assets/cg/s47-alice-home-epilogue-month-later.png",
+      "targetPath": "assets/cg/s47-alice-home-epilogue-month-later.webp",
+      "sourceBlobSha": "07374e2502539ef5992256f7aaed774cd1ad461d",
+      "sha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s47-alice-home-epilogue-month-later.png",
+        "license": "user-provided for this project",
+        "method": "Targeted text-artifact cleanup of user-supplied ChatGPT image; identity and composition reviewed against Alice master reference",
+        "source": "User-provided image attachment, 2026-09-23; targeted inpainting, 2026-09-23",
+        "sha256": "2642735A952673F22A43F373B67A03296F265624C27A6926E7EF64D06B0AEA1D"
+      },
+      "sourceVariants": [
+        "assets/cg/s47-alice-home-epilogue-month-later.webp",
+        "assets/cg/s47-alice-home-epilogue-month-later-portrait.png",
+        "assets/cg/s47-alice-home-epilogue-month-later-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s47-alice-home-epilogue-month-later.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "07374e2502539ef5992256f7aaed774cd1ad461d",
+        "sha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s47-reykjavik-harbour-alice",
+      "role": "cg",
+      "path": "assets/cg/s47-reykjavik-harbour-alice.png",
+      "targetPath": "assets/cg/s47-reykjavik-harbour-alice.webp",
+      "sourceBlobSha": "6e57f67ae3c1cca709e04ad042712d25955c19e0",
+      "sha256": "1ba1f3f22038be90ac99887ca102367e7716c016f0e0ab3391f94cb35e264f47",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/cg/s47-reykjavik-harbour-alice.webp",
+        "assets/cg/s47-reykjavik-harbour-alice-portrait.png",
+        "assets/cg/s47-reykjavik-harbour-alice-portrait.webp"
+      ]
+    },
+    {
+      "id": "s48-guesthouse-exit-group",
+      "role": "cg",
+      "path": "assets/cg/s48-guesthouse-exit-group.png",
+      "targetPath": "assets/cg/s48-guesthouse-exit-group.webp",
+      "sourceBlobSha": "bd60d4687607c0a7625ece0c645dd0ad8f2e9075",
+      "sha256": "7a695ba7a055539dc80dd04f5c69563b264f6f74f634cb71b21af451aa29bc85",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s48-guesthouse-exit-group.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "7A695BA7A055539DC80DD04F5C69563B264F6F74F634CB71B21AF451AA29BC85"
+      },
+      "sourceVariants": [
+        "assets/cg/s48-guesthouse-exit-group.webp",
+        "assets/cg/s48-guesthouse-exit-group-portrait.png",
+        "assets/cg/s48-guesthouse-exit-group-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s48-guesthouse-exit-group.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "bd60d4687607c0a7625ece0c645dd0ad8f2e9075",
+        "sha256": "7a695ba7a055539dc80dd04f5c69563b264f6f74f634cb71b21af451aa29bc85",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s48-guesthouse-exit-morning",
+      "role": "background",
+      "path": "assets/backgrounds/s48-guesthouse-exit-morning.png",
+      "targetPath": "assets/backgrounds/s48-guesthouse-exit-morning.png",
+      "sourceBlobSha": "fb191f873d32faa8d3a3f0560f502f0734a35ec7",
+      "sha256": "9548fc8a82ac62142694d65d182f7a6f6b799efffc0e564f8ebf8175c1ff2d37",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s48-guesthouse-exit-morning.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "9548FC8A82AC62142694D65D182F7A6F6B799EFFFC0E564F8EBF8175C1FF2D37"
+      },
+      "sourceVariants": [],
+      "admittedPath": "assets/vis-s48-guesthouse-exit-morning.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "fb191f873d32faa8d3a3f0560f502f0734a35ec7",
+        "sha256": "9548fc8a82ac62142694d65d182f7a6f6b799efffc0e564f8ebf8175c1ff2d37",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s49-reykjahlid-window-dance",
+      "role": "cg",
+      "path": "assets/cg/s49-reykjahlid-window-dance.png",
+      "targetPath": "assets/cg/s49-reykjahlid-window-dance.webp",
+      "sourceBlobSha": "90c6c9fa39ecb4f0f862a07df6b5c95cf8617fcd",
+      "sha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s49-reykjahlid-window-dance.png",
+        "license": "generated for this project",
+        "method": "Independent desktop composition generated from Alice and Eric canonical masters; authored S49 window dance and chair action",
+        "source": "Generated in Codex imagegen, 2026-09-24; resized to runtime dimensions",
+        "sha256": "35C546C606ED7D11BE5AE5E3FAD8BF737F52FEAE9E92E9FD334ABE556C38B34F"
+      },
+      "sourceVariants": [
+        "assets/cg/s49-reykjahlid-window-dance.webp",
+        "assets/cg/s49-reykjahlid-window-dance-portrait.png",
+        "assets/cg/s49-reykjahlid-window-dance-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s49-reykjahlid-window-dance.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "90c6c9fa39ecb4f0f862a07df6b5c95cf8617fcd",
+        "sha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s52-hofn-streets-post-workshop",
+      "role": "background",
+      "path": "assets/backgrounds/s52-hofn-streets-post-workshop.png",
+      "targetPath": "assets/backgrounds/s52-hofn-streets-post-workshop.webp",
+      "sourceBlobSha": "d54c86b85c584f2ead3108c03a4f45693e0725b9",
+      "sha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s52-hofn-streets-post-workshop.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run; environment-only establishing/transition asset",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "05AF3A95007CF4ABBC07DC3F866C11D6974D36A29229D1302E1CD7304AFF1332"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s52-hofn-streets-post-workshop.webp"
+      ],
+      "admittedPath": "assets/vis-s52-hofn-streets-post-workshop.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d54c86b85c584f2ead3108c03a4f45693e0725b9",
+        "sha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s53-nick-no-camera-pool",
+      "role": "cg",
+      "path": "assets/cg/s53-nick-no-camera-pool.png",
+      "targetPath": "assets/cg/s53-nick-no-camera-pool.webp",
+      "sourceBlobSha": "ade3cc4f0922e38ba9239c1f4cde8deb622a0764",
+      "sha256": "f1b6bb4204e8034520c5644f1e94e9019983c666962d67cfeb845ec94f29b8df",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s53-nick-no-camera-pool.png",
+        "license": "generated for this project",
+        "method": "Independent desktop cinematic composition generated from canonical Alice and Nick masters; authored day-without-camera pool beat",
+        "source": "Generated in Codex imagegen, 2026-09-25",
+        "sha256": "F1B6BB4204E8034520C5644F1E94E9019983C666962D67CFEB845EC94F29B8DF"
+      },
+      "sourceVariants": [
+        "assets/cg/s53-nick-no-camera-pool.webp",
+        "assets/cg/s53-nick-no-camera-pool-portrait.png",
+        "assets/cg/s53-nick-no-camera-pool-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s53-nick-no-camera-pool.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "ade3cc4f0922e38ba9239c1f4cde8deb622a0764",
+        "sha256": "f1b6bb4204e8034520c5644f1e94e9019983c666962d67cfeb845ec94f29b8df",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s54-alice-nick-karaoke",
+      "role": "cg",
+      "path": "assets/cg/s54-alice-nick-karaoke.png",
+      "targetPath": "assets/cg/s54-alice-nick-karaoke.webp",
+      "sourceBlobSha": "760e3e42b396b76a8a7d818e68f2c144f479e64e",
+      "sha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s54-alice-nick-karaoke.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "C9327F345D06886001E2E60EDD2E32E0DBED7526F3A7A033530412EF4D4FC26E"
+      },
+      "sourceVariants": [
+        "assets/cg/s54-alice-nick-karaoke.webp",
+        "assets/cg/s54-alice-nick-karaoke-portrait.png",
+        "assets/cg/s54-alice-nick-karaoke-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s54-alice-nick-karaoke.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "760e3e42b396b76a8a7d818e68f2c144f479e64e",
+        "sha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s55-shum-first-step",
+      "role": "cg",
+      "path": "assets/cg/s55-shum-first-step.png",
+      "targetPath": "assets/cg/s55-shum-first-step.webp",
+      "sourceBlobSha": "0ab0af4d7486d2af73f0ca752f852e9cd91a75b6",
+      "sha256": "cb6e4b31491e3d14d529b94dec95d8ecef345723dab7d7568feb2f14384a991e",
+      "status": "blocked",
+      "reason": "rights_hash_mismatch",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s55-shum-first-step.png",
+        "license": "generated for this project",
+        "method": "Independent desktop cinematic composition generated from Alice and Damir canonical master references; authored Shum first-step beat",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "CA8A9A595E49101BED5C1753188052392BFECD1C8C72CFE953F489C4D5930A8E"
+      },
+      "sourceVariants": [
+        "assets/cg/s55-shum-first-step.webp",
+        "assets/cg/s55-shum-first-step-portrait.png",
+        "assets/cg/s55-shum-first-step-portrait.webp"
+      ]
+    },
+    {
+      "id": "s61-hofn-streets",
+      "role": "environment",
+      "path": "assets/backgrounds/s61-hofn-streets.png",
+      "targetPath": "assets/backgrounds/s61-hofn-streets.webp",
+      "sourceBlobSha": "33df43ce2a5423c5f12c0d24b1845fb017939a5d",
+      "sha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s61-hofn-streets.png",
+        "license": "generated for this project",
+        "method": "Independent desktop/mobile composition generated from canonical master references; reviewed for authored event fidelity",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "DD24EC408FBD1770D27DC5D9C72D468DF7E6760FF9B3CE13829F202C91DC6EC8"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s61-hofn-streets.webp",
+        "assets/backgrounds/s61-hofn-streets-portrait.png",
+        "assets/backgrounds/s61-hofn-streets-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s61-hofn-streets.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "33df43ce2a5423c5f12c0d24b1845fb017939a5d",
+        "sha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s64-alice-snaefellsnes-trail",
+      "role": "cg",
+      "path": "assets/cg/s64-alice-snaefellsnes-trail.png",
+      "targetPath": "assets/cg/s64-alice-snaefellsnes-trail.webp",
+      "sourceBlobSha": "c7497323ba26084641bd9462700b8d4eba218760",
+      "sha256": "697c61cfc89eae4fb8494dd15dd223258c920e7c6bfa940c55bd626819e0aab1",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s64-alice-snaefellsnes-trail.png",
+        "license": "generated for this project",
+        "method": "Codex imagegen current production-art run using canonical character references; exact authored cast/action; desktop CG",
+        "source": "Generated in Codex imagegen, 2026-10-01",
+        "sha256": "697C61CFC89EAE4FB8494DD15DD223258C920E7C6BFA940C55BD626819E0AAB1"
+      },
+      "sourceVariants": [
+        "assets/cg/s64-alice-snaefellsnes-trail.webp",
+        "assets/cg/s64-alice-snaefellsnes-trail-portrait.png",
+        "assets/cg/s64-alice-snaefellsnes-trail-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s64-alice-snaefellsnes-trail.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "c7497323ba26084641bd9462700b8d4eba218760",
+        "sha256": "697c61cfc89eae4fb8494dd15dd223258c920e7c6bfa940c55bd626819e0aab1",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s66-hveragerdi-greenhouse",
+      "role": "background",
+      "path": "assets/backgrounds/s66-hveragerdi-greenhouse.png",
+      "targetPath": "assets/backgrounds/s66-hveragerdi-greenhouse.webp",
+      "sourceBlobSha": "a689f03a26bece42038c72bbad0963e6611a1139",
+      "sha256": "07b303976b97d186c37f3dc7950e5c4207c8f78a6681ae156733ef019e3c75af",
+      "status": "accepted",
+      "reason": "approved_pinned_png_admission_2026-11-10",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/backgrounds/s66-hveragerdi-greenhouse.png",
+        "license": "generated for this project",
+        "method": "Built-in image generation from ART_BIBLE direction; empty environment reviewed for authored S66 location, composition and no text artifacts",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "07B303976B97D186C37F3DC7950E5C4207C8F78A6681AE156733EF019E3C75AF"
+      },
+      "sourceVariants": [
+        "assets/backgrounds/s66-hveragerdi-greenhouse.webp",
+        "assets/backgrounds/s66-hveragerdi-greenhouse-portrait.png",
+        "assets/backgrounds/s66-hveragerdi-greenhouse-portrait.webp"
+      ],
+      "admittedPath": "assets/vis-s66-hveragerdi-greenhouse.png",
+      "admittedProject": "game-studio",
+      "admissionEvidence": {
+        "method": "direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "a689f03a26bece42038c72bbad0963e6611a1139",
+        "sha256": "07b303976b97d186c37f3dc7950e5c4207c8f78a6681ae156733ef019e3c75af",
+        "verifiedOn": "2026-11-10",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "seydisfjordur-community-hall",
+      "role": "background",
+      "path": "assets/backgrounds/seydisfjordur-community-hall.png",
+      "targetPath": "assets/backgrounds/seydisfjordur-community-hall.webp",
+      "sourceBlobSha": "2aabf953189d44efa90da8be2619fd72a734ef4a",
+      "sha256": "f61a2ad71491201983c5dc892fbeff0974ba42d93674090f4143d23b5cc870df",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/seydisfjordur-community-hall.webp"
+      ]
+    },
+    {
+      "id": "seydisfjordur-guesthouse-smokehouse-morning",
+      "role": "background",
+      "path": "assets/backgrounds/seydisfjordur-guesthouse-smokehouse-morning.png",
+      "targetPath": "assets/backgrounds/seydisfjordur-guesthouse-smokehouse-morning.webp",
+      "sourceBlobSha": "dbeb8d555866d32c711a9b800941a9aeba2dceb8",
+      "sha256": "fb4f8a4497b43ac787fae9e2393e1c211c2b42680ecf9eec84cbd03a023dc92c",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/seydisfjordur-guesthouse-smokehouse-morning.webp"
+      ]
+    },
+    {
+      "id": "skogafoss-master",
+      "role": "background",
+      "path": "assets/backgrounds/skogafoss-master.png",
+      "targetPath": "assets/backgrounds/skogafoss-master.webp",
+      "sourceBlobSha": "e256ae0fdd03e776bd4266f0ff87f4ee3a9cec74",
+      "sha256": "c1f677b6dc347b2040c083ec4fc8ec46878850bbc392b5d0cb1e94cc542d1071",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/skogafoss-master.webp"
+      ]
+    },
+    {
+      "id": "small-icelandic-cafe-rain",
+      "role": "background",
+      "path": "assets/backgrounds/small-icelandic-cafe-rain.png",
+      "targetPath": "assets/backgrounds/small-icelandic-cafe-rain.webp",
+      "sourceBlobSha": "85c0853b619316882a1d1b1c2181fd7bd0c4bce6",
+      "sha256": "8ee77c853233c5e9ccbca3a5714d46052d295284744e36550824181635c17411",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/small-icelandic-cafe-rain.webp"
+      ]
+    },
+    {
+      "id": "snaefellsnes-bakery-dawn",
+      "role": "background",
+      "path": "assets/backgrounds/snaefellsnes-bakery-dawn.png",
+      "targetPath": "assets/backgrounds/snaefellsnes-bakery-dawn.webp",
+      "sourceBlobSha": "3f74d000be14de9cecce6cfe75510f087da0d2c2",
+      "sha256": "bfc88acd5919b194d4de46cf00ba0f893a6977247b75ac404360a9c7d0b7e5fa",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/snaefellsnes-bakery-dawn.webp"
+      ]
+    },
+    {
+      "id": "snaefellsnes-master",
+      "role": "background",
+      "path": "assets/backgrounds/snaefellsnes-master.png",
+      "targetPath": "assets/backgrounds/snaefellsnes-master.webp",
+      "sourceBlobSha": "4795a69066fe7ffbd02d0429d13a079cc057a052",
+      "sha256": "3ee9a0035623391f0e0f831b1b18cabfe01b7f5209f98b5f3f5eb911bd25514d",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/snaefellsnes-master.webp"
+      ]
+    },
+    {
+      "id": "south-coast-road-rain",
+      "role": "background",
+      "path": "assets/backgrounds/south-coast-road-rain.png",
+      "targetPath": "assets/backgrounds/south-coast-road-rain.webp",
+      "sourceBlobSha": "904cc48290a388c709e62396b9809fb85c6aef4e",
+      "sha256": "6e5d7bc3fe561db6d0447b038f4f476a0730620dabc549b7d42b4b95fd4bc7c4",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/south-coast-road-rain.webp"
+      ]
+    },
+    {
+      "id": "thingvellir-master",
+      "role": "background",
+      "path": "assets/backgrounds/thingvellir-master.png",
+      "targetPath": "assets/backgrounds/thingvellir-master.webp",
+      "sourceBlobSha": "6eb9e60cfe6db4c4216208096b46fe21ddc84fe9",
+      "sha256": "bc08f30ea67b7777782d5e6f9031b7cfd044a85862293edc672f786f4bbac44f",
+      "status": "blocked",
+      "reason": "rights_missing",
+      "licenseEvidence": null,
+      "sourceVariants": [
+        "assets/backgrounds/thingvellir-master.webp"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 123,
+    "byStatus": {
+      "candidate": 58,
+      "accepted": 5,
+      "blocked": 60
+    },
+    "byFamily": {
+      "background": 45,
+      "cg": 54,
+      "character": 4,
+      "character-variant": 4,
+      "character-stage": 4,
+      "branding": 3,
+      "music": 8,
+      "environment": 1
+    },
+    "blockedReasons": {
+      "rights_missing": 50,
+      "rights_hash_missing": 8,
+      "rights_hash_mismatch": 2
+    }
+  }
+}

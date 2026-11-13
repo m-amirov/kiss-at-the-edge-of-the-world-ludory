@@ -1,0 +1,585 @@
+
+> kiss-at-the-edge-of-the-world-ludory@0.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: parses NUL-separated tree records without losing Unicode or newlines
+ok 1 - parses NUL-separated tree records without losing Unicode or newlines
+  ---
+  duration_ms: 3.3347
+  type: 'test'
+  ...
+# Subtest: rejects invalid UTF-8 Git paths instead of inventing replacement characters
+ok 2 - rejects invalid UTF-8 Git paths instead of inventing replacement characters
+  ---
+  duration_ms: 4.3523
+  type: 'test'
+  ...
+# Subtest: reads an exact commit, not a dirty worktree
+not ok 3 - reads an exact commit, not a dirty worktree
+  ---
+  duration_ms: 333.2344
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m1-inventory.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-3dKOqu\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:51:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: returns byte-identical JSON for unchanged trees
+not ok 4 - returns byte-identical JSON for unchanged trees
+  ---
+  duration_ms: 322.8844
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m1-inventory.test.mjs:62:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-UWDKz6\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:63:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: fails closed on missing commits instead of inventing an inventory
+not ok 5 - fails closed on missing commits instead of inventing an inventory
+  ---
+  duration_ms: 234.8182
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m1-inventory.test.mjs:71:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-npXdDj\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:72:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: does not lazy-fetch a missing tree in a promisor partial clone
+not ok 6 - does not lazy-fetch a missing tree in a promisor partial clone
+  ---
+  duration_ms: 714.608
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m1-inventory.test.mjs:78:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-leb6s9\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:79:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: failed CLI preflight does not overwrite an existing output
+not ok 7 - failed CLI preflight does not overwrite an existing output
+  ---
+  duration_ms: 252.8574
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m1-inventory.test.mjs:99:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-WWMcJM\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m1-inventory.test.mjs:100:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: failed atomic rename leaves existing target and no sibling temporary file
+ok 8 - failed atomic rename leaves existing target and no sibling temporary file
+  ---
+  duration_ms: 20.1718
+  type: 'test'
+  ...
+# Subtest: S01 starts with original red suitcase scene and validates as Ludory graph
+ok 9 - S01 starts with original red suitcase scene and validates as Ludory graph
+  ---
+  duration_ms: 123.8125
+  type: 'test'
+  ...
+# Subtest: S01-C1 has exactly three mutually exclusive route-neutral seat choices
+ok 10 - S01-C1 has exactly three mutually exclusive route-neutral seat choices
+  ---
+  duration_ms: 2.007
+  type: 'test'
+  ...
+# Subtest: S01 keeps complete distinct branch endings and identical common continuation
+ok 11 - S01 keeps complete distinct branch endings and identical common continuation
+  ---
+  duration_ms: 0.4214
+  type: 'test'
+  ...
+# Subtest: S01 canonical paragraphs remain byte-identical to the audited literary source blocks
+ok 12 - S01 canonical paragraphs remain byte-identical to the audited literary source blocks
+  ---
+  duration_ms: 0.9156
+  type: 'test'
+  ...
+# Subtest: narrative asset proof follows the authored story and does not publish template demo art
+ok 13 - narrative asset proof follows the authored story and does not publish template demo art
+  ---
+  duration_ms: 3.4954
+  type: 'test'
+  ...
+# Subtest: Ludory 1.2.2 keeps canonical authored files outside managed components
+ok 14 - Ludory 1.2.2 keeps canonical authored files outside managed components
+  ---
+  duration_ms: 3.9244
+  type: 'test'
+  ...
+# Subtest: Ludory launcher displays the manifest title, not a template demo title
+ok 15 - Ludory launcher displays the manifest title, not a template demo title
+  ---
+  duration_ms: 2.8868
+  type: 'test'
+  ...
+# Subtest: S01 choice changes a visible flag without prematurely locking a romance route
+ok 16 - S01 choice changes a visible flag without prematurely locking a romance route
+  ---
+  duration_ms: 710.0472
+  type: 'test'
+  ...
+# Subtest: every S01 route converges; Back restores state and allows a different seat
+ok 17 - every S01 route converges; Back restores state and allows a different seat
+  ---
+  duration_ms: 935.0117
+  type: 'test'
+  ...
+# Subtest: full S02 road and café copy is byte-identical to the pinned literary manuscript
+ok 18 - full S02 road and café copy is byte-identical to the pinned literary manuscript
+  ---
+  duration_ms: 2.4088
+  type: 'test'
+  ...
+# Subtest: every S01 seat rejoins the same S02 choice with three convergent alternatives
+ok 19 - every S01 seat rejoins the same S02 choice with three convergent alternatives
+  ---
+  duration_ms: 112.2429
+  type: 'test'
+  ...
+# Subtest: S02 career choice sets exactly one career thesis, without route lock
+ok 20 - S02 career choice sets exactly one career thesis, without route lock
+  ---
+  duration_ms: 6759.425
+  type: 'test'
+  ...
+# Subtest: S02 tampered career flags are rejected when restoring saved state
+ok 21 - S02 tampered career flags are rejected when restoring saved state
+  ---
+  duration_ms: 1861.4325
+  type: 'test'
+  ...
+# Subtest: S02 Back removes the old career decision and permits a different answer
+ok 22 - S02 Back removes the old career decision and permits a different answer
+  ---
+  duration_ms: 2088.6686
+  type: 'test'
+  ...
+# Subtest: S03 retains all 10 canonical literary blocks byte-for-byte
+ok 23 - S03 retains all 10 canonical literary blocks byte-for-byte
+  ---
+  duration_ms: 109.1393
+  type: 'test'
+  ...
+# Subtest: S65 proceeds to S03; conditional continuation gates do not invent authored decisions
+ok 24 - S65 proceeds to S03; conditional continuation gates do not invent authored decisions
+  ---
+  duration_ms: 1.3818
+  type: 'test'
+  ...
+# Subtest: all nine S01×S02 states see exactly their authored S03 variants
+ok 25 - all nine S01×S02 states see exactly their authored S03 variants
+  ---
+  duration_ms: 46920.396
+  type: 'test'
+  ...
+# Subtest: S04 7-block literary source is byte-identical to pinned manuscript
+ok 26 - S04 7-block literary source is byte-identical to pinned manuscript
+  ---
+  duration_ms: 114.788
+  type: 'test'
+  ...
+# Subtest: S03 message and silence rejoin S04 without old technical ending
+ok 27 - S03 message and silence rejoin S04 without old technical ending
+  ---
+  duration_ms: 1.8431
+  type: 'test'
+  ...
+# Subtest: S04 A/B/C consent is exclusive, reversible and JSON-restorable
+ok 28 - S04 A/B/C consent is exclusive, reversible and JSON-restorable
+  ---
+  duration_ms: 11399.582
+  type: 'test'
+  ...
+# Subtest: S04 selects the silence payoff when S03 chose no message
+ok 29 - S04 selects the silence payoff when S03 chose no message
+  ---
+  duration_ms: 10676.446
+  type: 'test'
+  ...
+# Subtest: S05 five displayed prose blocks are byte-identical to pinned canonical manuscript
+ok 30 - S05 five displayed prose blocks are byte-identical to pinned canonical manuscript
+  ---
+  duration_ms: 108.6602
+  type: 'test'
+  ...
+# Subtest: S05 replaces S04 placeholder, offers canonical 3-way weather choice and rejoins S06 boundary
+ok 31 - S05 replaces S04 placeholder, offers canonical 3-way weather choice and rejoins S06 boundary
+  ---
+  duration_ms: 2.2356
+  type: 'test'
+  ...
+# Subtest: S05 Nick/Erik/Damir weather decisions are exclusive, Back-reversible and JSON-restorable
+ok 32 - S05 Nick/Erik/Damir weather decisions are exclusive, Back-reversible and JSON-restorable
+  ---
+  duration_ms: 13676.3541
+  type: 'test'
+  ...
+# Subtest: S05 is reached after S03 silence and S04 refusal, and tampered weather flags are rejected
+ok 33 - S05 is reached after S03 silence and S04 refusal, and tampered weather flags are rejected
+  ---
+  duration_ms: 13426.9496
+  type: 'test'
+  ...
+# Subtest: S06 nine displayed blocks are byte-identical to pinned Russian manuscript
+ok 34 - S06 nine displayed blocks are byte-identical to pinned Russian manuscript
+  ---
+  duration_ms: 117.9659
+  type: 'test'
+  ...
+# Subtest: S05 leads to conditional S06 prose and a free 2-way authored Eric choice
+ok 35 - S05 leads to conditional S06 prose and a free 2-way authored Eric choice
+  ---
+  duration_ms: 2.2233
+  type: 'test'
+  ...
+# Subtest: all nine S01 seat × S05 weather states choose correct S06 conditional prose
+ok 36 - all nine S01 seat × S05 weather states choose correct S06 conditional prose
+  ---
+  duration_ms: 178936.696
+  type: 'test'
+  ...
+# Subtest: S06 C2 alternatives remain reversible, restorable and reject invented state
+ok 37 - S06 C2 alternatives remain reversible, restorable and reject invented state
+  ---
+  duration_ms: 19295.001
+  type: 'test'
+  ...
+# Subtest: first game stays fully free while Ludory Economy E5 remains separately opt-in
+not ok 38 - first game stays fully free while Ludory Economy E5 remains separately opt-in
+  ---
+  duration_ms: 22.274
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-baseline\\tests\\m3-s06.test.mjs:192:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+
+      assert.ok(gameRoot.endsWith('/game/'))
+
+    code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-baseline/tests/m3-s06.test.mjs:196:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: S07 has 14 canonical dialogue blocks byte-for-byte as displayed by Ludory
+ok 39 - S07 has 14 canonical dialogue blocks byte-for-byte as displayed by Ludory
+  ---
+  duration_ms: 120.7967
+  type: 'test'
+  ...
+# Subtest: S06 flows into S07 with optional Nick callbacks, three consent variants and S06 payoff
+ok 40 - S06 flows into S07 with optional Nick callbacks, three consent variants and S06 payoff
+  ---
+  duration_ms: 2.3302
+  type: 'test'
+  ...
+# Subtest: real runtime preserves Nick, camera consent and S06 callbacks across three prior routes
+ok 41 - real runtime preserves Nick, camera consent and S06 callbacks across three prior routes
+  ---
+  duration_ms: 116570.5613
+  type: 'test'
+  ...
+# Subtest: S07 archive alternatives undo cleanly on Back and JSON continuation rejects fabricated flags
+ok 42 - S07 archive alternatives undo cleanly on Back and JSON continuation rejects fabricated flags
+  ---
+  duration_ms: 22681.2541
+  type: 'test'
+  ...
+# Subtest: S07 remains fully free and does not adopt optional Ludory Economy E5
+ok 43 - S07 remains fully free and does not adopt optional Ludory Economy E5
+  ---
+  duration_ms: 2.1593
+  type: 'test'
+  ...
+# Subtest: S08 displayed prose equals six pinned manuscript blocks
+ok 44 - S08 displayed prose equals six pinned manuscript blocks
+  ---
+  duration_ms: 101.6052
+  type: 'test'
+  ...
+# Subtest: S08 six manuscript blocks retain independently verified paragraph counts and hashes
+ok 45 - S08 six manuscript blocks retain independently verified paragraph counts and hashes
+  ---
+  duration_ms: 2.6851
+  type: 'test'
+  ...
+# Subtest: S07→S08 and S08-C1 use prior weather state and exclusive free outcomes
+ok 46 - S07→S08 and S08-C1 use prior weather state and exclusive free outcomes
+  ---
+  duration_ms: 1.9933
+  type: 'test'
+  ...
+# Subtest: S08 conditional Damir paragraph only follows S05 Damir weather choice
+ok 47 - S08 conditional Damir paragraph only follows S05 Damir weather choice
+  ---
+  duration_ms: 74779.827
+  type: 'test'
+  ...
+# Subtest: S08-C1 A→Back→B→Back→C and JSON continuation retain previous narrative state
+ok 48 - S08-C1 A→Back→B→Back→C and JSON continuation retain previous narrative state
+  ---
+  duration_ms: 36914.213
+  type: 'test'
+  ...
+# Subtest: S09 nine authored blocks retain exact pinned manuscript paragraphs and independent hashes
+ok 49 - S09 nine authored blocks retain exact pinned manuscript paragraphs and independent hashes
+  ---
+  duration_ms: 128.6249
+  type: 'test'
+  ...
+# Subtest: S66 enters S09; free S09-C1 has exactly three exclusive voices and one later guarded thesis dispatch
+ok 50 - S66 enters S09; free S09-C1 has exactly three exclusive voices and one later guarded thesis dispatch
+  ---
+  duration_ms: 4.825
+  type: 'test'
+  ...
+# Subtest: real N1 runtime covers all nine S09 voice × S02 thesis combinations, Back and JSON restore
+ok 51 - real N1 runtime covers all nine S09 voice × S02 thesis combinations, Back and JSON restore
+  ---
+  duration_ms: 127182.2727
+  type: 'test'
+  ...
+# Subtest: S09 does not enable optional Ludory Economy E5
+ok 52 - S09 does not enable optional Ludory Economy E5
+  ---
+  duration_ms: 1.8959
+  type: 'test'
+  ...
+# Subtest: S10 six canonical blocks match pinned EP03 manuscript exactly
+ok 53 - S10 six canonical blocks match pinned EP03 manuscript exactly
+  ---
+  duration_ms: 145.4746
+  type: 'test'
+  ...
+# Subtest: S09 leads to S10; S01 callback is guarded and S10-C1 is one free authored 2-way choice
+ok 54 - S09 leads to S10; S01 callback is guarded and S10-C1 is one free authored 2-way choice
+  ---
+  duration_ms: 2.0372
+  type: 'test'
+  ...
+# Subtest: S01 Eric/Nick/Damir each have correct S10 callback; both tones Back-reverse and JSON-resume
+ok 55 - S01 Eric/Nick/Damir each have correct S10 callback; both tones Back-reverse and JSON-resume
+  ---
+  duration_ms: 134984.6452
+  type: 'test'
+  ...
+# Subtest: Economy E5 stays disabled throughout the first novel S10
+ok 56 - Economy E5 stays disabled throughout the first novel S10
+  ---
+  duration_ms: 1.6546
+  type: 'test'
+  ...
+# Subtest: S11 nine manuscript blocks render exactly, not just in source files
+ok 57 - S11 nine manuscript blocks render exactly, not just in source files
+  ---
+  duration_ms: 97.2195
+  type: 'test'
+  ...
+# Subtest: S10 enters S11; S04 consent guards and free safety choice have exact effects
+ok 58 - S10 enters S11; S04 consent guards and free safety choice have exact effects
+  ---
+  duration_ms: 5.7381
+  type: 'test'
+  ...
+# Subtest: three S04 consents × three S11 outcomes: Back, JSON restore, tamper rejection
+ok 59 - three S04 consents × three S11 outcomes: Back, JSON restore, tamper rejection
+  ---
+  duration_ms: 148419.7548
+  type: 'test'
+  ...
+# Subtest: S11 keeps first game fully free with Ludory Economy E5 off
+ok 60 - S11 keeps first game fully free with Ludory Economy E5 off
+  ---
+  duration_ms: 1.5403
+  type: 'test'
+  ...
+# Subtest: S12 all sixteen authored blocks match pinned manuscript paragraph counts and SHA-256
+ok 61 - S12 all sixteen authored blocks match pinned manuscript paragraph counts and SHA-256
+  ---
+  duration_ms: 133.8154
+  type: 'test'
+  ...
+# Subtest: S11→S12 plus guarded S08/S09 callbacks and three separate free two-way author choices
+ok 62 - S11→S12 plus guarded S08/S09 callbacks and three separate free two-way author choices
+  ---
+  duration_ms: 1.9837
+  type: 'test'
+  ...
+# Subtest: S08 care × S09 voice callbacks plus all S12 choices preserve Back and fresh-runtime state
+ok 63 - S08 care × S09 voice callbacks plus all S12 choices preserve Back and fresh-runtime state
+  ---
+  duration_ms: 427013.6164
+  type: 'test'
+  ...
+# Subtest: S12 cannot use optional Ludory Economy E5 in the first novel
+ok 64 - S12 cannot use optional Ludory Economy E5 in the first novel
+  ---
+  duration_ms: 1.4718
+  type: 'test'
+  ...
+# Subtest: S13 all ten authored dialogue blocks render exact pinned paragraphs and SHA-256
+ok 65 - S13 all ten authored dialogue blocks render exact pinned paragraphs and SHA-256
+  ---
+  duration_ms: 91.1156
+  type: 'test'
+  ...
+# Subtest: S12→S13 uses all three guarded voice callbacks, authored free C1 and both S12-C3 payoffs
+ok 66 - S12→S13 uses all three guarded voice callbacks, authored free C1 and both S12-C3 payoffs
+  ---
+  duration_ms: 1.891
+  type: 'test'
+  ...
+# Subtest: all S09 voices × S12 returns reach S13, Back and fresh-runtime state preserve authored decisions
+ok 67 - all S09 voices × S12 returns reach S13, Back and fresh-runtime state preserve authored decisions
+  ---
+  duration_ms: 358763.4863
+  type: 'test'
+  ...
+# Subtest: S13 authorial choice cannot turn on optional Economy E5 in the first novel
+ok 68 - S13 authorial choice cannot turn on optional Economy E5 in the first novel
+  ---
+  duration_ms: 1.3609
+  type: 'test'
+  ...
+# Subtest: S14 all nine authored prose blocks match pinned 63 paragraphs and SHA-256
+ok 69 - S14 all nine authored prose blocks match pinned 63 paragraphs and SHA-256
+  ---
+  duration_ms: 82.8597
+  type: 'test'
+  ...
+# Subtest: S13 enters S14, S10 guarded tone and both free authored S14 choices have exact state effects
+ok 70 - S13 enters S14, S10 guarded tone and both free authored S14 choices have exact state effects
+  ---
+  duration_ms: 1.8335
+  type: 'test'
+  ...
+# Subtest: S10 tone × S14 pace × S14 gesture: actual runtime, Back, JSON and tamper
+ok 71 - S10 tone × S14 pace × S14 gesture: actual runtime, Back, JSON and tamper
+  ---
+  duration_ms: 960347.5945
+  type: 'test'
+  ...
+# Subtest: S14 remains fully free and Economy E5 stays disabled
+ok 72 - S14 remains fully free and Economy E5 stays disabled
+  ---
+  duration_ms: 2.7062
+  type: 'test'
+  ...
+# Subtest: S15 ten displayed canonical prose blocks match pinned 83 unique paragraphs and SHA-256
+ok 73 - S15 ten displayed canonical prose blocks match pinned 83 unique paragraphs and SHA-256
+  ---
+  duration_ms: 79.9723
+  type: 'test'
+  ...
+# Subtest: S14 enters S15; guarded S09 callback, three privacy policies and both S14 payoffs
+ok 74 - S14 enters S15; guarded S09 callback, three privacy policies and both S14 payoffs
+  ---
+  duration_ms: 1.9781
+  type: 'test'
+  ...
+# Subtest: S09 three voices × S15 privacy three outcomes × S14 gesture two: real N1, Back, JSON, tamper
+ok 75 - S09 three voices × S15 privacy three outcomes × S14 gesture two: real N1, Back, JSON, tamper
+  ---
+  duration_ms: 483472.8841
+  type: 'test'
+  ...
+# Subtest: S15 decisions remain free; optional Economy E5 does not affect first game
+ok 76 - S15 decisions remain free; optional Economy E5 does not affect first game
+  ---
+  duration_ms: 1.6118
+  type: 'test'
+  ...
+# Subtest: S16 four original prose blocks render 38 canonical paragraphs, exactly
+ok 77 - S16 four original prose blocks render 38 canonical paragraphs, exactly
+  ---
+  duration_ms: 88.7028
+  type: 'test'
+  ...
+# Subtest: S15 flows to S16; one free two-way Damir-space choice rejoins exact shared ending
+ok 78 - S15 flows to S16; one free two-way Damir-space choice rejoins exact shared ending
+  ---
+  duration_ms: 1.4212
+  type: 'test'
+  ...
+# Subtest: prior Nick privacy × Eric gesture × both S16 choices: real N1, Back, JSON and tamper
+ok 79 - prior Nick privacy × Eric gesture × both S16 choices: real N1, Back, JSON and tamper
+  ---
+  duration_ms: 841103.9703
+  type: 'test'
+  ...
+# Subtest: first novel still has no opt-in economy, purchases or premium consent
+ok 80 - first novel still has no opt-in economy, purchases or premium consent
+  ---
+  duration_ms: 5.7172
+  type: 'test'
+  ...

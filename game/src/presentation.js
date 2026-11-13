@@ -1,0 +1,112 @@
+// Generated from visuals/presentation.json by tools/m4-build-presentation.mjs. Do not edit.
+export const presentationData = {
+  "schemaVersion": 1,
+  "media": {},
+  "beats": {
+    "s01-airport-01": [
+      {
+        "id": "opening",
+        "neutral": {
+          "reason": "airport image is not admitted"
+        }
+      }
+    ],
+    "s01-airport-05": [
+      {
+        "id": "nick-arrives",
+        "neutral": {
+          "reason": "source visual cue mapped; no admitted portrait"
+        }
+      }
+    ],
+    "s01-airport-17": [
+      {
+        "id": "airport-outside",
+        "neutral": {
+          "reason": "airport rain art is not admitted"
+        }
+      }
+    ],
+    "s01-airport-25": [
+      {
+        "id": "damir-arrives",
+        "neutral": {
+          "reason": "source visual cue mapped; no admitted portrait"
+        }
+      }
+    ],
+    "s01-eric-01": [
+      {
+        "id": "car-eric",
+        "when": {
+          "flag": "s01-seat-eric"
+        },
+        "neutral": {
+          "reason": "car interior art is not admitted"
+        }
+      }
+    ],
+    "s01-nick-01": [
+      {
+        "id": "car-nick",
+        "when": {
+          "flag": "s01-seat-nick"
+        },
+        "neutral": {
+          "reason": "car interior art is not admitted"
+        }
+      }
+    ],
+    "s01-damir-01": [
+      {
+        "id": "car-damir",
+        "when": {
+          "flag": "s01-seat-damir"
+        },
+        "neutral": {
+          "reason": "car interior art is not admitted"
+        }
+      }
+    ],
+    "s01-common-01": [
+      {
+        "id": "common-road",
+        "neutral": {
+          "reason": "reset branch-specific car presentation"
+        }
+      }
+    ],
+    "s02-road-01": [
+      {
+        "id": "road-opening",
+        "neutral": {
+          "reason": "road art is not admitted"
+        }
+      }
+    ],
+    "s02-road-32": [
+      {
+        "id": "roadside-cafe",
+        "neutral": {
+          "reason": "roadside cafe art is not admitted"
+        }
+      }
+    ],
+    "s03-editorial-01": [
+      {
+        "id": "editor-call",
+        "neutral": {
+          "reason": "guesthouse morning art is not admitted"
+        }
+      }
+    ],
+    "s03-coffee-01": [
+      {
+        "id": "damir-enters",
+        "neutral": {
+          "reason": "Damir CG is not admitted"
+        }
+      }
+    ]
+  }
+};

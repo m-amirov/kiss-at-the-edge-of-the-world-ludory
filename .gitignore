@@ -1,2 +1,7 @@
 # Host-scoped Ludory component transition backups must stay on the operator's machine.
 game/.ludory-components-backup-*/
+game-studio/.ludory-components-backup-*/
+
+# Test-only Chromium driver and locally captured browser evidence are not source.
+/node_modules/
+/artifacts/m4-browser-qa/

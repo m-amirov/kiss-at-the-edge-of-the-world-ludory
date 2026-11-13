@@ -1,0 +1,129 @@
+TAP version 13
+# Subtest: parses NUL-separated tree records without losing Unicode or newlines
+ok 1 - parses NUL-separated tree records without losing Unicode or newlines
+  ---
+  duration_ms: 2.9869
+  type: 'test'
+  ...
+# Subtest: rejects invalid UTF-8 Git paths instead of inventing replacement characters
+ok 2 - rejects invalid UTF-8 Git paths instead of inventing replacement characters
+  ---
+  duration_ms: 0.9057
+  type: 'test'
+  ...
+# Subtest: reads an exact commit, not a dirty worktree
+not ok 3 - reads an exact commit, not a dirty worktree
+  ---
+  duration_ms: 198.498
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-publish\\tests\\m1-inventory.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-5baOhA\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:51:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: returns byte-identical JSON for unchanged trees
+not ok 4 - returns byte-identical JSON for unchanged trees
+  ---
+  duration_ms: 199.796
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-publish\\tests\\m1-inventory.test.mjs:62:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-CM48Jx\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:63:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: fails closed on missing commits instead of inventing an inventory
+not ok 5 - fails closed on missing commits instead of inventing an inventory
+  ---
+  duration_ms: 236.2921
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-publish\\tests\\m1-inventory.test.mjs:71:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-O3Pj0w\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:72:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: does not lazy-fetch a missing tree in a promisor partial clone
+not ok 6 - does not lazy-fetch a missing tree in a promisor partial clone
+  ---
+  duration_ms: 182.8505
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-publish\\tests\\m1-inventory.test.mjs:78:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-1FyuTb\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:79:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: failed CLI preflight does not overwrite an existing output
+not ok 7 - failed CLI preflight does not overwrite an existing output
+  ---
+  duration_ms: 210.5231
+  type: 'test'
+  location: 'D:\\HardWork\\kiss-at-the-edge-of-the-world-ludory-issue-5-publish\\tests\\m1-inventory.test.mjs:99:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, open 'C:\Users\user\AppData\Local\Temp\m1-git-fixture-e7gmNb\content\line
+    break.md'
+  code: 'ENOENT'
+  stack: |-
+    writeFileSync (node:fs:2425:20)
+    fixture (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:26:3)
+    TestContext.<anonymous> (file:///D:/HardWork/kiss-at-the-edge-of-the-world-ludory-issue-5-publish/tests/m1-inventory.test.mjs:100:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: failed atomic rename leaves existing target and no sibling temporary file
+ok 8 - failed atomic rename leaves existing target and no sibling temporary file
+  ---
+  duration_ms: 16.8657
+  type: 'test'
+  ...

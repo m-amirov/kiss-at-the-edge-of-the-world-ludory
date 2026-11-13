@@ -2684,3 +2684,5 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
+// Optional native M4 visual layer; graphData and narrative state remain unchanged.
+export { presentationData } from './presentation.js';

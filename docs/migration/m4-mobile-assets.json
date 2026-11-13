@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+  "project": "game-studio",
+  "mobileBreakpoint": 680,
+  "entries": [
+    {
+      "id": "s03-editor-call-damir-portrait-v2",
+      "desktopMediaId": "damir-coffee-cg",
+      "desktopPath": "assets/vis-s03-damir.png",
+      "portraitPath": "assets/vis-s03-damir-portrait-v2.png",
+      "sourceKind": "generated-source-bound",
+      "status": "accepted",
+      "artStatus": "pending-independent-review",
+      "useOnMobile": true,
+      "sha256": "97f69e0ee7dc0ab5999b82518ae0e4521b86eaa5f5b0be17c14bd5ae7614fbde",
+      "dimensions": "1024x1536",
+      "sourceBlobSha": null,
+      "licenseEvidence": {
+        "manifestPath": "docs/migration/m4-mobile-assets.json",
+        "license": "generated for this project",
+        "method": "Built-in image generation from the pinned desktop CG as a source-bound portrait re-composition; no text or watermark",
+        "source": "Built-in image_gen, 2026-11-11",
+        "sha256": "97f69e0ee7dc0ab5999b82518ae0e4521b86eaa5f5b0be17c14bd5ae7614fbde"
+      },
+      "referenceSources": [
+        {
+          "path": "assets/cg/s03-editor-call-damir.png",
+          "sourceBlobSha": "a28ee8f30312d5db8a56091655c086f8a184cbf3",
+          "sha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a"
+        }
+      ],
+      "admissionEvidence": {
+        "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "verifiedOn": "2026-11-11",
+        "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+      }
+    },
+    {
+      "id": "s07-kitchen-pasta-portrait",
+      "desktopMediaId": "s07-kitchen-pasta",
+      "desktopPath": "assets/vis-s07-kitchen-pasta.png",
+      "portraitPath": "assets/vis-s07-kitchen-pasta-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "552c38c03679ec662a94439fd33f6dc3c8dcb52215fc3dc6890f1135af801c2a",
+      "dimensions": "941x1672",
+      "sourceBlobSha": "decfd1602993d8cf5734d761c6073790ef44e892",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s07-kitchen-pasta-portrait.png",
+        "license": "generated for this project",
+        "method": "Independent portrait composition generated from S07 pasta direction",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "552c38c03679ec662a94439fd33f6dc3c8dcb52215fc3dc6890f1135af801c2a"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "decfd1602993d8cf5734d761c6073790ef44e892",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s07-kitchen-cards-portrait",
+      "desktopMediaId": "s07-kitchen-cards",
+      "desktopPath": "assets/vis-s07-kitchen-cards.png",
+      "portraitPath": "assets/vis-s07-kitchen-cards-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "818353a9909aa12784d0379002315536ff219df4a514243f408f3cd04718ec95",
+      "dimensions": "941x1672",
+      "sourceBlobSha": "4c368dac5d75ac6557ce3bf0d525a93010adad72",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s07-kitchen-cards-portrait.png",
+        "license": "generated for this project",
+        "method": "Independent portrait composition generated from S07 card direction",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "818353a9909aa12784d0379002315536ff219df4a514243f408f3cd04718ec95"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4c368dac5d75ac6557ce3bf0d525a93010adad72",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-eric-choice-portrait",
+      "desktopMediaId": "s26-eric-choice",
+      "desktopPath": "assets/vis-s26-eric-choice.png",
+      "portraitPath": "assets/vis-s26-eric-choice-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "e5de1e45e1109835d2d214ab6b79244c95a20070330eb264c59851f22f048ffe",
+      "dimensions": "941x1672",
+      "sourceBlobSha": "8715c9cc3a0429cc8b7b3827adeaf61e401cc682",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-eric-choice-portrait.png",
+        "license": "generated for this project",
+        "method": "Portrait re-composition generated from original S26 CG and Alice/Eric masters",
+        "source": "Generated in Codex imagegen, 2026-09-23",
+        "sha256": "e5de1e45e1109835d2d214ab6b79244c95a20070330eb264c59851f22f048ffe"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8715c9cc3a0429cc8b7b3827adeaf61e401cc682",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-nick-choice-portrait",
+      "desktopMediaId": "s26-nick-choice",
+      "desktopPath": "assets/vis-s26-nick-choice.png",
+      "portraitPath": "assets/vis-s26-nick-choice-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "ee6cf0336006de222d71ad4805d4a2b695096b1b383a4fc53e9f17f7d13f6b7b",
+      "dimensions": "941x1672",
+      "sourceBlobSha": "602890f7b48ebcfb9d7b34fd71b3398208672519",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-nick-choice-portrait.png",
+        "license": "generated for this project",
+        "method": "Independent portrait composition generated from the S26 Nick desktop composition",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "ee6cf0336006de222d71ad4805d4a2b695096b1b383a4fc53e9f17f7d13f6b7b"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "602890f7b48ebcfb9d7b34fd71b3398208672519",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-damir-choice-portrait",
+      "desktopMediaId": "s26-damir-choice",
+      "desktopPath": "assets/vis-s26-damir-choice.png",
+      "portraitPath": "assets/vis-s26-damir-choice-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "11c5da7c3fc3cb7568bd15751d6902b6f8c47e9d4b3edb452d696b4ff5d35b43",
+      "dimensions": "960x1638",
+      "sourceBlobSha": "15d52d86baf261a4ca5b9f27b5e2b7bde71d18c4",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-damir-choice-portrait.png",
+        "license": "generated for this project",
+        "method": "Independent portrait composition generated from the S26 Damir desktop composition",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "11c5da7c3fc3cb7568bd15751d6902b6f8c47e9d4b3edb452d696b4ff5d35b43"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "15d52d86baf261a4ca5b9f27b5e2b7bde71d18c4",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s26-alice-choice-portrait",
+      "desktopMediaId": "s26-alice-choice",
+      "desktopPath": "assets/vis-s26-alice-choice.png",
+      "portraitPath": "assets/vis-s26-alice-choice-portrait.png",
+      "sourceKind": "pinned-original-derivative",
+      "status": "accepted",
+      "artStatus": "approved-existing",
+      "useOnMobile": true,
+      "sha256": "0e7ffbace60602f06b039c9732ab5e7858717a58220387fe87822ec383e06281",
+      "dimensions": "960x1639",
+      "sourceBlobSha": "45e3fa865fffc8a0f2602df03248eea84b30f45f",
+      "licenseEvidence": {
+        "manifestPath": "assets/provenance/rights-manifest.json",
+        "path": "assets/cg/s26-alice-choice-portrait.png",
+        "license": "generated for this project",
+        "method": "Independent portrait composition generated from the S26 Alice desktop composition",
+        "source": "Generated in Codex imagegen, 2026-09-24",
+        "sha256": "0e7ffbace60602f06b039c9732ab5e7858717a58220387fe87822ec383e06281"
+      },
+      "admissionEvidence": {
+        "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "45e3fa865fffc8a0f2602df03248eea84b30f45f",
+        "verifiedOn": "2026-11-11",
+        "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+      }
+    },
+    {
+      "id": "s38-alice-nick-ordinary-day-portrait-v2",
+      "desktopMediaId": "s38-alice-nick-ordinary-day",
+      "desktopPath": "assets/vis-s38-alice-nick-ordinary-day.png",
+      "portraitPath": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png",
+      "sourceKind": "generated-source-bound",
+      "status": "accepted",
+      "artStatus": "pending-independent-review",
+      "useOnMobile": true,
+      "sha256": "fa2b4e6aad5d2a5a482f9b2ca8e2954dfad76b6b188729f1411d6ad9de9dfd2e",
+      "dimensions": "1024x1536",
+      "sourceBlobSha": null,
+      "licenseEvidence": {
+        "manifestPath": "docs/migration/m4-mobile-assets.json",
+        "license": "generated for this project",
+        "method": "Built-in image generation from the pinned desktop CG as a source-bound portrait re-composition; no text or watermark",
+        "source": "Built-in image_gen, 2026-11-11",
+        "sha256": "fa2b4e6aad5d2a5a482f9b2ca8e2954dfad76b6b188729f1411d6ad9de9dfd2e"
+      },
+      "referenceSources": [
+        {
+          "path": "assets/cg/s38-alice-nick-ordinary-day.png",
+          "sourceBlobSha": "f0c68993a06872b42f4d1695037df64731097b5b",
+          "sha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935"
+        }
+      ],
+      "admissionEvidence": {
+        "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "verifiedOn": "2026-11-11",
+        "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+      }
+    },
+    {
+      "id": "s39-alice-damir-cafe-portrait-v2",
+      "desktopMediaId": "s39-alice-damir-cafe",
+      "desktopPath": "assets/vis-s39-alice-damir-cafe.png",
+      "portraitPath": "assets/vis-s39-alice-damir-cafe-portrait-v2.png",
+      "sourceKind": "generated-source-bound",
+      "status": "accepted",
+      "artStatus": "pending-independent-review",
+      "useOnMobile": true,
+      "sha256": "cb69e0ab2c8c442eda48335a0fbdf7b23c838839bbfd542709a1c55211c57cf8",
+      "dimensions": "1024x1536",
+      "sourceBlobSha": null,
+      "licenseEvidence": {
+        "manifestPath": "docs/migration/m4-mobile-assets.json",
+        "license": "generated for this project",
+        "method": "Built-in image generation from the pinned desktop CG as a source-bound portrait re-composition; no text or watermark",
+        "source": "Built-in image_gen, 2026-11-11",
+        "sha256": "cb69e0ab2c8c442eda48335a0fbdf7b23c838839bbfd542709a1c55211c57cf8"
+      },
+      "referenceSources": [
+        {
+          "path": "assets/cg/s39-alice-damir-cafe.png",
+          "sourceBlobSha": "9ec1088b99df9a5659b1e7df73f9ca514d2b884c",
+          "sha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397"
+        }
+      ],
+      "admissionEvidence": {
+        "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "verifiedOn": "2026-11-11",
+        "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+      }
+    },
+    {
+      "id": "s39-alice-damir-cafe-walk-portrait",
+      "desktopMediaId": "s39-alice-damir-cafe-walk",
+      "desktopPath": "assets/vis-s39-alice-damir-cafe-walk.png",
+      "portraitPath": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
+      "sourceKind": "generated-source-bound",
+      "status": "accepted",
+      "artStatus": "approved-independent",
+      "useOnMobile": true,
+      "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
+      "dimensions": "1024x1536",
+      "sourceBlobSha": null,
+      "licenseEvidence": {
+        "manifestPath": "docs/migration/m4-mobile-assets.json",
+        "license": "generated for this project",
+        "method": "Built-in image generation from the pinned S39 walk desktop environment as an independent portrait environment; no crop, upscale, characters, text, or watermark",
+        "source": "Built-in image_gen, 2026-11-12",
+        "sha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe"
+      },
+      "referenceSources": [
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.png",
+          "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+          "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e"
+        }
+      ],
+      "admissionEvidence": {
+        "method": "Generated PNG copied without recompression; PNG signature, dimensions, bytes, and SHA-256 verified after import",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+        "verifiedOn": "2026-11-12",
+        "verification": "Original desktop source SHA-256 and Git blob recorded; independent S39 walk mobile composition accepted on 2026-11-12 based on 320x700, 390x844 and 430x932 browser captures. Review: https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/issues/5#issuecomment-6824910484 . Full raw-image scan was not claimed."
+      }
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "id": "s03-editor-call-damir-portrait-original",
+      "sourcePath": "assets/cg/s03-editor-call-damir-portrait.png",
+      "sourceBlobSha": "85ecab34d21f2716e6d29d19a572e1155e7e0c8c",
+      "sha256": "c6933c24c457d53804cf284880db8bf6668b38abddd3da0ed7322487c9b764c1",
+      "artStatus": "rejected-crop",
+      "reason": "Damir and Alice framing is not suitable for the approved mobile composition; retained as evidence only"
+    },
+    {
+      "id": "s38-alice-nick-ordinary-day-portrait-original",
+      "sourcePath": "assets/cg/s38-alice-nick-ordinary-day-portrait.png",
+      "sourceBlobSha": "43bc32e3ea59e0e7d104d07430404184484cb0ab",
+      "sha256": "de68c959cc20d3777b31d2245abfbb00ed1e894d3fc5877b23d3063dbb5b2a76",
+      "artStatus": "rejected-crop",
+      "reason": "Alice is materially cropped from the group composition; never connect automatically"
+    },
+    {
+      "id": "s39-alice-damir-cafe-portrait-original",
+      "sourcePath": "assets/cg/s39-alice-damir-cafe-portrait.png",
+      "sourceBlobSha": "8d538e913bce6e1fa6fc2057fb1f364c0bd83bd3",
+      "sha256": "b106909269f53d1f27eb7ed8f26b27bb30f5f5956dc31953bab0c8766b24f4e8",
+      "artStatus": "rejected-crop",
+      "reason": "Both faces are materially cropped from the café composition; never connect automatically"
+    }
+  ],
+  "fallbacks": []
+}
