@@ -92,7 +92,7 @@
         "status": "LOCAL_ARCHIVES_VERIFIED",
         "sourceDigest": "1ed4155aefd65cf4e36ebbfcd1f1dd0050910974a8a6a63e397ddd40802d1442",
         "verifier": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
-        "ludoryCommit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "ludoryCommit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "note": "Archives and editable receipts were accepted only after live source re-derivation and member comparison by the trusted Ludory verifier."
       }
     },
@@ -4165,7 +4165,7 @@
       "provenance": {
         "path": "generated://ludory/licenses/swc-helpers.txt",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Vendored platform/library license text admitted by the target builder"
       },
       "statedBasis": "Vendored platform/library license text admitted by the target builder",
@@ -4200,7 +4200,7 @@
       "provenance": {
         "path": "generated://ludory/licenses/vk-bridge.txt",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Vendored platform/library license text admitted by the target builder"
       },
       "statedBasis": "Vendored platform/library license text admitted by the target builder",
@@ -4235,7 +4235,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/assets/ludory-vk.js",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4268,7 +4268,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/assets/vk-bridge.js",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4301,7 +4301,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/index.html",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4334,7 +4334,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/ludory.project.json",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4367,7 +4367,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/src/main.js",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4400,7 +4400,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/assets/ludory-yandex.js",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4433,7 +4433,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/index.html",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4466,7 +4466,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/ludory.project.json",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4499,7 +4499,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/src/main.js",
         "repository": "m-amirov/ludory",
-        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "commit": "933c73b195eaf3bfffd12a31ab1cbadb27989eea",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
