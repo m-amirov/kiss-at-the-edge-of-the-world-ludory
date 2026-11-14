@@ -505,10 +505,8 @@ async function createPage(browser, name, viewport) {
   assert.equal(await page.locator('.ludory-narrative__panel h2')
     .filter({ hasText: /^s\d{2}-/ }).count(), 0, `${name}: raw scene ID visible as heading`);
   assert.equal(await page.locator('.ludory-narrative').getAttribute('data-visual'), 'true');
-  assert.equal(await page.locator('.ludory-narrative__stage img').count(), 0,
-    `${name}: unadmitted media unexpectedly rendered`);
-  assert.ok((await page.locator('.ludory-narrative__stage').getAttribute('data-neutral'))?.length,
-    `${name}: missing explicit neutral visual fallback`);
+  await assertPilotCue(page, 's01-airport-01', 'opening',
+    `${name}: original opening airport art`, 's01-airport-arrivals');
   await assertViewport(page, name);
   await page.screenshot({ path: join(evidenceDir, `${name}-start.png`), fullPage: true });
   return { context, page, errors };
