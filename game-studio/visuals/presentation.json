@@ -480,39 +480,47 @@
         "ru": "S66 Hveragerdi Greenhouse",
         "en": "S66 Hveragerdi Greenhouse"
       }
+    },
+    "s01-airport-arrivals": {
+      "kind": "background",
+      "src": "assets/vis-s01-airport-arrivals.webp",
+      "alt": {
+        "ru": "Зал прилёта аэропорта Кефлавик",
+        "en": "Keflavík airport arrivals hall"
+      }
+    },
+    "s01-road-trip-van-interior": {
+      "kind": "background",
+      "src": "assets/vis-s01-road-trip-van-interior.webp",
+      "alt": {
+        "ru": "Салон автомобиля под дождём в Исландии",
+        "en": "Car interior on a rainy Iceland road"
+      }
     }
   },
   "beats": {
     "s01-airport-01": [
       {
         "id": "opening",
-        "neutral": {
-          "reason": "airport image is not admitted"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-05": [
       {
         "id": "nick-arrives",
-        "neutral": {
-          "reason": "source visual cue mapped; no admitted portrait"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-17": [
       {
         "id": "airport-outside",
-        "neutral": {
-          "reason": "airport rain art is not admitted"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-25": [
       {
         "id": "damir-arrives",
-        "neutral": {
-          "reason": "source visual cue mapped; no admitted portrait"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-eric-01": [
@@ -521,9 +529,7 @@
         "when": {
           "flag": "s01-seat-eric"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-nick-01": [
@@ -532,9 +538,7 @@
         "when": {
           "flag": "s01-seat-nick"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-damir-01": [
@@ -543,25 +547,19 @@
         "when": {
           "flag": "s01-seat-damir"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-common-01": [
       {
         "id": "common-road",
-        "neutral": {
-          "reason": "reset branch-specific car presentation"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s02-road-01": [
       {
         "id": "road-opening",
-        "neutral": {
-          "reason": "road art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s02-road-32": [
@@ -1839,6 +1837,576 @@
           "mediaId": "s39-alice-damir-cafe",
           "mode": "replace-stage"
         }
+      }
+    ],
+    "s01-airport-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-09": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-10": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-11": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-12": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-13": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-14": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-15": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-16": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-18": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-19": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-20": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-21": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-22": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-23": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-24": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-26": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-27": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-28": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-29": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-30": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-31": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-32": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-33": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-34": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-35": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-36": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-37": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-38": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-39": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-seat-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-eric-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-09": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-10": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-11": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-12": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-13": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-14": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-15": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-16": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-17": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-18": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-19": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-20": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-21": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-22": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-23": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-24": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-25": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-26": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-27": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-28": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-29": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-30": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-31": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-route": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-answer-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-answer-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-answer-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-answer-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
       }
     ]
   }

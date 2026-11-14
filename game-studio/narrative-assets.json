@@ -14,6 +14,14 @@
       "path": "assets/vis-s02-roadside-cafe.png",
       "sha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13"
     },
+    "s01-airport-arrivals": {
+      "path": "assets/vis-s01-airport-arrivals.webp",
+      "sha256": "1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a"
+    },
+    "s01-road-trip-van-interior": {
+      "path": "assets/vis-s01-road-trip-van-interior.webp",
+      "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd"
+    },
     "s05-hveragerdi-road": {
       "path": "assets/vis-s05-hveragerdi-road.png",
       "sha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f"

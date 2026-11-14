@@ -28,7 +28,7 @@ const admitted = [
   },
 ];
 
-test('studio admits all 60 pinned project images with byte-identical proof', () => {
+test('studio admits all 62 game images with byte-identical proof', () => {
   const entries = read(inventory).entries;
   const proof = read(join(studio, 'narrative-assets.json'));
   const presentation = read(join(studio, 'visuals/presentation.json'));
@@ -38,7 +38,7 @@ test('studio admits all 60 pinned project images with byte-identical proof', () 
     's03-reykjavik-guesthouse-morning': 'guesthouse-morning',
     's03-editor-call-damir': 'damir-coffee-cg',
   }[entry.id] ?? entry.id);
-  assert.equal(storyEntries.length, 60);
+  assert.equal(storyEntries.length, 62);
   for (const entry of storyEntries) {
     const id = mediaId(entry);
     assert.equal(entry.status, 'accepted', `${entry.id}: admission missing`);
@@ -65,9 +65,40 @@ test('S02 café and S03 guesthouse/CG continue across their authored contiguous 
   for (const beatId of [...beats('s03-coffee'), ...['s03-seat-damir', 's03-seat-other'].flatMap(beats)]) {
     assert.deepEqual(manifest.beats[beatId]?.[0].cg, { mediaId: 'damir-coffee-cg', mode: 'replace-stage' }, beatId);
   }
-  assert.ok(manifest.beats['s02-road-01'][0].neutral, 'unverified road art stays neutral');
-  assert.ok(manifest.beats['s01-airport-01'][0].neutral, 'unverified airport art stays neutral');
+  assert.equal(manifest.beats['s02-road-01'][0].background, 's01-road-trip-van-interior', 'original car art must load');
+  assert.equal(manifest.beats['s01-airport-01'][0].background, 's01-airport-arrivals', 'original airport art must load');
   for (const [cueId, mediaId] of [['roadside-cafe', 'roadside-cafe'], ['editor-call', 'guesthouse-morning'], ['damir-enters', 'damir-coffee-cg']]) {
     assert.equal(map.entries.find(entry => entry.sourceCueId === cueId).admittedMediaId, mediaId);
   }
+});
+
+test('original opening WebP assets are byte-identical pinned source blobs and persist through S01/S02', () => {
+  const p = read(join(studio, 'visuals/presentation.json'));
+  const inventory = read(join(studio, '../docs/migration/m4-assets-inventory.json'));
+  for (const [id, src, expectedSha, expectedBlob] of [
+    ['s01-airport-arrivals', 'assets/vis-s01-airport-arrivals.webp',
+      '1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a',
+      '8e1b5fd336808ecce16f6958b64c84ac195744c2'],
+    ['s01-road-trip-van-interior', 'assets/vis-s01-road-trip-van-interior.webp',
+      '84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd',
+      '7053040d378ddc3bff62966ca5397854421c7b8a'],
+  ]) {
+    const bytes = readFileSync(join(studio, src));
+    const gitHash = createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
+    assert.equal(hash(bytes), expectedSha, `${id}: source WebP pixels/bits changed`);
+    assert.equal(gitHash, expectedBlob, `${id}: differs from pinned original Git blob`);
+    assert.equal(p.media[id].src, src);
+    assert.equal(inventory.entries.find(x => x.id === id).sha256, expectedSha);
+  }
+  for (let i = 1; i <= 39; i++) {
+    assert.equal(p.beats[`s01-airport-${String(i).padStart(2,'0')}`][0].background, 's01-airport-arrivals');
+  }
+  assert.equal(p.beats['s01-seat-choice'][0].background, 's01-airport-arrivals');
+  for (const prefix of ['s01-eric', 's01-nick', 's01-damir', 's01-common']) {
+    assert.equal(p.beats[`${prefix}-01`][0].background, 's01-road-trip-van-interior');
+  }
+  for (let i = 1; i <= 31; i++) {
+    assert.equal(p.beats[`s02-road-${String(i).padStart(2,'0')}`][0].background, 's01-road-trip-van-interior');
+  }
+  assert.equal(p.beats['s02-road-32'][0].background, 'roadside-cafe', 'S02 café must replace the car image');
 });

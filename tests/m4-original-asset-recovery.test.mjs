@@ -50,7 +50,7 @@ test('all 58 provenance-matched candidates are admitted as original PNG bytes', 
   const byId = new Map(inventory.entries.map(entry => [entry.id, entry]));
   assert.equal(inventory.sourceCommit, '1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c');
   assert.equal(restoredIds.length, 58);
-  assert.equal(inventory.entries.filter(entry => entry.status === 'accepted').length, 63);
+  assert.equal(inventory.entries.filter(entry => entry.status === 'accepted').length, 65);
   assert.equal(inventory.entries.filter(entry => entry.status === 'candidate').length, 0);
   assert.equal(inventory.entries.filter(entry => entry.status === 'blocked').length, 60);
 
@@ -76,8 +76,8 @@ test('all 58 provenance-matched candidates are admitted as original PNG bytes', 
 test('presentation contains every admitted story image and keeps authored route boundaries', () => {
   const byId = new Map(inventory.entries.map(entry => [entry.id, entry]));
   const admittedStory = [...byId.values()].filter(entry => entry.status === 'accepted' && entry.admittedProject === 'game-studio' && entry.role !== 'branding');
-  assert.equal(admittedStory.length, 60);
-  assert.equal(Object.keys(presentationData.media).length, 60);
+  assert.equal(admittedStory.length, 62);
+  assert.equal(Object.keys(presentationData.media).length, 62);
   for (const entry of admittedStory) {
     const match = mediaBySource.get(entry.admittedPath);
     assert.ok(match, `${entry.id}: missing presentation media`);

@@ -2906,6 +2906,46 @@
       "sourceVariants": [
         "assets/backgrounds/thingvellir-master.webp"
       ]
+    },
+    {
+      "id": "s01-airport-arrivals",
+      "role": "background",
+      "path": "assets/backgrounds/keflavik-airport-arrivals-v1.webp",
+      "targetPath": "assets/backgrounds/keflavik-airport-arrivals-v1.webp",
+      "sourceBlobSha": "8e1b5fd336808ecce16f6958b64c84ac195744c2",
+      "sha256": "1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s01-airport-arrivals.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8e1b5fd336808ecce16f6958b64c84ac195744c2",
+        "sha256": "1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a",
+        "verifiedOn": "2026-11-14"
+      }
+    },
+    {
+      "id": "s01-road-trip-van-interior",
+      "role": "background",
+      "path": "assets/backgrounds/road-trip-van-interior-rain.webp",
+      "targetPath": "assets/backgrounds/road-trip-van-interior-rain.webp",
+      "sourceBlobSha": "7053040d378ddc3bff62966ca5397854421c7b8a",
+      "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s01-road-trip-van-interior.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "7053040d378ddc3bff62966ca5397854421c7b8a",
+        "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd",
+        "verifiedOn": "2026-11-14"
+      }
     }
   ],
   "summary": {

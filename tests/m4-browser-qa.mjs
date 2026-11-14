@@ -141,6 +141,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     assert.equal(await images.count(), 1, `${label}: exactly one admitted art layer expected`);
     const image = images.first();
     const files = {
+      's01-airport-arrivals': 'vis-s01-airport-arrivals.webp',
+      's01-road-trip-van-interior': 'vis-s01-road-trip-van-interior.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
@@ -596,12 +598,12 @@ async function main() {
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-seat-choice.png'), fullPage: true });
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:front-eric"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-eric');
-      assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-eric');
+      await assertPilotCue(mobile.page, 's01-eric-01', 'car-eric', 'mobile S01 car with Eric', 's01-road-trip-van-interior');
       await mobile.page.locator('button[data-action="narrative:back"]').click();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').waitFor();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-nick');
-      assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-nick');
+      await assertPilotCue(mobile.page, 's01-nick-01', 'car-nick', 'mobile S01 car with Nick', 's01-road-trip-van-interior');
       await openReaderSettings(mobile.page);
       await mobile.page.locator('#save').click();
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранено');
@@ -636,13 +638,13 @@ async function main() {
       await advanceToSeatChoice(desktop.page);
       await desktop.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-damir"]').click();
       await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-damir');
-      assert.equal(await desktop.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-damir');
+      await assertPilotCue(desktop.page, 's01-damir-01', 'car-damir', 'desktop S01 car with Damir', 's01-road-trip-van-interior');
       await assertViewport(desktop.page, 'desktop-damir');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-damir.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's01-common-01');
-      await assertPilotCue(desktop.page, 's01-common-01', 'common-road', 'S01 shared road');
+      await assertPilotCue(desktop.page, 's01-common-01', 'common-road', 'S01 shared road', 's01-road-trip-van-interior');
       await advanceToBeat(desktop.page, 's02-road-01');
-      await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening');
+      await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening', 's01-road-trip-van-interior');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-road.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's02-road-32');
       await assertPilotCue(desktop.page, 's02-road-32', 'roadside-cafe', 'S02 roadside cafe', 'roadside-cafe');

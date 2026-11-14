@@ -10,7 +10,7 @@
       "graphBeatId": "s01-airport-01",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": "keflavik-airport-arrivals-v1.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral"
     },
     {
@@ -18,7 +18,7 @@
       "graphBeatId": "s02-road-01",
       "location": "Автомобиль по дороге в Рейкьявик",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral"
     },
     {
@@ -30,10 +30,7 @@
       "fallback": "neutral"
     }
   ],
-  "neutralResets": [
-    "s01-common-01",
-    "s02-road-01"
-  ],
+  "neutralResets": [],
   "entries": [
     {
       "sourceSceneId": "S01",
@@ -46,9 +43,9 @@
       "status": "mapped",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-05; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -61,9 +58,9 @@
       "status": "mapped",
       "location": "Кефлавик: выход под дождь",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-17; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -76,9 +73,9 @@
       "status": "mapped",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-25; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -91,9 +88,9 @@
       "status": "mapped",
       "location": "Автомобиль: переднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-eric-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-eric"
       }
@@ -109,9 +106,9 @@
       "status": "mapped",
       "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-nick-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-nick"
       }
@@ -127,9 +124,9 @@
       "status": "mapped",
       "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-damir-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-damir"
       }
