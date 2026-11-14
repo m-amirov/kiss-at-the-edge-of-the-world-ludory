@@ -12,7 +12,7 @@ const textSha = file => createHash('sha256')
   .update(readFileSync(file, 'utf8').replace(/\r\n?/g, '\n'))
   .digest('hex');
 
-test('fresh Studio game is independently owned and consumes native presentation', () => {
+test('fresh Studio game is independently owned and consumes native presentation', async () => {
   assert.ok(existsSync(join(studio, 'ludory.components.json')), 'new Studio project not created');
   const ownership = JSON.parse(readFileSync(join(studio, 'ludory.components.json')));
   const project = JSON.parse(readFileSync(join(studio, 'ludory.project.json')));
@@ -27,7 +27,21 @@ test('fresh Studio game is independently owned and consumes native presentation'
   assert.match(main, /defineNarrativePresentation/);
   assert.match(main, /Reflect\.get\(story, 'presentationData'\)/);
   assert.doesNotMatch(main, /defineEconomy|premiumChoice/);
-  assert.equal(textSha(join(studio, 'src/story.js')), textSha(join(original, 'src/story.js')), 'ported narrative must remain unchanged');
+  // Author-owned extensions are allowed, but the entire original graph's
+  // authored beats, prose, conditions and branch effects must remain identical.
+  // The one permitted new transition enters the restored S01 C90/C91 chain.
+  const { graphData: baseline } = await import('../game/src/story.js');
+  const { graphData: restored } = await import('../game-studio/src/story.js');
+  const revised = new Map(restored.scenes.map(scene => [scene.id, scene]));
+  for (const originalScene of baseline.scenes) {
+    const current = revised.get(originalScene.id);
+    assert.ok(current, `missing original scene: ${originalScene.id}`);
+    assert.deepEqual(current.beats, originalScene.beats, `canonical beat changed: ${originalScene.id}`);
+    assert.equal(current.nextSceneId,
+      originalScene.id === 's01-common' ? 's01-c90' : originalScene.nextSceneId,
+      `unexpected canonical transition: ${originalScene.id}`);
+  }
+  assert.equal(revised.size, baseline.scenes.length + 9, 'expected only the S01/S02 restored-choice scenes');
   for (const file of ['src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
     assert.equal(ownership.files[file], undefined, `visual migration must not alter a managed component: ${file}`);
   }
