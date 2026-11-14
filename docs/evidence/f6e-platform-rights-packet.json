@@ -1,0 +1,4883 @@
+{
+  "schemaVersion": 1,
+  "packetKind": "f6e-platform-rights",
+  "generatedOn": "2026-11-14",
+  "independentLegalReview": false,
+  "source": {
+    "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+    "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+    "projectPath": "game-studio",
+    "narrativeManifest": "game-studio/narrative-assets.json",
+    "mobileManifest": "docs/migration/m4-mobile-assets.json",
+    "buildObservation": {
+      "sourceWorktree": "host-bound QA worktree at the exact source commit",
+      "noticesCopiedByteForByte": true,
+      "note": "The trusted QA checkout uses CRLF for the OFL notices while the clean closure worktree uses LF; the packet records the bytes actually admitted to the verified ZIPs and does not normalize them."
+    },
+    "canonicalRightsManifest": {
+      "path": "assets/provenance/rights-manifest.json",
+      "status": "NO_EXACT_ROWS_FOR_FOUR_CURRENT_PORTRAITS",
+      "note": "The manifest path is referenced by the migration inventory; the current game repository does not carry a matching row for the four generated portraits."
+    }
+  },
+  "scopeSplit": {
+    "gameDistributable": {
+      "status": "BLOCKED",
+      "reason": "Resource-level legal confirmation is incomplete; mechanical package integrity is separate."
+    },
+    "ludoryFrameworkDistribution": {
+      "status": "BLOCKED",
+      "reason": "lighthouse.svg and shoreline.svg are framework/template rights items and are not game ZIP members; framework rights remain a separate Ludory decision."
+    },
+    "developmentOnlyDependencies": {
+      "status": "NOT_IN_GAME_ZIP",
+      "reason": "Vendored Web Helper is not present in either game archive; its provenance remains a Ludory/development-only obligation."
+    }
+  },
+  "targets": {
+    "yandex-games": {
+      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates/yandex.zip",
+      "archiveSha256": "ed271d4f89a1eda9033a69a93686831c974914c17325776b88ba38b0407f2b2a",
+      "archiveBytes": 31681477,
+      "expandedBytes": 31669021,
+      "memberCount": 82,
+      "members": [
+        {
+          "path": "assets/branding/kiss-at-the-edge-cover.webp",
+          "sha256": "1796285990425fc76a595ba228a621c344cb940b8f3e2bf6ccca8b41dffbda23",
+          "bytes": 385508
+        },
+        {
+          "path": "assets/branding/kiss-at-the-edge-icon.webp",
+          "sha256": "07991d49048b27591e61a20de9bc6bf194244e30ffbf9b4c1a4005c49c44af7a",
+          "bytes": 91978
+        },
+        {
+          "path": "assets/branding/menu-hero.webp",
+          "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+          "bytes": 46460
+        },
+        {
+          "path": "assets/fonts/CormorantGaramond-wght.ttf",
+          "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+          "bytes": 1195560
+        },
+        {
+          "path": "assets/fonts/Manrope-wght.ttf",
+          "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+          "bytes": 164700
+        },
+        {
+          "path": "assets/fonts/OFL-CormorantGaramond.txt",
+          "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+          "bytes": 4480
+        },
+        {
+          "path": "assets/fonts/OFL-Manrope.txt",
+          "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+          "bytes": 4480
+        },
+        {
+          "path": "assets/ludory-yandex.js",
+          "sha256": "739eb4ebfaef5f2cbccfaa832fd8402305b64057c014e12882eac52783b928fb",
+          "bytes": 48871
+        },
+        {
+          "path": "assets/ui/original-game.css",
+          "sha256": "0fe34697c1c754c522898462b404b909068c448cbb4c2b1458fe2768843b4614",
+          "bytes": 16673
+        },
+        {
+          "path": "assets/vis-s02-roadside-cafe.webp",
+          "sha256": "4fcdc967ebbc6e02662f2302e3650c37a769a63aaed44e044bdbadf8abbb9940",
+          "bytes": 536256
+        },
+        {
+          "path": "assets/vis-s03-damir-portrait-v2.webp",
+          "sha256": "b5d02546dec7c3d3424d3f385e0b47c565a63ea065ae71c8a4e8ee6a8df33d78",
+          "bytes": 465768
+        },
+        {
+          "path": "assets/vis-s03-damir.webp",
+          "sha256": "e783a74aadb9ec3348aaa559f9ac26318f63b57c398d66f5a976624570f0d88b",
+          "bytes": 360186
+        },
+        {
+          "path": "assets/vis-s03-guesthouse-morning.webp",
+          "sha256": "ec0942d94db9738bee6dd18c95545fad58e916817a748bd51062ca488f1f65e9",
+          "bytes": 212666
+        },
+        {
+          "path": "assets/vis-s05-hveragerdi-road.webp",
+          "sha256": "72ad7b86fe690354941d085e016cf48a10140c7c135654c448d619d1571d6f21",
+          "bytes": 568784
+        },
+        {
+          "path": "assets/vis-s06-hveragerdi-eric-alice.webp",
+          "sha256": "12ec112854ab91a34d3acec8d2113aac2b2b9d59e9dd36e8765daa969a63e2c5",
+          "bytes": 484342
+        },
+        {
+          "path": "assets/vis-s06-hveragerdi-geothermal-day.webp",
+          "sha256": "3e9c22aa4f4adce202d75d8d15e467ca375cc3ff3c8054293a5cd0c6d6abd694",
+          "bytes": 400194
+        },
+        {
+          "path": "assets/vis-s07-kitchen-cards-portrait.webp",
+          "sha256": "59b275944621f02b4984f992f40ddc5e4dc84e1d50dea4d2023bc1529d09f6cc",
+          "bytes": 471960
+        },
+        {
+          "path": "assets/vis-s07-kitchen-cards.webp",
+          "sha256": "9a807b7fde6be4abbe090973fd6892e28bb7bd3c31beef36ba6f3c55ab46bdb8",
+          "bytes": 494646
+        },
+        {
+          "path": "assets/vis-s07-kitchen-pasta-portrait.webp",
+          "sha256": "bfd476882db5956c533b04e12480a8b242cdb03fdb32de93d661c3fcb38c97f8",
+          "bytes": 461714
+        },
+        {
+          "path": "assets/vis-s07-kitchen-pasta.webp",
+          "sha256": "3d8dcecdcebd4ed8e2cf155403ef6052b3e585669b00f349a5cd581018af49ec",
+          "bytes": 499390
+        },
+        {
+          "path": "assets/vis-s08-guesthouse-strap.webp",
+          "sha256": "bc4032568f04a18e06673431b0bcb4ce343af79fdf7d3348f2d6bf74c2ff8307",
+          "bytes": 371570
+        },
+        {
+          "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.webp",
+          "sha256": "ecb84062a2c784f5b12fad1823fd70001ace6580c967e5c08c1f9471c5f9eaa9",
+          "bytes": 369640
+        },
+        {
+          "path": "assets/vis-s10-vik-guesthouse-arrival.webp",
+          "sha256": "a1ad94bcb8a0527a96d2ff1e3f249ce517a2dfcf1a19f2819133a5cee3ec13b2",
+          "bytes": 205832
+        },
+        {
+          "path": "assets/vis-s10-vik-road-song.webp",
+          "sha256": "e0cf906181c3a0f2eb5bf34e57b069534bf1a17bbca40bf6642e4a7bcc94741e",
+          "bytes": 386780
+        },
+        {
+          "path": "assets/vis-s12-vik-cafe-damir.webp",
+          "sha256": "c73e203f875ea80b9ffb6d959e87a5709904b03ec118ecf90eede95299b0b387",
+          "bytes": 470942
+        },
+        {
+          "path": "assets/vis-s12-vik-street-day.webp",
+          "sha256": "001e3a80c885b3c818f711c0acfbd23b40f26cbd5a8beafa22c638d6dd30de05",
+          "bytes": 358580
+        },
+        {
+          "path": "assets/vis-s13-skaftafell-visitor-parking.webp",
+          "sha256": "dc7435e7cb6832e5850259255f14afbf2fc9cb5429669864cae4ba39f5193998",
+          "bytes": 322178
+        },
+        {
+          "path": "assets/vis-s14-lagoon-road.webp",
+          "sha256": "77aecd3db8509db95f4cbdfc521afbf3ccc3684b94f0bede203f67247155cac7",
+          "bytes": 234018
+        },
+        {
+          "path": "assets/vis-s14-skaftafell-pace.webp",
+          "sha256": "42794afedb84fe46d06725467717c839e8ed38afcb1bfbf2fa0fc6f2a75628cf",
+          "bytes": 502058
+        },
+        {
+          "path": "assets/vis-s15-jokulsarlon-parking-day.webp",
+          "sha256": "7b6412ac03c435fa4629ab3a6f4d54c12caccaede32814df6b486f89aeb95856",
+          "bytes": 273854
+        },
+        {
+          "path": "assets/vis-s16-guesthouse-help.webp",
+          "sha256": "bb08435c0224ab5b0dff80ee1fabada1b8f4d167b3926a9728de10dc874f688a",
+          "bytes": 427912
+        },
+        {
+          "path": "assets/vis-s16-kitchen-soup.webp",
+          "sha256": "b108050d1821cbd7bfb6e1ad3f64a93db2e11ac0cd429155c2b7c8eef23979a9",
+          "bytes": 460940
+        },
+        {
+          "path": "assets/vis-s17-hofn-guesthouse.webp",
+          "sha256": "c1a1e7360108cae851073c00ec7da3f1361d40094ac484a29be43535a9ce8efb",
+          "bytes": 438882
+        },
+        {
+          "path": "assets/vis-s18-hofn-breakfast-group.webp",
+          "sha256": "d14892ce0399a9a28fd9ca7caabd9588013251282e4770f5364ec841517e6124",
+          "bytes": 319570
+        },
+        {
+          "path": "assets/vis-s18-hofn-breakfast-morning.webp",
+          "sha256": "bed68032a0a47a0039af810b9ca365c39febd9a6b4022752522b691036c9937e",
+          "bytes": 278752
+        },
+        {
+          "path": "assets/vis-s18-hofn-room-morning.webp",
+          "sha256": "93d77600be59e3d923c2950dcdfeefa7a3a8f80a1e0568560ecf2672deae2116",
+          "bytes": 208196
+        },
+        {
+          "path": "assets/vis-s19-hofn-pool.webp",
+          "sha256": "cd1fd717029a13c9850f943fe14b052d188a15a03f4217e11ea535c92cfd3ed5",
+          "bytes": 349538
+        },
+        {
+          "path": "assets/vis-s20-hofn-damir-kitchen.webp",
+          "sha256": "2edce908222614e4cef3ffcabee4ab13d86361a7871a99a43e24552df7218214",
+          "bytes": 419952
+        },
+        {
+          "path": "assets/vis-s21-alice-hofn-room.webp",
+          "sha256": "126cbfc6f7d8e5982d0b54a1de6c2fe269b62b01c7f1a52ae7ff5d5b6dd6ce1f",
+          "bytes": 316210
+        },
+        {
+          "path": "assets/vis-s23-eric-harbor-plan.webp",
+          "sha256": "a2f21fda3ca19b64d9f2578fee16bc872cb774c40237ef6fdaa518a6cdd9c06b",
+          "bytes": 484864
+        },
+        {
+          "path": "assets/vis-s24-nick-pier-consent.webp",
+          "sha256": "53aa7e4dc8f6a774e1c3af2df38d0ceae7c02a1d109ccc19b42c9bf5f5068b9e",
+          "bytes": 421110
+        },
+        {
+          "path": "assets/vis-s25-damir-clarity-talk.webp",
+          "sha256": "c74a0a7512f0b4e1e9aa1daaf88564ed97e911fe3cc362ba037ae5368fc645b8",
+          "bytes": 402072
+        },
+        {
+          "path": "assets/vis-s26-alice-choice-portrait.webp",
+          "sha256": "5400e42d42010ea5e6ac198ce2f33f0c3dc00d81e04157c5ef65bf550280b885",
+          "bytes": 397448
+        },
+        {
+          "path": "assets/vis-s26-alice-choice.webp",
+          "sha256": "4303e16b1ed2dc760bc569db6426421a9810eb5d18d1d85372c335f5c565a6d2",
+          "bytes": 353184
+        },
+        {
+          "path": "assets/vis-s26-damir-choice-portrait.webp",
+          "sha256": "2684f8732f1e1c378534497684df212b354c6182cef9f99fd606588a593fa133",
+          "bytes": 383362
+        },
+        {
+          "path": "assets/vis-s26-damir-choice.webp",
+          "sha256": "9b041bcbce7a966b674d2158f471b438004453a93936e674984297718c14c10a",
+          "bytes": 366462
+        },
+        {
+          "path": "assets/vis-s26-eastfjords-courtyard-group.webp",
+          "sha256": "78511fd451665b5411326dea7af95b5928f368094ae82ab1597ca9bea188e10b",
+          "bytes": 312218
+        },
+        {
+          "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.webp",
+          "sha256": "639ee5b2d7ae95807bf768c8bd01ae4c97ede4dab6d75e06d25ba5a992fb5832",
+          "bytes": 305438
+        },
+        {
+          "path": "assets/vis-s26-eric-choice-portrait.webp",
+          "sha256": "1466566f686d40d6cf469fce2a5f622f2092a8ac59ff82c9fb987772e025d83e",
+          "bytes": 550882
+        },
+        {
+          "path": "assets/vis-s26-eric-choice.webp",
+          "sha256": "536ec3f0b40d2e246eeb7e2a097804b0c0e228b6278609ea7f86d000338e757e",
+          "bytes": 397112
+        },
+        {
+          "path": "assets/vis-s26-nick-choice-portrait.webp",
+          "sha256": "3bc0a6f60cef1341f584be067033d2cd6d31e3268107b3acd859a0c4e1b0e419",
+          "bytes": 444416
+        },
+        {
+          "path": "assets/vis-s26-nick-choice.webp",
+          "sha256": "6d98ef9786fbd5d7fbadd36cf510931a4b6e816ea32fa3bed6674eadf623138f",
+          "bytes": 383264
+        },
+        {
+          "path": "assets/vis-s27-egilsstadir-boardwalk.webp",
+          "sha256": "7043c4c1feb5004535bf49d7282718af9217772e34bd457b69a71c14ccf62ca9",
+          "bytes": 486728
+        },
+        {
+          "path": "assets/vis-s28-hverfjall-hood.webp",
+          "sha256": "953cc15bf65e9c7d064f38bd012245cb0b96e6f2079a61dab3b3c286f4cf3f0a",
+          "bytes": 470524
+        },
+        {
+          "path": "assets/vis-s32-eric-calendar-crossroads.webp",
+          "sha256": "0df0cc8ae8fca0c8b1f07b62dea409ee3a5f16a3a125cb972154e8d0d86982f0",
+          "bytes": 419196
+        },
+        {
+          "path": "assets/vis-s33-nick-teaser-reveal.webp",
+          "sha256": "eb2c17b72f7d381319151be8d51ded7899bfbce4e21dc83875f33449a2bfb9f5",
+          "bytes": 302084
+        },
+        {
+          "path": "assets/vis-s37-snaefellsnes-guesthouse-day.webp",
+          "sha256": "591c165038c7ab820b6fd80604182683080036e40d6086d885a45eb639b6707d",
+          "bytes": 202506
+        },
+        {
+          "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.webp",
+          "sha256": "c21520f946900910d4d31ea1dd4882bf534291ecc0826dc959c57bca3325bd83",
+          "bytes": 763722
+        },
+        {
+          "path": "assets/vis-s38-alice-nick-ordinary-day.webp",
+          "sha256": "911207df4e02e0c0eed52dd79522d627bf9aea5160b7e73287b3acc01329d79d",
+          "bytes": 436318
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.webp",
+          "sha256": "baf158324043efe6a4a2a591f93c1b6c28046699657428fcd0d2ca731eb92138",
+          "bytes": 498236
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.webp",
+          "sha256": "210abb55b43a912e9f06837ab039b14d075d4aa10818dd5a6c5f46effc97d7d1",
+          "bytes": 580598
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.webp",
+          "sha256": "5868cd5d1f51614725cbdf2dafa81d051c463212389590577a590bb4672b1077",
+          "bytes": 281796
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe.webp",
+          "sha256": "3158412f5e7dde9256710ee9ec319d1a5fe21290ac604f3f8ad61775252efff8",
+          "bytes": 283954
+        },
+        {
+          "path": "assets/vis-s40-alice-laptop-window.webp",
+          "sha256": "720a497398fe293c1ca9b27fbaff935a7d62f997ce71c447e2d4f2c3bcf077b0",
+          "bytes": 240844
+        },
+        {
+          "path": "assets/vis-s40-alice-room-laptop-window.webp",
+          "sha256": "7a43124231e951ba535c0ff9757f175ff6089d1134da456b44701509e8a54183",
+          "bytes": 240992
+        },
+        {
+          "path": "assets/vis-s44-eric-epilogue-month-later.webp",
+          "sha256": "9eddb41106e12ff4d0d9d4366f5e4d7e25710cc56ce0a21b5a9c2b4c5459fe36",
+          "bytes": 330534
+        },
+        {
+          "path": "assets/vis-s45-nick-home-epilogue-month-later.webp",
+          "sha256": "71574d701a50f64e697f3ed8f0cf350c0f62e71f7c58f9295f93ddd8df7f1377",
+          "bytes": 379988
+        },
+        {
+          "path": "assets/vis-s46-airport-bus-day.webp",
+          "sha256": "db8dfbca9a7787f2d9360f43e1ee990dbd70ab58068342d8f567350392d9be08",
+          "bytes": 219854
+        },
+        {
+          "path": "assets/vis-s46-damir-epilogue-month-later.webp",
+          "sha256": "12645b8dfdca0075ac28c1a9b60412f3d7b9bffe42399c44ee6f5f84ecdd3aa7",
+          "bytes": 414396
+        },
+        {
+          "path": "assets/vis-s47-alice-home-epilogue-month-later.webp",
+          "sha256": "f48943c7296f0618a598d5bb8a460d7ac1aea97fa404b86efe26ea8dca3b9eb3",
+          "bytes": 445406
+        },
+        {
+          "path": "assets/vis-s48-guesthouse-exit-group.webp",
+          "sha256": "fdbe82e3b680a624b424f77ca4feb2d7db8fd4decb0c328f77feb2b4b5b0bcdc",
+          "bytes": 349274
+        },
+        {
+          "path": "assets/vis-s48-guesthouse-exit-morning.webp",
+          "sha256": "718a885746b9d00f2f20f8a957209e98c1e7cd46695ad2dbaab51fc434d57c8e",
+          "bytes": 239452
+        },
+        {
+          "path": "assets/vis-s49-reykjahlid-window-dance.webp",
+          "sha256": "3c26be0b10b8152a840a3246e91e6884da36b80106016bd6f3e100e7e4a0a1ba",
+          "bytes": 387214
+        },
+        {
+          "path": "assets/vis-s52-hofn-streets-post-workshop.webp",
+          "sha256": "86085693229b08db1ebf85737b2ec84188a00457c7fb0b7b192dab2357af1b0a",
+          "bytes": 330212
+        },
+        {
+          "path": "assets/vis-s53-nick-no-camera-pool.webp",
+          "sha256": "56f7acbb05c10cc9f2165b869432bd95fed7ef61f80892496ff2fb933102270e",
+          "bytes": 404372
+        },
+        {
+          "path": "assets/vis-s54-alice-nick-karaoke.webp",
+          "sha256": "901440a48ffd347955b5000520b3bafe49226b2543a3a2b102b3665f1bc094b6",
+          "bytes": 255760
+        },
+        {
+          "path": "assets/vis-s61-hofn-streets.webp",
+          "sha256": "603577d1be3248907957639cb4929ff4e46bebb2a7f37d947389ca1c2d8f7209",
+          "bytes": 694992
+        },
+        {
+          "path": "assets/vis-s64-alice-snaefellsnes-trail.webp",
+          "sha256": "1d6166847118945f66e6380206d02cc719f03b5e605158329dcdf8ff59f682df",
+          "bytes": 423686
+        },
+        {
+          "path": "assets/vis-s66-hveragerdi-greenhouse.webp",
+          "sha256": "d543e4c40e4cf0a2a6b36130a81b93a99f583d30c9431a7ae54a945cbca32227",
+          "bytes": 737996
+        },
+        {
+          "path": "index.html",
+          "sha256": "3c46d18b047517fa0ffbba1d0af077541a1dcf60ffb3abc243f10cabcc94d04a",
+          "bytes": 3871
+        },
+        {
+          "path": "ludory.project.json",
+          "sha256": "261171b4becddfc837010850c35e794a38ff684678e6ff4058d86f2103113ace",
+          "bytes": 216
+        },
+        {
+          "path": "src/main.js",
+          "sha256": "e4ffc5f5e876eded88695324534cae69b74114baebb15fa2e8251b82e5fb0937",
+          "bytes": 2012448
+        }
+      ]
+    },
+    "vk-games": {
+      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates/vk.zip",
+      "archiveSha256": "8a9cfa9240d21dee8607db930feb4cd79e4cddf0d4094e397f04886b63fceba7",
+      "archiveBytes": 31694277,
+      "expandedBytes": 31681471,
+      "memberCount": 85,
+      "members": [
+        {
+          "path": "assets/branding/kiss-at-the-edge-cover.webp",
+          "sha256": "1796285990425fc76a595ba228a621c344cb940b8f3e2bf6ccca8b41dffbda23",
+          "bytes": 385508
+        },
+        {
+          "path": "assets/branding/kiss-at-the-edge-icon.webp",
+          "sha256": "07991d49048b27591e61a20de9bc6bf194244e30ffbf9b4c1a4005c49c44af7a",
+          "bytes": 91978
+        },
+        {
+          "path": "assets/branding/menu-hero.webp",
+          "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+          "bytes": 46460
+        },
+        {
+          "path": "assets/fonts/CormorantGaramond-wght.ttf",
+          "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+          "bytes": 1195560
+        },
+        {
+          "path": "assets/fonts/Manrope-wght.ttf",
+          "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+          "bytes": 164700
+        },
+        {
+          "path": "assets/fonts/OFL-CormorantGaramond.txt",
+          "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+          "bytes": 4480
+        },
+        {
+          "path": "assets/fonts/OFL-Manrope.txt",
+          "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+          "bytes": 4480
+        },
+        {
+          "path": "assets/ludory-vk.js",
+          "sha256": "f6cb672d18c20ae77cadc8f4e70405184b14a6a0d76c32d7aad47ee45ea19fac",
+          "bytes": 45204
+        },
+        {
+          "path": "assets/ui/original-game.css",
+          "sha256": "0fe34697c1c754c522898462b404b909068c448cbb4c2b1458fe2768843b4614",
+          "bytes": 16673
+        },
+        {
+          "path": "assets/vis-s02-roadside-cafe.webp",
+          "sha256": "4fcdc967ebbc6e02662f2302e3650c37a769a63aaed44e044bdbadf8abbb9940",
+          "bytes": 536256
+        },
+        {
+          "path": "assets/vis-s03-damir-portrait-v2.webp",
+          "sha256": "b5d02546dec7c3d3424d3f385e0b47c565a63ea065ae71c8a4e8ee6a8df33d78",
+          "bytes": 465768
+        },
+        {
+          "path": "assets/vis-s03-damir.webp",
+          "sha256": "e783a74aadb9ec3348aaa559f9ac26318f63b57c398d66f5a976624570f0d88b",
+          "bytes": 360186
+        },
+        {
+          "path": "assets/vis-s03-guesthouse-morning.webp",
+          "sha256": "ec0942d94db9738bee6dd18c95545fad58e916817a748bd51062ca488f1f65e9",
+          "bytes": 212666
+        },
+        {
+          "path": "assets/vis-s05-hveragerdi-road.webp",
+          "sha256": "72ad7b86fe690354941d085e016cf48a10140c7c135654c448d619d1571d6f21",
+          "bytes": 568784
+        },
+        {
+          "path": "assets/vis-s06-hveragerdi-eric-alice.webp",
+          "sha256": "12ec112854ab91a34d3acec8d2113aac2b2b9d59e9dd36e8765daa969a63e2c5",
+          "bytes": 484342
+        },
+        {
+          "path": "assets/vis-s06-hveragerdi-geothermal-day.webp",
+          "sha256": "3e9c22aa4f4adce202d75d8d15e467ca375cc3ff3c8054293a5cd0c6d6abd694",
+          "bytes": 400194
+        },
+        {
+          "path": "assets/vis-s07-kitchen-cards-portrait.webp",
+          "sha256": "59b275944621f02b4984f992f40ddc5e4dc84e1d50dea4d2023bc1529d09f6cc",
+          "bytes": 471960
+        },
+        {
+          "path": "assets/vis-s07-kitchen-cards.webp",
+          "sha256": "9a807b7fde6be4abbe090973fd6892e28bb7bd3c31beef36ba6f3c55ab46bdb8",
+          "bytes": 494646
+        },
+        {
+          "path": "assets/vis-s07-kitchen-pasta-portrait.webp",
+          "sha256": "bfd476882db5956c533b04e12480a8b242cdb03fdb32de93d661c3fcb38c97f8",
+          "bytes": 461714
+        },
+        {
+          "path": "assets/vis-s07-kitchen-pasta.webp",
+          "sha256": "3d8dcecdcebd4ed8e2cf155403ef6052b3e585669b00f349a5cd581018af49ec",
+          "bytes": 499390
+        },
+        {
+          "path": "assets/vis-s08-guesthouse-strap.webp",
+          "sha256": "bc4032568f04a18e06673431b0bcb4ce343af79fdf7d3348f2d6bf74c2ff8307",
+          "bytes": 371570
+        },
+        {
+          "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.webp",
+          "sha256": "ecb84062a2c784f5b12fad1823fd70001ace6580c967e5c08c1f9471c5f9eaa9",
+          "bytes": 369640
+        },
+        {
+          "path": "assets/vis-s10-vik-guesthouse-arrival.webp",
+          "sha256": "a1ad94bcb8a0527a96d2ff1e3f249ce517a2dfcf1a19f2819133a5cee3ec13b2",
+          "bytes": 205832
+        },
+        {
+          "path": "assets/vis-s10-vik-road-song.webp",
+          "sha256": "e0cf906181c3a0f2eb5bf34e57b069534bf1a17bbca40bf6642e4a7bcc94741e",
+          "bytes": 386780
+        },
+        {
+          "path": "assets/vis-s12-vik-cafe-damir.webp",
+          "sha256": "c73e203f875ea80b9ffb6d959e87a5709904b03ec118ecf90eede95299b0b387",
+          "bytes": 470942
+        },
+        {
+          "path": "assets/vis-s12-vik-street-day.webp",
+          "sha256": "001e3a80c885b3c818f711c0acfbd23b40f26cbd5a8beafa22c638d6dd30de05",
+          "bytes": 358580
+        },
+        {
+          "path": "assets/vis-s13-skaftafell-visitor-parking.webp",
+          "sha256": "dc7435e7cb6832e5850259255f14afbf2fc9cb5429669864cae4ba39f5193998",
+          "bytes": 322178
+        },
+        {
+          "path": "assets/vis-s14-lagoon-road.webp",
+          "sha256": "77aecd3db8509db95f4cbdfc521afbf3ccc3684b94f0bede203f67247155cac7",
+          "bytes": 234018
+        },
+        {
+          "path": "assets/vis-s14-skaftafell-pace.webp",
+          "sha256": "42794afedb84fe46d06725467717c839e8ed38afcb1bfbf2fa0fc6f2a75628cf",
+          "bytes": 502058
+        },
+        {
+          "path": "assets/vis-s15-jokulsarlon-parking-day.webp",
+          "sha256": "7b6412ac03c435fa4629ab3a6f4d54c12caccaede32814df6b486f89aeb95856",
+          "bytes": 273854
+        },
+        {
+          "path": "assets/vis-s16-guesthouse-help.webp",
+          "sha256": "bb08435c0224ab5b0dff80ee1fabada1b8f4d167b3926a9728de10dc874f688a",
+          "bytes": 427912
+        },
+        {
+          "path": "assets/vis-s16-kitchen-soup.webp",
+          "sha256": "b108050d1821cbd7bfb6e1ad3f64a93db2e11ac0cd429155c2b7c8eef23979a9",
+          "bytes": 460940
+        },
+        {
+          "path": "assets/vis-s17-hofn-guesthouse.webp",
+          "sha256": "c1a1e7360108cae851073c00ec7da3f1361d40094ac484a29be43535a9ce8efb",
+          "bytes": 438882
+        },
+        {
+          "path": "assets/vis-s18-hofn-breakfast-group.webp",
+          "sha256": "d14892ce0399a9a28fd9ca7caabd9588013251282e4770f5364ec841517e6124",
+          "bytes": 319570
+        },
+        {
+          "path": "assets/vis-s18-hofn-breakfast-morning.webp",
+          "sha256": "bed68032a0a47a0039af810b9ca365c39febd9a6b4022752522b691036c9937e",
+          "bytes": 278752
+        },
+        {
+          "path": "assets/vis-s18-hofn-room-morning.webp",
+          "sha256": "93d77600be59e3d923c2950dcdfeefa7a3a8f80a1e0568560ecf2672deae2116",
+          "bytes": 208196
+        },
+        {
+          "path": "assets/vis-s19-hofn-pool.webp",
+          "sha256": "cd1fd717029a13c9850f943fe14b052d188a15a03f4217e11ea535c92cfd3ed5",
+          "bytes": 349538
+        },
+        {
+          "path": "assets/vis-s20-hofn-damir-kitchen.webp",
+          "sha256": "2edce908222614e4cef3ffcabee4ab13d86361a7871a99a43e24552df7218214",
+          "bytes": 419952
+        },
+        {
+          "path": "assets/vis-s21-alice-hofn-room.webp",
+          "sha256": "126cbfc6f7d8e5982d0b54a1de6c2fe269b62b01c7f1a52ae7ff5d5b6dd6ce1f",
+          "bytes": 316210
+        },
+        {
+          "path": "assets/vis-s23-eric-harbor-plan.webp",
+          "sha256": "a2f21fda3ca19b64d9f2578fee16bc872cb774c40237ef6fdaa518a6cdd9c06b",
+          "bytes": 484864
+        },
+        {
+          "path": "assets/vis-s24-nick-pier-consent.webp",
+          "sha256": "53aa7e4dc8f6a774e1c3af2df38d0ceae7c02a1d109ccc19b42c9bf5f5068b9e",
+          "bytes": 421110
+        },
+        {
+          "path": "assets/vis-s25-damir-clarity-talk.webp",
+          "sha256": "c74a0a7512f0b4e1e9aa1daaf88564ed97e911fe3cc362ba037ae5368fc645b8",
+          "bytes": 402072
+        },
+        {
+          "path": "assets/vis-s26-alice-choice-portrait.webp",
+          "sha256": "5400e42d42010ea5e6ac198ce2f33f0c3dc00d81e04157c5ef65bf550280b885",
+          "bytes": 397448
+        },
+        {
+          "path": "assets/vis-s26-alice-choice.webp",
+          "sha256": "4303e16b1ed2dc760bc569db6426421a9810eb5d18d1d85372c335f5c565a6d2",
+          "bytes": 353184
+        },
+        {
+          "path": "assets/vis-s26-damir-choice-portrait.webp",
+          "sha256": "2684f8732f1e1c378534497684df212b354c6182cef9f99fd606588a593fa133",
+          "bytes": 383362
+        },
+        {
+          "path": "assets/vis-s26-damir-choice.webp",
+          "sha256": "9b041bcbce7a966b674d2158f471b438004453a93936e674984297718c14c10a",
+          "bytes": 366462
+        },
+        {
+          "path": "assets/vis-s26-eastfjords-courtyard-group.webp",
+          "sha256": "78511fd451665b5411326dea7af95b5928f368094ae82ab1597ca9bea188e10b",
+          "bytes": 312218
+        },
+        {
+          "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.webp",
+          "sha256": "639ee5b2d7ae95807bf768c8bd01ae4c97ede4dab6d75e06d25ba5a992fb5832",
+          "bytes": 305438
+        },
+        {
+          "path": "assets/vis-s26-eric-choice-portrait.webp",
+          "sha256": "1466566f686d40d6cf469fce2a5f622f2092a8ac59ff82c9fb987772e025d83e",
+          "bytes": 550882
+        },
+        {
+          "path": "assets/vis-s26-eric-choice.webp",
+          "sha256": "536ec3f0b40d2e246eeb7e2a097804b0c0e228b6278609ea7f86d000338e757e",
+          "bytes": 397112
+        },
+        {
+          "path": "assets/vis-s26-nick-choice-portrait.webp",
+          "sha256": "3bc0a6f60cef1341f584be067033d2cd6d31e3268107b3acd859a0c4e1b0e419",
+          "bytes": 444416
+        },
+        {
+          "path": "assets/vis-s26-nick-choice.webp",
+          "sha256": "6d98ef9786fbd5d7fbadd36cf510931a4b6e816ea32fa3bed6674eadf623138f",
+          "bytes": 383264
+        },
+        {
+          "path": "assets/vis-s27-egilsstadir-boardwalk.webp",
+          "sha256": "7043c4c1feb5004535bf49d7282718af9217772e34bd457b69a71c14ccf62ca9",
+          "bytes": 486728
+        },
+        {
+          "path": "assets/vis-s28-hverfjall-hood.webp",
+          "sha256": "953cc15bf65e9c7d064f38bd012245cb0b96e6f2079a61dab3b3c286f4cf3f0a",
+          "bytes": 470524
+        },
+        {
+          "path": "assets/vis-s32-eric-calendar-crossroads.webp",
+          "sha256": "0df0cc8ae8fca0c8b1f07b62dea409ee3a5f16a3a125cb972154e8d0d86982f0",
+          "bytes": 419196
+        },
+        {
+          "path": "assets/vis-s33-nick-teaser-reveal.webp",
+          "sha256": "eb2c17b72f7d381319151be8d51ded7899bfbce4e21dc83875f33449a2bfb9f5",
+          "bytes": 302084
+        },
+        {
+          "path": "assets/vis-s37-snaefellsnes-guesthouse-day.webp",
+          "sha256": "591c165038c7ab820b6fd80604182683080036e40d6086d885a45eb639b6707d",
+          "bytes": 202506
+        },
+        {
+          "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.webp",
+          "sha256": "c21520f946900910d4d31ea1dd4882bf534291ecc0826dc959c57bca3325bd83",
+          "bytes": 763722
+        },
+        {
+          "path": "assets/vis-s38-alice-nick-ordinary-day.webp",
+          "sha256": "911207df4e02e0c0eed52dd79522d627bf9aea5160b7e73287b3acc01329d79d",
+          "bytes": 436318
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.webp",
+          "sha256": "baf158324043efe6a4a2a591f93c1b6c28046699657428fcd0d2ca731eb92138",
+          "bytes": 498236
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.webp",
+          "sha256": "210abb55b43a912e9f06837ab039b14d075d4aa10818dd5a6c5f46effc97d7d1",
+          "bytes": 580598
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.webp",
+          "sha256": "5868cd5d1f51614725cbdf2dafa81d051c463212389590577a590bb4672b1077",
+          "bytes": 281796
+        },
+        {
+          "path": "assets/vis-s39-alice-damir-cafe.webp",
+          "sha256": "3158412f5e7dde9256710ee9ec319d1a5fe21290ac604f3f8ad61775252efff8",
+          "bytes": 283954
+        },
+        {
+          "path": "assets/vis-s40-alice-laptop-window.webp",
+          "sha256": "720a497398fe293c1ca9b27fbaff935a7d62f997ce71c447e2d4f2c3bcf077b0",
+          "bytes": 240844
+        },
+        {
+          "path": "assets/vis-s40-alice-room-laptop-window.webp",
+          "sha256": "7a43124231e951ba535c0ff9757f175ff6089d1134da456b44701509e8a54183",
+          "bytes": 240992
+        },
+        {
+          "path": "assets/vis-s44-eric-epilogue-month-later.webp",
+          "sha256": "9eddb41106e12ff4d0d9d4366f5e4d7e25710cc56ce0a21b5a9c2b4c5459fe36",
+          "bytes": 330534
+        },
+        {
+          "path": "assets/vis-s45-nick-home-epilogue-month-later.webp",
+          "sha256": "71574d701a50f64e697f3ed8f0cf350c0f62e71f7c58f9295f93ddd8df7f1377",
+          "bytes": 379988
+        },
+        {
+          "path": "assets/vis-s46-airport-bus-day.webp",
+          "sha256": "db8dfbca9a7787f2d9360f43e1ee990dbd70ab58068342d8f567350392d9be08",
+          "bytes": 219854
+        },
+        {
+          "path": "assets/vis-s46-damir-epilogue-month-later.webp",
+          "sha256": "12645b8dfdca0075ac28c1a9b60412f3d7b9bffe42399c44ee6f5f84ecdd3aa7",
+          "bytes": 414396
+        },
+        {
+          "path": "assets/vis-s47-alice-home-epilogue-month-later.webp",
+          "sha256": "f48943c7296f0618a598d5bb8a460d7ac1aea97fa404b86efe26ea8dca3b9eb3",
+          "bytes": 445406
+        },
+        {
+          "path": "assets/vis-s48-guesthouse-exit-group.webp",
+          "sha256": "fdbe82e3b680a624b424f77ca4feb2d7db8fd4decb0c328f77feb2b4b5b0bcdc",
+          "bytes": 349274
+        },
+        {
+          "path": "assets/vis-s48-guesthouse-exit-morning.webp",
+          "sha256": "718a885746b9d00f2f20f8a957209e98c1e7cd46695ad2dbaab51fc434d57c8e",
+          "bytes": 239452
+        },
+        {
+          "path": "assets/vis-s49-reykjahlid-window-dance.webp",
+          "sha256": "3c26be0b10b8152a840a3246e91e6884da36b80106016bd6f3e100e7e4a0a1ba",
+          "bytes": 387214
+        },
+        {
+          "path": "assets/vis-s52-hofn-streets-post-workshop.webp",
+          "sha256": "86085693229b08db1ebf85737b2ec84188a00457c7fb0b7b192dab2357af1b0a",
+          "bytes": 330212
+        },
+        {
+          "path": "assets/vis-s53-nick-no-camera-pool.webp",
+          "sha256": "56f7acbb05c10cc9f2165b869432bd95fed7ef61f80892496ff2fb933102270e",
+          "bytes": 404372
+        },
+        {
+          "path": "assets/vis-s54-alice-nick-karaoke.webp",
+          "sha256": "901440a48ffd347955b5000520b3bafe49226b2543a3a2b102b3665f1bc094b6",
+          "bytes": 255760
+        },
+        {
+          "path": "assets/vis-s61-hofn-streets.webp",
+          "sha256": "603577d1be3248907957639cb4929ff4e46bebb2a7f37d947389ca1c2d8f7209",
+          "bytes": 694992
+        },
+        {
+          "path": "assets/vis-s64-alice-snaefellsnes-trail.webp",
+          "sha256": "1d6166847118945f66e6380206d02cc719f03b5e605158329dcdf8ff59f682df",
+          "bytes": 423686
+        },
+        {
+          "path": "assets/vis-s66-hveragerdi-greenhouse.webp",
+          "sha256": "d543e4c40e4cf0a2a6b36130a81b93a99f583d30c9431a7ae54a945cbca32227",
+          "bytes": 737996
+        },
+        {
+          "path": "assets/vk-bridge.js",
+          "sha256": "522191ec7efc8da22cadfbe2f89f0624a5ee89dbe4e96093ea684aa48fbdb190",
+          "bytes": 4381
+        },
+        {
+          "path": "index.html",
+          "sha256": "f972b12cce1a578d441a2e9cd9405cf4cd1255e904e59be4c602c89f74210636",
+          "bytes": 3840
+        },
+        {
+          "path": "licenses/swc-helpers.txt",
+          "sha256": "d96eba1f1881334d50ffc144276dfa98e147a415e7c591ecdfcb81680361dc91",
+          "bytes": 10836
+        },
+        {
+          "path": "licenses/vk-bridge.txt",
+          "sha256": "15752ef20d62ef8f9b56deb04f8afbcb05d63823215ef2a2325da0890c940ab9",
+          "bytes": 1086
+        },
+        {
+          "path": "ludory.project.json",
+          "sha256": "f1ae985a8701ad133d376bf15894f97dfa083f44679228a7dae8084d79f9e58d",
+          "bytes": 212
+        },
+        {
+          "path": "src/main.js",
+          "sha256": "e18b0d206459f21999ff06274082dce131f5b57a5d1c5edbd23af7a7fd66f18f",
+          "bytes": 2012297
+        }
+      ]
+    }
+  },
+  "resources": [
+    {
+      "id": "f6e-1",
+      "sourcePath": "assets/branding/kiss-at-the-edge-cover.png",
+      "sourceSha256": "8f38b9516533fa0cdc760cd44e7dfd21f05d87e7a3589f5229b90a9d5b9fa6a5",
+      "sourceBytes": 2399538,
+      "resourceClass": "branding-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/branding/kiss-at-the-edge-cover.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.brandingAssets.kiss-at-the-edge-cover",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-assets-inventory.json",
+          "fragment": "$.entries[?(@.path==\"assets/branding/kiss-at-the-edge-cover.png\")]",
+          "note": "Canonical inventory row retained"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/branding/kiss-at-the-edge-cover.webp",
+          "sha256": "1796285990425fc76a595ba228a621c344cb940b8f3e2bf6ccca8b41dffbda23",
+          "bytes": 385508
+        },
+        "vk-games": {
+          "path": "assets/branding/kiss-at-the-edge-cover.webp",
+          "sha256": "1796285990425fc76a595ba228a621c344cb940b8f3e2bf6ccca8b41dffbda23",
+          "bytes": 385508
+        }
+      }
+    },
+    {
+      "id": "f6e-2",
+      "sourcePath": "assets/branding/kiss-at-the-edge-icon.png",
+      "sourceSha256": "4079ecac6b6cf45523def3026288540858f897677cf3686712e56a61eced6c2b",
+      "sourceBytes": 458136,
+      "resourceClass": "branding-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/branding/kiss-at-the-edge-icon.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.brandingAssets.kiss-at-the-edge-icon",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-assets-inventory.json",
+          "fragment": "$.entries[?(@.path==\"assets/branding/kiss-at-the-edge-icon.png\")]",
+          "note": "Canonical inventory row retained"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/branding/kiss-at-the-edge-icon.webp",
+          "sha256": "07991d49048b27591e61a20de9bc6bf194244e30ffbf9b4c1a4005c49c44af7a",
+          "bytes": 91978
+        },
+        "vk-games": {
+          "path": "assets/branding/kiss-at-the-edge-icon.webp",
+          "sha256": "07991d49048b27591e61a20de9bc6bf194244e30ffbf9b4c1a4005c49c44af7a",
+          "bytes": 91978
+        }
+      }
+    },
+    {
+      "id": "f6e-3",
+      "sourcePath": "assets/branding/menu-hero.webp",
+      "sourceSha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+      "sourceBytes": 46460,
+      "resourceClass": "branding-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/branding/menu-hero.webp",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.brandingAssets.menu-hero-alice",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-assets-inventory.json",
+          "fragment": "$.entries[?(@.path==\"assets/branding/menu-hero.webp\")]",
+          "note": "Canonical inventory row retained"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/branding/menu-hero.webp",
+          "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+          "bytes": 46460
+        },
+        "vk-games": {
+          "path": "assets/branding/menu-hero.webp",
+          "sha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b",
+          "bytes": 46460
+        }
+      }
+    },
+    {
+      "id": "f6e-4",
+      "sourcePath": "assets/fonts/CormorantGaramond[wght].ttf",
+      "sourceSha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+      "sourceBytes": 1195560,
+      "resourceClass": "font",
+      "rightsStatus": "MECHANICAL_NOTICE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/fonts/CormorantGaramond[wght].ttf"
+      },
+      "statedBasis": "SIL Open Font License 1.1 stated by the paired OFL notice; applicability to these exact font bytes is not independently attested",
+      "evidence": [
+        {
+          "path": "game-studio/assets/fonts/OFL-CormorantGaramond.txt",
+          "note": "Retained byte-for-byte in both ZIPs"
+        },
+        {
+          "path": "game-studio/assets/fonts/OFL-Manrope.txt",
+          "note": "Retained byte-for-byte in both ZIPs"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "NOTICE_REQUIRED",
+        "notices": [
+          "assets/fonts/OFL-CormorantGaramond.txt",
+          "assets/fonts/OFL-Manrope.txt"
+        ]
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/fonts/CormorantGaramond-wght.ttf",
+          "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+          "bytes": 1195560
+        },
+        "vk-games": {
+          "path": "assets/fonts/CormorantGaramond-wght.ttf",
+          "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+          "bytes": 1195560
+        }
+      }
+    },
+    {
+      "id": "f6e-5",
+      "sourcePath": "assets/fonts/Manrope[wght].ttf",
+      "sourceSha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "sourceBytes": 164700,
+      "resourceClass": "font",
+      "rightsStatus": "MECHANICAL_NOTICE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/fonts/Manrope[wght].ttf"
+      },
+      "statedBasis": "SIL Open Font License 1.1 stated by the paired OFL notice; applicability to these exact font bytes is not independently attested",
+      "evidence": [
+        {
+          "path": "game-studio/assets/fonts/OFL-CormorantGaramond.txt",
+          "note": "Retained byte-for-byte in both ZIPs"
+        },
+        {
+          "path": "game-studio/assets/fonts/OFL-Manrope.txt",
+          "note": "Retained byte-for-byte in both ZIPs"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "NOTICE_REQUIRED",
+        "notices": [
+          "assets/fonts/OFL-CormorantGaramond.txt",
+          "assets/fonts/OFL-Manrope.txt"
+        ]
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/fonts/Manrope-wght.ttf",
+          "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+          "bytes": 164700
+        },
+        "vk-games": {
+          "path": "assets/fonts/Manrope-wght.ttf",
+          "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+          "bytes": 164700
+        }
+      }
+    },
+    {
+      "id": "f6e-6",
+      "sourcePath": "assets/fonts/OFL-CormorantGaramond.txt",
+      "sourceSha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+      "sourceBytes": 4480,
+      "resourceClass": "font-license-notice",
+      "rightsStatus": "NOTICE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/fonts/OFL-CormorantGaramond.txt"
+      },
+      "statedBasis": "The corresponding OFL notice is shipped with its corresponding redistributed font",
+      "evidence": [
+        {
+          "path": "game-studio/assets/fonts/OFL-CormorantGaramond.txt",
+          "note": "Source notice SHA and ZIP member SHA are equal"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "NOTICE_PRESENT",
+        "notices": [
+          "assets/fonts/OFL-CormorantGaramond.txt"
+        ]
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/fonts/OFL-CormorantGaramond.txt",
+          "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+          "bytes": 4480
+        },
+        "vk-games": {
+          "path": "assets/fonts/OFL-CormorantGaramond.txt",
+          "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+          "bytes": 4480
+        }
+      }
+    },
+    {
+      "id": "f6e-7",
+      "sourcePath": "assets/fonts/OFL-Manrope.txt",
+      "sourceSha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+      "sourceBytes": 4480,
+      "resourceClass": "font-license-notice",
+      "rightsStatus": "NOTICE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/fonts/OFL-Manrope.txt"
+      },
+      "statedBasis": "The corresponding OFL notice is shipped with its corresponding redistributed font",
+      "evidence": [
+        {
+          "path": "game-studio/assets/fonts/OFL-Manrope.txt",
+          "note": "Source notice SHA and ZIP member SHA are equal"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "NOTICE_PRESENT",
+        "notices": [
+          "assets/fonts/OFL-Manrope.txt"
+        ]
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/fonts/OFL-Manrope.txt",
+          "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+          "bytes": 4480
+        },
+        "vk-games": {
+          "path": "assets/fonts/OFL-Manrope.txt",
+          "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+          "bytes": 4480
+        }
+      }
+    },
+    {
+      "id": "f6e-10",
+      "sourcePath": "assets/vis-s02-roadside-cafe.png",
+      "sourceSha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13",
+      "sourceBytes": 2615801,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s02-roadside-cafe.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.roadside-cafe",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s02-roadside-cafe.webp",
+          "sha256": "4fcdc967ebbc6e02662f2302e3650c37a769a63aaed44e044bdbadf8abbb9940",
+          "bytes": 536256
+        },
+        "vk-games": {
+          "path": "assets/vis-s02-roadside-cafe.webp",
+          "sha256": "4fcdc967ebbc6e02662f2302e3650c37a769a63aaed44e044bdbadf8abbb9940",
+          "bytes": 536256
+        }
+      }
+    },
+    {
+      "id": "f6e-11",
+      "sourcePath": "assets/vis-s03-damir-portrait-v2.png",
+      "sourceSha256": "97f69e0ee7dc0ab5999b82518ae0e4521b86eaa5f5b0be17c14bd5ae7614fbde",
+      "sourceBytes": 2555765,
+      "resourceClass": "generated-portrait",
+      "rightsStatus": "UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s03-damir-portrait-v2.png",
+        "sourceKind": "generated-source-bound",
+        "referenceSources": [
+          {
+            "path": "assets/cg/s03-editor-call-damir.png",
+            "sourceBlobSha": "a28ee8f30312d5db8a56091655c086f8a184cbf3",
+            "sha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a"
+          }
+        ],
+        "admissionEvidence": {
+          "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "verifiedOn": "2026-11-11",
+          "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s03-editor-call-damir-portrait-v2",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s03-damir-portrait-v2.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "blocker": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant",
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s03-damir-portrait-v2.webp",
+          "sha256": "b5d02546dec7c3d3424d3f385e0b47c565a63ea065ae71c8a4e8ee6a8df33d78",
+          "bytes": 465768
+        },
+        "vk-games": {
+          "path": "assets/vis-s03-damir-portrait-v2.webp",
+          "sha256": "b5d02546dec7c3d3424d3f385e0b47c565a63ea065ae71c8a4e8ee6a8df33d78",
+          "bytes": 465768
+        }
+      }
+    },
+    {
+      "id": "f6e-12",
+      "sourcePath": "assets/vis-s03-damir.png",
+      "sourceSha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a",
+      "sourceBytes": 2140199,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s03-damir.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.damir-coffee-cg",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s03-damir.webp",
+          "sha256": "e783a74aadb9ec3348aaa559f9ac26318f63b57c398d66f5a976624570f0d88b",
+          "bytes": 360186
+        },
+        "vk-games": {
+          "path": "assets/vis-s03-damir.webp",
+          "sha256": "e783a74aadb9ec3348aaa559f9ac26318f63b57c398d66f5a976624570f0d88b",
+          "bytes": 360186
+        }
+      }
+    },
+    {
+      "id": "f6e-13",
+      "sourcePath": "assets/vis-s03-guesthouse-morning.png",
+      "sourceSha256": "2ca12077112219ffbc9dfd916f504574ee624c2504a3a3c3fad90e741d3ed4bd",
+      "sourceBytes": 1195907,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s03-guesthouse-morning.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.guesthouse-morning",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s03-guesthouse-morning.webp",
+          "sha256": "ec0942d94db9738bee6dd18c95545fad58e916817a748bd51062ca488f1f65e9",
+          "bytes": 212666
+        },
+        "vk-games": {
+          "path": "assets/vis-s03-guesthouse-morning.webp",
+          "sha256": "ec0942d94db9738bee6dd18c95545fad58e916817a748bd51062ca488f1f65e9",
+          "bytes": 212666
+        }
+      }
+    },
+    {
+      "id": "f6e-14",
+      "sourcePath": "assets/vis-s05-hveragerdi-road.png",
+      "sourceSha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f",
+      "sourceBytes": 2733392,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s05-hveragerdi-road.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s05-hveragerdi-road",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s05-hveragerdi-road.webp",
+          "sha256": "72ad7b86fe690354941d085e016cf48a10140c7c135654c448d619d1571d6f21",
+          "bytes": 568784
+        },
+        "vk-games": {
+          "path": "assets/vis-s05-hveragerdi-road.webp",
+          "sha256": "72ad7b86fe690354941d085e016cf48a10140c7c135654c448d619d1571d6f21",
+          "bytes": 568784
+        }
+      }
+    },
+    {
+      "id": "f6e-15",
+      "sourcePath": "assets/vis-s06-hveragerdi-eric-alice.png",
+      "sourceSha256": "03541d251c355d14f35b2e6efc813a83a2a304b0729ef413d78b34553c21e8f9",
+      "sourceBytes": 2620501,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s06-hveragerdi-eric-alice.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s06-hveragerdi-eric-alice",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s06-hveragerdi-eric-alice.webp",
+          "sha256": "12ec112854ab91a34d3acec8d2113aac2b2b9d59e9dd36e8765daa969a63e2c5",
+          "bytes": 484342
+        },
+        "vk-games": {
+          "path": "assets/vis-s06-hveragerdi-eric-alice.webp",
+          "sha256": "12ec112854ab91a34d3acec8d2113aac2b2b9d59e9dd36e8765daa969a63e2c5",
+          "bytes": 484342
+        }
+      }
+    },
+    {
+      "id": "f6e-16",
+      "sourcePath": "assets/vis-s06-hveragerdi-geothermal-day.png",
+      "sourceSha256": "0610dbae504ca1a3de51f9c74936f402b02d9af016f2c1020eb07ffb4dd6d1a7",
+      "sourceBytes": 2062238,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s06-hveragerdi-geothermal-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s06-hveragerdi-geothermal-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s06-hveragerdi-geothermal-day.webp",
+          "sha256": "3e9c22aa4f4adce202d75d8d15e467ca375cc3ff3c8054293a5cd0c6d6abd694",
+          "bytes": 400194
+        },
+        "vk-games": {
+          "path": "assets/vis-s06-hveragerdi-geothermal-day.webp",
+          "sha256": "3e9c22aa4f4adce202d75d8d15e467ca375cc3ff3c8054293a5cd0c6d6abd694",
+          "bytes": 400194
+        }
+      }
+    },
+    {
+      "id": "f6e-17",
+      "sourcePath": "assets/vis-s07-kitchen-cards-portrait.png",
+      "sourceSha256": "818353a9909aa12784d0379002315536ff219df4a514243f408f3cd04718ec95",
+      "sourceBytes": 2464204,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s07-kitchen-cards-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "4c368dac5d75ac6557ce3bf0d525a93010adad72",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s07-kitchen-cards-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s07-kitchen-cards-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s07-kitchen-cards-portrait.webp",
+          "sha256": "59b275944621f02b4984f992f40ddc5e4dc84e1d50dea4d2023bc1529d09f6cc",
+          "bytes": 471960
+        },
+        "vk-games": {
+          "path": "assets/vis-s07-kitchen-cards-portrait.webp",
+          "sha256": "59b275944621f02b4984f992f40ddc5e4dc84e1d50dea4d2023bc1529d09f6cc",
+          "bytes": 471960
+        }
+      }
+    },
+    {
+      "id": "f6e-18",
+      "sourcePath": "assets/vis-s07-kitchen-cards.png",
+      "sourceSha256": "ed50cfb8cad1615427df2b0e1802f32cc4c17f32b313cc6367403ebfeba73b8b",
+      "sourceBytes": 2532257,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s07-kitchen-cards.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s07-kitchen-cards",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s07-kitchen-cards.webp",
+          "sha256": "9a807b7fde6be4abbe090973fd6892e28bb7bd3c31beef36ba6f3c55ab46bdb8",
+          "bytes": 494646
+        },
+        "vk-games": {
+          "path": "assets/vis-s07-kitchen-cards.webp",
+          "sha256": "9a807b7fde6be4abbe090973fd6892e28bb7bd3c31beef36ba6f3c55ab46bdb8",
+          "bytes": 494646
+        }
+      }
+    },
+    {
+      "id": "f6e-19",
+      "sourcePath": "assets/vis-s07-kitchen-pasta-portrait.png",
+      "sourceSha256": "552c38c03679ec662a94439fd33f6dc3c8dcb52215fc3dc6890f1135af801c2a",
+      "sourceBytes": 2460493,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s07-kitchen-pasta-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "decfd1602993d8cf5734d761c6073790ef44e892",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s07-kitchen-pasta-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s07-kitchen-pasta-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s07-kitchen-pasta-portrait.webp",
+          "sha256": "bfd476882db5956c533b04e12480a8b242cdb03fdb32de93d661c3fcb38c97f8",
+          "bytes": 461714
+        },
+        "vk-games": {
+          "path": "assets/vis-s07-kitchen-pasta-portrait.webp",
+          "sha256": "bfd476882db5956c533b04e12480a8b242cdb03fdb32de93d661c3fcb38c97f8",
+          "bytes": 461714
+        }
+      }
+    },
+    {
+      "id": "f6e-20",
+      "sourcePath": "assets/vis-s07-kitchen-pasta.png",
+      "sourceSha256": "452ab108a997fd6371dd338635ddfe94bdbcf7b85a39fb552ae00fbcde3dd6df",
+      "sourceBytes": 2566971,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s07-kitchen-pasta.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s07-kitchen-pasta",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s07-kitchen-pasta.webp",
+          "sha256": "3d8dcecdcebd4ed8e2cf155403ef6052b3e585669b00f349a5cd581018af49ec",
+          "bytes": 499390
+        },
+        "vk-games": {
+          "path": "assets/vis-s07-kitchen-pasta.webp",
+          "sha256": "3d8dcecdcebd4ed8e2cf155403ef6052b3e585669b00f349a5cd581018af49ec",
+          "bytes": 499390
+        }
+      }
+    },
+    {
+      "id": "f6e-21",
+      "sourcePath": "assets/vis-s08-guesthouse-strap.png",
+      "sourceSha256": "cd8e44eb13dcbec7a8d5ccd1612cdbda1a0c92edad3b93a77e3118e8cca990d6",
+      "sourceBytes": 2257497,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s08-guesthouse-strap.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s08-guesthouse-strap",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s08-guesthouse-strap.webp",
+          "sha256": "bc4032568f04a18e06673431b0bcb4ce343af79fdf7d3348f2d6bf74c2ff8307",
+          "bytes": 371570
+        },
+        "vk-games": {
+          "path": "assets/vis-s08-guesthouse-strap.webp",
+          "sha256": "bc4032568f04a18e06673431b0bcb4ce343af79fdf7d3348f2d6bf74c2ff8307",
+          "bytes": 371570
+        }
+      }
+    },
+    {
+      "id": "f6e-22",
+      "sourcePath": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
+      "sourceSha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49",
+      "sourceBytes": 1821556,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s09-guesthouse-to-skogafoss-morning",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.webp",
+          "sha256": "ecb84062a2c784f5b12fad1823fd70001ace6580c967e5c08c1f9471c5f9eaa9",
+          "bytes": 369640
+        },
+        "vk-games": {
+          "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.webp",
+          "sha256": "ecb84062a2c784f5b12fad1823fd70001ace6580c967e5c08c1f9471c5f9eaa9",
+          "bytes": 369640
+        }
+      }
+    },
+    {
+      "id": "f6e-23",
+      "sourcePath": "assets/vis-s10-vik-guesthouse-arrival.png",
+      "sourceSha256": "94356b1e97aa3ed8559b6864d4d948de03e96df4a07872b3f82dedbf98ddb894",
+      "sourceBytes": 1149647,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s10-vik-guesthouse-arrival.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s10-vik-guesthouse-arrival",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s10-vik-guesthouse-arrival.webp",
+          "sha256": "a1ad94bcb8a0527a96d2ff1e3f249ce517a2dfcf1a19f2819133a5cee3ec13b2",
+          "bytes": 205832
+        },
+        "vk-games": {
+          "path": "assets/vis-s10-vik-guesthouse-arrival.webp",
+          "sha256": "a1ad94bcb8a0527a96d2ff1e3f249ce517a2dfcf1a19f2819133a5cee3ec13b2",
+          "bytes": 205832
+        }
+      }
+    },
+    {
+      "id": "f6e-24",
+      "sourcePath": "assets/vis-s10-vik-road-song.png",
+      "sourceSha256": "df56b1a22cbb3a94868c4e9a5815fe60fbe8a574375d5c3a5c89ae135f1acc93",
+      "sourceBytes": 2300135,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s10-vik-road-song.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s10-vik-road-song",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s10-vik-road-song.webp",
+          "sha256": "e0cf906181c3a0f2eb5bf34e57b069534bf1a17bbca40bf6642e4a7bcc94741e",
+          "bytes": 386780
+        },
+        "vk-games": {
+          "path": "assets/vis-s10-vik-road-song.webp",
+          "sha256": "e0cf906181c3a0f2eb5bf34e57b069534bf1a17bbca40bf6642e4a7bcc94741e",
+          "bytes": 386780
+        }
+      }
+    },
+    {
+      "id": "f6e-25",
+      "sourcePath": "assets/vis-s12-vik-cafe-damir.png",
+      "sourceSha256": "7344fdda79eea8bf02bc3fb49e79bb94df78e93e387bd2a198a610cd648be99e",
+      "sourceBytes": 2519848,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s12-vik-cafe-damir.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s12-vik-cafe-damir",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s12-vik-cafe-damir.webp",
+          "sha256": "c73e203f875ea80b9ffb6d959e87a5709904b03ec118ecf90eede95299b0b387",
+          "bytes": 470942
+        },
+        "vk-games": {
+          "path": "assets/vis-s12-vik-cafe-damir.webp",
+          "sha256": "c73e203f875ea80b9ffb6d959e87a5709904b03ec118ecf90eede95299b0b387",
+          "bytes": 470942
+        }
+      }
+    },
+    {
+      "id": "f6e-26",
+      "sourcePath": "assets/vis-s12-vik-street-day.png",
+      "sourceSha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770",
+      "sourceBytes": 1836561,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s12-vik-street-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s12-vik-street-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s12-vik-street-day.webp",
+          "sha256": "001e3a80c885b3c818f711c0acfbd23b40f26cbd5a8beafa22c638d6dd30de05",
+          "bytes": 358580
+        },
+        "vk-games": {
+          "path": "assets/vis-s12-vik-street-day.webp",
+          "sha256": "001e3a80c885b3c818f711c0acfbd23b40f26cbd5a8beafa22c638d6dd30de05",
+          "bytes": 358580
+        }
+      }
+    },
+    {
+      "id": "f6e-27",
+      "sourcePath": "assets/vis-s13-skaftafell-visitor-parking.png",
+      "sourceSha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7",
+      "sourceBytes": 1630504,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s13-skaftafell-visitor-parking.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s13-skaftafell-visitor-parking",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s13-skaftafell-visitor-parking.webp",
+          "sha256": "dc7435e7cb6832e5850259255f14afbf2fc9cb5429669864cae4ba39f5193998",
+          "bytes": 322178
+        },
+        "vk-games": {
+          "path": "assets/vis-s13-skaftafell-visitor-parking.webp",
+          "sha256": "dc7435e7cb6832e5850259255f14afbf2fc9cb5429669864cae4ba39f5193998",
+          "bytes": 322178
+        }
+      }
+    },
+    {
+      "id": "f6e-28",
+      "sourcePath": "assets/vis-s14-lagoon-road.png",
+      "sourceSha256": "17c88d319dff19d82022a8369f51c0614b369391a1282f1422f07392108eb2a9",
+      "sourceBytes": 1281580,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s14-lagoon-road.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s14-lagoon-road",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s14-lagoon-road.webp",
+          "sha256": "77aecd3db8509db95f4cbdfc521afbf3ccc3684b94f0bede203f67247155cac7",
+          "bytes": 234018
+        },
+        "vk-games": {
+          "path": "assets/vis-s14-lagoon-road.webp",
+          "sha256": "77aecd3db8509db95f4cbdfc521afbf3ccc3684b94f0bede203f67247155cac7",
+          "bytes": 234018
+        }
+      }
+    },
+    {
+      "id": "f6e-29",
+      "sourcePath": "assets/vis-s14-skaftafell-pace.png",
+      "sourceSha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e",
+      "sourceBytes": 2670243,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s14-skaftafell-pace.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s14-skaftafell-pace",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s14-skaftafell-pace.webp",
+          "sha256": "42794afedb84fe46d06725467717c839e8ed38afcb1bfbf2fa0fc6f2a75628cf",
+          "bytes": 502058
+        },
+        "vk-games": {
+          "path": "assets/vis-s14-skaftafell-pace.webp",
+          "sha256": "42794afedb84fe46d06725467717c839e8ed38afcb1bfbf2fa0fc6f2a75628cf",
+          "bytes": 502058
+        }
+      }
+    },
+    {
+      "id": "f6e-30",
+      "sourcePath": "assets/vis-s15-jokulsarlon-parking-day.png",
+      "sourceSha256": "4ee1645d83e732806438c1c19156f06840c44b39b626b9332dce488c551447d8",
+      "sourceBytes": 1339640,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s15-jokulsarlon-parking-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s15-jokulsarlon-parking-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s15-jokulsarlon-parking-day.webp",
+          "sha256": "7b6412ac03c435fa4629ab3a6f4d54c12caccaede32814df6b486f89aeb95856",
+          "bytes": 273854
+        },
+        "vk-games": {
+          "path": "assets/vis-s15-jokulsarlon-parking-day.webp",
+          "sha256": "7b6412ac03c435fa4629ab3a6f4d54c12caccaede32814df6b486f89aeb95856",
+          "bytes": 273854
+        }
+      }
+    },
+    {
+      "id": "f6e-31",
+      "sourcePath": "assets/vis-s16-guesthouse-help.png",
+      "sourceSha256": "8b492ae3e84d9dcdfc830e00fd0dcf18b3cfc0048748db67b49fa3fdd37d6656",
+      "sourceBytes": 2417353,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s16-guesthouse-help.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s16-guesthouse-help",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s16-guesthouse-help.webp",
+          "sha256": "bb08435c0224ab5b0dff80ee1fabada1b8f4d167b3926a9728de10dc874f688a",
+          "bytes": 427912
+        },
+        "vk-games": {
+          "path": "assets/vis-s16-guesthouse-help.webp",
+          "sha256": "bb08435c0224ab5b0dff80ee1fabada1b8f4d167b3926a9728de10dc874f688a",
+          "bytes": 427912
+        }
+      }
+    },
+    {
+      "id": "f6e-32",
+      "sourcePath": "assets/vis-s16-kitchen-soup.png",
+      "sourceSha256": "4f5afd577454e72853bbdfcbde639801f2c127d9c8df9dc22520ac4e5db5e718",
+      "sourceBytes": 2450061,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s16-kitchen-soup.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s16-kitchen-soup",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s16-kitchen-soup.webp",
+          "sha256": "b108050d1821cbd7bfb6e1ad3f64a93db2e11ac0cd429155c2b7c8eef23979a9",
+          "bytes": 460940
+        },
+        "vk-games": {
+          "path": "assets/vis-s16-kitchen-soup.webp",
+          "sha256": "b108050d1821cbd7bfb6e1ad3f64a93db2e11ac0cd429155c2b7c8eef23979a9",
+          "bytes": 460940
+        }
+      }
+    },
+    {
+      "id": "f6e-33",
+      "sourcePath": "assets/vis-s17-hofn-guesthouse.png",
+      "sourceSha256": "385b4795f708736ac0caa56d860eff9f1c4090f094f5a8c5af8cb342ca2dcc37",
+      "sourceBytes": 2415883,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s17-hofn-guesthouse.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s17-hofn-guesthouse",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s17-hofn-guesthouse.webp",
+          "sha256": "c1a1e7360108cae851073c00ec7da3f1361d40094ac484a29be43535a9ce8efb",
+          "bytes": 438882
+        },
+        "vk-games": {
+          "path": "assets/vis-s17-hofn-guesthouse.webp",
+          "sha256": "c1a1e7360108cae851073c00ec7da3f1361d40094ac484a29be43535a9ce8efb",
+          "bytes": 438882
+        }
+      }
+    },
+    {
+      "id": "f6e-34",
+      "sourcePath": "assets/vis-s18-hofn-breakfast-group.png",
+      "sourceSha256": "163e828c7eefaf887fd7276da86e906941ebf9fee0acafcb90456ff2794cf2b4",
+      "sourceBytes": 1787770,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s18-hofn-breakfast-group.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s18-hofn-breakfast-group",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s18-hofn-breakfast-group.webp",
+          "sha256": "d14892ce0399a9a28fd9ca7caabd9588013251282e4770f5364ec841517e6124",
+          "bytes": 319570
+        },
+        "vk-games": {
+          "path": "assets/vis-s18-hofn-breakfast-group.webp",
+          "sha256": "d14892ce0399a9a28fd9ca7caabd9588013251282e4770f5364ec841517e6124",
+          "bytes": 319570
+        }
+      }
+    },
+    {
+      "id": "f6e-35",
+      "sourcePath": "assets/vis-s18-hofn-breakfast-morning.png",
+      "sourceSha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d",
+      "sourceBytes": 1540541,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s18-hofn-breakfast-morning.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s18-hofn-breakfast-morning",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s18-hofn-breakfast-morning.webp",
+          "sha256": "bed68032a0a47a0039af810b9ca365c39febd9a6b4022752522b691036c9937e",
+          "bytes": 278752
+        },
+        "vk-games": {
+          "path": "assets/vis-s18-hofn-breakfast-morning.webp",
+          "sha256": "bed68032a0a47a0039af810b9ca365c39febd9a6b4022752522b691036c9937e",
+          "bytes": 278752
+        }
+      }
+    },
+    {
+      "id": "f6e-36",
+      "sourcePath": "assets/vis-s18-hofn-room-morning.png",
+      "sourceSha256": "fc75aa2d8fbd96ae2ac78a0d47906b8f211680bebdff8bf1f2443894ce33f2ed",
+      "sourceBytes": 1146311,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s18-hofn-room-morning.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s18-hofn-room-morning",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s18-hofn-room-morning.webp",
+          "sha256": "93d77600be59e3d923c2950dcdfeefa7a3a8f80a1e0568560ecf2672deae2116",
+          "bytes": 208196
+        },
+        "vk-games": {
+          "path": "assets/vis-s18-hofn-room-morning.webp",
+          "sha256": "93d77600be59e3d923c2950dcdfeefa7a3a8f80a1e0568560ecf2672deae2116",
+          "bytes": 208196
+        }
+      }
+    },
+    {
+      "id": "f6e-37",
+      "sourcePath": "assets/vis-s19-hofn-pool.png",
+      "sourceSha256": "f1d5704a588a699ddb09acc3dfc7f2d7ac9626544f349f93810156384d11d213",
+      "sourceBytes": 2156801,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s19-hofn-pool.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s19-hofn-pool",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s19-hofn-pool.webp",
+          "sha256": "cd1fd717029a13c9850f943fe14b052d188a15a03f4217e11ea535c92cfd3ed5",
+          "bytes": 349538
+        },
+        "vk-games": {
+          "path": "assets/vis-s19-hofn-pool.webp",
+          "sha256": "cd1fd717029a13c9850f943fe14b052d188a15a03f4217e11ea535c92cfd3ed5",
+          "bytes": 349538
+        }
+      }
+    },
+    {
+      "id": "f6e-38",
+      "sourcePath": "assets/vis-s20-hofn-damir-kitchen.png",
+      "sourceSha256": "1dc4dc153162ed94c4d1315558576c23cc29964a090b30f02dc2c82deea70996",
+      "sourceBytes": 2385454,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s20-hofn-damir-kitchen.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s20-hofn-damir-kitchen",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s20-hofn-damir-kitchen.webp",
+          "sha256": "2edce908222614e4cef3ffcabee4ab13d86361a7871a99a43e24552df7218214",
+          "bytes": 419952
+        },
+        "vk-games": {
+          "path": "assets/vis-s20-hofn-damir-kitchen.webp",
+          "sha256": "2edce908222614e4cef3ffcabee4ab13d86361a7871a99a43e24552df7218214",
+          "bytes": 419952
+        }
+      }
+    },
+    {
+      "id": "f6e-39",
+      "sourcePath": "assets/vis-s21-alice-hofn-room.png",
+      "sourceSha256": "0039e3ec3ddea4d771bb7b844d06a23f6c92a0ac1fc0ad42f0a2ffd64ce97683",
+      "sourceBytes": 1996348,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s21-alice-hofn-room.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s21-alice-hofn-room",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s21-alice-hofn-room.webp",
+          "sha256": "126cbfc6f7d8e5982d0b54a1de6c2fe269b62b01c7f1a52ae7ff5d5b6dd6ce1f",
+          "bytes": 316210
+        },
+        "vk-games": {
+          "path": "assets/vis-s21-alice-hofn-room.webp",
+          "sha256": "126cbfc6f7d8e5982d0b54a1de6c2fe269b62b01c7f1a52ae7ff5d5b6dd6ce1f",
+          "bytes": 316210
+        }
+      }
+    },
+    {
+      "id": "f6e-40",
+      "sourcePath": "assets/vis-s23-eric-harbor-plan.png",
+      "sourceSha256": "5d49a086898a4dccbde332a8681ee3c99d52df326bc0236515512a51b979918e",
+      "sourceBytes": 2589431,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s23-eric-harbor-plan.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s23-eric-harbor-plan",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s23-eric-harbor-plan.webp",
+          "sha256": "a2f21fda3ca19b64d9f2578fee16bc872cb774c40237ef6fdaa518a6cdd9c06b",
+          "bytes": 484864
+        },
+        "vk-games": {
+          "path": "assets/vis-s23-eric-harbor-plan.webp",
+          "sha256": "a2f21fda3ca19b64d9f2578fee16bc872cb774c40237ef6fdaa518a6cdd9c06b",
+          "bytes": 484864
+        }
+      }
+    },
+    {
+      "id": "f6e-41",
+      "sourcePath": "assets/vis-s24-nick-pier-consent.png",
+      "sourceSha256": "acd6f882a04dc2c35c509ee40eda183d531f6b8522afeb1b6a30f9a808b2e15a",
+      "sourceBytes": 2445799,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s24-nick-pier-consent.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s24-nick-pier-consent",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s24-nick-pier-consent.webp",
+          "sha256": "53aa7e4dc8f6a774e1c3af2df38d0ceae7c02a1d109ccc19b42c9bf5f5068b9e",
+          "bytes": 421110
+        },
+        "vk-games": {
+          "path": "assets/vis-s24-nick-pier-consent.webp",
+          "sha256": "53aa7e4dc8f6a774e1c3af2df38d0ceae7c02a1d109ccc19b42c9bf5f5068b9e",
+          "bytes": 421110
+        }
+      }
+    },
+    {
+      "id": "f6e-42",
+      "sourcePath": "assets/vis-s25-damir-clarity-talk.png",
+      "sourceSha256": "445889b4e4ec41e45eab64c36d64c48283530e7d892336108a5c8ab37dc5518b",
+      "sourceBytes": 2320055,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s25-damir-clarity-talk.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s25-damir-clarity-talk",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s25-damir-clarity-talk.webp",
+          "sha256": "c74a0a7512f0b4e1e9aa1daaf88564ed97e911fe3cc362ba037ae5368fc645b8",
+          "bytes": 402072
+        },
+        "vk-games": {
+          "path": "assets/vis-s25-damir-clarity-talk.webp",
+          "sha256": "c74a0a7512f0b4e1e9aa1daaf88564ed97e911fe3cc362ba037ae5368fc645b8",
+          "bytes": 402072
+        }
+      }
+    },
+    {
+      "id": "f6e-43",
+      "sourcePath": "assets/vis-s26-alice-choice-portrait.png",
+      "sourceSha256": "0e7ffbace60602f06b039c9732ab5e7858717a58220387fe87822ec383e06281",
+      "sourceBytes": 2300250,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-alice-choice-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "45e3fa865fffc8a0f2602df03248eea84b30f45f",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s26-alice-choice-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s26-alice-choice-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-alice-choice-portrait.webp",
+          "sha256": "5400e42d42010ea5e6ac198ce2f33f0c3dc00d81e04157c5ef65bf550280b885",
+          "bytes": 397448
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-alice-choice-portrait.webp",
+          "sha256": "5400e42d42010ea5e6ac198ce2f33f0c3dc00d81e04157c5ef65bf550280b885",
+          "bytes": 397448
+        }
+      }
+    },
+    {
+      "id": "f6e-44",
+      "sourcePath": "assets/vis-s26-alice-choice.png",
+      "sourceSha256": "d6b566b4ec753e88603d0eb16822ea4bf9fb1d9415615fad7d4e0c96829cef4f",
+      "sourceBytes": 2160569,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-alice-choice.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-alice-choice",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-alice-choice.webp",
+          "sha256": "4303e16b1ed2dc760bc569db6426421a9810eb5d18d1d85372c335f5c565a6d2",
+          "bytes": 353184
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-alice-choice.webp",
+          "sha256": "4303e16b1ed2dc760bc569db6426421a9810eb5d18d1d85372c335f5c565a6d2",
+          "bytes": 353184
+        }
+      }
+    },
+    {
+      "id": "f6e-45",
+      "sourcePath": "assets/vis-s26-damir-choice-portrait.png",
+      "sourceSha256": "11c5da7c3fc3cb7568bd15751d6902b6f8c47e9d4b3edb452d696b4ff5d35b43",
+      "sourceBytes": 2196178,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-damir-choice-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "15d52d86baf261a4ca5b9f27b5e2b7bde71d18c4",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s26-damir-choice-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s26-damir-choice-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-damir-choice-portrait.webp",
+          "sha256": "2684f8732f1e1c378534497684df212b354c6182cef9f99fd606588a593fa133",
+          "bytes": 383362
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-damir-choice-portrait.webp",
+          "sha256": "2684f8732f1e1c378534497684df212b354c6182cef9f99fd606588a593fa133",
+          "bytes": 383362
+        }
+      }
+    },
+    {
+      "id": "f6e-46",
+      "sourcePath": "assets/vis-s26-damir-choice.png",
+      "sourceSha256": "16ec16e047283ab0fc858c6a52d7b54d6932c0037d04395cbd7a7835447cc206",
+      "sourceBytes": 2240398,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-damir-choice.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-damir-choice",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-damir-choice.webp",
+          "sha256": "9b041bcbce7a966b674d2158f471b438004453a93936e674984297718c14c10a",
+          "bytes": 366462
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-damir-choice.webp",
+          "sha256": "9b041bcbce7a966b674d2158f471b438004453a93936e674984297718c14c10a",
+          "bytes": 366462
+        }
+      }
+    },
+    {
+      "id": "f6e-47",
+      "sourcePath": "assets/vis-s26-eastfjords-courtyard-group.png",
+      "sourceSha256": "dff3a7f5738ef5ea7c6369fdefed6a81285dece3a3892a92146047144c0c05b9",
+      "sourceBytes": 1780155,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-eastfjords-courtyard-group.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-eastfjords-courtyard-group",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-eastfjords-courtyard-group.webp",
+          "sha256": "78511fd451665b5411326dea7af95b5928f368094ae82ab1597ca9bea188e10b",
+          "bytes": 312218
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-eastfjords-courtyard-group.webp",
+          "sha256": "78511fd451665b5411326dea7af95b5928f368094ae82ab1597ca9bea188e10b",
+          "bytes": 312218
+        }
+      }
+    },
+    {
+      "id": "f6e-48",
+      "sourcePath": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
+      "sourceSha256": "f165bd26a68f0c9c1ab1d4ec73d6fc6d28780fe9004fd5f965e781bc71ed9431",
+      "sourceBytes": 1656642,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-eastfjords-guesthouse-courtyard",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.webp",
+          "sha256": "639ee5b2d7ae95807bf768c8bd01ae4c97ede4dab6d75e06d25ba5a992fb5832",
+          "bytes": 305438
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.webp",
+          "sha256": "639ee5b2d7ae95807bf768c8bd01ae4c97ede4dab6d75e06d25ba5a992fb5832",
+          "bytes": 305438
+        }
+      }
+    },
+    {
+      "id": "f6e-49",
+      "sourcePath": "assets/vis-s26-eric-choice-portrait.png",
+      "sourceSha256": "e5de1e45e1109835d2d214ab6b79244c95a20070330eb264c59851f22f048ffe",
+      "sourceBytes": 2702094,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-eric-choice-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "8715c9cc3a0429cc8b7b3827adeaf61e401cc682",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s26-eric-choice-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s26-eric-choice-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-eric-choice-portrait.webp",
+          "sha256": "1466566f686d40d6cf469fce2a5f622f2092a8ac59ff82c9fb987772e025d83e",
+          "bytes": 550882
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-eric-choice-portrait.webp",
+          "sha256": "1466566f686d40d6cf469fce2a5f622f2092a8ac59ff82c9fb987772e025d83e",
+          "bytes": 550882
+        }
+      }
+    },
+    {
+      "id": "f6e-50",
+      "sourcePath": "assets/vis-s26-eric-choice.png",
+      "sourceSha256": "ef229a99516f80dd39cfac49ef021a25ac00630e01bf5e30d676a2401869721f",
+      "sourceBytes": 2303163,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-eric-choice.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-eric-choice",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-eric-choice.webp",
+          "sha256": "536ec3f0b40d2e246eeb7e2a097804b0c0e228b6278609ea7f86d000338e757e",
+          "bytes": 397112
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-eric-choice.webp",
+          "sha256": "536ec3f0b40d2e246eeb7e2a097804b0c0e228b6278609ea7f86d000338e757e",
+          "bytes": 397112
+        }
+      }
+    },
+    {
+      "id": "f6e-51",
+      "sourcePath": "assets/vis-s26-nick-choice-portrait.png",
+      "sourceSha256": "ee6cf0336006de222d71ad4805d4a2b695096b1b383a4fc53e9f17f7d13f6b7b",
+      "sourceBytes": 2401008,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-nick-choice-portrait.png",
+        "sourceKind": "pinned-original-derivative",
+        "referenceSources": [],
+        "admissionEvidence": {
+          "method": "Direct transfer from pinned original Git blob; PNG bytes preserved without recompression",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "602890f7b48ebcfb9d7b34fd71b3398208672519",
+          "verifiedOn": "2026-11-11",
+          "verification": "Git blob SHA-1 and SHA-256 matched before admission; original dimensions retained"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s26-nick-choice-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s26-nick-choice-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-nick-choice-portrait.webp",
+          "sha256": "3bc0a6f60cef1341f584be067033d2cd6d31e3268107b3acd859a0c4e1b0e419",
+          "bytes": 444416
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-nick-choice-portrait.webp",
+          "sha256": "3bc0a6f60cef1341f584be067033d2cd6d31e3268107b3acd859a0c4e1b0e419",
+          "bytes": 444416
+        }
+      }
+    },
+    {
+      "id": "f6e-52",
+      "sourcePath": "assets/vis-s26-nick-choice.png",
+      "sourceSha256": "1320a9dce97e3905c1296de8d4c4634866614d3d0db3567ac10d3fb35827fa2b",
+      "sourceBytes": 2278308,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s26-nick-choice.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s26-nick-choice",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s26-nick-choice.webp",
+          "sha256": "6d98ef9786fbd5d7fbadd36cf510931a4b6e816ea32fa3bed6674eadf623138f",
+          "bytes": 383264
+        },
+        "vk-games": {
+          "path": "assets/vis-s26-nick-choice.webp",
+          "sha256": "6d98ef9786fbd5d7fbadd36cf510931a4b6e816ea32fa3bed6674eadf623138f",
+          "bytes": 383264
+        }
+      }
+    },
+    {
+      "id": "f6e-53",
+      "sourcePath": "assets/vis-s27-egilsstadir-boardwalk.png",
+      "sourceSha256": "2f8c46ad171940ca1b0ffaae9c8ece0ed72f7c470dc0cd81887b972b34fc26d6",
+      "sourceBytes": 2600591,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s27-egilsstadir-boardwalk.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s27-egilsstadir-boardwalk",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s27-egilsstadir-boardwalk.webp",
+          "sha256": "7043c4c1feb5004535bf49d7282718af9217772e34bd457b69a71c14ccf62ca9",
+          "bytes": 486728
+        },
+        "vk-games": {
+          "path": "assets/vis-s27-egilsstadir-boardwalk.webp",
+          "sha256": "7043c4c1feb5004535bf49d7282718af9217772e34bd457b69a71c14ccf62ca9",
+          "bytes": 486728
+        }
+      }
+    },
+    {
+      "id": "f6e-54",
+      "sourcePath": "assets/vis-s28-hverfjall-hood.png",
+      "sourceSha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c",
+      "sourceBytes": 4499624,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s28-hverfjall-hood.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s28-hverfjall-hood",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s28-hverfjall-hood.webp",
+          "sha256": "953cc15bf65e9c7d064f38bd012245cb0b96e6f2079a61dab3b3c286f4cf3f0a",
+          "bytes": 470524
+        },
+        "vk-games": {
+          "path": "assets/vis-s28-hverfjall-hood.webp",
+          "sha256": "953cc15bf65e9c7d064f38bd012245cb0b96e6f2079a61dab3b3c286f4cf3f0a",
+          "bytes": 470524
+        }
+      }
+    },
+    {
+      "id": "f6e-55",
+      "sourcePath": "assets/vis-s32-eric-calendar-crossroads.png",
+      "sourceSha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92",
+      "sourceBytes": 2445600,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s32-eric-calendar-crossroads.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s32-eric-calendar-crossroads",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s32-eric-calendar-crossroads.webp",
+          "sha256": "0df0cc8ae8fca0c8b1f07b62dea409ee3a5f16a3a125cb972154e8d0d86982f0",
+          "bytes": 419196
+        },
+        "vk-games": {
+          "path": "assets/vis-s32-eric-calendar-crossroads.webp",
+          "sha256": "0df0cc8ae8fca0c8b1f07b62dea409ee3a5f16a3a125cb972154e8d0d86982f0",
+          "bytes": 419196
+        }
+      }
+    },
+    {
+      "id": "f6e-56",
+      "sourcePath": "assets/vis-s33-nick-teaser-reveal.png",
+      "sourceSha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb",
+      "sourceBytes": 2070767,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s33-nick-teaser-reveal.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s33-nick-teaser-reveal",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s33-nick-teaser-reveal.webp",
+          "sha256": "eb2c17b72f7d381319151be8d51ded7899bfbce4e21dc83875f33449a2bfb9f5",
+          "bytes": 302084
+        },
+        "vk-games": {
+          "path": "assets/vis-s33-nick-teaser-reveal.webp",
+          "sha256": "eb2c17b72f7d381319151be8d51ded7899bfbce4e21dc83875f33449a2bfb9f5",
+          "bytes": 302084
+        }
+      }
+    },
+    {
+      "id": "f6e-57",
+      "sourcePath": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
+      "sourceSha256": "eaef888cc0f4d38058c4f8c58eba13818903dc1e26a264ae65fabd28050f60df",
+      "sourceBytes": 1164039,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s37-snaefellsnes-guesthouse-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s37-snaefellsnes-guesthouse-day.webp",
+          "sha256": "591c165038c7ab820b6fd80604182683080036e40d6086d885a45eb639b6707d",
+          "bytes": 202506
+        },
+        "vk-games": {
+          "path": "assets/vis-s37-snaefellsnes-guesthouse-day.webp",
+          "sha256": "591c165038c7ab820b6fd80604182683080036e40d6086d885a45eb639b6707d",
+          "bytes": 202506
+        }
+      }
+    },
+    {
+      "id": "f6e-58",
+      "sourcePath": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png",
+      "sourceSha256": "fa2b4e6aad5d2a5a482f9b2ca8e2954dfad76b6b188729f1411d6ad9de9dfd2e",
+      "sourceBytes": 3388918,
+      "resourceClass": "generated-portrait",
+      "rightsStatus": "UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png",
+        "sourceKind": "generated-source-bound",
+        "referenceSources": [
+          {
+            "path": "assets/cg/s38-alice-nick-ordinary-day.png",
+            "sourceBlobSha": "f0c68993a06872b42f4d1695037df64731097b5b",
+            "sha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935"
+          }
+        ],
+        "admissionEvidence": {
+          "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "verifiedOn": "2026-11-11",
+          "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s38-alice-nick-ordinary-day-portrait-v2",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "blocker": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant",
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.webp",
+          "sha256": "c21520f946900910d4d31ea1dd4882bf534291ecc0826dc959c57bca3325bd83",
+          "bytes": 763722
+        },
+        "vk-games": {
+          "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.webp",
+          "sha256": "c21520f946900910d4d31ea1dd4882bf534291ecc0826dc959c57bca3325bd83",
+          "bytes": 763722
+        }
+      }
+    },
+    {
+      "id": "f6e-59",
+      "sourcePath": "assets/vis-s38-alice-nick-ordinary-day.png",
+      "sourceSha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935",
+      "sourceBytes": 2167030,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s38-alice-nick-ordinary-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s38-alice-nick-ordinary-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s38-alice-nick-ordinary-day.webp",
+          "sha256": "911207df4e02e0c0eed52dd79522d627bf9aea5160b7e73287b3acc01329d79d",
+          "bytes": 436318
+        },
+        "vk-games": {
+          "path": "assets/vis-s38-alice-nick-ordinary-day.webp",
+          "sha256": "911207df4e02e0c0eed52dd79522d627bf9aea5160b7e73287b3acc01329d79d",
+          "bytes": 436318
+        }
+      }
+    },
+    {
+      "id": "f6e-60",
+      "sourcePath": "assets/vis-s39-alice-damir-cafe-portrait-v2.png",
+      "sourceSha256": "cb69e0ab2c8c442eda48335a0fbdf7b23c838839bbfd542709a1c55211c57cf8",
+      "sourceBytes": 2593762,
+      "resourceClass": "generated-portrait",
+      "rightsStatus": "UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.png",
+        "sourceKind": "generated-source-bound",
+        "referenceSources": [
+          {
+            "path": "assets/cg/s39-alice-damir-cafe.png",
+            "sourceBlobSha": "9ec1088b99df9a5659b1e7df73f9ca514d2b884c",
+            "sha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397"
+          }
+        ],
+        "admissionEvidence": {
+          "method": "Generated PNG copied without recompression; SHA-256 and PNG dimensions verified after import",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "verifiedOn": "2026-11-11",
+          "verification": "Reference desktop Git blob and SHA-256 recorded; generated output remains pending independent art review"
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s39-alice-damir-cafe-portrait-v2",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s39-alice-damir-cafe-portrait-v2.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "blocker": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant",
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.webp",
+          "sha256": "baf158324043efe6a4a2a591f93c1b6c28046699657428fcd0d2ca731eb92138",
+          "bytes": 498236
+        },
+        "vk-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.webp",
+          "sha256": "baf158324043efe6a4a2a591f93c1b6c28046699657428fcd0d2ca731eb92138",
+          "bytes": 498236
+        }
+      }
+    },
+    {
+      "id": "f6e-61",
+      "sourcePath": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
+      "sourceSha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
+      "sourceBytes": 2859863,
+      "resourceClass": "generated-portrait",
+      "rightsStatus": "UNVERIFIED",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
+        "sourceKind": "generated-source-bound",
+        "referenceSources": [
+          {
+            "path": "assets/vis-s39-alice-damir-cafe-walk.png",
+            "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+            "sha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e"
+          }
+        ],
+        "admissionEvidence": {
+          "method": "Generated PNG copied without recompression; PNG signature, dimensions, bytes, and SHA-256 verified after import",
+          "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+          "sourceBlobSha": "bd7be888ae455d686618935c30ad306c742967ff",
+          "verifiedOn": "2026-11-12",
+          "verification": "Original desktop source SHA-256 and Git blob recorded; independent S39 walk mobile composition accepted on 2026-11-12 based on 320x700, 390x844 and 430x932 browser captures. Review: https://github.com/m-amirov/kiss-at-the-edge-of-the-world-ludory/issues/5#issuecomment-6824910484 . Full raw-image scan was not claimed."
+        }
+      },
+      "statedBasis": "generated for this project",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.mobileAssets.s39-alice-damir-cafe-walk-portrait",
+          "note": "Project asset declaration"
+        },
+        {
+          "path": "docs/migration/m4-mobile-assets.json",
+          "fragment": "$.entries[?(@.portraitPath==\"assets/vis-s39-alice-damir-cafe-walk-portrait.png\")]",
+          "note": "Generation, reference and admission evidence is technical provenance, not independent legal proof"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "blocker": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant",
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.webp",
+          "sha256": "210abb55b43a912e9f06837ab039b14d075d4aa10818dd5a6c5f46effc97d7d1",
+          "bytes": 580598
+        },
+        "vk-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.webp",
+          "sha256": "210abb55b43a912e9f06837ab039b14d075d4aa10818dd5a6c5f46effc97d7d1",
+          "bytes": 580598
+        }
+      }
+    },
+    {
+      "id": "f6e-62",
+      "sourcePath": "assets/vis-s39-alice-damir-cafe-walk.png",
+      "sourceSha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e",
+      "sourceBytes": 1511085,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s39-alice-damir-cafe-walk.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s39-alice-damir-cafe-walk",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.webp",
+          "sha256": "5868cd5d1f51614725cbdf2dafa81d051c463212389590577a590bb4672b1077",
+          "bytes": 281796
+        },
+        "vk-games": {
+          "path": "assets/vis-s39-alice-damir-cafe-walk.webp",
+          "sha256": "5868cd5d1f51614725cbdf2dafa81d051c463212389590577a590bb4672b1077",
+          "bytes": 281796
+        }
+      }
+    },
+    {
+      "id": "f6e-63",
+      "sourcePath": "assets/vis-s39-alice-damir-cafe.png",
+      "sourceSha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397",
+      "sourceBytes": 1595360,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s39-alice-damir-cafe.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s39-alice-damir-cafe",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s39-alice-damir-cafe.webp",
+          "sha256": "3158412f5e7dde9256710ee9ec319d1a5fe21290ac604f3f8ad61775252efff8",
+          "bytes": 283954
+        },
+        "vk-games": {
+          "path": "assets/vis-s39-alice-damir-cafe.webp",
+          "sha256": "3158412f5e7dde9256710ee9ec319d1a5fe21290ac604f3f8ad61775252efff8",
+          "bytes": 283954
+        }
+      }
+    },
+    {
+      "id": "f6e-64",
+      "sourcePath": "assets/vis-s40-alice-laptop-window.png",
+      "sourceSha256": "8192692fe1b4baf4d0ec1228349a9732aa462b0079f0e11b01271983d656969c",
+      "sourceBytes": 1462824,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s40-alice-laptop-window.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s40-alice-laptop-window",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s40-alice-laptop-window.webp",
+          "sha256": "720a497398fe293c1ca9b27fbaff935a7d62f997ce71c447e2d4f2c3bcf077b0",
+          "bytes": 240844
+        },
+        "vk-games": {
+          "path": "assets/vis-s40-alice-laptop-window.webp",
+          "sha256": "720a497398fe293c1ca9b27fbaff935a7d62f997ce71c447e2d4f2c3bcf077b0",
+          "bytes": 240844
+        }
+      }
+    },
+    {
+      "id": "f6e-65",
+      "sourcePath": "assets/vis-s40-alice-room-laptop-window.png",
+      "sourceSha256": "7687839e21f6c71266779e7b2da273beec93b45985be7357fb3cc14399529a48",
+      "sourceBytes": 1328759,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s40-alice-room-laptop-window.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s40-alice-room-laptop-window",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s40-alice-room-laptop-window.webp",
+          "sha256": "7a43124231e951ba535c0ff9757f175ff6089d1134da456b44701509e8a54183",
+          "bytes": 240992
+        },
+        "vk-games": {
+          "path": "assets/vis-s40-alice-room-laptop-window.webp",
+          "sha256": "7a43124231e951ba535c0ff9757f175ff6089d1134da456b44701509e8a54183",
+          "bytes": 240992
+        }
+      }
+    },
+    {
+      "id": "f6e-66",
+      "sourcePath": "assets/vis-s44-eric-epilogue-month-later.png",
+      "sourceSha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b",
+      "sourceBytes": 2090878,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s44-eric-epilogue-month-later.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s44-eric-epilogue-month-later",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s44-eric-epilogue-month-later.webp",
+          "sha256": "9eddb41106e12ff4d0d9d4366f5e4d7e25710cc56ce0a21b5a9c2b4c5459fe36",
+          "bytes": 330534
+        },
+        "vk-games": {
+          "path": "assets/vis-s44-eric-epilogue-month-later.webp",
+          "sha256": "9eddb41106e12ff4d0d9d4366f5e4d7e25710cc56ce0a21b5a9c2b4c5459fe36",
+          "bytes": 330534
+        }
+      }
+    },
+    {
+      "id": "f6e-67",
+      "sourcePath": "assets/vis-s45-nick-home-epilogue-month-later.png",
+      "sourceSha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734",
+      "sourceBytes": 2212614,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s45-nick-home-epilogue-month-later.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s45-nick-home-epilogue-month-later",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s45-nick-home-epilogue-month-later.webp",
+          "sha256": "71574d701a50f64e697f3ed8f0cf350c0f62e71f7c58f9295f93ddd8df7f1377",
+          "bytes": 379988
+        },
+        "vk-games": {
+          "path": "assets/vis-s45-nick-home-epilogue-month-later.webp",
+          "sha256": "71574d701a50f64e697f3ed8f0cf350c0f62e71f7c58f9295f93ddd8df7f1377",
+          "bytes": 379988
+        }
+      }
+    },
+    {
+      "id": "f6e-68",
+      "sourcePath": "assets/vis-s46-airport-bus-day.png",
+      "sourceSha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13",
+      "sourceBytes": 1160684,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s46-airport-bus-day.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s46-airport-bus-day",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s46-airport-bus-day.webp",
+          "sha256": "db8dfbca9a7787f2d9360f43e1ee990dbd70ab58068342d8f567350392d9be08",
+          "bytes": 219854
+        },
+        "vk-games": {
+          "path": "assets/vis-s46-airport-bus-day.webp",
+          "sha256": "db8dfbca9a7787f2d9360f43e1ee990dbd70ab58068342d8f567350392d9be08",
+          "bytes": 219854
+        }
+      }
+    },
+    {
+      "id": "f6e-69",
+      "sourcePath": "assets/vis-s46-damir-epilogue-month-later.png",
+      "sourceSha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e",
+      "sourceBytes": 2341492,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s46-damir-epilogue-month-later.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s46-damir-epilogue-month-later",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s46-damir-epilogue-month-later.webp",
+          "sha256": "12645b8dfdca0075ac28c1a9b60412f3d7b9bffe42399c44ee6f5f84ecdd3aa7",
+          "bytes": 414396
+        },
+        "vk-games": {
+          "path": "assets/vis-s46-damir-epilogue-month-later.webp",
+          "sha256": "12645b8dfdca0075ac28c1a9b60412f3d7b9bffe42399c44ee6f5f84ecdd3aa7",
+          "bytes": 414396
+        }
+      }
+    },
+    {
+      "id": "f6e-70",
+      "sourcePath": "assets/vis-s47-alice-home-epilogue-month-later.png",
+      "sourceSha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d",
+      "sourceBytes": 2402487,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s47-alice-home-epilogue-month-later.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s47-alice-home-epilogue-month-later",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s47-alice-home-epilogue-month-later.webp",
+          "sha256": "f48943c7296f0618a598d5bb8a460d7ac1aea97fa404b86efe26ea8dca3b9eb3",
+          "bytes": 445406
+        },
+        "vk-games": {
+          "path": "assets/vis-s47-alice-home-epilogue-month-later.webp",
+          "sha256": "f48943c7296f0618a598d5bb8a460d7ac1aea97fa404b86efe26ea8dca3b9eb3",
+          "bytes": 445406
+        }
+      }
+    },
+    {
+      "id": "f6e-71",
+      "sourcePath": "assets/vis-s48-guesthouse-exit-group.png",
+      "sourceSha256": "7a695ba7a055539dc80dd04f5c69563b264f6f74f634cb71b21af451aa29bc85",
+      "sourceBytes": 1893998,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s48-guesthouse-exit-group.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s48-guesthouse-exit-group",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s48-guesthouse-exit-group.webp",
+          "sha256": "fdbe82e3b680a624b424f77ca4feb2d7db8fd4decb0c328f77feb2b4b5b0bcdc",
+          "bytes": 349274
+        },
+        "vk-games": {
+          "path": "assets/vis-s48-guesthouse-exit-group.webp",
+          "sha256": "fdbe82e3b680a624b424f77ca4feb2d7db8fd4decb0c328f77feb2b4b5b0bcdc",
+          "bytes": 349274
+        }
+      }
+    },
+    {
+      "id": "f6e-72",
+      "sourcePath": "assets/vis-s48-guesthouse-exit-morning.png",
+      "sourceSha256": "9548fc8a82ac62142694d65d182f7a6f6b799efffc0e564f8ebf8175c1ff2d37",
+      "sourceBytes": 1415637,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s48-guesthouse-exit-morning.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s48-guesthouse-exit-morning",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s48-guesthouse-exit-morning.webp",
+          "sha256": "718a885746b9d00f2f20f8a957209e98c1e7cd46695ad2dbaab51fc434d57c8e",
+          "bytes": 239452
+        },
+        "vk-games": {
+          "path": "assets/vis-s48-guesthouse-exit-morning.webp",
+          "sha256": "718a885746b9d00f2f20f8a957209e98c1e7cd46695ad2dbaab51fc434d57c8e",
+          "bytes": 239452
+        }
+      }
+    },
+    {
+      "id": "f6e-73",
+      "sourcePath": "assets/vis-s49-reykjahlid-window-dance.png",
+      "sourceSha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f",
+      "sourceBytes": 4366410,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s49-reykjahlid-window-dance.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s49-reykjahlid-window-dance",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s49-reykjahlid-window-dance.webp",
+          "sha256": "3c26be0b10b8152a840a3246e91e6884da36b80106016bd6f3e100e7e4a0a1ba",
+          "bytes": 387214
+        },
+        "vk-games": {
+          "path": "assets/vis-s49-reykjahlid-window-dance.webp",
+          "sha256": "3c26be0b10b8152a840a3246e91e6884da36b80106016bd6f3e100e7e4a0a1ba",
+          "bytes": 387214
+        }
+      }
+    },
+    {
+      "id": "f6e-74",
+      "sourcePath": "assets/vis-s52-hofn-streets-post-workshop.png",
+      "sourceSha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332",
+      "sourceBytes": 1652917,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s52-hofn-streets-post-workshop.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s52-hofn-streets-post-workshop",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s52-hofn-streets-post-workshop.webp",
+          "sha256": "86085693229b08db1ebf85737b2ec84188a00457c7fb0b7b192dab2357af1b0a",
+          "bytes": 330212
+        },
+        "vk-games": {
+          "path": "assets/vis-s52-hofn-streets-post-workshop.webp",
+          "sha256": "86085693229b08db1ebf85737b2ec84188a00457c7fb0b7b192dab2357af1b0a",
+          "bytes": 330212
+        }
+      }
+    },
+    {
+      "id": "f6e-75",
+      "sourcePath": "assets/vis-s53-nick-no-camera-pool.png",
+      "sourceSha256": "f1b6bb4204e8034520c5644f1e94e9019983c666962d67cfeb845ec94f29b8df",
+      "sourceBytes": 2423727,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s53-nick-no-camera-pool.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s53-nick-no-camera-pool",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s53-nick-no-camera-pool.webp",
+          "sha256": "56f7acbb05c10cc9f2165b869432bd95fed7ef61f80892496ff2fb933102270e",
+          "bytes": 404372
+        },
+        "vk-games": {
+          "path": "assets/vis-s53-nick-no-camera-pool.webp",
+          "sha256": "56f7acbb05c10cc9f2165b869432bd95fed7ef61f80892496ff2fb933102270e",
+          "bytes": 404372
+        }
+      }
+    },
+    {
+      "id": "f6e-76",
+      "sourcePath": "assets/vis-s54-alice-nick-karaoke.png",
+      "sourceSha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e",
+      "sourceBytes": 1515243,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s54-alice-nick-karaoke.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s54-alice-nick-karaoke",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s54-alice-nick-karaoke.webp",
+          "sha256": "901440a48ffd347955b5000520b3bafe49226b2543a3a2b102b3665f1bc094b6",
+          "bytes": 255760
+        },
+        "vk-games": {
+          "path": "assets/vis-s54-alice-nick-karaoke.webp",
+          "sha256": "901440a48ffd347955b5000520b3bafe49226b2543a3a2b102b3665f1bc094b6",
+          "bytes": 255760
+        }
+      }
+    },
+    {
+      "id": "f6e-77",
+      "sourcePath": "assets/vis-s61-hofn-streets.png",
+      "sourceSha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8",
+      "sourceBytes": 3032898,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s61-hofn-streets.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s61-hofn-streets",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s61-hofn-streets.webp",
+          "sha256": "603577d1be3248907957639cb4929ff4e46bebb2a7f37d947389ca1c2d8f7209",
+          "bytes": 694992
+        },
+        "vk-games": {
+          "path": "assets/vis-s61-hofn-streets.webp",
+          "sha256": "603577d1be3248907957639cb4929ff4e46bebb2a7f37d947389ca1c2d8f7209",
+          "bytes": 694992
+        }
+      }
+    },
+    {
+      "id": "f6e-78",
+      "sourcePath": "assets/vis-s64-alice-snaefellsnes-trail.png",
+      "sourceSha256": "697c61cfc89eae4fb8494dd15dd223258c920e7c6bfa940c55bd626819e0aab1",
+      "sourceBytes": 2211925,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s64-alice-snaefellsnes-trail.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s64-alice-snaefellsnes-trail",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s64-alice-snaefellsnes-trail.webp",
+          "sha256": "1d6166847118945f66e6380206d02cc719f03b5e605158329dcdf8ff59f682df",
+          "bytes": 423686
+        },
+        "vk-games": {
+          "path": "assets/vis-s64-alice-snaefellsnes-trail.webp",
+          "sha256": "1d6166847118945f66e6380206d02cc719f03b5e605158329dcdf8ff59f682df",
+          "bytes": 423686
+        }
+      }
+    },
+    {
+      "id": "f6e-79",
+      "sourcePath": "assets/vis-s66-hveragerdi-greenhouse.png",
+      "sourceSha256": "07b303976b97d186c37f3dc7950e5c4207c8f78a6681ae156733ef019e3c75af",
+      "sourceBytes": 3191882,
+      "resourceClass": "game-art",
+      "rightsStatus": "PROVENANCE_DECLARED_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "assets/vis-s66-hveragerdi-greenhouse.png",
+        "sourceKind": "declared-in-project-asset-manifest"
+      },
+      "statedBasis": "Declared project provenance; no owner-signed legal grant supplied",
+      "evidence": [
+        {
+          "path": "game-studio/narrative-assets.json",
+          "fragment": "$.assets.s66-hveragerdi-greenhouse",
+          "note": "Project asset declaration"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/vis-s66-hveragerdi-greenhouse.webp",
+          "sha256": "d543e4c40e4cf0a2a6b36130a81b93a99f583d30c9431a7ae54a945cbca32227",
+          "bytes": 737996
+        },
+        "vk-games": {
+          "path": "assets/vis-s66-hveragerdi-greenhouse.webp",
+          "sha256": "d543e4c40e4cf0a2a6b36130a81b93a99f583d30c9431a7ae54a945cbca32227",
+          "bytes": 737996
+        }
+      }
+    },
+    {
+      "id": "f6e-86",
+      "sourcePath": "generated://ludory/licenses/swc-helpers.txt",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "platform-license",
+      "rightsStatus": "SDK_LICENSE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "path": "generated://ludory/licenses/swc-helpers.txt",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Vendored platform/library license text admitted by the target builder"
+      },
+      "statedBasis": "Vendored platform/library license text admitted by the target builder",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": [
+          "licenses/swc-helpers.txt"
+        ]
+      },
+      "exports": {
+        "vk-games": {
+          "path": "licenses/swc-helpers.txt",
+          "sha256": "d96eba1f1881334d50ffc144276dfa98e147a415e7c591ecdfcb81680361dc91",
+          "bytes": 10836
+        }
+      }
+    },
+    {
+      "id": "f6e-87",
+      "sourcePath": "generated://ludory/licenses/vk-bridge.txt",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "platform-license",
+      "rightsStatus": "SDK_LICENSE_PRESENT_UNVERIFIED",
+      "provenance": {
+        "path": "generated://ludory/licenses/vk-bridge.txt",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Vendored platform/library license text admitted by the target builder"
+      },
+      "statedBasis": "Vendored platform/library license text admitted by the target builder",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": [
+          "licenses/vk-bridge.txt"
+        ]
+      },
+      "exports": {
+        "vk-games": {
+          "path": "licenses/vk-bridge.txt",
+          "sha256": "15752ef20d62ef8f9b56deb04f8afbcb05d63823215ef2a2325da0890c940ab9",
+          "bytes": 1086
+        }
+      }
+    },
+    {
+      "id": "f6e-83",
+      "sourcePath": "generated://ludory/vk-games/assets/ludory-vk.js",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/vk-games/assets/ludory-vk.js",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "vk-games": {
+          "path": "assets/ludory-vk.js",
+          "sha256": "f6cb672d18c20ae77cadc8f4e70405184b14a6a0d76c32d7aad47ee45ea19fac",
+          "bytes": 45204
+        }
+      }
+    },
+    {
+      "id": "f6e-84",
+      "sourcePath": "generated://ludory/vk-games/assets/vk-bridge.js",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/vk-games/assets/vk-bridge.js",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "vk-games": {
+          "path": "assets/vk-bridge.js",
+          "sha256": "522191ec7efc8da22cadfbe2f89f0624a5ee89dbe4e96093ea684aa48fbdb190",
+          "bytes": 4381
+        }
+      }
+    },
+    {
+      "id": "f6e-85",
+      "sourcePath": "generated://ludory/vk-games/index.html",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/vk-games/index.html",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "vk-games": {
+          "path": "index.html",
+          "sha256": "f972b12cce1a578d441a2e9cd9405cf4cd1255e904e59be4c602c89f74210636",
+          "bytes": 3840
+        }
+      }
+    },
+    {
+      "id": "f6e-88",
+      "sourcePath": "generated://ludory/vk-games/ludory.project.json",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/vk-games/ludory.project.json",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "vk-games": {
+          "path": "ludory.project.json",
+          "sha256": "f1ae985a8701ad133d376bf15894f97dfa083f44679228a7dae8084d79f9e58d",
+          "bytes": 212
+        }
+      }
+    },
+    {
+      "id": "f6e-89",
+      "sourcePath": "generated://ludory/vk-games/src/main.js",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/vk-games/src/main.js",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "vk-games": {
+          "path": "src/main.js",
+          "sha256": "e18b0d206459f21999ff06274082dce131f5b57a5d1c5edbd23af7a7fd66f18f",
+          "bytes": 2012297
+        }
+      }
+    },
+    {
+      "id": "f6e-8",
+      "sourcePath": "generated://ludory/yandex-games/assets/ludory-yandex.js",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/yandex-games/assets/ludory-yandex.js",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/ludory-yandex.js",
+          "sha256": "739eb4ebfaef5f2cbccfaa832fd8402305b64057c014e12882eac52783b928fb",
+          "bytes": 48871
+        }
+      }
+    },
+    {
+      "id": "f6e-80",
+      "sourcePath": "generated://ludory/yandex-games/index.html",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/yandex-games/index.html",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "index.html",
+          "sha256": "3c46d18b047517fa0ffbba1d0af077541a1dcf60ffb3abc243f10cabcc94d04a",
+          "bytes": 3871
+        }
+      }
+    },
+    {
+      "id": "f6e-81",
+      "sourcePath": "generated://ludory/yandex-games/ludory.project.json",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/yandex-games/ludory.project.json",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "ludory.project.json",
+          "sha256": "261171b4becddfc837010850c35e794a38ff684678e6ff4058d86f2103113ace",
+          "bytes": 216
+        }
+      }
+    },
+    {
+      "id": "f6e-82",
+      "sourcePath": "generated://ludory/yandex-games/src/main.js",
+      "sourceSha256": null,
+      "sourceBytes": null,
+      "resourceClass": "ludory-framework",
+      "rightsStatus": "FRAMEWORK_PROVENANCE_ONLY",
+      "provenance": {
+        "path": "generated://ludory/yandex-games/src/main.js",
+        "repository": "m-amirov/ludory",
+        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
+      },
+      "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
+      "evidence": [
+        {
+          "path": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+          "note": "Generated by the Ludory exporter; not an independent legal rights attestation"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "UNVERIFIED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "src/main.js",
+          "sha256": "e4ffc5f5e876eded88695324534cae69b74114baebb15fa2e8251b82e5fb0937",
+          "bytes": 2012448
+        }
+      }
+    },
+    {
+      "id": "f6e-9",
+      "sourcePath": "src/ui/original-game.css",
+      "sourceSha256": "1cbbc43d583fc0481051e4c38dba221c1839a24ecaa2282a505a39a7a083a27c",
+      "sourceBytes": 16713,
+      "resourceClass": "game-ui",
+      "rightsStatus": "UI_PROVENANCE_ONLY",
+      "provenance": {
+        "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
+        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "path": "src/ui/original-game.css"
+      },
+      "statedBasis": "Author-owned UI source path; owner confirmation of distribution authority remains required",
+      "evidence": [
+        {
+          "path": "game-studio/src/ui/original-game.css",
+          "note": "Source-derived CSS exported under assets/ui/"
+        }
+      ],
+      "attribution": {
+        "required": true,
+        "status": "OWNER_CONFIRMATION_REQUIRED",
+        "notices": []
+      },
+      "exports": {
+        "yandex-games": {
+          "path": "assets/ui/original-game.css",
+          "sha256": "0fe34697c1c754c522898462b404b909068c448cbb4c2b1458fe2768843b4614",
+          "bytes": 16673
+        },
+        "vk-games": {
+          "path": "assets/ui/original-game.css",
+          "sha256": "0fe34697c1c754c522898462b404b909068c448cbb4c2b1458fe2768843b4614",
+          "bytes": 16673
+        }
+      }
+    }
+  ],
+  "ownerConfirmation": {
+    "mode": "BATCH_ATTESTATION_ALLOWED",
+    "independentLegalOpinion": false,
+    "registryBinding": {
+      "sourceCommit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+      "resourceCount": 69,
+      "registrySha256": "21b123a904202f0f29a6e51fe17e2b578c600031823606dc4f71471e86bae65a",
+      "statement": "Owner must confirm actual authority to distribute every listed SHA-256 and all required attribution/notice obligations; this packet is not a legal opinion."
+    },
+    "declarativeProvenanceResources": [
+      {
+        "id": "f6e-1",
+        "sourcePath": "assets/branding/kiss-at-the-edge-cover.png",
+        "sourceSha256": "8f38b9516533fa0cdc760cd44e7dfd21f05d87e7a3589f5229b90a9d5b9fa6a5"
+      },
+      {
+        "id": "f6e-2",
+        "sourcePath": "assets/branding/kiss-at-the-edge-icon.png",
+        "sourceSha256": "4079ecac6b6cf45523def3026288540858f897677cf3686712e56a61eced6c2b"
+      },
+      {
+        "id": "f6e-3",
+        "sourcePath": "assets/branding/menu-hero.webp",
+        "sourceSha256": "5667bec6163ef908f42ea4f0fbd291307f4c9cf91eae04019c6ba82d7c97f07b"
+      },
+      {
+        "id": "f6e-10",
+        "sourcePath": "assets/vis-s02-roadside-cafe.png",
+        "sourceSha256": "f6d2adc4a65d2b30e9eb86203e34a848cc79c69a206a9f81a5a6c9b823bb1c13"
+      },
+      {
+        "id": "f6e-12",
+        "sourcePath": "assets/vis-s03-damir.png",
+        "sourceSha256": "aea38cdcffafe5233e8e6d3d93ad5618e41ab94addae40c0a143325a9b80561a"
+      },
+      {
+        "id": "f6e-13",
+        "sourcePath": "assets/vis-s03-guesthouse-morning.png",
+        "sourceSha256": "2ca12077112219ffbc9dfd916f504574ee624c2504a3a3c3fad90e741d3ed4bd"
+      },
+      {
+        "id": "f6e-14",
+        "sourcePath": "assets/vis-s05-hveragerdi-road.png",
+        "sourceSha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f"
+      },
+      {
+        "id": "f6e-15",
+        "sourcePath": "assets/vis-s06-hveragerdi-eric-alice.png",
+        "sourceSha256": "03541d251c355d14f35b2e6efc813a83a2a304b0729ef413d78b34553c21e8f9"
+      },
+      {
+        "id": "f6e-16",
+        "sourcePath": "assets/vis-s06-hveragerdi-geothermal-day.png",
+        "sourceSha256": "0610dbae504ca1a3de51f9c74936f402b02d9af016f2c1020eb07ffb4dd6d1a7"
+      },
+      {
+        "id": "f6e-17",
+        "sourcePath": "assets/vis-s07-kitchen-cards-portrait.png",
+        "sourceSha256": "818353a9909aa12784d0379002315536ff219df4a514243f408f3cd04718ec95"
+      },
+      {
+        "id": "f6e-18",
+        "sourcePath": "assets/vis-s07-kitchen-cards.png",
+        "sourceSha256": "ed50cfb8cad1615427df2b0e1802f32cc4c17f32b313cc6367403ebfeba73b8b"
+      },
+      {
+        "id": "f6e-19",
+        "sourcePath": "assets/vis-s07-kitchen-pasta-portrait.png",
+        "sourceSha256": "552c38c03679ec662a94439fd33f6dc3c8dcb52215fc3dc6890f1135af801c2a"
+      },
+      {
+        "id": "f6e-20",
+        "sourcePath": "assets/vis-s07-kitchen-pasta.png",
+        "sourceSha256": "452ab108a997fd6371dd338635ddfe94bdbcf7b85a39fb552ae00fbcde3dd6df"
+      },
+      {
+        "id": "f6e-21",
+        "sourcePath": "assets/vis-s08-guesthouse-strap.png",
+        "sourceSha256": "cd8e44eb13dcbec7a8d5ccd1612cdbda1a0c92edad3b93a77e3118e8cca990d6"
+      },
+      {
+        "id": "f6e-22",
+        "sourcePath": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
+        "sourceSha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49"
+      },
+      {
+        "id": "f6e-23",
+        "sourcePath": "assets/vis-s10-vik-guesthouse-arrival.png",
+        "sourceSha256": "94356b1e97aa3ed8559b6864d4d948de03e96df4a07872b3f82dedbf98ddb894"
+      },
+      {
+        "id": "f6e-24",
+        "sourcePath": "assets/vis-s10-vik-road-song.png",
+        "sourceSha256": "df56b1a22cbb3a94868c4e9a5815fe60fbe8a574375d5c3a5c89ae135f1acc93"
+      },
+      {
+        "id": "f6e-25",
+        "sourcePath": "assets/vis-s12-vik-cafe-damir.png",
+        "sourceSha256": "7344fdda79eea8bf02bc3fb49e79bb94df78e93e387bd2a198a610cd648be99e"
+      },
+      {
+        "id": "f6e-26",
+        "sourcePath": "assets/vis-s12-vik-street-day.png",
+        "sourceSha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770"
+      },
+      {
+        "id": "f6e-27",
+        "sourcePath": "assets/vis-s13-skaftafell-visitor-parking.png",
+        "sourceSha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7"
+      },
+      {
+        "id": "f6e-28",
+        "sourcePath": "assets/vis-s14-lagoon-road.png",
+        "sourceSha256": "17c88d319dff19d82022a8369f51c0614b369391a1282f1422f07392108eb2a9"
+      },
+      {
+        "id": "f6e-29",
+        "sourcePath": "assets/vis-s14-skaftafell-pace.png",
+        "sourceSha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e"
+      },
+      {
+        "id": "f6e-30",
+        "sourcePath": "assets/vis-s15-jokulsarlon-parking-day.png",
+        "sourceSha256": "4ee1645d83e732806438c1c19156f06840c44b39b626b9332dce488c551447d8"
+      },
+      {
+        "id": "f6e-31",
+        "sourcePath": "assets/vis-s16-guesthouse-help.png",
+        "sourceSha256": "8b492ae3e84d9dcdfc830e00fd0dcf18b3cfc0048748db67b49fa3fdd37d6656"
+      },
+      {
+        "id": "f6e-32",
+        "sourcePath": "assets/vis-s16-kitchen-soup.png",
+        "sourceSha256": "4f5afd577454e72853bbdfcbde639801f2c127d9c8df9dc22520ac4e5db5e718"
+      },
+      {
+        "id": "f6e-33",
+        "sourcePath": "assets/vis-s17-hofn-guesthouse.png",
+        "sourceSha256": "385b4795f708736ac0caa56d860eff9f1c4090f094f5a8c5af8cb342ca2dcc37"
+      },
+      {
+        "id": "f6e-34",
+        "sourcePath": "assets/vis-s18-hofn-breakfast-group.png",
+        "sourceSha256": "163e828c7eefaf887fd7276da86e906941ebf9fee0acafcb90456ff2794cf2b4"
+      },
+      {
+        "id": "f6e-35",
+        "sourcePath": "assets/vis-s18-hofn-breakfast-morning.png",
+        "sourceSha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d"
+      },
+      {
+        "id": "f6e-36",
+        "sourcePath": "assets/vis-s18-hofn-room-morning.png",
+        "sourceSha256": "fc75aa2d8fbd96ae2ac78a0d47906b8f211680bebdff8bf1f2443894ce33f2ed"
+      },
+      {
+        "id": "f6e-37",
+        "sourcePath": "assets/vis-s19-hofn-pool.png",
+        "sourceSha256": "f1d5704a588a699ddb09acc3dfc7f2d7ac9626544f349f93810156384d11d213"
+      },
+      {
+        "id": "f6e-38",
+        "sourcePath": "assets/vis-s20-hofn-damir-kitchen.png",
+        "sourceSha256": "1dc4dc153162ed94c4d1315558576c23cc29964a090b30f02dc2c82deea70996"
+      },
+      {
+        "id": "f6e-39",
+        "sourcePath": "assets/vis-s21-alice-hofn-room.png",
+        "sourceSha256": "0039e3ec3ddea4d771bb7b844d06a23f6c92a0ac1fc0ad42f0a2ffd64ce97683"
+      },
+      {
+        "id": "f6e-40",
+        "sourcePath": "assets/vis-s23-eric-harbor-plan.png",
+        "sourceSha256": "5d49a086898a4dccbde332a8681ee3c99d52df326bc0236515512a51b979918e"
+      },
+      {
+        "id": "f6e-41",
+        "sourcePath": "assets/vis-s24-nick-pier-consent.png",
+        "sourceSha256": "acd6f882a04dc2c35c509ee40eda183d531f6b8522afeb1b6a30f9a808b2e15a"
+      },
+      {
+        "id": "f6e-42",
+        "sourcePath": "assets/vis-s25-damir-clarity-talk.png",
+        "sourceSha256": "445889b4e4ec41e45eab64c36d64c48283530e7d892336108a5c8ab37dc5518b"
+      },
+      {
+        "id": "f6e-43",
+        "sourcePath": "assets/vis-s26-alice-choice-portrait.png",
+        "sourceSha256": "0e7ffbace60602f06b039c9732ab5e7858717a58220387fe87822ec383e06281"
+      },
+      {
+        "id": "f6e-44",
+        "sourcePath": "assets/vis-s26-alice-choice.png",
+        "sourceSha256": "d6b566b4ec753e88603d0eb16822ea4bf9fb1d9415615fad7d4e0c96829cef4f"
+      },
+      {
+        "id": "f6e-45",
+        "sourcePath": "assets/vis-s26-damir-choice-portrait.png",
+        "sourceSha256": "11c5da7c3fc3cb7568bd15751d6902b6f8c47e9d4b3edb452d696b4ff5d35b43"
+      },
+      {
+        "id": "f6e-46",
+        "sourcePath": "assets/vis-s26-damir-choice.png",
+        "sourceSha256": "16ec16e047283ab0fc858c6a52d7b54d6932c0037d04395cbd7a7835447cc206"
+      },
+      {
+        "id": "f6e-47",
+        "sourcePath": "assets/vis-s26-eastfjords-courtyard-group.png",
+        "sourceSha256": "dff3a7f5738ef5ea7c6369fdefed6a81285dece3a3892a92146047144c0c05b9"
+      },
+      {
+        "id": "f6e-48",
+        "sourcePath": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
+        "sourceSha256": "f165bd26a68f0c9c1ab1d4ec73d6fc6d28780fe9004fd5f965e781bc71ed9431"
+      },
+      {
+        "id": "f6e-49",
+        "sourcePath": "assets/vis-s26-eric-choice-portrait.png",
+        "sourceSha256": "e5de1e45e1109835d2d214ab6b79244c95a20070330eb264c59851f22f048ffe"
+      },
+      {
+        "id": "f6e-50",
+        "sourcePath": "assets/vis-s26-eric-choice.png",
+        "sourceSha256": "ef229a99516f80dd39cfac49ef021a25ac00630e01bf5e30d676a2401869721f"
+      },
+      {
+        "id": "f6e-51",
+        "sourcePath": "assets/vis-s26-nick-choice-portrait.png",
+        "sourceSha256": "ee6cf0336006de222d71ad4805d4a2b695096b1b383a4fc53e9f17f7d13f6b7b"
+      },
+      {
+        "id": "f6e-52",
+        "sourcePath": "assets/vis-s26-nick-choice.png",
+        "sourceSha256": "1320a9dce97e3905c1296de8d4c4634866614d3d0db3567ac10d3fb35827fa2b"
+      },
+      {
+        "id": "f6e-53",
+        "sourcePath": "assets/vis-s27-egilsstadir-boardwalk.png",
+        "sourceSha256": "2f8c46ad171940ca1b0ffaae9c8ece0ed72f7c470dc0cd81887b972b34fc26d6"
+      },
+      {
+        "id": "f6e-54",
+        "sourcePath": "assets/vis-s28-hverfjall-hood.png",
+        "sourceSha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c"
+      },
+      {
+        "id": "f6e-55",
+        "sourcePath": "assets/vis-s32-eric-calendar-crossroads.png",
+        "sourceSha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92"
+      },
+      {
+        "id": "f6e-56",
+        "sourcePath": "assets/vis-s33-nick-teaser-reveal.png",
+        "sourceSha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb"
+      },
+      {
+        "id": "f6e-57",
+        "sourcePath": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
+        "sourceSha256": "eaef888cc0f4d38058c4f8c58eba13818903dc1e26a264ae65fabd28050f60df"
+      },
+      {
+        "id": "f6e-59",
+        "sourcePath": "assets/vis-s38-alice-nick-ordinary-day.png",
+        "sourceSha256": "c67f933507fe2e560fe805b15105eacdde757e419b0bdbded50eb4b553e6b935"
+      },
+      {
+        "id": "f6e-62",
+        "sourcePath": "assets/vis-s39-alice-damir-cafe-walk.png",
+        "sourceSha256": "229f4d2898d66f135e027d6d871517363174c4e40c9fc580dbcf1fe0163f282e"
+      },
+      {
+        "id": "f6e-63",
+        "sourcePath": "assets/vis-s39-alice-damir-cafe.png",
+        "sourceSha256": "ac78f268a1d82832a34df2f930e98416c29a26e3454b750d6b15742e05899397"
+      },
+      {
+        "id": "f6e-64",
+        "sourcePath": "assets/vis-s40-alice-laptop-window.png",
+        "sourceSha256": "8192692fe1b4baf4d0ec1228349a9732aa462b0079f0e11b01271983d656969c"
+      },
+      {
+        "id": "f6e-65",
+        "sourcePath": "assets/vis-s40-alice-room-laptop-window.png",
+        "sourceSha256": "7687839e21f6c71266779e7b2da273beec93b45985be7357fb3cc14399529a48"
+      },
+      {
+        "id": "f6e-66",
+        "sourcePath": "assets/vis-s44-eric-epilogue-month-later.png",
+        "sourceSha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b"
+      },
+      {
+        "id": "f6e-67",
+        "sourcePath": "assets/vis-s45-nick-home-epilogue-month-later.png",
+        "sourceSha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734"
+      },
+      {
+        "id": "f6e-68",
+        "sourcePath": "assets/vis-s46-airport-bus-day.png",
+        "sourceSha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13"
+      },
+      {
+        "id": "f6e-69",
+        "sourcePath": "assets/vis-s46-damir-epilogue-month-later.png",
+        "sourceSha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e"
+      },
+      {
+        "id": "f6e-70",
+        "sourcePath": "assets/vis-s47-alice-home-epilogue-month-later.png",
+        "sourceSha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d"
+      },
+      {
+        "id": "f6e-71",
+        "sourcePath": "assets/vis-s48-guesthouse-exit-group.png",
+        "sourceSha256": "7a695ba7a055539dc80dd04f5c69563b264f6f74f634cb71b21af451aa29bc85"
+      },
+      {
+        "id": "f6e-72",
+        "sourcePath": "assets/vis-s48-guesthouse-exit-morning.png",
+        "sourceSha256": "9548fc8a82ac62142694d65d182f7a6f6b799efffc0e564f8ebf8175c1ff2d37"
+      },
+      {
+        "id": "f6e-73",
+        "sourcePath": "assets/vis-s49-reykjahlid-window-dance.png",
+        "sourceSha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f"
+      },
+      {
+        "id": "f6e-74",
+        "sourcePath": "assets/vis-s52-hofn-streets-post-workshop.png",
+        "sourceSha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332"
+      },
+      {
+        "id": "f6e-75",
+        "sourcePath": "assets/vis-s53-nick-no-camera-pool.png",
+        "sourceSha256": "f1b6bb4204e8034520c5644f1e94e9019983c666962d67cfeb845ec94f29b8df"
+      },
+      {
+        "id": "f6e-76",
+        "sourcePath": "assets/vis-s54-alice-nick-karaoke.png",
+        "sourceSha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e"
+      },
+      {
+        "id": "f6e-77",
+        "sourcePath": "assets/vis-s61-hofn-streets.png",
+        "sourceSha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8"
+      },
+      {
+        "id": "f6e-78",
+        "sourcePath": "assets/vis-s64-alice-snaefellsnes-trail.png",
+        "sourceSha256": "697c61cfc89eae4fb8494dd15dd223258c920e7c6bfa940c55bd626819e0aab1"
+      },
+      {
+        "id": "f6e-79",
+        "sourcePath": "assets/vis-s66-hveragerdi-greenhouse.png",
+        "sourceSha256": "07b303976b97d186c37f3dc7950e5c4207c8f78a6681ae156733ef019e3c75af"
+      }
+    ],
+    "additionalPortraitEvidenceRequired": [
+      {
+        "id": "f6e-11",
+        "sourcePath": "assets/vis-s03-damir-portrait-v2.png",
+        "sourceSha256": "97f69e0ee7dc0ab5999b82518ae0e4521b86eaa5f5b0be17c14bd5ae7614fbde",
+        "missing": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant"
+      },
+      {
+        "id": "f6e-58",
+        "sourcePath": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png",
+        "sourceSha256": "fa2b4e6aad5d2a5a482f9b2ca8e2954dfad76b6b188729f1411d6ad9de9dfd2e",
+        "missing": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant"
+      },
+      {
+        "id": "f6e-60",
+        "sourcePath": "assets/vis-s39-alice-damir-cafe-portrait-v2.png",
+        "sourceSha256": "cb69e0ab2c8c442eda48335a0fbdf7b23c838839bbfd542709a1c55211c57cf8",
+        "missing": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant"
+      },
+      {
+        "id": "f6e-61",
+        "sourcePath": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
+        "sourceSha256": "815361d1236108ff64644d33bf56bc1c477977a7d4e68ed7de78fef41d9060fe",
+        "missing": "No exact row for this current generated portrait in canonical assets/provenance/rights-manifest.json; existing m4 evidence does not establish a legal grant"
+      }
+    ]
+  },
+  "mechanicalChecks": {
+    "packageVerification": "LOCAL_ARCHIVES_VERIFIED",
+    "noticePaths": [
+      "assets/fonts/OFL-CormorantGaramond.txt",
+      "assets/fonts/OFL-Manrope.txt"
+    ],
+    "noticePolicy": "ONLY_EXACT_FONT_NOTICE_PATHS_ALLOWED; ARBITRARY_TXT_REJECTED_OR_NOT_LISTED",
+    "forbiddenGameZipMembers": [
+      "lighthouse.svg",
+      "shoreline.svg",
+      "Web Helper vendored dependency"
+    ]
+  },
+  "gateRecommendation": {
+    "PACKAGE_PASS": "ELIGIBLE_AFTER_THIS_PACKET_AND_ARCHIVE_RECEIPTS_ARE_REVIEWED",
+    "RIGHTS_PASS": "BLOCKED_UNVERIFIED_OWNER_AND_PORTRAIT_EVIDENCE",
+    "SECURITY_ADVISORIES_PASS": "REUSE_ONLY_IF_DEPENDENCY_SNAPSHOT_IS_UNCHANGED",
+    "RELEASE_READY": "NOT_DECLARED"
+  }
+}
