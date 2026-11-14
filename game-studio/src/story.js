@@ -1,3 +1,4 @@
+import { originalS01ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -300,7 +301,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's01-eric', beats: beats('s01-eric', withEric), nextSceneId: 's01-common' },
   { id: 's01-nick', beats: beats('s01-nick', withNick), nextSceneId: 's01-common' },
   { id: 's01-damir', beats: beats('s01-damir', withDamir), nextSceneId: 's01-common' },
-  { id: 's01-common', beats: beats('s01-common', common), nextSceneId: 's02-road' },
+  { id: 's01-common', beats: beats('s01-common', common), nextSceneId: 's01-c90' },
   { id: 's02-road', beats: [
     ...beats('s02-road', s02Intro),
     { id: 's02-career-choice', type: 'choice', choices: [
@@ -2681,6 +2682,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's47-common', beats: beats('s47-common', s47.s47Common), nextSceneId: 's47-ending' },
   { id: 's47-ending', beats: [{ id: 's47-ending-beat', type: 'ending',
     endingId: 'alice', text: t('Конец сезона') }] },
+  ...originalS01ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
