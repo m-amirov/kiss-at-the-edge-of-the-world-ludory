@@ -5,14 +5,89 @@
   "independentLegalReview": false,
   "source": {
     "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-    "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+    "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
     "projectPath": "game-studio",
     "narrativeManifest": "game-studio/narrative-assets.json",
     "mobileManifest": "docs/migration/m4-mobile-assets.json",
     "buildObservation": {
       "sourceWorktree": "host-bound QA worktree at the exact source commit",
       "noticesCopiedByteForByte": true,
-      "note": "The trusted QA checkout uses CRLF for the OFL notices while the clean closure worktree uses LF; the packet records the bytes actually admitted to the verified ZIPs and does not normalize them."
+      "noticeReproducibility": {
+        "normalization": "NONE",
+        "notices": {
+          "assets/fonts/OFL-CormorantGaramond.txt": {
+            "source": {
+              "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+              "bytes": 4480,
+              "lineEndings": {
+                "crlf": 93,
+                "lf": 93,
+                "bareCr": 0,
+                "normalizedTextSha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+              }
+            },
+            "archives": {
+              "yandex-games": {
+                "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+                "bytes": 4480,
+                "lineEndings": {
+                  "crlf": 93,
+                  "lf": 93,
+                  "bareCr": 0,
+                  "normalizedTextSha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+                }
+              },
+              "vk-games": {
+                "sha256": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+                "bytes": 4480,
+                "lineEndings": {
+                  "crlf": 93,
+                  "lf": 93,
+                  "bareCr": 0,
+                  "normalizedTextSha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+                }
+              }
+            },
+            "exactByteMatch": true
+          },
+          "assets/fonts/OFL-Manrope.txt": {
+            "source": {
+              "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+              "bytes": 4480,
+              "lineEndings": {
+                "crlf": 93,
+                "lf": 93,
+                "bareCr": 0,
+                "normalizedTextSha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+              }
+            },
+            "archives": {
+              "yandex-games": {
+                "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+                "bytes": 4480,
+                "lineEndings": {
+                  "crlf": 93,
+                  "lf": 93,
+                  "bareCr": 0,
+                  "normalizedTextSha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+                }
+              },
+              "vk-games": {
+                "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde",
+                "bytes": 4480,
+                "lineEndings": {
+                  "crlf": 93,
+                  "lf": 93,
+                  "bareCr": 0,
+                  "normalizedTextSha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+                }
+              }
+            },
+            "exactByteMatch": true
+          }
+        },
+        "note": "The verifier compares source and archive bytes exactly. A line-ending change changes the source/member SHA-256 and requires a fresh receipt; no normalization is performed."
+      }
     },
     "canonicalRightsManifest": {
       "path": "assets/provenance/rights-manifest.json",
@@ -36,7 +111,7 @@
   },
   "targets": {
     "yandex-games": {
-      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates/yandex.zip",
+      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates-r2/yandex.zip",
       "archiveSha256": "ed271d4f89a1eda9033a69a93686831c974914c17325776b88ba38b0407f2b2a",
       "archiveBytes": 31681477,
       "expandedBytes": 31669021,
@@ -455,7 +530,7 @@
       ]
     },
     "vk-games": {
-      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates/vk.zip",
+      "artifactPath": "../LUDORY/artifacts/f6e-rights-closure-20261114/final-candidates-r2/vk.zip",
       "archiveSha256": "8a9cfa9240d21dee8607db930feb4cd79e4cddf0d4094e397f04886b63fceba7",
       "archiveBytes": 31694277,
       "expandedBytes": 31681471,
@@ -899,7 +974,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/branding/kiss-at-the-edge-cover.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -943,7 +1018,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/branding/kiss-at-the-edge-icon.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -987,7 +1062,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/branding/menu-hero.webp",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1031,7 +1106,7 @@
       "rightsStatus": "MECHANICAL_NOTICE_PRESENT_UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/fonts/CormorantGaramond[wght].ttf"
       },
       "statedBasis": "SIL Open Font License 1.1 stated by the paired OFL notice; applicability to these exact font bytes is not independently attested",
@@ -1075,7 +1150,7 @@
       "rightsStatus": "MECHANICAL_NOTICE_PRESENT_UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/fonts/Manrope[wght].ttf"
       },
       "statedBasis": "SIL Open Font License 1.1 stated by the paired OFL notice; applicability to these exact font bytes is not independently attested",
@@ -1119,7 +1194,7 @@
       "rightsStatus": "NOTICE_PRESENT_UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/fonts/OFL-CormorantGaramond.txt"
       },
       "statedBasis": "The corresponding OFL notice is shipped with its corresponding redistributed font",
@@ -1158,7 +1233,7 @@
       "rightsStatus": "NOTICE_PRESENT_UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/fonts/OFL-Manrope.txt"
       },
       "statedBasis": "The corresponding OFL notice is shipped with its corresponding redistributed font",
@@ -1197,7 +1272,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s02-roadside-cafe.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1236,7 +1311,7 @@
       "rightsStatus": "UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s03-damir-portrait-v2.png",
         "sourceKind": "generated-source-bound",
         "referenceSources": [
@@ -1294,7 +1369,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s03-damir.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1333,7 +1408,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s03-guesthouse-morning.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1372,7 +1447,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s05-hveragerdi-road.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1411,7 +1486,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s06-hveragerdi-eric-alice.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1450,7 +1525,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s06-hveragerdi-geothermal-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1489,7 +1564,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s07-kitchen-cards-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -1541,7 +1616,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s07-kitchen-cards.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1580,7 +1655,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s07-kitchen-pasta-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -1632,7 +1707,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s07-kitchen-pasta.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1671,7 +1746,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s08-guesthouse-strap.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1710,7 +1785,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1749,7 +1824,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s10-vik-guesthouse-arrival.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1788,7 +1863,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s10-vik-road-song.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1827,7 +1902,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s12-vik-cafe-damir.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1866,7 +1941,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s12-vik-street-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1905,7 +1980,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s13-skaftafell-visitor-parking.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1944,7 +2019,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s14-lagoon-road.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -1983,7 +2058,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s14-skaftafell-pace.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2022,7 +2097,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s15-jokulsarlon-parking-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2061,7 +2136,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s16-guesthouse-help.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2100,7 +2175,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s16-kitchen-soup.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2139,7 +2214,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s17-hofn-guesthouse.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2178,7 +2253,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s18-hofn-breakfast-group.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2217,7 +2292,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s18-hofn-breakfast-morning.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2256,7 +2331,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s18-hofn-room-morning.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2295,7 +2370,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s19-hofn-pool.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2334,7 +2409,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s20-hofn-damir-kitchen.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2373,7 +2448,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s21-alice-hofn-room.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2412,7 +2487,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s23-eric-harbor-plan.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2451,7 +2526,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s24-nick-pier-consent.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2490,7 +2565,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s25-damir-clarity-talk.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2529,7 +2604,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-alice-choice-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -2581,7 +2656,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-alice-choice.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2620,7 +2695,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-damir-choice-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -2672,7 +2747,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-damir-choice.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2711,7 +2786,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-eastfjords-courtyard-group.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2750,7 +2825,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-eastfjords-guesthouse-courtyard.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2789,7 +2864,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-eric-choice-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -2841,7 +2916,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-eric-choice.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2880,7 +2955,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-nick-choice-portrait.png",
         "sourceKind": "pinned-original-derivative",
         "referenceSources": [],
@@ -2932,7 +3007,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s26-nick-choice.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -2971,7 +3046,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s27-egilsstadir-boardwalk.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3010,7 +3085,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s28-hverfjall-hood.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3049,7 +3124,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s32-eric-calendar-crossroads.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3088,7 +3163,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s33-nick-teaser-reveal.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3127,7 +3202,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3166,7 +3241,7 @@
       "rightsStatus": "UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s38-alice-nick-ordinary-day-portrait-v2.png",
         "sourceKind": "generated-source-bound",
         "referenceSources": [
@@ -3224,7 +3299,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s38-alice-nick-ordinary-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3263,7 +3338,7 @@
       "rightsStatus": "UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s39-alice-damir-cafe-portrait-v2.png",
         "sourceKind": "generated-source-bound",
         "referenceSources": [
@@ -3321,7 +3396,7 @@
       "rightsStatus": "UNVERIFIED",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s39-alice-damir-cafe-walk-portrait.png",
         "sourceKind": "generated-source-bound",
         "referenceSources": [
@@ -3380,7 +3455,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s39-alice-damir-cafe-walk.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3419,7 +3494,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s39-alice-damir-cafe.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3458,7 +3533,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s40-alice-laptop-window.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3497,7 +3572,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s40-alice-room-laptop-window.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3536,7 +3611,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s44-eric-epilogue-month-later.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3575,7 +3650,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s45-nick-home-epilogue-month-later.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3614,7 +3689,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s46-airport-bus-day.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3653,7 +3728,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s46-damir-epilogue-month-later.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3692,7 +3767,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s47-alice-home-epilogue-month-later.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3731,7 +3806,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s48-guesthouse-exit-group.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3770,7 +3845,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s48-guesthouse-exit-morning.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3809,7 +3884,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s49-reykjahlid-window-dance.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3848,7 +3923,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s52-hofn-streets-post-workshop.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3887,7 +3962,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s53-nick-no-camera-pool.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3926,7 +4001,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s54-alice-nick-karaoke.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -3965,7 +4040,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s61-hofn-streets.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -4004,7 +4079,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s64-alice-snaefellsnes-trail.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -4043,7 +4118,7 @@
       "rightsStatus": "PROVENANCE_DECLARED_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "assets/vis-s66-hveragerdi-greenhouse.png",
         "sourceKind": "declared-in-project-asset-manifest"
       },
@@ -4083,7 +4158,7 @@
       "provenance": {
         "path": "generated://ludory/licenses/swc-helpers.txt",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Vendored platform/library license text admitted by the target builder"
       },
       "statedBasis": "Vendored platform/library license text admitted by the target builder",
@@ -4118,7 +4193,7 @@
       "provenance": {
         "path": "generated://ludory/licenses/vk-bridge.txt",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Vendored platform/library license text admitted by the target builder"
       },
       "statedBasis": "Vendored platform/library license text admitted by the target builder",
@@ -4153,7 +4228,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/assets/ludory-vk.js",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4186,7 +4261,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/assets/vk-bridge.js",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4219,7 +4294,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/index.html",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4252,7 +4327,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/ludory.project.json",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4285,7 +4360,7 @@
       "provenance": {
         "path": "generated://ludory/vk-games/src/main.js",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4318,7 +4393,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/assets/ludory-yandex.js",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4351,7 +4426,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/index.html",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4384,7 +4459,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/ludory.project.json",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4417,7 +4492,7 @@
       "provenance": {
         "path": "generated://ludory/yandex-games/src/main.js",
         "repository": "m-amirov/ludory",
-        "commit": "592dd9232b34a94d81157411d4bd6bba71a3b67a",
+        "commit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
         "basis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant"
       },
       "statedBasis": "Generated or managed Ludory platform export bytes; source code provenance is not a game asset rights grant",
@@ -4449,7 +4524,7 @@
       "rightsStatus": "UI_PROVENANCE_ONLY",
       "provenance": {
         "repository": "m-amirov/kiss-at-the-edge-of-the-world-ludory",
-        "commit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+        "commit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
         "path": "src/ui/original-game.css"
       },
       "statedBasis": "Author-owned UI source path; owner confirmation of distribution authority remains required",
@@ -4482,7 +4557,7 @@
     "mode": "BATCH_ATTESTATION_ALLOWED",
     "independentLegalOpinion": false,
     "registryBinding": {
-      "sourceCommit": "fe1b821554a71e37bcaa5520d7dadb4cf98482eb",
+      "sourceCommit": "2e19c2a252640aa7f1f6a099ac607d55e581c8b",
       "resourceCount": 69,
       "registrySha256": "21b123a904202f0f29a6e51fe17e2b578c600031823606dc4f71471e86bae65a",
       "statement": "Owner must confirm actual authority to distribute every listed SHA-256 and all required attribution/notice obligations; this packet is not a legal opinion."
@@ -4875,9 +4950,9 @@
     ]
   },
   "gateRecommendation": {
-    "PACKAGE_PASS": "ELIGIBLE_AFTER_THIS_PACKET_AND_ARCHIVE_RECEIPTS_ARE_REVIEWED",
+    "PACKAGE_PASS": "PASS_FACTUAL_UPDATED_ARCHIVE_BYTES_AND_MEMBERS",
     "RIGHTS_PASS": "BLOCKED_UNVERIFIED_OWNER_AND_PORTRAIT_EVIDENCE",
-    "SECURITY_ADVISORIES_PASS": "REUSE_ONLY_IF_DEPENDENCY_SNAPSHOT_IS_UNCHANGED",
-    "RELEASE_READY": "NOT_DECLARED"
+    "SECURITY_ADVISORIES_PASS": "BLOCKED_UNCONFIRMED_DEPENDENCY_SNAPSHOT",
+    "RELEASE_READY": "BLOCKED"
   }
 }

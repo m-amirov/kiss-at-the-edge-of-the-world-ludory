@@ -18,6 +18,7 @@ const FONT_PAIRS = Object.freeze([
   ['assets/fonts/CormorantGaramond-wght.ttf', 'assets/fonts/OFL-CormorantGaramond.txt'],
   ['assets/fonts/Manrope-wght.ttf', 'assets/fonts/OFL-Manrope.txt'],
 ]);
+const FONT_MEMBER_NAMES = new Set(FONT_PAIRS.flatMap(([font]) => [font]));
 const SAFE_PART = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const DEVICE = /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i;
 const SHA256 = /^[a-f0-9]{64}$/;
@@ -237,6 +238,10 @@ function readSource(sourceRoot, sourcePath) {
 }
 
 function sourcePathForMember(memberPath, candidate, sourceMap) {
+  if ((candidate.derivedFiles ?? []).some(file => file.path === memberPath) &&
+      !FONT_MEMBER_NAMES.has(memberPath) && !FONT_NOTICE_NAMES.has(memberPath)) {
+    return null;
+  }
   const derivation = new Map((candidate.assetDerivations ?? []).map(item => [item.derivedPath, item])).get(memberPath);
   if (derivation) return { sourcePath: derivation.sourcePath, exact: false };
   const renames = new Map([
