@@ -104,6 +104,13 @@ async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
     } else {
       const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
       assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
+      if (beatId === 's01-c90-choice' || beatId === 's01-c91-choice') {
+        assert.equal(await choices.count(), 2, `${beatId}: both restored authored choices must render`);
+        for (const choice of await choices.all()) {
+          assert.equal(await choice.isVisible(), true, `${beatId}: choice hidden by reader UI`);
+          assert.equal(await choice.isEnabled(), true, `${beatId}: choice disabled`);
+        }
+      }
       const optionOverride = choiceOverrides.get(beatId);
       const choice = Number.isInteger(optionOverride)
         ? choices.nth(optionOverride)
