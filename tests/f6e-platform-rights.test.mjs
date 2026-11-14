@@ -17,7 +17,9 @@ test('F6E rights packet is source-bound, complete for both ZIP receipts, and kee
   assert.equal(packet.ownerConfirmation.declarativeProvenanceResources.length, 69);
   assert.equal(packet.ownerConfirmation.additionalPortraitEvidenceRequired.length, 4);
   assert.equal(packet.gateRecommendation.RIGHTS_PASS, 'BLOCKED_UNVERIFIED_OWNER_AND_PORTRAIT_EVIDENCE');
-  assert.equal(packet.gateRecommendation.RELEASE_READY, 'NOT_DECLARED');
+  assert.equal(packet.gateRecommendation.PACKAGE_PASS, 'PASS_FACTUAL_UPDATED_ARCHIVE_BYTES_AND_MEMBERS');
+  assert.equal(packet.gateRecommendation.SECURITY_ADVISORIES_PASS, 'BLOCKED_UNCONFIRMED_DEPENDENCY_SNAPSHOT');
+  assert.equal(packet.gateRecommendation.RELEASE_READY, 'BLOCKED');
 
   const portraitPaths = new Set(packet.ownerConfirmation.additionalPortraitEvidenceRequired.map(item => item.sourcePath));
   assert.deepEqual([...portraitPaths].sort(), [

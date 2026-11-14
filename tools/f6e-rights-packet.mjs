@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { verifyArchiveReceipt } from './f6e-archive-verification.mjs';
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const readJson = filename => JSON.parse(fs.readFileSync(filename, 'utf8'));
@@ -26,6 +27,22 @@ function evidence(pathname, fragment, note) {
   return { path: pathname, ...(fragment ? { fragment } : {}), ...(note ? { note } : {}) };
 }
 
+function lineEndingProfile(bytes) {
+  let crlf = 0;
+  let lf = 0;
+  let bareCr = 0;
+  for (let index = 0; index < bytes.length; index += 1) {
+    if (bytes[index] === 0x0d) {
+      if (bytes[index + 1] === 0x0a) crlf += 1;
+      else bareCr += 1;
+    } else if (bytes[index] === 0x0a) {
+      lf += 1;
+    }
+  }
+  const normalized = Buffer.from(bytes.toString('utf8').replace(/\r\n?/g, '\n'));
+  return { crlf, lf, bareCr, normalizedTextSha256: sha256(normalized) };
+}
+
 const args = argumentsOf(process.argv.slice(2));
 const project = path.resolve(args.get('--project'));
 const repo = path.dirname(project);
@@ -37,6 +54,10 @@ const mobilePath = path.join(repo, 'docs', 'migration', 'm4-mobile-assets.json')
 const inventoryPath = path.join(repo, 'docs', 'migration', 'm4-assets-inventory.json');
 const narrativePath = path.join(project, 'narrative-assets.json');
 const paired = readJson(path.join(receiptRoot, 'paired.export.json'));
+const buildReceipts = new Map([
+  ['yandex-games', readJson(path.join(receiptRoot, 'yandex.build.json'))],
+  ['vk-games', readJson(path.join(receiptRoot, 'vk.build.json'))],
+]);
 const narrative = readJson(narrativePath);
 const mobile = readJson(mobilePath);
 const inventory = readJson(inventoryPath);
@@ -62,6 +83,41 @@ const derivations = new Map([...targetRows].map(([target, candidate]) => [
 const targetFiles = new Map([...targetRows].map(([target, candidate]) => [
   target, new Map(candidate.files.map(file => [file.path, file])),
 ]));
+
+if (paired.schemaVersion !== 1 || !Array.isArray(paired.sourceFiles) || paired.sourceFiles.length === 0 ||
+    targetRows.size !== 2 || !targetRows.has('yandex-games') || !targetRows.has('vk-games')) {
+  throw new Error('F6E_EXPORT_RECEIPT_INVALID: paired export must contain both platform candidates and source files');
+}
+
+const verifiedArchives = new Map();
+for (const [target, candidate] of targetRows) {
+  const archivePath = path.join(receiptRoot, target === 'yandex-games' ? 'yandex.zip' : 'vk.zip');
+  verifiedArchives.set(target, verifyArchiveReceipt({
+    archivePath,
+    candidate,
+    buildReceipt: buildReceipts.get(target),
+    target,
+    sourceRoot: project,
+    sourceFiles: paired.sourceFiles,
+  }));
+}
+
+const noticePaths = ['assets/fonts/OFL-CormorantGaramond.txt', 'assets/fonts/OFL-Manrope.txt'];
+const noticeReproducibility = Object.fromEntries(noticePaths.map(noticePath => {
+  const sourceBytes = fs.readFileSync(path.join(project, noticePath));
+  const archives = Object.fromEntries([...verifiedArchives].map(([target, archive]) => {
+    const member = archive.contents.get(noticePath);
+    if (!member || !member.equals(sourceBytes)) {
+      throw new Error(`F6E_NOTICE_SOURCE_MISMATCH: ${noticePath} in ${target}`);
+    }
+    return [target, { sha256: sha256(member), bytes: member.length, lineEndings: lineEndingProfile(member) }];
+  }));
+  return [noticePath, {
+    source: { sha256: sha256(sourceBytes), bytes: sourceBytes.length, lineEndings: lineEndingProfile(sourceBytes) },
+    archives,
+    exactByteMatch: true,
+  }];
+}));
 
 function sourceForTarget(target, targetPath) {
   const derivation = derivations.get(target)?.get(targetPath);
@@ -209,11 +265,12 @@ if (portraits.length !== 4) throw new Error(`Expected four unverified portraits,
 const targets = {};
 for (const [target, candidate] of targetRows) {
   const zipPath = path.join(receiptRoot, target.startsWith('yandex') ? 'yandex.zip' : 'vk.zip');
-  const members = candidate.files.map(file => ({ path: file.path, sha256: file.sha256, bytes: file.size }));
+  const archive = verifiedArchives.get(target);
+  const members = archive.files.map(file => ({ path: file.path, sha256: file.sha256, bytes: file.size }));
   targets[target] = {
     artifactPath: path.relative(repo, zipPath).replaceAll(path.sep, '/'),
-    archiveSha256: candidate.archiveSha256,
-    archiveBytes: fs.statSync(zipPath).size,
+    archiveSha256: archive.sha256,
+    archiveBytes: archive.bytes,
     expandedBytes: members.reduce((total, item) => total + item.bytes, 0),
     memberCount: members.length,
     members,
@@ -234,7 +291,11 @@ const packet = {
     buildObservation: {
       sourceWorktree: 'host-bound QA worktree at the exact source commit',
       noticesCopiedByteForByte: true,
-      note: 'The trusted QA checkout uses CRLF for the OFL notices while the clean closure worktree uses LF; the packet records the bytes actually admitted to the verified ZIPs and does not normalize them.',
+      noticeReproducibility: {
+        normalization: 'NONE',
+        notices: noticeReproducibility,
+        note: 'The verifier compares source and archive bytes exactly. A line-ending change changes the source/member SHA-256 and requires a fresh receipt; no normalization is performed.',
+      },
     },
     canonicalRightsManifest: {
       path: 'assets/provenance/rights-manifest.json',
@@ -268,10 +329,10 @@ const packet = {
     forbiddenGameZipMembers: ['lighthouse.svg', 'shoreline.svg', 'Web Helper vendored dependency'],
   },
   gateRecommendation: {
-    PACKAGE_PASS: 'ELIGIBLE_AFTER_THIS_PACKET_AND_ARCHIVE_RECEIPTS_ARE_REVIEWED',
+    PACKAGE_PASS: 'PASS_FACTUAL_UPDATED_ARCHIVE_BYTES_AND_MEMBERS',
     RIGHTS_PASS: 'BLOCKED_UNVERIFIED_OWNER_AND_PORTRAIT_EVIDENCE',
-    SECURITY_ADVISORIES_PASS: 'REUSE_ONLY_IF_DEPENDENCY_SNAPSHOT_IS_UNCHANGED',
-    RELEASE_READY: 'NOT_DECLARED',
+    SECURITY_ADVISORIES_PASS: 'BLOCKED_UNCONFIRMED_DEPENDENCY_SNAPSHOT',
+    RELEASE_READY: 'BLOCKED',
   },
 };
 
