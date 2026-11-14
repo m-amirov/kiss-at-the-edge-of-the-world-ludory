@@ -237,6 +237,11 @@ function readSource(sourceRoot, sourcePath) {
   return { bytes, sha256: sha256(bytes), size: bytes.length };
 }
 
+/**
+ * Resolve direct source/notice bindings only. Derived members are deliberately
+ * not accepted here: the authoritative source-derived decision comes from the
+ * injected trusted Ludory verifier below.
+ */
 function sourcePathForMember(memberPath, candidate, sourceMap) {
   if ((candidate.derivedFiles ?? []).some(file => file.path === memberPath) &&
       !FONT_MEMBER_NAMES.has(memberPath) && !FONT_NOTICE_NAMES.has(memberPath)) {
@@ -254,8 +259,14 @@ function sourcePathForMember(memberPath, candidate, sourceMap) {
   return { sourcePath, exact: !memberPath.endsWith('.css') };
 }
 
-/** Verify actual archive bytes, editable receipts, and source-bound direct members. */
-export function verifyArchiveReceipt({ archivePath, candidate, buildReceipt, target, sourceRoot, sourceFiles }) {
+/**
+ * Verify actual archive bytes, editable receipts, and direct source members.
+ * A caller must also provide the trusted source-derived verifier; ZIP/receipt
+ * hashes and source-file hashes alone are not sufficient evidence for derived
+ * members or generated entrypoints.
+ */
+export function verifyArchiveReceipt({ archivePath, candidate, buildReceipt, target, sourceRoot,
+  sourceFiles, sourceDerivedVerification }) {
   const inspected = inspectStoredArchive(archivePath, { target });
   if (!candidate || candidate.target !== target || path.resolve(candidate.archivePath ?? archivePath) !== path.resolve(archivePath) ||
       candidate.archiveSha256 !== inspected.sha256) {
@@ -296,6 +307,18 @@ export function verifyArchiveReceipt({ archivePath, candidate, buildReceipt, tar
     if (!source || !actual || !actual.equals(source.bytes)) {
       fail('SOURCE_MEMBER_MISMATCH', `${member.path} is not the source-derived byte sequence`);
     }
+  }
+  if (typeof sourceDerivedVerification !== 'function') {
+    fail('SOURCE_DERIVED_VERIFIER_REQUIRED', `${target} requires trusted source-derived verification`);
+  }
+  let sourceDerived;
+  try {
+    sourceDerived = sourceDerivedVerification({ target, archivePath, candidate, inspected });
+  } catch (error) {
+    fail('SOURCE_DERIVED_BLOCKED', `${target}: ${error?.message || 'trusted verifier failed'}`);
+  }
+  if (!sourceDerived || sourceDerived.status !== 'LOCAL_ARCHIVES_VERIFIED') {
+    fail('SOURCE_DERIVED_BLOCKED', `${target}: trusted source-derived verification did not pass`);
   }
   return inspected;
 }

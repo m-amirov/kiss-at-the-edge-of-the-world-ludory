@@ -71,6 +71,7 @@ function fixture(t) {
     ['assets/fonts/OFL-CormorantGaramond.txt', Buffer.from('cormorant notice')],
     ['assets/fonts/Manrope[wght].ttf', Buffer.from('manrope font')],
     ['assets/fonts/OFL-Manrope.txt', Buffer.from('manrope notice')],
+    ['assets/scenes/scene.png', Buffer.from('trusted PNG source')],
   ]);
   for (const [name, bytes] of sourceEntries) {
     const filename = path.join(sourceRoot, name);
@@ -83,6 +84,7 @@ function fixture(t) {
     ['assets/fonts/Manrope-wght.ttf', sourceEntries.get('assets/fonts/Manrope[wght].ttf')],
     ['assets/fonts/OFL-Manrope.txt', sourceEntries.get('assets/fonts/OFL-Manrope.txt')],
     ['assets/ludory-yandex.js', Buffer.from('runtime')],
+    ['assets/scene.webp', Buffer.from('trusted derived WebP')],
     ['index.html', Buffer.from('<!doctype html>')],
     ['ludory.project.json', Buffer.from(JSON.stringify({ schemaVersion: 1, id: 'fixture', version: '1.0.0', title: { ru: 'Fixture' }, engine: 'web', targets: ['yandex-games'] }))],
     ['src/main.js', Buffer.from('export default 1;')],
@@ -90,9 +92,26 @@ function fixture(t) {
   const archivePath = path.join(root, 'yandex.zip');
   fs.writeFileSync(archivePath, storedZip(entries));
   const inspected = inspectStoredArchive(archivePath, { target: 'yandex-games' });
-  const candidate = { target: 'yandex-games', archiveSha256: inspected.sha256, files: inspected.files };
+  const scenePng = sourceEntries.get('assets/scenes/scene.png');
+  const sceneWebp = entries.find(([name]) => name === 'assets/scene.webp')[1];
+  const candidate = {
+    target: 'yandex-games', archiveSha256: inspected.sha256, archiveBytes: inspected.bytes, files: inspected.files,
+    derivedFiles: inspected.files,
+    assetDerivations: [{
+      derivedPath: 'assets/scene.webp', derivedSha256: sha256(sceneWebp), derivedSize: sceneWebp.length,
+      sourcePath: 'assets/scenes/scene.png', sourceSha256: sha256(scenePng), sourceSize: scenePng.length,
+    }],
+  };
   const sourceFiles = [...sourceEntries].map(([name, bytes]) => ({ path: name, sha256: sha256(bytes), size: bytes.length }));
-  return { root, sourceRoot, archivePath, entries, candidate, sourceFiles };
+  const trustedDerivedFiles = inspected.files.map(file => ({ ...file }));
+  const sourceDerivedVerification = ({ inspected: current }) => ({
+    status: JSON.stringify(current.files) === JSON.stringify(trustedDerivedFiles)
+      ? 'LOCAL_ARCHIVES_VERIFIED' : 'BLOCKED',
+  });
+  return {
+    root, sourceRoot, archivePath, entries, candidate, sourceFiles, sourceDerivedVerification,
+    buildReceipt: { archivePath, sha256: inspected.sha256, files: inspected.files },
+  };
 }
 
 function writeArchive(fixtureData, entries) {
@@ -104,9 +123,32 @@ function receiptFor(archivePath, entries) {
   return { target: 'yandex-games', archiveSha256: inspected.sha256, files: inspected.files, entries };
 }
 
+function editableReceiptsFor(fixtureData) {
+  const inspected = inspectStoredArchive(fixtureData.archivePath, { target: 'yandex-games' });
+  return {
+    candidate: {
+      ...fixtureData.candidate,
+      archivePath: fixtureData.archivePath,
+      archiveSha256: inspected.sha256,
+      archiveBytes: inspected.bytes,
+      files: inspected.files,
+      derivedFiles: inspected.files,
+      derivedProjectSha256: sha256(Buffer.from(JSON.stringify(inspected.files))),
+    },
+    buildReceipt: { archivePath: fixtureData.archivePath, sha256: inspected.sha256, files: inspected.files },
+  };
+}
+
 function assertBlocked(run) {
   assert.throws(run, /F6E_|ZIP|archive|receipt|notice|source/i);
 }
+
+test('accepts the pristine archive only with trusted source-derived verification', t => {
+  const f = fixture(t);
+  verifyArchiveReceipt({ archivePath: f.archivePath, candidate: f.candidate, buildReceipt: f.buildReceipt,
+    target: 'yandex-games', sourceRoot: f.sourceRoot, sourceFiles: f.sourceFiles,
+    sourceDerivedVerification: f.sourceDerivedVerification });
+});
 
 test('rejects arbitrary bytes in place of a ZIP', t => {
   const f = fixture(t);
@@ -131,6 +173,28 @@ test('rejects a changed ZIP when receipts are unchanged', t => {
   writeArchive(f, entries);
   assertBlocked(() => verifyArchiveReceipt({ archivePath: f.archivePath, candidate: f.candidate,
     target: 'yandex-games', sourceRoot: f.sourceRoot, sourceFiles: f.sourceFiles }));
+});
+
+test('rejects replaced src/main.js when ZIP and all editable receipts are updated', t => {
+  const f = fixture(t);
+  const entries = f.entries.map(([name, bytes]) => [name,
+    name === 'src/main.js' ? Buffer.from('export default 2;') : bytes]);
+  writeArchive(f, entries);
+  const { candidate, buildReceipt } = editableReceiptsFor(f);
+  assertBlocked(() => verifyArchiveReceipt({ archivePath: f.archivePath, candidate, buildReceipt,
+    target: 'yandex-games', sourceRoot: f.sourceRoot, sourceFiles: f.sourceFiles,
+    sourceDerivedVerification: f.sourceDerivedVerification }));
+});
+
+test('rejects replaced derived WebP when ZIP and all editable receipts are updated', t => {
+  const f = fixture(t);
+  const entries = f.entries.map(([name, bytes]) => [name,
+    name === 'assets/scene.webp' ? Buffer.from('replacement derived WebP') : bytes]);
+  writeArchive(f, entries);
+  const { candidate, buildReceipt } = editableReceiptsFor(f);
+  assertBlocked(() => verifyArchiveReceipt({ archivePath: f.archivePath, candidate, buildReceipt,
+    target: 'yandex-games', sourceRoot: f.sourceRoot, sourceFiles: f.sourceFiles,
+    sourceDerivedVerification: f.sourceDerivedVerification }));
 });
 
 test('rejects a ZIP and receipts changed together when source-derived bytes disagree', t => {

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { verifyArchiveReceipt } from './f6e-archive-verification.mjs';
 
@@ -7,7 +8,7 @@ const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const readJson = filename => JSON.parse(fs.readFileSync(filename, 'utf8'));
 const sha = filename => sha256(fs.readFileSync(filename));
 const usage = () => {
-  throw new TypeError('Usage: f6e-rights-packet.mjs --project <game-studio> --receipts <dir> --output <file> --game-commit <sha> --ludory-commit <sha>');
+  throw new TypeError('Usage: f6e-rights-packet.mjs --project <game-studio> --receipts <dir> --output <file> --game-commit <sha> --ludory-commit <sha> --ludory-root <checkout>');
 };
 
 function argumentsOf(argv) {
@@ -18,7 +19,7 @@ function argumentsOf(argv) {
     if (!key?.startsWith('--') || !value || values.has(key)) usage();
     values.set(key, value);
   }
-  const required = ['--project', '--receipts', '--output', '--game-commit', '--ludory-commit'];
+  const required = ['--project', '--receipts', '--output', '--game-commit', '--ludory-commit', '--ludory-root'];
   if (required.some(key => !values.has(key))) usage();
   return values;
 }
@@ -50,6 +51,7 @@ const receiptRoot = path.resolve(args.get('--receipts'));
 const output = path.resolve(args.get('--output'));
 const gameCommit = args.get('--game-commit');
 const ludoryCommit = args.get('--ludory-commit');
+const ludoryRoot = path.resolve(args.get('--ludory-root'));
 const mobilePath = path.join(repo, 'docs', 'migration', 'm4-mobile-assets.json');
 const inventoryPath = path.join(repo, 'docs', 'migration', 'm4-assets-inventory.json');
 const narrativePath = path.join(project, 'narrative-assets.json');
@@ -89,6 +91,23 @@ if (paired.schemaVersion !== 1 || !Array.isArray(paired.sourceFiles) || paired.s
   throw new Error('F6E_EXPORT_RECEIPT_INVALID: paired export must contain both platform candidates and source files');
 }
 
+const trustedExporter = await import(pathToFileURL(path.join(
+  ludoryRoot, 'packages', 'studio', 'src', 'narrative-platform-export.mjs')));
+const sourcePlan = trustedExporter.planNarrativePlatformExport(project);
+if (!sourcePlan || sourcePlan.status !== 'READY_TO_DERIVE') {
+  throw new Error(`F6E_SOURCE_PLAN_BLOCKED: ${sourcePlan?.reasonCode || 'trusted Ludory source plan unavailable'}`);
+}
+const trustedSourceVerification = await trustedExporter.verifyNarrativePlatformCandidates({
+  exportReceipt: path.join(receiptRoot, 'paired.export.json'),
+  yandexZip: path.join(receiptRoot, 'yandex.zip'),
+  vkZip: path.join(receiptRoot, 'vk.zip'),
+  yandexBuildReceipt: path.join(receiptRoot, 'yandex.build.json'),
+  vkBuildReceipt: path.join(receiptRoot, 'vk.build.json'),
+}, sourcePlan);
+if (trustedSourceVerification.status !== 'LOCAL_ARCHIVES_VERIFIED') {
+  throw new Error(`F6E_SOURCE_DERIVED_BLOCKED: ${trustedSourceVerification.reasonCode || 'trusted verifier blocked'}`);
+}
+
 const verifiedArchives = new Map();
 for (const [target, candidate] of targetRows) {
   const archivePath = path.join(receiptRoot, target === 'yandex-games' ? 'yandex.zip' : 'vk.zip');
@@ -99,6 +118,7 @@ for (const [target, candidate] of targetRows) {
     target,
     sourceRoot: project,
     sourceFiles: paired.sourceFiles,
+    sourceDerivedVerification: () => trustedSourceVerification,
   }));
 }
 
@@ -296,6 +316,13 @@ const packet = {
         notices: noticeReproducibility,
         note: 'The verifier compares source and archive bytes exactly. A line-ending change changes the source/member SHA-256 and requires a fresh receipt; no normalization is performed.',
       },
+      sourceDerivedVerification: {
+        status: trustedSourceVerification.status,
+        sourceDigest: trustedSourceVerification.sourceDigest,
+        verifier: 'm-amirov/ludory:packages/studio/src/narrative-platform-export.mjs',
+        ludoryCommit,
+        note: 'Archives and editable receipts were accepted only after live source re-derivation and member comparison by the trusted Ludory verifier.',
+      },
     },
     canonicalRightsManifest: {
       path: 'assets/provenance/rights-manifest.json',
@@ -323,7 +350,7 @@ const packet = {
     additionalPortraitEvidenceRequired: portraits.map(row => ({ id: row.id, sourcePath: row.sourcePath, sourceSha256: row.sourceSha256, missing: row.blocker })),
   },
   mechanicalChecks: {
-    packageVerification: 'LOCAL_ARCHIVES_VERIFIED',
+    packageVerification: trustedSourceVerification.status,
     noticePaths: ['assets/fonts/OFL-CormorantGaramond.txt', 'assets/fonts/OFL-Manrope.txt'],
     noticePolicy: 'ONLY_EXACT_FONT_NOTICE_PATHS_ALLOWED; ARBITRARY_TXT_REJECTED_OR_NOT_LISTED',
     forbiddenGameZipMembers: ['lighthouse.svg', 'shoreline.svg', 'Web Helper vendored dependency'],

@@ -87,6 +87,13 @@
           }
         },
         "note": "The verifier compares source and archive bytes exactly. A line-ending change changes the source/member SHA-256 and requires a fresh receipt; no normalization is performed."
+      },
+      "sourceDerivedVerification": {
+        "status": "LOCAL_ARCHIVES_VERIFIED",
+        "sourceDigest": "1ed4155aefd65cf4e36ebbfcd1f1dd0050910974a8a6a63e397ddd40802d1442",
+        "verifier": "m-amirov/ludory:packages/studio/src/narrative-platform-export.mjs",
+        "ludoryCommit": "c91d56a51cfe0bb29897961d3f5cc61f0e43dae6",
+        "note": "Archives and editable receipts were accepted only after live source re-derivation and member comparison by the trusted Ludory verifier."
       }
     },
     "canonicalRightsManifest": {
