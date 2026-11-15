@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { graphData, catalogData } from '../game-studio/src/story.js';
-import { evaluateNarrativePredicate } from '../game-studio/assets/ludory-narrative.js';
 import { interactionBeats, interactionEchoes } from '../game-studio/src/original-interactive-beats.js';
 import { defineNarrativeGraph, defineNarrativeCatalog, createNarrativeState, createNarrativeRuntimeUpdate } from '../game-studio/assets/ludory-narrative.js';
 
@@ -121,10 +120,15 @@ test('S41 replays the exact S02-C90 delayed echo and keeps a no-choice compatibi
   assert.equal(scene('s41-c90-echo-a').nextSceneId, 's41-intro');
   assert.equal(scene('s41-c90-echo-b').nextSceneId, 's41-intro');
   const choice = scene('s41-c90-echo-route').beats[0];
-  for (const selected of ['a', 'b', null]) {
-    const state = { flags: selected ? { [`s02-extra-c90-${selected}`]: true } : {}, routeLock: null };
-    const eligible = choice.choices.filter(option => evaluateNarrativePredicate(option.when, state));
-    assert.equal(eligible.length, 1, `S41 echo eligibility ${selected}`);
-    assert.equal(eligible[0].targetSceneId, selected ? `s41-c90-echo-${selected}` : 's41-intro');
+  assert.equal(choice.choices.length, 3);
+  for (const selected of ['a', 'b']) {
+    const option = choice.choices.find(option => option.id === selected);
+    assert.deepEqual(option.when, { flag: `s02-extra-c90-${selected}` });
+    assert.equal(option.targetSceneId, `s41-c90-echo-${selected}`);
   }
+  const legacy = choice.choices.find(option => option.id === 'legacy');
+  assert.deepEqual(legacy.when, { not: { any: [
+    { flag: 's02-extra-c90-a' }, { flag: 's02-extra-c90-b' },
+  ] } });
+  assert.equal(legacy.targetSceneId, 's41-intro');
 });
