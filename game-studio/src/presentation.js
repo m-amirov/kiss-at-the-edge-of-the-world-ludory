@@ -514,6 +514,38 @@ export const presentationData = {
         "ru": "Водопад Скоугафосс и пешеходная тропа",
         "en": "Skógafoss waterfall and walking trail"
       }
+    },
+    "s13-skaftafell-travelers": {
+      "kind": "cg",
+      "src": "assets/vis-s13-skaftafell-travelers.webp",
+      "alt": {
+        "ru": "Путешественники на тропе Скафтафетля",
+        "en": "Travelers on a Skaftafell trail"
+      }
+    },
+    "s15-jokulsarlon-lagoon": {
+      "kind": "background",
+      "src": "assets/vis-s15-jokulsarlon-lagoon.webp",
+      "alt": {
+        "ru": "Ледниковая лагуна Йёкюльсаурлоун",
+        "en": "Jökulsárlón glacial lagoon"
+      }
+    },
+    "s18-hofn-harbour": {
+      "kind": "background",
+      "src": "assets/vis-s18-hofn-harbour.webp",
+      "alt": {
+        "ru": "Гавань Höfn",
+        "en": "Höfn harbor"
+      }
+    },
+    "s18-hofn-dance-lights": {
+      "kind": "cg",
+      "src": "assets/vis-s18-hofn-dance-lights.webp",
+      "alt": {
+        "ru": "Танец у гавани Höfn",
+        "en": "A dance by Höfn harbor"
+      }
     }
   },
   "beats": {
@@ -1209,9 +1241,10 @@ export const presentationData = {
     ],
     "s13-intro-13": [
       {
-        "id": "neutral-s13-intro-13-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "source-restored-skaftafell-notebook",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1232,10 +1265,8 @@ export const presentationData = {
     ],
     "s15-intro-06": [
       {
-        "id": "neutral-s15-intro-06-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-jokulsarlon-lagoon",
+        "background": "s15-jokulsarlon-lagoon"
       }
     ],
     "s16-intro-02": [
@@ -1267,26 +1298,23 @@ export const presentationData = {
     ],
     "s18-intro-06": [
       {
-        "id": "neutral-s18-intro-06-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-hofn-lighthouse",
+        "background": "s18-hofn-harbour"
       }
     ],
     "s18-intro-36": [
       {
-        "id": "neutral-s18-intro-36-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "source-restored-hofn-dance",
+        "cg": {
+          "mediaId": "s18-hofn-dance-lights",
+          "mode": "replace-stage"
         }
       }
     ],
     "s18-intro-40": [
       {
-        "id": "neutral-s18-intro-40-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-hofn-walk-back",
+        "background": "s18-hofn-harbour"
       }
     ],
     "s18-common-02": [
