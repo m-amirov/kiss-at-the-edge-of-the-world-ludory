@@ -74,6 +74,10 @@
       "path": "assets/vis-s12-vik-street-day.png",
       "sha256": "31cbbebd5a782f5f0cfbb77495ef39cee2fbb14939feed6f44deea25c7b4b770"
     },
+    "s13-skaftafell-travelers": {
+      "path": "assets/vis-s13-skaftafell-travelers.webp",
+      "sha256": "c6883632633276f0882ad1c532dd659762e0917f95d485df6f11718c40d809c2"
+    },
     "s13-skaftafell-visitor-parking": {
       "path": "assets/vis-s13-skaftafell-visitor-parking.png",
       "sha256": "2b7425c0b1a6da2e03a78cd88ad07a5974c509530ea9cdacffa8c89674a782e7"
@@ -85,6 +89,10 @@
     "s14-skaftafell-pace": {
       "path": "assets/vis-s14-skaftafell-pace.png",
       "sha256": "e13e3a9296cea4cb8eef1dddcfa0c734bd0391f5a4f6e1fa5cc44c60d822406e"
+    },
+    "s15-jokulsarlon-lagoon": {
+      "path": "assets/vis-s15-jokulsarlon-lagoon.webp",
+      "sha256": "0721cc3745cc93d3e44d04672130fab45b20bd5a843c7417a1853c270dfcd406"
     },
     "s15-jokulsarlon-parking-day": {
       "path": "assets/vis-s15-jokulsarlon-parking-day.png",
@@ -109,6 +117,14 @@
     "s18-hofn-breakfast-morning": {
       "path": "assets/vis-s18-hofn-breakfast-morning.png",
       "sha256": "c9ce23e9e1e82fdd2bc521a0b3501d5f76715b64e300dfc3e4be98fa8ddc2c8d"
+    },
+    "s18-hofn-dance-lights": {
+      "path": "assets/vis-s18-hofn-dance-lights.webp",
+      "sha256": "e30079bce0c42a8bc4c713c220e76901c1c7b343000b12f0f9fa2c4ae183ae39"
+    },
+    "s18-hofn-harbour": {
+      "path": "assets/vis-s18-hofn-harbour.webp",
+      "sha256": "e3da7e44e1407cbb615f46d1d541dfd581daed64429fe01249660344d70bab94"
     },
     "s18-hofn-room-morning": {
       "path": "assets/vis-s18-hofn-room-morning.png",
