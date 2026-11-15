@@ -2754,6 +2754,144 @@ export const presentationData = {
         "id": "original-s05-c91-continuity",
         "background": "s05-hveragerdi-road"
       }
+    ],
+    "s06-c90-prompt": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-choice": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-answer-a-01": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-answer-b-01": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-prompt": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-choice": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-answer-a-01": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-answer-b-01": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s07-c90-prompt": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-choice": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-answer-a-01": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-answer-b-01": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-prompt": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-choice": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-answer-a-01": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-answer-b-01": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-s07-c90-echo-a-01": [
+      {
+        "id": "source-restored-s08-echo",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-s07-c90-echo-b-01": [
+      {
+        "id": "source-restored-s08-echo",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
     ]
   }
 };

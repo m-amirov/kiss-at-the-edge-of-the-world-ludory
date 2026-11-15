@@ -261,3 +261,83 @@ export function originalS04AndS05ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/**
+ * Original S06/S07 C90/C91 authored choices. These are compatibility
+ * scene-boundary inserts: exact *prose* is restored, while paragraph placement
+ * and legacy-save timing still require a separate fidelity migration.
+ *
+ * The S07 C90 answer is remembered for the authentic delayed S08 breakfast
+ * reaction. No invented affinity values or premium decisions are introduced.
+ */
+export function originalS06AndS07ExtraScenes({ t, beats }) {
+  const echo = interactionEchoes.S08?.find(item => item[0] === 'S07-C90');
+  if (!echo || echo.length !== 3) {
+    throw new Error('Pinned original S07-C90 delayed response missing at S08');
+  }
+  function authoredChoice(sourceId, index) {
+    const choices = interactionBeats[sourceId];
+    if (choices?.length !== 2) throw new Error('Pinned interaction source missing: ' + sourceId);
+    const original = choices[index];
+    if (original.options?.map(option => option.code).join(',') !== 'A,B') {
+      throw new Error('Pinned interaction options changed for ' + sourceId);
+    }
+    const name = sourceId.toLowerCase() + '-c' + (90 + index);
+    const next = index === 0 ? sourceId.toLowerCase() + '-c91' :
+      sourceId === 'S06' ? 's07-intro' : 's08-s07-c90-echo-route';
+    return [
+      {
+        id: name,
+        beats: [
+          { id: name + '-prompt', type: 'dialogue', text: t(original.question) },
+          {
+            id: name + '-choice', type: 'choice',
+            choices: original.options.map(option => {
+              const code = option.code.toLowerCase();
+              return {
+                id: code, label: t(option.label),
+                targetSceneId: name + '-answer-' + code,
+                ...(sourceId === 'S07' && index === 0 ? {
+                  effects: [{ op: 'flag_set', id: 's07-extra-c90-' + code, value: true }],
+                } : {}),
+              };
+            }),
+          },
+        ],
+      },
+      ...original.options.map(option => {
+        const id = name + '-answer-' + option.code.toLowerCase();
+        return { id, beats: beats(id, option.text), nextSceneId: next };
+      }),
+    ];
+  }
+  return [
+    ...authoredChoice('S06', 0),
+    ...authoredChoice('S06', 1),
+    ...authoredChoice('S07', 0),
+    ...authoredChoice('S07', 1),
+    {
+      id: 's08-s07-c90-echo-route',
+      beats: [{
+        id: 's08-s07-c90-echo-dispatch', type: 'choice',
+        choices: [
+          ...['a', 'b'].map(code => ({
+            id: code, label: t('Продолжить'),
+            when: { flag: 's07-extra-c90-' + code },
+            targetSceneId: 's08-s07-c90-echo-' + code,
+          })),
+          {
+            id: 'legacy', label: t('Продолжить'),
+            when: { not: { any: [
+              { flag: 's07-extra-c90-a' },
+              { flag: 's07-extra-c90-b' },
+            ] } },
+            targetSceneId: 's08-intro',
+          },
+        ],
+      }],
+    },
+    { id: 's08-s07-c90-echo-a', beats: beats('s08-s07-c90-echo-a', echo[1]), nextSceneId: 's08-intro' },
+    { id: 's08-s07-c90-echo-b', beats: beats('s08-s07-c90-echo-b', echo[2]), nextSceneId: 's08-intro' },
+  ];
+}

@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -436,8 +436,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-map-music', value: true }] },
     ] },
   ] },
-  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's07-intro' },
-  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's07-intro' },
+  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's06-c90' },
+  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's06-c90' },
   { id: 's07-intro', beats: [
     ...beats('s07-intro', s07Intro),
     // Optional S05 Nick callback; no prose is added for weather choice Erik/Damir.
@@ -498,8 +498,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-map-music' } },
     ] },
   ] },
-  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's08-intro' },
-  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's08-intro' },
+  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's07-c90' },
+  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's07-c90' },
   { id: 's08-intro', beats: [
     ...beats('s08-intro', s08Intro),
     { id: 's08-weather-dispatch', type: 'choice', choices: [
@@ -2687,6 +2687,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS41EchoScenes({ t, beats }),
   ...originalS65AndS03ExtraScenes({ t, beats }),
   ...originalS04AndS05ExtraScenes({ t, beats }),
+  ...originalS06AndS07ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
