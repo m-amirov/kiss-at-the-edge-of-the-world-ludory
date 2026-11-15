@@ -93,41 +93,84 @@ async function advanceToSeatChoice(page) {
 // Follow the actual authored graph. A target-specific override is required for
 // branch coverage; all other free choices take their first authored option.
 async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
-  for (let index = 0; index < 2500; index++) {
-    const panel = page.locator('.ludory-narrative__panel');
-    const beatId = await panel.getAttribute('data-beat-id');
-    if (beatId === targetBeatId) return;
-    if (index > 0 && index % 250 === 0) console.log(`M4_BROWSER_ROUTE_PROGRESS: target=${targetBeatId} step=${index} current=${beatId}`);
-    const next = page.locator('button[data-action^="narrative:next:"]');
-    if (await next.count() === 1) {
-      await next.evaluate(button => button.click()); // Route setup is not a user interaction assertion.
-    } else {
-      const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
-      assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
-      if (['s01-c90-choice', 's01-c91-choice', 's02-c90-choice', 's02-c91-choice',
-        's65-c90-choice', 's65-c91-choice', 's03-c90-choice', 's03-c91-choice',
-        's04-c90-choice', 's04-c91-choice', 's05-c90-choice', 's05-c91-choice',
-        's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice',
-        's08-c90-choice', 's08-c91-choice', 's66-c90-choice', 's66-c91-choice',
-        's09-c90-choice', 's09-c91-choice'].includes(beatId)) {
-        assert.equal(await choices.count(), 2, `${beatId}: both restored authored choices must render`);
-        for (const choice of await choices.all()) {
-          assert.equal(await choice.isVisible(), true, `${beatId}: choice hidden by reader UI`);
-          assert.equal(await choice.isEnabled(), true, `${beatId}: choice disabled`);
+  // Route setup remains a real rendered-browser journey with real native game
+  // action buttons. Batch the steps *inside Chromium* so 2,000 dialogue beats
+  // don't require 5-6 remote Playwright operations apiece. Keep separate
+  // screenshot / decode / user gesture checks at actual QA targets.
+  const restoredChoices = [
+    's01-c90-choice', 's01-c91-choice', 's02-c90-choice', 's02-c91-choice',
+    's65-c90-choice', 's65-c91-choice', 's03-c90-choice', 's03-c91-choice',
+    's04-c90-choice', 's04-c91-choice', 's05-c90-choice', 's05-c91-choice',
+    's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice',
+    's08-c90-choice', 's08-c91-choice', 's66-c90-choice', 's66-c91-choice',
+    's09-c90-choice', 's09-c91-choice',
+  ];
+  const settings = {
+    targetBeatId,
+    overrides: Object.fromEntries(choiceOverrides),
+    restoredChoices,
+  };
+  // Bound every batch to prevent infinite in-page loops and preserve progress.
+  for (let batch = 0; batch < 10; batch++) {
+    const result = await page.evaluate(async ({ targetBeatId, overrides, restoredChoices }) => {
+      const important = new Set(restoredChoices);
+      const panel = () => document.querySelector('.ludory-narrative__panel');
+      const step = () => panel()?.dataset.beatId;
+      const changed = (before, button) => new Promise((resolve, reject) => {
+        const root = document.querySelector('#game');
+        if (!root) return reject(new Error('Missing native game mount'));
+        let done = false;
+        let timer;
+        const finish = error => {
+          if (done) return;
+          done = true;
+          observer.disconnect();
+          clearTimeout(timer);
+          if (error) reject(error);
+          else resolve();
+        };
+        const check = () => { if (step() && step() !== before) finish(); };
+        const observer = new MutationObserver(check);
+        observer.observe(root, { subtree: true, childList: true, attributes: true, attributeFilter: ['data-beat-id'] });
+        timer = setTimeout(() => finish(new Error('Native UI stalled at ' + before)), 5000);
+        try {
+          button.click();
+          check();
+        } catch (error) { finish(error); }
+      });
+      for (let offset = 0; offset < 250; offset++) {
+        const beatId = step();
+        if (beatId === targetBeatId) return { reached: true, steps: offset, current: beatId };
+        if (!beatId) throw new Error('Native narrative beat missing on route to ' + targetBeatId);
+        const next = document.querySelectorAll('button[data-action^="narrative:next:"]');
+        if (next.length === 1) {
+          await changed(beatId, next[0]);
+          continue;
         }
+        const choices = [...document.querySelectorAll('button[data-action^="narrative:choose:' + beatId + ':"]')];
+        if (!choices.length) throw new Error('No native action at ' + beatId + ', target ' + targetBeatId);
+        if (important.has(beatId)) {
+          if (choices.length !== 2 ||
+              choices.some(button => button.disabled || !button.getClientRects().length)) {
+            throw new Error('Original player choice not visible/enabled at ' + beatId);
+          }
+        }
+        const override = overrides[beatId];
+        const choice = Number.isInteger(override) ? choices[override] :
+          typeof override === 'string'
+            ? choices.find(button => button.dataset.action === 'narrative:choose:' + beatId + ':' + override)
+            : choices[0];
+        if (!choice || choice.disabled) {
+          throw new Error('Invalid/disabled authored choice ' + beatId + ' ' + String(override));
+        }
+        await changed(beatId, choice);
       }
-      const optionOverride = choiceOverrides.get(beatId);
-      const choice = Number.isInteger(optionOverride)
-        ? choices.nth(optionOverride)
-        : optionOverride
-          ? page.locator(`button[data-action="narrative:choose:${beatId}:${optionOverride}"]`)
-        : choices.first();
-      assert.equal(await choice.count(), 1, `Expected authored choice ${beatId}:${optionOverride ?? 'first'}`);
-      await choice.click();
-    }
-    await waitForBeatChange(page, beatId);
+      return { reached: false, steps: 250, current: step() };
+    }, settings);
+    if (result.reached) return;
+    console.log(`M4_BROWSER_ROUTE_PROGRESS: target=${targetBeatId} step=${(batch + 1) * 250} current=${result.current}`);
   }
-  assert.fail(`Narrative did not reach ${targetBeatId} within 300 interactions`);
+  assert.fail(`Narrative did not reach ${targetBeatId} within 2500 native actions`);
 }
 
 async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = null) {
