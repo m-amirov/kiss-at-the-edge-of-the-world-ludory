@@ -384,3 +384,47 @@ export function originalS08S66S09ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/**
+ * The original S10/S11 C90/C91 authored reflective choices; the original
+ * S11 water-safety consent C1 is unchanged and always runs BEFORE these
+ * compatibility inserts. C90/C91 are FREE, without affinity/route mutations.
+ * Original questions, choices, and response prose come from the pinned source.
+ *
+ * Paragraph-level fidelity remains pending; these are currently inserted
+ * between canonical scene units so old beat IDs remain intact.
+ */
+export function originalS10AndS11ExtraScenes({ t, beats }) {
+  const continuations = { S10: 's11-intro', S11: 's12-intro' };
+  return ['S10', 'S11'].flatMap(sourceId => {
+    const decisions = interactionBeats[sourceId];
+    if (decisions?.length !== 2 ||
+        decisions.some(item => item.options?.map(option => option.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned interactive decision source changed: ' + sourceId);
+    }
+    return decisions.flatMap((item, index) => {
+      const name = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : continuations[sourceId];
+      return [
+        {
+          id: name,
+          beats: [
+            { id: name + '-prompt', type: 'dialogue', text: t(item.question) },
+            {
+              id: name + '-choice',
+              type: 'choice',
+              choices: item.options.map(option => ({
+                id: option.code.toLowerCase(), label: t(option.label),
+                targetSceneId: name + '-answer-' + option.code.toLowerCase(),
+              })),
+            },
+          ],
+        },
+        ...item.options.map(option => {
+          const answerId = name + '-answer-' + option.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, option.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}

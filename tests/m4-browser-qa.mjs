@@ -104,6 +104,7 @@ async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
     's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice',
     's08-c90-choice', 's08-c91-choice', 's66-c90-choice', 's66-c91-choice',
     's09-c90-choice', 's09-c91-choice',
+    's10-c90-choice', 's10-c91-choice', 's11-c90-choice', 's11-c91-choice',
   ];
   const settings = {
     targetBeatId,

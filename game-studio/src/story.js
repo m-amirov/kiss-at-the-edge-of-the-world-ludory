@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -606,7 +606,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's10-playful', beats: beats('s10-playful', s10Playful), nextSceneId: 's10-common' },
   { id: 's10-quiet', beats: beats('s10-quiet', s10Quiet), nextSceneId: 's10-common' },
-  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's11-intro' },
+  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's10-c90' },
   { id: 's11-intro', beats: [
     ...beats('s11-intro', s11Intro),
     // S04 camera consent chooses the opening callback, but cannot authorize new recording.
@@ -646,7 +646,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's11-safe-point', beats: beats('s11-safe-point', s11SafePoint), nextSceneId: 's11-common-b' },
   { id: 's11-leave-water', beats: beats('s11-leave-water', s11LeaveWater), nextSceneId: 's11-common-b' },
   { id: 's11-check-rules', beats: beats('s11-check-rules', s11CheckRules), nextSceneId: 's11-common-b' },
-  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's12-intro' },
+  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's11-c90' },
   { id: 's12-intro', beats: [
     ...beats('s12-intro', s12Intro),
     // The S08-C1 care decision changes only S12's corresponding authored callback.
@@ -2689,6 +2689,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS04AndS05ExtraScenes({ t, beats }),
   ...originalS06AndS07ExtraScenes({ t, beats }),
   ...originalS08S66S09ExtraScenes({ t, beats }),
+  ...originalS10AndS11ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
