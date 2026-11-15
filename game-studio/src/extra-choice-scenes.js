@@ -55,3 +55,79 @@ export function originalS01ExtraScenes({ t, beats }) {
     { id: 's02-c90-echo-b', beats: beats('s02-c90-echo-b', echoB), nextSceneId: 's02-road' },
   ];
 }
+
+
+/**
+ * Restore authored S02 C90/C91 decisions. The existing canonical S02 beats and
+ * their save IDs remain untouched; this compatibility insertion currently
+ * follows S02-common. Original in-scene timing remains an explicit parity debt.
+ */
+export function originalS02ExtraScenes({ t, beats }) {
+  const decisions = interactionBeats.S02;
+  if (decisions?.length !== 2 || interactionEchoes.S41?.[0]?.[0] !== 'S02-C90') {
+    throw new Error('Pinned S02 interaction or S41 echo changed; inspect source');
+  }
+  return decisions.flatMap((decision, index) => {
+    const number = 90 + index;
+    const sceneId = `s02-c${number}`;
+    const nextSceneId = index === 0 ? 's02-c91' : 's65-guesthouse';
+    return [
+      {
+        id: sceneId,
+        beats: [{
+          id: `${sceneId}-choice`, type: 'choice',
+          choices: decision.options.map(option => {
+            const code = option.code.toLowerCase();
+            return {
+              id: code, label: t(option.label),
+              targetSceneId: `${sceneId}-answer-${code}`,
+              ...(index === 0 ? {
+                effects: [{ op: 'flag_set', id: `s02-extra-c90-${code}`, value: true }],
+              } : {}),
+            };
+          }),
+        }],
+      },
+      ...decision.options.map(option => {
+        const answerId = `${sceneId}-answer-${option.code.toLowerCase()}`;
+        return { id: answerId, beats: beats(answerId, option.text), nextSceneId };
+      }),
+    ];
+  });
+}
+
+/**
+ * The authored S02-C90 delayed echo returns at the start of S41.
+ * A compatibility branch allows old saves from before the S02 restoration
+ * to reach unchanged S41 without guessing which choice the player made.
+ */
+export function originalS41EchoScenes({ t, beats }) {
+  const echo = interactionEchoes.S41?.find(([id]) => id === 'S02-C90');
+  if (!echo || echo.length !== 3) throw new Error('S41 pinned S02-C90 echo missing');
+  const [, answerA, answerB] = echo;
+  return [
+    {
+      id: 's41-c90-echo-route',
+      beats: [{
+        id: 's41-c90-echo-dispatch', type: 'choice',
+        choices: [
+          ...['a', 'b'].map(code => ({
+            id: code, label: t('Продолжить'),
+            when: { flag: `s02-extra-c90-${code}` },
+            targetSceneId: `s41-c90-echo-${code}`,
+          })),
+          {
+            id: 'legacy', label: t('Продолжить'),
+            when: { not: { any: [
+              { flag: 's02-extra-c90-a' },
+              { flag: 's02-extra-c90-b' },
+            ] } },
+            targetSceneId: 's41-intro',
+          },
+        ],
+      }],
+    },
+    { id: 's41-c90-echo-a', beats: beats('s41-c90-echo-a', answerA), nextSceneId: 's41-intro' },
+    { id: 's41-c90-echo-b', beats: beats('s41-c90-echo-b', answerB), nextSceneId: 's41-intro' },
+  ];
+}
