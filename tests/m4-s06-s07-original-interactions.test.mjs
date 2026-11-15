@@ -291,6 +291,7 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
         }
       }
   assert.ok(checkpointS10, 'Native S10 entry save missing after 64 original permutations');
+  let checkpointS12 = null;
   for (const a of ['a', 'b']) for (const b of ['a', 'b'])
     for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
       const route = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS10)));
@@ -337,6 +338,47 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
       assert.equal(resumed.state.narrative.flags[
         safety === 'b' ? 'beach-footage-none' : 'beach-footage-safe-only'], true);
       assert.equal(resumed.state.narrative.routeLock, null);
+      if ([a, b, c, e].every(value => value === 'a')) {
+        checkpointS12 = JSON.parse(JSON.stringify(resumed.state));
+      }
+    }
+
+  assert.ok(checkpointS12, 'Native S12 save missing after actual S10/S11 traversal');
+  for (const a of ['a', 'b']) for (const b of ['a', 'b'])
+    for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
+      const run = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS12)));
+      run.advance('s12-intro'); run.choose('s12-care-dispatch', 'warm');
+      run.advance('s12-care-warm'); run.advance('s12-common-a');
+      run.choose('s12-voice-dispatch', 'other');
+      run.advance('s12-voice-other'); run.advance('s12-common-b');
+      run.choose('s12-past-choice', 'listen');
+      run.advance('s12-past-listen'); run.advance('s12-common-c');
+      run.choose('s12-draft-choice', 'damir');
+      run.advance('s12-draft-damir'); run.advance('s12-common-d');
+      run.choose('s12-return-choice', 'chocolate'); run.advance('s12-return-chocolate');
+      run.advance('s12-c90'); run.choose('s12-c90-choice', a);
+      run.advance('s12-c90-answer-' + a);
+      run.advance('s12-c91'); run.choose('s12-c91-choice', b);
+      run.advance('s12-c91-answer-' + b);
+      const snapshot = JSON.parse(JSON.stringify(run.state));
+      const resumed = makeDriver(graph, catalog, snapshot);
+      resumed.advance('s13-intro'); resumed.choose('s13-voice-dispatch', 'eric');
+      resumed.advance('s13-voice-eric'); resumed.advance('s13-common-a');
+      resumed.choose('s13-work-choice', 'editor');
+      resumed.advance('s13-work-editor'); resumed.advance('s13-common-b');
+      resumed.choose('s13-return-dispatch', 'chocolate');
+      resumed.advance('s13-return-chocolate');
+      resumed.advance('s13-c90'); resumed.choose('s13-c90-choice', c);
+      resumed.advance('s13-c90-answer-' + c);
+      resumed.advance('s13-c91'); resumed.choose('s13-c91-choice', e);
+      resumed.advance('s13-c91-answer-' + e);
+      assert.equal(resumed.state.narrative.sceneId, 's14-intro',
+        [a,b,c,e].join('') + ': original S12/S13 response lost the S14 transition');
+      for (const flag of ['damir-past-listen', 'draft-shared-damir',
+        's12-return-chocolate', 'alice-leads-editor', 'skogafoss-voice-eric']) {
+        assert.equal(resumed.state.narrative.flags[flag], true, flag + ': canonical outcome lost');
+      }
+      assert.equal(resumed.state.narrative.routeLock, null);
     }
 });
 
@@ -381,4 +423,50 @@ test('S10/S11 extra choices exactly match authored source and preserve safety co
       }
     }
   }
+});
+
+test('S12/S13 original prompts, responses and source art remain exact', () => {
+  assert.doesNotThrow(() => defineNarrativeGraph(graphData));
+  assert.doesNotThrow(() => defineNarrativeCatalog(catalogData));
+  const expected = [
+    ['S12', 's13-intro', [
+      ['cg', 's12-vik-cafe-damir'], ['background', 's12-vik-street-day']]],
+    ['S13', 's14-intro', [
+      ['background', 's13-skaftafell-visitor-parking'], ['cg', 's13-skaftafell-travelers']]],
+  ];
+  for (const [sceneId, continuation, media] of expected) {
+    const original = interactionBeats[sceneId];
+    assert.equal(original.length, 2);
+    for (let index = 0; index < 2; index++) {
+      const id = sceneId.toLowerCase() + '-c' + (90 + index);
+      const node = scene(id);
+      assert.equal(node.beats[0].text.ru, original[index].question);
+      assert.equal(node.beats[1].type, 'choice');
+      assert.deepEqual(node.beats[1].choices.map(c => c.label.ru),
+        original[index].options.map(c => c.label));
+      assert.ok(node.beats[1].choices.every(c => !c.effects?.length),
+        'Unexpected paid or affinity choice '+ id);
+      for (const option of original[index].options) {
+        const answerId = id + '-answer-' + option.code.toLowerCase();
+        assert.equal(sourceText(answerId), option.text);
+        assert.equal(scene(answerId).nextSceneId,
+          index === 0 ? sceneId.toLowerCase() + '-c91' : continuation);
+      }
+      const [kind, artId] = media[index];
+      for (const beatId of [id + '-prompt', id + '-choice',
+        id + '-answer-a-01', id + '-answer-b-01']) {
+        const variant = presentationData.beats[beatId]?.[0];
+        assert.equal(kind === 'cg' ? variant?.cg?.mediaId : variant?.background,
+          artId, beatId + ': lost original art continuity');
+      }
+    }
+  }
+  for (const [sceneId, next] of Object.entries({
+    's12-return-chocolate': 's12-c90', 's12-return-alone': 's12-c90',
+    's13-return-chocolate': 's13-c90', 's13-return-alone': 's13-c90'
+  })) {
+    assert.equal(scene(sceneId).nextSceneId, next);
+  }
+  assert.equal(scene('s12-common-d').beats.at(-1).choices.length, 2);
+  assert.equal(scene('s13-common-a').beats.at(-1).choices.length, 2);
 });
