@@ -22,6 +22,10 @@
       "path": "assets/vis-s01-road-trip-van-interior.webp",
       "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd"
     },
+    "s04-thingvellir-trail": {
+      "path": "assets/vis-s04-thingvellir-trail.webp",
+      "sha256": "bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2"
+    },
     "s05-hveragerdi-road": {
       "path": "assets/vis-s05-hveragerdi-road.png",
       "sha256": "a01b6ca5147810cdb88faefc7187053027fd69105e976b7ad2f42a586a6d030f"
@@ -49,6 +53,10 @@
     "s09-guesthouse-to-skogafoss-morning": {
       "path": "assets/vis-s09-guesthouse-to-skogafoss-morning.png",
       "sha256": "f47a9a30b9668d4c50e466d914e2612dc45c61bfc4ba46b85a29ea686df91a49"
+    },
+    "s09-skogafoss-trail": {
+      "path": "assets/vis-s09-skogafoss-trail.webp",
+      "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b"
     },
     "s10-vik-guesthouse-arrival": {
       "path": "assets/vis-s10-vik-guesthouse-arrival.png",
