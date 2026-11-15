@@ -154,6 +154,7 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's15-jokulsarlon-lagoon': 'vis-s15-jokulsarlon-lagoon.webp',
       's18-hofn-harbour': 'vis-s18-hofn-harbour.webp',
       's08-guesthouse-strap': 'vis-s08-guesthouse-strap.png',
+      's66-hveragerdi-greenhouse': 'vis-s66-hveragerdi-greenhouse.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
@@ -720,6 +721,18 @@ async function main() {
       await assertPilotCue(desktop.page, 's08-s07-c90-echo-a-01', 'source-restored-s08-echo',
         'S07 decision recalled at S08', 's08-guesthouse-strap');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s08-original-c90-echo.png'), fullPage: true });
+      // Decode the actual restored scene artwork in a real browser, not just
+      // compare the generated source mapping against an asset manifest.
+      await advanceToBeat(desktop.page, 's08-c90-prompt');
+      await assertPilotCue(desktop.page, 's08-c90-prompt', 'original-s08-c90-art',
+        'S08 original care choice', 's08-guesthouse-strap');
+      await advanceToBeat(desktop.page, 's66-c90-prompt');
+      await assertPilotCue(desktop.page, 's66-c90-prompt', 'original-s66-c90-art',
+        'S66 original greenhouse choice', 's66-hveragerdi-greenhouse');
+      await advanceToBeat(desktop.page, 's09-c90-prompt');
+      await assertPilotCue(desktop.page, 's09-c90-prompt', 'original-s09-c90-art',
+        'S09 original waterfall choice', 's09-skogafoss-trail');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s09-original-c90-choice.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
