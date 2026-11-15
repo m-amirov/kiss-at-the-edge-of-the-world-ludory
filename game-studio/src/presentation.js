@@ -2658,6 +2658,102 @@ export const presentationData = {
         "id": "s65-delayed-recollection-guesthouse",
         "background": "guesthouse-morning"
       }
+    ],
+    "s04-c90-prompt": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-choice": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-answer-a-01": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-answer-b-01": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-prompt": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-choice": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-answer-a-01": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-answer-b-01": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s05-c90-prompt": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-choice": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-answer-a-01": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-answer-b-01": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-prompt": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-choice": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-answer-a-01": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-answer-b-01": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
     ]
   }
 };

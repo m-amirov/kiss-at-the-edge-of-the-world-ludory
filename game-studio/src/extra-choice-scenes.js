@@ -218,3 +218,46 @@ export function originalS65AndS03ExtraScenes({ t, beats }) {
     ...authoredDecision('S03', 1, 's04-intro'),
   ];
 }
+
+/**
+ * Restore the original S04/S05 C90/C91 authored alternatives and responses.
+ * Until a save-aware paragraph migration is available these form compatibility
+ * scene-boundary continuations; canonical IDs and original choice effects stay
+ * unchanged. No paid choices, inferred flags, or synthetic prose are added.
+ */
+export function originalS04AndS05ExtraScenes({ t, beats }) {
+  return ['S04', 'S05'].flatMap(sourceScene => {
+    const decisions = interactionBeats[sourceScene];
+    if (decisions?.length !== 2) {
+      throw new Error('Pinned additional decisions missing: ' + sourceScene);
+    }
+    return decisions.flatMap((original, index) => {
+      if (original.options?.length !== 2 ||
+          original.options.map(option => option.code).join(',') !== 'A,B') {
+        throw new Error('Pinned C90/C91 option schema changed: ' + sourceScene);
+      }
+      const name = sourceScene.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceScene.toLowerCase() + '-c91' :
+        sourceScene === 'S04' ? 's05-intro' : 's06-intro';
+      return [
+        {
+          id: name,
+          beats: [
+            { id: name + '-prompt', type: 'dialogue', text: t(original.question) },
+            {
+              id: name + '-choice', type: 'choice',
+              choices: original.options.map(option => ({
+                id: option.code.toLowerCase(), label: t(option.label),
+                targetSceneId: name + '-answer-' + option.code.toLowerCase(),
+              })),
+            },
+          ],
+        },
+        ...original.options.map(option => {
+          const answer = name + '-answer-' + option.code.toLowerCase();
+          return { id: answer, beats: beats(answer, option.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}

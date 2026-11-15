@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -384,8 +384,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's03-damir-silence' } },
     ] },
   ] },
-  { id: 's04-after-message', beats: beats('s04-after-message', s04AfterMessage), nextSceneId: 's05-intro' },
-  { id: 's04-after-silence', beats: beats('s04-after-silence', s04AfterSilence), nextSceneId: 's05-intro' },
+  { id: 's04-after-message', beats: beats('s04-after-message', s04AfterMessage), nextSceneId: 's04-c90' },
+  { id: 's04-after-silence', beats: beats('s04-after-silence', s04AfterSilence), nextSceneId: 's04-c90' },
   { id: 's05-intro', beats: [
     ...beats('s05-intro', s05Intro),
     { id: 's05-weather-choice', type: 'choice', choices: [
@@ -400,7 +400,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's05-nick', beats: beats('s05-nick', s05Nick), nextSceneId: 's05-common' },
   { id: 's05-erik', beats: beats('s05-erik', s05Erik), nextSceneId: 's05-common' },
   { id: 's05-damir', beats: beats('s05-damir', s05Damir), nextSceneId: 's05-common' },
-  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's06-intro' },
+  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's05-c90' },
   { id: 's06-intro', beats: [
     ...beats('s06-intro', s06Intro),
     // Branch derived from the earlier S05 weather decision; not a new paid/player choice.
@@ -2686,6 +2686,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS02ExtraScenes({ t, beats }),
   ...originalS41EchoScenes({ t, beats }),
   ...originalS65AndS03ExtraScenes({ t, beats }),
+  ...originalS04AndS05ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
