@@ -29,7 +29,7 @@ test('fresh Studio game is independently owned and consumes native presentation'
   assert.doesNotMatch(main, /defineEconomy|premiumChoice/);
   // Author-owned extensions are allowed, but the entire original graph's
   // authored beats, prose, conditions and branch effects must remain identical.
-  // The one permitted new transition enters the restored S01 C90/C91 chain.
+  // Redirects cover documented original C90/C91 compatibility chains, not rewritten canonical beats.
   const { graphData: baseline } = await import('../game/src/story.js');
   const { graphData: restored } = await import('../game-studio/src/story.js');
   const revised = new Map(restored.scenes.map(scene => [scene.id, scene]));
@@ -40,13 +40,16 @@ test('fresh Studio game is independently owned and consumes native presentation'
     const redirectedTransitions = {
       's01-common': 's01-c90',
       's02-common': 's02-c90',
+      's65-guesthouse': 's65-c90',
+      's03-message': 's03-c90',
+      's03-silence': 's03-c90',
       's60-common': 's41-c90-echo-route',
     };
     assert.equal(current.nextSceneId,
       redirectedTransitions[originalScene.id] ?? originalScene.nextSceneId,
       `unexpected canonical transition: ${originalScene.id}`);
   }
-  assert.equal(revised.size, baseline.scenes.length + 18, 'expected only the documented S01/S02 decisions and S41 echo');
+  assert.equal(revised.size, baseline.scenes.length + 33, 'expected only the documented S01/S02/S65/S03 decisions and delayed echoes');
   for (const file of ['src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
     assert.equal(ownership.files[file], undefined, `visual migration must not alter a managed component: ${file}`);
   }
