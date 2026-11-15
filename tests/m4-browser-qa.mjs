@@ -443,6 +443,38 @@ async function assertResponsiveSourceSwitch(page, mediaId, label) {
     mobileCgSources.has(mediaId) ? 'portrait' : 'desktop-fallback', `${label}: final responsive source mode`);
 }
 
+
+/**
+ * Use a real native Save at the pre-route decision as the snapshot for
+ * subsequent browser scenarios. This is Playwright storage-state cloning,
+ * not a forged narrative state or a shortcut around the actual game runtime.
+ */
+async function createPageFromCheckpoint(browser, name, viewport, checkpoint, beatId) {
+  assert.ok(checkpoint, name + ': missing native pre-route save');
+  const context = await browser.newContext({
+    viewport, deviceScaleFactor: 1, reducedMotion: 'reduce', storageState: checkpoint,
+  });
+  try {
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'networkidle' });
+    await page.locator('#original-home').waitFor();
+    assert.equal(await page.locator('#status').textContent(), 'Сохранение восстановлено',
+      name + ': narrative checkpoint was not restored');
+    assert.equal(await page.locator('#original-home').isVisible(), true);
+    await page.locator('[data-ui="continue-story"]').click();
+    const panel = page.locator('.ludory-narrative__panel');
+    await panel.waitFor();
+    assert.equal(await panel.getAttribute('data-beat-id'), beatId,
+      name + ': checkpoint loaded at wrong narrative position');
+    return { context, page, errors };
+  } catch (error) {
+    await context.close();
+    throw error;
+  }
+}
+
 async function createPage(browser, name, viewport) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1, reducedMotion: 'reduce' });
   const page = await context.newPage();
@@ -734,9 +766,33 @@ async function main() {
       ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
         'visual-s39-alice-damir-walk-prelude-1', 'S39 pre-café street', 's39-alice-damir-cafe-walk'],
     ];
+    // A single real playthrough covers the chronological S04/S09/S13/S15/S18 art.
+    // Previously every target replayed 1,000+ native actions from the airport.
+    const scenicTargets = new Set(specialRoutes.slice(0, 6).map(([target]) => target));
+    const scenic = await createPage(browser, 'desktop-original-scenic-sequence', { width: 1440, height: 900 });
+    let routeCheckpoint = null;
+    try {
     for (const [target, routeChoice, extraOverrides, variant, label, media] of specialRoutes) {
-      const special = await createPage(browser, `desktop-${target}`, { width: 1440, height: 900 });
+      const scenicTarget = scenicTargets.has(target);
+      const special = scenicTarget ? scenic :
+        await createPageFromCheckpoint(browser, `desktop-${target}`, { width: 1440, height: 900 },
+          routeCheckpoint, 's17-evening-choice');
       try {
+        if (target === 's18-intro-06') {
+          // Save at the true native branch point, then reuse this exact
+          // snapshot for Nick, Damir, Alice and later CG routes.
+          await advanceToBeat(special.page, 's17-evening-choice');
+          await openReaderSettings(special.page);
+          await special.page.locator('#save').click();
+          await special.page.waitForFunction(() =>
+            document.querySelector('#status')?.textContent === 'Сохранено');
+          routeCheckpoint = await special.context.storageState();
+          assert.ok(routeCheckpoint.origins.some(origin => origin.localStorage.length > 0),
+            'Native pre-route save missing from browser storage state');
+          await special.page.locator('[data-ui="continue-story"]').click();
+          assert.equal(await special.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
+            's17-evening-choice', 'saving the route checkpoint must not consume a choice');
+        }
         const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
@@ -795,8 +851,9 @@ async function main() {
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s46-epilogue.png'), fullPage: true });
         }
         assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
-      } finally { await special.context.close(); }
+      } finally { if (!scenicTarget) await special.context.close(); }
     }
+    } finally { await scenic.context.close(); }
     process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 mobile/desktop, S38/S39 mobile/desktop, S44/S46→S48, fonts, image geometry, no JS errors\n');
   } finally {
     if (browser) await browser.close();
