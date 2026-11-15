@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { graphData } from '../game-studio/src/story.js';
@@ -42,9 +43,27 @@ test('original interactive choices have an explicit, non-regressing restoration 
 test('authored visual cues have a non-regressing source-to-media inventory', () => {
   assert.equal(sourceMap.sourceCommit, '1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c');
   assert.equal(sourceMap.entries.length, 91, 'pinned source cue inventory changed without review');
-  assert.ok(unresolvedArt.length <= 23, 'previously admitted original art source was lost');
+  assert.ok(unresolvedArt.length <= 21, 'previously admitted original art source was lost');
   for (const entry of sourceVisuals.filter(entry => entry.admittedMediaId)) {
     assert.ok(presentationData.media[entry.admittedMediaId], `${entry.sourceSceneId}/${entry.sourceCueId}: admitted media missing`);
   }
   console.info(`ORIGINAL_GAME_FIDELITY_INCOMPLETE: resolved=${sourceVisuals.length - unresolvedArt.length}/${sourceVisuals.length} source-art cues; still neutral: ${unresolvedArt.map(e => `${e.sourceSceneId}/${e.sourceCueId}`).join(', ')}`);
+});
+
+test('restored S04/S09 scenic artwork is byte-identical to the pinned original Git blobs', () => {
+  for (const [sceneId, cueId, beatId, mediaId, file, sha256, gitBlob] of [
+    ['S04', 'thingvellir-trail', 's04-intro-05', 's04-thingvellir-trail',
+      'vis-s04-thingvellir-trail.webp', 'bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2', 'cc3fb0434a5365dc9a3981766211c13d695e0e1f'],
+    ['S09', 'skogafoss-trail', 's09-intro-09', 's09-skogafoss-trail',
+      'vis-s09-skogafoss-trail.webp', '277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b', '479fdc3a1c30c39ed9cc24b47c83945e2919a6c0'],
+  ]) {
+    const bytes = readFileSync(join(root, 'game-studio/assets', file));
+    const actualSha = createHash('sha256').update(bytes).digest('hex');
+    const actualGitBlob = createHash('sha1').update(Buffer.from(`blob ${bytes.length}\\0`)).update(bytes).digest('hex');
+    assert.equal(actualSha, sha256, `${mediaId} content SHA-256 drift`);
+    assert.equal(actualGitBlob, gitBlob, `${mediaId} differs from pinned original Git blob`);
+    assert.equal(sourceMap.entries.find(e => e.sourceSceneId === sceneId && e.sourceCueId === cueId)?.admittedMediaId, mediaId);
+    assert.equal(presentationData.media[mediaId].src, `assets/${file}`);
+    assert.equal(presentationData.beats[beatId][0].background, mediaId);
+  }
 });
