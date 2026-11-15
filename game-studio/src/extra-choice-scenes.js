@@ -32,7 +32,10 @@ export function originalS01ExtraScenes({ t, beats }) {
       beats: beats(`${targetPrefix}-${option.code.toLowerCase()}`, option.text),
       nextSceneId: continuation,
     }));
-    return [{ id, beats: [{ id: choiceId, type: 'choice', choices: options }] }, ...answers];
+    return [{ id, beats: [
+      { id: `${id}-prompt`, type: 'dialogue', text: t(data.question) },
+      { id: choiceId, type: 'choice', choices: options },
+    ] }, ...answers];
   }
   const echoDispatch = {
     id: 's02-c90-echo',
@@ -74,7 +77,9 @@ export function originalS02ExtraScenes({ t, beats }) {
     return [
       {
         id: sceneId,
-        beats: [{
+        beats: [
+          { id: `${sceneId}-prompt`, type: 'dialogue', text: t(decision.question) },
+          {
           id: `${sceneId}-choice`, type: 'choice',
           choices: decision.options.map(option => {
             const code = option.code.toLowerCase();
@@ -86,7 +91,8 @@ export function originalS02ExtraScenes({ t, beats }) {
               } : {}),
             };
           }),
-        }],
+          },
+        ],
       },
       ...decision.options.map(option => {
         const answerId = `${sceneId}-answer-${option.code.toLowerCase()}`;
