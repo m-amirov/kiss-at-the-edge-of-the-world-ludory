@@ -143,6 +143,8 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     const files = {
       's01-airport-arrivals': 'vis-s01-airport-arrivals.webp',
       's01-road-trip-van-interior': 'vis-s01-road-trip-van-interior.webp',
+      's04-thingvellir-trail': 'vis-s04-thingvellir-trail.webp',
+      's09-skogafoss-trail': 'vis-s09-skogafoss-trail.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
@@ -702,6 +704,10 @@ async function main() {
     } finally { await desktop.context.close(); }
 
     const specialRoutes = [
+      ['s04-intro-05', 0, new Map(),
+        'source-art-thingvellir-trail', 'original S04 Þingvellir image', 's04-thingvellir-trail'],
+      ['s09-intro-09', 0, new Map(),
+        'source-art-skogafoss-trail', 'original S09 Skógafoss image', 's09-skogafoss-trail'],
       ['s26-choice-nick-01', 0, new Map([['s26-route-choice', 1]]),
         'visual-s26-nick-choice-1', 'S26 Nick route', 's26-nick-choice'],
       ['s26-choice-damir-01', 0, new Map([['s26-route-choice', 2]]),
