@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -319,7 +319,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's02-people', beats: beats('s02-people', s02People), nextSceneId: 's02-common' },
   { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
   { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
-  { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's65-guesthouse' },
+  { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's02-c90' },
   { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's03-editorial' },
   { id: 's03-editorial', beats: [
     ...beats('s03-editorial', s03Intro),
@@ -2453,7 +2453,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's60-c1-b', beats: beats('s60-c1-b', s60.s60C1B), nextSceneId: 's60-common' },
   { id: 's60-c1-c', beats: beats('s60-c1-c', s60.s60C1C), nextSceneId: 's60-common' },
   { id: 's60-common', beats: beats('s60-common', s60.s60Common),
-    nextSceneId: 's41-intro' },
+    nextSceneId: 's41-c90-echo-route' },
   // Shared EP10 day 20. Existing S02 thesis selects exactly one authored
   // paragraph; there is no fallback for malformed/provenance-invalid saves.
   { id: 's41-intro', beats: beats('s41-intro', s41.s41Intro),
@@ -2683,6 +2683,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's47-ending', beats: [{ id: 's47-ending-beat', type: 'ending',
     endingId: 'alice', text: t('Конец сезона') }] },
   ...originalS01ExtraScenes({ t, beats }),
+  ...originalS02ExtraScenes({ t, beats }),
+  ...originalS41EchoScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];
