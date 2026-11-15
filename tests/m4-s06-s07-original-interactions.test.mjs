@@ -215,7 +215,7 @@ test('S08/S66/S09 source decisions, original answers and native visuals survive 
   assert.equal(scene('s09-intro').beats.at(-1).choices.length, 3);
 });
 
-test('64 S08/S66/S09 C90/C91 combinations preserve canonical branches up to S10', () => {
+test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical routes', () => {
   const graph = defineNarrativeGraph(graphData);
   const catalog = defineNarrativeCatalog(catalogData);
   const d = makeDriver(graph, catalog, reachS06(graph, catalog));
@@ -238,6 +238,7 @@ test('64 S08/S66/S09 C90/C91 combinations preserve canonical branches up to S10'
   d.choose('s08-s07-c90-echo-dispatch', 'a'); d.advance('s08-s07-c90-echo-a');
   assert.equal(d.state.narrative.sceneId, 's08-intro');
   const saved = JSON.parse(JSON.stringify(d.state));
+  let checkpointS10 = null;
 
   for (const a of ['a', 'b']) for (const b of ['a', 'b'])
     for (const c of ['a', 'b']) for (const e of ['a', 'b'])
@@ -285,5 +286,99 @@ test('64 S08/S66/S09 C90/C91 combinations preserve canonical branches up to S10'
         assert.equal(resumed.state.narrative.flags['weather-choice-nick'], true);
         assert.equal(resumed.state.narrative.flags['s07-extra-c90-a'], true);
         assert.equal(resumed.state.narrative.routeLock, null);
+        if ([a, b, c, e, f, g].every(value => value === 'a')) {
+          checkpointS10 = JSON.parse(JSON.stringify(resumed.state));
+        }
       }
+  assert.ok(checkpointS10, 'Native S10 entry save missing after 64 original permutations');
+  for (const a of ['a', 'b']) for (const b of ['a', 'b'])
+    for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
+      const route = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS10)));
+      route.advance('s10-intro');
+      route.choose('s10-seat-dispatch', 'eric');
+      route.advance('s10-seat-eric');
+      route.advance('s10-choice');
+      route.choose('s10-tone-choice', 'playful');
+      route.advance('s10-playful');
+      route.advance('s10-common');
+      route.advance('s10-c90');
+      route.choose('s10-c90-choice', a);
+      route.advance('s10-c90-answer-' + a);
+      route.advance('s10-c91');
+      route.choose('s10-c91-choice', b);
+      route.advance('s10-c91-answer-' + b);
+      route.advance('s11-intro');
+      route.choose('s11-consent-dispatch', 'accepted');
+      route.advance('s11-camera-accepted');
+      route.advance('s11-common-a');
+      // Exercise all three canonical water-safety outcomes without changing
+      // their flags or original consent semantics.
+      const safety = (a === 'a' && b === 'a') ? 'a' :
+        (c === 'b' && e === 'b') ? 'b' : 'c';
+      route.choose('s11-safety-choice', safety);
+      const safetyNode = {
+        a: 's11-safe-point', b: 's11-leave-water', c: 's11-check-rules',
+      }[safety];
+      route.advance(safetyNode);
+      route.advance('s11-common-b');
+      route.advance('s11-c90');
+      route.choose('s11-c90-choice', c);
+      route.advance('s11-c90-answer-' + c);
+      const save = JSON.parse(JSON.stringify(route.state));
+      const resumed = makeDriver(graph, catalog, save);
+      resumed.advance('s11-c91');
+      resumed.choose('s11-c91-choice', e);
+      resumed.advance('s11-c91-answer-' + e);
+      assert.equal(resumed.state.narrative.sceneId, 's12-intro',
+        [a,b,c,e].join('') + ': S11 choice lost its canonical S12 continuation');
+      assert.equal(resumed.state.narrative.flags['consent-camera-accepted'], true);
+      assert.equal(resumed.state.narrative.flags['eric-tone-playful'], true);
+      assert.equal(resumed.state.narrative.flags['skogafoss-voice-eric'], true);
+      assert.equal(resumed.state.narrative.flags[
+        safety === 'b' ? 'beach-footage-none' : 'beach-footage-safe-only'], true);
+      assert.equal(resumed.state.narrative.routeLock, null);
+    }
+});
+
+test('S10/S11 extra choices exactly match authored source and preserve safety consent', () => {
+  assert.doesNotThrow(() => defineNarrativeGraph(graphData));
+  assert.doesNotThrow(() => defineNarrativeCatalog(catalogData));
+  assert.equal(scene('s10-common').nextSceneId, 's10-c90');
+  assert.equal(scene('s11-common-b').nextSceneId, 's11-c90');
+  assert.equal(scene('s11-common-a').beats.at(-1).choices.length, 3,
+    'Existing canonical water safety choices were reduced or replaced');
+  for (const sourceId of ['S10', 'S11']) {
+    for (let index = 0; index < 2; index++) {
+      const original = interactionBeats[sourceId][index];
+      const id = sourceId.toLowerCase() + '-c' + (90 + index);
+      const sceneNode = scene(id);
+      assert.equal(sceneNode.beats[0].text.ru, original.question);
+      assert.deepEqual(sceneNode.beats[1].choices.map(choice => choice.label.ru),
+        original.options.map(option => option.label));
+      assert.equal(sceneNode.beats[1].choices.length, 2);
+      assert.ok(sceneNode.beats[1].choices.every(choice => !choice.effects?.length),
+        id + ': author reflective choice must not invent route/economy state');
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' :
+        sourceId === 'S10' ? 's11-intro' : 's12-intro';
+      for (const option of original.options) {
+        const answerId = id + '-answer-' + option.code.toLowerCase();
+        assert.equal(sourceText(answerId), option.text, 'Original prose changed: ' + answerId);
+        assert.equal(scene(answerId).nextSceneId, next);
+      }
+      for (const beatId of [
+        id + '-prompt', id + '-choice', id + '-answer-a-01', id + '-answer-b-01'
+      ]) {
+        const actual = presentationData.beats[beatId];
+        if (sourceId === 'S10') {
+          const image = index === 0 ? 's10-vik-road-song' : 's10-vik-guesthouse-arrival';
+          assert.equal(index === 0 ? actual?.[0]?.cg?.mediaId : actual?.[0]?.background,
+            image, beatId + ': pinned original S10 art was lost');
+        } else {
+          // The pinned source cue inventory has no S11 original image. A false
+          // S10 image pasted onto S11 would be worse than an honest neutral stage.
+          assert.equal(actual, undefined, beatId + ': falsely attributed image to S11');
+        }
+      }
+    }
+  }
 });
