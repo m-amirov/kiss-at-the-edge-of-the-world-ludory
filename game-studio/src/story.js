@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -707,8 +707,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's12-return-alone', value: true }] },
     ] },
   ] },
-  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's13-intro' },
-  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's13-intro' },
+  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's12-c90' },
+  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's12-c90' },
   { id: 's13-intro', beats: [
     ...beats('s13-intro', s13Intro),
     // The exact S09-C1 waterfall voice appears here in three distinct authored variants.
@@ -747,8 +747,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's12-return-alone' } },
     ] },
   ] },
-  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's14-intro' },
-  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's14-intro' },
+  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's13-c90' },
+  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's13-c90' },
   { id: 's14-intro', beats: [
     ...beats('s14-intro', s14Intro),
     // A historical S10-C1 tone selects one authored callback, not another choice.
@@ -2690,6 +2690,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS06AndS07ExtraScenes({ t, beats }),
   ...originalS08S66S09ExtraScenes({ t, beats }),
   ...originalS10AndS11ExtraScenes({ t, beats }),
+  ...originalS12AndS13ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

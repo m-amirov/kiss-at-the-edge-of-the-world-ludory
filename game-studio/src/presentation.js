@@ -3120,6 +3120,126 @@ export const presentationData = {
         "id": "restored-s10-c91-original",
         "background": "s10-vik-guesthouse-arrival"
       }
+    ],
+    "s12-c90-prompt": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-choice": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-answer-a-01": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-answer-b-01": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c91-prompt": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-choice": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-answer-a-01": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-answer-b-01": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s13-c90-prompt": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-choice": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-answer-a-01": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-answer-b-01": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c91-prompt": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-choice": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-answer-a-01": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-answer-b-01": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
     ]
   }
 };

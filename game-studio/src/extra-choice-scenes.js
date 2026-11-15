@@ -428,3 +428,41 @@ export function originalS10AndS11ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/** Authored S12/S13 reflective choices from pinned original source.
+ * Compatibility scene-boundary placement; true paragraph timing still pending.
+ * Canonical routes, consent, safety and all existing effects are unchanged.
+ */
+export function originalS12AndS13ExtraScenes({ t, beats }) {
+  const continuations = { S12: 's13-intro', S13: 's14-intro' };
+  return ['S12', 'S13'].flatMap(sourceId => {
+    const decisions = interactionBeats[sourceId];
+    if (decisions?.length !== 2 ||
+        decisions.some(d => d.options?.map(o => o.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned original S12/S13 decision source changed');
+    }
+    return decisions.flatMap((decision, index) => {
+      const id = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : continuations[sourceId];
+      return [
+        {
+          id,
+          beats: [
+            { id: id + '-prompt', type: 'dialogue', text: t(decision.question) },
+            {
+              id: id + '-choice', type: 'choice',
+              choices: decision.options.map(option => ({
+                id: option.code.toLowerCase(), label: t(option.label),
+                targetSceneId: id + '-answer-' + option.code.toLowerCase(),
+              })),
+            },
+          ],
+        },
+        ...decision.options.map(option => {
+          const answerId = id + '-answer-' + option.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, option.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}
