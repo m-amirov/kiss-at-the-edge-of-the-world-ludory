@@ -107,7 +107,9 @@ async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
       if (['s01-c90-choice', 's01-c91-choice', 's02-c90-choice', 's02-c91-choice',
         's65-c90-choice', 's65-c91-choice', 's03-c90-choice', 's03-c91-choice',
         's04-c90-choice', 's04-c91-choice', 's05-c90-choice', 's05-c91-choice',
-        's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice'].includes(beatId)) {
+        's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice',
+        's08-c90-choice', 's08-c91-choice', 's66-c90-choice', 's66-c91-choice',
+        's09-c90-choice', 's09-c91-choice'].includes(beatId)) {
         assert.equal(await choices.count(), 2, `${beatId}: both restored authored choices must render`);
         for (const choice of await choices.all()) {
           assert.equal(await choice.isVisible(), true, `${beatId}: choice hidden by reader UI`);

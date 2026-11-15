@@ -341,3 +341,46 @@ export function originalS06AndS07ExtraScenes({ t, beats }) {
     { id: 's08-s07-c90-echo-b', beats: beats('s08-s07-c90-echo-b', echo[2]), nextSceneId: 's08-intro' },
   ];
 }
+
+/**
+ * Recover all authored S08, S66 and S09 C90/C91 decisions from the pinned
+ * original interactive layer, preserving original answer paragraphs verbatim.
+ * Save-compatible scene-boundary insertion (paragraph timing parity TODO).
+ *
+ * S08 -> S66 -> S09 is the existing canonical chronological order. Neither
+ * the originals nor these compatibility interactions unlock routes or charge
+ * premium currency; route facts remain owned by canonical decisions.
+ */
+export function originalS08S66S09ExtraScenes({ t, beats }) {
+  const nextScene = Object.freeze({ S08: 's66-intro', S66: 's09-intro', S09: 's10-intro' });
+  return ['S08', 'S66', 'S09'].flatMap(sourceId => {
+    const originalChoices = interactionBeats[sourceId];
+    if (originalChoices?.length !== 2 ||
+        originalChoices.some(entry => entry.options?.map(opt => opt.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned interaction schema changed for ' + sourceId);
+    }
+    return originalChoices.flatMap((entry, index) => {
+      const id = sourceId.toLowerCase() + '-c' + (90 + index);
+      const continuation = index === 0 ? sourceId.toLowerCase() + '-c91' : nextScene[sourceId];
+      return [
+        {
+          id,
+          beats: [
+            { id: id + '-prompt', type: 'dialogue', text: t(entry.question) },
+            {
+              id: id + '-choice', type: 'choice',
+              choices: entry.options.map(opt => ({
+                id: opt.code.toLowerCase(), label: t(opt.label),
+                targetSceneId: id + '-answer-' + opt.code.toLowerCase(),
+              })),
+            },
+          ],
+        },
+        ...entry.options.map(opt => {
+          const answerId = id + '-answer-' + opt.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, opt.text), nextSceneId: continuation };
+        }),
+      ];
+    });
+  });
+}

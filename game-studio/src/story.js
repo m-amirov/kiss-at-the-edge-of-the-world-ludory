@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -521,9 +521,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'damir-care-personal', value: true }] },
     ] },
   ] },
-  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's66-intro' },
-  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's66-intro' },
-  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's66-intro' },
+  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's08-c90' },
+  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's08-c90' },
+  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's08-c90' },
   { id: 's66-intro', beats: [
     ...beats('s66-intro', s66Intro),
     // Ludory N1 conditional choices are technical Continue actions, not authored decisions.
@@ -553,7 +553,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's66-career-people', beats: beats('s66-career-people', s66CareerPeople), nextSceneId: 's66-common-b' },
   { id: 's66-career-place', beats: beats('s66-career-place', s66CareerPlace), nextSceneId: 's66-common-b' },
   { id: 's66-career-own', beats: beats('s66-career-own', s66CareerOwn), nextSceneId: 's66-common-b' },
-  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's09-intro' },
+  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's66-c90' },
   { id: 's09-intro', beats: [
     ...beats('s09-intro', s09Intro),
     { id: 's09-voice-choice', type: 'choice', choices: [
@@ -583,7 +583,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's09-career-people', beats: beats('s09-career-people', s09CareerPeople), nextSceneId: 's09-common-b' },
   { id: 's09-career-place', beats: beats('s09-career-place', s09CareerPlace), nextSceneId: 's09-common-b' },
   { id: 's09-career-own', beats: beats('s09-career-own', s09CareerOwn), nextSceneId: 's09-common-b' },
-  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's10-intro' },
+  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's09-c90' },
   { id: 's10-intro', beats: [
     ...beats('s10-intro', s10Intro),
     // Previously authored S01 seat preference chooses exactly one S10 callback.
@@ -2688,6 +2688,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS65AndS03ExtraScenes({ t, beats }),
   ...originalS04AndS05ExtraScenes({ t, beats }),
   ...originalS06AndS07ExtraScenes({ t, beats }),
+  ...originalS08S66S09ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

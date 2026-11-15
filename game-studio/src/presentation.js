@@ -2892,6 +2892,174 @@ export const presentationData = {
           "mode": "replace-stage"
         }
       }
+    ],
+    "s08-c90-prompt": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-choice": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-answer-a-01": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-answer-b-01": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-prompt": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-choice": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-answer-a-01": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-answer-b-01": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s66-c90-prompt": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-choice": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-answer-a-01": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-answer-b-01": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-prompt": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-choice": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-answer-a-01": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-answer-b-01": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s09-c90-prompt": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-choice": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-answer-a-01": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-answer-b-01": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-prompt": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-choice": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-answer-a-01": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-answer-b-01": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
     ]
   }
 };
