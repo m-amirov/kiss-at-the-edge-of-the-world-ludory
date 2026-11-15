@@ -104,7 +104,7 @@ async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
     } else {
       const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
       assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
-      if (beatId === 's01-c90-choice' || beatId === 's01-c91-choice') {
+      if (['s01-c90-choice', 's01-c91-choice', 's02-c90-choice', 's02-c91-choice'].includes(beatId)) {
         assert.equal(await choices.count(), 2, `${beatId}: both restored authored choices must render`);
         for (const choice of await choices.all()) {
           assert.equal(await choice.isVisible(), true, `${beatId}: choice hidden by reader UI`);
@@ -145,6 +145,10 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's01-road-trip-van-interior': 'vis-s01-road-trip-van-interior.webp',
       's04-thingvellir-trail': 'vis-s04-thingvellir-trail.webp',
       's09-skogafoss-trail': 'vis-s09-skogafoss-trail.webp',
+      's13-skaftafell-travelers': 'vis-s13-skaftafell-travelers.webp',
+      's15-jokulsarlon-lagoon': 'vis-s15-jokulsarlon-lagoon.webp',
+      's18-hofn-harbour': 'vis-s18-hofn-harbour.webp',
+      's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
@@ -421,6 +425,9 @@ async function assertResponsiveSourceSwitch(page, mediaId, label) {
     's39-alice-damir-cafe': 'vis-s39-alice-damir-cafe.png',
     's39-alice-damir-cafe-walk': 'vis-s39-alice-damir-cafe-walk.png',
   }[mediaId];
+  // Unpaired original WebPs use desktop sources at every viewport; decoded media
+  // is independently checked by captureMobileViewports().
+  if (!desktopFile) return;
   const portraitFile = mobileCgSources.get(mediaId) || desktopFile;
   for (const [viewport, expected] of [
     [{ width: 390, height: 844 }, portraitFile],
@@ -708,6 +715,14 @@ async function main() {
         'source-art-thingvellir-trail', 'original S04 Þingvellir image', 's04-thingvellir-trail'],
       ['s09-intro-09', 0, new Map(),
         'source-art-skogafoss-trail', 'original S09 Skógafoss image', 's09-skogafoss-trail'],
+      ['s13-intro-13', 0, new Map(),
+        'source-restored-skaftafell-notebook', 'original S13 Skaftafell CG', 's13-skaftafell-travelers'],
+      ['s15-intro-06', 0, new Map(),
+        'source-restored-jokulsarlon-lagoon', 'original S15 Jökulsárlón background', 's15-jokulsarlon-lagoon'],
+      ['s18-intro-06', 0, new Map(),
+        'source-restored-hofn-lighthouse', 'original S18 Höfn harbor', 's18-hofn-harbour'],
+      ['s18-intro-36', 0, new Map(),
+        'source-restored-hofn-dance', 'original S18 Höfn dance', 's18-hofn-dance-lights'],
       ['s26-choice-nick-01', 0, new Map([['s26-route-choice', 1]]),
         'visual-s26-nick-choice-1', 'S26 Nick route', 's26-nick-choice'],
       ['s26-choice-damir-01', 0, new Map([['s26-route-choice', 2]]),
