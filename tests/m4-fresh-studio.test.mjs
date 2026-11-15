@@ -67,7 +67,7 @@ test('fresh Studio game contains all approved visuals, with canonical proof', ()
   assert.ok(admitted.includes('vis-s02-roadside-cafe.png'));
   assert.ok(admitted.includes('vis-s03-guesthouse-morning.png'));
   assert.ok(admitted.includes('vis-s03-damir.png'));
-  assert.equal(Object.keys(manifest.assets).length, 64);
+  assert.equal(Object.keys(manifest.assets).length, 68);
   assert.ok(existsSync(join(studio, 'assets/vis-s01-airport-arrivals.webp')));
   assert.ok(existsSync(join(studio, 'assets/vis-s01-road-trip-van-interior.webp')));
   assert.deepEqual(Object.keys(authored.media).sort(), Object.keys(manifest.assets).sort());
