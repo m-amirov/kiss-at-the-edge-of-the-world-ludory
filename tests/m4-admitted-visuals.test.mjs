@@ -40,7 +40,7 @@ test('studio admits all 83 game images with byte-identical proof', () => {
     's13-skaftafell-travelers-original': 's13-skaftafell-travelers',
     's18-hofn-dance-lights-original': 's18-hofn-dance-lights',
   }[entry.id] ?? entry.id);
-  assert.equal(storyEntries.length, 68);
+  assert.equal(storyEntries.length, 83);
   for (const entry of storyEntries) {
     const id = mediaId(entry);
     assert.equal(entry.status, 'accepted', `${entry.id}: admission missing`);

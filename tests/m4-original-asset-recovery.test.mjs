@@ -76,7 +76,7 @@ test('all 58 provenance-matched candidates are admitted as original PNG bytes', 
 test('presentation contains every admitted story image and keeps authored route boundaries', () => {
   const byId = new Map(inventory.entries.map(entry => [entry.id, entry]));
   const admittedStory = [...byId.values()].filter(entry => entry.status === 'accepted' && entry.admittedProject === 'game-studio' && entry.role !== 'branding');
-  assert.equal(admittedStory.length, 68);
+  assert.equal(admittedStory.length, 83);
   assert.equal(Object.keys(presentationData.media).length, 83);
   for (const entry of admittedStory) {
     const match = mediaBySource.get(entry.admittedPath);
