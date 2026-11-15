@@ -2986,6 +2986,86 @@
         "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b",
         "verifiedOn": "2026-11-15"
       }
+    },
+    {
+      "id": "s13-skaftafell-travelers-original",
+      "role": "cg",
+      "path": "assets/cg/s13-skaftafell-travelers.webp",
+      "targetPath": "assets/cg/s13-skaftafell-travelers.webp",
+      "sourceBlobSha": "4de2c26229b02d40a07ef44d6c857cac953c24c9",
+      "sha256": "c6883632633276f0882ad1c532dd659762e0917f95d485df6f11718c40d809c2",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s13-skaftafell-travelers.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4de2c26229b02d40a07ef44d6c857cac953c24c9",
+        "sha256": "c6883632633276f0882ad1c532dd659762e0917f95d485df6f11718c40d809c2",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s15-jokulsarlon-lagoon",
+      "role": "background",
+      "path": "assets/backgrounds/jokulsarlon-master.webp",
+      "targetPath": "assets/backgrounds/jokulsarlon-master.webp",
+      "sourceBlobSha": "4bc84fbb304bdd94fe92b1818fa183479b7e5690",
+      "sha256": "0721cc3745cc93d3e44d04672130fab45b20bd5a843c7417a1853c270dfcd406",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s15-jokulsarlon-lagoon.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4bc84fbb304bdd94fe92b1818fa183479b7e5690",
+        "sha256": "0721cc3745cc93d3e44d04672130fab45b20bd5a843c7417a1853c270dfcd406",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s18-hofn-harbour",
+      "role": "background",
+      "path": "assets/backgrounds/s18-hofn-harbour.webp",
+      "targetPath": "assets/backgrounds/s18-hofn-harbour.webp",
+      "sourceBlobSha": "82e0162f4231d9627371f3083b0f6cc993c970ca",
+      "sha256": "e3da7e44e1407cbb615f46d1d541dfd581daed64429fe01249660344d70bab94",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s18-hofn-harbour.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "82e0162f4231d9627371f3083b0f6cc993c970ca",
+        "sha256": "e3da7e44e1407cbb615f46d1d541dfd581daed64429fe01249660344d70bab94",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s18-hofn-dance-lights-original",
+      "role": "cg",
+      "path": "assets/cg/s18-hofn-dance-lights.webp",
+      "targetPath": "assets/cg/s18-hofn-dance-lights.webp",
+      "sourceBlobSha": "2a5ec83de9d3682ae7b94c5159dc1f5d9aa606cd",
+      "sha256": "e30079bce0c42a8bc4c713c220e76901c1c7b343000b12f0f9fa2c4ae183ae39",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s18-hofn-dance-lights.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "2a5ec83de9d3682ae7b94c5159dc1f5d9aa606cd",
+        "sha256": "e30079bce0c42a8bc4c713c220e76901c1c7b343000b12f0f9fa2c4ae183ae39",
+        "verifiedOn": "2026-11-15"
+      }
     }
   ],
   "summary": {
