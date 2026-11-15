@@ -2422,6 +2422,42 @@ export const presentationData = {
         "id": "source-art-continuity",
         "background": "s01-road-trip-van-interior"
       }
+    ],
+    "s02-c90-choice": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c90-answer-a-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c90-answer-b-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-choice": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-answer-a-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-answer-b-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
     ]
   }
 };
