@@ -45,7 +45,7 @@ test('original interactive choices have an explicit, non-regressing restoration 
 test('authored visual cues have a non-regressing source-to-media inventory', () => {
   assert.equal(sourceMap.sourceCommit, '1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c');
   assert.equal(sourceMap.entries.length, 91, 'pinned source cue inventory changed without review');
-  assert.ok(unresolvedArt.length <= 16, 'previously admitted original art source was lost');
+  assert.equal(unresolvedArt.length, 0, 'original artwork cue remains neutral or missing');
   for (const entry of sourceVisuals.filter(entry => entry.admittedMediaId)) {
     assert.ok(presentationData.media[entry.admittedMediaId], `${entry.sourceSceneId}/${entry.sourceCueId}: admitted media missing`);
   }

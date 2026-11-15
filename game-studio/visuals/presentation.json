@@ -544,6 +544,126 @@
         "ru": "Танец у гавани Höfn",
         "en": "A dance by Höfn harbor"
       }
+    },
+    "s29-nick-playback": {
+      "kind": "cg",
+      "src": "assets/vis-s29-nick-playback.webp",
+      "alt": {
+        "ru": "Гостевой дом: общая комната и монтажная папка",
+        "en": "Nick reviews a video with Alice in the guesthouse"
+      }
+    },
+    "s52-glove-found": {
+      "kind": "cg",
+      "src": "assets/vis-s52-glove-found.webp",
+      "alt": {
+        "ru": "Улица у почты и мастерской",
+        "en": "A found glove near the workshop and post office"
+      }
+    },
+    "s30-damir-sleeve-promise-original": {
+      "kind": "cg",
+      "src": "assets/vis-s30-damir-sleeve-promise-original.webp",
+      "alt": {
+        "ru": "Кафе Reykjahlíð у Mývatn: честный разговор о будущем",
+        "en": "Damir and Alice talking in a Myvatn cafe"
+      }
+    },
+    "s55-shum-first-step-original": {
+      "kind": "cg",
+      "src": "assets/vis-s55-shum-first-step-original.webp",
+      "alt": {
+        "ru": "Конная ферма у Mývatn: огороженная дорожка",
+        "en": "First steps with a horse on the riding farm"
+      }
+    },
+    "s31-alice-independent-evening": {
+      "kind": "cg",
+      "src": "assets/vis-s31-alice-independent-evening.webp",
+      "alt": {
+        "ru": "Гостевой дом у Mývatn: подоконник и стол",
+        "en": "Alice alone at a window in the guesthouse"
+      }
+    },
+    "s62-alice-bookstore-choice": {
+      "kind": "cg",
+      "src": "assets/vis-s62-alice-bookstore-choice.webp",
+      "alt": {
+        "ru": "Reykjahlíð: небольшой книжный магазин",
+        "en": "Alice in a small bookstore in Reykjahlid"
+      }
+    },
+    "s34-cancelled-evening": {
+      "kind": "cg",
+      "src": "assets/vis-s34-cancelled-evening.webp",
+      "alt": {
+        "ru": "Акюрейри: вход в гостиницу после дождя, Дамир с пакетом из аптеки; Алиса сама останавливается",
+        "en": "Alice meets Damir near the hotel entrance"
+      }
+    },
+    "s56-cafe-musicians": {
+      "kind": "cg",
+      "src": "assets/vis-s56-cafe-musicians.webp",
+      "alt": {
+        "ru": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
+        "en": "Musicians perform in an Akureyri cafe"
+      }
+    },
+    "s63-alice-solo-concert": {
+      "kind": "cg",
+      "src": "assets/vis-s63-alice-solo-concert.webp",
+      "alt": {
+        "ru": "Акюрейри: небольшой камерный зал со складными стульями и случайными слушателями",
+        "en": "Alice attends a small chamber concert"
+      }
+    },
+    "s37-eric-alice-cafe": {
+      "kind": "cg",
+      "src": "assets/vis-s37-eric-alice-cafe.webp",
+      "alt": {
+        "ru": "Небольшое кафе Snæfellsnes после музея рыболовства, большое окно",
+        "en": "Eric and Alice talking by the cafe window"
+      }
+    },
+    "s36-snaefellsnes-drive": {
+      "kind": "background",
+      "src": "assets/vis-s36-snaefellsnes-drive.webp",
+      "alt": {
+        "ru": "Дорога по Snæfellsnes",
+        "en": "Road through the Snaefellsnes peninsula"
+      }
+    },
+    "s44-reykjavik-harbour": {
+      "kind": "background",
+      "src": "assets/vis-s44-reykjavik-harbour.webp",
+      "alt": {
+        "ru": "Рейкьявик: утренняя гавань",
+        "en": "Morning harbour in Reykjavik"
+      }
+    },
+    "s45-nick-film-final": {
+      "kind": "cg",
+      "src": "assets/vis-s45-nick-film-final.webp",
+      "alt": {
+        "ru": "Рейкьявик: просмотр финального монтажа",
+        "en": "Nick and Alice watching a final film montage"
+      }
+    },
+    "s46-airport-checkin": {
+      "kind": "cg",
+      "src": "assets/vis-s46-airport-checkin.webp",
+      "alt": {
+        "ru": "Кефлавик: стойка регистрации",
+        "en": "Airport check-in and farewell at Keflavik"
+      }
+    },
+    "s47-alice-morning-harbour": {
+      "kind": "cg",
+      "src": "assets/vis-s47-alice-morning-harbour.webp",
+      "alt": {
+        "ru": "Рейкьявик: утренняя городская гавань",
+        "en": "Alice on the Reykjavik harbour waterfront"
+      }
     }
   },
   "beats": {
@@ -1488,49 +1608,55 @@
     ],
     "s29-intro-01": [
       {
-        "id": "neutral-s29-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s29-nick-playback",
+        "cg": {
+          "mediaId": "s29-nick-playback",
+          "mode": "replace-stage"
         }
       }
     ],
     "s52-intro-05": [
       {
-        "id": "neutral-s52-intro-05-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s52-glove-found",
+        "cg": {
+          "mediaId": "s52-glove-found",
+          "mode": "replace-stage"
         }
       }
     ],
     "s30-c1-a-02": [
       {
-        "id": "neutral-s30-c1-a-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s30-damir-sleeve-promise",
+        "cg": {
+          "mediaId": "s30-damir-sleeve-promise-original",
+          "mode": "replace-stage"
         }
       }
     ],
     "s55-intro-04": [
       {
-        "id": "neutral-s55-intro-04-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s55-shum-first-step",
+        "cg": {
+          "mediaId": "s55-shum-first-step-original",
+          "mode": "replace-stage"
         }
       }
     ],
     "s31-intro-01": [
       {
-        "id": "neutral-s31-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s31-alice-independent-evening",
+        "cg": {
+          "mediaId": "s31-alice-independent-evening",
+          "mode": "replace-stage"
         }
       }
     ],
     "s62-intro-02": [
       {
-        "id": "neutral-s62-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s62-alice-bookstore-choice",
+        "cg": {
+          "mediaId": "s62-alice-bookstore-choice",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1563,56 +1689,59 @@
     ],
     "s34-intro-04": [
       {
-        "id": "neutral-s34-intro-04-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s34-cancelled-evening-entrance",
+        "cg": {
+          "mediaId": "s34-cancelled-evening",
+          "mode": "replace-stage"
         }
       }
     ],
     "s56-active-01": [
       {
-        "id": "neutral-s56-active-01-1",
+        "id": "restored-original-s56-cafe-new-song-active",
         "when": {
           "flag": "s34-status-active"
         },
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "cg": {
+          "mediaId": "s56-cafe-musicians",
+          "mode": "replace-stage"
         }
       }
     ],
     "s56-paused-01": [
       {
-        "id": "neutral-s56-paused-01-1",
+        "id": "restored-original-s56-cafe-new-song-paused",
         "when": {
           "flag": "s34-status-paused"
         },
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "cg": {
+          "mediaId": "s56-cafe-musicians",
+          "mode": "replace-stage"
         }
       }
     ],
     "s63-intro-02": [
       {
-        "id": "neutral-s63-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s63-alice-solo-concert",
+        "cg": {
+          "mediaId": "s63-alice-solo-concert",
+          "mode": "replace-stage"
         }
       }
     ],
     "s37-active-03": [
       {
-        "id": "neutral-s37-active-03-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s37-eric-alice-cafe",
+        "cg": {
+          "mediaId": "s37-eric-alice-cafe",
+          "mode": "replace-stage"
         }
       }
     ],
     "s36-intro-02": [
       {
-        "id": "neutral-s36-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "restored-original-snaefellsnes-drive",
+        "background": "s36-snaefellsnes-drive"
       }
     ],
     "s41-intro-02": [
@@ -1625,10 +1754,8 @@
     ],
     "s44-intro-01": [
       {
-        "id": "neutral-s44-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "restored-original-eric-morning-harbour",
+        "background": "s44-reykjavik-harbour"
       }
     ],
     "s44-common-01": [
@@ -1642,9 +1769,10 @@
     ],
     "s45-intro-01": [
       {
-        "id": "neutral-s45-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-nick-film-final",
+        "cg": {
+          "mediaId": "s45-nick-film-final",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1665,9 +1793,10 @@
     ],
     "s46-intro-02": [
       {
-        "id": "neutral-s46-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-airport-checkin",
+        "cg": {
+          "mediaId": "s46-airport-checkin",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1682,9 +1811,10 @@
     ],
     "s47-intro-01": [
       {
-        "id": "neutral-s47-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-alice-morning-harbour",
+        "cg": {
+          "mediaId": "s47-alice-morning-harbour",
+          "mode": "replace-stage"
         }
       }
     ],

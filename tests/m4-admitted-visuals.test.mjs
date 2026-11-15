@@ -28,7 +28,7 @@ const admitted = [
   },
 ];
 
-test('studio admits all 68 game images with byte-identical proof', () => {
+test('studio admits all 83 game images with byte-identical proof', () => {
   const entries = read(inventory).entries;
   const proof = read(join(studio, 'narrative-assets.json'));
   const presentation = read(join(studio, 'visuals/presentation.json'));

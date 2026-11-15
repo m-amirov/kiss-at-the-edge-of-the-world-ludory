@@ -186,6 +186,18 @@
       "path": "assets/vis-s28-hverfjall-hood.png",
       "sha256": "0627fea5615891262a1393b011eb4549b3130952ff55233f3e0d6c2f8825bb5c"
     },
+    "s29-nick-playback": {
+      "path": "assets/vis-s29-nick-playback.webp",
+      "sha256": "6de857f94b82cfca1ded40a9ea859b59ffe66408b734d7d97105b50e4a1b3d1b"
+    },
+    "s30-damir-sleeve-promise-original": {
+      "path": "assets/vis-s30-damir-sleeve-promise-original.webp",
+      "sha256": "93ba01e53165a74f7b1f67c50de7d2a7435c29058f8936700302486c1d3011b5"
+    },
+    "s31-alice-independent-evening": {
+      "path": "assets/vis-s31-alice-independent-evening.webp",
+      "sha256": "b6e79093d164c19aa7333aff81589d9ef50da26a1fa64887f379938586d0c7c2"
+    },
     "s32-eric-calendar-crossroads": {
       "path": "assets/vis-s32-eric-calendar-crossroads.png",
       "sha256": "2c24734a24b7fbf58ea281e52f230813a9b07c5747dd7c590bc40a8800f1da92"
@@ -193,6 +205,18 @@
     "s33-nick-teaser-reveal": {
       "path": "assets/vis-s33-nick-teaser-reveal.png",
       "sha256": "c0ce7b64c632f148b8f984f2ae21eec01c09c0c958aa65f42629a8180b4556cb"
+    },
+    "s34-cancelled-evening": {
+      "path": "assets/vis-s34-cancelled-evening.webp",
+      "sha256": "7a3a2182aed85797e45d3268e590a88e7485017714cfdc38e5ef8f2fe1ee184b"
+    },
+    "s36-snaefellsnes-drive": {
+      "path": "assets/vis-s36-snaefellsnes-drive.webp",
+      "sha256": "6949555cabd32c01bb5c8e9ea9f87ee5e0bc5fc94b2b05589ca817bd50e102ce"
+    },
+    "s37-eric-alice-cafe": {
+      "path": "assets/vis-s37-eric-alice-cafe.webp",
+      "sha256": "8e067e89e6123bfb1749e7eb9822bbdd1ed4ffe0adc07dd17aaec73ed9c5a92c"
     },
     "s37-snaefellsnes-guesthouse-day": {
       "path": "assets/vis-s37-snaefellsnes-guesthouse-day.png",
@@ -222,6 +246,14 @@
       "path": "assets/vis-s44-eric-epilogue-month-later.png",
       "sha256": "d1987ead5dac9fd26c74694c8d64dadf73c6a79066c8c1c829f426cbf520a03b"
     },
+    "s44-reykjavik-harbour": {
+      "path": "assets/vis-s44-reykjavik-harbour.webp",
+      "sha256": "7737a290f8acf0240fb44520f75a6946769c937915683ac13bded53b7793b79b"
+    },
+    "s45-nick-film-final": {
+      "path": "assets/vis-s45-nick-film-final.webp",
+      "sha256": "db1ac7683a73ae5acde33794d1635bad765ee5bc0c27114932972781cdedd89a"
+    },
     "s45-nick-home-epilogue-month-later": {
       "path": "assets/vis-s45-nick-home-epilogue-month-later.png",
       "sha256": "0a95116942e8046ee71bd6d008faa0fcf3e2ea34b8e792f8b388b79c0f0a8734"
@@ -230,6 +262,10 @@
       "path": "assets/vis-s46-airport-bus-day.png",
       "sha256": "bdd60db4665ffbefb7d18a2b63f16e19042073920254a7aa8eac6a0a59a39c13"
     },
+    "s46-airport-checkin": {
+      "path": "assets/vis-s46-airport-checkin.webp",
+      "sha256": "a22c08fb0160ffd0ef53ab3b88b73e935e89e98d729873bc67147554f3d7e26b"
+    },
     "s46-damir-epilogue-month-later": {
       "path": "assets/vis-s46-damir-epilogue-month-later.png",
       "sha256": "4ff183badac5d980da2565086c4e5be520cfb8bd824b19bb825bc1648960ce0e"
@@ -237,6 +273,10 @@
     "s47-alice-home-epilogue-month-later": {
       "path": "assets/vis-s47-alice-home-epilogue-month-later.png",
       "sha256": "2642735a952673f22a43f373b67a03296f265624c27a6926e7ef64d06b0aea1d"
+    },
+    "s47-alice-morning-harbour": {
+      "path": "assets/vis-s47-alice-morning-harbour.webp",
+      "sha256": "2af4cb5965b5c804f5e442141b29d9e9941ecfce17dc68c3838949d065592bc4"
     },
     "s48-guesthouse-exit-group": {
       "path": "assets/vis-s48-guesthouse-exit-group.png",
@@ -250,6 +290,10 @@
       "path": "assets/vis-s49-reykjahlid-window-dance.png",
       "sha256": "35c546c606ed7d11be5ae5e3fad8bf737f52feae9e92e9fd334abe556c38b34f"
     },
+    "s52-glove-found": {
+      "path": "assets/vis-s52-glove-found.webp",
+      "sha256": "62baca9c9dea6701fd442f19530461da65eef798e61665a29367f6c29bc4c6a5"
+    },
     "s52-hofn-streets-post-workshop": {
       "path": "assets/vis-s52-hofn-streets-post-workshop.png",
       "sha256": "05af3a95007cf4abbc07dc3f866c11d6974d36a29229d1302e1cd7304aff1332"
@@ -262,9 +306,25 @@
       "path": "assets/vis-s54-alice-nick-karaoke.png",
       "sha256": "c9327f345d06886001e2e60edd2e32e0dbed7526f3a7a033530412ef4d4fc26e"
     },
+    "s55-shum-first-step-original": {
+      "path": "assets/vis-s55-shum-first-step-original.webp",
+      "sha256": "24063b015131a27b345da15398f91b79e5ff2ee2790f218d3ec604411a81ae96"
+    },
+    "s56-cafe-musicians": {
+      "path": "assets/vis-s56-cafe-musicians.webp",
+      "sha256": "50b6d978cdecba97e5bedc2badc6e635d38968065b325c5b5c79beb9c3fad590"
+    },
     "s61-hofn-streets": {
       "path": "assets/vis-s61-hofn-streets.png",
       "sha256": "dd24ec408fbd1770d27dc5d9c72d468df7e6760ff9b3ce13829f202c91dc6ec8"
+    },
+    "s62-alice-bookstore-choice": {
+      "path": "assets/vis-s62-alice-bookstore-choice.webp",
+      "sha256": "ff691e7bc432581d79aa572ad8623d3ddf37fc45775e5544f1ff6052dfcd2d04"
+    },
+    "s63-alice-solo-concert": {
+      "path": "assets/vis-s63-alice-solo-concert.webp",
+      "sha256": "215afee53da5ff0fe1f9f4ccb2bdb3cc43449cec2dfee1a32f33126efb69660e"
     },
     "s64-alice-snaefellsnes-trail": {
       "path": "assets/vis-s64-alice-snaefellsnes-trail.png",
