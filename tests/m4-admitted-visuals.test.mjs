@@ -37,6 +37,8 @@ test('studio admits all 68 game images with byte-identical proof', () => {
     's02-roadside-cafe': 'roadside-cafe',
     's03-reykjavik-guesthouse-morning': 'guesthouse-morning',
     's03-editor-call-damir': 'damir-coffee-cg',
+    's13-skaftafell-travelers-original': 's13-skaftafell-travelers',
+    's18-hofn-dance-lights-original': 's18-hofn-dance-lights',
   }[entry.id] ?? entry.id);
   assert.equal(storyEntries.length, 68);
   for (const entry of storyEntries) {
