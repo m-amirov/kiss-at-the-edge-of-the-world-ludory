@@ -28,7 +28,7 @@ const admitted = [
   },
 ];
 
-test('studio admits all 64 game images with byte-identical proof', () => {
+test('studio admits all 68 game images with byte-identical proof', () => {
   const entries = read(inventory).entries;
   const proof = read(join(studio, 'narrative-assets.json'));
   const presentation = read(join(studio, 'visuals/presentation.json'));
@@ -38,7 +38,7 @@ test('studio admits all 64 game images with byte-identical proof', () => {
     's03-reykjavik-guesthouse-morning': 'guesthouse-morning',
     's03-editor-call-damir': 'damir-coffee-cg',
   }[entry.id] ?? entry.id);
-  assert.equal(storyEntries.length, 64);
+  assert.equal(storyEntries.length, 68);
   for (const entry of storyEntries) {
     const id = mediaId(entry);
     assert.equal(entry.status, 'accepted', `${entry.id}: admission missing`);
