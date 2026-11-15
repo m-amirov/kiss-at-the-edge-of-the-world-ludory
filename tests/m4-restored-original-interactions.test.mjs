@@ -14,7 +14,8 @@ test('the original interaction source retains two S01 C90/C91 decisions and an S
   assert.equal(scene('s01-common').nextSceneId, 's01-c90');
   for (const [index, source] of interactionBeats.S01.entries()) {
     const name = `s01-c${90+index}`;
-    const choice = scene(name).beats[0];
+    const choice = scene(name).beats.at(-1);
+    assert.equal(scene(name).beats[0].text.ru, source.question, `${name}: authored question lost`);
     assert.equal(choice.type, 'choice');
     assert.deepEqual(choice.choices.map(x => x.label.ru), source.options.map(x => x.label));
     for (const option of source.options) {
@@ -45,9 +46,11 @@ test('C90/C91 choices remain free, route-neutral and converge on unchanged S02',
     nextThrough('s01-eric');
     nextThrough('s01-common');
     assert.equal(state.narrative.sceneId,'s01-c90');
+    dispatch('narrative:next:s01-c90-prompt');
     dispatch(`narrative:choose:s01-c90-choice:${first}`);
     nextThrough(`s01-c90-answer-${first}`);
     assert.equal(state.narrative.sceneId,'s01-c91');
+    dispatch('narrative:next:s01-c91-prompt');
     dispatch(`narrative:choose:s01-c91-choice:${second}`);
     nextThrough(`s01-c91-answer-${second}`);
     assert.equal(state.narrative.sceneId,'s02-c90-echo');
@@ -67,7 +70,8 @@ test('S02 C90/C91 restore exact authored responses, all option combinations, and
   assert.equal(scene('s60-common').nextSceneId, 's41-c90-echo-route');
   for (const [index, authored] of interactionBeats.S02.entries()) {
     const stem = `s02-c${90 + index}`;
-    const choice = scene(stem).beats[0];
+    const choice = scene(stem).beats.at(-1);
+    assert.equal(scene(stem).beats[0].text.ru, authored.question, `${stem}: authored question lost`);
     assert.equal(choice.type, 'choice', stem);
     assert.deepEqual(choice.choices.map(c => c.label.ru), authored.options.map(c => c.label));
     for (const option of authored.options) {
@@ -88,16 +92,20 @@ test('S02 C90/C91 restore exact authored responses, all option combinations, and
     advance('s01-airport');
     dispatch('narrative:choose:s01-seat-choice:front-eric');
     advance('s01-eric'); advance('s01-common');
+    dispatch('narrative:next:s01-c90-prompt');
     dispatch('narrative:choose:s01-c90-choice:a'); advance('s01-c90-answer-a');
+    dispatch('narrative:next:s01-c91-prompt');
     dispatch('narrative:choose:s01-c91-choice:a'); advance('s01-c91-answer-a');
     dispatch('narrative:choose:s02-c90-echo-route:a'); advance('s02-c90-echo-a');
     advance('s02-road');
     dispatch('narrative:choose:s02-career-choice:people');
     advance('s02-people'); advance('s02-common');
     assert.equal(state.narrative.sceneId, 's02-c90');
+    dispatch('narrative:next:s02-c90-prompt');
     dispatch(`narrative:choose:s02-c90-choice:${first}`);
     advance(`s02-c90-answer-${first}`);
     assert.equal(state.narrative.sceneId, 's02-c91');
+    dispatch('narrative:next:s02-c91-prompt');
     dispatch(`narrative:choose:s02-c91-choice:${second}`);
     advance(`s02-c91-answer-${second}`);
     assert.equal(state.narrative.sceneId, 's65-guesthouse');
