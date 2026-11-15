@@ -498,6 +498,22 @@ export const presentationData = {
         "ru": "Салон автомобиля под дождём в Исландии",
         "en": "Car interior on a rainy Iceland road"
       }
+    },
+    "s04-thingvellir-trail": {
+      "kind": "background",
+      "src": "assets/vis-s04-thingvellir-trail.webp",
+      "alt": {
+        "ru": "Тропа и скалы национального парка Тингведлир",
+        "en": "Trail and cliffs in Þingvellir National Park"
+      }
+    },
+    "s09-skogafoss-trail": {
+      "kind": "background",
+      "src": "assets/vis-s09-skogafoss-trail.webp",
+      "alt": {
+        "ru": "Водопад Скоугафосс и пешеходная тропа",
+        "en": "Skógafoss waterfall and walking trail"
+      }
     }
   },
   "beats": {
@@ -1145,18 +1161,14 @@ export const presentationData = {
     ],
     "s04-intro-05": [
       {
-        "id": "neutral-s04-intro-05-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-art-thingvellir-trail",
+        "background": "s04-thingvellir-trail"
       }
     ],
     "s09-intro-09": [
       {
-        "id": "neutral-s09-intro-09-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-art-skogafoss-trail",
+        "background": "s09-skogafoss-trail"
       }
     ],
     "s10-intro-01": [
