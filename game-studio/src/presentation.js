@@ -2458,6 +2458,30 @@ export const presentationData = {
         "id": "original-s02-cafe-continuity",
         "background": "roadside-cafe"
       }
+    ],
+    "s01-c90-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "roadside-cafe"
+      }
     ]
   }
 };
