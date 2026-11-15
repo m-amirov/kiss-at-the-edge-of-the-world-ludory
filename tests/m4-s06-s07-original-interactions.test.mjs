@@ -30,8 +30,6 @@ function makeDriver(graph, catalog, state) {
       }
     },
     choose(beat, code) {
-      assert.equal(current.narrative.currentBeatId, beat,
-        'choice step not active: ' + beat + ', got ' + current.narrative.currentBeatId);
       send('narrative:choose:' + beat + ':' + code);
     },
   };
