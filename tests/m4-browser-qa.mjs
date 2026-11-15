@@ -151,6 +151,7 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's13-skaftafell-travelers': 'vis-s13-skaftafell-travelers.webp',
       's15-jokulsarlon-lagoon': 'vis-s15-jokulsarlon-lagoon.webp',
       's18-hofn-harbour': 'vis-s18-hofn-harbour.webp',
+      's08-guesthouse-strap': 'vis-s08-guesthouse-strap.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
@@ -710,6 +711,13 @@ async function main() {
       await assertPilotCue(desktop.page, 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'S07 kitchen cards', 's07-kitchen-cards');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s07-kitchen-cards.png'), fullPage: true });
       await captureMobileViewports(desktop.page, 'mobile-s07-kitchen-cards', 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'mobile S07 kitchen cards', 's07-kitchen-cards');
+      await advanceToBeat(desktop.page, 's07-c90-prompt');
+      await assertPilotCue(desktop.page, 's07-c90-prompt', 'source-restored-s07-c90',
+        'S07 restored kitchen-pasta choice', 's07-kitchen-pasta');
+      await advanceToBeat(desktop.page, 's08-s07-c90-echo-a-01');
+      await assertPilotCue(desktop.page, 's08-s07-c90-echo-a-01', 'source-restored-s08-echo',
+        'S07 decision recalled at S08', 's08-guesthouse-strap');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s08-original-c90-echo.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
