@@ -187,9 +187,9 @@
       "status": "mapped",
       "location": "Þingvellir: тропа и ущелье",
       "sourceArt": "thingvellir-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s04-thingvellir-trail",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s04-intro-05; source art remains neutral because it is not admitted"
+      "mappingNote": "Exact original WebP restored from pinned source with verified Git blob/SHA-256; legal rights tracked separately"
     },
     {
       "sourceSceneId": "S09",
@@ -202,9 +202,9 @@
       "status": "mapped",
       "location": "Skógafoss: водопад",
       "sourceArt": "skogafoss-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s09-skogafoss-trail",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s09-intro-09; source art remains neutral because it is not admitted"
+      "mappingNote": "Exact original WebP restored from pinned source with verified Git blob/SHA-256; legal rights tracked separately"
     },
     {
       "sourceSceneId": "S10",
