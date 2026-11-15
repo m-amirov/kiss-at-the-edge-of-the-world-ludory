@@ -30,10 +30,10 @@ const unresolvedArt = sourceVisuals.filter(entry => !entry.admittedMediaId);
 test('original interactive choices have an explicit, non-regressing restoration inventory', () => {
   assert.equal(expectedExtraChoices.length, 96, 'pinned authored interaction source unexpectedly changed');
   assert.equal(new Set(expectedExtraChoices.map(x => x.originalId)).size, 96, 'original IDs are not unique');
-  for (const id of ['s01-c90', 's01-c91', 's02-c90', 's02-c91']) {
+  for (const id of ['s01-c90', 's01-c91', 's02-c90', 's02-c91', 's65-c90', 's65-c91', 's03-c90', 's03-c91']) {
     assert.ok(graphScenes.has(id), `previously restored authored choice ${id} missing`);
   }
-  assert.ok(missingExtraChoices.length <= 92, 'previously restored extra choice was removed');
+  assert.ok(missingExtraChoices.length <= 88, 'previously restored extra choice was removed');
   for (const source of expectedExtraChoices.filter(x => graphScenes.has(x.ludorySceneId))) {
     const scene = graphData.scenes.find(scene => scene.id === source.ludorySceneId);
     assert.equal(scene.beats.at(-1)?.type, 'choice', `${source.originalId} silently lost its choice beat`);

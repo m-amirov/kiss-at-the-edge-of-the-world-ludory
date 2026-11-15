@@ -2510,6 +2510,24 @@ export const presentationData = {
         "id": "original-prompt-art-continuity",
         "background": "roadside-cafe"
       }
+    ],
+    "s03-s65-c90-echo-dispatch": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
+    ],
+    "s03-s65-c90-echo-a-01": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
+    ],
+    "s03-s65-c90-echo-b-01": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
     ]
   }
 };

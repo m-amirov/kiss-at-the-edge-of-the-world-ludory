@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -320,7 +320,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
   { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
   { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's02-c90' },
-  { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's03-editorial' },
+  { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's65-c90' },
   { id: 's03-editorial', beats: [
     ...beats('s03-editorial', s03Intro),
     // Engine N1 1.2.2 has no conditional automatic nextSceneId: these are
@@ -357,8 +357,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's03-damir-silence', value: true }] },
     ] },
   ] },
-  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's04-intro' },
-  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's04-intro' },
+  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's03-c90' },
+  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's03-c90' },
   { id: 's04-intro', beats: [
     ...beats('s04-intro', s04Intro),
     { id: 's04-camera-consent-choice', type: 'choice', choices: [
@@ -2685,6 +2685,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS01ExtraScenes({ t, beats }),
   ...originalS02ExtraScenes({ t, beats }),
   ...originalS41EchoScenes({ t, beats }),
+  ...originalS65AndS03ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

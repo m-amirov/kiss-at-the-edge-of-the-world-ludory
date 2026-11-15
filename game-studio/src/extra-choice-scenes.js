@@ -137,3 +137,84 @@ export function originalS41EchoScenes({ t, beats }) {
     { id: 's41-c90-echo-b', beats: beats('s41-c90-echo-b', answerB), nextSceneId: 's41-intro' },
   ];
 }
+
+/**
+ * Recover authored S65 and S03 C90/C91 choices without renumbering canonical
+ * beats. This is an explicit scene-boundary compatibility pass, not yet the
+ * original mid-scene timing; moving them requires a separate save migration.
+ *
+ * S65-C90 has a genuine delayed answer in S03. All alternatives remain free
+ * and route-neutral, and source prose is copied verbatim from the pinned layer.
+ */
+export function originalS65AndS03ExtraScenes({ t, beats }) {
+  const s65 = interactionBeats.S65;
+  const s03 = interactionBeats.S03;
+  const echo = interactionEchoes.S03?.find(entry => entry[0] === 'S65-C90');
+  if (s65?.length !== 2 || s03?.length !== 2 || echo?.length !== 3) {
+    throw new Error('Pinned S65/S03 interaction source changed; inspect before migration');
+  }
+
+  function authoredDecision(sourceId, index, continuation, remember = false) {
+    const source = interactionBeats[sourceId][index];
+    if (source?.options?.length !== 2 || source.options.map(o => o.code).join(',') !== 'A,B') {
+      throw new Error('Unexpected original C90/C91 option schema for ' + sourceId);
+    }
+    const sceneId = sourceId.toLowerCase() + '-c' + (90 + index);
+    const answerId = code => sceneId + '-answer-' + code;
+    return [
+      {
+        id: sceneId,
+        beats: [
+          { id: sceneId + '-prompt', type: 'dialogue', text: t(source.question) },
+          {
+            id: sceneId + '-choice',
+            type: 'choice',
+            choices: source.options.map(option => {
+              const code = option.code.toLowerCase();
+              return {
+                id: code, label: t(option.label), targetSceneId: answerId(code),
+                ...(remember ? {
+                  effects: [{ op: 'flag_set', id: 's65-extra-c90-' + code, value: true }],
+                } : {}),
+              };
+            }),
+          },
+        ],
+      },
+      ...source.options.map(option => {
+        const id = answerId(option.code.toLowerCase());
+        return { id, beats: beats(id, option.text), nextSceneId: continuation };
+      }),
+    ];
+  }
+
+  return [
+    ...authoredDecision('S65', 0, 's65-c91', true),
+    ...authoredDecision('S65', 1, 's03-s65-c90-echo-route'),
+    {
+      id: 's03-s65-c90-echo-route',
+      beats: [{
+        id: 's03-s65-c90-echo-dispatch', type: 'choice',
+        choices: [
+          ...['a', 'b'].map(code => ({
+            id: code, label: t('Продолжить'),
+            when: { flag: 's65-extra-c90-' + code },
+            targetSceneId: 's03-s65-c90-echo-' + code,
+          })),
+          {
+            id: 'legacy', label: t('Продолжить'),
+            when: { not: { any: [
+              { flag: 's65-extra-c90-a' },
+              { flag: 's65-extra-c90-b' },
+            ] } },
+            targetSceneId: 's03-editorial',
+          },
+        ],
+      }],
+    },
+    { id: 's03-s65-c90-echo-a', beats: beats('s03-s65-c90-echo-a', echo[1]), nextSceneId: 's03-editorial' },
+    { id: 's03-s65-c90-echo-b', beats: beats('s03-s65-c90-echo-b', echo[2]), nextSceneId: 's03-editorial' },
+    ...authoredDecision('S03', 0, 's03-c91'),
+    ...authoredDecision('S03', 1, 's04-intro'),
+  ];
+}
