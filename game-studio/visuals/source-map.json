@@ -292,9 +292,9 @@
       "status": "mapped",
       "location": "Скафтафетль: тропа и блокнот",
       "sourceArt": "cg/s13-skaftafell-travelers.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s13-skaftafell-travelers",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s13-intro-13; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S14",
@@ -337,9 +337,9 @@
       "status": "mapped",
       "location": "Jökulsárlón: лагуна",
       "sourceArt": "jokulsarlon-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s15-jokulsarlon-lagoon",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s15-intro-06; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S16",
@@ -397,9 +397,9 @@
       "status": "mapped",
       "location": "Höfn: прогулка к маяку",
       "sourceArt": "s18-hofn-harbour.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-06; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
@@ -412,9 +412,9 @@
       "status": "mapped",
       "location": "Höfn: танец у гавани",
       "sourceArt": "cg/s18-hofn-dance-lights.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-dance-lights",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-36; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
@@ -427,9 +427,9 @@
       "status": "mapped",
       "location": "Höfn: обратная дорога",
       "sourceArt": "s18-hofn-harbour.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-40; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
