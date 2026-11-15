@@ -726,7 +726,11 @@ async function main() {
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
-        await assertResponsiveSourceSwitch(special.page, media, label);
+        // Only CG has a responsive portrait-source contract; scene backgrounds
+        // keep the same authored source across viewport sizes.
+        if (media !== 's04-thingvellir-trail' && media !== 's09-skogafoss-trail') {
+          await assertResponsiveSourceSwitch(special.page, media, label);
+        }
         await captureMobileViewports(special.page, `mobile-${target}`, target, variant, `mobile ${label}`, media);
         if (target === 's38-paused-01' || target === 's39-active-01') {
           await special.page.setViewportSize({ width: 320, height: 700 });
