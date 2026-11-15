@@ -59,7 +59,7 @@ test('restored S04/S09 scenic artwork is byte-identical to the pinned original G
   ]) {
     const bytes = readFileSync(join(root, 'game-studio/assets', file));
     const actualSha = createHash('sha256').update(bytes).digest('hex');
-    const actualGitBlob = createHash('sha1').update(Buffer.from(`blob ${bytes.length}\\0`)).update(bytes).digest('hex');
+    const actualGitBlob = createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
     assert.equal(actualSha, sha256, `${mediaId} content SHA-256 drift`);
     assert.equal(actualGitBlob, gitBlob, `${mediaId} differs from pinned original Git blob`);
     assert.equal(sourceMap.entries.find(e => e.sourceSceneId === sceneId && e.sourceCueId === cueId)?.admittedMediaId, mediaId);
