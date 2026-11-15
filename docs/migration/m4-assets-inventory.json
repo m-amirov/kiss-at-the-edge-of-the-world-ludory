@@ -2946,6 +2946,46 @@
         "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd",
         "verifiedOn": "2026-11-14"
       }
+    },
+    {
+      "id": "s04-thingvellir-trail",
+      "role": "background",
+      "path": "assets/backgrounds/thingvellir-master.webp",
+      "targetPath": "assets/backgrounds/thingvellir-master.webp",
+      "sourceBlobSha": "cc3fb0434a5365dc9a3981766211c13d695e0e1f",
+      "sha256": "bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s04-thingvellir-trail.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; source Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "cc3fb0434a5365dc9a3981766211c13d695e0e1f",
+        "sha256": "bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s09-skogafoss-trail",
+      "role": "background",
+      "path": "assets/backgrounds/skogafoss-master.webp",
+      "targetPath": "assets/backgrounds/skogafoss-master.webp",
+      "sourceBlobSha": "479fdc3a1c30c39ed9cc24b47c83945e2919a6c0",
+      "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s09-skogafoss-trail.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; source Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "479fdc3a1c30c39ed9cc24b47c83945e2919a6c0",
+        "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b",
+        "verifiedOn": "2026-11-15"
+      }
     }
   ],
   "summary": {
