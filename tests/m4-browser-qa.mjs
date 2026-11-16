@@ -211,6 +211,9 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's14-skaftafell-pace': 'vis-s14-skaftafell-pace.png',
       's14-lagoon-road': 'vis-s14-lagoon-road.png',
       's15-jokulsarlon-parking-day': 'vis-s15-jokulsarlon-parking-day.png',
+      's16-guesthouse-help': 'vis-s16-guesthouse-help.png',
+      's16-kitchen-soup': 'vis-s16-kitchen-soup.png',
+      's17-hofn-guesthouse': 'vis-s17-hofn-guesthouse.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
@@ -820,6 +823,19 @@ async function main() {
       await assertPilotCue(desktop.page, 's15-c91-prompt', 'authored-s15-c91-original',
         'S15 original private footage choice', 's15-jokulsarlon-parking-day');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s15-original-choices.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's16-c90-prompt');
+      await assertPilotCue(desktop.page, 's16-c90-prompt', 'original-s16-c90-source-art',
+        'S16 Damir care source choice', 's16-guesthouse-help');
+      await advanceToBeat(desktop.page, 's16-c91-prompt');
+      await assertPilotCue(desktop.page, 's16-c91-prompt', 'original-s16-c91-source-art',
+        'S16 kitchen source choice', 's16-kitchen-soup');
+      await advanceToBeat(desktop.page, 's17-c90-prompt');
+      await assertPilotCue(desktop.page, 's17-c90-prompt', 'original-s17-c90-source-art',
+        'S17 group dinner original choice', 's17-hofn-guesthouse');
+      await advanceToBeat(desktop.page, 's17-c91-prompt');
+      await assertPilotCue(desktop.page, 's17-c91-prompt', 'original-s17-c91-source-art',
+        'S17 evening self-choice', 's17-hofn-guesthouse');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s17-original-choices.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
