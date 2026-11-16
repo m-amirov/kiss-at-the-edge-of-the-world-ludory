@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -787,8 +787,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-gesture-photo', value: true }] },
     ] },
   ] },
-  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's15-intro' },
-  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's15-intro' },
+  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's14-c90' },
+  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's14-c90' },
   { id: 's15-intro', beats: [
     ...beats('s15-intro', s15Intro),
     // S09's Nick narrator has distinct authored prose; Eric and Damir share another.
@@ -836,8 +836,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-gesture-photo' } },
     ] },
   ] },
-  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's16-intro' },
-  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's16-intro' },
+  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's15-c90' },
+  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's15-c90' },
   { id: 's16-intro', beats: [
     ...beats('s16-intro', s16Intro),
     { id: 's16-care-choice', type: 'choice', choices: [
@@ -2691,6 +2691,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS08S66S09ExtraScenes({ t, beats }),
   ...originalS10AndS11ExtraScenes({ t, beats }),
   ...originalS12AndS13ExtraScenes({ t, beats }),
+  ...originalS14AndS15ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

@@ -466,3 +466,38 @@ export function originalS12AndS13ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/**
+ * Verbatim original S14 and S15 authored reflective decisions. No new route,
+ * affinity, consent or payment effects. Original mid-paragraph position remains
+ * separate parity work; preserve the pre-existing canonical choice graph.
+ */
+export function originalS14AndS15ExtraScenes({ t, beats }) {
+  const continuations = Object.freeze({ S14: 's15-intro', S15: 's16-intro' });
+  return ['S14', 'S15'].flatMap(sourceId => {
+    const authored = interactionBeats[sourceId];
+    if (authored?.length !== 2 ||
+        authored.some(d => d.options?.map(o => o.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned S14/S15 original interaction source mismatch');
+    }
+    return authored.flatMap((item, index) => {
+      const name = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : continuations[sourceId];
+      return [
+        { id: name, beats: [
+          { id: name + '-prompt', type: 'dialogue', text: t(item.question) },
+          { id: name + '-choice', type: 'choice',
+            choices: item.options.map(opt => ({
+              id: opt.code.toLowerCase(), label: t(opt.label),
+              targetSceneId: name + '-answer-' + opt.code.toLowerCase(),
+            })),
+          },
+        ] },
+        ...item.options.map(opt => {
+          const answerId = name + '-answer-' + opt.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, opt.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}

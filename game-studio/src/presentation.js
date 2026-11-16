@@ -3240,6 +3240,114 @@ export const presentationData = {
           "mode": "replace-stage"
         }
       }
+    ],
+    "s14-c90-prompt": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-choice": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-answer-a-01": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-answer-b-01": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c91-prompt": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-choice": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-answer-a-01": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-answer-b-01": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s15-c90-prompt": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-choice": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-answer-a-01": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-answer-b-01": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c91-prompt": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-choice": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-answer-a-01": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-answer-b-01": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
     ]
   }
 };
