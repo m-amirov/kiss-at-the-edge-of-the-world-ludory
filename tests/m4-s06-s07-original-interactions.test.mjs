@@ -452,7 +452,11 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
       d.advance('s17-c91'); d.choose('s17-c91-choice', e);
       d.advance('s17-c91-answer-' + e);
       d.advance('s17-common-b');
-      const evening = ['eric','nick','damir','self'][s17Index++ % 4];
+      // Deliberately exercise Eric's route for both C90 A and C90 B:
+      // first Eric trial has C90=A, third trial has C90=B.
+      const evening = s17Index === 2 ? 'eric' :
+        ['eric','nick','damir','self'][s17Index % 4];
+      s17Index++;
       d.choose('s17-evening-choice', evening);
       const next = {eric:'s18-intro',nick:'s19-intro',damir:'s20-intro',self:'s21-intro'}[evening];
       assert.equal(d.state.narrative.sceneId, next,
