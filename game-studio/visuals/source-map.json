@@ -10,7 +10,7 @@
       "graphBeatId": "s01-airport-01",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": "keflavik-airport-arrivals-v1.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral"
     },
     {
@@ -18,7 +18,7 @@
       "graphBeatId": "s02-road-01",
       "location": "Автомобиль по дороге в Рейкьявик",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral"
     },
     {
@@ -30,10 +30,7 @@
       "fallback": "neutral"
     }
   ],
-  "neutralResets": [
-    "s01-common-01",
-    "s02-road-01"
-  ],
+  "neutralResets": [],
   "entries": [
     {
       "sourceSceneId": "S01",
@@ -46,9 +43,9 @@
       "status": "mapped",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-05; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -61,9 +58,9 @@
       "status": "mapped",
       "location": "Кефлавик: выход под дождь",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-17; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -76,9 +73,9 @@
       "status": "mapped",
       "location": "Кефлавик: зал прилёта",
       "sourceArt": null,
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-airport-arrivals",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-airport-25; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified"
     },
     {
       "sourceSceneId": "S01",
@@ -91,9 +88,9 @@
       "status": "mapped",
       "location": "Автомобиль: переднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-eric-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-eric"
       }
@@ -109,9 +106,9 @@
       "status": "mapped",
       "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-nick-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-nick"
       }
@@ -127,9 +124,9 @@
       "status": "mapped",
       "location": "Автомобиль: заднее сиденье",
       "sourceArt": "road-trip-van-interior-rain.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s01-road-trip-van-interior",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s01-damir-01; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original scene backdrop retained through this cue; binary Git blob and SHA-256 verified",
       "when": {
         "flag": "s01-seat-damir"
       }
@@ -190,9 +187,9 @@
       "status": "mapped",
       "location": "Þingvellir: тропа и ущелье",
       "sourceArt": "thingvellir-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s04-thingvellir-trail",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s04-intro-05; source art remains neutral because it is not admitted"
+      "mappingNote": "Exact original WebP restored from pinned source with verified Git blob/SHA-256; legal rights tracked separately"
     },
     {
       "sourceSceneId": "S09",
@@ -205,9 +202,9 @@
       "status": "mapped",
       "location": "Skógafoss: водопад",
       "sourceArt": "skogafoss-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s09-skogafoss-trail",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s09-intro-09; source art remains neutral because it is not admitted"
+      "mappingNote": "Exact original WebP restored from pinned source with verified Git blob/SHA-256; legal rights tracked separately"
     },
     {
       "sourceSceneId": "S10",
@@ -295,9 +292,9 @@
       "status": "mapped",
       "location": "Скафтафетль: тропа и блокнот",
       "sourceArt": "cg/s13-skaftafell-travelers.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s13-skaftafell-travelers",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s13-intro-13; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S14",
@@ -340,9 +337,9 @@
       "status": "mapped",
       "location": "Jökulsárlón: лагуна",
       "sourceArt": "jokulsarlon-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s15-jokulsarlon-lagoon",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s15-intro-06; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S16",
@@ -400,9 +397,9 @@
       "status": "mapped",
       "location": "Höfn: прогулка к маяку",
       "sourceArt": "s18-hofn-harbour.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-06; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
@@ -415,9 +412,9 @@
       "status": "mapped",
       "location": "Höfn: танец у гавани",
       "sourceArt": "cg/s18-hofn-dance-lights.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-dance-lights",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-36; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
@@ -430,9 +427,9 @@
       "status": "mapped",
       "location": "Höfn: обратная дорога",
       "sourceArt": "s18-hofn-harbour.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s18-hofn-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s18-intro-40; source art remains neutral because it is not admitted"
+      "mappingNote": "Recovered original WebP at exact source cue; Git blob and SHA-256 verified, rights tracked separately"
     },
     {
       "sourceSceneId": "S18",
@@ -730,9 +727,9 @@
       "status": "mapped",
       "location": "Гостевой дом: общая комната и монтажная папка",
       "sourceArt": "cg/s29-nick-playback.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s29-nick-playback",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s29-intro-01; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 39aa5eff8acc4282dadcd23f72afb24b2efdefbf; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S52",
@@ -745,9 +742,9 @@
       "status": "mapped",
       "location": "Улица у почты и мастерской",
       "sourceArt": "cg/s52-glove-found.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s52-glove-found",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s52-intro-05; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 874f57dee70ea78a093714059044c7e9dd9bee65; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S30",
@@ -760,9 +757,9 @@
       "status": "mapped",
       "location": "Кафе Reykjahlíð у Mývatn: честный разговор о будущем",
       "sourceArt": "cg/s30-damir-sleeve-promise.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s30-damir-sleeve-promise-original",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to the authored S30 choice-A branch beat; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 10e4ed4f1347cea34af1606dfd2a9a89daf64674; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S55",
@@ -775,9 +772,9 @@
       "status": "mapped",
       "location": "Конная ферма у Mývatn: огороженная дорожка",
       "sourceArt": "cg/s55-shum-first-step.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s55-shum-first-step-original",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s55-intro-04; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 72ff558612b3f10f014a0930d7a89de86e92887d; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S31",
@@ -790,9 +787,9 @@
       "status": "mapped",
       "location": "Гостевой дом у Mývatn: подоконник и стол",
       "sourceArt": "cg/s31-alice-independent-evening.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s31-alice-independent-evening",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s31-intro-01; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 1437be5ceb99500290432d7fd61d6fad1bc83820; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S62",
@@ -805,9 +802,9 @@
       "status": "mapped",
       "location": "Reykjahlíð: небольшой книжный магазин",
       "sourceArt": "cg/s62-alice-bookstore-choice.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s62-alice-bookstore-choice",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s62-intro-02; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 6080abd10b649683309157f7fad2a26a536288aa; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S32",
@@ -865,9 +862,9 @@
       "status": "mapped",
       "location": "Акюрейри: вход в гостиницу после дождя, Дамир с пакетом из аптеки; Алиса сама останавливается",
       "sourceArt": "cg/s34-cancelled-evening.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s34-cancelled-evening",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s34-intro-04; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: cea69e840f3d8c454a8504a1733313727c43b7c6; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S56",
@@ -880,9 +877,9 @@
       "status": "mapped",
       "location": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
       "sourceArt": "cg/s56-cafe-musicians.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s56-cafe-musicians",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to the authored S56 active branch beat; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 462e218ccec9cc0c12146f0bcf40b64ed3d1bbb7; source cue unchanged; rights tracked separately",
       "when": {
         "flag": "s34-status-active"
       }
@@ -898,9 +895,9 @@
       "status": "mapped",
       "location": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
       "sourceArt": "cg/s56-cafe-musicians.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s56-cafe-musicians",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to the authored S56 paused branch beat; source art remains neutral because it is not admitted",
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 462e218ccec9cc0c12146f0bcf40b64ed3d1bbb7; source cue unchanged; rights tracked separately",
       "when": {
         "flag": "s34-status-paused"
       }
@@ -916,9 +913,9 @@
       "status": "mapped",
       "location": "Акюрейри: небольшой камерный зал со складными стульями и случайными слушателями",
       "sourceArt": "cg/s63-alice-solo-concert.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s63-alice-solo-concert",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s63-intro-02; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: d24ec70cf71df2ff65ea87504cc84b2940829ede; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S37",
@@ -931,9 +928,9 @@
       "status": "mapped",
       "location": "Небольшое кафе Snæfellsnes после музея рыболовства, большое окно",
       "sourceArt": "cg/s37-eric-alice-cafe.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s37-eric-alice-cafe",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s37-active-03; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: f8d0a01d41668f28ea4d011c7b4693b8363799d1; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S36",
@@ -946,9 +943,9 @@
       "status": "mapped",
       "location": "Дорога по Snæfellsnes",
       "sourceArt": "snaefellsnes-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s36-snaefellsnes-drive",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s36-intro-02; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: 2f0dfb57939555814af0c8fd8aada55d43105e3f; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S41",
@@ -976,9 +973,9 @@
       "status": "mapped",
       "location": "Рейкьявик: утренняя гавань",
       "sourceArt": "reykjavik-harbour-master.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s44-reykjavik-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s44-intro-01; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: d45b97da6e4629e4c4b4daccccf6f84e42710f8b; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S44",
@@ -1006,9 +1003,9 @@
       "status": "mapped",
       "location": "Рейкьявик: просмотр финального монтажа",
       "sourceArt": "cg/s45-reykjavik-warm-montage.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s45-nick-film-final",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s45-intro-01; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: c15ae1e3b95a0cb3c6ebc96a50336863cf6c3160; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S45",
@@ -1051,9 +1048,9 @@
       "status": "mapped",
       "location": "Кефлавик: стойка регистрации",
       "sourceArt": "cg/s46-airport-goodbye.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s46-airport-checkin",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s46-intro-02; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: d3def9c31ef12a0e5fec9000239fbfbcc3513992; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S46",
@@ -1081,9 +1078,9 @@
       "status": "mapped",
       "location": "Рейкьявик: утренняя городская гавань",
       "sourceArt": "cg/s47-reykjavik-harbour-alice.webp",
-      "admittedMediaId": null,
+      "admittedMediaId": "s47-alice-morning-harbour",
       "fallback": "neutral",
-      "mappingNote": "Pinned source cue mapped to s47-intro-01; source art remains neutral because it is not admitted"
+      "mappingNote": "Pinned original WebP restored byte-for-byte: b59147b2bc7f0969b3c63df016957931d2526e28; source cue unchanged; rights tracked separately"
     },
     {
       "sourceSceneId": "S47",

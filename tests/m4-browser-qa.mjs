@@ -93,29 +93,92 @@ async function advanceToSeatChoice(page) {
 // Follow the actual authored graph. A target-specific override is required for
 // branch coverage; all other free choices take their first authored option.
 async function advanceToBeat(page, targetBeatId, choiceOverrides = new Map()) {
-  for (let index = 0; index < 2500; index++) {
-    const panel = page.locator('.ludory-narrative__panel');
-    const beatId = await panel.getAttribute('data-beat-id');
-    if (beatId === targetBeatId) return;
-    if (index > 0 && index % 250 === 0) console.log(`M4_BROWSER_ROUTE_PROGRESS: target=${targetBeatId} step=${index} current=${beatId}`);
-    const next = page.locator('button[data-action^="narrative:next:"]');
-    if (await next.count() === 1) {
-      await next.evaluate(button => button.click()); // Route setup is not a user interaction assertion.
-    } else {
-      const choices = page.locator(`button[data-action^="narrative:choose:${beatId}:"]`);
-      assert.ok(await choices.count() > 0, `Unexpected interaction en route to ${targetBeatId}: ${beatId}`);
-      const optionOverride = choiceOverrides.get(beatId);
-      const choice = Number.isInteger(optionOverride)
-        ? choices.nth(optionOverride)
-        : optionOverride
-          ? page.locator(`button[data-action="narrative:choose:${beatId}:${optionOverride}"]`)
-        : choices.first();
-      assert.equal(await choice.count(), 1, `Expected authored choice ${beatId}:${optionOverride ?? 'first'}`);
-      await choice.click();
-    }
-    await waitForBeatChange(page, beatId);
+  // Route setup remains a real rendered-browser journey with real native game
+  // action buttons. Batch the steps *inside Chromium* so 2,000 dialogue beats
+  // don't require 5-6 remote Playwright operations apiece. Keep separate
+  // screenshot / decode / user gesture checks at actual QA targets.
+  const restoredChoices = [
+    's01-c90-choice', 's01-c91-choice', 's02-c90-choice', 's02-c91-choice',
+    's65-c90-choice', 's65-c91-choice', 's03-c90-choice', 's03-c91-choice',
+    's04-c90-choice', 's04-c91-choice', 's05-c90-choice', 's05-c91-choice',
+    's06-c90-choice', 's06-c91-choice', 's07-c90-choice', 's07-c91-choice',
+    's08-c90-choice', 's08-c91-choice', 's66-c90-choice', 's66-c91-choice',
+    's09-c90-choice', 's09-c91-choice',
+    's10-c90-choice', 's10-c91-choice', 's11-c90-choice', 's11-c91-choice',
+    's12-c90-choice', 's12-c91-choice', 's13-c90-choice', 's13-c91-choice',
+    's14-c90-choice', 's14-c91-choice', 's15-c90-choice', 's15-c91-choice',
+    's16-c90-choice', 's16-c91-choice', 's17-c90-choice', 's17-c91-choice',
+    's18-c90-choice', 's18-c91-choice', 's19-c90-choice', 's19-c91-choice',
+    's20-c90-choice', 's20-c91-choice', 's21-c90-choice', 's21-c91-choice',
+    's61-c90-choice', 's61-c91-choice',
+    's22-c90-choice', 's22-c91-choice', 's23-c90-choice', 's23-c91-choice',
+  ];
+  const settings = {
+    targetBeatId,
+    overrides: Object.fromEntries(choiceOverrides),
+    restoredChoices,
+  };
+  // Bound every batch to prevent infinite in-page loops and preserve progress.
+  for (let batch = 0; batch < 10; batch++) {
+    const result = await page.evaluate(async ({ targetBeatId, overrides, restoredChoices }) => {
+      const important = new Set(restoredChoices);
+      const panel = () => document.querySelector('.ludory-narrative__panel');
+      const step = () => panel()?.dataset.beatId;
+      const changed = (before, button) => new Promise((resolve, reject) => {
+        const root = document.querySelector('#game');
+        if (!root) return reject(new Error('Missing native game mount'));
+        let done = false;
+        let timer;
+        const finish = error => {
+          if (done) return;
+          done = true;
+          observer.disconnect();
+          clearTimeout(timer);
+          if (error) reject(error);
+          else resolve();
+        };
+        const check = () => { if (step() && step() !== before) finish(); };
+        const observer = new MutationObserver(check);
+        observer.observe(root, { subtree: true, childList: true, attributes: true, attributeFilter: ['data-beat-id'] });
+        timer = setTimeout(() => finish(new Error('Native UI stalled at ' + before)), 5000);
+        try {
+          button.click();
+          check();
+        } catch (error) { finish(error); }
+      });
+      for (let offset = 0; offset < 250; offset++) {
+        const beatId = step();
+        if (beatId === targetBeatId) return { reached: true, steps: offset, current: beatId };
+        if (!beatId) throw new Error('Native narrative beat missing on route to ' + targetBeatId);
+        const next = document.querySelectorAll('button[data-action^="narrative:next:"]');
+        if (next.length === 1) {
+          await changed(beatId, next[0]);
+          continue;
+        }
+        const choices = [...document.querySelectorAll('button[data-action^="narrative:choose:' + beatId + ':"]')];
+        if (!choices.length) throw new Error('No native action at ' + beatId + ', target ' + targetBeatId);
+        if (important.has(beatId)) {
+          if (choices.length !== 2 ||
+              choices.some(button => button.disabled || !button.getClientRects().length)) {
+            throw new Error('Original player choice not visible/enabled at ' + beatId);
+          }
+        }
+        const override = overrides[beatId];
+        const choice = Number.isInteger(override) ? choices[override] :
+          typeof override === 'string'
+            ? choices.find(button => button.dataset.action === 'narrative:choose:' + beatId + ':' + override)
+            : choices[0];
+        if (!choice || choice.disabled) {
+          throw new Error('Invalid/disabled authored choice ' + beatId + ' ' + String(override));
+        }
+        await changed(beatId, choice);
+      }
+      return { reached: false, steps: 250, current: step() };
+    }, settings);
+    if (result.reached) return;
+    console.log(`M4_BROWSER_ROUTE_PROGRESS: target=${targetBeatId} step=${(batch + 1) * 250} current=${result.current}`);
   }
-  assert.fail(`Narrative did not reach ${targetBeatId} within 300 interactions`);
+  assert.fail(`Narrative did not reach ${targetBeatId} within 2500 native actions`);
 }
 
 async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = null) {
@@ -134,6 +197,33 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
     assert.equal(await images.count(), 1, `${label}: exactly one admitted art layer expected`);
     const image = images.first();
     const files = {
+      's01-airport-arrivals': 'vis-s01-airport-arrivals.webp',
+      's01-road-trip-van-interior': 'vis-s01-road-trip-van-interior.webp',
+      's04-thingvellir-trail': 'vis-s04-thingvellir-trail.webp',
+      's09-skogafoss-trail': 'vis-s09-skogafoss-trail.webp',
+      's13-skaftafell-travelers': 'vis-s13-skaftafell-travelers.webp',
+      's15-jokulsarlon-lagoon': 'vis-s15-jokulsarlon-lagoon.webp',
+      's18-hofn-harbour': 'vis-s18-hofn-harbour.webp',
+      's08-guesthouse-strap': 'vis-s08-guesthouse-strap.png',
+      's66-hveragerdi-greenhouse': 'vis-s66-hveragerdi-greenhouse.png',
+      's10-vik-road-song': 'vis-s10-vik-road-song.png',
+      's10-vik-guesthouse-arrival': 'vis-s10-vik-guesthouse-arrival.png',
+      's12-vik-cafe-damir': 'vis-s12-vik-cafe-damir.png',
+      's12-vik-street-day': 'vis-s12-vik-street-day.png',
+      's13-skaftafell-visitor-parking': 'vis-s13-skaftafell-visitor-parking.png',
+      's13-skaftafell-travelers': 'vis-s13-skaftafell-travelers.webp',
+      's14-skaftafell-pace': 'vis-s14-skaftafell-pace.png',
+      's14-lagoon-road': 'vis-s14-lagoon-road.png',
+      's15-jokulsarlon-parking-day': 'vis-s15-jokulsarlon-parking-day.png',
+      's16-guesthouse-help': 'vis-s16-guesthouse-help.png',
+      's16-kitchen-soup': 'vis-s16-kitchen-soup.png',
+      's17-hofn-guesthouse': 'vis-s17-hofn-guesthouse.png',
+      's19-hofn-pool': 'vis-s19-hofn-pool.png',
+      's20-hofn-damir-kitchen': 'vis-s20-hofn-damir-kitchen.png',
+      's21-alice-hofn-room': 'vis-s21-alice-hofn-room.png',
+      's61-hofn-streets': 'vis-s61-hofn-streets.png',
+      's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
+      's23-eric-harbor-plan': 'vis-s23-eric-harbor-plan.png',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
@@ -410,6 +500,9 @@ async function assertResponsiveSourceSwitch(page, mediaId, label) {
     's39-alice-damir-cafe': 'vis-s39-alice-damir-cafe.png',
     's39-alice-damir-cafe-walk': 'vis-s39-alice-damir-cafe-walk.png',
   }[mediaId];
+  // Unpaired original WebPs use desktop sources at every viewport; decoded media
+  // is independently checked by captureMobileViewports().
+  if (!desktopFile) return;
   const portraitFile = mobileCgSources.get(mediaId) || desktopFile;
   for (const [viewport, expected] of [
     [{ width: 390, height: 844 }, portraitFile],
@@ -423,6 +516,38 @@ async function assertResponsiveSourceSwitch(page, mediaId, label) {
   }
   assert.equal(await page.locator('.ludory-narrative__stage').getAttribute('data-original-cg-source-mode'),
     mobileCgSources.has(mediaId) ? 'portrait' : 'desktop-fallback', `${label}: final responsive source mode`);
+}
+
+
+/**
+ * Use a real native Save at the pre-route decision as the snapshot for
+ * subsequent browser scenarios. This is Playwright storage-state cloning,
+ * not a forged narrative state or a shortcut around the actual game runtime.
+ */
+async function createPageFromCheckpoint(browser, name, viewport, checkpoint, beatId) {
+  assert.ok(checkpoint, name + ': missing native pre-route save');
+  const context = await browser.newContext({
+    viewport, deviceScaleFactor: 1, reducedMotion: 'reduce', storageState: checkpoint,
+  });
+  try {
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'networkidle' });
+    await page.locator('#original-home').waitFor();
+    assert.equal(await page.locator('#status').textContent(), 'Сохранение восстановлено',
+      name + ': narrative checkpoint was not restored');
+    assert.equal(await page.locator('#original-home').isVisible(), true);
+    await page.locator('[data-ui="continue-story"]').click();
+    const panel = page.locator('.ludory-narrative__panel');
+    await panel.waitFor();
+    assert.equal(await panel.getAttribute('data-beat-id'), beatId,
+      name + ': checkpoint loaded at wrong narrative position');
+    return { context, page, errors };
+  } catch (error) {
+    await context.close();
+    throw error;
+  }
 }
 
 async function createPage(browser, name, viewport) {
@@ -496,10 +621,8 @@ async function createPage(browser, name, viewport) {
   assert.equal(await page.locator('.ludory-narrative__panel h2')
     .filter({ hasText: /^s\d{2}-/ }).count(), 0, `${name}: raw scene ID visible as heading`);
   assert.equal(await page.locator('.ludory-narrative').getAttribute('data-visual'), 'true');
-  assert.equal(await page.locator('.ludory-narrative__stage img').count(), 0,
-    `${name}: unadmitted media unexpectedly rendered`);
-  assert.ok((await page.locator('.ludory-narrative__stage').getAttribute('data-neutral'))?.length,
-    `${name}: missing explicit neutral visual fallback`);
+  await assertPilotCue(page, 's01-airport-01', 'opening',
+    `${name}: original opening airport art`, 's01-airport-arrivals');
   await assertViewport(page, name);
   await page.screenshot({ path: join(evidenceDir, `${name}-start.png`), fullPage: true });
   return { context, page, errors };
@@ -589,12 +712,12 @@ async function main() {
       await mobile.page.screenshot({ path: join(evidenceDir, 'mobile-seat-choice.png'), fullPage: true });
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:front-eric"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-eric');
-      assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-eric');
+      await assertPilotCue(mobile.page, 's01-eric-01', 'car-eric', 'mobile S01 car with Eric', 's01-road-trip-van-interior');
       await mobile.page.locator('button[data-action="narrative:back"]').click();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').waitFor();
       await mobile.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-nick"]').click();
       await mobile.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-nick');
-      assert.equal(await mobile.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-nick');
+      await assertPilotCue(mobile.page, 's01-nick-01', 'car-nick', 'mobile S01 car with Nick', 's01-road-trip-van-interior');
       await openReaderSettings(mobile.page);
       await mobile.page.locator('#save').click();
       await mobile.page.waitForFunction(() => document.querySelector('#status')?.textContent === 'Сохранено');
@@ -629,13 +752,13 @@ async function main() {
       await advanceToSeatChoice(desktop.page);
       await desktop.page.locator('button[data-action="narrative:choose:s01-seat-choice:back-damir"]').click();
       await desktop.page.waitForFunction(() => document.querySelector('.ludory-narrative__panel')?.dataset.sceneId === 's01-damir');
-      assert.equal(await desktop.page.locator('.ludory-narrative__stage').getAttribute('data-variant-id'), 'car-damir');
+      await assertPilotCue(desktop.page, 's01-damir-01', 'car-damir', 'desktop S01 car with Damir', 's01-road-trip-van-interior');
       await assertViewport(desktop.page, 'desktop-damir');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-damir.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's01-common-01');
-      await assertPilotCue(desktop.page, 's01-common-01', 'common-road', 'S01 shared road');
+      await assertPilotCue(desktop.page, 's01-common-01', 'common-road', 'S01 shared road', 's01-road-trip-van-interior');
       await advanceToBeat(desktop.page, 's02-road-01');
-      await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening');
+      await assertPilotCue(desktop.page, 's02-road-01', 'road-opening', 'S02 road opening', 's01-road-trip-van-interior');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s02-road.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's02-road-32');
       await assertPilotCue(desktop.page, 's02-road-32', 'roadside-cafe', 'S02 roadside cafe', 'roadside-cafe');
@@ -659,6 +782,69 @@ async function main() {
       await assertPilotCue(desktop.page, 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'S07 kitchen cards', 's07-kitchen-cards');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s07-kitchen-cards.png'), fullPage: true });
       await captureMobileViewports(desktop.page, 'mobile-s07-kitchen-cards', 's07-common-a-43', 'visual-s07-kitchen-cards-1', 'mobile S07 kitchen cards', 's07-kitchen-cards');
+      await advanceToBeat(desktop.page, 's07-c90-prompt');
+      await assertPilotCue(desktop.page, 's07-c90-prompt', 'source-restored-s07-c90',
+        'S07 restored kitchen-pasta choice', 's07-kitchen-pasta');
+      await advanceToBeat(desktop.page, 's08-s07-c90-echo-a-01');
+      await assertPilotCue(desktop.page, 's08-s07-c90-echo-a-01', 'source-restored-s08-echo',
+        'S07 decision recalled at S08', 's08-guesthouse-strap');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s08-original-c90-echo.png'), fullPage: true });
+      // Decode the actual restored scene artwork in a real browser, not just
+      // compare the generated source mapping against an asset manifest.
+      await advanceToBeat(desktop.page, 's08-c90-prompt');
+      await assertPilotCue(desktop.page, 's08-c90-prompt', 'original-s08-c90-art',
+        'S08 original care choice', 's08-guesthouse-strap');
+      await advanceToBeat(desktop.page, 's66-c90-prompt');
+      await assertPilotCue(desktop.page, 's66-c90-prompt', 'original-s66-c90-art',
+        'S66 original greenhouse choice', 's66-hveragerdi-greenhouse');
+      await advanceToBeat(desktop.page, 's09-c90-prompt');
+      await assertPilotCue(desktop.page, 's09-c90-prompt', 'original-s09-c90-art',
+        'S09 original waterfall choice', 's09-skogafoss-trail');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s09-original-c90-choice.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's10-c90-prompt');
+      await assertPilotCue(desktop.page, 's10-c90-prompt', 'restored-s10-c90-original',
+        'S10 original radio-song interaction', 's10-vik-road-song');
+      await advanceToBeat(desktop.page, 's10-c91-prompt');
+      await assertPilotCue(desktop.page, 's10-c91-prompt', 'restored-s10-c91-original',
+        'S10 original postcard interaction', 's10-vik-guesthouse-arrival');
+      await advanceToBeat(desktop.page, 's11-c90-choice');
+      const safetyOriginalChoices = desktop.page.locator(
+        'button[data-action^="narrative:choose:s11-c90-choice:"]');
+      assert.equal(await safetyOriginalChoices.count(), 2, 'S11 first recovered choice not rendered');
+      for (const choice of await safetyOriginalChoices.all()) {
+        assert.equal(await choice.isVisible(), true, 'S11 original choice obstructed');
+      }
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s11-original-c90-choice.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's12-c90-prompt');
+      await assertPilotCue(desktop.page, 's12-c90-prompt', 'source-restored-s12-c90', 'S12 original cafe choice', 's12-vik-cafe-damir');
+      await advanceToBeat(desktop.page, 's13-c91-prompt');
+      await assertPilotCue(desktop.page, 's13-c91-prompt', 'source-restored-s13-c91', 'S13 original notebook choice', 's13-skaftafell-travelers');
+      await advanceToBeat(desktop.page, 's14-c90-prompt');
+      await assertPilotCue(desktop.page, 's14-c90-prompt', 'authored-s14-c90-original',
+        'S14 original Eric pacing choice', 's14-skaftafell-pace');
+      await advanceToBeat(desktop.page, 's14-c91-prompt');
+      await assertPilotCue(desktop.page, 's14-c91-prompt', 'authored-s14-c91-original',
+        'S14 original Eric conversation choice', 's14-lagoon-road');
+      await advanceToBeat(desktop.page, 's15-c90-prompt');
+      await assertPilotCue(desktop.page, 's15-c90-prompt', 'authored-s15-c90-original',
+        'S15 original Nick consent choice', 's15-jokulsarlon-lagoon');
+      await advanceToBeat(desktop.page, 's15-c91-prompt');
+      await assertPilotCue(desktop.page, 's15-c91-prompt', 'authored-s15-c91-original',
+        'S15 original private footage choice', 's15-jokulsarlon-parking-day');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s15-original-choices.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's16-c90-prompt');
+      await assertPilotCue(desktop.page, 's16-c90-prompt', 'original-s16-c90-source-art',
+        'S16 Damir care source choice', 's16-guesthouse-help');
+      await advanceToBeat(desktop.page, 's16-c91-prompt');
+      await assertPilotCue(desktop.page, 's16-c91-prompt', 'original-s16-c91-source-art',
+        'S16 kitchen source choice', 's16-kitchen-soup');
+      await advanceToBeat(desktop.page, 's17-c90-prompt');
+      await assertPilotCue(desktop.page, 's17-c90-prompt', 'original-s17-c90-source-art',
+        'S17 group dinner original choice', 's17-hofn-guesthouse');
+      await advanceToBeat(desktop.page, 's17-c91-prompt');
+      await assertPilotCue(desktop.page, 's17-c91-prompt', 'original-s17-c91-source-art',
+        'S17 evening self-choice', 's17-hofn-guesthouse');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s17-original-choices.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
@@ -667,6 +853,39 @@ async function main() {
       await advanceToBeat(desktop.page, 's18-common-04');
       await assertPilotCue(desktop.page, 's18-common-04', 'visual-s18-hofn-breakfast-group-1', 'S18 breakfast group', 's18-hofn-breakfast-group');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-breakfast-group.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's18-c90-prompt');
+      await assertPilotCue(desktop.page, 's18-c90-prompt', 'source-original-s18-c90-art',
+        'Original S18 Eric reflective choice', 's18-hofn-harbour');
+      await advanceToBeat(desktop.page, 's18-c91-prompt');
+      await assertPilotCue(desktop.page, 's18-c91-prompt', 'source-original-s18-c91-art',
+        'Original S18 Eric walking choice', 's18-hofn-harbour');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-restored-choices.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's22-s17-c90-echo-a-01');
+      assert.equal(await desktop.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
+        's22-s17-c90-echo-a-01', 'Original S17 choice A must echo at S22 before weather repair');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s22-s17-delayed-source-echo.png'), fullPage: true });
+      // Real player controls are mandatory: render both source answers at
+      // each of the newly restored S22/S23 choices, in narrative order.
+      for (const beatId of ['s22-c90-choice', 's22-c91-choice',
+        's23-c90-choice', 's23-c91-choice']) {
+        if (beatId === 's23-c90-choice') {
+          await advanceToBeat(desktop.page, 's23-intro-01');
+          await assertPilotCue(desktop.page, 's23-intro-01',
+            'visual-s23-eric-harbor-plan-1',
+            'S23 original Eric harbor artwork', 's23-eric-harbor-plan');
+        }
+        await advanceToBeat(desktop.page, beatId);
+        const visibleChoices = desktop.page.locator(
+          'button[data-action^="narrative:choose:' + beatId + ':"]');
+        assert.equal(await visibleChoices.count(), 2, beatId + ': original two options lost');
+        for (const choice of await visibleChoices.all()) {
+          assert.equal(await choice.isVisible(), true, beatId + ': hidden source option');
+          assert.equal(await choice.isEnabled(), true, beatId + ': disabled source option');
+        }
+        await desktop.page.screenshot({
+          path: join(evidenceDir, 'desktop-' + beatId + '.png'), fullPage: true,
+        });
+      }
       await advanceToBeat(desktop.page, 's26-intro-01');
       await assertPilotCue(desktop.page, 's26-intro-01', 'visual-s26-eastfjords-guesthouse-courtyard-1', 'S26 guesthouse courtyard', 's26-eastfjords-guesthouse-courtyard');
       await advanceToBeat(desktop.page, 's26-intro-03');
@@ -695,6 +914,28 @@ async function main() {
     } finally { await desktop.context.close(); }
 
     const specialRoutes = [
+      ['s04-intro-05', 0, new Map(),
+        'source-art-thingvellir-trail', 'original S04 Þingvellir image', 's04-thingvellir-trail'],
+      ['s09-intro-09', 0, new Map(),
+        'source-art-skogafoss-trail', 'original S09 Skógafoss image', 's09-skogafoss-trail'],
+      ['s13-intro-13', 0, new Map(),
+        'source-restored-skaftafell-notebook', 'original S13 Skaftafell CG', 's13-skaftafell-travelers'],
+      ['s15-intro-06', 0, new Map(),
+        'source-restored-jokulsarlon-lagoon', 'original S15 Jökulsárlón background', 's15-jokulsarlon-lagoon'],
+      ['s18-intro-06', 0, new Map(),
+        'source-restored-hofn-lighthouse', 'original S18 Höfn harbor', 's18-hofn-harbour'],
+      ['s18-intro-36', 0, new Map(),
+        'source-restored-hofn-dance', 'original S18 Höfn dance', 's18-hofn-dance-lights'],
+      // Four real native S17 branches; each starts from the verified S17 save.
+      // Verify the original media is decoded in the restored C90 player choice.
+      ['s19-c90-prompt', 1, new Map(),
+        'source-original-s19-c90-art', 'original S19 Nick pool choice', 's19-hofn-pool'],
+      ['s20-c90-prompt', 2, new Map(),
+        'source-original-s20-c90-art', 'original S20 Damir evening choice', 's20-hofn-damir-kitchen'],
+      ['s21-c90-prompt', 3, new Map(),
+        'source-original-s21-c90-art', 'original S21 Alice independent choice', 's21-alice-hofn-room'],
+      ['s61-c90-prompt', 3, new Map(),
+        'source-original-s61-c90-art', 'original S61 independent continuation', 's61-hofn-streets'],
       ['s26-choice-nick-01', 0, new Map([['s26-route-choice', 1]]),
         'visual-s26-nick-choice-1', 'S26 Nick route', 's26-nick-choice'],
       ['s26-choice-damir-01', 0, new Map([['s26-route-choice', 2]]),
@@ -706,14 +947,42 @@ async function main() {
       ['s39-active-01', 2, new Map([['s26-route-choice', 2]]),
         'visual-s39-alice-damir-walk-prelude-1', 'S39 pre-café street', 's39-alice-damir-cafe-walk'],
     ];
+    // A single real playthrough covers the chronological S04/S09/S13/S15/S18 art.
+    // Previously every target replayed 1,000+ native actions from the airport.
+    const scenicTargets = new Set(specialRoutes.slice(0, 6).map(([target]) => target));
+    const scenic = await createPage(browser, 'desktop-original-scenic-sequence', { width: 1440, height: 900 });
+    let routeCheckpoint = null;
+    try {
     for (const [target, routeChoice, extraOverrides, variant, label, media] of specialRoutes) {
-      const special = await createPage(browser, `desktop-${target}`, { width: 1440, height: 900 });
+      const scenicTarget = scenicTargets.has(target);
+      const special = scenicTarget ? scenic :
+        await createPageFromCheckpoint(browser, `desktop-${target}`, { width: 1440, height: 900 },
+          routeCheckpoint, 's17-evening-choice');
       try {
+        if (target === 's18-intro-06') {
+          // Save at the true native branch point, then reuse this exact
+          // snapshot for Nick, Damir, Alice and later CG routes.
+          await advanceToBeat(special.page, 's17-evening-choice');
+          await openReaderSettings(special.page);
+          await special.page.locator('#save').click();
+          await special.page.waitForFunction(() =>
+            document.querySelector('#status')?.textContent === 'Сохранено');
+          routeCheckpoint = await special.context.storageState();
+          assert.ok(routeCheckpoint.origins.some(origin => origin.localStorage.length > 0),
+            'Native pre-route save missing from browser storage state');
+          await special.page.locator('[data-ui="continue-story"]').click();
+          assert.equal(await special.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
+            's17-evening-choice', 'saving the route checkpoint must not consume a choice');
+        }
         const overrides = new Map([['s17-evening-choice', routeChoice], ...extraOverrides]);
         await advanceToBeat(special.page, target, overrides);
         await assertPilotCue(special.page, target, variant, label, media);
         await special.page.screenshot({ path: join(evidenceDir, `desktop-${target}.png`), fullPage: true });
-        await assertResponsiveSourceSwitch(special.page, media, label);
+        // Only CG has a responsive portrait-source contract; scene backgrounds
+        // keep the same authored source across viewport sizes.
+        if (media !== 's04-thingvellir-trail' && media !== 's09-skogafoss-trail') {
+          await assertResponsiveSourceSwitch(special.page, media, label);
+        }
         await captureMobileViewports(special.page, `mobile-${target}`, target, variant, `mobile ${label}`, media);
         if (target === 's38-paused-01' || target === 's39-active-01') {
           await special.page.setViewportSize({ width: 320, height: 700 });
@@ -763,8 +1032,9 @@ async function main() {
           await special.page.screenshot({ path: join(evidenceDir, 'desktop-s46-epilogue.png'), fullPage: true });
         }
         assert.deepEqual(special.errors, [], `${label} JS errors: ${special.errors.join('; ')}`);
-      } finally { await special.context.close(); }
+      } finally { if (!scenicTarget) await special.context.close(); }
     }
+    } finally { await scenic.context.close(); }
     process.stdout.write('M4_BROWSER_QA_PASS: mobile/desktop, Save/Reload/Back, S01→S03, S07, S18, S26 mobile/desktop, S38/S39 mobile/desktop, S44/S46→S48, fonts, image geometry, no JS errors\n');
   } finally {
     if (browser) await browser.close();

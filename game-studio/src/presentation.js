@@ -482,39 +482,215 @@ export const presentationData = {
         "ru": "S66 Hveragerdi Greenhouse",
         "en": "S66 Hveragerdi Greenhouse"
       }
+    },
+    "s01-airport-arrivals": {
+      "kind": "background",
+      "src": "assets/vis-s01-airport-arrivals.webp",
+      "alt": {
+        "ru": "Зал прилёта аэропорта Кефлавик",
+        "en": "Keflavík airport arrivals hall"
+      }
+    },
+    "s01-road-trip-van-interior": {
+      "kind": "background",
+      "src": "assets/vis-s01-road-trip-van-interior.webp",
+      "alt": {
+        "ru": "Салон автомобиля под дождём в Исландии",
+        "en": "Car interior on a rainy Iceland road"
+      }
+    },
+    "s04-thingvellir-trail": {
+      "kind": "background",
+      "src": "assets/vis-s04-thingvellir-trail.webp",
+      "alt": {
+        "ru": "Тропа и скалы национального парка Тингведлир",
+        "en": "Trail and cliffs in Þingvellir National Park"
+      }
+    },
+    "s09-skogafoss-trail": {
+      "kind": "background",
+      "src": "assets/vis-s09-skogafoss-trail.webp",
+      "alt": {
+        "ru": "Водопад Скоугафосс и пешеходная тропа",
+        "en": "Skógafoss waterfall and walking trail"
+      }
+    },
+    "s13-skaftafell-travelers": {
+      "kind": "cg",
+      "src": "assets/vis-s13-skaftafell-travelers.webp",
+      "alt": {
+        "ru": "Путешественники на тропе Скафтафетля",
+        "en": "Travelers on a Skaftafell trail"
+      }
+    },
+    "s15-jokulsarlon-lagoon": {
+      "kind": "background",
+      "src": "assets/vis-s15-jokulsarlon-lagoon.webp",
+      "alt": {
+        "ru": "Ледниковая лагуна Йёкюльсаурлоун",
+        "en": "Jökulsárlón glacial lagoon"
+      }
+    },
+    "s18-hofn-harbour": {
+      "kind": "background",
+      "src": "assets/vis-s18-hofn-harbour.webp",
+      "alt": {
+        "ru": "Гавань Höfn",
+        "en": "Höfn harbor"
+      }
+    },
+    "s18-hofn-dance-lights": {
+      "kind": "cg",
+      "src": "assets/vis-s18-hofn-dance-lights.webp",
+      "alt": {
+        "ru": "Танец у гавани Höfn",
+        "en": "A dance by Höfn harbor"
+      }
+    },
+    "s29-nick-playback": {
+      "kind": "cg",
+      "src": "assets/vis-s29-nick-playback.webp",
+      "alt": {
+        "ru": "Гостевой дом: общая комната и монтажная папка",
+        "en": "Nick reviews a video with Alice in the guesthouse"
+      }
+    },
+    "s52-glove-found": {
+      "kind": "cg",
+      "src": "assets/vis-s52-glove-found.webp",
+      "alt": {
+        "ru": "Улица у почты и мастерской",
+        "en": "A found glove near the workshop and post office"
+      }
+    },
+    "s30-damir-sleeve-promise-original": {
+      "kind": "cg",
+      "src": "assets/vis-s30-damir-sleeve-promise-original.webp",
+      "alt": {
+        "ru": "Кафе Reykjahlíð у Mývatn: честный разговор о будущем",
+        "en": "Damir and Alice talking in a Myvatn cafe"
+      }
+    },
+    "s55-shum-first-step-original": {
+      "kind": "cg",
+      "src": "assets/vis-s55-shum-first-step-original.webp",
+      "alt": {
+        "ru": "Конная ферма у Mývatn: огороженная дорожка",
+        "en": "First steps with a horse on the riding farm"
+      }
+    },
+    "s31-alice-independent-evening": {
+      "kind": "cg",
+      "src": "assets/vis-s31-alice-independent-evening.webp",
+      "alt": {
+        "ru": "Гостевой дом у Mývatn: подоконник и стол",
+        "en": "Alice alone at a window in the guesthouse"
+      }
+    },
+    "s62-alice-bookstore-choice": {
+      "kind": "cg",
+      "src": "assets/vis-s62-alice-bookstore-choice.webp",
+      "alt": {
+        "ru": "Reykjahlíð: небольшой книжный магазин",
+        "en": "Alice in a small bookstore in Reykjahlid"
+      }
+    },
+    "s34-cancelled-evening": {
+      "kind": "cg",
+      "src": "assets/vis-s34-cancelled-evening.webp",
+      "alt": {
+        "ru": "Акюрейри: вход в гостиницу после дождя, Дамир с пакетом из аптеки; Алиса сама останавливается",
+        "en": "Alice meets Damir near the hotel entrance"
+      }
+    },
+    "s56-cafe-musicians": {
+      "kind": "cg",
+      "src": "assets/vis-s56-cafe-musicians.webp",
+      "alt": {
+        "ru": "Акюрейри: музыкальное кафе, стол у окна; музыканты играют новую для Алисы и Дамира песню",
+        "en": "Musicians perform in an Akureyri cafe"
+      }
+    },
+    "s63-alice-solo-concert": {
+      "kind": "cg",
+      "src": "assets/vis-s63-alice-solo-concert.webp",
+      "alt": {
+        "ru": "Акюрейри: небольшой камерный зал со складными стульями и случайными слушателями",
+        "en": "Alice attends a small chamber concert"
+      }
+    },
+    "s37-eric-alice-cafe": {
+      "kind": "cg",
+      "src": "assets/vis-s37-eric-alice-cafe.webp",
+      "alt": {
+        "ru": "Небольшое кафе Snæfellsnes после музея рыболовства, большое окно",
+        "en": "Eric and Alice talking by the cafe window"
+      }
+    },
+    "s36-snaefellsnes-drive": {
+      "kind": "background",
+      "src": "assets/vis-s36-snaefellsnes-drive.webp",
+      "alt": {
+        "ru": "Дорога по Snæfellsnes",
+        "en": "Road through the Snaefellsnes peninsula"
+      }
+    },
+    "s44-reykjavik-harbour": {
+      "kind": "background",
+      "src": "assets/vis-s44-reykjavik-harbour.webp",
+      "alt": {
+        "ru": "Рейкьявик: утренняя гавань",
+        "en": "Morning harbour in Reykjavik"
+      }
+    },
+    "s45-nick-film-final": {
+      "kind": "cg",
+      "src": "assets/vis-s45-nick-film-final.webp",
+      "alt": {
+        "ru": "Рейкьявик: просмотр финального монтажа",
+        "en": "Nick and Alice watching a final film montage"
+      }
+    },
+    "s46-airport-checkin": {
+      "kind": "cg",
+      "src": "assets/vis-s46-airport-checkin.webp",
+      "alt": {
+        "ru": "Кефлавик: стойка регистрации",
+        "en": "Airport check-in and farewell at Keflavik"
+      }
+    },
+    "s47-alice-morning-harbour": {
+      "kind": "cg",
+      "src": "assets/vis-s47-alice-morning-harbour.webp",
+      "alt": {
+        "ru": "Рейкьявик: утренняя городская гавань",
+        "en": "Alice on the Reykjavik harbour waterfront"
+      }
     }
   },
   "beats": {
     "s01-airport-01": [
       {
         "id": "opening",
-        "neutral": {
-          "reason": "airport image is not admitted"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-05": [
       {
         "id": "nick-arrives",
-        "neutral": {
-          "reason": "source visual cue mapped; no admitted portrait"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-17": [
       {
         "id": "airport-outside",
-        "neutral": {
-          "reason": "airport rain art is not admitted"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-airport-25": [
       {
         "id": "damir-arrives",
-        "neutral": {
-          "reason": "source visual cue mapped; no admitted portrait"
-        }
+        "background": "s01-airport-arrivals"
       }
     ],
     "s01-eric-01": [
@@ -523,9 +699,7 @@ export const presentationData = {
         "when": {
           "flag": "s01-seat-eric"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-nick-01": [
@@ -534,9 +708,7 @@ export const presentationData = {
         "when": {
           "flag": "s01-seat-nick"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-damir-01": [
@@ -545,25 +717,19 @@ export const presentationData = {
         "when": {
           "flag": "s01-seat-damir"
         },
-        "neutral": {
-          "reason": "car interior art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s01-common-01": [
       {
         "id": "common-road",
-        "neutral": {
-          "reason": "reset branch-specific car presentation"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s02-road-01": [
       {
         "id": "road-opening",
-        "neutral": {
-          "reason": "road art is not admitted"
-        }
+        "background": "s01-road-trip-van-interior"
       }
     ],
     "s02-road-32": [
@@ -1147,18 +1313,14 @@ export const presentationData = {
     ],
     "s04-intro-05": [
       {
-        "id": "neutral-s04-intro-05-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-art-thingvellir-trail",
+        "background": "s04-thingvellir-trail"
       }
     ],
     "s09-intro-09": [
       {
-        "id": "neutral-s09-intro-09-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-art-skogafoss-trail",
+        "background": "s09-skogafoss-trail"
       }
     ],
     "s10-intro-01": [
@@ -1199,9 +1361,10 @@ export const presentationData = {
     ],
     "s13-intro-13": [
       {
-        "id": "neutral-s13-intro-13-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "source-restored-skaftafell-notebook",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1222,10 +1385,8 @@ export const presentationData = {
     ],
     "s15-intro-06": [
       {
-        "id": "neutral-s15-intro-06-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-jokulsarlon-lagoon",
+        "background": "s15-jokulsarlon-lagoon"
       }
     ],
     "s16-intro-02": [
@@ -1257,26 +1418,23 @@ export const presentationData = {
     ],
     "s18-intro-06": [
       {
-        "id": "neutral-s18-intro-06-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-hofn-lighthouse",
+        "background": "s18-hofn-harbour"
       }
     ],
     "s18-intro-36": [
       {
-        "id": "neutral-s18-intro-36-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "source-restored-hofn-dance",
+        "cg": {
+          "mediaId": "s18-hofn-dance-lights",
+          "mode": "replace-stage"
         }
       }
     ],
     "s18-intro-40": [
       {
-        "id": "neutral-s18-intro-40-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "source-restored-hofn-walk-back",
+        "background": "s18-hofn-harbour"
       }
     ],
     "s18-common-02": [
@@ -1452,49 +1610,55 @@ export const presentationData = {
     ],
     "s29-intro-01": [
       {
-        "id": "neutral-s29-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s29-nick-playback",
+        "cg": {
+          "mediaId": "s29-nick-playback",
+          "mode": "replace-stage"
         }
       }
     ],
     "s52-intro-05": [
       {
-        "id": "neutral-s52-intro-05-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s52-glove-found",
+        "cg": {
+          "mediaId": "s52-glove-found",
+          "mode": "replace-stage"
         }
       }
     ],
     "s30-c1-a-02": [
       {
-        "id": "neutral-s30-c1-a-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s30-damir-sleeve-promise",
+        "cg": {
+          "mediaId": "s30-damir-sleeve-promise-original",
+          "mode": "replace-stage"
         }
       }
     ],
     "s55-intro-04": [
       {
-        "id": "neutral-s55-intro-04-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s55-shum-first-step",
+        "cg": {
+          "mediaId": "s55-shum-first-step-original",
+          "mode": "replace-stage"
         }
       }
     ],
     "s31-intro-01": [
       {
-        "id": "neutral-s31-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s31-alice-independent-evening",
+        "cg": {
+          "mediaId": "s31-alice-independent-evening",
+          "mode": "replace-stage"
         }
       }
     ],
     "s62-intro-02": [
       {
-        "id": "neutral-s62-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s62-alice-bookstore-choice",
+        "cg": {
+          "mediaId": "s62-alice-bookstore-choice",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1527,56 +1691,59 @@ export const presentationData = {
     ],
     "s34-intro-04": [
       {
-        "id": "neutral-s34-intro-04-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s34-cancelled-evening-entrance",
+        "cg": {
+          "mediaId": "s34-cancelled-evening",
+          "mode": "replace-stage"
         }
       }
     ],
     "s56-active-01": [
       {
-        "id": "neutral-s56-active-01-1",
+        "id": "restored-original-s56-cafe-new-song-active",
         "when": {
           "flag": "s34-status-active"
         },
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "cg": {
+          "mediaId": "s56-cafe-musicians",
+          "mode": "replace-stage"
         }
       }
     ],
     "s56-paused-01": [
       {
-        "id": "neutral-s56-paused-01-1",
+        "id": "restored-original-s56-cafe-new-song-paused",
         "when": {
           "flag": "s34-status-paused"
         },
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "cg": {
+          "mediaId": "s56-cafe-musicians",
+          "mode": "replace-stage"
         }
       }
     ],
     "s63-intro-02": [
       {
-        "id": "neutral-s63-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s63-alice-solo-concert",
+        "cg": {
+          "mediaId": "s63-alice-solo-concert",
+          "mode": "replace-stage"
         }
       }
     ],
     "s37-active-03": [
       {
-        "id": "neutral-s37-active-03-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-s37-eric-alice-cafe",
+        "cg": {
+          "mediaId": "s37-eric-alice-cafe",
+          "mode": "replace-stage"
         }
       }
     ],
     "s36-intro-02": [
       {
-        "id": "neutral-s36-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "restored-original-snaefellsnes-drive",
+        "background": "s36-snaefellsnes-drive"
       }
     ],
     "s41-intro-02": [
@@ -1589,10 +1756,8 @@ export const presentationData = {
     ],
     "s44-intro-01": [
       {
-        "id": "neutral-s44-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
-        }
+        "id": "restored-original-eric-morning-harbour",
+        "background": "s44-reykjavik-harbour"
       }
     ],
     "s44-common-01": [
@@ -1606,9 +1771,10 @@ export const presentationData = {
     ],
     "s45-intro-01": [
       {
-        "id": "neutral-s45-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-nick-film-final",
+        "cg": {
+          "mediaId": "s45-nick-film-final",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1629,9 +1795,10 @@ export const presentationData = {
     ],
     "s46-intro-02": [
       {
-        "id": "neutral-s46-intro-02-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-airport-checkin",
+        "cg": {
+          "mediaId": "s46-airport-checkin",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1646,9 +1813,10 @@ export const presentationData = {
     ],
     "s47-intro-01": [
       {
-        "id": "neutral-s47-intro-01-1",
-        "neutral": {
-          "reason": "source visual asset is blocked or has no admitted provenance"
+        "id": "restored-original-alice-morning-harbour",
+        "cg": {
+          "mediaId": "s47-alice-morning-harbour",
+          "mode": "replace-stage"
         }
       }
     ],
@@ -1839,6 +2007,1848 @@ export const presentationData = {
         "id": "visual-s39-alice-damir-cafe-1",
         "cg": {
           "mediaId": "s39-alice-damir-cafe",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s01-airport-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-09": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-10": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-11": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-12": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-13": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-14": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-15": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-16": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-18": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-19": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-20": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-21": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-22": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-23": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-24": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-26": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-27": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-28": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-29": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-30": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-31": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-32": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-33": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-34": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-35": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-36": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-37": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-38": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-airport-39": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-seat-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-airport-arrivals"
+      }
+    ],
+    "s01-eric-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-eric-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-nick-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-damir-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-02": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-03": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-04": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-05": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-06": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-07": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-08": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-09": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-10": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-11": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-12": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-13": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-14": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-15": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-16": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-17": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-18": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-19": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-20": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-21": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-22": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-23": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-24": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-25": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-26": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-27": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-28": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-29": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-30": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-road-31": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-choice": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-route": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-answer-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c90-answer-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-answer-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-answer-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-a-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-echo-b-01": [
+      {
+        "id": "source-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-choice": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c90-answer-a-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c90-answer-b-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-choice": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-answer-a-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-answer-b-01": [
+      {
+        "id": "original-s02-cafe-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s01-c90-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s01-c91-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "s01-road-trip-van-interior"
+      }
+    ],
+    "s02-c90-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s02-c91-prompt": [
+      {
+        "id": "original-prompt-art-continuity",
+        "background": "roadside-cafe"
+      }
+    ],
+    "s03-s65-c90-echo-dispatch": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
+    ],
+    "s03-s65-c90-echo-a-01": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
+    ],
+    "s03-s65-c90-echo-b-01": [
+      {
+        "id": "s65-delayed-recollection-guesthouse",
+        "background": "guesthouse-morning"
+      }
+    ],
+    "s04-c90-prompt": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-choice": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-answer-a-01": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c90-answer-b-01": [
+      {
+        "id": "original-s04-c90-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-prompt": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-choice": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-answer-a-01": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s04-c91-answer-b-01": [
+      {
+        "id": "original-s04-c91-continuity",
+        "background": "s04-thingvellir-trail"
+      }
+    ],
+    "s05-c90-prompt": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-choice": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-answer-a-01": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c90-answer-b-01": [
+      {
+        "id": "original-s05-c90-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-prompt": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-choice": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-answer-a-01": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s05-c91-answer-b-01": [
+      {
+        "id": "original-s05-c91-continuity",
+        "background": "s05-hveragerdi-road"
+      }
+    ],
+    "s06-c90-prompt": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-choice": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-answer-a-01": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c90-answer-b-01": [
+      {
+        "id": "source-restored-s06-c90",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-prompt": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-choice": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-answer-a-01": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s06-c91-answer-b-01": [
+      {
+        "id": "source-restored-s06-c91",
+        "background": "s06-hveragerdi-geothermal-day"
+      }
+    ],
+    "s07-c90-prompt": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-choice": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-answer-a-01": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c90-answer-b-01": [
+      {
+        "id": "source-restored-s07-c90",
+        "cg": {
+          "mediaId": "s07-kitchen-pasta",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-prompt": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-choice": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-answer-a-01": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s07-c91-answer-b-01": [
+      {
+        "id": "source-restored-s07-c91",
+        "cg": {
+          "mediaId": "s07-kitchen-cards",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-s07-c90-echo-a-01": [
+      {
+        "id": "source-restored-s08-echo",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-s07-c90-echo-b-01": [
+      {
+        "id": "source-restored-s08-echo",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-prompt": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-choice": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-answer-a-01": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c90-answer-b-01": [
+      {
+        "id": "original-s08-c90-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-prompt": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-choice": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-answer-a-01": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s08-c91-answer-b-01": [
+      {
+        "id": "original-s08-c91-art",
+        "cg": {
+          "mediaId": "s08-guesthouse-strap",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s66-c90-prompt": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-choice": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-answer-a-01": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c90-answer-b-01": [
+      {
+        "id": "original-s66-c90-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-prompt": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-choice": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-answer-a-01": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s66-c91-answer-b-01": [
+      {
+        "id": "original-s66-c91-art",
+        "background": "s66-hveragerdi-greenhouse"
+      }
+    ],
+    "s09-c90-prompt": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-choice": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-answer-a-01": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c90-answer-b-01": [
+      {
+        "id": "original-s09-c90-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-prompt": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-choice": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-answer-a-01": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s09-c91-answer-b-01": [
+      {
+        "id": "original-s09-c91-art",
+        "background": "s09-skogafoss-trail"
+      }
+    ],
+    "s10-c90-prompt": [
+      {
+        "id": "restored-s10-c90-original",
+        "cg": {
+          "mediaId": "s10-vik-road-song",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s10-c90-choice": [
+      {
+        "id": "restored-s10-c90-original",
+        "cg": {
+          "mediaId": "s10-vik-road-song",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s10-c90-answer-a-01": [
+      {
+        "id": "restored-s10-c90-original",
+        "cg": {
+          "mediaId": "s10-vik-road-song",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s10-c90-answer-b-01": [
+      {
+        "id": "restored-s10-c90-original",
+        "cg": {
+          "mediaId": "s10-vik-road-song",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s10-c91-prompt": [
+      {
+        "id": "restored-s10-c91-original",
+        "background": "s10-vik-guesthouse-arrival"
+      }
+    ],
+    "s10-c91-choice": [
+      {
+        "id": "restored-s10-c91-original",
+        "background": "s10-vik-guesthouse-arrival"
+      }
+    ],
+    "s10-c91-answer-a-01": [
+      {
+        "id": "restored-s10-c91-original",
+        "background": "s10-vik-guesthouse-arrival"
+      }
+    ],
+    "s10-c91-answer-b-01": [
+      {
+        "id": "restored-s10-c91-original",
+        "background": "s10-vik-guesthouse-arrival"
+      }
+    ],
+    "s12-c90-prompt": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-choice": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-answer-a-01": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c90-answer-b-01": [
+      {
+        "id": "source-restored-s12-c90",
+        "cg": {
+          "mediaId": "s12-vik-cafe-damir",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s12-c91-prompt": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-choice": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-answer-a-01": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s12-c91-answer-b-01": [
+      {
+        "id": "source-restored-s12-c91",
+        "background": "s12-vik-street-day"
+      }
+    ],
+    "s13-c90-prompt": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-choice": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-answer-a-01": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c90-answer-b-01": [
+      {
+        "id": "source-restored-s13-c90",
+        "background": "s13-skaftafell-visitor-parking"
+      }
+    ],
+    "s13-c91-prompt": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-choice": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-answer-a-01": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s13-c91-answer-b-01": [
+      {
+        "id": "source-restored-s13-c91",
+        "cg": {
+          "mediaId": "s13-skaftafell-travelers",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-prompt": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-choice": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-answer-a-01": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c90-answer-b-01": [
+      {
+        "id": "authored-s14-c90-original",
+        "cg": {
+          "mediaId": "s14-skaftafell-pace",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s14-c91-prompt": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-choice": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-answer-a-01": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s14-c91-answer-b-01": [
+      {
+        "id": "authored-s14-c91-original",
+        "background": "s14-lagoon-road"
+      }
+    ],
+    "s15-c90-prompt": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-choice": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-answer-a-01": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c90-answer-b-01": [
+      {
+        "id": "authored-s15-c90-original",
+        "background": "s15-jokulsarlon-lagoon"
+      }
+    ],
+    "s15-c91-prompt": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-choice": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-answer-a-01": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s15-c91-answer-b-01": [
+      {
+        "id": "authored-s15-c91-original",
+        "background": "s15-jokulsarlon-parking-day"
+      }
+    ],
+    "s16-c90-prompt": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-choice": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-answer-a-01": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-answer-b-01": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-prompt": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-choice": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-answer-a-01": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-answer-b-01": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-prompt": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-choice": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-answer-a-01": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-answer-b-01": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-prompt": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-choice": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-answer-a-01": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-answer-b-01": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-prompt": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-choice": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-answer-a-01": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-answer-b-01": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-prompt": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-choice": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-answer-a-01": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-answer-b-01": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-prompt": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-choice": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-answer-a-01": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-answer-b-01": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-prompt": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-choice": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-answer-a-01": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-answer-b-01": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-prompt": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-choice": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-answer-a-01": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-answer-b-01": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-prompt": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-choice": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-answer-a-01": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-answer-b-01": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-prompt": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-choice": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-answer-a-01": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-answer-b-01": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-prompt": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-choice": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-answer-a-01": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-answer-b-01": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-prompt": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-choice": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-answer-a-01": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-answer-b-01": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-prompt": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-choice": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-answer-a-01": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-answer-b-01": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
           "mode": "replace-stage"
         }
       }

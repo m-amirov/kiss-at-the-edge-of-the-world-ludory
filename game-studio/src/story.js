@@ -1,3 +1,4 @@
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes, originalS18ToS61ExtraScenes, originalS22AndS23ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -300,7 +301,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's01-eric', beats: beats('s01-eric', withEric), nextSceneId: 's01-common' },
   { id: 's01-nick', beats: beats('s01-nick', withNick), nextSceneId: 's01-common' },
   { id: 's01-damir', beats: beats('s01-damir', withDamir), nextSceneId: 's01-common' },
-  { id: 's01-common', beats: beats('s01-common', common), nextSceneId: 's02-road' },
+  { id: 's01-common', beats: beats('s01-common', common), nextSceneId: 's01-c90' },
   { id: 's02-road', beats: [
     ...beats('s02-road', s02Intro),
     { id: 's02-career-choice', type: 'choice', choices: [
@@ -318,8 +319,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's02-people', beats: beats('s02-people', s02People), nextSceneId: 's02-common' },
   { id: 's02-place', beats: beats('s02-place', s02Place), nextSceneId: 's02-common' },
   { id: 's02-own-choice', beats: beats('s02-own-choice', s02OwnChoice), nextSceneId: 's02-common' },
-  { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's65-guesthouse' },
-  { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's03-editorial' },
+  { id: 's02-common', beats: beats('s02-common', s02Common), nextSceneId: 's02-c90' },
+  { id: 's65-guesthouse', beats: beats('s65-guesthouse', s65Evening), nextSceneId: 's65-c90' },
   { id: 's03-editorial', beats: [
     ...beats('s03-editorial', s03Intro),
     // Engine N1 1.2.2 has no conditional automatic nextSceneId: these are
@@ -356,8 +357,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's03-damir-silence', value: true }] },
     ] },
   ] },
-  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's04-intro' },
-  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's04-intro' },
+  { id: 's03-message', beats: beats('s03-message', s03Message), nextSceneId: 's03-c90' },
+  { id: 's03-silence', beats: beats('s03-silence', s03Silence), nextSceneId: 's03-c90' },
   { id: 's04-intro', beats: [
     ...beats('s04-intro', s04Intro),
     { id: 's04-camera-consent-choice', type: 'choice', choices: [
@@ -383,8 +384,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's03-damir-silence' } },
     ] },
   ] },
-  { id: 's04-after-message', beats: beats('s04-after-message', s04AfterMessage), nextSceneId: 's05-intro' },
-  { id: 's04-after-silence', beats: beats('s04-after-silence', s04AfterSilence), nextSceneId: 's05-intro' },
+  { id: 's04-after-message', beats: beats('s04-after-message', s04AfterMessage), nextSceneId: 's04-c90' },
+  { id: 's04-after-silence', beats: beats('s04-after-silence', s04AfterSilence), nextSceneId: 's04-c90' },
   { id: 's05-intro', beats: [
     ...beats('s05-intro', s05Intro),
     { id: 's05-weather-choice', type: 'choice', choices: [
@@ -399,7 +400,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's05-nick', beats: beats('s05-nick', s05Nick), nextSceneId: 's05-common' },
   { id: 's05-erik', beats: beats('s05-erik', s05Erik), nextSceneId: 's05-common' },
   { id: 's05-damir', beats: beats('s05-damir', s05Damir), nextSceneId: 's05-common' },
-  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's06-intro' },
+  { id: 's05-common', beats: beats('s05-common', s05Common), nextSceneId: 's05-c90' },
   { id: 's06-intro', beats: [
     ...beats('s06-intro', s06Intro),
     // Branch derived from the earlier S05 weather decision; not a new paid/player choice.
@@ -435,8 +436,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-map-music', value: true }] },
     ] },
   ] },
-  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's07-intro' },
-  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's07-intro' },
+  { id: 's06-favorite-place', beats: beats('s06-favorite-place', s06FavoritePlace), nextSceneId: 's06-c90' },
+  { id: 's06-music', beats: beats('s06-music', s06Music), nextSceneId: 's06-c90' },
   { id: 's07-intro', beats: [
     ...beats('s07-intro', s07Intro),
     // Optional S05 Nick callback; no prose is added for weather choice Erik/Damir.
@@ -497,8 +498,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-map-music' } },
     ] },
   ] },
-  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's08-intro' },
-  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's08-intro' },
+  { id: 's07-eric-favorite', beats: beats('s07-eric-favorite', s07EricFavorite), nextSceneId: 's07-c90' },
+  { id: 's07-eric-music', beats: beats('s07-eric-music', s07EricMusic), nextSceneId: 's07-c90' },
   { id: 's08-intro', beats: [
     ...beats('s08-intro', s08Intro),
     { id: 's08-weather-dispatch', type: 'choice', choices: [
@@ -520,9 +521,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'damir-care-personal', value: true }] },
     ] },
   ] },
-  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's66-intro' },
-  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's66-intro' },
-  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's66-intro' },
+  { id: 's08-warm', beats: beats('s08-warm', s08Warm), nextSceneId: 's08-c90' },
+  { id: 's08-neutral', beats: beats('s08-neutral', s08Neutral), nextSceneId: 's08-c90' },
+  { id: 's08-personal', beats: beats('s08-personal', s08Personal), nextSceneId: 's08-c90' },
   { id: 's66-intro', beats: [
     ...beats('s66-intro', s66Intro),
     // Ludory N1 conditional choices are technical Continue actions, not authored decisions.
@@ -552,7 +553,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's66-career-people', beats: beats('s66-career-people', s66CareerPeople), nextSceneId: 's66-common-b' },
   { id: 's66-career-place', beats: beats('s66-career-place', s66CareerPlace), nextSceneId: 's66-common-b' },
   { id: 's66-career-own', beats: beats('s66-career-own', s66CareerOwn), nextSceneId: 's66-common-b' },
-  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's09-intro' },
+  { id: 's66-common-b', beats: beats('s66-common-b', s66CommonB), nextSceneId: 's66-c90' },
   { id: 's09-intro', beats: [
     ...beats('s09-intro', s09Intro),
     { id: 's09-voice-choice', type: 'choice', choices: [
@@ -582,7 +583,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's09-career-people', beats: beats('s09-career-people', s09CareerPeople), nextSceneId: 's09-common-b' },
   { id: 's09-career-place', beats: beats('s09-career-place', s09CareerPlace), nextSceneId: 's09-common-b' },
   { id: 's09-career-own', beats: beats('s09-career-own', s09CareerOwn), nextSceneId: 's09-common-b' },
-  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's10-intro' },
+  { id: 's09-common-b', beats: beats('s09-common-b', s09CommonB), nextSceneId: 's09-c90' },
   { id: 's10-intro', beats: [
     ...beats('s10-intro', s10Intro),
     // Previously authored S01 seat preference chooses exactly one S10 callback.
@@ -605,7 +606,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's10-playful', beats: beats('s10-playful', s10Playful), nextSceneId: 's10-common' },
   { id: 's10-quiet', beats: beats('s10-quiet', s10Quiet), nextSceneId: 's10-common' },
-  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's11-intro' },
+  { id: 's10-common', beats: beats('s10-common', s10Common), nextSceneId: 's10-c90' },
   { id: 's11-intro', beats: [
     ...beats('s11-intro', s11Intro),
     // S04 camera consent chooses the opening callback, but cannot authorize new recording.
@@ -645,7 +646,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's11-safe-point', beats: beats('s11-safe-point', s11SafePoint), nextSceneId: 's11-common-b' },
   { id: 's11-leave-water', beats: beats('s11-leave-water', s11LeaveWater), nextSceneId: 's11-common-b' },
   { id: 's11-check-rules', beats: beats('s11-check-rules', s11CheckRules), nextSceneId: 's11-common-b' },
-  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's12-intro' },
+  { id: 's11-common-b', beats: beats('s11-common-b', s11CommonB), nextSceneId: 's11-c90' },
   { id: 's12-intro', beats: [
     ...beats('s12-intro', s12Intro),
     // The S08-C1 care decision changes only S12's corresponding authored callback.
@@ -706,8 +707,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's12-return-alone', value: true }] },
     ] },
   ] },
-  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's13-intro' },
-  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's13-intro' },
+  { id: 's12-return-chocolate', beats: beats('s12-return-chocolate', s12ReturnChocolate), nextSceneId: 's12-c90' },
+  { id: 's12-return-alone', beats: beats('s12-return-alone', s12ReturnAlone), nextSceneId: 's12-c90' },
   { id: 's13-intro', beats: [
     ...beats('s13-intro', s13Intro),
     // The exact S09-C1 waterfall voice appears here in three distinct authored variants.
@@ -746,8 +747,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 's12-return-alone' } },
     ] },
   ] },
-  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's14-intro' },
-  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's14-intro' },
+  { id: 's13-return-chocolate', beats: beats('s13-return-chocolate', s13ReturnChocolate), nextSceneId: 's13-c90' },
+  { id: 's13-return-alone', beats: beats('s13-return-alone', s13ReturnAlone), nextSceneId: 's13-c90' },
   { id: 's14-intro', beats: [
     ...beats('s14-intro', s14Intro),
     // A historical S10-C1 tone selects one authored callback, not another choice.
@@ -786,8 +787,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-gesture-photo', value: true }] },
     ] },
   ] },
-  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's15-intro' },
-  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's15-intro' },
+  { id: 's14-gesture-walk', beats: beats('s14-gesture-walk', s14GestureWalk), nextSceneId: 's14-c90' },
+  { id: 's14-gesture-photo', beats: beats('s14-gesture-photo', s14GesturePhoto), nextSceneId: 's14-c90' },
   { id: 's15-intro', beats: [
     ...beats('s15-intro', s15Intro),
     // S09's Nick narrator has distinct authored prose; Eric and Damir share another.
@@ -835,8 +836,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         when: { flag: 'eric-gesture-photo' } },
     ] },
   ] },
-  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's16-intro' },
-  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's16-intro' },
+  { id: 's15-evening-walk', beats: beats('s15-evening-walk', s15EveningWalk), nextSceneId: 's15-c90' },
+  { id: 's15-evening-photo', beats: beats('s15-evening-photo', s15EveningPhoto), nextSceneId: 's15-c90' },
   { id: 's16-intro', beats: [
     ...beats('s16-intro', s16Intro),
     { id: 's16-care-choice', type: 'choice', choices: [
@@ -850,7 +851,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's16-tea', beats: beats('s16-tea', s16Tea), nextSceneId: 's16-common' },
   { id: 's16-room', beats: beats('s16-room', s16Room), nextSceneId: 's16-common' },
-  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's17-intro' },
+  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's16-c90' },
   { id: 's17-intro', beats: beats('s17-intro', s17Intro), nextSceneId: 's17-n-dispatch' },
   { id: 's17-n-dispatch', beats: [
     { id: 's17-n-dispatch', type: 'choice', choices: [
@@ -902,10 +903,10 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's17-group-break', value: true }] },
     ] },
   ] },
-  { id: 's17-group-a', beats: beats('s17-group-a', s17GroupPlan), nextSceneId: 's17-common-b' },
-  { id: 's17-group-b', beats: beats('s17-group-b', s17GroupLaundry), nextSceneId: 's17-common-b' },
-  { id: 's17-group-c', beats: beats('s17-group-c', s17GroupKitchen), nextSceneId: 's17-common-b' },
-  { id: 's17-group-d', beats: beats('s17-group-d', s17GroupBreak), nextSceneId: 's17-common-b' },
+  { id: 's17-group-a', beats: beats('s17-group-a', s17GroupPlan), nextSceneId: 's17-c90' },
+  { id: 's17-group-b', beats: beats('s17-group-b', s17GroupLaundry), nextSceneId: 's17-c90' },
+  { id: 's17-group-c', beats: beats('s17-group-c', s17GroupKitchen), nextSceneId: 's17-c90' },
+  { id: 's17-group-d', beats: beats('s17-group-d', s17GroupBreak), nextSceneId: 's17-c90' },
   { id: 's17-common-b', beats: [
     ...beats('s17-common-b', s17CommonB),
     { id: 's17-evening-choice', type: 'choice', choices: [
@@ -965,8 +966,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-followup-song', value: true }] },
     ] },
   ] },
-  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's22-intro' },
-  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's22-intro' },
+  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's18-c90' },
+  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's18-c90' },
   // Only the Nick option in S17-C2 enters the exclusive S19 evening.
   { id: 's19-intro', beats: [
     ...beats('s19-intro', s19Intro),
@@ -1043,9 +1044,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's19-camera-free', beats: beats('s19-camera-free', s19CameraFree),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's19-c90' },
   { id: 's19-breakfast', beats: beats('s19-breakfast', s19Breakfast),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's19-c90' },
   // S17-C2 Damir enters this exclusive day-10 dinner; no reconciliation is implied.
   { id: 's20-intro', beats: [
     ...beats('s20-intro', s20Intro),
@@ -1090,9 +1091,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's20-breakfast', beats: beats('s20-breakfast', s20Breakfast),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's20-c90' },
   { id: 's20-waterfront', beats: beats('s20-waterfront', s20Waterfront),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's20-c90' },
   // The independent evening is a fully authored S21 → mandatory S61 pair.
   { id: 's21-intro', beats: beats('s21-intro', s21Intro), nextSceneId: 's21-choice-note' },
   { id: 's21-choice-note', beats: [
@@ -1134,8 +1135,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'alice-self-bookstore', value: true }] },
     ] },
   ] },
-  { id: 's21-friend', beats: beats('s21-friend', s21Friend), nextSceneId: 's61-intro' },
-  { id: 's21-bookstore', beats: beats('s21-bookstore', s21Bookstore), nextSceneId: 's61-intro' },
+  { id: 's21-friend', beats: beats('s21-friend', s21Friend), nextSceneId: 's21-c90' },
+  { id: 's21-bookstore', beats: beats('s21-bookstore', s21Bookstore), nextSceneId: 's21-c90' },
   // S61 is mandatory and continues the same sent-letter provenance.
   { id: 's61-intro', beats: beats('s61-intro', s61Intro), nextSceneId: 's61-editor-dispatch' },
   { id: 's61-editor-dispatch', beats: [
@@ -1180,11 +1181,11 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's61-friend', beats: beats('s61-friend', s61FriendPayoff),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's61-c90' },
   { id: 's61-bookstore', beats: beats('s61-bookstore', s61BookstorePayoff),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's61-c90' },
   // The four authored EP05 evening/day arcs converge only after their full callbacks.
-  { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-weather-dispatch' },
+  { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-s17-c90-echo-dispatch' },
   { id: 's22-weather-dispatch', beats: [
     { id: 's22-weather-choice', type: 'choice', choices: [
       { id: 'nick', label: t('Продолжить'), targetSceneId: 's22-weather-nick',
@@ -1230,9 +1231,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's22-stop-group', beats: beats('s22-stop-group', s22StopGroup),
-    nextSceneId: 's23-intro' },
+    nextSceneId: 's22-c90' },
   { id: 's22-stop-notes', beats: beats('s22-stop-notes', s22StopNotes),
-    nextSceneId: 's23-intro' },
+    nextSceneId: 's22-c90' },
   // S23 has four mutually exclusive eveningState callbacks, sourced from S17.
   { id: 's23-intro', beats: beats('s23-intro', s23Intro),
     nextSceneId: 's23-evening-dispatch' },
@@ -1317,9 +1318,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's23-stop-group', beats: beats('s23-stop-group', s23StopGroup),
-    nextSceneId: 's23-followup-dispatch' },
+    nextSceneId: 's23-c90' },
   { id: 's23-stop-notes', beats: beats('s23-stop-notes', s23StopNotes),
-    nextSceneId: 's23-followup-dispatch' },
+    nextSceneId: 's23-c90' },
   // These S18-C2 callbacks are only reachable after an Eric evening.
   { id: 's23-followup-dispatch', beats: [
     { id: 's23-followup-choice', type: 'choice', choices: [
@@ -2452,7 +2453,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's60-c1-b', beats: beats('s60-c1-b', s60.s60C1B), nextSceneId: 's60-common' },
   { id: 's60-c1-c', beats: beats('s60-c1-c', s60.s60C1C), nextSceneId: 's60-common' },
   { id: 's60-common', beats: beats('s60-common', s60.s60Common),
-    nextSceneId: 's41-intro' },
+    nextSceneId: 's41-c90-echo-route' },
   // Shared EP10 day 20. Existing S02 thesis selects exactly one authored
   // paragraph; there is no fallback for malformed/provenance-invalid saves.
   { id: 's41-intro', beats: beats('s41-intro', s41.s41Intro),
@@ -2681,6 +2682,19 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's47-common', beats: beats('s47-common', s47.s47Common), nextSceneId: 's47-ending' },
   { id: 's47-ending', beats: [{ id: 's47-ending-beat', type: 'ending',
     endingId: 'alice', text: t('Конец сезона') }] },
+  ...originalS01ExtraScenes({ t, beats }),
+  ...originalS02ExtraScenes({ t, beats }),
+  ...originalS41EchoScenes({ t, beats }),
+  ...originalS65AndS03ExtraScenes({ t, beats }),
+  ...originalS04AndS05ExtraScenes({ t, beats }),
+  ...originalS06AndS07ExtraScenes({ t, beats }),
+  ...originalS08S66S09ExtraScenes({ t, beats }),
+  ...originalS10AndS11ExtraScenes({ t, beats }),
+  ...originalS12AndS13ExtraScenes({ t, beats }),
+  ...originalS14AndS15ExtraScenes({ t, beats }),
+  ...originalS16S17AndS22EchoScenes({ t, beats }),
+  ...originalS18ToS61ExtraScenes({ t, beats }),
+  ...originalS22AndS23ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

@@ -1,0 +1,781 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "m-amirov/kiss-at-the-edge-of-the-world",
+  "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+  "sourceFiles": {
+    "pacing": "src/literary-pacing.js",
+    "interactions": "src/literary-interactive-beats.js",
+    "season": "src/literary-season-data.js"
+  },
+  "meaning": "Insert after the numbered readable original paragraph on the canonical A read. Original runtime applies these thresholds to each conditional branch, with fallback at branch end when the branch is shorter; placement is not a fixed graph-beat offset.",
+  "choicePositions": [
+    {
+      "originalChoiceId": "S01-C90",
+      "originalSceneId": "S01",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 48,
+      "insertAfterParagraph": 16,
+      "existingLudorySceneId": "s01-c90"
+    },
+    {
+      "originalChoiceId": "S01-C91",
+      "originalSceneId": "S01",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 48,
+      "insertAfterParagraph": 32,
+      "existingLudorySceneId": "s01-c91"
+    },
+    {
+      "originalChoiceId": "S02-C90",
+      "originalSceneId": "S02",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 65,
+      "insertAfterParagraph": 21,
+      "existingLudorySceneId": "s02-c90"
+    },
+    {
+      "originalChoiceId": "S02-C91",
+      "originalSceneId": "S02",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 65,
+      "insertAfterParagraph": 43,
+      "existingLudorySceneId": "s02-c91"
+    },
+    {
+      "originalChoiceId": "S65-C90",
+      "originalSceneId": "S65",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 106,
+      "insertAfterParagraph": 35,
+      "existingLudorySceneId": "s65-c90"
+    },
+    {
+      "originalChoiceId": "S65-C91",
+      "originalSceneId": "S65",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 106,
+      "insertAfterParagraph": 70,
+      "existingLudorySceneId": "s65-c91"
+    },
+    {
+      "originalChoiceId": "S03-C90",
+      "originalSceneId": "S03",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 85,
+      "insertAfterParagraph": 28,
+      "existingLudorySceneId": "s03-c90"
+    },
+    {
+      "originalChoiceId": "S03-C91",
+      "originalSceneId": "S03",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 85,
+      "insertAfterParagraph": 56,
+      "existingLudorySceneId": "s03-c91"
+    },
+    {
+      "originalChoiceId": "S04-C90",
+      "originalSceneId": "S04",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 128,
+      "insertAfterParagraph": 42,
+      "existingLudorySceneId": "s04-c90"
+    },
+    {
+      "originalChoiceId": "S04-C91",
+      "originalSceneId": "S04",
+      "originalEpisode": 1,
+      "canonicalAReadParagraphCount": 128,
+      "insertAfterParagraph": 85,
+      "existingLudorySceneId": "s04-c91"
+    },
+    {
+      "originalChoiceId": "S05-C90",
+      "originalSceneId": "S05",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 95,
+      "insertAfterParagraph": 31,
+      "existingLudorySceneId": "s05-c90"
+    },
+    {
+      "originalChoiceId": "S05-C91",
+      "originalSceneId": "S05",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 95,
+      "insertAfterParagraph": 63,
+      "existingLudorySceneId": "s05-c91"
+    },
+    {
+      "originalChoiceId": "S06-C90",
+      "originalSceneId": "S06",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 96,
+      "insertAfterParagraph": 32,
+      "existingLudorySceneId": "s06-c90"
+    },
+    {
+      "originalChoiceId": "S06-C91",
+      "originalSceneId": "S06",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 96,
+      "insertAfterParagraph": 64,
+      "existingLudorySceneId": "s06-c91"
+    },
+    {
+      "originalChoiceId": "S07-C90",
+      "originalSceneId": "S07",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 115,
+      "insertAfterParagraph": 38,
+      "existingLudorySceneId": "s07-c90"
+    },
+    {
+      "originalChoiceId": "S07-C91",
+      "originalSceneId": "S07",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 115,
+      "insertAfterParagraph": 76,
+      "existingLudorySceneId": "s07-c91"
+    },
+    {
+      "originalChoiceId": "S08-C90",
+      "originalSceneId": "S08",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 95,
+      "insertAfterParagraph": 31,
+      "existingLudorySceneId": "s08-c90"
+    },
+    {
+      "originalChoiceId": "S08-C91",
+      "originalSceneId": "S08",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 95,
+      "insertAfterParagraph": 63,
+      "existingLudorySceneId": "s08-c91"
+    },
+    {
+      "originalChoiceId": "S66-C90",
+      "originalSceneId": "S66",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 101,
+      "insertAfterParagraph": 33,
+      "existingLudorySceneId": "s66-c90"
+    },
+    {
+      "originalChoiceId": "S66-C91",
+      "originalSceneId": "S66",
+      "originalEpisode": 2,
+      "canonicalAReadParagraphCount": 101,
+      "insertAfterParagraph": 67,
+      "existingLudorySceneId": "s66-c91"
+    },
+    {
+      "originalChoiceId": "S09-C90",
+      "originalSceneId": "S09",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 37,
+      "insertAfterParagraph": 12,
+      "existingLudorySceneId": "s09-c90"
+    },
+    {
+      "originalChoiceId": "S09-C91",
+      "originalSceneId": "S09",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 37,
+      "insertAfterParagraph": 24,
+      "existingLudorySceneId": "s09-c91"
+    },
+    {
+      "originalChoiceId": "S10-C90",
+      "originalSceneId": "S10",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 47,
+      "insertAfterParagraph": 15,
+      "existingLudorySceneId": "s10-c90"
+    },
+    {
+      "originalChoiceId": "S10-C91",
+      "originalSceneId": "S10",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 47,
+      "insertAfterParagraph": 31,
+      "existingLudorySceneId": "s10-c91"
+    },
+    {
+      "originalChoiceId": "S11-C90",
+      "originalSceneId": "S11",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 37,
+      "insertAfterParagraph": 12,
+      "existingLudorySceneId": "s11-c90"
+    },
+    {
+      "originalChoiceId": "S11-C91",
+      "originalSceneId": "S11",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 37,
+      "insertAfterParagraph": 24,
+      "existingLudorySceneId": "s11-c91"
+    },
+    {
+      "originalChoiceId": "S12-C90",
+      "originalSceneId": "S12",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 69,
+      "insertAfterParagraph": 23,
+      "existingLudorySceneId": "s12-c90"
+    },
+    {
+      "originalChoiceId": "S12-C91",
+      "originalSceneId": "S12",
+      "originalEpisode": 3,
+      "canonicalAReadParagraphCount": 69,
+      "insertAfterParagraph": 46,
+      "existingLudorySceneId": "s12-c91"
+    },
+    {
+      "originalChoiceId": "S13-C90",
+      "originalSceneId": "S13",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 19,
+      "existingLudorySceneId": "s13-c90"
+    },
+    {
+      "originalChoiceId": "S13-C91",
+      "originalSceneId": "S13",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 39,
+      "existingLudorySceneId": "s13-c91"
+    },
+    {
+      "originalChoiceId": "S14-C90",
+      "originalSceneId": "S14",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 51,
+      "insertAfterParagraph": 17,
+      "existingLudorySceneId": "s14-c90"
+    },
+    {
+      "originalChoiceId": "S14-C91",
+      "originalSceneId": "S14",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 51,
+      "insertAfterParagraph": 34,
+      "existingLudorySceneId": "s14-c91"
+    },
+    {
+      "originalChoiceId": "S15-C90",
+      "originalSceneId": "S15",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 19,
+      "existingLudorySceneId": "s15-c90"
+    },
+    {
+      "originalChoiceId": "S15-C91",
+      "originalSceneId": "S15",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 39,
+      "existingLudorySceneId": "s15-c91"
+    },
+    {
+      "originalChoiceId": "S16-C90",
+      "originalSceneId": "S16",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 34,
+      "insertAfterParagraph": 11,
+      "existingLudorySceneId": "s16-c90"
+    },
+    {
+      "originalChoiceId": "S16-C91",
+      "originalSceneId": "S16",
+      "originalEpisode": 4,
+      "canonicalAReadParagraphCount": 34,
+      "insertAfterParagraph": 22,
+      "existingLudorySceneId": "s16-c91"
+    },
+    {
+      "originalChoiceId": "S17-C90",
+      "originalSceneId": "S17",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 48,
+      "insertAfterParagraph": 16,
+      "existingLudorySceneId": "s17-c90"
+    },
+    {
+      "originalChoiceId": "S17-C91",
+      "originalSceneId": "S17",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 48,
+      "insertAfterParagraph": 32,
+      "existingLudorySceneId": "s17-c91"
+    },
+    {
+      "originalChoiceId": "S18-C90",
+      "originalSceneId": "S18",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 19,
+      "existingLudorySceneId": "s18-c90"
+    },
+    {
+      "originalChoiceId": "S18-C91",
+      "originalSceneId": "S18",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 59,
+      "insertAfterParagraph": 39,
+      "existingLudorySceneId": "s18-c91"
+    },
+    {
+      "originalChoiceId": "S19-C90",
+      "originalSceneId": "S19",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 66,
+      "insertAfterParagraph": 22,
+      "existingLudorySceneId": "s19-c90"
+    },
+    {
+      "originalChoiceId": "S19-C91",
+      "originalSceneId": "S19",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 66,
+      "insertAfterParagraph": 44,
+      "existingLudorySceneId": "s19-c91"
+    },
+    {
+      "originalChoiceId": "S20-C90",
+      "originalSceneId": "S20",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 44,
+      "insertAfterParagraph": 14,
+      "existingLudorySceneId": "s20-c90"
+    },
+    {
+      "originalChoiceId": "S20-C91",
+      "originalSceneId": "S20",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 44,
+      "insertAfterParagraph": 29,
+      "existingLudorySceneId": "s20-c91"
+    },
+    {
+      "originalChoiceId": "S21-C90",
+      "originalSceneId": "S21",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 14,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s21-c90"
+    },
+    {
+      "originalChoiceId": "S21-C91",
+      "originalSceneId": "S21",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 14,
+      "insertAfterParagraph": 9,
+      "existingLudorySceneId": "s21-c91"
+    },
+    {
+      "originalChoiceId": "S61-C90",
+      "originalSceneId": "S61",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 21,
+      "insertAfterParagraph": 7,
+      "existingLudorySceneId": "s61-c90"
+    },
+    {
+      "originalChoiceId": "S61-C91",
+      "originalSceneId": "S61",
+      "originalEpisode": 5,
+      "canonicalAReadParagraphCount": 21,
+      "insertAfterParagraph": 14,
+      "existingLudorySceneId": "s61-c91"
+    },
+    {
+      "originalChoiceId": "S22-C90",
+      "originalSceneId": "S22",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 46,
+      "insertAfterParagraph": 15,
+      "existingLudorySceneId": "s22-c90"
+    },
+    {
+      "originalChoiceId": "S22-C91",
+      "originalSceneId": "S22",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 46,
+      "insertAfterParagraph": 30,
+      "existingLudorySceneId": "s22-c91"
+    },
+    {
+      "originalChoiceId": "S23-C90",
+      "originalSceneId": "S23",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 41,
+      "insertAfterParagraph": 13,
+      "existingLudorySceneId": "s23-c90"
+    },
+    {
+      "originalChoiceId": "S23-C91",
+      "originalSceneId": "S23",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 41,
+      "insertAfterParagraph": 27,
+      "existingLudorySceneId": "s23-c91"
+    },
+    {
+      "originalChoiceId": "S24-C90",
+      "originalSceneId": "S24",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 28,
+      "insertAfterParagraph": 9,
+      "existingLudorySceneId": "s24-c90"
+    },
+    {
+      "originalChoiceId": "S24-C91",
+      "originalSceneId": "S24",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 28,
+      "insertAfterParagraph": 18,
+      "existingLudorySceneId": "s24-c91"
+    },
+    {
+      "originalChoiceId": "S25-C90",
+      "originalSceneId": "S25",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 33,
+      "insertAfterParagraph": 11,
+      "existingLudorySceneId": "s25-c90"
+    },
+    {
+      "originalChoiceId": "S25-C91",
+      "originalSceneId": "S25",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 33,
+      "insertAfterParagraph": 22,
+      "existingLudorySceneId": "s25-c91"
+    },
+    {
+      "originalChoiceId": "S58-C90",
+      "originalSceneId": "S58",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 29,
+      "insertAfterParagraph": 9,
+      "existingLudorySceneId": "s58-c90"
+    },
+    {
+      "originalChoiceId": "S58-C91",
+      "originalSceneId": "S58",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 29,
+      "insertAfterParagraph": 19,
+      "existingLudorySceneId": "s58-c91"
+    },
+    {
+      "originalChoiceId": "S26-C90",
+      "originalSceneId": "S26",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 11,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s26-c90"
+    },
+    {
+      "originalChoiceId": "S26-C91",
+      "originalSceneId": "S26",
+      "originalEpisode": 6,
+      "canonicalAReadParagraphCount": 11,
+      "insertAfterParagraph": 7,
+      "existingLudorySceneId": "s26-c91"
+    },
+    {
+      "originalChoiceId": "S27-C90",
+      "originalSceneId": "S27",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 13,
+      "insertAfterParagraph": 6,
+      "existingLudorySceneId": "s27-c90"
+    },
+    {
+      "originalChoiceId": "S59-C90",
+      "originalSceneId": "S59",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 9,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s59-c90"
+    },
+    {
+      "originalChoiceId": "S28-C90",
+      "originalSceneId": "S28",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 15,
+      "insertAfterParagraph": 7,
+      "existingLudorySceneId": "s28-c90"
+    },
+    {
+      "originalChoiceId": "S49-C90",
+      "originalSceneId": "S49",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 11,
+      "insertAfterParagraph": 5,
+      "existingLudorySceneId": "s49-c90"
+    },
+    {
+      "originalChoiceId": "S29-C90",
+      "originalSceneId": "S29",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 9,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s29-c90"
+    },
+    {
+      "originalChoiceId": "S52-C90",
+      "originalSceneId": "S52",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 12,
+      "insertAfterParagraph": 6,
+      "existingLudorySceneId": "s52-c90"
+    },
+    {
+      "originalChoiceId": "S30-C90",
+      "originalSceneId": "S30",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 12,
+      "insertAfterParagraph": 6,
+      "existingLudorySceneId": "s30-c90"
+    },
+    {
+      "originalChoiceId": "S55-C90",
+      "originalSceneId": "S55",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 11,
+      "insertAfterParagraph": 5,
+      "existingLudorySceneId": "s55-c90"
+    },
+    {
+      "originalChoiceId": "S31-C90",
+      "originalSceneId": "S31",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 10,
+      "insertAfterParagraph": 5,
+      "existingLudorySceneId": "s31-c90"
+    },
+    {
+      "originalChoiceId": "S62-C90",
+      "originalSceneId": "S62",
+      "originalEpisode": 7,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s62-c90"
+    },
+    {
+      "originalChoiceId": "S32-C90",
+      "originalSceneId": "S32",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 14,
+      "insertAfterParagraph": 7,
+      "existingLudorySceneId": "s32-c90"
+    },
+    {
+      "originalChoiceId": "S50-C90",
+      "originalSceneId": "S50",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s50-c90"
+    },
+    {
+      "originalChoiceId": "S33-C90",
+      "originalSceneId": "S33",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 11,
+      "insertAfterParagraph": 5,
+      "existingLudorySceneId": "s33-c90"
+    },
+    {
+      "originalChoiceId": "S53-C90",
+      "originalSceneId": "S53",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s53-c90"
+    },
+    {
+      "originalChoiceId": "S34-C90",
+      "originalSceneId": "S34",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 12,
+      "insertAfterParagraph": 6,
+      "existingLudorySceneId": "s34-c90"
+    },
+    {
+      "originalChoiceId": "S56-C90",
+      "originalSceneId": "S56",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s56-c90"
+    },
+    {
+      "originalChoiceId": "S35-C90",
+      "originalSceneId": "S35",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s35-c90"
+    },
+    {
+      "originalChoiceId": "S63-C90",
+      "originalSceneId": "S63",
+      "originalEpisode": 8,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s63-c90"
+    },
+    {
+      "originalChoiceId": "S36-C90",
+      "originalSceneId": "S36",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s36-c90"
+    },
+    {
+      "originalChoiceId": "S37-C90",
+      "originalSceneId": "S37",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 8,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s37-c90"
+    },
+    {
+      "originalChoiceId": "S51-C90",
+      "originalSceneId": "S51",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 7,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s51-c90"
+    },
+    {
+      "originalChoiceId": "S38-C90",
+      "originalSceneId": "S38",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 9,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s38-c90"
+    },
+    {
+      "originalChoiceId": "S54-C90",
+      "originalSceneId": "S54",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 9,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s54-c90"
+    },
+    {
+      "originalChoiceId": "S39-C90",
+      "originalSceneId": "S39",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 8,
+      "insertAfterParagraph": 4,
+      "existingLudorySceneId": "s39-c90"
+    },
+    {
+      "originalChoiceId": "S57-C90",
+      "originalSceneId": "S57",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 7,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s57-c90"
+    },
+    {
+      "originalChoiceId": "S40-C90",
+      "originalSceneId": "S40",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s40-c90"
+    },
+    {
+      "originalChoiceId": "S64-C90",
+      "originalSceneId": "S64",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s64-c90"
+    },
+    {
+      "originalChoiceId": "S60-C90",
+      "originalSceneId": "S60",
+      "originalEpisode": 9,
+      "canonicalAReadParagraphCount": 4,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s60-c90"
+    },
+    {
+      "originalChoiceId": "S41-C90",
+      "originalSceneId": "S41",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 10,
+      "insertAfterParagraph": 5,
+      "existingLudorySceneId": "s41-c90"
+    },
+    {
+      "originalChoiceId": "S42-C90",
+      "originalSceneId": "S42",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s42-c90"
+    },
+    {
+      "originalChoiceId": "S43-C90",
+      "originalSceneId": "S43",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s43-c90"
+    },
+    {
+      "originalChoiceId": "S44-C90",
+      "originalSceneId": "S44",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 6,
+      "insertAfterParagraph": 3,
+      "existingLudorySceneId": "s44-c90"
+    },
+    {
+      "originalChoiceId": "S45-C90",
+      "originalSceneId": "S45",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 4,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s45-c90"
+    },
+    {
+      "originalChoiceId": "S46-C90",
+      "originalSceneId": "S46",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s46-c90"
+    },
+    {
+      "originalChoiceId": "S47-C90",
+      "originalSceneId": "S47",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 4,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s47-c90"
+    },
+    {
+      "originalChoiceId": "S48-C90",
+      "originalSceneId": "S48",
+      "originalEpisode": 10,
+      "canonicalAReadParagraphCount": 5,
+      "insertAfterParagraph": 2,
+      "existingLudorySceneId": "s48-c90"
+    }
+  ]
+}

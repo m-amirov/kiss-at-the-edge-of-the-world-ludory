@@ -2906,6 +2906,466 @@
       "sourceVariants": [
         "assets/backgrounds/thingvellir-master.webp"
       ]
+    },
+    {
+      "id": "s01-airport-arrivals",
+      "role": "background",
+      "path": "assets/backgrounds/keflavik-airport-arrivals-v1.webp",
+      "targetPath": "assets/backgrounds/keflavik-airport-arrivals-v1.webp",
+      "sourceBlobSha": "8e1b5fd336808ecce16f6958b64c84ac195744c2",
+      "sha256": "1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s01-airport-arrivals.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "8e1b5fd336808ecce16f6958b64c84ac195744c2",
+        "sha256": "1e0a93cba2ce8715296c5262a39a464fc9de8ed31479b060d43eff7c1a5aeb5a",
+        "verifiedOn": "2026-11-14"
+      }
+    },
+    {
+      "id": "s01-road-trip-van-interior",
+      "role": "background",
+      "path": "assets/backgrounds/road-trip-van-interior-rain.webp",
+      "targetPath": "assets/backgrounds/road-trip-van-interior-rain.webp",
+      "sourceBlobSha": "7053040d378ddc3bff62966ca5397854421c7b8a",
+      "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s01-road-trip-van-interior.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "7053040d378ddc3bff62966ca5397854421c7b8a",
+        "sha256": "84cf38930c45d7cadb49dc0f64ad0eb7fbbf256a2e61a11e27ee1b323e646dcd",
+        "verifiedOn": "2026-11-14"
+      }
+    },
+    {
+      "id": "s04-thingvellir-trail",
+      "role": "background",
+      "path": "assets/backgrounds/thingvellir-master.webp",
+      "targetPath": "assets/backgrounds/thingvellir-master.webp",
+      "sourceBlobSha": "cc3fb0434a5365dc9a3981766211c13d695e0e1f",
+      "sha256": "bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s04-thingvellir-trail.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; source Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "cc3fb0434a5365dc9a3981766211c13d695e0e1f",
+        "sha256": "bd2dc9a7e5b74a92506a0da81ac8e81eec546d499f65e831c732f218b8c8b7a2",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s09-skogafoss-trail",
+      "role": "background",
+      "path": "assets/backgrounds/skogafoss-master.webp",
+      "targetPath": "assets/backgrounds/skogafoss-master.webp",
+      "sourceBlobSha": "479fdc3a1c30c39ed9cc24b47c83945e2919a6c0",
+      "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s09-skogafoss-trail.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; source Git blob and SHA-256 verified, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "479fdc3a1c30c39ed9cc24b47c83945e2919a6c0",
+        "sha256": "277976da1aa259a9f50171811de31888d4651842047b6954bb9b9e44ffaf714b",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s13-skaftafell-travelers-original",
+      "role": "cg",
+      "path": "assets/cg/s13-skaftafell-travelers.webp",
+      "targetPath": "assets/cg/s13-skaftafell-travelers.webp",
+      "sourceBlobSha": "4de2c26229b02d40a07ef44d6c857cac953c24c9",
+      "sha256": "c6883632633276f0882ad1c532dd659762e0917f95d485df6f11718c40d809c2",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s13-skaftafell-travelers.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4de2c26229b02d40a07ef44d6c857cac953c24c9",
+        "sha256": "c6883632633276f0882ad1c532dd659762e0917f95d485df6f11718c40d809c2",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s15-jokulsarlon-lagoon",
+      "role": "background",
+      "path": "assets/backgrounds/jokulsarlon-master.webp",
+      "targetPath": "assets/backgrounds/jokulsarlon-master.webp",
+      "sourceBlobSha": "4bc84fbb304bdd94fe92b1818fa183479b7e5690",
+      "sha256": "0721cc3745cc93d3e44d04672130fab45b20bd5a843c7417a1853c270dfcd406",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s15-jokulsarlon-lagoon.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "4bc84fbb304bdd94fe92b1818fa183479b7e5690",
+        "sha256": "0721cc3745cc93d3e44d04672130fab45b20bd5a843c7417a1853c270dfcd406",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s18-hofn-harbour",
+      "role": "background",
+      "path": "assets/backgrounds/s18-hofn-harbour.webp",
+      "targetPath": "assets/backgrounds/s18-hofn-harbour.webp",
+      "sourceBlobSha": "82e0162f4231d9627371f3083b0f6cc993c970ca",
+      "sha256": "e3da7e44e1407cbb615f46d1d541dfd581daed64429fe01249660344d70bab94",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s18-hofn-harbour.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "82e0162f4231d9627371f3083b0f6cc993c970ca",
+        "sha256": "e3da7e44e1407cbb615f46d1d541dfd581daed64429fe01249660344d70bab94",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s18-hofn-dance-lights-original",
+      "role": "cg",
+      "path": "assets/cg/s18-hofn-dance-lights.webp",
+      "targetPath": "assets/cg/s18-hofn-dance-lights.webp",
+      "sourceBlobSha": "2a5ec83de9d3682ae7b94c5159dc1f5d9aa606cd",
+      "sha256": "e30079bce0c42a8bc4c713c220e76901c1c7b343000b12f0f9fa2c4ae183ae39",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s18-hofn-dance-lights.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact WebP from pinned original game source; verified Git blob and SHA-256, rights tracked separately",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "2a5ec83de9d3682ae7b94c5159dc1f5d9aa606cd",
+        "sha256": "e30079bce0c42a8bc4c713c220e76901c1c7b343000b12f0f9fa2c4ae183ae39",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s29-nick-playback",
+      "role": "cg",
+      "path": "assets/cg/s29-nick-playback.webp",
+      "targetPath": "assets/cg/s29-nick-playback.webp",
+      "sourceBlobSha": "39aa5eff8acc4282dadcd23f72afb24b2efdefbf",
+      "sha256": "6de857f94b82cfca1ded40a9ea859b59ffe66408b734d7d97105b50e4a1b3d1b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s29-nick-playback.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "39aa5eff8acc4282dadcd23f72afb24b2efdefbf",
+        "sha256": "6de857f94b82cfca1ded40a9ea859b59ffe66408b734d7d97105b50e4a1b3d1b",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s52-glove-found",
+      "role": "cg",
+      "path": "assets/cg/s52-glove-found.webp",
+      "targetPath": "assets/cg/s52-glove-found.webp",
+      "sourceBlobSha": "874f57dee70ea78a093714059044c7e9dd9bee65",
+      "sha256": "62baca9c9dea6701fd442f19530461da65eef798e61665a29367f6c29bc4c6a5",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s52-glove-found.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "874f57dee70ea78a093714059044c7e9dd9bee65",
+        "sha256": "62baca9c9dea6701fd442f19530461da65eef798e61665a29367f6c29bc4c6a5",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s30-damir-sleeve-promise-original",
+      "role": "cg",
+      "path": "assets/cg/s30-damir-sleeve-promise.webp",
+      "targetPath": "assets/cg/s30-damir-sleeve-promise.webp",
+      "sourceBlobSha": "10e4ed4f1347cea34af1606dfd2a9a89daf64674",
+      "sha256": "93ba01e53165a74f7b1f67c50de7d2a7435c29058f8936700302486c1d3011b5",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s30-damir-sleeve-promise-original.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "10e4ed4f1347cea34af1606dfd2a9a89daf64674",
+        "sha256": "93ba01e53165a74f7b1f67c50de7d2a7435c29058f8936700302486c1d3011b5",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s55-shum-first-step-original",
+      "role": "cg",
+      "path": "assets/cg/s55-shum-first-step.webp",
+      "targetPath": "assets/cg/s55-shum-first-step.webp",
+      "sourceBlobSha": "72ff558612b3f10f014a0930d7a89de86e92887d",
+      "sha256": "24063b015131a27b345da15398f91b79e5ff2ee2790f218d3ec604411a81ae96",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s55-shum-first-step-original.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "72ff558612b3f10f014a0930d7a89de86e92887d",
+        "sha256": "24063b015131a27b345da15398f91b79e5ff2ee2790f218d3ec604411a81ae96",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s31-alice-independent-evening",
+      "role": "cg",
+      "path": "assets/cg/s31-alice-independent-evening.webp",
+      "targetPath": "assets/cg/s31-alice-independent-evening.webp",
+      "sourceBlobSha": "1437be5ceb99500290432d7fd61d6fad1bc83820",
+      "sha256": "b6e79093d164c19aa7333aff81589d9ef50da26a1fa64887f379938586d0c7c2",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s31-alice-independent-evening.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "1437be5ceb99500290432d7fd61d6fad1bc83820",
+        "sha256": "b6e79093d164c19aa7333aff81589d9ef50da26a1fa64887f379938586d0c7c2",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s62-alice-bookstore-choice",
+      "role": "cg",
+      "path": "assets/cg/s62-alice-bookstore-choice.webp",
+      "targetPath": "assets/cg/s62-alice-bookstore-choice.webp",
+      "sourceBlobSha": "6080abd10b649683309157f7fad2a26a536288aa",
+      "sha256": "ff691e7bc432581d79aa572ad8623d3ddf37fc45775e5544f1ff6052dfcd2d04",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s62-alice-bookstore-choice.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "6080abd10b649683309157f7fad2a26a536288aa",
+        "sha256": "ff691e7bc432581d79aa572ad8623d3ddf37fc45775e5544f1ff6052dfcd2d04",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s34-cancelled-evening",
+      "role": "cg",
+      "path": "assets/cg/s34-cancelled-evening.webp",
+      "targetPath": "assets/cg/s34-cancelled-evening.webp",
+      "sourceBlobSha": "cea69e840f3d8c454a8504a1733313727c43b7c6",
+      "sha256": "7a3a2182aed85797e45d3268e590a88e7485017714cfdc38e5ef8f2fe1ee184b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s34-cancelled-evening.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "cea69e840f3d8c454a8504a1733313727c43b7c6",
+        "sha256": "7a3a2182aed85797e45d3268e590a88e7485017714cfdc38e5ef8f2fe1ee184b",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s56-cafe-musicians",
+      "role": "cg",
+      "path": "assets/cg/s56-cafe-musicians.webp",
+      "targetPath": "assets/cg/s56-cafe-musicians.webp",
+      "sourceBlobSha": "462e218ccec9cc0c12146f0bcf40b64ed3d1bbb7",
+      "sha256": "50b6d978cdecba97e5bedc2badc6e635d38968065b325c5b5c79beb9c3fad590",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s56-cafe-musicians.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "462e218ccec9cc0c12146f0bcf40b64ed3d1bbb7",
+        "sha256": "50b6d978cdecba97e5bedc2badc6e635d38968065b325c5b5c79beb9c3fad590",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s63-alice-solo-concert",
+      "role": "cg",
+      "path": "assets/cg/s63-alice-solo-concert.webp",
+      "targetPath": "assets/cg/s63-alice-solo-concert.webp",
+      "sourceBlobSha": "d24ec70cf71df2ff65ea87504cc84b2940829ede",
+      "sha256": "215afee53da5ff0fe1f9f4ccb2bdb3cc43449cec2dfee1a32f33126efb69660e",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s63-alice-solo-concert.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d24ec70cf71df2ff65ea87504cc84b2940829ede",
+        "sha256": "215afee53da5ff0fe1f9f4ccb2bdb3cc43449cec2dfee1a32f33126efb69660e",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s37-eric-alice-cafe",
+      "role": "cg",
+      "path": "assets/cg/s37-eric-alice-cafe.webp",
+      "targetPath": "assets/cg/s37-eric-alice-cafe.webp",
+      "sourceBlobSha": "f8d0a01d41668f28ea4d011c7b4693b8363799d1",
+      "sha256": "8e067e89e6123bfb1749e7eb9822bbdd1ed4ffe0adc07dd17aaec73ed9c5a92c",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s37-eric-alice-cafe.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "f8d0a01d41668f28ea4d011c7b4693b8363799d1",
+        "sha256": "8e067e89e6123bfb1749e7eb9822bbdd1ed4ffe0adc07dd17aaec73ed9c5a92c",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s36-snaefellsnes-drive",
+      "role": "background",
+      "path": "assets/backgrounds/snaefellsnes-master.webp",
+      "targetPath": "assets/backgrounds/snaefellsnes-master.webp",
+      "sourceBlobSha": "2f0dfb57939555814af0c8fd8aada55d43105e3f",
+      "sha256": "6949555cabd32c01bb5c8e9ea9f87ee5e0bc5fc94b2b05589ca817bd50e102ce",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s36-snaefellsnes-drive.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "2f0dfb57939555814af0c8fd8aada55d43105e3f",
+        "sha256": "6949555cabd32c01bb5c8e9ea9f87ee5e0bc5fc94b2b05589ca817bd50e102ce",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s44-reykjavik-harbour",
+      "role": "background",
+      "path": "assets/backgrounds/reykjavik-harbour-master.webp",
+      "targetPath": "assets/backgrounds/reykjavik-harbour-master.webp",
+      "sourceBlobSha": "d45b97da6e4629e4c4b4daccccf6f84e42710f8b",
+      "sha256": "7737a290f8acf0240fb44520f75a6946769c937915683ac13bded53b7793b79b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s44-reykjavik-harbour.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d45b97da6e4629e4c4b4daccccf6f84e42710f8b",
+        "sha256": "7737a290f8acf0240fb44520f75a6946769c937915683ac13bded53b7793b79b",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s45-nick-film-final",
+      "role": "cg",
+      "path": "assets/cg/s45-reykjavik-warm-montage.webp",
+      "targetPath": "assets/cg/s45-reykjavik-warm-montage.webp",
+      "sourceBlobSha": "c15ae1e3b95a0cb3c6ebc96a50336863cf6c3160",
+      "sha256": "db1ac7683a73ae5acde33794d1635bad765ee5bc0c27114932972781cdedd89a",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s45-nick-film-final.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "c15ae1e3b95a0cb3c6ebc96a50336863cf6c3160",
+        "sha256": "db1ac7683a73ae5acde33794d1635bad765ee5bc0c27114932972781cdedd89a",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s46-airport-checkin",
+      "role": "cg",
+      "path": "assets/cg/s46-airport-goodbye.webp",
+      "targetPath": "assets/cg/s46-airport-goodbye.webp",
+      "sourceBlobSha": "d3def9c31ef12a0e5fec9000239fbfbcc3513992",
+      "sha256": "a22c08fb0160ffd0ef53ab3b88b73e935e89e98d729873bc67147554f3d7e26b",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s46-airport-checkin.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "d3def9c31ef12a0e5fec9000239fbfbcc3513992",
+        "sha256": "a22c08fb0160ffd0ef53ab3b88b73e935e89e98d729873bc67147554f3d7e26b",
+        "verifiedOn": "2026-11-15"
+      }
+    },
+    {
+      "id": "s47-alice-morning-harbour",
+      "role": "cg",
+      "path": "assets/cg/s47-reykjavik-harbour-alice.webp",
+      "targetPath": "assets/cg/s47-reykjavik-harbour-alice.webp",
+      "sourceBlobSha": "b59147b2bc7f0969b3c63df016957931d2526e28",
+      "sha256": "2af4cb5965b5c804f5e442141b29d9e9941ecfce17dc68c3838949d065592bc4",
+      "status": "accepted",
+      "reason": "restored_original_generated_game_webp",
+      "admittedPath": "assets/vis-s47-alice-morning-harbour.webp",
+      "admittedProject": "game-studio",
+      "licenseEvidence": null,
+      "admissionEvidence": {
+        "method": "Exact original WebP from pinned game source; Git blob and SHA-256 verified. Rights tracked separately.",
+        "sourceCommit": "1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c",
+        "sourceBlobSha": "b59147b2bc7f0969b3c63df016957931d2526e28",
+        "sha256": "2af4cb5965b5c804f5e442141b29d9e9941ecfce17dc68c3838949d065592bc4",
+        "verifiedOn": "2026-11-15"
+      }
     }
   ],
   "summary": {
