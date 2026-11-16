@@ -223,6 +223,7 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's21-alice-hofn-room': 'vis-s21-alice-hofn-room.png',
       's61-hofn-streets': 'vis-s61-hofn-streets.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
+      's23-eric-harbor-plan': 'vis-s23-eric-harbor-plan.png',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
       'damir-coffee-cg': 'vis-s03-damir.png',
@@ -863,6 +864,28 @@ async function main() {
       assert.equal(await desktop.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
         's22-s17-c90-echo-a-01', 'Original S17 choice A must echo at S22 before weather repair');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s22-s17-delayed-source-echo.png'), fullPage: true });
+      // Real player controls are mandatory: render both source answers at
+      // each of the newly restored S22/S23 choices, in narrative order.
+      for (const beatId of ['s22-c90-choice', 's22-c91-choice',
+        's23-c90-choice', 's23-c91-choice']) {
+        if (beatId === 's23-c90-choice') {
+          await advanceToBeat(desktop.page, 's23-intro-01');
+          await assertPilotCue(desktop.page, 's23-intro-01',
+            'visual-s23-eric-harbor-plan-1',
+            'S23 original Eric harbor artwork', 's23-eric-harbor-plan');
+        }
+        await advanceToBeat(desktop.page, beatId);
+        const visibleChoices = desktop.page.locator(
+          'button[data-action^="narrative:choose:' + beatId + ':"]');
+        assert.equal(await visibleChoices.count(), 2, beatId + ': original two options lost');
+        for (const choice of await visibleChoices.all()) {
+          assert.equal(await choice.isVisible(), true, beatId + ': hidden source option');
+          assert.equal(await choice.isEnabled(), true, beatId + ': disabled source option');
+        }
+        await desktop.page.screenshot({
+          path: join(evidenceDir, 'desktop-' + beatId + '.png'), fullPage: true,
+        });
+      }
       await advanceToBeat(desktop.page, 's26-intro-01');
       await assertPilotCue(desktop.page, 's26-intro-01', 'visual-s26-eastfjords-guesthouse-courtyard-1', 'S26 guesthouse courtyard', 's26-eastfjords-guesthouse-courtyard');
       await advanceToBeat(desktop.page, 's26-intro-03');
