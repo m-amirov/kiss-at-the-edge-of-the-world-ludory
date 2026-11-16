@@ -207,6 +207,9 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's12-vik-street-day': 'vis-s12-vik-street-day.png',
       's13-skaftafell-visitor-parking': 'vis-s13-skaftafell-visitor-parking.png',
       's13-skaftafell-travelers': 'vis-s13-skaftafell-travelers.webp',
+      's14-skaftafell-pace': 'vis-s14-skaftafell-pace.png',
+      's14-lagoon-road': 'vis-s14-lagoon-road.png',
+      's15-jokulsarlon-parking-day': 'vis-s15-jokulsarlon-parking-day.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
@@ -803,6 +806,19 @@ async function main() {
       await assertPilotCue(desktop.page, 's12-c90-prompt', 'source-restored-s12-c90', 'S12 original cafe choice', 's12-vik-cafe-damir');
       await advanceToBeat(desktop.page, 's13-c91-prompt');
       await assertPilotCue(desktop.page, 's13-c91-prompt', 'source-restored-s13-c91', 'S13 original notebook choice', 's13-skaftafell-travelers');
+      await advanceToBeat(desktop.page, 's14-c90-prompt');
+      await assertPilotCue(desktop.page, 's14-c90-prompt', 'authored-s14-c90-original',
+        'S14 original Eric pacing choice', 's14-skaftafell-pace');
+      await advanceToBeat(desktop.page, 's14-c91-prompt');
+      await assertPilotCue(desktop.page, 's14-c91-prompt', 'authored-s14-c91-original',
+        'S14 original Eric conversation choice', 's14-lagoon-road');
+      await advanceToBeat(desktop.page, 's15-c90-prompt');
+      await assertPilotCue(desktop.page, 's15-c90-prompt', 'authored-s15-c90-original',
+        'S15 original Nick consent choice', 's15-jokulsarlon-lagoon');
+      await advanceToBeat(desktop.page, 's15-c91-prompt');
+      await assertPilotCue(desktop.page, 's15-c91-prompt', 'authored-s15-c91-original',
+        'S15 original private footage choice', 's15-jokulsarlon-parking-day');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s15-original-choices.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's18-common-01');
       await assertPilotCue(desktop.page, 's18-common-01', 'visual-s18-hofn-breakfast-morning-1', 'S18 day-ten morning', 's18-hofn-breakfast-morning');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-day-ten-morning.png'), fullPage: true });
