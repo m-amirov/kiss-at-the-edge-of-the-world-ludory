@@ -344,6 +344,7 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
     }
 
   assert.ok(checkpointS12, 'Native S12 save missing after actual S10/S11 traversal');
+  let checkpointS14 = null;
   for (const a of ['a', 'b']) for (const b of ['a', 'b'])
     for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
       const run = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS12)));
@@ -379,6 +380,50 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
         assert.equal(resumed.state.narrative.flags[flag], true, flag + ': canonical outcome lost');
       }
       assert.equal(resumed.state.narrative.routeLock, null);
+      if ([a, b, c, e].every(value => value === 'a')) {
+        checkpointS14 = JSON.parse(JSON.stringify(resumed.state));
+      }
+    }
+
+  assert.ok(checkpointS14, 'S14 checkpoint was not reached via real prior choices');
+  let index = 0;
+  for (const a of ['a', 'b']) for (const b of ['a', 'b'])
+    for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
+      const walk = (index++ % 2) === 0;
+      const policy = ['a', 'b', 'c'][(index - 1) % 3];
+      const d = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS14)));
+      d.advance('s14-intro');
+      d.choose('s14-tone-dispatch', 'playful'); d.advance('s14-tone-playful');
+      d.advance('s14-common-a');
+      d.choose('s14-pace-choice', 'slow'); d.advance('s14-pace-slow');
+      d.advance('s14-common-b');
+      d.choose('s14-gesture-choice', walk ? 'walk' : 'photo');
+      d.advance(walk ? 's14-gesture-walk' : 's14-gesture-photo');
+      d.advance('s14-c90'); d.choose('s14-c90-choice', a);
+      d.advance('s14-c90-answer-' + a);
+      d.advance('s14-c91'); d.choose('s14-c91-choice', b);
+      d.advance('s14-c91-answer-' + b);
+      d.advance('s15-intro');
+      d.choose('s15-voice-dispatch', 'eric'); d.advance('s15-other-voice');
+      d.advance('s15-common-a');
+      d.choose('s15-privacy-choice', policy);
+      d.advance({ a:'s15-privacy', b:'s15-observed', c:'s15-shared-file' }[policy]);
+      d.advance('s15-common-b');
+      d.choose('s15-gesture-dispatch', walk ? 'walk' : 'photo');
+      d.advance(walk ? 's15-evening-walk' : 's15-evening-photo');
+      d.advance('s15-c90'); d.choose('s15-c90-choice', c);
+      d.advance('s15-c90-answer-' + c);
+      const saved = JSON.parse(JSON.stringify(d.state));
+      const restored = makeDriver(graph, catalog, saved);
+      restored.advance('s15-c91'); restored.choose('s15-c91-choice', e);
+      restored.advance('s15-c91-answer-' + e);
+      assert.equal(restored.state.narrative.sceneId, 's16-intro', 
+        [a,b,c,e,policy].join('') + ': original S14/S15 did not converge on S16');
+      assert.equal(restored.state.narrative.flags['eric-pace-slow'], true);
+      assert.equal(restored.state.narrative.flags[walk ? 'eric-gesture-walk' : 'eric-gesture-photo'], true);
+      assert.equal(restored.state.narrative.flags[
+        { a:'nick-failure-private', b:'nick-failure-observed', c:'nick-failure-shared-file' }[policy]], true);
+      assert.equal(restored.state.narrative.routeLock, null);
     }
 });
 
@@ -469,4 +514,45 @@ test('S12/S13 original prompts, responses and source art remain exact', () => {
   }
   assert.equal(scene('s12-common-d').beats.at(-1).choices.length, 2);
   assert.equal(scene('s13-common-a').beats.at(-1).choices.length, 2);
+});
+
+test('S14/S15 original questions, responses and admitted original art remain exact', () => {
+  assert.doesNotThrow(() => defineNarrativeGraph(graphData));
+  assert.doesNotThrow(() => defineNarrativeCatalog(catalogData));
+  const groups = [
+    ['S14', 's15-intro', [['cg', 's14-skaftafell-pace'], ['background', 's14-lagoon-road']]],
+    ['S15', 's16-intro', [['background', 's15-jokulsarlon-lagoon'], ['background', 's15-jokulsarlon-parking-day']]],
+  ];
+  for (const [sourceId, next, illustrations] of groups) {
+    assert.equal(interactionBeats[sourceId].length, 2);
+    for (let i = 0; i < 2; i++) {
+      const name = sourceId.toLowerCase() + '-c' + (90 + i);
+      const authored = interactionBeats[sourceId][i], node = scene(name);
+      assert.equal(node.beats[0].text.ru, authored.question);
+      assert.equal(node.beats[1].type, 'choice');
+      assert.deepEqual(node.beats[1].choices.map(c => c.label.ru), authored.options.map(o => o.label));
+      assert.ok(node.beats[1].choices.every(c => !c.effects?.length),
+        name + ': unexpected consent/route/economy state change');
+      for (const option of authored.options) {
+        const answer = name + '-answer-' + option.code.toLowerCase();
+        assert.equal(sourceText(answer), option.text);
+        assert.equal(scene(answer).nextSceneId,
+          i === 0 ? sourceId.toLowerCase() + '-c91' : next);
+      }
+      const [kind, media] = illustrations[i];
+      for (const beat of [name + '-prompt', name + '-choice',
+        name + '-answer-a-01', name + '-answer-b-01']) {
+        const visual = presentationData.beats[beat]?.[0];
+        assert.equal(kind === 'cg' ? visual?.cg?.mediaId : visual?.background,
+          media, beat + ': original art continuity failed');
+      }
+    }
+  }
+  for (const [id, next] of Object.entries({
+    's14-gesture-walk': 's14-c90', 's14-gesture-photo': 's14-c90',
+    's15-evening-walk': 's15-c90', 's15-evening-photo': 's15-c90',
+  })) assert.equal(scene(id).nextSceneId, next);
+  assert.equal(scene('s15-common-a').beats.at(-1).choices.length, 3,
+    'S15 original consent/privacy branching lost');
+  assert.equal(scene('s14-common-a').beats.at(-1).choices.length, 2);
 });
