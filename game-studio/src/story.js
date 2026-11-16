@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes, originalS18ToS61ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes, originalS18ToS61ExtraScenes, originalS22AndS23ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -1231,9 +1231,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's22-stop-group', beats: beats('s22-stop-group', s22StopGroup),
-    nextSceneId: 's23-intro' },
+    nextSceneId: 's22-c90' },
   { id: 's22-stop-notes', beats: beats('s22-stop-notes', s22StopNotes),
-    nextSceneId: 's23-intro' },
+    nextSceneId: 's22-c90' },
   // S23 has four mutually exclusive eveningState callbacks, sourced from S17.
   { id: 's23-intro', beats: beats('s23-intro', s23Intro),
     nextSceneId: 's23-evening-dispatch' },
@@ -1318,9 +1318,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's23-stop-group', beats: beats('s23-stop-group', s23StopGroup),
-    nextSceneId: 's23-followup-dispatch' },
+    nextSceneId: 's23-c90' },
   { id: 's23-stop-notes', beats: beats('s23-stop-notes', s23StopNotes),
-    nextSceneId: 's23-followup-dispatch' },
+    nextSceneId: 's23-c90' },
   // These S18-C2 callbacks are only reachable after an Eric evening.
   { id: 's23-followup-dispatch', beats: [
     { id: 's23-followup-choice', type: 'choice', choices: [
@@ -2694,6 +2694,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS14AndS15ExtraScenes({ t, beats }),
   ...originalS16S17AndS22EchoScenes({ t, beats }),
   ...originalS18ToS61ExtraScenes({ t, beats }),
+  ...originalS22AndS23ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

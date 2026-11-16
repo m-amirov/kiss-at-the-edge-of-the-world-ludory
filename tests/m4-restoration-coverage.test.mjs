@@ -36,10 +36,11 @@ test('original interactive choices have an explicit, non-regressing restoration 
     's14-c90', 's14-c91', 's15-c90', 's15-c91',
     's16-c90', 's16-c91', 's17-c90', 's17-c91',
     's18-c90', 's18-c91', 's19-c90', 's19-c91',
-    's20-c90', 's20-c91', 's21-c90', 's21-c91', 's61-c90', 's61-c91']) {
+    's20-c90', 's20-c91', 's21-c90', 's21-c91', 's61-c90', 's61-c91',
+    's22-c90', 's22-c91', 's23-c90', 's23-c91']) {
     assert.ok(graphScenes.has(id), `previously restored authored choice ${id} missing`);
   }
-  assert.ok(missingExtraChoices.length <= 48, 'previously restored extra choice was removed');
+  assert.ok(missingExtraChoices.length <= 44, 'previously restored extra choice was removed');
   for (const source of expectedExtraChoices.filter(x => graphScenes.has(x.ludorySceneId))) {
     const scene = graphData.scenes.find(scene => scene.id === source.ludorySceneId);
     assert.equal(scene.beats.at(-1)?.type, 'choice', `${source.originalId} silently lost its choice beat`);

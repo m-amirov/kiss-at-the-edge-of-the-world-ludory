@@ -609,3 +609,42 @@ export function originalS18ToS61ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/**
+ * Author-verbatim original S22/S23 C90/C91 choices, inserted at compatible
+ * graph boundaries. Their exact source paragraph positions are separately
+ * pinned and remain a fidelity debt. No currency, romance or privacy effects.
+ * The existing S23 harbor CG depicts an Eric-specific beat; do not falsely
+ * attribute it to all S23 routes or insert nonexistent S22 artwork.
+ */
+export function originalS22AndS23ExtraScenes({ t, beats }) {
+  const destinations = Object.freeze({
+    S22: 's23-intro',
+    S23: 's23-followup-dispatch',
+  });
+  return ['S22', 'S23'].flatMap(sourceId => {
+    const entries = interactionBeats[sourceId];
+    if (entries?.length !== 2 ||
+        entries.some(entry => entry.options?.map(option => option.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned source interaction changed: ' + sourceId);
+    }
+    return entries.flatMap((entry, index) => {
+      const id = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : destinations[sourceId];
+      return [
+        { id, beats: [
+          { id: id + '-prompt', type: 'dialogue', text: t(entry.question) },
+          { id: id + '-choice', type: 'choice',
+            choices: entry.options.map(option => ({
+              id: option.code.toLowerCase(), label: t(option.label),
+              targetSceneId: id + '-answer-' + option.code.toLowerCase(),
+            })) },
+        ] },
+        ...entry.options.map(option => {
+          const answerId = id + '-answer-' + option.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, option.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}
