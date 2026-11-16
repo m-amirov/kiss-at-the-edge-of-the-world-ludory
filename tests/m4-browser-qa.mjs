@@ -217,6 +217,10 @@ async function assertPilotCue(page, beatId, variantId, label, expectedMediaId = 
       's16-guesthouse-help': 'vis-s16-guesthouse-help.png',
       's16-kitchen-soup': 'vis-s16-kitchen-soup.png',
       's17-hofn-guesthouse': 'vis-s17-hofn-guesthouse.png',
+      's19-hofn-pool': 'vis-s19-hofn-pool.png',
+      's20-hofn-damir-kitchen': 'vis-s20-hofn-damir-kitchen.png',
+      's21-alice-hofn-room': 'vis-s21-alice-hofn-room.png',
+      's61-hofn-streets': 'vis-s61-hofn-streets.png',
       's18-hofn-dance-lights': 'vis-s18-hofn-dance-lights.webp',
       'roadside-cafe': 'vis-s02-roadside-cafe.png',
       'guesthouse-morning': 'vis-s03-guesthouse-morning.png',
@@ -847,6 +851,13 @@ async function main() {
       await advanceToBeat(desktop.page, 's18-common-04');
       await assertPilotCue(desktop.page, 's18-common-04', 'visual-s18-hofn-breakfast-group-1', 'S18 breakfast group', 's18-hofn-breakfast-group');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-breakfast-group.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's18-c90-prompt');
+      await assertPilotCue(desktop.page, 's18-c90-prompt', 'source-original-s18-c90-art',
+        'Original S18 Eric reflective choice', 's18-hofn-harbour');
+      await advanceToBeat(desktop.page, 's18-c91-prompt');
+      await assertPilotCue(desktop.page, 's18-c91-prompt', 'source-original-s18-c91-art',
+        'Original S18 Eric walking choice', 's18-hofn-harbour');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-restored-choices.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's22-s17-c90-echo-a-01');
       assert.equal(await desktop.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
         's22-s17-c90-echo-a-01', 'Original S17 choice A must echo at S22 before weather repair');
@@ -891,6 +902,16 @@ async function main() {
         'source-restored-hofn-lighthouse', 'original S18 Höfn harbor', 's18-hofn-harbour'],
       ['s18-intro-36', 0, new Map(),
         'source-restored-hofn-dance', 'original S18 Höfn dance', 's18-hofn-dance-lights'],
+      // Four real native S17 branches; each starts from the verified S17 save.
+      // Verify the original media is decoded in the restored C90 player choice.
+      ['s19-c90-prompt', 1, new Map(),
+        'source-original-s19-c90-art', 'original S19 Nick pool choice', 's19-hofn-pool'],
+      ['s20-c90-prompt', 2, new Map(),
+        'source-original-s20-c90-art', 'original S20 Damir evening choice', 's20-hofn-damir-kitchen'],
+      ['s21-c90-prompt', 3, new Map(),
+        'source-original-s21-c90-art', 'original S21 Alice independent choice', 's21-alice-hofn-room'],
+      ['s61-c90-prompt', 3, new Map(),
+        'source-original-s61-c90-art', 'original S61 independent continuation', 's61-hofn-streets'],
       ['s26-choice-nick-01', 0, new Map([['s26-route-choice', 1]]),
         'visual-s26-nick-choice-1', 'S26 Nick route', 's26-nick-choice'],
       ['s26-choice-damir-01', 0, new Map([['s26-route-choice', 2]]),
