@@ -844,6 +844,10 @@ async function main() {
       await advanceToBeat(desktop.page, 's18-common-04');
       await assertPilotCue(desktop.page, 's18-common-04', 'visual-s18-hofn-breakfast-group-1', 'S18 breakfast group', 's18-hofn-breakfast-group');
       await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s18-breakfast-group.png'), fullPage: true });
+      await advanceToBeat(desktop.page, 's22-s17-c90-echo-a-01');
+      assert.equal(await desktop.page.locator('.ludory-narrative__panel').getAttribute('data-beat-id'),
+        's22-s17-c90-echo-a-01', 'Original S17 choice A must echo at S22 before weather repair');
+      await desktop.page.screenshot({ path: join(evidenceDir, 'desktop-s22-s17-delayed-source-echo.png'), fullPage: true });
       await advanceToBeat(desktop.page, 's26-intro-01');
       await assertPilotCue(desktop.page, 's26-intro-01', 'visual-s26-eastfjords-guesthouse-courtyard-1', 'S26 guesthouse courtyard', 's26-eastfjords-guesthouse-courtyard');
       await advanceToBeat(desktop.page, 's26-intro-03');
