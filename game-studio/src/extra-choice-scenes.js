@@ -565,3 +565,47 @@ export function originalS16S17AndS22EchoScenes({ t, beats }) {
       nextSceneId: 's22-weather-dispatch' },
   ];
 }
+
+/**
+ * Restore original authored S18, S19, S20, S21, and S61 C90/C91 responses.
+ * These are FREE reflective choices; leave all canonical romance, consent,
+ * privacy and work effects, as well as the four evening routes, unchanged.
+ *
+ * Compatibility scene-boundary insertions preserve old beat IDs. Correct
+ * source-paragraph timing and old-save migration are still outstanding.
+ */
+export function originalS18ToS61ExtraScenes({ t, beats }) {
+  const nextBySource = Object.freeze({
+    S18: 's22-intro', S19: 's22-intro', S20: 's22-intro',
+    S21: 's61-intro', S61: 's22-intro',
+  });
+  return Object.entries(nextBySource).flatMap(([sourceId, nextScene]) => {
+    const originals = interactionBeats[sourceId];
+    if (originals?.length !== 2 ||
+        originals.some(item => item.options?.map(o => o.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned original choices changed for ' + sourceId);
+    }
+    return originals.flatMap((entry, index) => {
+      const name = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : nextScene;
+      return [
+        {
+          id: name,
+          beats: [
+            { id: name + '-prompt', type: 'dialogue', text: t(entry.question) },
+            { id: name + '-choice', type: 'choice',
+              choices: entry.options.map(option => ({
+                id: option.code.toLowerCase(), label: t(option.label),
+                targetSceneId: name + '-answer-' + option.code.toLowerCase(),
+              })),
+            },
+          ],
+        },
+        ...entry.options.map(option => {
+          const answerId = name + '-answer-' + option.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, option.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+}

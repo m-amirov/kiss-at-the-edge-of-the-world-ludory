@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes, originalS18ToS61ExtraScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -966,8 +966,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'eric-followup-song', value: true }] },
     ] },
   ] },
-  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's22-intro' },
-  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's22-intro' },
+  { id: 's18-postcards', beats: beats('s18-postcards', s18Postcards), nextSceneId: 's18-c90' },
+  { id: 's18-song', beats: beats('s18-song', s18Song), nextSceneId: 's18-c90' },
   // Only the Nick option in S17-C2 enters the exclusive S19 evening.
   { id: 's19-intro', beats: [
     ...beats('s19-intro', s19Intro),
@@ -1044,9 +1044,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's19-camera-free', beats: beats('s19-camera-free', s19CameraFree),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's19-c90' },
   { id: 's19-breakfast', beats: beats('s19-breakfast', s19Breakfast),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's19-c90' },
   // S17-C2 Damir enters this exclusive day-10 dinner; no reconciliation is implied.
   { id: 's20-intro', beats: [
     ...beats('s20-intro', s20Intro),
@@ -1091,9 +1091,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's20-breakfast', beats: beats('s20-breakfast', s20Breakfast),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's20-c90' },
   { id: 's20-waterfront', beats: beats('s20-waterfront', s20Waterfront),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's20-c90' },
   // The independent evening is a fully authored S21 → mandatory S61 pair.
   { id: 's21-intro', beats: beats('s21-intro', s21Intro), nextSceneId: 's21-choice-note' },
   { id: 's21-choice-note', beats: [
@@ -1135,8 +1135,8 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 'alice-self-bookstore', value: true }] },
     ] },
   ] },
-  { id: 's21-friend', beats: beats('s21-friend', s21Friend), nextSceneId: 's61-intro' },
-  { id: 's21-bookstore', beats: beats('s21-bookstore', s21Bookstore), nextSceneId: 's61-intro' },
+  { id: 's21-friend', beats: beats('s21-friend', s21Friend), nextSceneId: 's21-c90' },
+  { id: 's21-bookstore', beats: beats('s21-bookstore', s21Bookstore), nextSceneId: 's21-c90' },
   // S61 is mandatory and continues the same sent-letter provenance.
   { id: 's61-intro', beats: beats('s61-intro', s61Intro), nextSceneId: 's61-editor-dispatch' },
   { id: 's61-editor-dispatch', beats: [
@@ -1181,9 +1181,9 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
     ] },
   ] },
   { id: 's61-friend', beats: beats('s61-friend', s61FriendPayoff),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's61-c90' },
   { id: 's61-bookstore', beats: beats('s61-bookstore', s61BookstorePayoff),
-    nextSceneId: 's22-intro' },
+    nextSceneId: 's61-c90' },
   // The four authored EP05 evening/day arcs converge only after their full callbacks.
   { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-s17-c90-echo-dispatch' },
   { id: 's22-weather-dispatch', beats: [
@@ -2693,6 +2693,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS12AndS13ExtraScenes({ t, beats }),
   ...originalS14AndS15ExtraScenes({ t, beats }),
   ...originalS16S17AndS22EchoScenes({ t, beats }),
+  ...originalS18ToS61ExtraScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

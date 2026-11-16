@@ -71,13 +71,23 @@ test('fresh Studio game is independently owned and consumes native presentation'
       's17-group-c': 's17-c90',
       's17-group-d': 's17-c90',
       's22-intro': 's22-s17-c90-echo-dispatch',
+      's18-postcards': 's18-c90',
+      's18-song': 's18-c90',
+      's19-camera-free': 's19-c90',
+      's19-breakfast': 's19-c90',
+      's20-breakfast': 's20-c90',
+      's20-waterfront': 's20-c90',
+      's21-friend': 's21-c90',
+      's21-bookstore': 's21-c90',
+      's61-friend': 's61-c90',
+      's61-bookstore': 's61-c90',
       's60-common': 's41-c90-echo-route',
     };
     assert.equal(current.nextSceneId,
       redirectedTransitions[originalScene.id] ?? originalScene.nextSceneId,
       `unexpected canonical transition: ${originalScene.id}`);
   }
-  assert.equal(revised.size, baseline.scenes.length + 129, 'expected only documented original authored choices and delayed echoes');
+  assert.equal(revised.size, baseline.scenes.length + 159, 'expected only documented original authored choices and delayed echoes');
   for (const file of ['src/presentation.js', 'visuals/presentation.json', 'visuals/source-map.json', 'narrative-assets.json']) {
     assert.equal(ownership.files[file], undefined, `visual migration must not alter a managed component: ${file}`);
   }

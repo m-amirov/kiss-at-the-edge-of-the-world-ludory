@@ -3490,6 +3490,366 @@
           "mode": "replace-stage"
         }
       }
+    ],
+    "s18-c90-prompt": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-choice": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-answer-a-01": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c90-answer-b-01": [
+      {
+        "id": "source-original-s18-c90-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-prompt": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-choice": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-answer-a-01": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s18-c91-answer-b-01": [
+      {
+        "id": "source-original-s18-c91-art",
+        "cg": {
+          "mediaId": "s18-hofn-harbour",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-prompt": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-choice": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-answer-a-01": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c90-answer-b-01": [
+      {
+        "id": "source-original-s19-c90-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-prompt": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-choice": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-answer-a-01": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s19-c91-answer-b-01": [
+      {
+        "id": "source-original-s19-c91-art",
+        "cg": {
+          "mediaId": "s19-hofn-pool",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-prompt": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-choice": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-answer-a-01": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c90-answer-b-01": [
+      {
+        "id": "source-original-s20-c90-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-prompt": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-choice": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-answer-a-01": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s20-c91-answer-b-01": [
+      {
+        "id": "source-original-s20-c91-art",
+        "cg": {
+          "mediaId": "s20-hofn-damir-kitchen",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-prompt": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-choice": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-answer-a-01": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c90-answer-b-01": [
+      {
+        "id": "source-original-s21-c90-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-prompt": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-choice": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-answer-a-01": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s21-c91-answer-b-01": [
+      {
+        "id": "source-original-s21-c91-art",
+        "cg": {
+          "mediaId": "s21-alice-hofn-room",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-prompt": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-choice": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-answer-a-01": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c90-answer-b-01": [
+      {
+        "id": "source-original-s61-c90-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-prompt": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-choice": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-answer-a-01": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s61-c91-answer-b-01": [
+      {
+        "id": "source-original-s61-c91-art",
+        "cg": {
+          "mediaId": "s61-hofn-streets",
+          "mode": "replace-stage"
+        }
+      }
     ]
   }
 }
