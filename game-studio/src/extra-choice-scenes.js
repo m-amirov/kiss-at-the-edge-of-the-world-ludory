@@ -501,3 +501,67 @@ export function originalS14AndS15ExtraScenes({ t, beats }) {
     });
   });
 }
+
+/**
+ * Original S16/S17 author-authored C90 and C91 agency beats; S17 C90
+ * selects the source-authored delayed callback in S22 on all four evenings.
+ * It remains a free reflective choice, not a romance route lock.
+ *
+ * Old saved canonical scene and beat IDs are retained. Insertion at scene
+ * boundaries is not yet the original source-paragraph position.
+ */
+export function originalS16S17AndS22EchoScenes({ t, beats }) {
+  const ending = Object.freeze({ S16: 's17-intro', S17: 's17-common-b' });
+  const decisions = ['S16', 'S17'].flatMap(sourceId => {
+    const original = interactionBeats[sourceId];
+    if (original?.length !== 2 ||
+        original.some(item => item.options?.map(option => option.code).join(',') !== 'A,B')) {
+      throw new Error('Pinned source changed for original ' + sourceId + ' C90/C91');
+    }
+    return original.flatMap((entry, index) => {
+      const id = sourceId.toLowerCase() + '-c' + (90 + index);
+      const next = index === 0 ? sourceId.toLowerCase() + '-c91' : ending[sourceId];
+      return [
+        { id, beats: [
+          { id: id + '-prompt', type: 'dialogue', text: t(entry.question) },
+          { id: id + '-choice', type: 'choice', choices: entry.options.map(opt => ({
+            id: opt.code.toLowerCase(), label: t(opt.label),
+            targetSceneId: id + '-answer-' + opt.code.toLowerCase(),
+            ...(sourceId === 'S17' && index === 0 ? {
+              effects: [{ op: 'flag_set', id: 's17-extra-c90-' + opt.code.toLowerCase(), value: true }],
+            } : {}),
+          })) },
+        ] },
+        ...entry.options.map(opt => {
+          const answerId = id + '-answer-' + opt.code.toLowerCase();
+          return { id: answerId, beats: beats(answerId, opt.text), nextSceneId: next };
+        }),
+      ];
+    });
+  });
+  const originalEcho = interactionEchoes.S22?.[0];
+  if (originalEcho?.[0] !== 'S17-C90') {
+    throw new Error('Missing source S17-C90 delayed S22 reaction');
+  }
+  return [...decisions,
+    {
+      id: 's22-s17-c90-echo-dispatch',
+      beats: [{
+        id: 's22-s17-c90-echo-dispatch-choice', type: 'choice', choices: [
+          { id: 'a', label: t('Продолжить'), targetSceneId: 's22-s17-c90-echo-a',
+            when: { flag: 's17-extra-c90-a' } },
+          { id: 'b', label: t('Продолжить'), targetSceneId: 's22-s17-c90-echo-b',
+            when: { flag: 's17-extra-c90-b' } },
+          { id: 'legacy', label: t('Продолжить'), targetSceneId: 's22-weather-dispatch',
+            when: { not: { any: [
+              { flag: 's17-extra-c90-a' }, { flag: 's17-extra-c90-b' },
+            ] } } },
+        ],
+      }],
+    },
+    { id: 's22-s17-c90-echo-a', beats: beats('s22-s17-c90-echo-a', originalEcho[1]),
+      nextSceneId: 's22-weather-dispatch' },
+    { id: 's22-s17-c90-echo-b', beats: beats('s22-s17-c90-echo-b', originalEcho[2]),
+      nextSceneId: 's22-weather-dispatch' },
+  ];
+}

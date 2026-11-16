@@ -33,10 +33,11 @@ test('original interactive choices have an explicit, non-regressing restoration 
   for (const id of ['s01-c90', 's01-c91', 's02-c90', 's02-c91', 's65-c90', 's65-c91', 's03-c90', 's03-c91', 's04-c90', 's04-c91', 's05-c90', 's05-c91', 's06-c90', 's06-c91', 's07-c90', 's07-c91',
     's08-c90', 's08-c91', 's66-c90', 's66-c91', 's09-c90', 's09-c91', 's10-c90', 's10-c91', 's11-c90', 's11-c91',
     's12-c90', 's12-c91', 's13-c90', 's13-c91',
-    's14-c90', 's14-c91', 's15-c90', 's15-c91']) {
+    's14-c90', 's14-c91', 's15-c90', 's15-c91',
+    's16-c90', 's16-c91', 's17-c90', 's17-c91']) {
     assert.ok(graphScenes.has(id), `previously restored authored choice ${id} missing`);
   }
-  assert.ok(missingExtraChoices.length <= 62, 'previously restored extra choice was removed');
+  assert.ok(missingExtraChoices.length <= 58, 'previously restored extra choice was removed');
   for (const source of expectedExtraChoices.filter(x => graphScenes.has(x.ludorySceneId))) {
     const scene = graphData.scenes.find(scene => scene.id === source.ludorySceneId);
     assert.equal(scene.beats.at(-1)?.type, 'choice', `${source.originalId} silently lost its choice beat`);

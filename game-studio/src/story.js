@@ -1,4 +1,4 @@
-import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes } from './extra-choice-scenes.js';
+import { originalS01ExtraScenes, originalS02ExtraScenes, originalS41EchoScenes, originalS65AndS03ExtraScenes, originalS04AndS05ExtraScenes, originalS06AndS07ExtraScenes, originalS08S66S09ExtraScenes, originalS10AndS11ExtraScenes, originalS12AndS13ExtraScenes, originalS14AndS15ExtraScenes, originalS16S17AndS22EchoScenes } from './extra-choice-scenes.js';
 // Source: kiss-at-the-edge-of-the-world@1e775f1, canonical S01–S66, episodes 3–9 through S60, and EP10 S41–S48.
 // Narrative end markers are not release acceptance. EN falls back to RU pending verified localization.
 import { s02Intro, s02People, s02Place, s02OwnChoice, s02Common } from './scenes/s02.js';
@@ -851,7 +851,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ] },
   { id: 's16-tea', beats: beats('s16-tea', s16Tea), nextSceneId: 's16-common' },
   { id: 's16-room', beats: beats('s16-room', s16Room), nextSceneId: 's16-common' },
-  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's17-intro' },
+  { id: 's16-common', beats: beats('s16-common', s16Common), nextSceneId: 's16-c90' },
   { id: 's17-intro', beats: beats('s17-intro', s17Intro), nextSceneId: 's17-n-dispatch' },
   { id: 's17-n-dispatch', beats: [
     { id: 's17-n-dispatch', type: 'choice', choices: [
@@ -903,10 +903,10 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
         effects: [{ op: 'flag_set', id: 's17-group-break', value: true }] },
     ] },
   ] },
-  { id: 's17-group-a', beats: beats('s17-group-a', s17GroupPlan), nextSceneId: 's17-common-b' },
-  { id: 's17-group-b', beats: beats('s17-group-b', s17GroupLaundry), nextSceneId: 's17-common-b' },
-  { id: 's17-group-c', beats: beats('s17-group-c', s17GroupKitchen), nextSceneId: 's17-common-b' },
-  { id: 's17-group-d', beats: beats('s17-group-d', s17GroupBreak), nextSceneId: 's17-common-b' },
+  { id: 's17-group-a', beats: beats('s17-group-a', s17GroupPlan), nextSceneId: 's17-c90' },
+  { id: 's17-group-b', beats: beats('s17-group-b', s17GroupLaundry), nextSceneId: 's17-c90' },
+  { id: 's17-group-c', beats: beats('s17-group-c', s17GroupKitchen), nextSceneId: 's17-c90' },
+  { id: 's17-group-d', beats: beats('s17-group-d', s17GroupBreak), nextSceneId: 's17-c90' },
   { id: 's17-common-b', beats: [
     ...beats('s17-common-b', s17CommonB),
     { id: 's17-evening-choice', type: 'choice', choices: [
@@ -1185,7 +1185,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   { id: 's61-bookstore', beats: beats('s61-bookstore', s61BookstorePayoff),
     nextSceneId: 's22-intro' },
   // The four authored EP05 evening/day arcs converge only after their full callbacks.
-  { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-weather-dispatch' },
+  { id: 's22-intro', beats: beats('s22-intro', s22Intro), nextSceneId: 's22-s17-c90-echo-dispatch' },
   { id: 's22-weather-dispatch', beats: [
     { id: 's22-weather-choice', type: 'choice', choices: [
       { id: 'nick', label: t('Продолжить'), targetSceneId: 's22-weather-nick',
@@ -2692,6 +2692,7 @@ export const graphData = { schemaVersion: 1, id: 'kiss-s01-m2', startSceneId: 's
   ...originalS10AndS11ExtraScenes({ t, beats }),
   ...originalS12AndS13ExtraScenes({ t, beats }),
   ...originalS14AndS15ExtraScenes({ t, beats }),
+  ...originalS16S17AndS22EchoScenes({ t, beats }),
 ] };
 export const labels = { intent: {}, tone: {}, recipient: {}, journal: {} };
 export const relationFacts = [];

@@ -3348,6 +3348,150 @@ export const presentationData = {
         "id": "authored-s15-c91-original",
         "background": "s15-jokulsarlon-parking-day"
       }
+    ],
+    "s16-c90-prompt": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-choice": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-answer-a-01": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c90-answer-b-01": [
+      {
+        "id": "original-s16-c90-source-art",
+        "cg": {
+          "mediaId": "s16-guesthouse-help",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-prompt": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-choice": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-answer-a-01": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s16-c91-answer-b-01": [
+      {
+        "id": "original-s16-c91-source-art",
+        "cg": {
+          "mediaId": "s16-kitchen-soup",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-prompt": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-choice": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-answer-a-01": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c90-answer-b-01": [
+      {
+        "id": "original-s17-c90-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-prompt": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-choice": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-answer-a-01": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
+    ],
+    "s17-c91-answer-b-01": [
+      {
+        "id": "original-s17-c91-source-art",
+        "cg": {
+          "mediaId": "s17-hofn-guesthouse",
+          "mode": "replace-stage"
+        }
+      }
     ]
   }
 };
