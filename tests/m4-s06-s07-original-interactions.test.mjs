@@ -387,6 +387,7 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
 
   assert.ok(checkpointS14, 'S14 checkpoint was not reached via real prior choices');
   let index = 0;
+  let checkpointS16 = null;
   for (const a of ['a', 'b']) for (const b of ['a', 'b'])
     for (const c of ['a', 'b']) for (const e of ['a', 'b']) {
       const walk = (index++ % 2) === 0;
@@ -424,6 +425,68 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
       assert.equal(restored.state.narrative.flags[
         { a:'nick-failure-private', b:'nick-failure-observed', c:'nick-failure-shared-file' }[policy]], true);
       assert.equal(restored.state.narrative.routeLock, null);
+      if ([a,b,c,e].every(option => option === 'a')) {
+        checkpointS16 = JSON.parse(JSON.stringify(restored.state));
+      }
+    }
+
+  assert.ok(checkpointS16, 'Native S16 checkpoint not reached by prior canonical story');
+  let s17Index = 0;
+  const sourceEcho = interactionEchoes.S22[0];
+  assert.equal(sourceEcho[0], 'S17-C90');
+  for (const a of ['a','b']) for (const b of ['a','b'])
+    for (const c of ['a','b']) for (const e of ['a','b']) {
+      const d = makeDriver(graph, catalog, JSON.parse(JSON.stringify(checkpointS16)));
+      d.advance('s16-intro');
+      d.choose('s16-care-choice', 'a'); d.advance('s16-tea'); d.advance('s16-common');
+      d.advance('s16-c90'); d.choose('s16-c90-choice', a); d.advance('s16-c90-answer-' + a);
+      d.advance('s16-c91'); d.choose('s16-c91-choice', b); d.advance('s16-c91-answer-' + b);
+      d.advance('s17-intro');
+      d.choose('s17-n-dispatch', 'a'); d.advance('s17-n-a');
+      d.advance('s17-common-a');
+      d.choose('s17-e-dispatch', 'a'); d.advance('s17-e-a');
+      d.choose('s17-d-dispatch', 'a'); d.advance('s17-d-a');
+      d.choose('s17-group-choice', 'a'); d.advance('s17-group-a');
+      d.advance('s17-c90'); d.choose('s17-c90-choice', c);
+      d.advance('s17-c90-answer-' + c);
+      d.advance('s17-c91'); d.choose('s17-c91-choice', e);
+      d.advance('s17-c91-answer-' + e);
+      d.advance('s17-common-b');
+      const evening = ['eric','nick','damir','self'][s17Index++ % 4];
+      d.choose('s17-evening-choice', evening);
+      const next = {eric:'s18-intro',nick:'s19-intro',damir:'s20-intro',self:'s21-intro'}[evening];
+      assert.equal(d.state.narrative.sceneId, next,
+        [a,b,c,e,evening].join('') + ': four-route S17 ending changed');
+      assert.equal(d.state.narrative.flags['s17-extra-c90-' + c], true);
+      assert.notEqual(d.state.narrative.flags['s17-extra-c90-' + (c === 'a' ? 'b' : 'a')], true);
+      assert.equal(d.state.narrative.flags['s17-evening-' + evening], true);
+      assert.equal(d.state.narrative.flags['damir-space-tea'], true);
+      assert.equal(d.state.narrative.routeLock, null);
+
+      // Each S17 C90 answer is verified in S22 after the full real Eric
+      // evening; this cannot be reduced to a string-only source assertion.
+      if (evening !== 'eric') continue;
+      d.advance('s18-intro'); d.choose('s18-contact-choice', 'kiss');
+      d.advance('s18-kiss'); d.advance('s18-common');
+      d.choose('s18-payoff-dispatch-choice','k'); d.advance('s18-k');
+      d.choose('s18-followup-choice', 'postcards'); d.advance('s18-postcards');
+      d.advance('s22-intro');
+      assert.equal(d.state.narrative.sceneId, 's22-s17-c90-echo-dispatch');
+      const checkpointS22 = JSON.parse(JSON.stringify(d.state));
+      d.choose('s22-s17-c90-echo-dispatch-choice',c);
+      assert.equal(sourceText('s22-s17-c90-echo-' + c), sourceEcho[c === 'a' ? 1 : 2]);
+      d.advance('s22-s17-c90-echo-' + c);
+      assert.equal(d.state.narrative.sceneId, 's22-weather-dispatch');
+      assert.equal(d.state.narrative.flags['s17-evening-eric'], true);
+
+      // Pre-restoration saves legitimately lack S17 C90 state. Never invent
+      // either reply for such a save; continue to the original S22 weather beat.
+      const oldSave = JSON.parse(JSON.stringify(checkpointS22));
+      delete oldSave.narrative.flags['s17-extra-c90-a'];
+      delete oldSave.narrative.flags['s17-extra-c90-b'];
+      const legacy = makeDriver(graph, catalog, oldSave);
+      legacy.choose('s22-s17-c90-echo-dispatch-choice','legacy');
+      assert.equal(legacy.state.narrative.sceneId,'s22-weather-dispatch');
     }
 });
 
@@ -555,4 +618,52 @@ test('S14/S15 original questions, responses and admitted original art remain exa
   assert.equal(scene('s15-common-a').beats.at(-1).choices.length, 3,
     'S15 original consent/privacy branching lost');
   assert.equal(scene('s14-common-a').beats.at(-1).choices.length, 2);
+});
+
+test('S16/S17 original choices and S22 delayed echo keep canonical scene and image data', () => {
+  assert.doesNotThrow(() => defineNarrativeGraph(graphData));
+  assert.doesNotThrow(() => defineNarrativeCatalog(catalogData));
+  for (const [sourceId, successors, images] of [
+    ['S16','s17-intro',['s16-guesthouse-help','s16-kitchen-soup']],
+    ['S17','s17-common-b',['s17-hofn-guesthouse','s17-hofn-guesthouse']],
+  ]) {
+    for (let i = 0; i < 2; i++) {
+      const id = sourceId.toLowerCase() + '-c' + (90 + i);
+      const authored = interactionBeats[sourceId][i];
+      assert.equal(scene(id).beats[0].text.ru, authored.question);
+      assert.deepEqual(scene(id).beats[1].choices.map(c => c.label.ru),
+        authored.options.map(o => o.label));
+      for (const option of authored.options) {
+        const responseId = id + '-answer-' + option.code.toLowerCase();
+        assert.equal(sourceText(responseId), option.text, responseId);
+        assert.equal(scene(responseId).nextSceneId,
+          i === 0 ? sourceId.toLowerCase() + '-c91' : successors);
+      }
+      if (sourceId === 'S17' && i === 0) {
+        for (const opt of scene(id).beats[1].choices) {
+          assert.deepEqual(opt.effects, [{
+            op:'flag_set', id:'s17-extra-c90-' + opt.id, value:true
+          }]);
+        }
+      } else assert.ok(scene(id).beats[1].choices.every(choice => !choice.effects?.length));
+      for (const beat of [id+'-prompt', id+'-choice',id+'-answer-a-01',id+'-answer-b-01']) {
+        assert.equal(presentationData.beats[beat]?.[0]?.cg?.mediaId,
+          images[i], beat + ' original art mapping mismatch');
+      }
+    }
+  }
+  assert.equal(scene('s16-common').nextSceneId,'s16-c90');
+  for (const suffix of ['a','b','c','d']) {
+    assert.equal(scene('s17-group-' + suffix).nextSceneId,'s17-c90');
+  }
+  assert.equal(scene('s22-intro').nextSceneId,'s22-s17-c90-echo-dispatch');
+  assert.equal(scene('s22-s17-c90-echo-dispatch').beats[0].choices.length,3);
+  assert.equal(scene('s22-s17-c90-echo-a').nextSceneId,'s22-weather-dispatch');
+  assert.equal(scene('s22-s17-c90-echo-b').nextSceneId,'s22-weather-dispatch');
+  for (const suffix of ['a','b']) {
+    assert.equal(sourceText('s22-s17-c90-echo-'+suffix),
+      interactionEchoes.S22[0][suffix === 'a' ? 1 : 2]);
+  }
+  assert.equal(scene('s17-common-b').beats.at(-1).choices.length,4,
+    'S17 canonical four-evening choice was replaced');
 });
