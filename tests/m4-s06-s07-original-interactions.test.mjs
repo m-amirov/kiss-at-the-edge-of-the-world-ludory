@@ -483,14 +483,16 @@ test('64 S08/S66/S09 combinations and 16 S10/S11 combinations preserve canonical
       assert.equal(d.state.narrative.sceneId, 's22-weather-dispatch');
       assert.equal(d.state.narrative.flags['s17-evening-eric'], true);
 
-      // Pre-restoration saves legitimately lack S17 C90 state. Never invent
-      // either reply for such a save; continue to the original S22 weather beat.
-      const oldSave = JSON.parse(JSON.stringify(checkpointS22));
-      delete oldSave.narrative.flags['s17-extra-c90-a'];
-      delete oldSave.narrative.flags['s17-extra-c90-b'];
-      const legacy = makeDriver(graph, catalog, oldSave);
-      legacy.choose('s22-s17-c90-echo-dispatch-choice','legacy');
-      assert.equal(legacy.state.narrative.sceneId,'s22-weather-dispatch');
+      // Removing the flag from a NEW-format save without removing the
+      // corresponding native action-log entry is tampering, not a legacy save.
+      // Such a mismatch must remain rejected; older saves require a separate
+      // migration procedure with authenticated/provenance-safe replay.
+      const tampered = JSON.parse(JSON.stringify(checkpointS22));
+      delete tampered.narrative.flags['s17-extra-c90-a'];
+      delete tampered.narrative.flags['s17-extra-c90-b'];
+      const forged = makeDriver(graph, catalog, tampered);
+      assert.throws(() => forged.choose('s22-s17-c90-echo-dispatch-choice','legacy'),
+        /inconsistent actionLog provenance or position/);
     }
 });
 
@@ -662,6 +664,12 @@ test('S16/S17 original choices and S22 delayed echo keep canonical scene and ima
   }
   assert.equal(scene('s22-intro').nextSceneId,'s22-s17-c90-echo-dispatch');
   assert.equal(scene('s22-s17-c90-echo-dispatch').beats[0].choices.length,3);
+  const fallback = scene('s22-s17-c90-echo-dispatch').beats[0].choices
+    .find(choice => choice.id === 'legacy');
+  assert.equal(fallback.targetSceneId, 's22-weather-dispatch');
+  assert.deepEqual(fallback.when, { not: { any: [
+    { flag: 's17-extra-c90-a' }, { flag: 's17-extra-c90-b' },
+  ] } });
   assert.equal(scene('s22-s17-c90-echo-a').nextSceneId,'s22-weather-dispatch');
   assert.equal(scene('s22-s17-c90-echo-b').nextSceneId,'s22-weather-dispatch');
   for (const suffix of ['a','b']) {
